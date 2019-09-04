@@ -19,9 +19,9 @@ categories:
   - Uncategorized
 tags:
   - Citrix
-  - XenApp
+  - &
 ---
-If Citrix is giving you grief because IMA won&#8217;t start after unjoining and rejoining a farm, do the following:  
+If Citrix is giving you grief because IMA won't start after unjoining and rejoining a farm, do the following:  
 IMA Service Fails to Start and MFCOM Service Hangs in a Starting State  
 Document ID: CTX127922 / Created On: 20-Jan-2011 / Updated On: 20-Oct-2011  
 Average Rating: (5 ratings)  
@@ -31,7 +31,7 @@ Symptoms
 IMA Service fails to start and MFCOM Service hangs in a Starting state.  
 Event ID: 7024  
 The Independent Management Architecture service terminated with service-specific error: 2147483649 (0x80000001).  
-&#8211; Or –  
+- Or –  
 The IMA service terminated with service-specific error: 2147483647  
 Cause  
 When looking into the services manager, the MFCOM Service is in status “starting”. MFCOM and IMA Service fail to start because of a corrupt radeoffline DB.  

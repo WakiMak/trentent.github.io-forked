@@ -21,9 +21,9 @@ tags:
   - Citrix
   - Performance
   - Web Interface
-  - XenApp
+  - &
 ---
-We&#8217;ve been having issues with our Citrix Web Interface (5.4.2) with it cratering to the point that you cannot even get to the explicit logon page, stuck on SilentDetection.aspx or another aspx page.
+We've been having issues with our Citrix Web Interface (5.4.2) with it cratering to the point that you cannot even get to the explicit logon page, stuck on SilentDetection.aspx or another aspx page.
 
 <table style="margin-left: auto; margin-right: auto; text-align: center;" cellspacing="0" cellpadding="0" align="center">
   <tr>
@@ -34,14 +34,14 @@ We&#8217;ve been having issues with our Citrix Web Interface (5.4.2) with it cra
   
   <tr>
     <td style="text-align: center;">
-      One Moment Please&#8230; Â This screen takes minutes to resolve
+      One Moment Please... Â This screen takes minutes to resolve
     </td>
   </tr>
 </table>
 
-So what could be causing this? Â More often than not, it&#8217;s a broken XML broker that isn&#8217;t responding in a reasonable amount of time. Â But XML brokers don&#8217;t come into play with &#8216;Explicit Logon&#8217;, especially if you can&#8217;t even get to the logon page. Â In our scenario, we have two production Citrix Web Interface servers which are load-balanced in a round-robin scenario.
+So what could be causing this? Â More often than not, it's a broken XML broker that isn't responding in a reasonable amount of time. Â But XML brokers don't come into play with 'Explicit Logon', especially if you can't even get to the logon page. Â In our scenario, we have two production Citrix Web Interface servers which are load-balanced in a round-robin scenario.
 
-So I theorized that what&#8217;s happening is we are experiencing a load issue. Â That is our server cannot handle the number of connections that we our clients and PNA agents are producing. Â How can we prove this out? Â How many connections can our web interface accept?
+So I theorized that what's happening is we are experiencing a load issue. Â That is our server cannot handle the number of connections that we our clients and PNA agents are producing. Â How can we prove this out? Â How many connections can our web interface accept?
 
 To test out what the maximum number of connections our web interface servers can sustain I came up with a plan. Â We need to thoroughly exercise the ASP.NET scripts that Citrix has put together for the web interface. Â To do that we need I decided that logging in via explicit logon, skipping client installation (so client detection occurs) and then application enumeration. Â This sequence hits the following ASPX pages:
 
@@ -72,7 +72,7 @@ To test out what the maximum number of connections our web interface servers can
 </div>
 
 <div>
-  The initial silentDetection.aspx&#8217;s take the majority of the processing time, about 4.3 seconds. Â To create the ability to simulate this load, Microsoft has a tool called &#8220;WCAT&#8221;, or the <a href="http://technet.microsoft.com/en-us/magazine/2008.04.utilityspotlight.aspx">Web Capacity Analysis Tool</a>. Â This tool allows you to setup &#8220;scenario&#8217;s&#8221; which are a sequence of HTTP actions (GET/POST/etc) which simulates each step of the sequence above. Â To record this sequence for WCAT, you need to install Fiddler 2 then install the <a href="http://fiddler2wcat.codeplex.com/releases/view/35356">WCAT scenario creator</a>. Â There are numerous WCAT scenario creators, but I used this one. Â To create the scenario do the following:
+  The initial silentDetection.aspx's take the majority of the processing time, about 4.3 seconds. Â To create the ability to simulate this load, Microsoft has a tool called "WCAT", or the <a href="http://technet.microsoft.com/en-us/magazine/2008.04.utilityspotlight.aspx">Web Capacity Analysis Tool</a>. Â This tool allows you to setup "scenario's" which are a sequence of HTTP actions (GET/POST/etc) which simulates each step of the sequence above. Â To record this sequence for WCAT, you need to install Fiddler 2 then install the <a href="http://fiddler2wcat.codeplex.com/releases/view/35356">WCAT scenario creator</a>. Â There are numerous WCAT scenario creators, but I used this one. Â To create the scenario do the following:
 </div>
 
 <div>
@@ -82,7 +82,7 @@ To test out what the maximum number of connections our web interface servers can
 </div>
 
 <div>
-  1) Launch Fiddler 2 and click &#8216;Launch&#8217;
+  1) Launch Fiddler 2 and click 'Launch'
 </div>
 
 <div>
@@ -122,7 +122,7 @@ To test out what the maximum number of connections our web interface servers can
 </div>
 
 <div>
-  3) Go back to Fiddler 2 and at the bottom of the screen on the left in the black bar, type &#8220;wcat reset&#8221;
+  3) Go back to Fiddler 2 and at the bottom of the screen on the left in the black bar, type "wcat reset"
 </div>
 
 <div>
@@ -136,7 +136,7 @@ To test out what the maximum number of connections our web interface servers can
 </div>
 
 <div>
-  4) Go Edit > Select All. Â Then in the black bar, type &#8216;wcat addtrans&#8217;
+  4) Go Edit > Select All. Â Then in the black bar, type 'wcat addtrans'
 </div>
 
 <div>
@@ -150,7 +150,7 @@ To test out what the maximum number of connections our web interface servers can
 </div>
 
 <div>
-  5) Lastly, type &#8216;wcat save&#8217;.
+  5) Lastly, type 'wcat save'.
 </div>
 
 <div>
@@ -196,7 +196,7 @@ To test out what the maximum number of connections our web interface servers can
 </div>
 
 <div>
-  Won&#8217;t work. Â You need to escape out the double-quotes with a back-slash so it looks like so (the backslashes are bolded and underlined):
+  Won't work. Â You need to escape out the double-quotes with a back-slash so it looks like so (the backslashes are bolded and underlined):
 </div>
 
 <div>
@@ -210,14 +210,14 @@ To test out what the maximum number of connections our web interface servers can
 </div>
 
 <div>
-  Once you&#8217;ve escape&#8217;d the double quotes, save the file as &#8216;scenario.ubr&#8217;; you can now setup <a href="http://technet.microsoft.com/en-us/magazine/2008.04.utilityspotlight.aspx">WCAT</a>.
+  Once you've escape'd the double quotes, save the file as 'scenario.ubr'; you can now setup <a href="http://technet.microsoft.com/en-us/magazine/2008.04.utilityspotlight.aspx">WCAT</a>.
 </div>
 
 <div>
 </div>
 
 <div>
-  Install WCAT on some test boxes or a single box (for the purposes of this demo I&#8217;m doing just a single box).
+  Install WCAT on some test boxes or a single box (for the purposes of this demo I'm doing just a single box).
 </div>
 
 <div>
@@ -279,14 +279,14 @@ To test out what the maximum number of connections our web interface servers can
 </div>
 
 <div>
-  Since I&#8217;m testing from one computer I then used the following command to start all my clients:
+  Since I'm testing from one computer I then used the following command to start all my clients:
 </div>
 
 <div>
 </div>
 
 <div>
-  for /l %A IN (1,1,20) do (start &#8220;&#8221; wcclient.exe localhost)
+  for /l %A IN (1,1,20) do (start "" wcclient.exe localhost)
 </div>
 
 <div>
@@ -335,7 +335,7 @@ To test out what the maximum number of connections our web interface servers can
 </div>
 
 <div>
-  You can see around 220 current connections the Requests in Application Queue shoots up. Â At this point any additional requests to ASPX files goes into a queue that makes the website appear &#8216;frozen&#8217; which it waits for the ASPX file to be processed and sent down to you. Â Citrix attempts to &#8216;hide&#8217; this page by loading the &#8216;loading.htm&#8217; during ASPX processing. Â This page is your &#8216;One Moment Please&#8217; page. Â If you show the Request Execution Time counter, we can see the longest time taken to process a ASPX page:
+  You can see around 220 current connections the Requests in Application Queue shoots up. Â At this point any additional requests to ASPX files goes into a queue that makes the website appear 'frozen' which it waits for the ASPX file to be processed and sent down to you. Â Citrix attempts to 'hide' this page by loading the 'loading.htm' during ASPX processing. Â This page is your 'One Moment Please' page. Â If you show the Request Execution Time counter, we can see the longest time taken to process a ASPX page:
 </div>
 
 <div>

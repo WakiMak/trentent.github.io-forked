@@ -20,7 +20,7 @@ tags:
   - scripting
   - Storefront
 ---
-If you use a 3rd party service to connect to your Citrix Storefront environment, you may want to &#8220;pass-through&#8221; credentials without using domain authentication or whatever. Â This post illustrates how you can login to your Storefront environment using nothing more than a URL with your credentials embedded in them. Â To enable this functionality, this code must be in your custom.js file.
+If you use a 3rd party service to connect to your Citrix Storefront environment, you may want to "pass-through" credentials without using domain authentication or whatever. Â This post illustrates how you can login to your Storefront environment using nothing more than a URL with your credentials embedded in them. Â To enable this functionality, this code must be in your custom.js file.
 
 <pre class="lang:js decode:true ">// CTXS.getParametersFromQueryString(window.location.search.substring(1))  //grab URL query parameters
 var username = CTXS.getParametersFromQueryString(window.location.search.substring(1)).username

@@ -23,13 +23,13 @@ tags:
 ---
 We experienced an issue when we modified a GPO to include item-level filtering on an AD group.Â The issue was that Windows 7 machines with this GPO applied to where suddenly taking minutes to login.Â Windows XP machines, however, logged in almost instantly.
 
-When going through the event logs for group policy on Windows 7 we were able to identify the CSE causing this issue.Â For us it was the &#8220;File processing extension&#8221;.
+When going through the event logs for group policy on Windows 7 we were able to identify the CSE causing this issue.Â For us it was the "File processing extension".
 
 <div style="clear: both; text-align: center;">
   <a style="margin-left: 1em; margin-right: 1em;" href="http://2.bp.blogspot.com/-9vdjd4qnNr0/UTYZ4brbgsI/AAAAAAAAALk/LCGQioziAjM/s1600/slow1.png"><img src="http://2.bp.blogspot.com/-9vdjd4qnNr0/UTYZ4brbgsI/AAAAAAAAALk/LCGQioziAjM/s320/slow1.png" width="320" height="126" border="0" /></a>
 </div>
 
-When we looked at the group policy we saw that the item-level filtering was filtering on a group with 11,000+ objects in it.Â We had two tasks in the GPO that were filtering on that group.Â When I attempted to open the group utilizing ActiveRoles Server (ARS) it was taking 40-50 seconds to populate each object in the group.Â I theorized that it appeared Windows 7 was iterating through each object like ARS was.Â To test this I installed Wireshark on the Windows 7 and XP machines and ran &#8220;GPUPDATE /FORCE&#8221;.Â This triggered the CSE to execute.Â The following are the traces:
+When we looked at the group policy we saw that the item-level filtering was filtering on a group with 11,000+ objects in it.Â We had two tasks in the GPO that were filtering on that group.Â When I attempted to open the group utilizing ActiveRoles Server (ARS) it was taking 40-50 seconds to populate each object in the group.Â I theorized that it appeared Windows 7 was iterating through each object like ARS was.Â To test this I installed Wireshark on the Windows 7 and XP machines and ran "GPUPDATE /FORCE".Â This triggered the CSE to execute.Â The following are the traces:
 
 <table style="margin-left: auto; margin-right: auto; text-align: center;" cellspacing="0" cellpadding="0" align="center">
   <tr>
@@ -67,7 +67,7 @@ When we looked at the group policy we saw that the item-level filtering was filt
   </tr>
 </table>
 
-Obviously, with 11,000+ objects in the AD group Windows 7 will have a significantly slower logon if it&#8217;s querying every object within the group.Â Fortunately, Microsoft has put out a fix for this:
+Obviously, with 11,000+ objects in the AD group Windows 7 will have a significantly slower logon if it's querying every object within the group.Â Fortunately, Microsoft has put out a fix for this:
 
 ## [<span style="font-weight: normal;"><span style="font-size: small;">You experience a long domain logon time in Windows Vista, Windows 7, Windows Server 2008 or Windows Server 2008 R2 after you deploy Group Policy preferences to the computer</span></span>](http://support.microsoft.com/default.aspx?scid=kb%3BEN-US%3B2561285)
 

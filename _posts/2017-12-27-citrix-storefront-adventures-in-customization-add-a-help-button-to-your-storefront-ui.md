@@ -24,7 +24,7 @@ This customization is pretty easy. Â Add the following to your custom.js file:
 	}
 );</pre>
 
-Replace &#8220;http://www.google.ca&#8221; with the URL you want your help screen to be.
+Replace "http://www.google.ca" with the URL you want your help screen to be.
 
 <!-- AddThis Advanced Settings generic via filter on the_content -->
 

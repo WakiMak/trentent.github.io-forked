@@ -16,11 +16,11 @@ tags:
 ---
 As per my previous posts, [dynamically configure Workspace Control](https://theorypc.ca/2017/05/07/citrix-storefront-adventures-in-customization-dynamically-configure-workspace-control-based-on-group-membership/) and [Authentication based on groupÂ membership](https://theorypc.ca/2017/05/10/citrix-storefront-adventures-in-customization-dynamically-configure-authentication-based-on-group-membership/), this post will put them all together and provide a little GUI love to enable showing your options. Â These two features need to be enabled and configured at different times. Â The authentication choice needs to be in placeÂ _before you logon._ Â Workspace Control is configuredÂ _upon logon._
 
-In order to &#8216;cheat&#8217;, authentication actually uses Windows authentication from your browser to the server-side script. Â This way we can get your account and query your authentication feature group membership. Â This won&#8217;t work with non-domain machines or browsers that don&#8217;t support Windows authentication (Safari?). Â But this is OK. Â For those caveats, we just redirect those users to the explicit logon page anyways, since their user account won&#8217;t be domain-aware.
+In order to 'cheat', authentication actually uses Windows authentication from your browser to the server-side script. Â This way we can get your account and query your authentication feature group membership. Â This won't work with non-domain machines or browsers that don't support Windows authentication (Safari?). Â But this is OK. Â For those caveats, we just redirect those users to the explicit logon page anyways, since their user account won't be domain-aware.
 
-If you get explicit logon, and then log in, we query the users entitlements for Workspace Control and configure accordingly. Â This allows a much more dynamic method than the authentication feature. Â By doing Workspace Control configuration after logonÂ _we can configure the settings to whichever user you use to logon._ Â So if my account is Explicit Logon, Workspace Control <span style="text-decoration: underline;">Disabled</span> that&#8217;s what I get after the Storefront logon screen. Â However, if I logon with one of my test accounts that has Workspace Control <span style="text-decoration: underline;">Enabled</span> then it&#8217;s enabled when I hit the app list. Â Even though my local user account and my Storefront logon are different I&#8217;ll get the features of the user that logged in to Storefront. Â I think that&#8217;s pretty damn neat.
+If you get explicit logon, and then log in, we query the users entitlements for Workspace Control and configure accordingly. Â This allows a much more dynamic method than the authentication feature. Â By doing Workspace Control configuration after logonÂ _we can configure the settings to whichever user you use to logon._ Â So if my account is Explicit Logon, Workspace Control <span style="text-decoration: underline;">Disabled</span> that's what I get after the Storefront logon screen. Â However, if I logon with one of my test accounts that has Workspace Control <span style="text-decoration: underline;">Enabled</span> then it's enabled when I hit the app list. Â Even though my local user account and my Storefront logon are different I'll get the features of the user that logged in to Storefront. Â I think that's pretty damn neat.
 
-Ok, so let&#8217;s get to my finished product.
+Ok, so let's get to my finished product.
 
 I edited the **custom\style.cssÂ** file and added the following:
 
@@ -33,7 +33,7 @@ background-color: #968989;
 }
 </pre>
 
-And my completed &#8216;**custom\script.js**&#8216; file:
+And my completed '**custom\script.js**' file:
 
 <pre class="lang:js decode:true ">// Edit this file to add your customized JavaScript or load additional JavaScript files.
 
@@ -53,7 +53,7 @@ var displayedOptions = [];
 ajaxWrapper({ url: url, type: "GET", dataType: 'text', async:false, success: explicitLogonCheck, error: explicitLogonCheck('Unknown') });
 
 function checkDisplayedOptionsContent() {
-	if (displayedOptions.length &gt;= 1) {
+	if (displayedOptions.length >= 1) {
 		CTXS.trace ("Attempted authentication at least once. This usually completes on the second attempt. Removing first result...");
 		displayedOptions.pop();
 	}
@@ -226,7 +226,7 @@ CTXS.Extensions.afterDisplayHomeScreen  = function () {
 /* End of customization */
 </pre>
 
-You&#8217;ll need to refer to my previous two posts for the Powershell HTTP LDAP listener and the Group-Membership.aspx file.
+You'll need to refer to my previous two posts for the Powershell HTTP LDAP listener and the Group-Membership.aspx file.
 
 What does this look like for an end result?
 
@@ -244,7 +244,7 @@ And if you are a member of the various combinations of groups?
 
 &nbsp;
 
-I have to admit, this was a LOT easier than I thought it would be. Â Storefront is really powerful and easy to use. Â My biggest complaint is the documentation is lacking on how to use the API&#8217;s but [searching the Citrix support forums proved very fruitful](http://discussions.citrix.com/index.php?search_term=CTXS&category=363&app=gsasearch&module=newsearch&do=newsearch&fromMainBar=1) (especially for how to use the authentication methods) for examples. Â Hopefully these blog articles will help someone else and further demonstrate the power, flexibility and extensibility of the Citrix Storefront product.
+I have to admit, this was a LOT easier than I thought it would be. Â Storefront is really powerful and easy to use. Â My biggest complaint is the documentation is lacking on how to use the API's but [searching the Citrix support forums proved very fruitful](http://discussions.citrix.com/index.php?search_term=CTXS&category=363&app=gsasearch&module=newsearch&do=newsearch&fromMainBar=1) (especially for how to use the authentication methods) for examples. Â Hopefully these blog articles will help someone else and further demonstrate the power, flexibility and extensibility of the Citrix Storefront product.
 
 <!-- AddThis Advanced Settings generic via filter on the_content -->
 

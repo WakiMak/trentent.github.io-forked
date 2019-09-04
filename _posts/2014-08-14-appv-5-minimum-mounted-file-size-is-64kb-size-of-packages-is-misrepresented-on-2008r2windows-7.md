@@ -1,6 +1,6 @@
 ---
 id: 599
-title: 'AppV 5 &#8211; minimum mounted file size is 64KB, size of packages is misrepresented on 2008R2/Windows 7'
+title: 'AppV 5 - minimum mounted file size is 64KB, size of packages is misrepresented on 2008R2/Windows 7'
 date: 2014-08-14T14:31:00-06:00
 author: trententtye
 layout: post
@@ -50,7 +50,7 @@ But, when we mount the .appv package using AppV the total size is:
 
 1.71GB on the AppVData folder, but <u>2.25GB</u> used space on disk. Â A discrepancy of ~400MB. Â With 10 packages that could be 4GB of wasted space across 60 Citrix servers it adds up fast.
 
-So&#8230; Â Where is this missing space and why does AppVData not report it correctly? Â Well&#8230; it turns out it does report the used space correctly in Windows 8 / 2012. Â The AppVData folder for the mounted application actually shows that it&#8217;s 2.2GB when mounted on a Windows 8 / 2012 box. Â Why the difference? Â It turns out that when Appv 5 mounts applications it is mounting them using a 64KB allocation size. Â In Windows 8 / 2012 when you get properties on a file in the mounted package it shows that it&#8217;s 64KB used on disk. Â On Windows 2008 / 7 it shows the file size used on disk, then it goes to the allocation size:
+So... Â Where is this missing space and why does AppVData not report it correctly? Â Well... it turns out it does report the used space correctly in Windows 8 / 2012. Â The AppVData folder for the mounted application actually shows that it's 2.2GB when mounted on a Windows 8 / 2012 box. Â Why the difference? Â It turns out that when Appv 5 mounts applications it is mounting them using a 64KB allocation size. Â In Windows 8 / 2012 when you get properties on a file in the mounted package it shows that it's 64KB used on disk. Â On Windows 2008 / 7 it shows the file size used on disk, then it goes to the allocation size:
 
 <table style="margin-left: auto; margin-right: auto; text-align: center;" cellspacing="0" cellpadding="0" align="center">
   <tr>
@@ -74,9 +74,9 @@ If we delete a file under 64KB we will actually free up 64KB of space and Window
 
 19,045,400,576 bytes free before the 2,951 byte file is deleted, 19,045,466,112 bytes after.
 
-19045400576 &#8211; 19045466112 = 65536 bytes.
+19045400576 - 19045466112 = 65536 bytes.
 
-So, in the end, it turns out that AppV 5 utilizes 64KB cluster size even if the allocation size on the disk is 4KB. Â I&#8217;m not sure if having mismatched cluster sizes impacts the performance of AppV but the Microsoft support personnel implied that it could. Â For AppV 5 you&#8217;ll want to reduce the number of small files in your AppV packages to as few as possible to limit this space sucking overhead. Â The missing space is &#8220;sparse&#8221; files, but fully mounted I wouldn&#8217;t expect to have any sparse files. Â So AppV is using sparse files to ensure a 64kb allocation size.
+So, in the end, it turns out that AppV 5 utilizes 64KB cluster size even if the allocation size on the disk is 4KB. Â I'm not sure if having mismatched cluster sizes impacts the performance of AppV but the Microsoft support personnel implied that it could. Â For AppV 5 you'll want to reduce the number of small files in your AppV packages to as few as possible to limit this space sucking overhead. Â The missing space is "sparse" files, but fully mounted I wouldn't expect to have any sparse files. Â So AppV is using sparse files to ensure a 64kb allocation size.
 
 <pre class="lang:default decode:true ">Allocation Report:
 

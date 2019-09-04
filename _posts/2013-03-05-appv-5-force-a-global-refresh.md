@@ -1,6 +1,6 @@
 ---
 id: 656
-title: 'AppV 5 &#8211; Force a global refresh'
+title: 'AppV 5 - Force a global refresh'
 date: 2013-03-05T15:44:00-06:00
 author: trententtye
 layout: post
@@ -23,11 +23,11 @@ tags:
 ---
 To force a global refresh in AppV 5 you have to do the following:
 
-1) Open a command prompt to &#8220;C:\Program Files\Microsoft Application Virtualization&#8221;  
+1) Open a command prompt to "C:\Program Files\Microsoft Application Virtualization"  
 2) Execute the following:  
 cscript.exe SyncAppvPublishingServer.vbs 1 -Global -NetworkCostAware
 
-The number &#8220;1&#8221; is the publishing server you want to sync to.
+The number "1" is the publishing server you want to sync to.
 
 You can view the global refresh schedule set by AppV in the Task Scheduler:
 

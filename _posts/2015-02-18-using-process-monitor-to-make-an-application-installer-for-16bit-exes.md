@@ -1,6 +1,6 @@
 ---
 id: 577
-title: 'Using Process Monitor to make an application installer for 16bit .exe&#8217;s'
+title: 'Using Process Monitor to make an application installer for 16bit .exe's'
 date: 2015-02-18T11:41:00-06:00
 author: trententtye
 layout: post

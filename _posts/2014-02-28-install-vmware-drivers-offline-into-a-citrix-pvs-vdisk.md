@@ -46,9 +46,9 @@ Logging into the ESXi host with SSH
 
 Then we modified the VMWare virtual machines with these commands:  
 To do so through the vSphere Client, go to VM Settings ïƒ Options tab ïƒ Advanced General ïƒ Configuration  
-Parameters and add an entry for ethernetX.coalescingScheme with the value of &#8220;disabled&#8221;
+Parameters and add an entry for ethernetX.coalescingScheme with the value of "disabled"
 
-We have 2 NIC&#8217;s assigned to each of our PVS VM&#8217;s. Â One NIC is dedicated for the provisioning traffic and one for access to the rest of the network. Â So I had to add 2 lines to my configuration:
+We have 2 NIC's assigned to each of our PVS VM's. Â One NIC is dedicated for the provisioning traffic and one for access to the rest of the network. Â So I had to add 2 lines to my configuration:
 
 <pre class="lang:default decode:true ">ethernet0.coalescingScheme = disabled
 ethernet1.coalescingScheme = disabled</pre>
@@ -63,13 +63,13 @@ Unfortunately, even with the settings being identical on the VMWare virtual mach
 
 To test if a newer driver would help, I did not want to reverse image the vDisk image as that is such a pain in the ass. Â So I tried something else. Â I made a new maintenance version of the vDisk and then mounted it on the PVS server:
 
-<pre class="lang:default decode:true ">C:\Users\svc_ctxinstall&gt;"C:\Program Files\Citrix\Provisioning Services\CVhdMount.exe" -p 1 X:\vDisks-XenApp\XenApp65Tn01.14.avhd</pre>
+<pre class="lang:default decode:true ">C:\Users\svc_ctxinstall>"C:\Program Files\Citrix\Provisioning Services\CVhdMount.exe" -p 1 X:\vDisks-&\&65Tn01.14.avhd</pre>
 
-This mounted the vDisk as drive &#8220;D:&#8221;
+This mounted the vDisk as drive "D:"
 
 I then took the newer driver from the VMWare virtual machine and injected it into the vDisk:
 
-<pre class="lang:default decode:true ">C:\Users\svc_ctxinstall&gt;dism /image:D:\ /add-driver /driver:"C:\Program Files\VMware\VMware Tools\Drivers\vmxnet3"</pre>
+<pre class="lang:default decode:true ">C:\Users\svc_ctxinstall>dism /image:D:\ /add-driver /driver:"C:\Program Files\VMware\VMware Tools\Drivers\vmxnet3"</pre>
 
 I could see my newer driver installed alongside the existing driver:  
 <span style="font-family: Courier New, Courier, monospace;"><b>Published Name : oem57.inf</b></span>  
@@ -103,7 +103,7 @@ I could see my newer driver installed alongside the existing driver:
 
 Then unmount the vDisk:
 
-<pre class="lang:default decode:true ">C:\Users\svc_ctxinstall&gt;"C:\Program Files\Citrix\Provisioning Services\CVhdMount.exe" -u 1</pre>
+<pre class="lang:default decode:true ">C:\Users\svc_ctxinstall>"C:\Program Files\Citrix\Provisioning Services\CVhdMount.exe" -u 1</pre>
 
 I then set the vDisk to maintenance mode, set my PVS target device as maintenance and booted it up. Â When I checked device manager I saw that the driver version was still 1.2.24.0
 
@@ -111,7 +111,7 @@ I then set the vDisk to maintenance mode, set my PVS target device as maintenanc
   <a style="margin-left: 1em; margin-right: 1em;" href="http://2.bp.blogspot.com/-PR4YIvmwVgo/UxDQdBXRVBI/AAAAAAAAAbM/sKRlYaszM1c/s1600/VMNic.png"><img src="http://2.bp.blogspot.com/-PR4YIvmwVgo/UxDQdBXRVBI/AAAAAAAAAbM/sKRlYaszM1c/s1600/VMNic.png" width="285" height="320" border="0" /></a>
 </div>
 
-But clicking &#8220;Update Driver&#8230;&#8221; updated our production NIC to the newer version. Â I chose &#8220;Search automatically and it found the newer, injected driver. Â I then rebooted the VM and success!
+But clicking "Update Driver..." updated our production NIC to the newer version. Â I chose "Search automatically and it found the newer, injected driver. Â I then rebooted the VM and success!
 
 <div style="clear: both; text-align: center;">
   <a style="margin-left: 1em; margin-right: 1em;" href="http://2.bp.blogspot.com/-K6JTEuvffds/UxDXqfM_dbI/AAAAAAAAAbc/9G7OrOy4Uv0/s1600/VMNic2.png"><img src="http://2.bp.blogspot.com/-K6JTEuvffds/UxDXqfM_dbI/AAAAAAAAAbc/9G7OrOy4Uv0/s1600/VMNic2.png" width="286" height="320" border="0" /></a>

@@ -20,7 +20,7 @@ categories:
 tags:
   - scripting
 ---
-I&#8217;m not sure why MS doesn&#8217;t allow this to work with their reg.exe program. On most workstations only a single user is logged in anyways&#8230;
+I'm not sure why MS doesn't allow this to work with their reg.exe program. On most workstations only a single user is logged in anyways...
 
 <div>
 </div>
@@ -31,10 +31,10 @@ I&#8217;m not sure why MS doesn&#8217;t allow this to work with their reg.exe pr
   
   <div>
     <pre class="lang:batch decode:true ">for /f %%A IN ('type domain-list.txt') DO (
-ECHO %%A &gt;&gt; list1.txt
-reg query "\\%%A\HKU" &gt; ".\temp.txt"
-findstr /R /C:"HKEY_USERS\\S-1-5-21.*[0-9]$" ".\temp.txt" &gt; ".\temp2.txt"
-FOR /F %%Z IN ('TYPE .\temp2.txt') DO reg query "\\%%A\%%Z\Software\Unicus Medical Systems" /s /v ReportPrinterName | findstr /R /C:"ReportPrinterName" &gt;&gt; list1.txt
+ECHO %%A >> list1.txt
+reg query "\\%%A\HKU" > ".\temp.txt"
+findstr /R /C:"HKEY_USERS\\S-1-5-21.*[0-9]$" ".\temp.txt" > ".\temp2.txt"
+FOR /F %%Z IN ('TYPE .\temp2.txt') DO reg query "\\%%A\%%Z\Software\Unicus Medical Systems" /s /v ReportPrinterName | findstr /R /C:"ReportPrinterName" >> list1.txt
 )</pre>
   </div>
 </div>
@@ -50,7 +50,7 @@ FOR /F %%Z IN ('TYPE .\temp2.txt') DO reg query "\\%%A\%%Z\Software\Unicus Medic
 </div>
 
 <div>
-  Ok, what this does&#8230;
+  Ok, what this does...
 </div>
 
 <div>
@@ -58,7 +58,7 @@ FOR /F %%Z IN ('TYPE .\temp2.txt') DO reg query "\\%%A\%%Z\Software\Unicus Medic
 </div>
 
 <div>
-  2) Echo that computer name into our master &#8220;list&#8221; text file
+  2) Echo that computer name into our master "list" text file
 </div>
 
 <div>
@@ -66,11 +66,11 @@ FOR /F %%Z IN ('TYPE .\temp2.txt') DO reg query "\\%%A\%%Z\Software\Unicus Medic
 </div>
 
 <div>
-  4) Execute a findstr that will only search for user accounts (and not CLASS keys) and save to &#8220;temp2.txt&#8221;.
+  4) Execute a findstr that will only search for user accounts (and not CLASS keys) and save to "temp2.txt".
 </div>
 
 <div>
-  5) In Temp2.txt, parse and save as variable &#8220;%%Z&#8221; and execute our reg query and save to our list1.txt file.
+  5) In Temp2.txt, parse and save as variable "%%Z" and execute our reg query and save to our list1.txt file.
 </div>
 
 <div>

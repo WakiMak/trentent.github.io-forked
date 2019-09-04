@@ -1,6 +1,6 @@
 ---
 id: 1508
-title: 'Citrix Netscaler &#8211; Load balancing options with XML brokers'
+title: 'Citrix Netscaler - Load balancing options with XML brokers'
 date: 2016-06-17T12:48:39-06:00
 author: trententtye
 layout: post
@@ -12,7 +12,7 @@ tags:
   - Citrix
   - Web Interface
 ---
-We were encountering &#8216;slowness&#8217; with our Citrix Web Interface that logging into it and displaying the applications would take a significant amount of time ( > 10 seconds). Â I have spent [considerable](http://theorypc.ca/2014/11/27/optimizing-citrix-web-interface-5-4/) [amount](http://theorypc.ca/2014/11/27/load-testing-citrix-xml-broker/) of time investigating what our performance should be in our environment. Â With this information we were still seeing these long logins. Â It was consistently atÂ 200 or greater concurrent connections on our web interface servers that we saw our login timesÂ spike. Â I know at ~200 or so connections our [response time is around 5,000ms](http://theorypc.ca/2014/11/27/load-testing-citrix-xml-broker/)Â for our XML brokers. Â IÂ then [used my PowerShell](http://theorypc.ca/2014/11/27/load-testing-citrix-xml-broker/) script to measure the response times of our XML broker&#8217;s we are using in load balancing. Â We had two servers WI01 and WI02 that I monitored and as our web interface servers were becoming loaded I noticed something odd.
+We were encountering 'slowness' with our Citrix Web Interface that logging into it and displaying the applications would take a significant amount of time ( > 10 seconds). Â I have spent [considerable](http://theorypc.ca/2014/11/27/optimizing-citrix-web-interface-5-4/) [amount](http://theorypc.ca/2014/11/27/load-testing-citrix-xml-broker/) of time investigating what our performance should be in our environment. Â With this information we were still seeing these long logins. Â It was consistently atÂ 200 or greater concurrent connections on our web interface servers that we saw our login timesÂ spike. Â I know at ~200 or so connections our [response time is around 5,000ms](http://theorypc.ca/2014/11/27/load-testing-citrix-xml-broker/)Â for our XML brokers. Â IÂ then [used my PowerShell](http://theorypc.ca/2014/11/27/load-testing-citrix-xml-broker/) script to measure the response times of our XML broker's we are using in load balancing. Â We had two servers WI01 and WI02 that I monitored and as our web interface servers were becoming loaded I noticed something odd.
 
 Only one of our XML brokers was being hit, the other was sitting idle. Â Since we use a VIP that is supposed to have load balancing I brought our network team who support the Netscalers to help me takeÂ a look.  
 I configured two loads:  

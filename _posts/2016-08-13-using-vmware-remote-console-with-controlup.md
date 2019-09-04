@@ -20,13 +20,13 @@ tags:
   - scripting
   - VMWare
 ---
-I wanted to connect to the console session of some of our VM&#8217;s but ControlUp doesn&#8217;t have a native way of doing so. Â Enter Script-Based-Actions and the ability to create those features! Â Here is a video of it in action:
+I wanted to connect to the console session of some of our VM's but ControlUp doesn't have a native way of doing so. Â Enter Script-Based-Actions and the ability to create those features! Â Here is a video of it in action:
 
 [VMWare Remote Console on ControlUp](http://theorypc.ca/wp-content/uploads/2016/08/VMRC2.mov)
 
 We use multiple individual vCenter servers so I have a list of them I need to connect to in order to find the VM and get the required data. Â This takes a bit longer but is still faster than running 6 different vCenter consoles. Â You will need to modify the vCenter list in my script and add your own:
 
-<pre class="lang:ps decode:true ">&lt;#
+<pre class="lang:ps decode:true "><#
     .SYNOPSIS
     This script will open a VMWare Remote Console on the selected server
 
@@ -56,7 +56,7 @@ We use multiple individual vCenter servers so I have a list of them I need to co
     VERSI0N : 1.0
     WEBSITE: https://theorypc.ca
 
-#&gt;
+#>
 
 #Replace this list of vCenter servers with your own.
 $vCenterServers = @(

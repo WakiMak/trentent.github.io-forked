@@ -24,15 +24,15 @@ tags:
   - scripting
   - Target Device
 ---
-We&#8217;ve been looking at using [Base Image Scripting Framework](https://www.loginconsultants.com/de/news/tech-update/item/base-image-script-framework-bis-f) (BISF) as our new preparation and personalization platform for our PVS farm. Â In our current world we have a bunch of features and tweaks that are not apart of BISF so I&#8217;ve been writing some additions so that we achieve feature parity.
+We've been looking at using [Base Image Scripting Framework](https://www.loginconsultants.com/de/news/tech-update/item/base-image-script-framework-bis-f) (BISF) as our new preparation and personalization platform for our PVS farm. Â In our current world we have a bunch of features and tweaks that are not apart of BISF so I've been writing some additions so that we achieve feature parity.
 
-One of the features I wanted to take a good hard look at was removing &#8216;Ghost&#8217; devices &#8212; or devices that aren&#8217;t present in your system. Â Ghost devices look like this:
+One of the features I wanted to take a good hard look at was removing 'Ghost' devices - or devices that aren't present in your system. Â Ghost devices look like this:
 
 <img class="aligncenter size-full wp-image-2489" src="http://theorypc.ca/wp-content/uploads/2017/06/ghostDevices.png" alt="" width="476" height="663" srcset="http://theorypc.ca/wp-content/uploads/2017/06/ghostDevices.png 476w, http://theorypc.ca/wp-content/uploads/2017/06/ghostDevices-215x300.png 215w" sizes="(max-width: 476px) 100vw, 476px" /> 
 
 Our current world accomplishes this task by [using a script written by Simon Price and devcon.exe](https://www.getsurreal.com/vmware/vm-vmware/remove-nonpresent-devices?v=47e5dceea252). Â There is nothing wrong with this method per se but BISF is native Powershell and I want to stick to that without having outside dependencies. Â Can this requirement be achieved with nothing but PowerShell? Â Fortunately, google came to [rescue and pointed me here](https://gist.github.com/aboersch/a027f8757348bdacbcbb5aa85612d045). Â A script written byÂ Alexander Boersch got me 80% of the way there (whoo hoo!). Â He wrote the method and ability to access setupapi.dll which gives us the functions and methods necessary to query and manipulate devices in Device Manager. Â PowerShell is supposed to have the ability to do C# code natively and his example was perfect for taking me where I needed to go.
 
-#### How does it work? Â What&#8217;s the output?
+#### How does it work? Â What's the output?
 
 <pre class="lang:ps decode:true">. "removeGhosts.ps1" -listDevicesOnly</pre>
 
@@ -50,7 +50,7 @@ Our current world accomplishes this task by [using a script written by Simon Pri
   <img aria-describedby="caption-attachment-2491" class="wp-image-2491 size-full" src="http://theorypc.ca/wp-content/uploads/2017/06/remove_class_friendlynamematch.png" alt="" width="541" height="876" srcset="http://theorypc.ca/wp-content/uploads/2017/06/remove_class_friendlynamematch.png 541w, http://theorypc.ca/wp-content/uploads/2017/06/remove_class_friendlynamematch-185x300.png 185w" sizes="(max-width: 541px) 100vw, 541px" /></p> 
   
   <p id="caption-attachment-2491" class="wp-caption-text">
-    notice the &#8220;filter match&#8221; text
+    notice the "filter match" text
   </p>
 </div>
 
@@ -70,7 +70,7 @@ And a brief video of it in action:
 
 Lastly, the script:
 
-<pre class="lang:ps decode:true ">&lt;#
+<pre class="lang:ps decode:true "><#
 .SYNOPSIS
    Removes ghost devices from your system
 
@@ -123,7 +123,7 @@ Remove all ghost devices EXCEPT for devices with a friendly name of "Intel" or "
 
 .NOTES
 Permission level has not been tested.  It is assumed you will need to have sufficient rights to uninstall devices from device manager for this script to run properly.
-#&gt;
+#>
 
 Param(
   [array]$FilterByClass,
@@ -378,11 +378,11 @@ Add-Type -TypeDefinition $setupapi
         }
         $array += @($obj)
 
-        &lt;#
+        <#
         We need to execute the filtering at this point because we are in the current device context
         where we can execute an action (eg, removal).
         InstallState : False == ghosted device
-        #&gt;
+        #>
         $matchFilter = $false
         if ($removeDevices -eq $true) {
             #we want to remove devices so lets check the filters...

@@ -1,6 +1,6 @@
 ---
 id: 706
-title: 'AD Script to Link GPO&#8217;s via the command line'
+title: 'AD Script to Link GPO's via the command line'
 date: 2011-06-28T15:54:00-06:00
 author: trententtye
 layout: post
@@ -21,9 +21,9 @@ tags:
   - Active Directory
   - Group Policy
 ---
-I&#8217;ve modified a script I found online to allow standard batch file passthrough for linking a GPO to a OU.
+I've modified a script I found online to allow standard batch file passthrough for linking a GPO to a OU.
 
-Usage: cscript.exe linkGPO.vbs &#8220;Test GPO&#8221; &#8220;lab.com&#8221; &#8220;OU=AD Project,DC=lab,DC=com&#8221;
+Usage: cscript.exe linkGPO.vbs "Test GPO" "lab.com" "OU=AD Project,DC=lab,DC=com"
 
 <pre class="lang:vb decode:true ">If WScript.Arguments.Count = 3 Then
 strGPO = WScript.Arguments.Item(0)
@@ -60,7 +60,7 @@ if objGPOList.Count = 0 then
 WScript.Echo "Did not find GPO: " & strGPO
 WScript.Echo "Exiting."
 WScript.Quit
-elseif objGPOList.Count &gt; 1 then
+elseif objGPOList.Count > 1 then
 WScript.Echo "Found more than one matching GPO. Count: " & _
 objGPOList.Count
 WScript.Echo "Exiting."
@@ -83,7 +83,7 @@ on error resume next
 
 set objGPMLink = objSOM.CreateGPOLink( intLinkPos, objGPOList.Item(1) )
 
-if Err.Number &lt;&gt; 0 then
+if Err.Number <> 0 then
 WScript.Echo "There was an error creating the GPO link."
 WScript.Echo "Error: " & Err.Description
 else

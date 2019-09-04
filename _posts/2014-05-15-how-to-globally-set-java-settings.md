@@ -22,7 +22,7 @@ tags:
 ---
 How to set Java settings on a machine/system/global level:
 
-1) Create a new text file atÂ &#8220;C:\Windows\Sun\Java\Deployment\deployment.config&#8221;  
+1) Create a new text file atÂ "C:\Windows\Sun\Java\Deployment\deployment.config"  
 2) populate it with two values:
 
 <pre class="lang:default decode:true ">#deployment.config

@@ -1,6 +1,6 @@
 ---
 id: 644
-title: 'Citrix Provisioning Services (PVS) 6.1 &#8211; Automatic vDisk Update &#8220;Update device failed to shutdown within the timeout period.&#8221;'
+title: 'Citrix Provisioning Services (PVS) 6.1 - Automatic vDisk Update "Update device failed to shutdown within the timeout period."'
 date: 2013-05-22T12:44:00-06:00
 author: trententtye
 layout: post
@@ -21,9 +21,9 @@ tags:
   - Citrix
   - Provisioning Services
 ---
-I have setup our PVS environment to execute the vDisk Automatic Update feature utilizing a custom script (update.bat). Â This script does a bunch of things, resync&#8217;s the time with NTP (to avoid daylight savings issues), refreshs GPO&#8217;s, executes Windows Update, cleans up temp files, runs the PVS optimizer, etc.
+I have setup our PVS environment to execute the vDisk Automatic Update feature utilizing a custom script (update.bat). Â This script does a bunch of things, resync's the time with NTP (to avoid daylight savings issues), refreshs GPO's, executes Windows Update, cleans up temp files, runs the PVS optimizer, etc.
 
-Unfortunately this can take longer than 30 minutes. Â For some reason, when executing the ESD client as &#8220;None&#8221; (aka, so a script runs) the &#8220;Update timeout&#8221; doesn&#8217;t seem to take effect, instead the 30 minute shutdown timeout is on the clock.
+Unfortunately this can take longer than 30 minutes. Â For some reason, when executing the ESD client as "None" (aka, so a script runs) the "Update timeout" doesn't seem to take effect, instead the 30 minute shutdown timeout is on the clock.
 
 <table style="margin-left: auto; margin-right: auto; text-align: center;" cellspacing="0" cellpadding="0" align="center">
   <tr>
@@ -56,7 +56,7 @@ Unfortunately this can take longer than 30 minutes. Â For some reason, when exec
 <table style="margin-left: auto; margin-right: auto; text-align: center;" cellspacing="0" cellpadding="0" align="center">
   <tr>
     <td style="text-align: center;">
-      <a style="margin-left: auto; margin-right: auto;" href="http://1.bp.blogspot.com/-JNjFFA2SnHU/UZ0Qzihe28I/AAAAAAAAAQI/sbAeaRFhI34/s1600/2.png"><img title="" src="http://1.bp.blogspot.com/-JNjFFA2SnHU/UZ0Qzihe28I/AAAAAAAAAQI/sbAeaRFhI34/s640/2.png" alt="2013-05-22 10:10:59,690 [10] INFO  Mapi.MapiIPC - [xipProcessor] Starting an update on (System.Collections.Generic.Dictionary&#96;2[System.String,System.Object]) 2013-05-22 11:02:07,763 [10] ERROR Mapi.MapiIPC - [xipProcessor] [WSCTXBLD303T] Update device failed to shutdown within the timeout period. 2013-05-22 11:02:07,763 [10] INFO  Mapi.MapiIPC - [xipProcessor] [WSCTXBLD303T] Update device failed to shutdown within the timeout period. 2013-05-22 11:02:56,186 [10] ERROR Mapi.MapiIPC - [xipProcessor] [WSCTXBLD303T] Submit image failed (VM: WSCTXBLD303T, Image: XenApp65Tn02, Update device failed to shutdown within the timeout period.) 2013-05-22 11:02:56,186 [10] INFO  Mapi.MapiIPC - [xipProcessor] [WSCTXBLD303T] Submit image failed (VM: WSCTXBLD303T, Image: XenApp65Tn02, Update device failed to shutdown within the timeout period.)" width="640" height="40" border="0" /></a>
+      <a style="margin-left: auto; margin-right: auto;" href="http://1.bp.blogspot.com/-JNjFFA2SnHU/UZ0Qzihe28I/AAAAAAAAAQI/sbAeaRFhI34/s1600/2.png"><img title="" src="http://1.bp.blogspot.com/-JNjFFA2SnHU/UZ0Qzihe28I/AAAAAAAAAQI/sbAeaRFhI34/s640/2.png" alt="2013-05-22 10:10:59,690 [10] INFO  Mapi.MapiIPC - [xipProcessor] Starting an update on (System.Collections.Generic.Dictionary&96;2[System.String,System.Object]) 2013-05-22 11:02:07,763 [10] ERROR Mapi.MapiIPC - [xipProcessor] [WSCTXBLD303T] Update device failed to shutdown within the timeout period. 2013-05-22 11:02:07,763 [10] INFO  Mapi.MapiIPC - [xipProcessor] [WSCTXBLD303T] Update device failed to shutdown within the timeout period. 2013-05-22 11:02:56,186 [10] ERROR Mapi.MapiIPC - [xipProcessor] [WSCTXBLD303T] Submit image failed (VM: WSCTXBLD303T, Image: &65Tn02, Update device failed to shutdown within the timeout period.) 2013-05-22 11:02:56,186 [10] INFO  Mapi.MapiIPC - [xipProcessor] [WSCTXBLD303T] Submit image failed (VM: WSCTXBLD303T, Image: &65Tn02, Update device failed to shutdown within the timeout period.)" width="640" height="40" border="0" /></a>
     </td>
   </tr>
   
@@ -67,25 +67,25 @@ Unfortunately this can take longer than 30 minutes. Â For some reason, when exec
   </tr>
 </table>
 
-The only solution I have been able to come up with so far is set to run the updates in less than 30 minutes. Â I think I&#8217;ll attempt changing the &#8220;Update.bat&#8221; to &#8220;Preupdate.bat&#8221; and see if that avoids the &#8220;Shutdown timeout&#8221;.
+The only solution I have been able to come up with so far is set to run the updates in less than 30 minutes. Â I think I'll attempt changing the "Update.bat" to "Preupdate.bat" and see if that avoids the "Shutdown timeout".
 
-Unfortunately, I do not know when the shutdown timeout period starts or why it starts. Â I was hoping the &#8220;Update timeout&#8221; was started when running the &#8220;Update.bat&#8221; file. Â This does not appear to be so, sadly.
+Unfortunately, I do not know when the shutdown timeout period starts or why it starts. Â I was hoping the "Update timeout" was started when running the "Update.bat" file. Â This does not appear to be so, sadly.
 
 [Citrix documentation implies that you should work hard to keeping the timeout below 30 minutes.](http://support.citrix.com/proddocs/topic/provisioning-60/pvs-vdisks-update-vm-create-configure-esd.html)
 
-&#8220;Citrix recommends to only apply updates that can be downloaded and installed in 30 minutes or less.&#8221;
+"Citrix recommends to only apply updates that can be downloaded and installed in 30 minutes or less."
 
 ======================EDIT==================  
 Preupdate.bat does not appear to operate under the Update Timeout either.
 
 ======================EDIT 2=================  
-To increase the limit you need to create a registry key called &#8220;DiskProvider&#8221; and create a dword with the decimal value of the length of time you want the \*total\* time called &#8220;deviceShutdownTimeout&#8221;.
+To increase the limit you need to create a registry key called "DiskProvider" and create a dword with the decimal value of the length of time you want the \*total\* time called "deviceShutdownTimeout".
 
 <div style="clear: both; text-align: center;">
   <a style="margin-left: 1em; margin-right: 1em;" href="http://4.bp.blogspot.com/-RPpSAXRGvbY/UaUsCx9GbcI/AAAAAAAAASA/sy58Vvl4NH4/s1600/update1.PNG"><img src="http://4.bp.blogspot.com/-RPpSAXRGvbY/UaUsCx9GbcI/AAAAAAAAASA/sy58Vvl4NH4/s320/update1.PNG" width="320" height="130" border="0" /></a>
 </div>
 
-NOTE: This does NOT change the value in the GUI and will override the Â value in the GUI, regardless of what it is set to. Â You need to restart the SOAP service after making this change. Â This registry key must exist on the PVS server that the site designates as the &#8220;vDisk Update Server&#8221;
+NOTE: This does NOT change the value in the GUI and will override the Â value in the GUI, regardless of what it is set to. Â You need to restart the SOAP service after making this change. Â This registry key must exist on the PVS server that the site designates as the "vDisk Update Server"
 
 <div style="clear: both; text-align: center;">
   <a style="margin-left: 1em; margin-right: 1em;" href="http://3.bp.blogspot.com/-KSzUBYN2bV4/UaUshJY_anI/AAAAAAAAASI/EG1FvD3ZLIA/s1600/update2.png"><img src="http://3.bp.blogspot.com/-KSzUBYN2bV4/UaUshJY_anI/AAAAAAAAASI/EG1FvD3ZLIA/s320/update2.png" width="320" height="208" border="0" /></a>

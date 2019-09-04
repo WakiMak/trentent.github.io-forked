@@ -19,7 +19,7 @@ categories:
   - Uncategorized
 tags:
   - Citrix
-  - XenApp
+  - &
   - XenDesktop
 ---
 While investigating a performance issue with an application in our Citrix farm a curiosity was discovered when someone opened up Process Explorer and found the CPU utilization on the server was much higher than expected or reported by various monitoring tools we use. 
@@ -28,7 +28,7 @@ While investigating a performance issue with an application in our Citrix farm a
   <a href="http://2.bp.blogspot.com/-hKAGFlUn_OE/VbFUpYF8edI/AAAAAAAAA_Y/3VO6uAWTnzg/s1600/1.png" style="margin-left: 1em; margin-right: 1em; text-align: center;"><img border="0" height="173" src="http://2.bp.blogspot.com/-hKAGFlUn_OE/VbFUpYF8edI/AAAAAAAAA_Y/3VO6uAWTnzg/s400/1.png" width="400" /></a>
 </div>
 
-Examining what was utilizing the CPU we found the process &#8216;winlogon.exe&#8217; was consuming nearly the entire difference between Process Explorer and Task Manager.
+Examining what was utilizing the CPU we found the process 'winlogon.exe' was consuming nearly the entire difference between Process Explorer and Task Manager.
 
 <div style="clear: both; text-align: center;">
   <a href="http://2.bp.blogspot.com/-JelIeMxmckc/VbFVA7gYxXI/AAAAAAAAA_o/yEgC4l4QXSw/s1600/2.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="400" src="http://2.bp.blogspot.com/-JelIeMxmckc/VbFVA7gYxXI/AAAAAAAAA_o/yEgC4l4QXSw/s400/2.png" width="300" /></a>
@@ -41,7 +41,7 @@ Examining what was utilizing the CPU we found the process &#8216;winlogon.exe&#8
 </div>
 
 <div style="min-height: 14px;">
-  Process Explorer allows us to dive &#8216;deeper&#8217; into the process to determine the thread that is utilizing our CPU.
+  Process Explorer allows us to dive 'deeper' into the process to determine the thread that is utilizing our CPU.
 </div>
 
 <div style="clear: both; text-align: center;">
@@ -52,7 +52,7 @@ Examining what was utilizing the CPU we found the process &#8216;winlogon.exe&#8
 </div>
 
 <div style="min-height: 14px;">
-  twi3.dll is a Citrix file. &nbsp;Click &#8216;Module&#8217; and getting properties gives us more information about the file and its purpose.
+  twi3.dll is a Citrix file. &nbsp;Click 'Module' and getting properties gives us more information about the file and its purpose.
 </div>
 
 <div style="min-height: 14px;">
@@ -72,7 +72,7 @@ Examining what was utilizing the CPU we found the process &#8216;winlogon.exe&#8
 </div>
 
 <div style="text-align: center;">
-  &#8220;Seamless 2.0 Host Agent &#8211; main component&#8221;
+  "Seamless 2.0 Host Agent - main component"
 </div>
 
 <div style="min-height: 14px;">
@@ -84,7 +84,7 @@ Examining what was utilizing the CPU we found the process &#8216;winlogon.exe&#8
 </div>
 
 <div style="min-height: 14px;">
-  &nbsp;Now that we have an idea of the purpose of twi3.dll is, we can being to test why it&#8217;s consuming so much CPU. &nbsp;Citrix has options for modifying the behaviour of twi3.dll via <a href="http://support.citrix.com/article/CTX101644">&#8220;Seamless Flags&#8221;</a>.
+  &nbsp;Now that we have an idea of the purpose of twi3.dll is, we can being to test why it's consuming so much CPU. &nbsp;Citrix has options for modifying the behaviour of twi3.dll via <a href="http://support.citrix.com/article/CTX101644">"Seamless Flags"</a>.
 </div>
 
 <div style="min-height: 14px;">
@@ -129,7 +129,7 @@ Examining what was utilizing the CPU we found the process &#8216;winlogon.exe&#8
 </div>
 
 <div style="min-height: 14px;">
-  Lower numbers for CPU% are better and per user. &nbsp;More CPU&#8217;s actually lower the maximum % winlogon.exe can consume, for this test it was done with a 6 core CPU. &nbsp;Less CPU&#8217;s and the maximum % increases.. &nbsp;I imagine this is due to a thread limit or some such? &nbsp;
+  Lower numbers for CPU% are better and per user. &nbsp;More CPU's actually lower the maximum % winlogon.exe can consume, for this test it was done with a 6 core CPU. &nbsp;Less CPU's and the maximum % increases.. &nbsp;I imagine this is due to a thread limit or some such? &nbsp;
 </div>
 
 <div style="min-height: 14px;">
@@ -166,7 +166,7 @@ Examining what was utilizing the CPU we found the process &#8216;winlogon.exe&#8
   <div>
     <div>
       <div>
-        <span style="font-family: 'Calibri'; font-size: 11.000000pt;">WORKER WAIT INTERVAL / WORKER FULL CHECK INTERVAL</span><br /><span style="font-family: Calibri; font-size: 11pt;">Explanation: This update addresses a custom application&#8217;s performance when run seamlessly. Some applications appeared to be slower to respond when performing actions such as moving, resizing, or closing windows. This fix introduces two new registry settings that allow administrators to configure an explicit time interval for the seamless engine mechanism to monitor when changes take place in the seamless applications.</span><br /><span style="font-family: 'Calibri'; font-size: 11.000000pt;"><br /></span> <span style="font-family: Calibri; font-size: 11pt;">For both values, a larger size slows responsiveness but improves scalability; a smaller size increases responsiveness but decreases scalability slightly. The level of scalability depends on several factors, such as hardware sizing, types of applications, network performance, and number of users.</span><span style="font-family: 'Calibri'; font-size: 11.000000pt;">&nbsp;</span><br /><span style="font-family: 'Calibri'; font-size: 11.000000pt;"><br /></span>HKEY_LOCAL_MACHINESYSTEMCurrentControlSetControlCitrixwfshellTWI Value Name: WorkerWaitInterval<br />Type: REG_DWORD<br />Value: 0<br />Value: <number allowed="" milliseconds="" of=""> (Values are between 5 – 500; the default is 50.)</number></p> 
+        <span style="font-family: 'Calibri'; font-size: 11.000000pt;">WORKER WAIT INTERVAL / WORKER FULL CHECK INTERVAL</span><br /><span style="font-family: Calibri; font-size: 11pt;">Explanation: This update addresses a custom application's performance when run seamlessly. Some applications appeared to be slower to respond when performing actions such as moving, resizing, or closing windows. This fix introduces two new registry settings that allow administrators to configure an explicit time interval for the seamless engine mechanism to monitor when changes take place in the seamless applications.</span><br /><span style="font-family: 'Calibri'; font-size: 11.000000pt;"><br /></span> <span style="font-family: Calibri; font-size: 11pt;">For both values, a larger size slows responsiveness but improves scalability; a smaller size increases responsiveness but decreases scalability slightly. The level of scalability depends on several factors, such as hardware sizing, types of applications, network performance, and number of users.</span><span style="font-family: 'Calibri'; font-size: 11.000000pt;">&nbsp;</span><br /><span style="font-family: 'Calibri'; font-size: 11.000000pt;"><br /></span>HKEY_LOCAL_MACHINESYSTEMCurrentControlSetControlCitrixwfshellTWI Value Name: WorkerWaitInterval<br />Type: REG_DWORD<br />Value: 0<br />Value: <number allowed="" milliseconds="" of=""> (Values are between 5 – 500; the default is 50.)</number></p> 
         
         <p>
           HKEY_LOCAL_MACHINESYSTEMCurrentControlSetControlCitrixwfshellTWI Value Name: WorkerFullCheckInterval<br />Type: REG_DWORD<br />Value: <number allowed="" milliseconds="" of=""> (Values are between 50 – 5000; the default is 500.)</number></div> </div> </div> </div> 
@@ -185,7 +185,7 @@ Examining what was utilizing the CPU we found the process &#8216;winlogon.exe&#8
           </div>
           
           <div style="min-height: 14px;">
-            For our environment we encountered issues as user count increased. &nbsp;It turns out, as each user logged on they consumed a fairly constant amount of CPU. &nbsp;The winlogon.exe process for the server in the screenshot averaged around 0.8% CPU per user, with 35 users that&#8217;s 28% of the CPU no longer available. &nbsp;So why does Task Manager not display these values? &nbsp;The <a href="https://www.google.ca/url?sa=t&rct=j&q=&esrc=s&source=web&cd=3&cad=rja&uact=8&ved=0CCoQFjACahUKEwiB5ZnruPLGAhUJKogKHQ43CDY&url=http%3A%2F%2Fmedia.ch9.ms%2Fteched%2Fna%2F2011%2Fppt%2FWCL304.pptx&ei=xX2xVcHuPInUoASO7qCwAw&usg=AFQjCNFCNa8W9sfmksOfP5Pr0A39vkzocw&sig2=-eIWfdvo0rBV0M1fktDzsA&bvm=bv.98476267,d.cGU">author of Process Explorer </a>has the answer:
+            For our environment we encountered issues as user count increased. &nbsp;It turns out, as each user logged on they consumed a fairly constant amount of CPU. &nbsp;The winlogon.exe process for the server in the screenshot averaged around 0.8% CPU per user, with 35 users that's 28% of the CPU no longer available. &nbsp;So why does Task Manager not display these values? &nbsp;The <a href="https://www.google.ca/url?sa=t&rct=j&q=&esrc=s&source=web&cd=3&cad=rja&uact=8&ved=0CCoQFjACahUKEwiB5ZnruPLGAhUJKogKHQ43CDY&url=http%3A%2F%2Fmedia.ch9.ms%2Fteched%2Fna%2F2011%2Fppt%2FWCL304.pptx&ei=xX2xVcHuPInUoASO7qCwAw&usg=AFQjCNFCNa8W9sfmksOfP5Pr0A39vkzocw&sig2=-eIWfdvo0rBV0M1fktDzsA&bvm=bv.98476267,d.cGU">author of Process Explorer </a>has the answer:
           </div>
           
           <div style="min-height: 14px;">
@@ -209,7 +209,7 @@ Examining what was utilizing the CPU we found the process &#8216;winlogon.exe&#8
           </div>
           
           <div style="min-height: 14px;">
-            So this poses a question of what *should* the values be? &nbsp;Citrix Adaptive Display technology has a maximum frame rate of 30 for XenApp 6.5 and a maximum of 60 for XenApp 7+. &nbsp;Potentially, I think to achieve these frame rates a value of 16 for XA7 or 33 for XA65 could be set. &nbsp;If the FPS is set to a lower maximum, it would probably make more sense to do the math for that maximum FPS?
+            So this poses a question of what *should* the values be? &nbsp;Citrix Adaptive Display technology has a maximum frame rate of 30 for & 6.5 and a maximum of 60 for & 7+. &nbsp;Potentially, I think to achieve these frame rates a value of 16 for XA7 or 33 for XA65 could be set. &nbsp;If the FPS is set to a lower maximum, it would probably make more sense to do the math for that maximum FPS?
           </div>
           
           <div style="min-height: 14px;">
@@ -219,7 +219,7 @@ Examining what was utilizing the CPU we found the process &#8216;winlogon.exe&#8
             Further testing may be needed here.</p> 
             
             <p>
-              Lastly, if you do not use Seamless Flags, e.g., if you use Shift F1 to switch to Window&#8217;ed Mode then Winlogon.exe will use no CPU for twi3.dll. &nbsp;You also get the same results with RDP, no CPU being used.
+              Lastly, if you do not use Seamless Flags, e.g., if you use Shift F1 to switch to Window'ed Mode then Winlogon.exe will use no CPU for twi3.dll. &nbsp;You also get the same results with RDP, no CPU being used.
             </p>
           </div>
           

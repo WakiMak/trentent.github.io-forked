@@ -22,7 +22,7 @@ tags:
   - PowerShell
   - scripting
 ---
-I am attempting to read a CSV file and decided the best way to do it was with PowerShell&#8217;s native import-csv tool.Â What was required was to read this CSV and then generate a registry file for import into numerous computers.Â This was my result:
+I am attempting to read a CSV file and decided the best way to do it was with PowerShell's native import-csv tool.Â What was required was to read this CSV and then generate a registry file for import into numerous computers.Â This was my result:
 
 <pre class="lang:ps decode:true ">########################################################################################
 #

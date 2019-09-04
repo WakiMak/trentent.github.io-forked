@@ -1,6 +1,6 @@
 ---
 id: 1797
-title: 'AppV 5.1 Sequencer â€“ Not capturing all registry keys &#8211; Update'
+title: 'AppV 5.1 Sequencer â€“ Not capturing all registry keys - Update'
 date: 2016-10-31T15:31:05-06:00
 author: trententtye
 layout: post
@@ -20,16 +20,16 @@ It appears that ETW (Event Tracing for Windows) will capture some of the events 
 RegDeleteKey  
 RegCreateKey
 
-But in certain scenarios it&#8217;s capturing the events as:
+But in certain scenarios it's capturing the events as:
 
 RegCreateKey  
 RegDeleteKey
 
-By capturing the deletion last in the order, the AppV sequencer is effectively being told to &#8216;Not&#8217; capture the registry key.
+By capturing the deletion last in the order, the AppV sequencer is effectively being told to 'Not' capture the registry key.
 
-Microsoft has corrected this issue in the &#8216;Anniversary&#8217; edition of Windows 10 (Build 14393+) and sequencing in this OS will capture all the registry keys correctly.
+Microsoft has corrected this issue in the 'Anniversary' edition of Windows 10 (Build 14393+) and sequencing in this OS will capture all the registry keys correctly.
 
-The bad news is Microsoft is evaluating backporting the fix to older versions of Windows. Â Specifically Windows 2008 R2. Â Windows 2008R2 is still widely used and AppV best practice is to sequence on the OS you plan on deploying but if the older OS sequences unreliably this complicates the ability to &#8216;trust&#8217; the product. Â This fix still needs to be backported to 2012, 2012R2 and the related client OS&#8217;s, so hopefully they get it as well. Â The reason I was told 2008 R2 may not get the fix is that it is no longer in Mainstream support, but Windows 7SP1 currently is, which is analogous to 2008 R2. Â So hopefully the effort to fix this bug will be backported and we&#8217;ll have a solid AppV platform where we can sequence our packages in confidence.
+The bad news is Microsoft is evaluating backporting the fix to older versions of Windows. Â Specifically Windows 2008 R2. Â Windows 2008R2 is still widely used and AppV best practice is to sequence on the OS you plan on deploying but if the older OS sequences unreliably this complicates the ability to 'trust' the product. Â This fix still needs to be backported to 2012, 2012R2 and the related client OS's, so hopefully they get it as well. Â The reason I was told 2008 R2 may not get the fix is that it is no longer in Mainstream support, but Windows 7SP1 currently is, which is analogous to 2008 R2. Â So hopefully the effort to fix this bug will be backported and we'll have a solid AppV platform where we can sequence our packages in confidence.
 
 <!-- AddThis Advanced Settings generic via filter on the_content -->
 

@@ -22,13 +22,13 @@ tags:
   - Provisioning Services
   - scripting
   - Target Device
-  - XenApp
+  - &
 ---
-Saman and I have created a Citrix PVS update script we use and run each time we update a PVS target device. Â This script has been generated after finding numerous issues that needed to be fixed after updating a PVS image. Â It includes fixes to issues with AppV5, PVS, XenApp 6.5, etc.
+Saman and I have created a Citrix PVS update script we use and run each time we update a PVS target device. Â This script has been generated after finding numerous issues that needed to be fixed after updating a PVS image. Â It includes fixes to issues with AppV5, PVS, & 6.5, etc.
 
-We also made the script to be able to be run automatically by accepting command-line parameters so that we can use it to do Windows Updates with PVS&#8217;s automatic vDisk update feature.
+We also made the script to be able to be run automatically by accepting command-line parameters so that we can use it to do Windows Updates with PVS's automatic vDisk update feature.
 
-I&#8217;ve removed email addresses and some specific application fixes that would only be relevant to our environment. Â So I&#8217;ve tried to generalize this the best I can. Â We tried to make this script dynamic so if you have a vDisk without AppV it will skip the features that require AppV, skip 64bit only features, etc.
+I've removed email addresses and some specific application fixes that would only be relevant to our environment. Â So I've tried to generalize this the best I can. Â We tried to make this script dynamic so if you have a vDisk without AppV it will skip the features that require AppV, skip 64bit only features, etc.
 
 I will post the supplemental scripts in more posts.
 
@@ -55,7 +55,7 @@ I will post the supplemental scripts in more posts.
 :: Modified Date: Dec 31, 2014 -- Saman Salehian - added logic to check if Millennium exists then install the full client automatically
 :: Modified Date: Feb 05, 2015 -- TTYE - delete "C:\ProgramData\Microsoft\AppV\Client" added to prevent vDisk from caching faulty junctions
 :: Modified Date: Feb 06, 2015 -- TTYE - Added command line to update virus def's
-:: Modified Date: Mar 14, 2015 -- Saman Salehian - added logic to clear Citrix policies history per CTX134961 (XenApp Policies not Applying Correctly)
+:: Modified Date: Mar 14, 2015 -- Saman Salehian - added logic to clear Citrix policies history per CTX134961 (& Policies not Applying Correctly)
 ::
 ::
 :: File Name:  PVS_Target_Device_Update-v3.0.cmd
@@ -122,9 +122,9 @@ CALL SET PARAMS=%%PARAMS:'= %%
  
 FOR /f "tokens=1-26 delims= " %%A IN ("%PARAMS%") DO (
 IF '%%A' EQU '' GOTO BREAKOUT
-ECHO %%A &gt; "%TEMP%\variables.txt"
+ECHO %%A > "%TEMP%\variables.txt"
 IF '%%B' EQU '' GOTO BREAKOUT
-ECHO %%B &gt;&gt; "%TEMP%\variables.txt"
+ECHO %%B >> "%TEMP%\variables.txt"
 )
 :BREAKOUT
  
@@ -227,14 +227,14 @@ GOTO WSUSMENU
 :: Continue to run the script
 PUSHD "%~dp0"
 ECHO 60 seconds delay to allow services to start...
-ping 127.0.0.1 -n 60 &gt;NUL
+ping 127.0.0.1 -n 60 >NUL
  
 :: ================================================================================
 :: Reset Computer Account
 :: ================================================================================
 ECHO Reset Computer Account
 NETDOM RESET %COMPUTERNAME% /DOMAIN:healthy.bewell.ca 
-PING LOCALHOST -n 5 &gt;NUL
+PING LOCALHOST -n 5 >NUL
  
 :: ================================================================================
 :: Windows Time Service Resync
@@ -243,7 +243,7 @@ ECHO Windows Time Service Resync
 NET START w32time
 W32TM /CONFIG /UPDATE 
 W32TM /RESYNC 
-PING LOCALHOST -n 5 &gt;NUL
+PING LOCALHOST -n 5 >NUL
  
 :: ================================================================================
 :: Delete Published Applications Folder
@@ -260,7 +260,7 @@ IF EXIST C:\PublishedApplications (
 ECHO Refresh Group Policies
  
 ECHO N | GPUPDATE /FORCE 
-PING LOCALHOST -n 5 &gt;NUL
+PING LOCALHOST -n 5 >NUL
  
  
 :: ================================================================================
@@ -277,21 +277,21 @@ IF /I [%computername:~-1,1%] EQU [T] (
 :: ===========================================================================================================
 :: Remove Non-present Hareware
 :: ===========================================================================================================
-CD RemoveNonPresentHardware &gt;NUL
+CD RemoveNonPresentHardware >NUL
 CALL "1_pre-get_partition_and_netinfo.cmd"
 CALL "2_post-remove_nonpresent_hardware_v33.cmd"
 RMDIR /S /Q ""%SYSTEMDRIVE%\Admin"
-CD.. &gt;NUL
-PING -n 5 LOCALHOST &gt;NUL
+CD.. >NUL
+PING -n 5 LOCALHOST >NUL
  
  
 :: ===========================================================================================================
 :: Update PSTools and Wireshark
 :: ===========================================================================================================
-CD Update_Swinst_Tools &gt;NUL
+CD Update_Swinst_Tools >NUL
 "%SystemRoot%\system32\WindowsPowerShell\v1.0\powershell.exe"  -ExecutionPolicy Unrestricted -File "Update_Tools.ps1"
-CD.. &gt;NUL
-PING -n 5 LOCALHOST &gt;NUL
+CD.. >NUL
+PING -n 5 LOCALHOST >NUL
  
  
 :: ================================================================================
@@ -301,7 +301,7 @@ ECHO Apply Windows Updates
 IF NOT %WSUSComputerGroup%==NONE (
  ECHO Apply Windows Updates
  CALL Windows_Update.cmd "emailMe@me.ca" %WSUSComputerGroup%
- PING LOCALHOST -n 5 &gt;NUL
+ PING LOCALHOST -n 5 >NUL
 )
 TYPE "%TEMP%\vbswsus-status.log"
  
@@ -342,27 +342,27 @@ for /f "tokens=1-6" %%a IN ('reg query HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\App
  
  
 IF EXIST "C:\Program Files\Microsoft Application Virtualization\Client\AppVClient.exe" (
- &gt;Appv5ClientRefresh-01.ps1 ECHO.
- &gt;&gt;Appv5ClientRefresh-01.ps1 ECHO Import-Module AppVClient
- &gt;&gt;Appv5ClientRefresh-01.ps1 ECHO Stop-AppvClientConnectionGroup * -Global
- &gt;&gt;Appv5ClientRefresh-01.ps1 ECHO Stop-AppvClientPackage * -Global
- &gt;&gt;Appv5ClientRefresh-01.ps1 ECHO Remove-AppvClientConnectionGroup *
- &gt;&gt;Appv5ClientRefresh-01.ps1 ECHO Remove-AppvClientPackage *
- &gt;&gt;Appv5ClientRefresh-01.ps1 ECHO Get-AppvClientConnectionGroup -all ^| Remove-AppvClientConnectionGroup
- &gt;&gt;Appv5ClientRefresh-01.ps1 ECHO Get-AppvClientPackage -all ^| Remove-AppvClientPackage
- &gt;&gt;Appv5ClientRefresh-01.ps1 ECHO Get-AppvClientPackage -all *
+ >Appv5ClientRefresh-01.ps1 ECHO.
+ >>Appv5ClientRefresh-01.ps1 ECHO Import-Module AppVClient
+ >>Appv5ClientRefresh-01.ps1 ECHO Stop-AppvClientConnectionGroup * -Global
+ >>Appv5ClientRefresh-01.ps1 ECHO Stop-AppvClientPackage * -Global
+ >>Appv5ClientRefresh-01.ps1 ECHO Remove-AppvClientConnectionGroup *
+ >>Appv5ClientRefresh-01.ps1 ECHO Remove-AppvClientPackage *
+ >>Appv5ClientRefresh-01.ps1 ECHO Get-AppvClientConnectionGroup -all ^| Remove-AppvClientConnectionGroup
+ >>Appv5ClientRefresh-01.ps1 ECHO Get-AppvClientPackage -all ^| Remove-AppvClientPackage
+ >>Appv5ClientRefresh-01.ps1 ECHO Get-AppvClientPackage -all *
  "%SystemRoot%\system32\WindowsPowerShell\v1.0\powershell.exe" Set-ExecutionPolicy Unrestricted
  "%SystemRoot%\system32\WindowsPowerShell\v1.0\powershell.exe" .\Appv5ClientRefresh-01.ps1
  "%SystemRoot%\system32\WindowsPowerShell\v1.0\powershell.exe"  -ExecutionPolicy bypass -File "C:\Program Files\Microsoft Application Virtualization\Client\Disable-AppVClient.ps1"  -ModulePath "C:\Program Files\Microsoft Application Virtualization\Client\AppvClient\AppvClient.psd1" -RemoveAllPackages -PackageInstallationRoot "D:\AppVData\PackageInstallationRoot"  
-        ping 127.0.0.1 -n 60 &gt;NUL
+        ping 127.0.0.1 -n 60 >NUL
  "%SystemRoot%\system32\WindowsPowerShell\v1.0\powershell.exe" Set-ExecutionPolicy Restricted
- DEL /F /Q Appv5ClientRefresh-01.ps1 &gt;NUL
+ DEL /F /Q Appv5ClientRefresh-01.ps1 >NUL
         net stop AppVClient
-        takeown /F D:\AppVData\PackageInstallationRoot /R /A &gt;NUL
-        icacls D:\AppVData\PackageInstallationRoot /T /grant Administrators:F &gt;NUL
+        takeown /F D:\AppVData\PackageInstallationRoot /R /A >NUL
+        icacls D:\AppVData\PackageInstallationRoot /T /grant Administrators:F >NUL
         rmdir /s /q D:\AppVData\PackageInstallationRoot
-        takeown /F D:\AppVData\PackageInstallationRoot /R &gt;NUL
-        icacls D:\AppVData\PackageInstallationRoot /T /grant Administrators:F &gt;NUL
+        takeown /F D:\AppVData\PackageInstallationRoot /R >NUL
+        icacls D:\AppVData\PackageInstallationRoot /T /grant Administrators:F >NUL
         rmdir /s /q D:\AppVData\PackageInstallationRoot
         rmdir /s /q "C:\ProgramData\Microsoft\AppV\Client"
 )
@@ -392,7 +392,7 @@ TASKKILL /IM powershell.exe /F
 ECHO AppV 5 - Fix up any additional folders so AppV will start.
 FOR /F "tokens=1-5" %%A IN ('reg query HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\AppV\Client\Streaming\Packages /s ^| findstr /i /c:"packageroot"') DO mkdir %%C
  
-PING LOCALHOST -n 5 &gt;NUL
+PING LOCALHOST -n 5 >NUL
  
 IF EXIST "C:\Program Files\Microsoft Application Virtualization\Client\AppVClient.exe" (
         ECHO Disable BackgroundRegistry Processing...
@@ -411,11 +411,11 @@ ECHO Disabling Dynamic DNS Registration on Prov NIC
 IF EXIST %SYSTEMROOT%\SysWOW64\notepad.exe (
         "%SystemRoot%\system32\WindowsPowerShell\v1.0\powershell.exe" Set-ExecutionPolicy Unrestricted
         START "" "%SystemRoot%\system32\WindowsPowerShell\v1.0\powershell.exe" "%~dp0disableddnsregistration.ps1"
-        ping 127.0.0.1 -n 60 &gt;NUL
+        ping 127.0.0.1 -n 60 >NUL
         "%SystemRoot%\system32\WindowsPowerShell\v1.0\powershell.exe" Set-ExecutionPolicy Restricted
 )
 TASKKILL /im powershell.exe /f
-PING LOCALHOST -n 5 &gt;NUL
+PING LOCALHOST -n 5 >NUL
  
 :: ================================================================================
 :: Sets the interface metrics - production 1, provisioning 2
@@ -465,7 +465,7 @@ ECHO Setting EventLog Path to the D:\EventLogs drive...
 :: ================================================================================
 ECHO Set EdgeSight Service to Manual and Clear EdgeSight Data
 SC STOP RSCorSvc 
-PING LOCALHOST -n 5 &gt;NUL
+PING LOCALHOST -n 5 >NUL
 IF EXIST "D:\EdgeSightData\EdgeSight.ini" (
  ECHO Y | DEL "D:\EdgeSightData\EdgeSight.ini" 
 )
@@ -484,51 +484,51 @@ START /WAIT cscript.exe //NOLOGO nGen.wsf
 ECHO Generalize PVS vDisk - Provisioning Services Device Optimizer
 START "" "PVS.exe"
 "%ProgramFiles%\Citrix\Provisioning Services\TargetOSOptimizer.exe"
-PING LOCALHOST -n 5 &gt;NUL
+PING LOCALHOST -n 5 >NUL
  
  
 :: ================================================================================
-:: Run XenAppPrep for XenApp 5 or Role Manager for XenApp 6.5
+:: Run &Prep for & 5 or Role Manager for & 6.5
 :: ================================================================================
 net START imaservice
-FOR /F "TOKENS=2,*" %%a IN ('REG QUERY HKLM\SYSTEM\CurrentControlSet\Control\Citrix /v NewProductVersion') DO SET XenAppVersion=%%b
-IF %XenAppVersion% EQU 4.6 (
- ECHO XenApp 5 - Running XenAppPrep
+FOR /F "TOKENS=2,*" %%a IN ('REG QUERY HKLM\SYSTEM\CurrentControlSet\Control\Citrix /v NewProductVersion') DO SET &Version=%%b
+IF %&Version% EQU 4.6 (
+ ECHO & 5 - Running &Prep
  ECHO.
  ECHO ================================================================
  IF EXIST %SYSTEMROOT%\SysWOW64\notepad.exe (
-  "%ProgramFiles(x86)%\Citrix\XenAppPrep\XenAppPrep.exe" /Pvs /Xte
+  "%ProgramFiles(x86)%\Citrix\&Prep\&Prep.exe" /Pvs /Xte
  ) ELSE (
-  "%ProgramFiles%\Citrix\XenAppPrep\XenAppPrep.exe" /Pvs /Xte
+  "%ProgramFiles%\Citrix\&Prep\&Prep.exe" /Pvs /Xte
  )
  ECHO ================================================================
 )
  
-IF %XenAppVersion% EQU 6.5.0 (
- ECHO XenApp 6.5 - Running Role Manager
+IF %&Version% EQU 6.5.0 (
+ ECHO & 6.5 - Running Role Manager
  ECHO.
  ECHO ================================================================
- "%ProgramFiles(x86)%\Citrix\XenApp\ServerConfig\XenAppConfigConsole.exe" /ExecutionMode:ImagePrep /RemoveCurrentServer:True /ClearLocalDatabaseInformation:True
+ "%ProgramFiles(x86)%\Citrix\&\ServerConfig\&ConfigConsole.exe" /ExecutionMode:ImagePrep /RemoveCurrentServer:True /ClearLocalDatabaseInformation:True
  ECHO ================================================================
 )
-PING LOCALHOST -n 5 &gt;NUL
+PING LOCALHOST -n 5 >NUL
  
  
 :: ================================================================================
-:: Check registry after XenApp Prep and fix IMA issues
+:: Check registry after & Prep and fix IMA issues
 :: ================================================================================
-PING LOCALHOST -n 10 &gt;NUL
- &gt;FixIMA.ps1 ECHO.
- &gt;&gt;FixIMA.ps1 ECHO $inherit = [system.security.accesscontrol.InheritanceFlags]"ContainerInherit, ObjectInherit"
- &gt;&gt;FixIMA.ps1 ECHO $propagation = [system.security.accesscontrol.PropagationFlags]"None"
- &gt;&gt;FixIMA.ps1 ECHO $acl = Get-Acl HKLM:\SOFTWARE\Wow6432Node\Citrix\IMA\Status
- &gt;&gt;FixIMA.ps1 ECHO $rule = New-Object System.Security.AccessControl.RegistryAccessRule ("NT AUTHORITY\SYSTEM","FullControl",$inherit,$propagation,"Allow")
- &gt;&gt;FixIMA.ps1 ECHO $acl.SetAccessRule($rule)
- &gt;&gt;FixIMA.ps1 ECHO $rule = New-Object System.Security.AccessControl.RegistryAccessRule ("NT AUTHORITY\NETWORK SERVICE","FullControl",$inherit,$propagation,"Allow")
- &gt;&gt;FixIMA.ps1 ECHO $acl.SetAccessRule($rule)
- &gt;&gt;FixIMA.ps1 ECHO $rule = New-Object System.Security.AccessControl.RegistryAccessRule ("BUILTIN\Administrators","FullControl",$inherit,$propagation,"Allow")
- &gt;&gt;FixIMA.ps1 ECHO $acl.SetAccessRule($rule)
- &gt;&gt;FixIMA.ps1 ECHO $acl ^|Set-Acl -Path HKLM:\SOFTWARE\Wow6432Node\Citrix\IMA\Status
+PING LOCALHOST -n 10 >NUL
+ >FixIMA.ps1 ECHO.
+ >>FixIMA.ps1 ECHO $inherit = [system.security.accesscontrol.InheritanceFlags]"ContainerInherit, ObjectInherit"
+ >>FixIMA.ps1 ECHO $propagation = [system.security.accesscontrol.PropagationFlags]"None"
+ >>FixIMA.ps1 ECHO $acl = Get-Acl HKLM:\SOFTWARE\Wow6432Node\Citrix\IMA\Status
+ >>FixIMA.ps1 ECHO $rule = New-Object System.Security.AccessControl.RegistryAccessRule ("NT AUTHORITY\SYSTEM","FullControl",$inherit,$propagation,"Allow")
+ >>FixIMA.ps1 ECHO $acl.SetAccessRule($rule)
+ >>FixIMA.ps1 ECHO $rule = New-Object System.Security.AccessControl.RegistryAccessRule ("NT AUTHORITY\NETWORK SERVICE","FullControl",$inherit,$propagation,"Allow")
+ >>FixIMA.ps1 ECHO $acl.SetAccessRule($rule)
+ >>FixIMA.ps1 ECHO $rule = New-Object System.Security.AccessControl.RegistryAccessRule ("BUILTIN\Administrators","FullControl",$inherit,$propagation,"Allow")
+ >>FixIMA.ps1 ECHO $acl.SetAccessRule($rule)
+ >>FixIMA.ps1 ECHO $acl ^|Set-Acl -Path HKLM:\SOFTWARE\Wow6432Node\Citrix\IMA\Status
  
 REG QUERY HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Citrix\IMA\Status
 IF "%ERRORLEVEL%" EQU "1" (
@@ -578,14 +578,14 @@ IF %SEPClientVersion% EQU 12.1 (
  REG ADD "HKLM\SYSTEM\CurrentControlSet\Services\SepMasterService" /V Start /T REG_DWORD /D 3 /F 
 )
  
-PING LOCALHOST -n 5 &gt;NUL
+PING LOCALHOST -n 5 >NUL
  
 :: ================================================================================
 :: Delete User Profiles
 :: ================================================================================
 ECHO Delete User Profiles
 CSCRIPT //NOLOGO Delete_User_Profiles.vbs /C 
-PING LOCALHOST -n 5 &gt;NUL
+PING LOCALHOST -n 5 >NUL
  
 :: ================================================================================
 :: Clear Networking Related Caches (DNS and ARP)
@@ -593,7 +593,7 @@ PING LOCALHOST -n 5 &gt;NUL
  ECHO Clear Networking Related Caches (DNS and ARP)
 IPCONFIG /FLUSHDNS 
 ARP -D 
-::NETSH WINSOCK RESET &gt;NUL
+::NETSH WINSOCK RESET >NUL
  
 :: ================================================================================
 :: Clear Temp Folders
@@ -602,7 +602,7 @@ ECHO Clear Temp Folders
 ECHO Y | DEL "%TEMP%\." 
 ECHO Y | DEL "%SYSTEMROOT%\TEMP\." 
 RMDIR /S /Q "%SYSTEMDRIVE%\SWINST\BGINFO"
-PING LOCALHOST -n 5 &gt;NUL
+PING LOCALHOST -n 5 >NUL
  
  
 :: ================================================================================
@@ -619,7 +619,7 @@ IF EXIST %SYSTEMROOT%\SysWOW64\notepad.exe (
 ECHO Delete Server Health Check Logs From System Drive
 IF EXIST "%SYSTEMDRIVE%\swinst\Server Health Check" (
  RMDIR /Q /S "%SYSTEMDRIVE%\swinst\Server Health Check"
- PING LOCALHOST -n 5 &gt;NUL
+ PING LOCALHOST -n 5 >NUL
 )
  
 :: ================================================================================
@@ -627,7 +627,7 @@ IF EXIST "%SYSTEMDRIVE%\swinst\Server Health Check" (
 :: ================================================================================
 ECHO Clear Event Logs
 CSCRIPT //NOLOGO Clear_Event_Logs.vbs 
-PING LOCALHOST -n 5 &gt;NUL
+PING LOCALHOST -n 5 >NUL
  
 POPD
  
@@ -640,7 +640,7 @@ IF EXIST %SYSTEMROOT%\SysWOW64\notepad.exe (
 )
  
 :: ================================================================================
-:: CTX134961 - XenApp Policies not Applying Correctly
+:: CTX134961 - & Policies not Applying Correctly
 :: ================================================================================
 ECHO Deleting Citrix Group Policy History
 IF EXIST "C:\ProgramData\Citrix\GroupPolicy" (
@@ -687,7 +687,7 @@ SCHTASKS /RUN /TN Disable_Logons
 :: ================================================================================
 ECHO Disconnect Mapped Drives
 NET USE * /D /Y
-PING LOCALHOST -n 5 &gt;NUL</pre>
+PING LOCALHOST -n 5 >NUL</pre>
 
 &nbsp;
 

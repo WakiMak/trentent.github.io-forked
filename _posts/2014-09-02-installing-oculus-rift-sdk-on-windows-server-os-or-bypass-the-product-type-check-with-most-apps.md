@@ -23,15 +23,15 @@ tags:
 <div style="clear: both; text-align: center;">
 </div>
 
-I run a server OS as my primary OS for my home lab, which is a hyper-v system. &nbsp;I&#8217;m not interested in dual-booting this system just to run a consumer OS so I can play with my Oculus Rift. &nbsp;So I explored bypassing these checks and this is how I was able to get my software to think it was running on a consumer OS.
+I run a server OS as my primary OS for my home lab, which is a hyper-v system. &nbsp;I'm not interested in dual-booting this system just to run a consumer OS so I can play with my Oculus Rift. &nbsp;So I explored bypassing these checks and this is how I was able to get my software to think it was running on a consumer OS.
 
-First thing you need is [Application Verifier](http://www.microsoft.com/en-ca/download/details.aspx?id=20028). &nbsp;This utility allows you to customize shims for applications. &nbsp;Once it&#8217;s installed, go &#8220;File > Add Application&#8221; and add your application.
+First thing you need is [Application Verifier](http://www.microsoft.com/en-ca/download/details.aspx?id=20028). &nbsp;This utility allows you to customize shims for applications. &nbsp;Once it's installed, go "File > Add Application" and add your application.
 
 <div style="clear: both; text-align: center;">
   <a href="http://1.bp.blogspot.com/-m7b5eoThPmU/VAap-z0u-kI/AAAAAAAAAhg/JRy25vFuSGs/s1600/Screen%2BShot%2B2014-09-02%2Bat%2B11.40.46%2BPM.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://1.bp.blogspot.com/-m7b5eoThPmU/VAap-z0u-kI/AAAAAAAAAhg/JRy25vFuSGs/s1600/Screen%2BShot%2B2014-09-02%2Bat%2B11.40.46%2BPM.png" height="259" width="320" /></a>
 </div>
 
-Under &#8220;Test&#8221; expand out compatibility, check &#8220;HighVersionLie&#8221; then right-click on it and select &#8220;Properties&#8221;
+Under "Test" expand out compatibility, check "HighVersionLie" then right-click on it and select "Properties"
 
 <div style="clear: both; text-align: center;">
   <a href="http://4.bp.blogspot.com/-hN5vj8IJa9A/VAaqckyal4I/AAAAAAAAAho/OXQXGKgse68/s1600/Screen%2BShot%2B2014-09-02%2Bat%2B11.42.11%2BPM.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://4.bp.blogspot.com/-hN5vj8IJa9A/VAaqckyal4I/AAAAAAAAAho/OXQXGKgse68/s1600/Screen%2BShot%2B2014-09-02%2Bat%2B11.42.11%2BPM.png" height="257" width="320" /></a>
@@ -40,7 +40,7 @@ Under &#8220;Test&#8221; expand out compatibility, check &#8220;HighVersionLie&#
 <div style="clear: both; text-align: center;">
 </div>
 
-[It&#8217;s here that you can now determine what &#8220;Product Type&#8221;](http://blogs.msdn.com/b/wit/archive/2008/11/04/white-lies-using-appverifier-to-test-os-versioning.aspx) this application will recognize the underlying OS as. &nbsp;The values for Product Type are:
+[It's here that you can now determine what "Product Type"](http://blogs.msdn.com/b/wit/archive/2008/11/04/white-lies-using-appverifier-to-test-os-versioning.aspx) this application will recognize the underlying OS as. &nbsp;The values for Product Type are:
 
 <table border="1" cellpadding="0" cellspacing="0" style="background-color: #ced5db; border-collapse: collapse; border: medium none; color: #333333; font-family: 'Segoe UI', 'Lucida Grande', Verdana, Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; margin: auto auto auto 5.35pt;">
   <tr>

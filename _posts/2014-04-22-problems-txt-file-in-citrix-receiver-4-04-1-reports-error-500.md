@@ -1,6 +1,6 @@
 ---
 id: 613
-title: 'Problems.txt file in Citrix Receiver 4.0/4.1 reports &#8220;Error 500&#8221;'
+title: 'Problems.txt file in Citrix Receiver 4.0/4.1 reports "Error 500"'
 date: 2014-04-22T01:59:00-06:00
 author: trententtye
 layout: post

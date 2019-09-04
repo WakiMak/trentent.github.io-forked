@@ -113,7 +113,7 @@ namespace Windows
                         int len = (int)ReturnLength / size;
                         SYSTEM_LOGICAL_PROCESSOR_INFORMATION[] Buffer = new SYSTEM_LOGICAL_PROCESSOR_INFORMATION[len];
                         IntPtr Item = Ptr;
-                        for (int i = 0; i &lt; len; i++)
+                        for (int i = 0; i < len; i++)
                         {
                             Buffer[i] = (SYSTEM_LOGICAL_PROCESSOR_INFORMATION)Marshal.PtrToStructure(Item, typeof(SYSTEM_LOGICAL_PROCESSOR_INFORMATION));
                             Item += size;
@@ -147,11 +147,11 @@ namespace Windows
             $NUMA = $true
         }</pre>
 
-I was going to use this to detect NUMA and configure a network adapter RSS based upon NUMA configuration&#8230; Â But I&#8217;m getting lazy and am going to ignore it. Â But I don&#8217;t want this code to go away. Â So here it is. Â A way to detect if you are on a NUMA system in a guest VM in Powershell.
+I was going to use this to detect NUMA and configure a network adapter RSS based upon NUMA configuration... Â But I'm getting lazy and am going to ignore it. Â But I don't want this code to go away. Â So here it is. Â A way to detect if you are on a NUMA system in a guest VM in Powershell.
 
 <img class="aligncenter size-full wp-image-2498" src="http://theorypc.ca/wp-content/uploads/2017/07/Powershell_results.png" alt="" width="1539" height="461" srcset="http://theorypc.ca/wp-content/uploads/2017/07/Powershell_results.png 1539w, http://theorypc.ca/wp-content/uploads/2017/07/Powershell_results-300x90.png 300w, http://theorypc.ca/wp-content/uploads/2017/07/Powershell_results-768x230.png 768w" sizes="(max-width: 1539px) 100vw, 1539px" /> 
 
-If you have greater than &#8220;1&#8221; for the NumaNode count then NUMA is present.
+If you have greater than "1" for the NumaNode count then NUMA is present.
 
 CoreInfo.exe result on the same system:
 

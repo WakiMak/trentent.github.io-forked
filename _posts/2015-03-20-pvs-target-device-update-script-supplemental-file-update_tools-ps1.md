@@ -1,6 +1,6 @@
 ---
 id: 570
-title: 'PVS Target Device Update Script &#8212; Supplemental File, Update_Tools.ps1'
+title: 'PVS Target Device Update Script - Supplemental File, Update_Tools.ps1'
 date: 2015-03-20T15:18:00-06:00
 author: trententtye
 layout: post

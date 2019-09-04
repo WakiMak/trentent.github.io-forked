@@ -1,6 +1,6 @@
 ---
 id: 2025
-title: 'Citrix Workspace Environment Manager &#8211; First Impressions'
+title: 'Citrix Workspace Environment Manager - First Impressions'
 date: 2017-03-02T14:25:07-06:00
 author: trententtye
 layout: post
@@ -16,7 +16,7 @@ tags:
   - Registry
   - Workspace Environment Manager
 ---
-Citrix Workspace Environment Manager can be used as a replacement for Active Directory (AD) Group Policy Preferences (GPP).Â It does not deal with machine policies, however.Â Because of this AD Group Policy Objects (GPO) are still required to apply policies to machines.Â However, WEMâ€™s goal isnâ€™t to manipulate machine policies but to improve user logon times by replacing the user policy of an AD GPO.Â A GPO has two different engines to apply settings.Â A Registry Policy engine and the engine that drives â€œClient Side Extensionsâ€ (CSE).Â The biggest time consumer of a GPO is processing the logic of a CSE or the action of the CSE. Â I&#8217;llÂ look at each engine and what they mean for WEM.
+Citrix Workspace Environment Manager can be used as a replacement for Active Directory (AD) Group Policy Preferences (GPP).Â It does not deal with machine policies, however.Â Because of this AD Group Policy Objects (GPO) are still required to apply policies to machines.Â However, WEMâ€™s goal isnâ€™t to manipulate machine policies but to improve user logon times by replacing the user policy of an AD GPO.Â A GPO has two different engines to apply settings.Â A Registry Policy engine and the engine that drives â€œClient Side Extensionsâ€ (CSE).Â The biggest time consumer of a GPO is processing the logic of a CSE or the action of the CSE. Â I'llÂ look at each engine and what they mean for WEM.
 
 ## Registry Extension
 
@@ -24,7 +24,7 @@ The first is the â€˜Registryâ€™ policy engine.Â This engine is confusingly calle
 
 <img class="aligncenter size-full wp-image-2026" src="http://theorypc.ca/wp-content/uploads/2017/03/admin_Template.png" alt="" width="694" height="260" srcset="http://theorypc.ca/wp-content/uploads/2017/03/admin_Template.png 694w, http://theorypc.ca/wp-content/uploads/2017/03/admin_Template-300x112.png 300w" sizes="(max-width: 694px) 100vw, 694px" /> 
 
-These settings are â€˜dumbâ€™ in that there is no logic processing required.Â When set to Enabled or Disabled whatever key needs to be set with that value is applied immediately.Â Processing of this engine occurs <u>very, very fast</u> so migrating these policy settings would have minimal or no improvement to logon times (unless you have a ton of GPO&#8217;s apply and network latency becomes your primary blocker).
+These settings are â€˜dumbâ€™ in that there is no logic processing required.Â When set to Enabled or Disabled whatever key needs to be set with that value is applied immediately.Â Processing of this engine occurs <u>very, very fast</u> so migrating these policy settings would have minimal or no improvement to logon times (unless you have a ton of GPO's apply and network latency becomes your primary blocker).
 
 <img class="aligncenter size-full wp-image-2027" src="http://theorypc.ca/wp-content/uploads/2017/03/RegistryExtension.png" alt="" width="582" height="395" srcset="http://theorypc.ca/wp-content/uploads/2017/03/RegistryExtension.png 582w, http://theorypc.ca/wp-content/uploads/2017/03/RegistryExtension-300x204.png 300w" sizes="(max-width: 582px) 100vw, 582px" /> 
 
@@ -114,7 +114,7 @@ And now these registry keys have been migrated to WEM.Â It would be nice to â€˜G
 
 <img class="aligncenter size-large wp-image-2044" src="http://theorypc.ca/wp-content/uploads/2017/03/wem8.png" alt="" width="870" height="329" srcset="http://theorypc.ca/wp-content/uploads/2017/03/wem8.png 870w, http://theorypc.ca/wp-content/uploads/2017/03/wem8-300x113.png 300w, http://theorypc.ca/wp-content/uploads/2017/03/wem8-768x290.png 768w" sizes="(max-width: 870px) 100vw, 870px" /> 
 
-Next I&#8217;ll look at replacing Group Policy Preferences that contain some boolean logic.
+Next I'll look at replacing Group Policy Preferences that contain some boolean logic.
 
 <!-- AddThis Advanced Settings generic via filter on the_content -->
 

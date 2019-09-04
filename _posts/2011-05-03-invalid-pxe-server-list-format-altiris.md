@@ -1,6 +1,6 @@
 ---
 id: 709
-title: 'invalid pxe server list format &#8211; Altiris'
+title: 'invalid pxe server list format - Altiris'
 date: 2011-05-03T09:42:00-06:00
 author: trententtye
 layout: post
@@ -24,7 +24,7 @@ tags:
 <div style="text-align: center;">
 </div>
 
-I restarted our Altiris server and our PXE services wouldn&#8217;t come up. Trying to start them resulted in:
+I restarted our Altiris server and our PXE services wouldn't come up. Trying to start them resulted in:
 
 <div>
   File not found
@@ -79,7 +79,7 @@ I restarted our Altiris server and our PXE services wouldn&#8217;t come up. Tryi
 </div>
 
 <div>
-  I don&#8217;t know why it wasn&#8217;t looking for them in the longer path, but I copied those files to the directory it wanted (PXE)
+  I don't know why it wasn't looking for them in the longer path, but I copied those files to the directory it wanted (PXE)
 </div>
 
 <div>
@@ -93,23 +93,23 @@ I restarted our Altiris server and our PXE services wouldn&#8217;t come up. Tryi
 </div>
 
 <div>
-  Then I attempted to PXE boot one of my VM&#8217;s. This failed with an error stating:
+  Then I attempted to PXE boot one of my VM's. This failed with an error stating:
 </div>
 
 <div>
-  &#8220;invalid pxe server list format&#8221;
+  "invalid pxe server list format"
 </div>
 
 <div>
 </div>
 
 <div>
-  Attempting to troubleshoot this, I used procmon and saw that it was downloading bstrap.0 successfully then generating the error. I enabled logging for the PXE Server in Altiris and set the logging level for &#8220;Errors&#8221;. I then restarted all the Altiris services. When I restarted the PXE Server service, I got this error message:
+  Attempting to troubleshoot this, I used procmon and saw that it was downloading bstrap.0 successfully then generating the error. I enabled logging for the PXE Server in Altiris and set the logging level for "Errors". I then restarted all the Altiris services. When I restarted the PXE Server service, I got this error message:
 </div>
 
 <div>
   <div>
-    E [11:32:26 05/03] (3480): Enter: SetupDHCP(&#8230;)
+    E [11:32:26 05/03] (3480): Enter: SetupDHCP(...)
   </div>
   
   <div>
@@ -149,7 +149,7 @@ I restarted our Altiris server and our PXE services wouldn&#8217;t come up. Tryi
 </div>
 
 <div>
-  <span class="Apple-style-span">I then copied those missing DLL&#8217;s from the </span>F:\Program Files\Altiris\eXpress\Deployment Server\PXE\MasterImages\UpSrv\51 directory to the F:\Program Files\Altiris\eXpress\Deployment Server\PXE directory and restarted the PXE Server Service.
+  <span class="Apple-style-span">I then copied those missing DLL's from the </span>F:\Program Files\Altiris\eXpress\Deployment Server\PXE\MasterImages\UpSrv\51 directory to the F:\Program Files\Altiris\eXpress\Deployment Server\PXE directory and restarted the PXE Server Service.
 </div>
 
 <div>

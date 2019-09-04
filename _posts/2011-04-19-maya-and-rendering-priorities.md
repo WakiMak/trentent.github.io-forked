@@ -20,7 +20,7 @@ categories:
 tags:
   - scripting
 ---
-I have a small farm of computers at home that I want to use as a render farm. Some of them are used by my family though and starting Maya renderings on them greatly diminishes their usability during that time. What needs to be done is force the priority lower on the rendering app (mayabatch.exe). 3D Studio Max has a script called &#8220;serverpriority.ms&#8221; that does this and it&#8217;s essentially one line that, upon startup, sets the priority to low. I&#8217;ve been unable to find one like that for Maya but have found an acceptable workaround.
+I have a small farm of computers at home that I want to use as a render farm. Some of them are used by my family though and starting Maya renderings on them greatly diminishes their usability during that time. What needs to be done is force the priority lower on the rendering app (mayabatch.exe). 3D Studio Max has a script called "serverpriority.ms" that does this and it's essentially one line that, upon startup, sets the priority to low. I've been unable to find one like that for Maya but have found an acceptable workaround.
 
 <div>
 </div>

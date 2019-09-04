@@ -1,6 +1,6 @@
 ---
 id: 536
-title: 'AppV5 &#8211; Sequencing an application that has Com+ Applications'
+title: 'AppV5 - Sequencing an application that has Com+ Applications'
 date: 2015-12-04T16:11:00-06:00
 author: trententtye
 layout: post
@@ -22,7 +22,7 @@ tags:
   - procmon
   - scripting
 ---
-AppV has a few weaknesses, one of them is Com+ Objects. Â It doesn&#8217;t like Com+ Objects and sequencing an application with them generally results in this error message:
+AppV has a few weaknesses, one of them is Com+ Objects. Â It doesn't like Com+ Objects and sequencing an application with them generally results in this error message:
 
 <div>
 </div>
@@ -59,7 +59,7 @@ AppV has a few weaknesses, one of them is Com+ Objects. Â It doesn&#8217;t like 
 </div>
 
 <div>
-  1) Open &#8216;Component Services&#8217;
+  1) Open 'Component Services'
 </div>
 
 <div style="clear: both; text-align: center;">
@@ -70,7 +70,7 @@ AppV has a few weaknesses, one of them is Com+ Objects. Â It doesn&#8217;t like 
 </div>
 
 <div>
-  2) Expand until you find your Com+ Applications, right-click and select &#8216;Export&#8217;
+  2) Expand until you find your Com+ Applications, right-click and select 'Export'
 </div>
 
 <div style="clear: both; text-align: center;">
@@ -84,7 +84,7 @@ AppV has a few weaknesses, one of them is Com+ Objects. Â It doesn&#8217;t like 
 </div>
 
 <div>
-  3) Click &#8216;Next&#8217;
+  3) Click 'Next'
 </div>
 
 <div style="clear: both; text-align: center;">
@@ -95,7 +95,7 @@ AppV has a few weaknesses, one of them is Com+ Objects. Â It doesn&#8217;t like 
 </div>
 
 <div>
-  4) Enter a path to save your MSI then click &#8216;Next&#8217;
+  4) Enter a path to save your MSI then click 'Next'
 </div>
 
 <div style="clear: both; text-align: center;">
@@ -109,7 +109,7 @@ AppV has a few weaknesses, one of them is Com+ Objects. Â It doesn&#8217;t like 
 </div>
 
 <div>
-  5) Click &#8216;Finish&#8217;
+  5) Click 'Finish'
 </div>
 
 <div style="clear: both; text-align: center;">
@@ -150,7 +150,7 @@ AppV has a few weaknesses, one of them is Com+ Objects. Â It doesn&#8217;t like 
 </div>
 
 <div>
-  To ensure they work, I took them to our XenApp Test server and installed them.
+  To ensure they work, I took them to our & Test server and installed them.
 </div>
 
 <div>
@@ -191,7 +191,7 @@ AppV has a few weaknesses, one of them is Com+ Objects. Â It doesn&#8217;t like 
 </div>
 
 <div style="clear: both; text-align: left;">
-  I can see under the &#8216;Identity&#8217; tab that it is configured for &#8216;This user:&#8217;. Â I then checked the MSI install on the XenApp Test server and looked at the Identity tab:
+  I can see under the 'Identity' tab that it is configured for 'This user:'. Â I then checked the MSI install on the & Test server and looked at the Identity tab:
 </div>
 
 <div style="clear: both; text-align: left;">
@@ -207,7 +207,7 @@ AppV has a few weaknesses, one of them is Com+ Objects. Â It doesn&#8217;t like 
 </div>
 
 <div style="clear: both; text-align: left;">
-  It appears it defaults to &#8216;System Account&#8217; even though I selected &#8216;Export user identities with roles&#8217;. Â To change the user account silently, I used this script supplied by the vendor (as a encrypted vbe):
+  It appears it defaults to 'System Account' even though I selected 'Export user identities with roles'. Â To change the user account silently, I used this script supplied by the vendor (as a encrypted vbe):
 </div>
 
 <pre class="lang:vb decode:true ">'Setup variables
@@ -344,7 +344,7 @@ if /I [%1] EQU [R] (
 </div>
 
 <div style="clear: both; text-align: left;">
-  I selected a batch file I created for the install (per the vendor&#8217;s initial instructions):
+  I selected a batch file I created for the install (per the vendor's initial instructions):
 </div>
 
 <pre class="lang:batch decode:true ">:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -424,7 +424,7 @@ exit</pre>
 </div>
 
 <div style="clear: both; text-align: left;">
-  Once the install completed I saved my package and took it to my XenApp Test server and published the application and ran it.
+  Once the install completed I saved my package and took it to my & Test server and published the application and ran it.
 </div>
 
 <div style="clear: both; text-align: left;">
@@ -451,7 +451,7 @@ exit</pre>
 </div>
 
 <div style="clear: both; text-align: left;">
-  For some reason my application was failing. Â I double checked the COM+ Applications are installed and appear to be working, so I opened Procmon.exe to see if I can find where it&#8217;s going wrong:
+  For some reason my application was failing. Â I double checked the COM+ Applications are installed and appear to be working, so I opened Procmon.exe to see if I can find where it's going wrong:
 </div>
 
 <div style="clear: both; text-align: left;">
@@ -468,7 +468,7 @@ exit</pre>
 </div>
 
 <div style="text-align: left;">
-  I&#8217;ve used procmon enough now to practically pull the old&#8217; Matrix, &#8220;<a href="https://www.youtube.com/watch?v=3vAnuBtyEYE">blonde, brunette, red head</a>&#8220;. Â Working from bottom to top, the message box is generated from the &#8216;Text&#8217; (LanguagePack) back to the KernelBase.dll. Â So we can exclude that has the cause, this is telling us *of* the issue. Â So if we look at the lines preceding it, one of them must be causing our message.
+  I've used procmon enough now to practically pull the old' Matrix, "<a href="https://www.youtube.com/watch?v=3vAnuBtyEYE">blonde, brunette, red head</a>". Â Working from bottom to top, the message box is generated from the 'Text' (LanguagePack) back to the KernelBase.dll. Â So we can exclude that has the cause, this is telling us *of* the issue. Â So if we look at the lines preceding it, one of them must be causing our message.
 </div>
 
 <div style="text-align: left;">
@@ -500,7 +500,7 @@ exit</pre>
 </div>
 
 <div style="text-align: left;">
-  So we go back a little further to the AppID key and jumping to the *SUCCESS* location to look at it&#8217;s value&#8230;
+  So we go back a little further to the AppID key and jumping to the *SUCCESS* location to look at it's value...
 </div>
 
 <div style="text-align: left;">
@@ -525,7 +525,7 @@ exit</pre>
 </div>
 
 <div style="text-align: left;">
-  I am on a server called WSCTXAPP301T but the registry key for this value is pointing to the system I did my sequencing on. Â I changed the value to the actual server name and did a registry search for &#8220;WSAPVSEQ07&#8221; to see if it appeared anywhere else. Â It did in one other location so I modified the value there as well to point to the local server:
+  I am on a server called WSCTXAPP301T but the registry key for this value is pointing to the system I did my sequencing on. Â I changed the value to the actual server name and did a registry search for "WSAPVSEQ07" to see if it appeared anywhere else. Â It did in one other location so I modified the value there as well to point to the local server:
 </div>
 
 <div style="text-align: left;">
@@ -623,18 +623,18 @@ if /I [%1] EQU [R] (
     Then I updated the Deployment_Config.xml file for this application:
   </p>
   
-  <pre class="lang:default decode:true ">&lt;machinescripts&gt;
-  &lt;addpackage&gt;
-    &lt;path&gt;"\\healthy.bewell.ca\apps\AppV\PortableApps\SharpFocus_Prerequisites\Install_SF_Prerequites.cmd"&lt;/Path&gt;
-    &lt;arguments&gt;A&lt;/Arguments&gt;
-    &lt;wait RollbackOnError="true" Timeout="30"/&gt;
-  &lt;/AddPackage&gt;
-  &lt;removepackage&gt;
-    &lt;path&gt;"\\healthy.bewell.ca\apps\AppV\PortableApps\SharpFocus_Prerequisites\Install_SF_Prerequites.cmd"&lt;/Path&gt;
-    &lt;arguments&gt;R&lt;/Arguments&gt;
-    &lt;wait RollbackOnError="false" Timeout="60"/&gt;
-  &lt;/RemovePackage&gt;
-&lt;/MachineScripts&gt;</pre>
+  <pre class="lang:default decode:true "><machinescripts>
+  <addpackage>
+    <path>"\\healthy.bewell.ca\apps\AppV\PortableApps\SharpFocus_Prerequisites\Install_SF_Prerequites.cmd"</Path>
+    <arguments>A</Arguments>
+    <wait RollbackOnError="true" Timeout="30"/>
+  </AddPackage>
+  <removepackage>
+    <path>"\\healthy.bewell.ca\apps\AppV\PortableApps\SharpFocus_Prerequisites\Install_SF_Prerequites.cmd"</Path>
+    <arguments>R</Arguments>
+    <wait RollbackOnError="false" Timeout="60"/>
+  </RemovePackage>
+</MachineScripts></pre>
   
   <p>
     Lastly, I logged onto a new, fresh, system and manually tested my XML file by publishing from the command line:
@@ -665,7 +665,7 @@ if /I [%1] EQU [R] (
     
     <tr>
       <td style="text-align: center;">
-        &#8220;Exit Status: 0&#8221; &#8211;> Usually a good thing ðŸ™‚
+        "Exit Status: 0" -> Usually a good thing ðŸ™‚
       </td>
     </tr>
   </table>

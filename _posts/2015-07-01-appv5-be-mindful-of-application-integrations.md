@@ -1,6 +1,6 @@
 ---
 id: 563
-title: 'AppV5 &#8211; Be mindful of application integrations'
+title: 'AppV5 - Be mindful of application integrations'
 date: 2015-07-01T00:52:00-06:00
 author: trententtye
 layout: post
@@ -20,7 +20,7 @@ categories:
 tags:
   - AppV
 ---
-When you sequence an application in AppV5 there are special keys that will be &#8216;integrated natively&#8217; into your system. &nbsp;These keys are HKLMSoftwareClasses. &nbsp;There are numerous things that can be integrated and these include things like File Associations or, even worse, libraries. &nbsp;I believe a &#8216;best practice&#8217; should be to make your sequencer and target platform as close as possible by installing the same software on both if you can. &nbsp;For example, for all the Visual C++ native runtime libraries on your target device have that same software on your sequencer too. &nbsp;If they differ than the natively installed package will be usurped by a AppV5 package&#8217;s deployment.
+When you sequence an application in AppV5 there are special keys that will be 'integrated natively' into your system. &nbsp;These keys are HKLMSoftwareClasses. &nbsp;There are numerous things that can be integrated and these include things like File Associations or, even worse, libraries. &nbsp;I believe a 'best practice' should be to make your sequencer and target platform as close as possible by installing the same software on both if you can. &nbsp;For example, for all the Visual C++ native runtime libraries on your target device have that same software on your sequencer too. &nbsp;If they differ than the natively installed package will be usurped by a AppV5 package's deployment.
 
 <div>
 </div>
@@ -73,7 +73,7 @@ When you sequence an application in AppV5 there are special keys that will be &#
 </div>
 
 <div>
-  In one particular example I made an &#8216;Internet Explorer&#8217; package that changed the registry keys within IE so it would identify itself as IE 6. &nbsp;Doing this resulted in the http key being changed as well:
+  In one particular example I made an 'Internet Explorer' package that changed the registry keys within IE so it would identify itself as IE 6. &nbsp;Doing this resulted in the http key being changed as well:
 </div>
 
 <div>

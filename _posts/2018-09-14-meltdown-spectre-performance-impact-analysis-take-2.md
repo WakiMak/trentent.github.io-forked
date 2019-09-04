@@ -1,6 +1,6 @@
 ---
 id: 2799
-title: 'Meltdown + Spectre &#8211; Performance Impact Analysis (Take 2)'
+title: 'Meltdown + Spectre - Performance Impact Analysis (Take 2)'
 date: 2018-09-14T11:32:12-06:00
 author: trententtye
 layout: post
@@ -19,13 +19,13 @@ tags:
 ---
 I want to start this off by thanking **ControlUp**, **LoginVSI** and **Ryan Ververs-Bijkerk** for his assistance in helping me with this post.
 
-Building on my last evaluation of the performance impact of Meltdown and Spectre, I was graciously given a trial of the LoginVSI software product used to simulate user loads and ControlUp&#8217;s cloud based analytic tool, ControlUp Insights.
+Building on my last evaluation of the performance impact of Meltdown and Spectre, I was graciously given a trial of the LoginVSI software product used to simulate user loads and ControlUp's cloud based analytic tool, ControlUp Insights.
 
 This analysis takes into consideration the differences of operating systems and uses the latest Dell server hardware platform with a Intel Gold 6150 as the processor at its heart. &nbsp;This processor contains the full PCID instructions to give the best performance (as of today) with mitigations enabled. &nbsp;However, only Server 2012R2 and Server 2016 can take advantage of these hardware features.
 
 ### Test Setup
 
-This test was setup on 4 hosts. &nbsp;2 of the hosts had VM&#8217;s where all the mitigations were enabled and 2 hosts had all of the mitigation features disabled. &nbsp;I tested live production workloads and simulated user loads from LoginVSI. &nbsp;The live production workloads were run on XenApp 6.5 on 2008R2 and the simulated workloads were on XenApp 7.15CU2 with 2008R2, 2012R2 and 2016.
+This test was setup on 4 hosts. &nbsp;2 of the hosts had VM's where all the mitigations were enabled and 2 hosts had all of the mitigation features disabled. &nbsp;I tested live production workloads and simulated user loads from LoginVSI. &nbsp;The live production workloads were run on & 6.5 on 2008R2 and the simulated workloads were on & 7.15CU2 with 2008R2, 2012R2 and 2016.
 
 Odd host numbers had the mitigation disabled, even host number had the mitigation enabled.
 
@@ -37,26 +37,26 @@ I sorted my testing logically in ControlUp by folder.
 
 # Real World Production results
 
-The ControlUp Insights cloud product produced graphs and results that were easy and quick to interpret.&nbsp; These results are for XenApp 6.5, Server 2008R2.
+The ControlUp Insights cloud product produced graphs and results that were easy and quick to interpret.&nbsp; These results are for & 6.5, Server 2008R2.
 
 ### Hosts View
 
 #### CPU Utilization  
 <img width="1512" height="472" class="aligncenter size-full wp-image-2801" alt="" src="http://theorypc.ca/wp-content/uploads/2018/06/CPUUtilization.png" srcset="http://theorypc.ca/wp-content/uploads/2018/06/CPUUtilization.png 1512w, http://theorypc.ca/wp-content/uploads/2018/06/CPUUtilization-300x94.png 300w, http://theorypc.ca/wp-content/uploads/2018/06/CPUUtilization-768x240.png 768w" sizes="(max-width: 1512px) 100vw, 1512px" /> 
 
-The <span style="color: #0000ff;">mitigation-<span style="text-decoration: underline;">disabled</span> &#8220;Host 1&#8221;</span> had a higher consistency of using less CPU than the <span style="color: #ff0000;">mitigation-<span style="text-decoration: underline;">enabled</span> &#8220;Host 2&#8221;.&nbsp;<span style="color: #000000;">The biggest spread in CPU was ~20% on the Intel Gold 6150&#8217;s with mitigation enabled to disabled.</span></span>
+The <span style="color: #0000ff;">mitigation-<span style="text-decoration: underline;">disabled</span> "Host 1"</span> had a higher consistency of using less CPU than the <span style="color: #ff0000;">mitigation-<span style="text-decoration: underline;">enabled</span> "Host 2".&nbsp;<span style="color: #000000;">The biggest spread in CPU was ~20% on the Intel Gold 6150's with mitigation enabled to disabled.</span></span>
 
 #### IO Utilization
 
 <img width="1512" height="472" class="aligncenter size-full wp-image-2802" alt="" src="http://theorypc.ca/wp-content/uploads/2018/06/IOUtilization.png" srcset="http://theorypc.ca/wp-content/uploads/2018/06/IOUtilization.png 1512w, http://theorypc.ca/wp-content/uploads/2018/06/IOUtilization-300x94.png 300w, http://theorypc.ca/wp-content/uploads/2018/06/IOUtilization-768x240.png 768w" sizes="(max-width: 1512px) 100vw, 1512px" /> 
 
-Another interesting result was IO utilization increased by an average of 100 IOPS for mitigation-enabled VM&#8217;s. &nbsp;This means that Meltdown/Spectre also tax the storage subsystem more. &nbsp;This averaged out to a consistent 12% hit in performance.
+Another interesting result was IO utilization increased by an average of 100 IOPS for mitigation-enabled VM's. &nbsp;This means that Meltdown/Spectre also tax the storage subsystem more. &nbsp;This averaged out to a consistent 12% hit in performance.
 
 
 
 ### User Experience
 
-The logon duration of the VM&#8217;s increased 43% from an average of 8 seconds on a mitigation-disabled VM to 14 seconds on a mitigation enabled VM. &nbsp;The biggest jump in the sub-metrics were Logon Duration (Other) and Group Policy time going from 3-5s and 6-8s.
+The logon duration of the VM's increased 43% from an average of 8 seconds on a mitigation-disabled VM to 14 seconds on a mitigation enabled VM. &nbsp;The biggest jump in the sub-metrics were Logon Duration (Other) and Group Policy time going from 3-5s and 6-8s.
 
 <img width="1004" height="1462" class="aligncenter size-full wp-image-2803" alt="" src="http://theorypc.ca/wp-content/uploads/2018/06/Screen-Shot-2018-06-13-at-9.43.14-PM.png" srcset="http://theorypc.ca/wp-content/uploads/2018/06/Screen-Shot-2018-06-13-at-9.43.14-PM.png 1004w, http://theorypc.ca/wp-content/uploads/2018/06/Screen-Shot-2018-06-13-at-9.43.14-PM-206x300.png 206w, http://theorypc.ca/wp-content/uploads/2018/06/Screen-Shot-2018-06-13-at-9.43.14-PM-768x1118.png 768w" sizes="(max-width: 1004px) 100vw, 1004px" /> 
 
@@ -72,19 +72,19 @@ The logon duration of the VM&#8217;s increased 43% from an average of 8 seconds 
 
 
 
-For applications we have that measure &#8220;user interactivity&#8221; the reduction in the user experience was 18%. &nbsp;This meant that an action on a mitigation-enabled VM took an average of **1180ms** vs **990ms** on a mitigation-disabled VM when measuring actions within the UI.
+For applications we have that measure "user interactivity" the reduction in the user experience was 18%. &nbsp;This meant that an action on a mitigation-enabled VM took an average of **1180ms** vs **990ms** on a mitigation-disabled VM when measuring actions within the UI.
 
 Honestly, I wish I had ControlUp Insights earlier when I did my original piece, it provides much more detail in terms of tracking additional metrics and presents it much more cleanly that I did.&nbsp; Also, when the information was available it was super quick and fast to look and compare the various types of results.
 
 # Simulated Results
 
-LoginVSI was gracious enough to grant me licenses to their software for this testing.&nbsp; Their software provides simulated user actions including pauses for coffee and chatting between work like typing/sending emails, reading word or PDF documents, or reviewing presentations.&nbsp; The suite of software tested by the users tends to be major applications produced by major corporations who have experience producing software.&nbsp; It is not representative of applications that could be impacted the most by Spectre/Meltdown (generally, applications that are registry event heavy).&nbsp; Regardless, it is interesting to test with these simulated users as the workload produced by them do fall under the spectrum of &#8220;real world&#8221;.&nbsp; As with everything, your mileage will vary and it is important to test and record your before and after impacts.&nbsp; ControlUp with Insights does an incredible job of this and you can easily compare different periods in time to measure the impacts, or just rely on the machine learning suggestions of their virtual experts to properly size your environment.
+LoginVSI was gracious enough to grant me licenses to their software for this testing.&nbsp; Their software provides simulated user actions including pauses for coffee and chatting between work like typing/sending emails, reading word or PDF documents, or reviewing presentations.&nbsp; The suite of software tested by the users tends to be major applications produced by major corporations who have experience producing software.&nbsp; It is not representative of applications that could be impacted the most by Spectre/Meltdown (generally, applications that are registry event heavy).&nbsp; Regardless, it is interesting to test with these simulated users as the workload produced by them do fall under the spectrum of "real world".&nbsp; As with everything, your mileage will vary and it is important to test and record your before and after impacts.&nbsp; ControlUp with Insights does an incredible job of this and you can easily compare different periods in time to measure the impacts, or just rely on the machine learning suggestions of their virtual experts to properly size your environment.
 
 Since our production workloads are Windows Server 2008R2 based, I took advantage of the LoginVSI license to test all three available server operating systems: 2008R2, 2012R2, and 2016.&nbsp; Since newer operating systems are supposed to enable performance enhancing hardware features that can reduce the impact of these vulnerabilities, I was curious to \*how much\*.&nbsp; I have this information now.&nbsp;
 
-I tested user loads of 500, 300, and 100 users across 2 hosts.&nbsp; I tested one with Spectre/Meltdown applied and one without.&nbsp; Each host ran 15VM&#8217;s with each VM having 30GB RAM and 6vCPU for an CPU oversubscription of 2.5:1.&nbsp; The host spec was a Dell PowerEdge M640 with Intel 6150 Gold processors and 512GB of memory.
+I tested user loads of 500, 300, and 100 users across 2 hosts.&nbsp; I tested one with Spectre/Meltdown applied and one without.&nbsp; Each host ran 15VM's with each VM having 30GB RAM and 6vCPU for an CPU oversubscription of 2.5:1.&nbsp; The host spec was a Dell PowerEdge M640 with Intel 6150 Gold processors and 512GB of memory.
 
-### 2016 &#8211; Hosts View<figure class="wp-block-image">
+### 2016 - Hosts View<figure class="wp-block-image">
 
 <img src="http://theorypc.ca/wp-content/uploads/2018/09/Hosts-2016-500_2.png" alt="" class="wp-image-2841" srcset="http://theorypc.ca/wp-content/uploads/2018/09/Hosts-2016-500_2.png 1213w, http://theorypc.ca/wp-content/uploads/2018/09/Hosts-2016-500_2-300x124.png 300w, http://theorypc.ca/wp-content/uploads/2018/09/Hosts-2016-500_2-768x318.png 768w" sizes="(max-width: 1213px) 100vw, 1213px" /> </figure> 
 
@@ -98,11 +98,11 @@ I tested user loads of 500, 300, and 100 users across 2 hosts.&nbsp; I tested on
 
 100 LoginVSI users with this workload, on Server 2016 we see the gap is barely visible, it looks even.
 
-### 2012R2 &#8211; Hosts View<figure class="wp-block-image">
+### 2012R2 - Hosts View<figure class="wp-block-image">
 
 <img src="http://theorypc.ca/wp-content/uploads/2018/09/Hosts-2012-500-1.png" alt="" class="wp-image-2849" srcset="http://theorypc.ca/wp-content/uploads/2018/09/Hosts-2012-500-1.png 1213w, http://theorypc.ca/wp-content/uploads/2018/09/Hosts-2012-500-1-300x124.png 300w, http://theorypc.ca/wp-content/uploads/2018/09/Hosts-2012-500-1-768x318.png 768w" sizes="(max-width: 1213px) 100vw, 1213px" /> </figure> 
 
-500 LoginVSI users in this workload on Server 2012 R2.Â There definitely appears to be a much larger gap between the meltdown enabled and disabled hosts.Â And Server 2012R2 non-mitigatedÂ doesn&#8217;t cap out like ServerÂ 2016.<figure class="wp-block-image">
+500 LoginVSI users in this workload on Server 2012 R2.Â There definitely appears to be a much larger gap between the meltdown enabled and disabled hosts.Â And Server 2012R2 non-mitigatedÂ doesn't cap out like ServerÂ 2016.<figure class="wp-block-image">
 
 <img src="http://theorypc.ca/wp-content/uploads/2018/09/Hosts-2012-300.png" alt="" class="wp-image-2850" srcset="http://theorypc.ca/wp-content/uploads/2018/09/Hosts-2012-300.png 1213w, http://theorypc.ca/wp-content/uploads/2018/09/Hosts-2012-300-300x124.png 300w, http://theorypc.ca/wp-content/uploads/2018/09/Hosts-2012-300-768x318.png 768w" sizes="(max-width: 1213px) 100vw, 1213px" /> </figure> 
 
@@ -112,7 +112,7 @@ I tested user loads of 500, 300, and 100 users across 2 hosts.&nbsp; I tested on
 
 100 LoginVSI users in this workload on Server 2012R2.Â Again, the separation is noticeable but appears narrower with lighter loads.
 
-### 2008R2 &#8211; Hosts View<figure class="wp-block-image">
+### 2008R2 - Hosts View<figure class="wp-block-image">
 
 <img src="http://theorypc.ca/wp-content/uploads/2018/09/Hosts-2008-500.png" alt="" class="wp-image-2852" srcset="http://theorypc.ca/wp-content/uploads/2018/09/Hosts-2008-500.png 1213w, http://theorypc.ca/wp-content/uploads/2018/09/Hosts-2008-500-300x124.png 300w, http://theorypc.ca/wp-content/uploads/2018/09/Hosts-2008-500-768x318.png 768w" sizes="(max-width: 1213px) 100vw, 1213px" /> </figure> 
 
@@ -136,7 +136,7 @@ This chart hightlights the difference in CPU percentage between mitigation enabl
 
 Again, interesting results.Â 2008R2 seems to have the largest average CPU seperation, hitting 14%, followed by 2012R2 at 11% and than 2016 having a difference of 4%.
 
-One of things about these results is that they highlight the &#8220;headroom&#8221; of the operating systems.Â 2008R2 actually consumesÂ _less_ CPU and so it has moreÂ _room_Â for separation between the 3 tiers.Â On the 2016, there is so much time spent where the CPU was pegged at 100% for both types of host that makes a difference of &#8220;0%&#8221;.Â So although the smaller number on server 2016 may lead you to believe it&#8217;s better,Â _**it&#8217;s actually not**__._<figure class="wp-block-image">
+One of things about these results is that they highlight the "headroom" of the operating systems.Â 2008R2 actually consumesÂ _less_ CPU and so it has moreÂ _room_Â for separation between the 3 tiers.Â On the 2016, there is so much time spent where the CPU was pegged at 100% for both types of host that makes a difference of "0%".Â So although the smaller number on server 2016 may lead you to believe it's better,Â _**it's actually not**__._<figure class="wp-block-image">
 
 <img src="http://theorypc.ca/wp-content/uploads/2018/09/Hosts-CPU-workload_compare.png" alt="" class="wp-image-2857" srcset="http://theorypc.ca/wp-content/uploads/2018/09/Hosts-CPU-workload_compare.png 1181w, http://theorypc.ca/wp-content/uploads/2018/09/Hosts-CPU-workload_compare-300x164.png 300w, http://theorypc.ca/wp-content/uploads/2018/09/Hosts-CPU-workload_compare-768x419.png 768w" sizes="(max-width: 1181px) 100vw, 1181px" /> </figure> <figure class="wp-block-image"><img src="http://theorypc.ca/wp-content/uploads/2018/09/Hosts-CPU-workload_compareData.png" alt="" class="wp-image-2858" srcset="http://theorypc.ca/wp-content/uploads/2018/09/Hosts-CPU-workload_compareData.png 574w, http://theorypc.ca/wp-content/uploads/2018/09/Hosts-CPU-workload_compareData-300x136.png 300w" sizes="(max-width: 574px) 100vw, 574px" /></figure> 
 
@@ -156,14 +156,14 @@ When we compare the operating systems against the different user counts we see t
 
 ## Final Word
 
-Microsoft stated that they expected to see less of an impact of the Spectre/Meltdown mitigations with newer operating systems.Â Indeed this does turn out to be the case.Â However, the additional resource cost of newer operating systems is actually **\*more\*** than running 2008R2 or 2012R2 _with mitigations **enabled**_ .Â So if you&#8217;re environment is sized forÂ running Server 2016, you probablyÂ have infrastructure thatÂ has already been spec&#8217;ed for the much heavier OS anyways.Â If your infrastructure has been spec&#8217;edÂ for the older OS than you will see a larger impact.Â However, if you&#8217;ve spec&#8217;ed for the larger OS (say for a migration activity) but are running your older OS&#8217;s on that hardware, you will see an impact **_but it will be less than when you go live with 2016_**.
+Microsoft stated that they expected to see less of an impact of the Spectre/Meltdown mitigations with newer operating systems.Â Indeed this does turn out to be the case.Â However, the additional resource cost of newer operating systems is actually **\*more\*** than running 2008R2 or 2012R2 _with mitigations **enabled**_ .Â So if you're environment is sized forÂ running Server 2016, you probablyÂ have infrastructure thatÂ has already been spec'ed for the much heavier OS anyways.Â If your infrastructure has been spec'edÂ for the older OS than you will see a larger impact.Â However, if you've spec'ed for the larger OS (say for a migration activity) but are running your older OS's on that hardware, you will see an impact **_but it will be less than when you go live with 2016_**.
 
-Previously I had stated that there are two different, important performance mechanisms to consider; capacity and how fast work actually gets done.Â All of these simulated measurements are about capacity.Â I hope to see how speed is impacted between the OS&#8217;s, but that may have to wait for a future posting.Â 
+Previously I had stated that there are two different, important performance mechanisms to consider; capacity and how fast work actually gets done.Â All of these simulated measurements are about capacity.Â I hope to see how speed is impacted between the OS's, but that may have to wait for a future posting.Â 
 
 Tabulating the LoginVSI simulated results without ControlUp Insights has taken me weeks to properly format the results.Â Â I was able to use a trial ofÂ ControlUp Insights to look at the real world impact of our existing applications and workloads.Â If my organization ever purchases Insights I would have had this post up a long time agoÂ with even more data, looking at things like the storage subsystems.Â Hopefully we acquire this product in the future and if you want to save yourself and your organization time, energy and effort getting precise, accurate data that can be compared against scenarios you create: get ControlUp Insights.
 
   
-I&#8217;m going to harp on this, butÂ **YOUR WORKLOAD MATTERS MORE** than these simulated results.Â During this exercise, I was able to determine with ControlUp Insights that one of our applications is so light that we can host 1,000 users from a single host where that host struggled with 200 LoginVSI users.Â SoÂ **WORKLOAD MATTERS**.Â Just something to keep in mind when reviewing these results.Â LoginVSI produces results that can serve as a proxy for what you can expect if you can properlyÂ relate these results to your existing workload.Â LoginVSI also offers the capability to produce customÂ workloads tailored to your specific environment or applications so you can gauge impact with much more precision.Â 
+I'm going to harp on this, butÂ **YOUR WORKLOAD MATTERS MORE** than these simulated results.Â During this exercise, I was able to determine with ControlUp Insights that one of our applications is so light that we can host 1,000 users from a single host where that host struggled with 200 LoginVSI users.Â SoÂ **WORKLOAD MATTERS**.Â Just something to keep in mind when reviewing these results.Â LoginVSI produces results that can serve as a proxy for what you can expect if you can properlyÂ relate these results to your existing workload.Â LoginVSI also offers the capability to produce customÂ workloads tailored to your specific environment or applications so you can gauge impact with much more precision.Â 
 
 <!-- AddThis Advanced Settings generic via filter on the_content -->
 

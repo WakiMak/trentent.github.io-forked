@@ -1,6 +1,6 @@
 ---
 id: 557
-title: 'AppV5 &#8211; Recipe for Epic 2012'
+title: 'AppV5 - Recipe for Epic 2012'
 date: 2015-07-03T09:46:00-06:00
 author: trententtye
 layout: post
@@ -22,11 +22,11 @@ tags:
   - scripting
 ---
 Prerequisites:  
-[AppV5 &#8211; Sequencing first steps](http://trentent.blogspot.ca/2015/07/appv5-sequencing-first-steps.html)
+[AppV5 - Sequencing first steps](http://trentent.blogspot.ca/2015/07/appv5-sequencing-first-steps.html)
 
 Recipe:
 
-I create install.cmd files for all of my applications so that, if required in the future, I can re-sequence an application quickly completely through script or via one of those &#8216;PowerShell AppV5 automated GUI&#8217;s&#8217;.
+I create install.cmd files for all of my applications so that, if required in the future, I can re-sequence an application quickly completely through script or via one of those 'PowerShell AppV5 automated GUI's'.
 
 <span style="font-family: Helvetica Neue, Arial, Helvetica, sans-serif;">install.cmd</span>
 
@@ -34,8 +34,8 @@ I create install.cmd files for all of my applications so that, if required in th
 ::
 :: By Trentent Tye
 ::
-:: Assumptions: Adobe Reader is on the XenApp server
-:: Java Runtime Environment (JRE) is installed on the XenApp Server
+:: Assumptions: Adobe Reader is on the & server
+:: Java Runtime Environment (JRE) is installed on the & Server
  
 :: Must set Package Name to: Epic_Hyperspace_2012_7.9_RA1463_x86
 :: Must modify C:\ProgramData\Epic\EPIC.CLI to point to path other than C:\Epic ("C:\Program Files (x86)\Epic\v7.9\Epic")
@@ -70,16 +70,16 @@ cd /d %~dp0
  
 ECHO set the path in EPIC.CLI to "C:\Program Files (x86)\Epic\v7.9\Epic"
 ::notepad "C:\ProgramData\Epic\Config\EPIC.CLI"
-  &gt; "C:\ProgramData\Epic\Config\EPIC.CLI" ECHO [General]
- &gt;&gt; "C:\ProgramData\Epic\Config\EPIC.CLI" ECHO FormatVersion=2
- &gt;&gt; "C:\ProgramData\Epic\Config\EPIC.CLI" ECHO IsSharedFile=0
- &gt;&gt; "C:\ProgramData\Epic\Config\EPIC.CLI" ECHO UseEpicTelnet=1
- &gt;&gt; "C:\ProgramData\Epic\Config\EPIC.CLI" ECHO ClientID=%%CLIENTNAME%%
- &gt;&gt; "C:\ProgramData\Epic\Config\EPIC.CLI" ECHO SharedAppFiles=
- &gt;&gt; "C:\ProgramData\Epic\Config\EPIC.CLI" ECHO ClientDefaultEnvID=
- &gt;&gt; "C:\ProgramData\Epic\Config\EPIC.CLI" ECHO LookupByWSName=1
- &gt;&gt; "C:\ProgramData\Epic\Config\EPIC.CLI" ECHO UseClientTimeZone=0
- &gt;&gt; "C:\ProgramData\Epic\Config\EPIC.CLI" ECHO EnvironmentFiles=C:\Program Files (x86)\Epic\v7.9\Epic\EpicComm.env
+  > "C:\ProgramData\Epic\Config\EPIC.CLI" ECHO [General]
+ >> "C:\ProgramData\Epic\Config\EPIC.CLI" ECHO FormatVersion=2
+ >> "C:\ProgramData\Epic\Config\EPIC.CLI" ECHO IsSharedFile=0
+ >> "C:\ProgramData\Epic\Config\EPIC.CLI" ECHO UseEpicTelnet=1
+ >> "C:\ProgramData\Epic\Config\EPIC.CLI" ECHO ClientID=%%CLIENTNAME%%
+ >> "C:\ProgramData\Epic\Config\EPIC.CLI" ECHO SharedAppFiles=
+ >> "C:\ProgramData\Epic\Config\EPIC.CLI" ECHO ClientDefaultEnvID=
+ >> "C:\ProgramData\Epic\Config\EPIC.CLI" ECHO LookupByWSName=1
+ >> "C:\ProgramData\Epic\Config\EPIC.CLI" ECHO UseClientTimeZone=0
+ >> "C:\ProgramData\Epic\Config\EPIC.CLI" ECHO EnvironmentFiles=C:\Program Files (x86)\Epic\v7.9\Epic\EpicComm.env
  
  
 :Setup folder structure
@@ -121,7 +121,7 @@ rmdir /s /q C:\CrashDumps</pre>
 </div>
 
 <div>
-  1) Select &#8216;install.cmd&#8217; and click &#8216;Next&#8217;
+  1) Select 'install.cmd' and click 'Next'
 </div>
 
 <div style="clear: both; text-align: center;">
@@ -132,7 +132,7 @@ rmdir /s /q C:\CrashDumps</pre>
 </div>
 
 <div>
-  2) Name the package and click &#8216;Next&#8217;
+  2) Name the package and click 'Next'
 </div>
 
 <div style="clear: both; text-align: center;">
@@ -140,7 +140,7 @@ rmdir /s /q C:\CrashDumps</pre>
 </div>
 
 <div>
-  3) Let the install script do its thing (note the clock)&#8230;</p> 
+  3) Let the install script do its thing (note the clock)...</p> 
   
   <div style="clear: both; text-align: center;">
     <a style="margin-left: 1em; margin-right: 1em;" href="http://4.bp.blogspot.com/-Lx3khFd2wLY/VZbXSQknttI/AAAAAAAAA5g/gXoc2MWvPlA/s1600/Epic_Install.cmd.gif"><img src="http://4.bp.blogspot.com/-Lx3khFd2wLY/VZbXSQknttI/AAAAAAAAA5g/gXoc2MWvPlA/s400/Epic_Install.cmd.gif" width="400" height="260" border="0" /></a>
@@ -150,7 +150,7 @@ rmdir /s /q C:\CrashDumps</pre>
   </div>
   
   <p>
-    4) AppV5 &#8211; <a href="http://trentent.blogspot.com/2015/07/appv5-post-install-sequencing-steps.html">Post install sequencing steps</a>
+    4) AppV5 - <a href="http://trentent.blogspot.com/2015/07/appv5-post-install-sequencing-steps.html">Post install sequencing steps</a>
   </p>
   
   <p>

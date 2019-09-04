@@ -1,6 +1,6 @@
 ---
 id: 702
-title: 'XP &#8211; Slow user login, constant prompts for accessing file shares'
+title: 'XP - Slow user login, constant prompts for accessing file shares'
 date: 2011-07-13T13:29:00-06:00
 author: trententtye
 layout: post
@@ -29,7 +29,7 @@ Date: date
 Time: time  
 User: N/A  
 Computer: Computername  
-Description: The Security System detected an authentication error for the server ldap/dca.acc.local. The failure code from authentication protocol Kerberos was &#8220;There are currently no logon servers available to service the logon request. (0xc000005e)&#8221;.  
+Description: The Security System detected an authentication error for the server ldap/dca.acc.local. The failure code from authentication protocol Kerberos was "There are currently no logon servers available to service the logon request. (0xc000005e)".  
 For more information, see Help and Support Center at http://support.microsoft.com.  
 Data: 0000: c000005e 
 

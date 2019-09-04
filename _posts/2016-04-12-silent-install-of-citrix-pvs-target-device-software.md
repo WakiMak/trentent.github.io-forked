@@ -22,9 +22,9 @@ tags:
   - Provisioning Services
   - PVS
 ---
-Installing the Citrix PVS Target Device software via a [silent](http://discussions.citrix.com/topic/277686-silent-install-pvs-target-device-software/), [non-interactive](http://nielsvdijk.blogspot.ca/2014/01/installing-citrix-provisioning-services.html) [method](http://blog.itvce.com/2012/01/03/citrix-unattended-install-of-pvs-target-device-resulting-in-vdisk-is-not-available/) fails. Â Various solutions involve copying files to various locations after the install but I&#8217;m curious what it&#8217;s doing when it fails. Â I started to [automate one of my previous posts](http://theorypc.ca/2016/04/05/citrix-provisioning-services-updating-vmware-tools-and-target-device-software-with-all-native-tools/) and got to the stage where I needed to silently install the target device software and my install was hanging. Â It was hanging because I was getting prompted to run a custom action for the MSI install.
+Installing the Citrix PVS Target Device software via a [silent](http://discussions.citrix.com/topic/277686-silent-install-pvs-target-device-software/), [non-interactive](http://nielsvdijk.blogspot.ca/2014/01/installing-citrix-provisioning-services.html) [method](http://blog.itvce.com/2012/01/03/citrix-unattended-install-of-pvs-target-device-resulting-in-vdisk-is-not-available/) fails. Â Various solutions involve copying files to various locations after the install but I'm curious what it's doing when it fails. Â I started to [automate one of my previous posts](http://theorypc.ca/2016/04/05/citrix-provisioning-services-updating-vmware-tools-and-target-device-software-with-all-native-tools/) and got to the stage where I needed to silently install the target device software and my install was hanging. Â It was hanging because I was getting prompted to run a custom action for the MSI install.
 
-The logging, when we are &#8216;stuck&#8217; is at this point:
+The logging, when we are 'stuck' is at this point:
 
 <pre class="lang:default decode:true ">MSI (s) (60:14) [23:05:16:559]: Executing op: CustomActionSchedule(Action=CVHDMP_Install.41CF0FCA_F296_4F7C_BA95_BE7EC6CD2F01,ActionType=3073,Source=BinaryData,Target=fnCVhdMp_Install,)
 MSI (s) (60:14) [23:05:16:559]: Creating MSIHANDLE (787) of type 790536 for thread 4628
@@ -34,7 +34,7 @@ MSI (s) (60:2C) [23:05:16:575]: Created Custom Action Server with PID 2980 (0xBA
 MSI (s) (60:74) [23:05:16:606]: Running as a service.
 MSI (s) (60:74) [23:05:16:606]: Hello, I'm your 64bit Elevated Non-remapped custom action server.</pre>
 
-Logging into the server and we get the notification that a something requires an action &#8216;Interactive Services Detection&#8217;
+Logging into the server and we get the notification that a something requires an action 'Interactive Services Detection'
 
 <div style="clear: both; text-align: center;">
   <a style="margin-left: 1em; margin-right: 1em;" href="https://3.bp.blogspot.com/-LsVOKztSQsA/VwfgkOPUaiI/AAAAAAAABtI/AQQb2cmwYuw8T7POvxUhqa0lHk4RWuxKQ/s1600/Screen%2BShot%2B2016-04-07%2Bat%2B11.16.38%2BPM.png"><img src="https://3.bp.blogspot.com/-LsVOKztSQsA/VwfgkOPUaiI/AAAAAAAABtI/AQQb2cmwYuw8T7POvxUhqa0lHk4RWuxKQ/s320/Screen%2BShot%2B2016-04-07%2Bat%2B11.16.38%2BPM.png" width="320" height="245" border="0" /></a>
@@ -52,16 +52,16 @@ If you run the install in a interactive user session the custom action appears t
   <a style="margin-left: 1em; margin-right: 1em;" href="https://1.bp.blogspot.com/-quGGvwUwBHU/VwdLk8IymII/AAAAAAAABs0/K4taPyS2KMMUapjlvNQ3-YyBNOW0b_Hjw/s1600/Screen%2BShot%2B2016-04-08%2Bat%2B12.10.49%2BAM.png"><img src="https://1.bp.blogspot.com/-quGGvwUwBHU/VwdLk8IymII/AAAAAAAABs0/K4taPyS2KMMUapjlvNQ3-YyBNOW0b_Hjw/s320/Screen%2BShot%2B2016-04-08%2Bat%2B12.10.49%2BAM.png" width="320" height="108" border="0" /></a>
 </div>
 
-For some reason, Citrix found it necessary to include a dialog in the installer that forces you to answer it. Â When this dialog is presented in a &#8216;silent&#8217; install it requires interactivity to continue so the install stops until it is dealt with.
+For some reason, Citrix found it necessary to include a dialog in the installer that forces you to answer it. Â When this dialog is presented in a 'silent' install it requires interactivity to continue so the install stops until it is dealt with.
 
 So, why is this dialog appearing? Â It is appearing because CFSDEP2 service was not uninstalled cleanly and the installer requires it removed for a clean install.
 
-When uninstalling the software silently you _also_Â get a &#8216;Interactive Services Detection&#8217; dialog. Â For whatever reason though, the uninstall dialog doesn&#8217;t halt the process.
+When uninstalling the software silently you _also_Â get a 'Interactive Services Detection' dialog. Â For whatever reason though, the uninstall dialog doesn't halt the process.
 
 <div style="clear: both; text-align: center;">
 </div>
 
-What is triggering the &#8216;interactive services detection&#8217; on uninstall and is it the cause of our CFSDEP2 not being removed?
+What is triggering the 'interactive services detection' on uninstall and is it the cause of our CFSDEP2 not being removed?
 
 When doing an interactive uninstall this is a screenshot of all the actions that it executes:
 
@@ -87,7 +87,7 @@ What does it look like when run silently?
   <a style="margin-left: 1em; margin-right: 1em;" href="https://2.bp.blogspot.com/-LEabhhdQ1Uc/VwfrLu7OqtI/AAAAAAAABt4/UTnlGG0I3j0MTT4I_wJ-fQhGWmcjOeTGg/s1600/Screen%2BShot%2B2016-04-08%2Bat%2B11.32.08%2BAM.png"><img src="https://2.bp.blogspot.com/-LEabhhdQ1Uc/VwfrLu7OqtI/AAAAAAAABt4/UTnlGG0I3j0MTT4I_wJ-fQhGWmcjOeTGg/s400/Screen%2BShot%2B2016-04-08%2Bat%2B11.32.08%2BAM.png" width="400" height="45" border="0" /></a>
 </div>
 
-The interactive services detected prompts on uninstall (UI0Detect.exe) appears to be caused by &#8216;runonce.exe&#8217; and the &#8216;grpconv.exe&#8217; programs.
+The interactive services detected prompts on uninstall (UI0Detect.exe) appears to be caused by 'runonce.exe' and the 'grpconv.exe' programs.
 
 Is our CFSDEP2 service deleted when run silently?
 
@@ -101,7 +101,7 @@ It was not deleted. Â Is the runonce.exe utility the cause of our CFSDEP2 servic
   <a style="margin-left: 1em; margin-right: 1em;" href="https://3.bp.blogspot.com/-7KbRwRJUd1w/Vwfw1pxXCDI/AAAAAAAABuU/XFDjzT4p1ekTvilKsOFaTNvGTNk49TNKg/s1600/Screen%2BShot%2B2016-04-08%2Bat%2B11.55.29%2BAM.png"><img src="https://3.bp.blogspot.com/-7KbRwRJUd1w/Vwfw1pxXCDI/AAAAAAAABuU/XFDjzT4p1ekTvilKsOFaTNvGTNk49TNKg/s320/Screen%2BShot%2B2016-04-08%2Bat%2B11.55.29%2BAM.png" width="320" height="147" border="0" /></a>
 </div>
 
-It is not. Â The CFSDEP2 service is removed \*before\* the runonce.exe utility it executed. Â So something else is triggering it&#8217;s removal.
+It is not. Â The CFSDEP2 service is removed \*before\* the runonce.exe utility it executed. Â So something else is triggering it's removal.
 
 Examining the cfsdep2.sys file in the C:Windowssystem32drivers reveals that the driver was not uninstalled with the Citrix PVS Target Device software.
 
@@ -115,7 +115,7 @@ It turns out that file system filter drivers can be installed and uninstalled us
 <pre class="lang:batch decode:true ">C:\Windows\System32\RUNDLL32.EXE SETUPAPI.DLL,InstallHinfSection DefaultInstall 132 C:\Program Files\Citrix\Provisioning Services\drivers\cfsdep2.inf
 </pre>
 
-So, we should just be able to add a &#8216;Invoke-command&#8217; and execute it, right?  
+So, we should just be able to add a 'Invoke-command' and execute it, right?  
 I tried installing and uninstalling with both WMI and Invoke-Command:
 
 <pre class="lang:ps decode:true ">Invoke-Command -ComputerName $VMReverseImaging -credential $PVScred -ScriptBlock {
@@ -123,9 +123,9 @@ I tried installing and uninstalling with both WMI and Invoke-Command:
    }
 ([WMICLASS]"\\$VMReverseImaging\ROOT\CIMV2:Win32_Process").Create("C:\Windows\system32\rundll32.exe SETUPAPI.DLL,InstallHinfSection DefaultInstall 131 C:\Program Files\Citrix\Provisioning Services\drivers\cfsdep2.inf")</pre>
 
-Neither command worked remotely. Â I could see rundll32.exe executing and exiting with status &#8220;0&#8221; which implies success. Â But the commands themselves didn&#8217;t \*actually\* work. Â When I executed the uninstall remotely neither the CFSDEP2.SYS file was deleted nor was the service uninstalled. Â Doing a procmon.exe I could see that the supplemental &#8216;runonce.exe&#8217; and &#8216;grpconv.exe&#8217; were not run. Â The reverse was true for the install as well, the CFSDEP2.SYS was not present and the service was not installed, but the exit code was &#8220;0&#8221;. Â So we can&#8217;t trust the exit code, we need to manually check to see if the files and service are present.
+Neither command worked remotely. Â I could see rundll32.exe executing and exiting with status "0" which implies success. Â But the commands themselves didn't \*actually\* work. Â When I executed the uninstall remotely neither the CFSDEP2.SYS file was deleted nor was the service uninstalled. Â Doing a procmon.exe I could see that the supplemental 'runonce.exe' and 'grpconv.exe' were not run. Â The reverse was true for the install as well, the CFSDEP2.SYS was not present and the service was not installed, but the exit code was "0". Â So we can't trust the exit code, we need to manually check to see if the files and service are present.
 
-So what&#8217;s happening? Â It turns out, for some reason, that the file system filter driver install/uninstall \*requires\* an interactive session to complete successfully. Â What is an interactive session you could use? Â The SYSTEM account. Â I was hoping to create a purely native script with no outside dependencies but PSEXEC will be required. Â Elevating permissions in a remote powershell session is very difficult and maybe one day I&#8217;ll spend some time figuring it out and documenting it, but at this point I cheaped out and decided to use psexec.exe. Â To get the install/uninstall to execute remotely, you can use psexec.exe with the following lines:
+So what's happening? Â It turns out, for some reason, that the file system filter driver install/uninstall \*requires\* an interactive session to complete successfully. Â What is an interactive session you could use? Â The SYSTEM account. Â I was hoping to create a purely native script with no outside dependencies but PSEXEC will be required. Â Elevating permissions in a remote powershell session is very difficult and maybe one day I'll spend some time figuring it out and documenting it, but at this point I cheaped out and decided to use psexec.exe. Â To get the install/uninstall to execute remotely, you can use psexec.exe with the following lines:
 
 <pre class="lang:ps decode:true ">$ScriptDir = Split-Path $script:MyInvocation.MyCommand.Path
 & $scriptDir"\psexec.exe" \\$vmreverseimaging -i -s RUNDLL32.EXE SETUPAPI.DLL,InstallHinfSection DefaultInstall 132 C:\Program Files\Citrix\Provisioning Services\drivers\cfsdep2.inf</pre>

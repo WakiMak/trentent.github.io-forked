@@ -1,6 +1,6 @@
 ---
 id: 524
-title: 'AppV5 &#8211; The trouble with AppV5 logs (and a solution!)'
+title: 'AppV5 - The trouble with AppV5 logs (and a solution!)'
 date: 2016-03-24T11:44:00-06:00
 author: trententtye
 layout: post
@@ -28,9 +28,9 @@ For instance, say you get an error message:
   <a style="margin-left: 1em; margin-right: 1em;" href="http://theorypc.ca/wp-content/uploads/2016/03/70.PNG-550x0-1.png"><img src="http://theorypc.ca/wp-content/uploads/2016/03/70.PNG-550x0-1-300x141.png" width="320" height="149" border="0" /></a>
 </div>
 
-How do you start debugging this? Â Well, you could start by trying to decipher the error message AppV has [generated to a decimal value that you can then look at the first two digits to determine which &#8216;part&#8217; of AppV generated](http://blogs.technet.com/b/gladiatormsft/archive/2013/11/13/app-v-on-operational-troubleshooting-of-the-v5-client.aspx) the error and you can examine that specific log. Â Sounds kind of ridiculous when you spell it out.
+How do you start debugging this? Â Well, you could start by trying to decipher the error message AppV has [generated to a decimal value that you can then look at the first two digits to determine which 'part' of AppV generated](http://blogs.technet.com/b/gladiatormsft/archive/2013/11/13/app-v-on-operational-troubleshooting-of-the-v5-client.aspx) the error and you can examine that specific log. Â Sounds kind of ridiculous when you spell it out.
 
-Another thing you could do is you could [enable all logs just to be sure](http://www.applepie.se/app-v-5-enable-or-disable-all-debug-logs), but then you have to sift through the logs to find the time stamp that corresponds closest to the event that generated the message. Â Sometimes it would be too far or close together or the debug logs generate so much information that your event viewer is just one big blob of &#8216;the exact same time&#8217;.
+Another thing you could do is you could [enable all logs just to be sure](http://www.applepie.se/app-v-5-enable-or-disable-all-debug-logs), but then you have to sift through the logs to find the time stamp that corresponds closest to the event that generated the message. Â Sometimes it would be too far or close together or the debug logs generate so much information that your event viewer is just one big blob of 'the exact same time'.
 
 <table style="margin-left: auto; margin-right: auto; text-align: center;" cellspacing="0" cellpadding="0" align="center">
   <tr>
@@ -46,7 +46,7 @@ Another thing you could do is you could [enable all logs just to be sure](http:/
   </tr>
 </table>
 
-Of course this isn&#8217;t true that all these events are the same time, but it&#8217;s all event viewer can display. Â If you view the XML of the event you can see there is more precise time stamps, but regardless, trying to compare each event with other logs is cumbersome and very difficult.
+Of course this isn't true that all these events are the same time, but it's all event viewer can display. Â If you view the XML of the event you can see there is more precise time stamps, but regardless, trying to compare each event with other logs is cumbersome and very difficult.
 
 Is there a better way?
 
@@ -73,7 +73,7 @@ What does the output look like?
   <a style="margin-left: 1em; margin-right: 1em;" href="http://theorypc.ca/wp-content/uploads/2016/03/5-2.png"><img src="http://theorypc.ca/wp-content/uploads/2016/03/5-2-300x106.png" width="320" height="113" border="0" /></a>
 </div>
 
-First thing to notice is that it&#8217;s sorted chronologically, so if you can get a narrow time range to examine the error occurring it should be easier to spot. Â Second thing is all event logs are added, and events themselves are included as they are generated. Â So it should be easier to finding that specific component that causes the error.
+First thing to notice is that it's sorted chronologically, so if you can get a narrow time range to examine the error occurring it should be easier to spot. Â Second thing is all event logs are added, and events themselves are included as they are generated. Â So it should be easier to finding that specific component that causes the error.
 
 If you are encountering AppV5 errors, this may be easier to help track down the error then trying to sift through the debug logs in event viewer.
 

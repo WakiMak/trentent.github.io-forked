@@ -1,11 +1,11 @@
 ---
 id: 556
-title: 'AppV5 &#8211; Prelaunch Script for Citrix XenApp 6.5 applications with varying environments'
+title: 'AppV5 - Prelaunch Script for Citrix & 6.5 applications with varying environments'
 date: 2015-07-07T22:44:00-06:00
 author: trententtye
 layout: post
-guid: http://theorypc.ca/blog/2015/07/07/appv5-prelaunch-script-for-citrix-xenapp-6-5-applications-with-varying-environments/
-permalink: /2015/07/07/appv5-prelaunch-script-for-citrix-xenapp-6-5-applications-with-varying-environments/
+guid: http://theorypc.ca/blog/2015/07/07/appv5-prelaunch-script-for-citrix-&-6-5-applications-with-varying-environments/
+permalink: /2015/07/07/appv5-prelaunch-script-for-citrix-&-6-5-applications-with-varying-environments/
 blogger_blog:
   - trentent.blogspot.com
 blogger_author:
@@ -22,7 +22,7 @@ tags:
   - PowerShell
   - scripting
 ---
-We utilize a lot of pre-launch scripts for our AppV5 applications that we use in our Citrix XenApp 6.5 environment. Â They become a necessity very quickly as AppV5 stores the executable down a very long path. Â Citrix XenApp 6.5 has a maximum launch string of 160 characters and this maximum prevents a lot of applications from working if they require parameters to be passed to them. Â An example looks like this:
+We utilize a lot of pre-launch scripts for our AppV5 applications that we use in our Citrix & 6.5 environment. Â They become a necessity very quickly as AppV5 stores the executable down a very long path. Â Citrix & 6.5 has a maximum launch string of 160 characters and this maximum prevents a lot of applications from working if they require parameters to be passed to them. Â An example looks like this:
 
 <div>
   <pre class="lang:batch decode:true ">"C:\ProgramData\Microsoft\AppV\Client\Integration\D8E3DB68-4E48-4409-8E95-4354CC6E664B\Root\VFS\ProgramFilesX64\dlc11.2\bin\prowin32.exe" -p \\wsfsc01pharm\CentricityPharmacy\rx\v92\cfg\cfgstart.p -param S,%CLIENTNAME%,crh1214%env%,CITRIX,rxpv91cal,10920 -wy</pre>
@@ -39,7 +39,7 @@ We utilize a lot of pre-launch scripts for our AppV5 applications that we use in
   </div>
   
   <div>
-    This launch path is too long for XenApp 6.5. Â The string will be truncated and the program will fail to launch properly. Â We have several environments that work with the same package files so we set them as variables. Â To get this package to launch properly we create a prelaunch script that looks like so:
+    This launch path is too long for & 6.5. Â The string will be truncated and the program will fail to launch properly. Â We have several environments that work with the same package files so we set them as variables. Â To get this package to launch properly we create a prelaunch script that looks like so:
   </div>
 </div>
 
@@ -64,20 +64,20 @@ SET FILE=%RANDOM%
  
 IF /I [%1] == [CAL] (
   ECHO Launching BDM...
-   &gt; "%TEMP%\%FILE%.CMD" ECHO @ECHO OFF
-  &gt;&gt; "%TEMP%\%FILE%.CMD" ECHO START "" "c:\Program Files\DLC11.2\bin\prowin32.exe" -p \\wsfsc01pharm\CentricityPharmacy\rx\v92\cfg\cfgstart.p -param S,%CLIENTNAME%,crh1214%env%,CITRIX,rxpv91cal,10920 -wy
+   > "%TEMP%\%FILE%.CMD" ECHO @ECHO OFF
+  >> "%TEMP%\%FILE%.CMD" ECHO START "" "c:\Program Files\DLC11.2\bin\prowin32.exe" -p \\wsfsc01pharm\CentricityPharmacy\rx\v92\cfg\cfgstart.p -param S,%CLIENTNAME%,crh1214%env%,CITRIX,rxpv91cal,10920 -wy
 )
  
 IF /I [%1] == [EDM] (
   ECHO Launching BDM...
-   &gt; "%TEMP%\%FILE%.CMD" ECHO @ECHO OFF
-  &gt;&gt; "%TEMP%\%FILE%.CMD" ECHO START "" "c:\Program Files\DLC11.2\bin\prowin32.exe" -p \\chfs\apps\centricitypharmacy\rx\v92\cfg\cfgstart.p -param S,%CLIENTNAME%,ahe1271%env%,citrix,rx11gproddb,11920 -wy
+   > "%TEMP%\%FILE%.CMD" ECHO @ECHO OFF
+  >> "%TEMP%\%FILE%.CMD" ECHO START "" "c:\Program Files\DLC11.2\bin\prowin32.exe" -p \\chfs\apps\centricitypharmacy\rx\v92\cfg\cfgstart.p -param S,%CLIENTNAME%,ahe1271%env%,citrix,rx11gproddb,11920 -wy
 )
  
 IF /I [%1] == [ACB] (
   ECHO Launching BDM...
-   &gt; "%TEMP%\%FILE%.CMD" ECHO @ECHO OFF
-  &gt;&gt; "%TEMP%\%FILE%.CMD" ECHO START "" "c:\Program Files\DLC11.2\bin\prowin32.exe" -p \\nafsprog\pharmapp\rx\v92\cfg\cfgstart.p -param S,%CLIENTNAME%,acb1240%env%,citrix,acbrxpv92,10920 -wy
+   > "%TEMP%\%FILE%.CMD" ECHO @ECHO OFF
+  >> "%TEMP%\%FILE%.CMD" ECHO START "" "c:\Program Files\DLC11.2\bin\prowin32.exe" -p \\nafsprog\pharmapp\rx\v92\cfg\cfgstart.p -param S,%CLIENTNAME%,acb1240%env%,citrix,acbrxpv92,10920 -wy
  
 )
  

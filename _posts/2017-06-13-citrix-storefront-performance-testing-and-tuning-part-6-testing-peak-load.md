@@ -1,6 +1,6 @@
 ---
 id: 2377
-title: 'Citrix Storefront â€“ Performance Testing and Tuning â€“ Part 6 &#8211; Testing Peak Load'
+title: 'Citrix Storefront â€“ Performance Testing and Tuning â€“ Part 6 - Testing Peak Load'
 date: 2017-06-13T15:06:52-06:00
 author: trententtye
 layout: post
@@ -15,7 +15,7 @@ tags:
   - PowerShell
   - Storefront
 ---
-In part 5Â I figured out our peak load against our existing infrastructure. Â In this part I&#8217;m going to test against a Storefront server to see if it can handle the baseline load.
+In part 5Â I figured out our peak load against our existing infrastructure. Â In this part I'm going to test against a Storefront server to see if it can handle the baseline load.
 
 This is the counters used for PNA launches:
 
@@ -97,9 +97,9 @@ The loads to test are:
   </tr>
 </table>
 
-I am going to use WCAT to test PNA as WCAT is fairly easy to configure. Â From the counters we can easily target &#8220;ICA Launches Calls / second&#8221; and &#8220;Find all resources Calls / second&#8221; (and divide by ~2.5) to get to our PNA load count.
+I am going to use WCAT to test PNA as WCAT is fairly easy to configure. Â From the counters we can easily target "ICA Launches Calls / second" and "Find all resources Calls / second" (and divide by ~2.5) to get to our PNA load count.
 
-Now, I can test the PNA portion with WCAT, which is good because it can maintain a nice, steady rate. Â Web Logon&#8217;s and launches though, require a PowerShell script because of some cookie manipulation.
+Now, I can test the PNA portion with WCAT, which is good because it can maintain a nice, steady rate. Â Web Logon's and launches though, require a PowerShell script because of some cookie manipulation.
 
 Testing a single Web Interface server, I tested just PNA app launches (20 per second) and our Web Interface server was <span style="text-decoration: underline;">unable</span> to maintain that rate. Â The maxmium number a single Web Interface server (4vCPU 12GB RAM) was ~15 application launches per second. Â At that point my Powershell script was getting errors during its requests.
 
@@ -116,11 +116,11 @@ Since we load balance we could sustain ~30 PNA app launches per second with Web 
 
 Ok, first off, I have to say I love it when the math adds up.
 
-I was hoping for an average of 8 PNA app launches (ICA Launch Calls / second) and I got 8.6, and I was hoping for ~19 &#8220;Find All resources Calls / second&#8221; and I got 17.7. Â So I believe I&#8217;m pretty close to simulating my real peak load traffic.
+I was hoping for an average of 8 PNA app launches (ICA Launch Calls / second) and I got 8.6, and I was hoping for ~19 "Find All resources Calls / second" and I got 17.7. Â So I believe I'm pretty close to simulating my real peak load traffic.
 
 <img class="aligncenter size-full wp-image-2433" src="http://theorypc.ca/wp-content/uploads/2017/06/PNA_Perf.png" alt="" width="932" height="526" srcset="http://theorypc.ca/wp-content/uploads/2017/06/PNA_Perf.png 932w, http://theorypc.ca/wp-content/uploads/2017/06/PNA_Perf-300x169.png 300w, http://theorypc.ca/wp-content/uploads/2017/06/PNA_Perf-768x433.png 768w" sizes="(max-width: 932px) 100vw, 932px" /> 
 
-So we can see the load testing definitely put an impact on Storefront server. Â We had some peaks, which varied between requesting icons and requesting the ICA file. Â Getting the Config.xml file didn&#8217;t move the needle neither did find PRELAUNCH applications. Â I&#8217;m not entirely sure why we have some spikes but overall I think I&#8217;m pretty satisfied with this performance.
+So we can see the load testing definitely put an impact on Storefront server. Â We had some peaks, which varied between requesting icons and requesting the ICA file. Â Getting the Config.xml file didn't move the needle neither did find PRELAUNCH applications. Â I'm not entirely sure why we have some spikes but overall I think I'm pretty satisfied with this performance.
 
 When does Storefront break (in my environment)?
 
@@ -156,7 +156,7 @@ This configuration enabled us to handle 64Â connections per second before consis
 
 &nbsp;
 
-If we set a target of a &#8220;fail&#8221; when the response time exceeds 10 seconds this is what my maximum number of requests can be per vCPU:
+If we set a target of a "fail" when the response time exceeds 10 seconds this is what my maximum number of requests can be per vCPU:
 
 <img class="aligncenter size-full wp-image-2444" src="http://theorypc.ca/wp-content/uploads/2017/06/conn_storefront_exceed10s.png" alt="" width="1322" height="697" srcset="http://theorypc.ca/wp-content/uploads/2017/06/conn_storefront_exceed10s.png 1322w, http://theorypc.ca/wp-content/uploads/2017/06/conn_storefront_exceed10s-300x158.png 300w, http://theorypc.ca/wp-content/uploads/2017/06/conn_storefront_exceed10s-768x405.png 768w" sizes="(max-width: 1322px) 100vw, 1322px" /> 
 

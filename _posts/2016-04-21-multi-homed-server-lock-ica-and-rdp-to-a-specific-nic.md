@@ -22,12 +22,12 @@ tags:
   - PowerShell
   - Provisioning Services
   - Registry
-  - XenApp
+  - &
 ---
 <div style="clear: both; text-align: center;">
 </div>
 
-We implement a multi-homed setup with Citrix Provisioning Services. Â We have all of our production traffic on one NIC and all PVS traffic on a second nic. Â This helps us in troubleshooting when doing packet captures but does introduce other sets of challenges. Â One of these challenges is when I uninstalled and then installed updated VMWare tools on one of our vDisks it caused the NIC&#8217;s to renumber and reorder themselves. Â You&#8217;ve [probably read some articles](https://support.citrix.com/article/CTX136279) [saying to &#8216;show hidden devices&#8217; and uninstall any &#8216;ghost&#8217; devices](https://support.citrix.com/article/CTX133188); with a multi-homed setup this may not resolve your issue. Â My specific issue is my NIC&#8217;s now went from &#8220;0x1 and 0x2&#8221; to &#8220;0x3 and 0x4&#8221; in the [LANATABLE](https://support.microsoft.com/en-us/kb/924927). Â We apply a GPO to the ICA-TCP and RDP-TCP to force them to only utilize our &#8216;Production&#8217; NIC which we decided was going to be the second NIC.
+We implement a multi-homed setup with Citrix Provisioning Services. Â We have all of our production traffic on one NIC and all PVS traffic on a second nic. Â This helps us in troubleshooting when doing packet captures but does introduce other sets of challenges. Â One of these challenges is when I uninstalled and then installed updated VMWare tools on one of our vDisks it caused the NIC's to renumber and reorder themselves. Â You've [probably read some articles](https://support.citrix.com/article/CTX136279) [saying to 'show hidden devices' and uninstall any 'ghost' devices](https://support.citrix.com/article/CTX133188); with a multi-homed setup this may not resolve your issue. Â My specific issue is my NIC's now went from "0x1 and 0x2" to "0x3 and 0x4" in the [LANATABLE](https://support.microsoft.com/en-us/kb/924927). Â We apply a GPO to the ICA-TCP and RDP-TCP to force them to only utilize our 'Production' NIC which we decided was going to be the second NIC.
 
 <table style="margin-left: auto; margin-right: auto; text-align: center;" cellspacing="0" cellpadding="0" align="center">
   <tr>
@@ -43,13 +43,13 @@ We implement a multi-homed setup with Citrix Provisioning Services. Â We have al
   </tr>
 </table>
 
-I uninstalled the ghost devices but because this change is all &#8216;in the registry&#8217; it wasn&#8217;t immediately noticeable by myself that the LANATABLE and NIC ordering had changed. Â I promoted my vDisk and then tried to RDP into it:
+I uninstalled the ghost devices but because this change is all 'in the registry' it wasn't immediately noticeable by myself that the LANATABLE and NIC ordering had changed. Â I promoted my vDisk and then tried to RDP into it:
 
 <div style="clear: both; text-align: center;">
   <a style="margin-left: 1em; margin-right: 1em;" href="http://theorypc.ca/wp-content/uploads/2016/04/2-1.png"><img src="http://theorypc.ca/wp-content/uploads/2016/04/2-1-300x119.png" width="320" height="127" border="0" /></a>
 </div>
 
-Well&#8230; Â I knew this wasn&#8217;t right. Â So I logged onto the server and checked the LANATABLE values:
+Well... Â I knew this wasn't right. Â So I logged onto the server and checked the LANATABLE values:
 
 <table style="margin-left: auto; margin-right: auto; text-align: center;" cellspacing="0" cellpadding="0" align="center">
   <tr>
@@ -143,7 +143,7 @@ Well&#8230; Â I knew this wasn&#8217;t right. Â So I logged onto the server and 
   </tr>
 </table>
 
-A couple issues popped out. Â The first was that the LanaID&#8217;s were wrong. Â I \*thought\* Provision should be #1 and Production should be #2, but we apply our LanAdapter ID&#8217;s via GPP so these values are correct for our other systems. Â I know both RDP and ICA need to be locked to the Production NIC and the order is \*correct\* but I&#8217;m a bit confused to why the numbers are different between RDP-TCP and ICA-TCP.
+A couple issues popped out. Â The first was that the LanaID's were wrong. Â I \*thought\* Provision should be #1 and Production should be #2, but we apply our LanAdapter ID's via GPP so these values are correct for our other systems. Â I know both RDP and ICA need to be locked to the Production NIC and the order is \*correct\* but I'm a bit confused to why the numbers are different between RDP-TCP and ICA-TCP.
 
 So I started on getting the issues resolved. Â First, I was going to resolve RDP. Â If it is targeting 0x1 that means that I need the Production NIC (VMWare Network Adapter #2) needs to be set as 0x1. Â So I edit the LanaId of the Production NIC to 0x1 and the Provision NIC to 0x2. Â I rebooted the box and I could RDP into it without issue. Â I then checked the Remote Desktop Session Host Configuration:
 
@@ -197,7 +197,7 @@ Looking at the ICA Listener configuration showed me the following:
   </tr>
 </table>
 
-So the ICA-TCP listener was set to the &#8216;Provision&#8217; NIC. Â So our production traffic was not getting to it. This is the wrong value. Â My first thought was the LANATABLE would make sense here&#8230; Â We have the LANADAPTER key is set to 0x2 which would equal the &#8216;Provision&#8217; NIC under this configuraiton&#8230; Â So I changed the LANATABLE to be the reverse. Â 0x1 = Provision NIC and 0x2 = Production NIC.
+So the ICA-TCP listener was set to the 'Provision' NIC. Â So our production traffic was not getting to it. This is the wrong value. Â My first thought was the LANATABLE would make sense here... Â We have the LANADAPTER key is set to 0x2 which would equal the 'Provision' NIC under this configuraiton... Â So I changed the LANATABLE to be the reverse. Â 0x1 = Provision NIC and 0x2 = Production NIC.
 
 The results:
 
@@ -228,7 +228,7 @@ Now both are wrong!
 </div>
 
 <div>
-  I reverted the LANATABLE to 0x1 = Production and 0x2 = Provision. Â Again, only the RDP-TCP connection changed. Â At this point the ICA Listener *must* be looking at another place&#8230; Â I used Procmon to trace the registry when I opened the ICA Listener Configuration and noticed it did NOT query LANATABLE but did go through and look and query this key:
+  I reverted the LANATABLE to 0x1 = Production and 0x2 = Provision. Â Again, only the RDP-TCP connection changed. Â At this point the ICA Listener *must* be looking at another place... Â I used Procmon to trace the registry when I opened the ICA Listener Configuration and noticed it did NOT query LANATABLE but did go through and look and query this key:
 </div>
 
 <div>
@@ -249,7 +249,7 @@ Now both are wrong!
 </div>
 
 <div>
-  The BIND order is set as Production (#2 NIC) first and Provision second in this order&#8230; Â To change this order you need to go to Advanced Settings and modify the connection order:
+  The BIND order is set as Production (#2 NIC) first and Provision second in this order... Â To change this order you need to go to Advanced Settings and modify the connection order:
 </div>
 
 <div>
@@ -264,7 +264,7 @@ Now both are wrong!
   
   <tr>
     <td style="text-align: center;">
-      Provision *should* be the top NIC here&#8230;
+      Provision *should* be the top NIC here...
     </td>
   </tr>
 </table>
@@ -334,7 +334,7 @@ Now both are wrong!
 </div>
 
 <div>
-  Targets the BINDING order of the NIC&#8217;s.
+  Targets the BINDING order of the NIC's.
 </div>
 
 <div>

@@ -1,6 +1,6 @@
 ---
 id: 2788
-title: 'Citrix Provisioning Service &#8211; Network Service Starting/Stopping services remotely'
+title: 'Citrix Provisioning Service - Network Service Starting/Stopping services remotely'
 date: 2018-05-02T09:53:22-06:00
 author: trententtye
 layout: post
@@ -17,7 +17,7 @@ tags:
   - PVS
   - scripting
 ---
-Citrix Provisioning Services has a feature within the &#8220;Provisioning Services Console&#8221; that allows you to stop/restart/start the streaming service on another server:
+Citrix Provisioning Services has a feature within the "Provisioning Services Console" that allows you to stop/restart/start the streaming service on another server:
 
 <img class="aligncenter size-full wp-image-2789" src="http://theorypc.ca/wp-content/uploads/2018/05/Stop_Restart.png" alt="" width="387" height="352" srcset="http://theorypc.ca/wp-content/uploads/2018/05/Stop_Restart.png 387w, http://theorypc.ca/wp-content/uploads/2018/05/Stop_Restart-300x273.png 300w" sizes="(max-width: 387px) 100vw, 387px" /> 
 
@@ -51,7 +51,7 @@ And now we can start the service remotely:
 
 In order to get this working entirely I recommend the following steps:
 
-  1. Create a Group (eg, &#8220;CTX.Servers.ProvisioningServiceServer&#8221;)
+  1. Create a Group (eg, "CTX.Servers.ProvisioningServiceServer")
   2. Add all the PVS Machine Accounts into that group
   3. Reboot your PVS server to gain that group membership token
   4. Run the powershell script on each machine to add the group permission to the streaming service: <pre class="lang:ps decode:true">. .\Add_Permissions_ToStreamService.ps1 -SetACL -Domain Bottheory -GroupOrUser CTX.Servers.ProvisioningServiceServer</pre>
@@ -60,7 +60,7 @@ In order to get this working entirely I recommend the following steps:
 
 And now the script:
 
-<pre class="lang:ps decode:true ">&lt;#
+<pre class="lang:ps decode:true "><#
     .SYNOPSIS
       Adds a user or group to the permission set on the Citrix Streaming Service to enable remote service manipulation
 
@@ -109,7 +109,7 @@ And now the script:
 <blockquote class="wp-embedded-content" data-secret="BpbrGeCpiU">
   <a href="http://theorypc.ca/">Home</a>
 </blockquote>
-    #&gt;
+    #>
 
 ## help from here: https://rohnspowershellblog.wordpress.com/2013/03/19/viewing-service-acls/
 

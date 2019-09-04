@@ -1,6 +1,6 @@
 ---
 id: 571
-title: 'PVS Target Device Update Script &#8212; Supplemental File, 1_pre-get_partition_and_netinfo.cmd / 2_post-remove_nonpresent_hardware_v33.cmd'
+title: 'PVS Target Device Update Script - Supplemental File, 1_pre-get_partition_and_netinfo.cmd / 2_post-remove_nonpresent_hardware_v33.cmd'
 date: 2015-03-20T15:12:00-06:00
 author: trententtye
 layout: post
@@ -20,7 +20,7 @@ categories:
 tags:
   - scripting
 ---
-These are two scripts we use to remove nonpresent hardware from device manager. Â These devices are generated when we update the Target Device Hardware and VMWare Tools and sit unused so are removed. Â If there is ever modifications to the vDisk that generate additional hardware this script ensures the vDisk is as clean as possible. You&#8217;ll need devcon.exe as well.
+These are two scripts we use to remove nonpresent hardware from device manager. Â These devices are generated when we update the Target Device Hardware and VMWare Tools and sit unused so are removed. Â If there is ever modifications to the vDisk that generate additional hardware this script ensures the vDisk is as clean as possible. You'll need devcon.exe as well.
 
 1\_pre-get\_partition\_and\_netinfo.cmd
 
@@ -37,9 +37,9 @@ if not exist "%adminfold%" (
     ) ELSE (
     @echo "Admin folder [%adminfold%] already exists"
     )
-@echo list volume | diskpart &gt; "%partinfo%"
-netsh interface ip dump &gt; "%netinfo%"
-ipconfig /all &gt; "%netinfo%"</pre>
+@echo list volume | diskpart > "%partinfo%"
+netsh interface ip dump > "%netinfo%"
+ipconfig /all > "%netinfo%"</pre>
 
 2\_post-remove\_nonpresent\_hardware\_v33.cmd
 
@@ -115,22 +115,22 @@ if exist "%_findall%" del /q "%_findall%"
  
  
 for %%a in (%_classsearch%) do (
-rem devcon findall =%%a | sort | lmod /l* /b: [$1] | findstr /iv /c:"matching device" &gt;&gt; "%_findall%"
-    for /f "tokens=1 delims=: " %%b in ('devcon findall ^=%%a ^| findstr /iv /c:"matching device"') do @echo %%b&gt;&gt; "%_findall%"
+rem devcon findall =%%a | sort | lmod /l* /b: [$1] | findstr /iv /c:"matching device" >> "%_findall%"
+    for /f "tokens=1 delims=: " %%b in ('devcon findall ^=%%a ^| findstr /iv /c:"matching device"') do @echo %%b>> "%_findall%"
         )
     )
  
 for %%a in (%_classsearch%) do (
  
-rem devcon find =%%a | sort | lmod /l* /b: [$1] | findstr /iv /c:"matching device" &gt;&gt; "%_find%"
-    for /f "tokens=1 delims=: " %%b in ('devcon find ^=%%a ^| findstr /iv /c:"matching device"') do @echo %%b&gt;&gt; "%_find%"
+rem devcon find =%%a | sort | lmod /l* /b: [$1] | findstr /iv /c:"matching device" >> "%_find%"
+    for /f "tokens=1 delims=: " %%b in ('devcon find ^=%%a ^| findstr /iv /c:"matching device"') do @echo %%b>> "%_find%"
     )
  
  
 REM List out the actual device classes
-devcon classes &gt; "%_classes%"
+devcon classes > "%_classes%"
  
-@echo. &gt; "%_removal%"
+@echo. > "%_removal%"
  
 set _found=0
  
@@ -165,7 +165,7 @@ for /f "tokens=* delims=:" %%b in ('findstr /L /X /C:"!fixEscapeChar!" "%_find%"
             for /f "tokens=* delims=" %%x in ('!_removecmd!') do set msg=%%x
             @echo -- "!msg!"
  
-            @echo [!_descr1!],!_descr!,"%%a",!msg! &gt;&gt; "%_removal%"          
+            @echo [!_descr1!],!_descr!,"%%a",!msg! >> "%_removal%"          
  
             )
  
@@ -184,7 +184,7 @@ goto :END
 :SYNTAX
 @echo.
 @echo %message%
-@echo SYNTAX : %_scriptname% ^&lt;version info^&gt; ^&lt;logfile path^&gt;
+@echo SYNTAX : %_scriptname% ^<version info^> ^<logfile path^>
 sleep 5
  
 goto :END

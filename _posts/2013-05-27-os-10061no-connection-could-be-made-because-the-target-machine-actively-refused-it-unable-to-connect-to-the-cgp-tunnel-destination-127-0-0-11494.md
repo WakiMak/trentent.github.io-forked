@@ -35,7 +35,7 @@ tags:
 
 This has been an ongoing problem for us (Unable to connect to the CGP tunnel destination (127.0.0.1:1494)
 
-I may have found out why it was happening in our environment. Â We are using Provisioning Services and with it we are using two NIC&#8217;s, one for the Provisioning Services and one for Standard networking.
+I may have found out why it was happening in our environment. Â We are using Provisioning Services and with it we are using two NIC's, one for the Provisioning Services and one for Standard networking.
 
 It appears the XTE service became configured to use the Provisioning Services NIC. Â This was verified in the httpd.conf in the C:\Program Files (x86)\Citrix\XTE\conf folder.
 
@@ -113,7 +113,7 @@ When I traced the XTE service using procmon.exe and wireshark with this non-func
   </div>
   
   <div>
-    When I edited the file to have the Production NIC&#8230;</p> 
+    When I edited the file to have the Production NIC...</p> 
     
     <div style="clear: both; text-align: center;">
       <a style="margin-left: 1em; margin-right: 1em;" href="http://2.bp.blogspot.com/-zFFprXLYhLU/UaPTxyU25qI/AAAAAAAAARE/a8aQNFDX1gs/s1600/6.PNG"><img src="http://2.bp.blogspot.com/-zFFprXLYhLU/UaPTxyU25qI/AAAAAAAAARE/a8aQNFDX1gs/s320/6.PNG" width="320" height="213" border="0" /></a>
@@ -130,7 +130,7 @@ When I traced the XTE service using procmon.exe and wireshark with this non-func
     </div>
     
     <div>
-      then restarted the XTE service and retraced via Procmon and Wireshark&#8230;
+      then restarted the XTE service and retraced via Procmon and Wireshark...
     </div>
     
     <div style="clear: both; text-align: center;">
@@ -158,7 +158,7 @@ When I traced the XTE service using procmon.exe and wireshark with this non-func
       </p>
       
       <p>
-        We have now found why we are getting this error, and why we are getting it intermittently. Â The issue is we are using PVS with multi-homed NIC&#8217;s. Â One NIC (LanAdapter 1) is the &#8220;Provisioning&#8221; network, and the second NIC (LanAdapter 2) is the &#8220;Production&#8221; network. Â The Provisioning network is on a completely seperate vLan and sees no traffic outside of it&#8217;s little network. Â The ICA Listener was attaching itself to the Provisioning network instead of the production network, so when we tried to connect to the server it would fail with the CGP tunnel error because the outside network cannot talk to the Provisioning network. Â To attempt to resolve this issue one of our techs (Saman) created a group policy preference registry key that set the following value (HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\Terminal Server\WinStations\ICA-TCP &#8211; LanAdapter):
+        We have now found why we are getting this error, and why we are getting it intermittently. Â The issue is we are using PVS with multi-homed NIC's. Â One NIC (LanAdapter 1) is the "Provisioning" network, and the second NIC (LanAdapter 2) is the "Production" network. Â The Provisioning network is on a completely seperate vLan and sees no traffic outside of it's little network. Â The ICA Listener was attaching itself to the Provisioning network instead of the production network, so when we tried to connect to the server it would fail with the CGP tunnel error because the outside network cannot talk to the Provisioning network. Â To attempt to resolve this issue one of our techs (Saman) created a group policy preference registry key that set the following value (HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\Terminal Server\WinStations\ICA-TCP - LanAdapter):
       </p>
       
       <div style="clear: both; text-align: center;">
@@ -166,11 +166,11 @@ When I traced the XTE service using procmon.exe and wireshark with this non-func
       </div>
       
       <p>
-        By setting it to &#8220;2&#8221; we could ensure the ICA listener is always listening on LanAdapter 2, our production network. Â Unfortunately, a Windows Update appears to have caused either Group Policy Registry Preferences to execute (sometimes) *after* the IMAService service started, or allowed the IMAService service to start *before* Group Policy Registry Preferences. Â IMAService will recreate that file every second restart. Â To resolve this issue I created a startup script that executes after 65 seconds, deleting the httpd.conf file and restarting the appropriate services until the httpd.conf file is recreated.
+        By setting it to "2" we could ensure the ICA listener is always listening on LanAdapter 2, our production network. Â Unfortunately, a Windows Update appears to have caused either Group Policy Registry Preferences to execute (sometimes) *after* the IMAService service started, or allowed the IMAService service to start *before* Group Policy Registry Preferences. Â IMAService will recreate that file every second restart. Â To resolve this issue I created a startup script that executes after 65 seconds, deleting the httpd.conf file and restarting the appropriate services until the httpd.conf file is recreated.
       </p>
       
       <p>
-        In my testing it appears you need to restart the &#8220;IMAService&#8221; service twice to get it to recreate the httpd.conf file. Â Because of this, I created the script to retry up to 3 times to try and regenerate the file.
+        In my testing it appears you need to restart the "IMAService" service twice to get it to recreate the httpd.conf file. Â Because of this, I created the script to retry up to 3 times to try and regenerate the file.
       </p>
       
       <pre class="lang:batch decode:true ">:: ===========================================================================================================
@@ -203,23 +203,23 @@ eventcreate /ID 1 /L APPLICATION /T INFORMATION /SO "Local GP Startup Script" /D
 
 del /q "C:\Program Files (x86)\Citrix\XTE\conf\httpd.conf"
 
-ECHO N | GPUPDATE /FORCE &gt;NUL
-ping 127.0.0.1 -n 65 &gt;NUL
+ECHO N | GPUPDATE /FORCE >NUL
+ping 127.0.0.1 -n 65 >NUL
 
 :RetryCreate
 net stop CitrixWMIService
 net stop IMAService
 net stop CitrixXTEServer
 
-ping 127.0.0.1 -n 5 &gt;NUL
+ping 127.0.0.1 -n 5 >NUL
 net start IMAService
 net start CitrixWMIService
 
-ping 127.0.0.1 -n 5 &gt;NUL
+ping 127.0.0.1 -n 5 >NUL
 net stop CitrixWMIService
 net stop IMAService
 
-ping 127.0.0.1 -n 5 &gt;NUL
+ping 127.0.0.1 -n 5 >NUL
 net start IMAService
 net start CitrixWMIService
 net start CitrixXTEServer

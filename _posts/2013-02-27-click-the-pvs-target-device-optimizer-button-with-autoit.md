@@ -22,7 +22,7 @@ tags:
   - Provisioning Services
   - scripting
 ---
-Short but sweet script.Â Disappointing that Citrix doesn&#8217;t have a silent run switch for this application.
+Short but sweet script.Â Disappointing that Citrix doesn't have a silent run switch for this application.
 
 <pre class="lang:autoit decode:true ">;
 ; AutoIt Version: 3.0

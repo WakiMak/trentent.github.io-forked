@@ -1,6 +1,6 @@
 ---
 id: 705
-title: 'Set home directories even if it&#8217;s a hidden share'
+title: 'Set home directories even if it's a hidden share'
 date: 2011-07-06T11:40:00-06:00
 author: trententtye
 layout: post
@@ -28,14 +28,14 @@ There exists an issue with DSMOD that prevents you from modifying the -hmdir wit
 > -email parameter.  
 > For example, if the target user DN is  
 > CN=Jane Doe,CN=users,CN=microsoft,CN=com and the SAM account name  
-> attribute is &#8220;janed,&#8221; the -hmdir parameter can have the following  
+> attribute is "janed," the -hmdir parameter can have the following  
 > substitution:
 > 
 > -hmdir users$username$home
 > 
 > The value of the -hmdir parameter is modified to the following value:
 > 
-> &#8211; hmdir usersjanedhome
+> - hmdir usersjanedhome
 
 This does not work if your home directory is structured like so:
 
@@ -43,7 +43,7 @@ This does not work if your home directory is structured like so:
 
 The value returned by DSMOD is actually:
 
-&#8211; hmdir users$$username$home as opposed to the proper  
+- hmdir users$$username$home as opposed to the proper  
 users$janedhome
 
 To fix this you can use the awesome ADFIND and ADMOD from Joeware.

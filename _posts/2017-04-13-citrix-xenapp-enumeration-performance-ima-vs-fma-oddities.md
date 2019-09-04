@@ -1,47 +1,47 @@
 ---
 id: 2129
-title: 'Citrix XenApp Enumeration Performance â€“ IMA vs FMA &#8211; oddities'
+title: 'Citrix & Enumeration Performance â€“ IMA vs FMA - oddities'
 date: 2017-04-13T12:20:32-06:00
 author: trententtye
 layout: post
 guid: http://theorypc.ca/?p=2129
-permalink: /2017/04/13/citrix-xenapp-enumeration-performance-ima-vs-fma-oddities/
+permalink: /2017/04/13/citrix-&-enumeration-performance-ima-vs-fma-oddities/
 image: /wp-content/uploads/2017/04/Screen-Shot-2017-04-13-at-12.19.57-PM.png
 categories:
   - Blog
 tags:
   - Citrix
   - Performance
-  - XenApp
+  - &
 ---
-During the course of [load testing FMA to see how it compares with IMA](https://theorypc.ca/2017/04/12/citrix-xenapp-enumeration-performance-ima-vs-fma-load-testing/) in terms of performance I encountered some oddities with FMA. Â It definitely is more efficient at enumerating XenApp applications compared to IMA. Â But&#8230; Â The differences in my testing may have been overstated.
+During the course of [load testing FMA to see how it compares with IMA](https://theorypc.ca/2017/04/12/citrix-&-enumeration-performance-ima-vs-fma-load-testing/) in terms of performance I encountered some oddities with FMA. Â It definitely is more efficient at enumerating & applications compared to IMA. Â But... Â The differences in my testing may have been overstated.
 
-During the load testing I captured some performance counters. Â One of them, &#8220;Citrix XML Service &#8211; enumerate resources &#8211; Concurrent Transactions&#8221; seemed to line up almost perfectly with the load wcat was applying to the broker. Â BUT&#8230; Â It capped out. Â It seemed to cap at 200-220 concurrent connections.
+During the load testing I captured some performance counters. Â One of them, "Citrix XML Service - enumerate resources - Concurrent Transactions" seemed to line up almost perfectly with the load wcat was applying to the broker. Â BUT... Â It capped out. Â It seemed to cap at 200-220 concurrent connections.
 
 <img class="aligncenter size-full wp-image-2130" src="http://theorypc.ca/wp-content/uploads/2017/04/FMA_Oddity.png" alt="" width="1353" height="884" srcset="http://theorypc.ca/wp-content/uploads/2017/04/FMA_Oddity.png 1353w, http://theorypc.ca/wp-content/uploads/2017/04/FMA_Oddity-300x196.png 300w, http://theorypc.ca/wp-content/uploads/2017/04/FMA_Oddity-768x502.png 768w" sizes="(max-width: 1353px) 100vw, 1353px" /> 
 
 &nbsp;
 
-The slope of the increase in the concurrent transactions should have continued but it stops. Â I had set a maximum of 1000 concurrent connections via WCAT but it stops then does this weird &#8216;stepping&#8217;. Â When this limit appears to be reached, that appears to be when the &#8220;performance&#8221; of FMA succeeds IMA significantly.
+The slope of the increase in the concurrent transactions should have continued but it stops. Â I had set a maximum of 1000 concurrent connections via WCAT but it stops then does this weird 'stepping'. Â When this limit appears to be reached, that appears to be when the "performance" of FMA succeeds IMA significantly.
 
 <img class="aligncenter size-full wp-image-2131" src="http://theorypc.ca/wp-content/uploads/2017/04/IMA_FMA_220.png" alt="" width="641" height="519" srcset="http://theorypc.ca/wp-content/uploads/2017/04/IMA_FMA_220.png 641w, http://theorypc.ca/wp-content/uploads/2017/04/IMA_FMA_220-300x243.png 300w" sizes="(max-width: 641px) 100vw, 641px" /> 
 
 (ORANGE is FMA, BLUE is IMA).
 
-What I&#8217;m considering is that FMA is taking all requests up to that limit and then &#8216;queuing&#8217; them. Â I have no proof of that outside of the Perf Counter just hitting that ceiling. Â And when the concurrent connections hit ~800 and the response time soared, was the broker actually working?
+What I'm considering is that FMA is taking all requests up to that limit and then 'queuing' them. Â I have no proof of that outside of the Perf Counter just hitting that ceiling. Â And when the concurrent connections hit ~800 and the response time soared, was the broker actually working?
 
 No. Â It was not working. Â The responses I got when the connections hit 800+ looked like this:
 
-<pre class="lang:xhtml decode:true">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;!DOCTYPE NFuseProtocol SYSTEM "NFuse.dtd"[]&gt;
-&lt;NFuseProtocol version="5.9"&gt;
-  &lt;ResponseAppData&gt;
-  &lt;ErrorId&gt;unspecified&lt;/ErrorId&gt;
-  &lt;LeasingStatus&gt;working&lt;/LeasingStatus&gt;
-  &lt;/ResponseAppData&gt;
-&lt;/NFuseProtocol&gt;</pre>
+<pre class="lang:xhtml decode:true"><?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE NFuseProtocol SYSTEM "NFuse.dtd"[]>
+<NFuseProtocol version="5.9">
+  <ResponseAppData>
+  <ErrorId>unspecified</ErrorId>
+  <LeasingStatus>working</LeasingStatus>
+  </ResponseAppData>
+</NFuseProtocol></pre>
 
-ErrorID &#8216;unspecified&#8217;. Â Undoubtedly, it appears there is a timer somewhere that if the broker cannot respond to requests within a reasonable amount of time (20 seconds?) that it returns this error code.
+ErrorID 'unspecified'. Â Undoubtedly, it appears there is a timer somewhere that if the broker cannot respond to requests within a reasonable amount of time (20 seconds?) that it returns this error code.
 
 So is the amount of processing the broker can handle a hardcoded limit? Â I scanned the startup of the service with Procmon to see what registry keys/values the BrokerService was looking for.
 
@@ -108,13 +108,13 @@ I added that key and restarted the service. Â What was the impact?
 
 <img class="aligncenter size-full wp-image-2137" src="http://theorypc.ca/wp-content/uploads/2017/04/FMA_1380_XMLListener.png" alt="" width="1104" height="723" srcset="http://theorypc.ca/wp-content/uploads/2017/04/FMA_1380_XMLListener.png 1104w, http://theorypc.ca/wp-content/uploads/2017/04/FMA_1380_XMLListener-300x196.png 300w, http://theorypc.ca/wp-content/uploads/2017/04/FMA_1380_XMLListener-768x503.png 768w" sizes="(max-width: 1104px) 100vw, 1104px" /> 
 
-Very positive. Â The 800 concurrent limit was easily bypassed.Â Why is this limited to 500 by default? Â Changing this value to 1000 had a massive improvement in terms of how manyÂ concurrent connections it could handle. Â It pushed itself to 1350 concurrent connections before it broke. Â If I had to push for a single tweak to FMA, this one might be it. Â Mind you, the Performance Counter was still capping itself around 220 concurrent connections, so I&#8217;m not sure if that&#8217;s a limit of the counter or something else but it is VERY accurate until that point. Â If I start my WCAT test and go to 50 the perf counter goes to 50. Â If I choose 80, it goes to 80. Â If I choose 173 it goes to exactly 173. Â So it is odd.
+Very positive. Â The 800 concurrent limit was easily bypassed.Â Why is this limited to 500 by default? Â Changing this value to 1000 had a massive improvement in terms of how manyÂ concurrent connections it could handle. Â It pushed itself to 1350 concurrent connections before it broke. Â If I had to push for a single tweak to FMA, this one might be it. Â Mind you, the Performance Counter was still capping itself around 220 concurrent connections, so I'm not sure if that's a limit of the counter or something else but it is VERY accurate until that point. Â If I start my WCAT test and go to 50 the perf counter goes to 50. Â If I choose 80, it goes to 80. Â If I choose 173 it goes to exactly 173. Â So it is odd.
 
 During the course of my investigation I foundÂ a registry key that shows Citrix has decided any request over 20 seconds to the broker will fail. Â This key is:
 
 <img class="aligncenter size-full wp-image-2140" src="http://theorypc.ca/wp-content/uploads/2017/04/xmlwpnbrrequesttimeoutms.png" alt="" width="758" height="91" srcset="http://theorypc.ca/wp-content/uploads/2017/04/xmlwpnbrrequesttimeoutms.png 758w, http://theorypc.ca/wp-content/uploads/2017/04/xmlwpnbrrequesttimeoutms-300x36.png 300w, http://theorypc.ca/wp-content/uploads/2017/04/xmlwpnbrrequesttimeoutms-750x91.png 750w" sizes="(max-width: 758px) 100vw, 758px" /> 
 
-I suspect this is my &#8220;unspecified&#8221; error. Â 20 seconds is a really long time for a broker to respond to a request though, if you were a user this would suck. Â However, is it better to increase this value? Â I have it on my todo list to try and increase it for my testing to see what happens, but values like the Storefront or Netscaler XML requests to see if the brokers are responding are handicapped to 20 seconds with this value. Â So it&#8217;s probably important to have them match to reduce any further timeout you may encounter. Â For instance, it would not make sense to set a 60 second timeout in a Netscaler XML broker test if the broker is going to timeout at 20 seconds anyways.
+I suspect this is my "unspecified" error. Â 20 seconds is a really long time for a broker to respond to a request though, if you were a user this would suck. Â However, is it better to increase this value? Â I have it on my todo list to try and increase it for my testing to see what happens, but values like the Storefront or Netscaler XML requests to see if the brokers are responding are handicapped to 20 seconds with this value. Â So it's probably important to have them match to reduce any further timeout you may encounter. Â For instance, it would not make sense to set a 60 second timeout in a Netscaler XML broker test if the broker is going to timeout at 20 seconds anyways.
 
 Next will be testing this with Local Host Cache to see if this causes any impact.
 

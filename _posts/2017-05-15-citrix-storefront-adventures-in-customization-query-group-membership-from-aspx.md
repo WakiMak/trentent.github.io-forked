@@ -14,9 +14,9 @@ tags:
   - scripting
   - Storefront
 ---
-I&#8217;ve written a script that can tie into your environment for Storefront or other web service. Â This is preferable over the powershell HTTP listener (IMHO) because it can just run on the IIS server and doesn&#8217;t need to rely on any external program/service. Â It&#8217;s a simple script to pull out whether a user is a part of a group or not. Â However, it does require impersonation to be able query Active Directory if your environment does not allow anonymous queries (I believe most do not). Â Impersonation will make the request come from the machine account, which typically does have authorization to query AD.
+I've written a script that can tie into your environment for Storefront or other web service. Â This is preferable over the powershell HTTP listener (IMHO) because it can just run on the IIS server and doesn't need to rely on any external program/service. Â It's a simple script to pull out whether a user is a part of a group or not. Â However, it does require impersonation to be able query Active Directory if your environment does not allow anonymous queries (I believe most do not). Â Impersonation will make the request come from the machine account, which typically does have authorization to query AD.
 
-In order to set this up, I&#8217;ve created a web application in IIS with impersonation set.
+In order to set this up, I've created a web application in IIS with impersonation set.
 
 <pre class="lang:batch decode:true">cd "%WINDIR%\system32\inetsrv"
 
@@ -33,33 +33,33 @@ appcmd set config "Default Web Site/ADInfo" /section:system.web/compilation /+"a
 
 NOTE: this was run on a Server 2016 box. Â If your System.DirectoryServices assembly has a different version and public key you will need to update this script with that information.
 
-This script does the following: &#8220;Create application pool&#8221;
+This script does the following: "Create application pool"
 
 <img class="aligncenter size-full wp-image-2276" src="http://theorypc.ca/wp-content/uploads/2017/05/App_Pools.png" alt="" width="809" height="377" srcset="http://theorypc.ca/wp-content/uploads/2017/05/App_Pools.png 809w, http://theorypc.ca/wp-content/uploads/2017/05/App_Pools-300x140.png 300w, http://theorypc.ca/wp-content/uploads/2017/05/App_Pools-768x358.png 768w" sizes="(max-width: 809px) 100vw, 809px" />  
 <img class="aligncenter size-full wp-image-2277" src="http://theorypc.ca/wp-content/uploads/2017/05/AppPool_AdvancedSettings.png" alt="" width="439" height="545" srcset="http://theorypc.ca/wp-content/uploads/2017/05/AppPool_AdvancedSettings.png 439w, http://theorypc.ca/wp-content/uploads/2017/05/AppPool_AdvancedSettings-242x300.png 242w" sizes="(max-width: 439px) 100vw, 439px" /> 
 
 &nbsp;
 
-&#8220;Add Web App&#8221;
+"Add Web App"
 
 <img class="aligncenter size-full wp-image-2279" src="http://theorypc.ca/wp-content/uploads/2017/05/WebApp.png" alt="" width="603" height="247" srcset="http://theorypc.ca/wp-content/uploads/2017/05/WebApp.png 603w, http://theorypc.ca/wp-content/uploads/2017/05/WebApp-300x123.png 300w" sizes="(max-width: 603px) 100vw, 603px" /> 
 
-And the &#8220;appcmd set config&#8221; creates our web.config file:
+And the "appcmd set config" creates our web.config file:
 
 <img class="aligncenter size-full wp-image-2280" src="http://theorypc.ca/wp-content/uploads/2017/05/Screen-Shot-2017-05-13-at-2.32.48-PM.png" alt="" width="1126" height="634" srcset="http://theorypc.ca/wp-content/uploads/2017/05/Screen-Shot-2017-05-13-at-2.32.48-PM.png 1126w, http://theorypc.ca/wp-content/uploads/2017/05/Screen-Shot-2017-05-13-at-2.32.48-PM-300x169.png 300w, http://theorypc.ca/wp-content/uploads/2017/05/Screen-Shot-2017-05-13-at-2.32.48-PM-768x432.png 768w" sizes="(max-width: 1126px) 100vw, 1126px" /> 
 
 And the GroupMembership.aspx file:
 
-<pre class="lang:asp decode:true ">&lt;%
+<pre class="lang:asp decode:true "><%
 // Created by:		Trentent Tye
 // Creation Date:	May 11, 2017
 // File Name:		GroupMembership.aspx
 // Description:		Checks for specific group membership and returns true or false
-%&gt;
+%>
 
-&lt;%@ Page Language="C#" %&gt;
-&lt;%@ Import Namespace="System.DirectoryServices" %&gt;
-&lt;%
+<%@ Page Language="C#" %>
+<%@ Import Namespace="System.DirectoryServices" %>
+<%
 {
 string parameter = Request.QueryString["DisplayName"];
 
@@ -95,10 +95,10 @@ try
 		Response.Write("NotFound");
 	}
 }
-%&gt;
+%>
 </pre>
 
-To call the file, it&#8217;s the %hostname%\ADInfo\GroupMembership.aspx?DisplayName=%username%
+To call the file, it's the %hostname%\ADInfo\GroupMembership.aspx?DisplayName=%username%
 
 For example:
 

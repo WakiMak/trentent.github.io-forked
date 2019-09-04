@@ -1,6 +1,6 @@
 ---
 id: 1764
-title: 'Windows Update &#8211; Errors 80070057, 800736B3, 8024400E'
+title: 'Windows Update - Errors 80070057, 800736B3, 8024400E'
 date: 2016-10-19T15:12:25-06:00
 author: trententtye
 layout: post
@@ -19,12 +19,12 @@ We started the new patching Microsoft has put forward (cumulative updates) and o
 
 But we very obviously have updates to deploy to it.
 
-When I checked the &#8216;WindowsUpdate.log&#8217; I saw the following:
+When I checked the 'WindowsUpdate.log' I saw the following:
 
 <pre class="lang:default decode:true ">2016-10-19	11:23:47:375	1532	2150	AU	#############
 2016-10-19	11:23:47:375	1532	2150	AU	## START ##  AU: Search for updates
 2016-10-19	11:23:47:375	1532	2150	AU	#########
-2016-10-19	11:23:47:375	1532	2150	AU	&lt;&lt;## SUBMITTED ## AU: Search for updates [CallId = {7BA17D86-EF4B-470B-AF35-2A0271736B9E}]
+2016-10-19	11:23:47:375	1532	2150	AU	<<## SUBMITTED ## AU: Search for updates [CallId = {7BA17D86-EF4B-470B-AF35-2A0271736B9E}]
 2016-10-19	11:23:47:375	1532	1f40	Agent	*************
 2016-10-19	11:23:47:375	1532	1f40	Agent	** START **  Agent: Finding updates [CallerId = AutomaticUpdates]
 2016-10-19	11:23:47:375	1532	1f40	Agent	*********
@@ -73,7 +73,7 @@ When I checked the &#8216;WindowsUpdate.log&#8217; I saw the following:
 
 0x80070057 =Â E_INVALIDARG
 
-The &#8216;CBS&#8217; (Component Based Servicing) is reporting an Invalid Argument. Â Microsoft keeps a more verbose log of the component based servicing here: C:\Windows\Logs\CBS
+The 'CBS' (Component Based Servicing) is reporting an Invalid Argument. Â Microsoft keeps a more verbose log of the component based servicing here: C:\Windows\Logs\CBS
 
 This log reported the following:
 
@@ -114,13 +114,13 @@ An error appeared to occur at this point (there were a few):
 
 &nbsp;
 
-The standard MS method of troubleshooting Windows Update is to run the &#8216;CheckSUR&#8217; utility. Â This was the result of running that tool:
+The standard MS method of troubleshooting Windows Update is to run the 'CheckSUR' utility. Â This was the result of running that tool:
 
 <img class="aligncenter size-full wp-image-1766" src="http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug2.png" alt="windowsupdatebug2" width="334" height="341" srcset="http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug2.png 334w, http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug2-294x300.png 294w, http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug2-50x50.png 50w" sizes="(max-width: 334px) 100vw, 334px" /> 
 
 No errors detected. Â Awesome. Â So I have a problem but this tool reports everything is peachy.
 
-So when I looked at Windows Update I saw numerous &#8216;failed&#8217; updates.
+So when I looked at Windows Update I saw numerous 'failed' updates.
 
 <img class="aligncenter size-full wp-image-1767" src="http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug3.png" alt="windowsupdatebug3" width="985" height="652" srcset="http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug3.png 985w, http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug3-300x199.png 300w, http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug3-768x508.png 768w" sizes="(max-width: 985px) 100vw, 985px" /> 
 
@@ -140,7 +140,7 @@ This time I got a different error:
 2016-10-19	14:24:02:668	8904	1834	Handler	::  END  ::  Handler: CBS Install
 </pre>
 
-0x800736B3 &#8211; ERROR\_SXS\_ASSEMBLY\_NOT\_FOUND
+0x800736B3 - ERROR\_SXS\_ASSEMBLY\_NOT\_FOUND
 
 Looking at the CBS.LOG showed me the following:
 
@@ -175,23 +175,23 @@ Looking at the CBS.LOG showed me the following:
 2016-10-19 14:24:01, Error                 CBS    Failed to process single phase execution. [HRESULT = 0x800736b3 - ERROR_SXS_ASSEMBLY_NOT_FOUND]
 2016-10-19 14:24:01, Info                  CBS    WER: Generating failure report for package: Package_for_KB3177467~31bf3856ad364e35~amd64~~6.1.1.1, status: 0x800736b3, failure source: Execute, start state: Staged, target state: Installed, client id: WindowsUpdateAgent</pre>
 
-Ok, so now we can see the error but it still doesn&#8217;t give us much information. Â If I run ProcMon I can find \*when\* the error occurs somewhat easily because Windows Error Reporting kicks in as soon as the error occurs:
+Ok, so now we can see the error but it still doesn't give us much information. Â If I run ProcMon I can find \*when\* the error occurs somewhat easily because Windows Error Reporting kicks in as soon as the error occurs:
 
 <img class="aligncenter size-large wp-image-1768" src="http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug4-1024x662.png" alt="windowsupdatebug4" width="1024" height="662" srcset="http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug4-1024x662.png 1024w, http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug4-300x194.png 300w, http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug4-768x497.png 768w, http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug4.png 1590w" sizes="(max-width: 1024px) 100vw, 1024px" /> 
 
-My apologies for such an ugly screenshot. Â The &#8216;Dark Blue&#8217; highlight is when Windows Error Reporting kicked in. Â So the error must have occurred immediately preceding it. Â The only line that had a &#8216;NAME NOT FOUND&#8217; without being a subkey search is the line that ends in v!6.1.7601.18766. Â If I browse to that location in the registry, here&#8217;s what I find:
+My apologies for such an ugly screenshot. Â The 'Dark Blue' highlight is when Windows Error Reporting kicked in. Â So the error must have occurred immediately preceding it. Â The only line that had a 'NAME NOT FOUND' without being a subkey search is the line that ends in v!6.1.7601.18766. Â If I browse to that location in the registry, here's what I find:
 
 <img class="aligncenter size-full wp-image-1769" src="http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug5.png" alt="windowsupdatebug5" width="644" height="699" srcset="http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug5.png 644w, http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug5-276x300.png 276w" sizes="(max-width: 644px) 100vw, 644px" /> 
 
 &nbsp;
 
-So we are definitely missing that key. Â I have a bit of an advantage with the patches here as I have a duplicate of this server in another vDisk that was made around a year ago. Â Both are supposed to be at the same patch level, but it allows me to look through it&#8217;s COMPONENTS registry hive and see if it has that key&#8230;
+So we are definitely missing that key. Â I have a bit of an advantage with the patches here as I have a duplicate of this server in another vDisk that was made around a year ago. Â Both are supposed to be at the same patch level, but it allows me to look through it's COMPONENTS registry hive and see if it has that key...
 
 And I see a vastly different set of keys:
 
 <img class="aligncenter size-full wp-image-1770" src="http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug6.png" alt="windowsupdatebug6" width="519" height="129" srcset="http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug6.png 519w, http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug6-300x75.png 300w" sizes="(max-width: 519px) 100vw, 519px" /> 
 
-So I import that key and try running the update again&#8230;
+So I import that key and try running the update again...
 
 <img class="aligncenter size-full wp-image-1771" src="http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug7.png" alt="windowsupdatebug7" width="550" height="386" srcset="http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug7.png 550w, http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug7-300x211.png 300w" sizes="(max-width: 550px) 100vw, 550px" /> 
 
@@ -201,11 +201,11 @@ Manually, it successfully updated. Â So now I tried running Windows Update again
 
 <img class="aligncenter size-full wp-image-1772" src="http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug8.png" alt="windowsupdatebug8" width="840" height="383" srcset="http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug8.png 840w, http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug8-300x137.png 300w, http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug8-768x350.png 768w" sizes="(max-width: 840px) 100vw, 840px" /> 
 
-Code 8024400E. Â Which means&#8230; Â [I just need to rerun &#8216;Try again&#8217; about 6 times](https://theorypc.ca/2016/03/14/wsus-clients-fail-with-warning-exceeded-max-server-round-trips-0x80244010/). Â Once I do:
+Code 8024400E. Â Which means... Â [I just need to rerun 'Try again' about 6 times](https://theorypc.ca/2016/03/14/wsus-clients-fail-with-warning-exceeded-max-server-round-trips-0x80244010/). Â Once I do:
 
 <img class="aligncenter size-full wp-image-1773" src="http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug9.png" alt="windowsupdatebug9" width="829" height="353" srcset="http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug9.png 829w, http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug9-300x128.png 300w, http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug9-768x327.png 768w, http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug9-750x320.png 750w" sizes="(max-width: 829px) 100vw, 829px" /> 
 
-Ok, we have updates. Â As a test I&#8217;m going to do just one:
+Ok, we have updates. Â As a test I'm going to do just one:
 
 <img class="aligncenter size-full wp-image-1774" src="http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug10.png" alt="windowsupdatebug10" width="728" height="274" srcset="http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug10.png 728w, http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug10-300x113.png 300w" sizes="(max-width: 728px) 100vw, 728px" /> 
 
@@ -215,7 +215,7 @@ Success!
 
 <img class="aligncenter size-full wp-image-1775" src="http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug11.png" alt="windowsupdatebug11" width="815" height="352" srcset="http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug11.png 815w, http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug11-300x130.png 300w, http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug11-768x332.png 768w" sizes="(max-width: 815px) 100vw, 815px" /> 
 
-So I&#8217;ll try the rest:
+So I'll try the rest:
 
 <img class="aligncenter size-full wp-image-1776" src="http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug12.png" alt="windowsupdatebug12" width="838" height="394" srcset="http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug12.png 838w, http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug12-300x141.png 300w, http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug12-768x361.png 768w" sizes="(max-width: 838px) 100vw, 838px" /> 
 
@@ -227,7 +227,7 @@ Success!
 
 &nbsp;
 
-It appears we can install patches again. Â I&#8217;m concerned the COMPONENTS hives were so different but without a solid understanding of how that hive comes to be (I wish you could rebuild it) I think I may be stuck with assuming that a failed update or maybe a corrupt registry key is at fault for that missing key breaking updates. Â I guess we&#8217;ll see what happens next month to see if we can patch Windows :/
+It appears we can install patches again. Â I'm concerned the COMPONENTS hives were so different but without a solid understanding of how that hive comes to be (I wish you could rebuild it) I think I may be stuck with assuming that a failed update or maybe a corrupt registry key is at fault for that missing key breaking updates. Â I guess we'll see what happens next month to see if we can patch Windows :/
 
 <!-- AddThis Advanced Settings generic via filter on the_content -->
 

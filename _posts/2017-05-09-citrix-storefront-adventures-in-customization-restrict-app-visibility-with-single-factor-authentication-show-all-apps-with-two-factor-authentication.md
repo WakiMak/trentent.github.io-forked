@@ -16,7 +16,7 @@ tags:
 ---
 I have been working with a colleague of mine (Saman Salehian) who has been working on a project with a Citrix Netscaler. Â One of the hopes of this project is to offer Citrix applications externally. Â A problem was posed to me about restrictingÂ users to only access non-critical, non-patient facing applications (eg, Outlook, intranet site, etc.) if they logged in with their domain credentials, but if users were using a two factor authentication method to show all applications.
 
-Citrix has 3 articles ([one](https://www.citrix.com/blogs/2014/03/27/hiding-applications-in-citrix-storefront/), [two](https://support.citrix.com/article/CTX204869) [three](https://www.citrix.com/blogs/2014/05/20/now-you-see-me-now-you-dont-a-guide-to-hiding-published-resources/)) that I&#8217;ve been able to find about executing on this. Â The problem with these articles is that they are now <span style="text-decoration: underline;"><strong>outdated</strong></span>. Â Citrix has a much more flexible and (In My Humble Opinion) better way to hide/show applications. Â And that is through the [Receiver Extension APIs](https://docs.citrix.com/en-us/storefront/3/migrate-wi-to-storefront/receiver-extension-apis.html). Â Through a single store, I&#8217;ll be able to show and hide applicationsÂ _**dynamically**_.
+Citrix has 3 articles ([one](https://www.citrix.com/blogs/2014/03/27/hiding-applications-in-citrix-storefront/), [two](https://support.citrix.com/article/CTX204869) [three](https://www.citrix.com/blogs/2014/05/20/now-you-see-me-now-you-dont-a-guide-to-hiding-published-resources/)) that I've been able to find about executing on this. Â The problem with these articles is that they are now <span style="text-decoration: underline;"><strong>outdated</strong></span>. Â Citrix has a much more flexible and (In My Humble Opinion) better way to hide/show applications. Â And that is through the [Receiver Extension APIs](https://docs.citrix.com/en-us/storefront/3/migrate-wi-to-storefront/receiver-extension-apis.html). Â Through a single store, I'll be able to show and hide applicationsÂ _**dynamically**_.
 
 The two API calls that are relevant are:
 
@@ -34,9 +34,9 @@ The architecture of this solution looks like this:
 
 &nbsp;
 
-It&#8217;s pretty damn simple. Â Look that a specific cookie has a specific value and if it does <span style="text-decoration: underline;"><strong>NOT</strong></span> have that value, exclude the app(s)Â from being shown.
+It's pretty damn simple. Â Look that a specific cookie has a specific value and if it does <span style="text-decoration: underline;"><strong>NOT</strong></span> have that value, exclude the app(s)Â from being shown.
 
-So the role of the Netscaler here is when the user logs on, it will write a cookie based on the authentication. Â Our Storefront script will check for the value of that cookie. Â If the cookie containsÂ our known value then we iterate through all applications and look for some unique text we&#8217;ve set in the application description field (this works with both XenApp 6.5 and 7.X) and hide those applications. Â For my example, I&#8217;ve added &#8221; 2FA&#8221; to the application description field for the applications I want excluded from single-factor authentication. Note: I&#8217;ve required a &#8216;space&#8217; before the characters 2FA.
+So the role of the Netscaler here is when the user logs on, it will write a cookie based on the authentication. Â Our Storefront script will check for the value of that cookie. Â If the cookie containsÂ our known value then we iterate through all applications and look for some unique text we've set in the application description field (this works with both & 6.5 and 7.X) and hide those applications. Â For my example, I've added " 2FA" to the application description field for the applications I want excluded from single-factor authentication. Note: I've required a 'space' before the characters 2FA.
 
 <pre class="lang:js decode:true ">//get cookies function
 function getCookie(name) {
@@ -49,7 +49,7 @@ var logonmethod = getCookie("logonmethod");
 if (logonmethod == "1FA") {
 	CTXS.Extensions.excludeApp = function(app) {
 		//do a javascript search for our text.  
-		//if the text is found then the value of â€˜findmeâ€™ will be &gt; 1. If itâ€™s not found then it will be -1.
+		//if the text is found then the value of â€˜findmeâ€™ will be > 1. If itâ€™s not found then it will be -1.
 		var findme = app.description.search(" 2FA");
 		if (findme != -1) {
 			CTXS.trace("hiding app from 1FA:" + app.description);
@@ -59,7 +59,7 @@ if (logonmethod == "1FA") {
 }
 </pre>
 
-And that&#8217;s it! Â A deliciously simple addition to **\custom\script.js**.
+And that's it! Â A deliciously simple addition to **\custom\script.js**.
 
 <!-- AddThis Advanced Settings generic via filter on the_content -->
 

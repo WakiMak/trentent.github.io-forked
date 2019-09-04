@@ -22,7 +22,7 @@ tags:
   - Provisioning Services
   - PVS
 ---
-I recently got Event ID 0 on Citrix vDisk Update Service; &#8220;Update Task (UpdateTask) is not loaded&#8221;
+I recently got Event ID 0 on Citrix vDisk Update Service; "Update Task (UpdateTask) is not loaded"
 
 <div style="clear: both; text-align: center;">
 </div>

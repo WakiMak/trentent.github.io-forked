@@ -1,6 +1,6 @@
 ---
 id: 569
-title: 'PVS Target Device Update Script &#8212; Supplemental File, disableddnsregistration.ps1'
+title: 'PVS Target Device Update Script - Supplemental File, disableddnsregistration.ps1'
 date: 2015-03-20T15:25:00-06:00
 author: trententtye
 layout: post

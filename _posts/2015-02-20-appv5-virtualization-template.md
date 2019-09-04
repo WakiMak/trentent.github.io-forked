@@ -1,6 +1,6 @@
 ---
 id: 576
-title: 'APPV5 &#8211; Virtualization Template'
+title: 'APPV5 - Virtualization Template'
 date: 2015-02-20T14:06:00-06:00
 author: trententtye
 layout: post
@@ -20,75 +20,75 @@ categories:
 tags:
   - AppV
 ---
-Use if you want, or not. Â This virtualization template is to be applied against the sequencer. Â I&#8217;ve found it removes a lot of useless captured information that can get caught in a sequence.
+Use if you want, or not. Â This virtualization template is to be applied against the sequencer. Â I've found it removes a lot of useless captured information that can get caught in a sequence.
 
-<pre class="lang:default decode:true ">&lt;?xml version="1.0" encoding="utf-8"?&gt;
-&lt;SequencerTemplate xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
-  &lt;AllowMU&gt;false&lt;/AllowMU&gt;
-  &lt;AppendPackageVersionToFilename&gt;true&lt;/AppendPackageVersionToFilename&gt;
-  &lt;AllowLocalInteractionToCom&gt;false&lt;/AllowLocalInteractionToCom&gt;
-  &lt;AllowLocalInteractionToObject&gt;false&lt;/AllowLocalInteractionToObject&gt;
-  &lt;FullVFSWriteMode&gt;true&lt;/FullVFSWriteMode&gt;
-  &lt;ExcludePreExistingSxSAndVC&gt;false&lt;/ExcludePreExistingSxSAndVC&gt;
-  &lt;FileExclusions&gt;
-    &lt;string&gt;[{CryptoKeys}]&lt;/string&gt;
-    &lt;string&gt;[{Common AppData}]\Microsoft\Crypto&lt;/string&gt;
-    &lt;string&gt;[{Common AppData}]\Microsoft\Search\Data&lt;/string&gt;
-    &lt;string&gt;[{Cookies}]&lt;/string&gt;
-    &lt;string&gt;[{History}]&lt;/string&gt;
-    &lt;string&gt;[{Cache}]&lt;/string&gt;
-    &lt;string&gt;[{Local AppData}]&lt;/string&gt;
-    &lt;string&gt;[{Personal}]&lt;/string&gt;
-    &lt;string&gt;[{Profile}]\Local Settings&lt;/string&gt;
-    &lt;string&gt;[{Profile}]\NTUSER.DAT&lt;/string&gt;
-    &lt;string&gt;[{Profile}]\NTUSER.DAT.LOG1&lt;/string&gt;
-    &lt;string&gt;[{Profile}]\NTUSER.DAT.LOG2&lt;/string&gt;
-    &lt;string&gt;[{Recent}]&lt;/string&gt;
-    &lt;string&gt;[{Windows}]\Installer&lt;/string&gt;
-    &lt;string&gt;[{Windows}]\Debug&lt;/string&gt;
-    &lt;string&gt;[{Windows}]\Logs\CBS&lt;/string&gt;
-    &lt;string&gt;[{Windows}]\Temp&lt;/string&gt;
-    &lt;string&gt;[{Windows}]\WinSxS\ManifestCache&lt;/string&gt;
-    &lt;string&gt;[{Windows}]\WindowsUpdate.log&lt;/string&gt;
-    &lt;string&gt;[{Windows}]\System32\config&lt;/string&gt;
-    &lt;string&gt;[{System}]\config&lt;/string&gt;
-    &lt;string&gt;[{Windows}]\ServiceProfiles&lt;/string&gt;
-    &lt;string&gt;[{Windows}]\Logs&lt;/string&gt;
-    &lt;string&gt;[{AppVPackageDrive}]\$Recycle.Bin&lt;/string&gt;
-    &lt;string&gt;[{AppVPackageDrive}]\Boot&lt;/string&gt;
-    &lt;string&gt;[{AppVPackageDrive}]\System Volume Information&lt;/string&gt;
-    &lt;string&gt;[{AppVSystem32Logfiles}]\Scm&lt;/string&gt;
-    &lt;string&gt;[{AppData}]\Microsoft\AppV&lt;/string&gt;
-    &lt;string&gt;[{Local AppData}]\Temp&lt;/string&gt;
-    &lt;string&gt;[{LocalAppDataLow}]\Microsoft\CryptnetUrlCache&lt;/string&gt;
-    &lt;string&gt;[{ProgramFilesX64}]\Microsoft Application Virtualization\Sequencer&lt;/string&gt;
-  &lt;/FileExclusions&gt;
-  &lt;RegExclusions&gt;
-    &lt;string&gt;REGISTRY\MACHINE\SOFTWARE\Wow6432Node\Microsoft\Cryptography&lt;/string&gt;
-    &lt;string&gt;REGISTRY\MACHINE\SOFTWARE\Microsoft\Cryptography&lt;/string&gt;
-    &lt;string&gt;REGISTRY\USER\[{AppVCurrentUserSID}]\Software\Microsoft\Windows\CurrentVersion\Explorer\StreamMRU&lt;/string&gt;
-    &lt;string&gt;REGISTRY\USER\[{AppVCurrentUserSID}]\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\StreamMRU&lt;/string&gt;
-    &lt;string&gt;REGISTRY\USER\[{AppVCurrentUserSID}]\Software\Microsoft\Windows\CurrentVersion\Explorer\Streams&lt;/string&gt;
-    &lt;string&gt;REGISTRY\USER\[{AppVCurrentUserSID}]\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Streams&lt;/string&gt;
-    &lt;string&gt;REGISTRY\USER\[{AppVCurrentUserSID}]\Software\Microsoft\Windows\CurrentVersion\Explorer\UserAssist&lt;/string&gt;
-    &lt;string&gt;REGISTRY\MACHINE\SOFTWARE\Microsoft\AppV&lt;/string&gt;
-    &lt;string&gt;REGISTRY\MACHINE\SOFTWARE\Wow6432Node\Microsoft\AppV&lt;/string&gt;
-    &lt;string&gt;REGISTRY\MACHINE\SYSTEM\CurrentControlSet\Control\MUI&lt;/string&gt;
-    &lt;string&gt;REGISTRY\USER\[{AppVCurrentUserSID}]\Software\Microsoft\AppV&lt;/string&gt;
-    &lt;string&gt;REGISTRY\USER\[{AppVCurrentUserSID}]\Software\Microsoft\ResKit&lt;/string&gt;
-    &lt;string&gt;REGISTRY\USER\[{AppVCurrentUserSID}]\Software\Wow6432Node\Microsoft\AppV&lt;/string&gt;
-    &lt;string&gt;REGISTRY\USER\[{AppVCurrentUserSID}]_CLASSES\Local Settings\MuiCache&lt;/string&gt;
-    &lt;string&gt;REGISTRY\USER\[{AppVCurrentUserSID}]_CLASSES\Local Settings\Software\Microsoft\Windows\Shell\BagMRU&lt;/string&gt;
-    &lt;string&gt;REGISTRY\USER\[{AppVCurrentUserSID}]_CLASSES\Local Settings\Software\Microsoft\Windows\Shell\Bags&lt;/string&gt;
-    &lt;string&gt;REGISTRY\USER\[{AppVCurrentUserSID}]\Software\Microsoft\Windows\CurrentVersion\Explorer&lt;/string&gt;
-    &lt;string&gt;REGISTRY\USER\[{AppVCurrentUserSID}]\Software\Microsoft\Internet Explorer\Toolbar&lt;/string&gt;
-    &lt;string&gt;REGISTRY\USER\[{AppVCurrentUserSID}]\Software\Microsoft\Windows\CurrentVersion\Internet Settings\ZoneMap&lt;/string&gt;
-    &lt;string&gt;REGISTRY\USER\[{AppVCurrentUserSID}]\Software\Microsoft\RestartManager&lt;/string&gt;
-    &lt;string&gt;REGISTRY\USER\.DEFAULT\SOFTWARE\Classes\Local Settings\MuiCache&lt;/string&gt;
-    &lt;string&gt;REGISTRY\USER\.DEFAULT\Software\Microsoft\Windows\CurrentVersion\Internet Settings\ZoneMap&lt;/string&gt;
-  &lt;/RegExclusions&gt;
-  &lt;TargetOSes /&gt;
-&lt;/SequencerTemplate&gt;</pre>
+<pre class="lang:default decode:true "><?xml version="1.0" encoding="utf-8"?>
+<SequencerTemplate xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <AllowMU>false</AllowMU>
+  <AppendPackageVersionToFilename>true</AppendPackageVersionToFilename>
+  <AllowLocalInteractionToCom>false</AllowLocalInteractionToCom>
+  <AllowLocalInteractionToObject>false</AllowLocalInteractionToObject>
+  <FullVFSWriteMode>true</FullVFSWriteMode>
+  <ExcludePreExistingSxSAndVC>false</ExcludePreExistingSxSAndVC>
+  <FileExclusions>
+    <string>[{CryptoKeys}]</string>
+    <string>[{Common AppData}]\Microsoft\Crypto</string>
+    <string>[{Common AppData}]\Microsoft\Search\Data</string>
+    <string>[{Cookies}]</string>
+    <string>[{History}]</string>
+    <string>[{Cache}]</string>
+    <string>[{Local AppData}]</string>
+    <string>[{Personal}]</string>
+    <string>[{Profile}]\Local Settings</string>
+    <string>[{Profile}]\NTUSER.DAT</string>
+    <string>[{Profile}]\NTUSER.DAT.LOG1</string>
+    <string>[{Profile}]\NTUSER.DAT.LOG2</string>
+    <string>[{Recent}]</string>
+    <string>[{Windows}]\Installer</string>
+    <string>[{Windows}]\Debug</string>
+    <string>[{Windows}]\Logs\CBS</string>
+    <string>[{Windows}]\Temp</string>
+    <string>[{Windows}]\WinSxS\ManifestCache</string>
+    <string>[{Windows}]\WindowsUpdate.log</string>
+    <string>[{Windows}]\System32\config</string>
+    <string>[{System}]\config</string>
+    <string>[{Windows}]\ServiceProfiles</string>
+    <string>[{Windows}]\Logs</string>
+    <string>[{AppVPackageDrive}]\$Recycle.Bin</string>
+    <string>[{AppVPackageDrive}]\Boot</string>
+    <string>[{AppVPackageDrive}]\System Volume Information</string>
+    <string>[{AppVSystem32Logfiles}]\Scm</string>
+    <string>[{AppData}]\Microsoft\AppV</string>
+    <string>[{Local AppData}]\Temp</string>
+    <string>[{LocalAppDataLow}]\Microsoft\CryptnetUrlCache</string>
+    <string>[{ProgramFilesX64}]\Microsoft Application Virtualization\Sequencer</string>
+  </FileExclusions>
+  <RegExclusions>
+    <string>REGISTRY\MACHINE\SOFTWARE\Wow6432Node\Microsoft\Cryptography</string>
+    <string>REGISTRY\MACHINE\SOFTWARE\Microsoft\Cryptography</string>
+    <string>REGISTRY\USER\[{AppVCurrentUserSID}]\Software\Microsoft\Windows\CurrentVersion\Explorer\StreamMRU</string>
+    <string>REGISTRY\USER\[{AppVCurrentUserSID}]\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\StreamMRU</string>
+    <string>REGISTRY\USER\[{AppVCurrentUserSID}]\Software\Microsoft\Windows\CurrentVersion\Explorer\Streams</string>
+    <string>REGISTRY\USER\[{AppVCurrentUserSID}]\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Streams</string>
+    <string>REGISTRY\USER\[{AppVCurrentUserSID}]\Software\Microsoft\Windows\CurrentVersion\Explorer\UserAssist</string>
+    <string>REGISTRY\MACHINE\SOFTWARE\Microsoft\AppV</string>
+    <string>REGISTRY\MACHINE\SOFTWARE\Wow6432Node\Microsoft\AppV</string>
+    <string>REGISTRY\MACHINE\SYSTEM\CurrentControlSet\Control\MUI</string>
+    <string>REGISTRY\USER\[{AppVCurrentUserSID}]\Software\Microsoft\AppV</string>
+    <string>REGISTRY\USER\[{AppVCurrentUserSID}]\Software\Microsoft\ResKit</string>
+    <string>REGISTRY\USER\[{AppVCurrentUserSID}]\Software\Wow6432Node\Microsoft\AppV</string>
+    <string>REGISTRY\USER\[{AppVCurrentUserSID}]_CLASSES\Local Settings\MuiCache</string>
+    <string>REGISTRY\USER\[{AppVCurrentUserSID}]_CLASSES\Local Settings\Software\Microsoft\Windows\Shell\BagMRU</string>
+    <string>REGISTRY\USER\[{AppVCurrentUserSID}]_CLASSES\Local Settings\Software\Microsoft\Windows\Shell\Bags</string>
+    <string>REGISTRY\USER\[{AppVCurrentUserSID}]\Software\Microsoft\Windows\CurrentVersion\Explorer</string>
+    <string>REGISTRY\USER\[{AppVCurrentUserSID}]\Software\Microsoft\Internet Explorer\Toolbar</string>
+    <string>REGISTRY\USER\[{AppVCurrentUserSID}]\Software\Microsoft\Windows\CurrentVersion\Internet Settings\ZoneMap</string>
+    <string>REGISTRY\USER\[{AppVCurrentUserSID}]\Software\Microsoft\RestartManager</string>
+    <string>REGISTRY\USER\.DEFAULT\SOFTWARE\Classes\Local Settings\MuiCache</string>
+    <string>REGISTRY\USER\.DEFAULT\Software\Microsoft\Windows\CurrentVersion\Internet Settings\ZoneMap</string>
+  </RegExclusions>
+  <TargetOSes />
+</SequencerTemplate></pre>
 
 &nbsp;
 

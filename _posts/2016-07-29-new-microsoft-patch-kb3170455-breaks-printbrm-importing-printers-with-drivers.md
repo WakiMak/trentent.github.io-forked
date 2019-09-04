@@ -21,7 +21,7 @@ tags:
 ---
 We have an application (ARIA MO) that has some special requirements. Â The application requires all printers used by it in the different locations to be manually loaded on the Citrix server with all drivers. Â This totals around 220 or some odd printers installed with around 15 different drivers loaded. Â The printers must have a local port and cannot be mapped via TCPIP or network mapping.
 
-Our design goals for our Citrix environment are to minimize the various PVS images we use so we use various &#8216;layers&#8217; to allow a single master image to be able to host various unique and difficult configurations. Â For this application we use AppV as our layering technology to put the application on the server, but for the printers we use a script to loadÂ them onto the server. Â What we have is a print server that hosts all the printers needed by this application and we can export the printers into a file using Print Management. Â Then we save that file on a network share somewhere. Â When the Citrix server boots, I can take that file and manipulate its contents to change the queues to &#8216;local&#8217; queues then import that modified file to the Citrix server. Â I configured the script to take two parameters, a print file name and a server name. Â I call the script with a command line like this:
+Our design goals for our Citrix environment are to minimize the various PVS images we use so we use various 'layers' to allow a single master image to be able to host various unique and difficult configurations. Â For this application we use AppV as our layering technology to put the application on the server, but for the printers we use a script to loadÂ them onto the server. Â What we have is a print server that hosts all the printers needed by this application and we can export the printers into a file using Print Management. Â Then we save that file on a network share somewhere. Â When the Citrix server boots, I can take that file and manipulate its contents to change the queues to 'local' queues then import that modified file to the Citrix server. Â I configured the script to take two parameters, a print file name and a server name. Â I call the script with a command line like this:
 
 <pre class="lang:batch decode:true">::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 ::  
@@ -38,15 +38,15 @@ Our design goals for our Citrix environment are to minimize the various PVS imag
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 
-EVENTCREATE /ID 1 /L APPLICATION /T INFORMATION /SO "Local GP Startup Script - \"%~nx0"\" /D "Starting Adding Printers" &gt;NUL
-EVENTCREATE /ID 1 /L APPLICATION /T INFORMATION /SO "Local GP Startup Script - \"%~nx0"\" /D "Starting importing printers from PrinterServer02" &gt;NUL
+EVENTCREATE /ID 1 /L APPLICATION /T INFORMATION /SO "Local GP Startup Script - \"%~nx0"\" /D "Starting Adding Printers" >NUL
+EVENTCREATE /ID 1 /L APPLICATION /T INFORMATION /SO "Local GP Startup Script - \"%~nx0"\" /D "Starting importing printers from PrinterServer02" >NUL
 powershell.exe -executionPolicy byPass -file "C:\PublishedApplications\AHS-PrintExportFile-Import.ps1" -serverName PrinterServer02 -printFile "\\fileserver\ctx_apps\ARIAMO\PrinterServer02.printerExport"
-EVENTCREATE /ID 1 /L APPLICATION /T INFORMATION /SO "Local GP Startup Script - \"%~nx0"\" /D "Completed importing printers from PrinterServer02" &gt;NUL
+EVENTCREATE /ID 1 /L APPLICATION /T INFORMATION /SO "Local GP Startup Script - \"%~nx0"\" /D "Completed importing printers from PrinterServer02" >NUL
 
-EVENTCREATE /ID 1 /L APPLICATION /T INFORMATION /SO "Local GP Startup Script - \"%~nx0"\" /D "Starting importing printers from printServer01" &gt;NUL
+EVENTCREATE /ID 1 /L APPLICATION /T INFORMATION /SO "Local GP Startup Script - \"%~nx0"\" /D "Starting importing printers from printServer01" >NUL
 powershell.exe -executionPolicy byPass -file "C:\PublishedApplications\AHS-PrintExportFile-Import.ps1" -serverName printServer01 -printFile "\\fileserver\ctx_apps\ARIAMO\PrintServer01.printerExport"
-EVENTCREATE /ID 1 /L APPLICATION /T INFORMATION /SO "Local GP Startup Script - \"%~nx0"\" /D "Completed importing printers from printServer01" &gt;NUL
-EVENTCREATE /ID 1 /L APPLICATION /T INFORMATION /SO "Local GP Startup Script - \"%~nx0"\" /D "Completed Adding Printers" &gt;NUL
+EVENTCREATE /ID 1 /L APPLICATION /T INFORMATION /SO "Local GP Startup Script - \"%~nx0"\" /D "Completed importing printers from printServer01" >NUL
+EVENTCREATE /ID 1 /L APPLICATION /T INFORMATION /SO "Local GP Startup Script - \"%~nx0"\" /D "Completed Adding Printers" >NUL
 </pre>
 
 The powershell command it calls is here:
@@ -141,7 +141,7 @@ C:\Windows\System32\spool\tools\PrintBRM.exe -R -D C:\printerExport -F $printFil
 Write-EventLog â€“LogName APPLICATION â€“Source "Local GP Startup Script - ""$commandName'""" â€“EntryType Information â€“EventID 1 â€“Message ("Unpacked printerExport file")
 
 #modify printer properties
-echo `&lt;PRINTERPORTS`&gt;`&lt;/PRINTERPORTS`&gt; &gt; "C:\printerExport\BrmPorts.xml"
+echo `<PRINTERPORTS`>`</PRINTERPORTS`> > "C:\printerExport\BrmPorts.xml"
 
 #configure print queues
 cd C:\printerExport\Printers

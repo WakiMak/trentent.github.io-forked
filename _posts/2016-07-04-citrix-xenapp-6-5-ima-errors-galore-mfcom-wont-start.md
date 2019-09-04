@@ -1,11 +1,11 @@
 ---
 id: 1577
-title: 'Citrix XenApp 6.5 &#8211; IMA errors galore, mfcom won&#8217;t start'
+title: 'Citrix & 6.5 - IMA errors galore, mfcom won't start'
 date: 2016-07-04T14:35:44-06:00
 author: trententtye
 layout: post
 guid: http://theorypc.ca/?p=1577
-permalink: /2016/07/04/citrix-xenapp-6-5-ima-errors-galore-mfcom-wont-start/
+permalink: /2016/07/04/citrix-&-6-5-ima-errors-galore-mfcom-wont-start/
 categories:
   - Blog
 tags:
@@ -14,9 +14,9 @@ tags:
   - Performance
   - Registry
   - scripting
-  - XenApp
+  - &
 ---
-I&#8217;ve seen this happen a few times now where the &#8220;Citrix Independent Management Architecture&#8221; (aka IMAService) won&#8217;t start, erroring with various errors:
+I've seen this happen a few times now where the "Citrix Independent Management Architecture" (aka IMAService) won't start, erroring with various errors:
 
 <pre class="">3616 -Â Configuration error: Failed to read the farm name out of the registry on a server configured Â to access the Data Store directly.
 3609 -Â Failed to load plugin C:\Program Files (x86)\Citrix\System32\Citrix\IMA\SubSystems\ImaRuntimeSS.dll with error IMA_RESULT_CONFIGURATION_ERROR
@@ -25,13 +25,13 @@ I&#8217;ve seen this happen a few times now where the &#8220;Citrix Independent 
 3609 -Â Failed to load plugin C:\Program Files (x86)\Citrix\System32\Citrix\IMA\SubSystems\ImaPsSs.dll with error IMA_RESULT_REGISTRY_ERROR
 3601 -Â Failed to load initial plugins with error IMA_RESULT_REGISTRY_ERROR
 3609 -Â Failed to load plugin C:\Program Files (x86)\Citrix\System32\Citrix\IMA\SubSystems\MfSrvSs.dll with error IMA_RESULT_FAILURE
-4003 -Â The Citrix Independent Management Architecture (IMA) service is exiting. The XenApp Server Configuration tool has not been run on this server. Please run Â XenApp Server Configuration tool.</pre>
+4003 -Â The Citrix Independent Management Architecture (IMA) service is exiting. The & Server Configuration tool has not been run on this server. Please run Â & Server Configuration tool.</pre>
 
-All of these errors appear to be a registry with incorrect permissions configured on the Citrix keys. Â Why did these keys get their permissions reset? Â I&#8217;m unsure. Â I DID just install Citrix UPM 5.4 which may reset the keys?
+All of these errors appear to be a registry with incorrect permissions configured on the Citrix keys. Â Why did these keys get their permissions reset? Â I'm unsure. Â I DID just install Citrix UPM 5.4 which may reset the keys?
 
 Here is how you fix the permissions (at least, everything I could possibly find):  
 1) [Download SetACL.exe](https://helgeklein.com/download/)  
-2) Save this file to &#8216;CitrixRegPerms.txt&#8217;:
+2) Save this file to 'CitrixRegPerms.txt':
 
 <pre class="lang:default decode:true">"machine\SOFTWARE\Wow6432Node\Citrix",4,"D:PAI(A;OICI;KA;;;BA)(A;OICI;KA;;;SY)(A;;KA;;;SY)(A;OICIIO;KA;;;CO)(A;OICI;KR;;;AU)(A;OICI;KA;;;NS)"
 "machine\SOFTWARE\Wow6432Node\Citrix\Audio\status",4,"D:AI"
@@ -120,7 +120,7 @@ Here is how you fix the permissions (at least, everything I could possibly find)
 "machine\SOFTWARE\Wow6432Node\Citrix\RebootSchedule",4,"D:AI"
 "machine\SOFTWARE\Wow6432Node\Citrix\WMIService",4,"D:PAI(A;OICI;KA;;;BA)(A;OICI;KA;;;SY)(A;;KA;;;SY)(A;OICIIO;KA;;;CO)(A;OICI;KR;;;AU)(A;OICI;KA;;;LS)"</pre>
 
-You mayÂ need to identify the local SID for &#8216;NETWORKSERVICE&#8217;. Â In my example the value is:
+You mayÂ need to identify the local SID for 'NETWORKSERVICE'. Â In my example the value is:
 
 <pre class="lang:default decode:true">S-1-5-80-2037085886-1864634726-376116143-1108166061-1304636759</pre>
 
@@ -128,7 +128,7 @@ You mayÂ need to identify the local SID for &#8216;NETWORKSERVICE&#8217;. Â In m
 
 You may need to replace your SID for NetworkService with the one from my file above.
 
-Lastly this script will &#8216;fix&#8217; the incorrect permissions:
+Lastly this script will 'fix' the incorrect permissions:
 
 <pre class="lang:batch decode:true">pushd %~dp0
 :stop mfcom.exe if it's stuck in 'Starting'

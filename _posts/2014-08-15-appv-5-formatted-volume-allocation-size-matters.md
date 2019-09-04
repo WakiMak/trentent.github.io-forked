@@ -1,6 +1,6 @@
 ---
 id: 597
-title: 'AppV 5 &#8211; Formatted volume allocation size matters'
+title: 'AppV 5 - Formatted volume allocation size matters'
 date: 2014-08-15T13:20:00-06:00
 author: trententtye
 layout: post

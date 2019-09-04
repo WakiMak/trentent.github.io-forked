@@ -1,6 +1,6 @@
 ---
 id: 638
-title: 'Powershell script to manipulate &#8220;Register this connection&#8217;s addresses in DNS&#8221;'
+title: 'Powershell script to manipulate "Register this connection's addresses in DNS"'
 date: 2013-07-08T12:57:00-06:00
 author: trententtye
 layout: post
@@ -23,9 +23,9 @@ tags:
   - PowerShell
   - Provisioning Services
   - scripting
-  - XenApp
+  - &
 ---
-We run a multihome NIC setup with our Citrix PVS servers and the &#8220;Provisioning&#8221; Network is a seperate VLAN that is only used by the PVS servers and goes no where. Â Unfortunately, however, the &#8220;Provision&#8221; NIC can register itself in the DNS, causing devices outside of the Provisioning network (everyone) to resolve to the incorrect address. Â To resolve this I ran this script across all my vDisks to remove the ability of the provision network to register itself as available in DNS.:
+We run a multihome NIC setup with our Citrix PVS servers and the "Provisioning" Network is a seperate VLAN that is only used by the PVS servers and goes no where. Â Unfortunately, however, the "Provision" NIC can register itself in the DNS, causing devices outside of the Provisioning network (everyone) to resolve to the incorrect address. Â To resolve this I ran this script across all my vDisks to remove the ability of the provision network to register itself as available in DNS.:
 
 <pre class="lang:ps decode:true ">$provNic=Get-WmiObject Win32_NetworkAdapter -filter 'netconnectionid ="Provision"'
 $prodNic=Get-WmiObject Win32_NetworkAdapter -filter 'netconnectionid ="Production"'
@@ -39,7 +39,7 @@ foreach($adapter in $adapters) {
   }
 }</pre>
 
-As you can see above, we have two NICs, &#8220;Provision&#8221; and &#8220;Production&#8221;. Â We do not want &#8220;Provision&#8221; registerted so it gets the $false,$false set, whereas &#8220;Production&#8221; gets $true,$false.
+As you can see above, we have two NICs, "Provision" and "Production". Â We do not want "Provision" registerted so it gets the $false,$false set, whereas "Production" gets $true,$false.
 
 <!-- AddThis Advanced Settings generic via filter on the_content -->
 

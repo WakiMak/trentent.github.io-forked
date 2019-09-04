@@ -22,9 +22,9 @@ tags:
   - PowerCLI
   - PowerShell
   - VMWare
-  - XenApp
+  - &
 ---
-Because my company doesn&#8217;t utilize provisioining servers for deploy new Citrix XenApp servers, I&#8217;ve had to come up with a couple of PowerShell scripts to make VMWare Templates that I can then deploy multiple XenApp servers. You need VMWare PowerCLI to run this script. This is my script:
+Because my company doesn't utilize provisioining servers for deploy new Citrix & servers, I've had to come up with a couple of PowerShell scripts to make VMWare Templates that I can then deploy multiple & servers. You need VMWare PowerCLI to run this script. This is my script:
 
 > <pre class="lang:ps decode:true ">function create-template{
 
@@ -92,7 +92,7 @@ REG_DWORD /d 0x7 /f"
 Add-Content "\\$name\c$\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup\remove.cmd" "REG ADD `"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion
 
 \SoftwareProtectionPlatform`" /v `"SkipRearm`" /t REG_DWORD /d 0x1 /f"
-Add-Content "\\$name\c$\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup\remove.cmd" "`"C:\Program Files (x86)\Citrix\XenApp\ServerConfig\XenAppConfigConsole.exe`" 
+Add-Content "\\$name\c$\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup\remove.cmd" "`"C:\Program Files (x86)\Citrix\&\ServerConfig\&ConfigConsole.exe`" 
 
 /ExecutionMode:ImagePrep /PrepMsmq:True"
 Add-Content "\\$name\c$\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup\remove.cmd" "shutdown -s -t 90 -f"
@@ -144,14 +144,14 @@ This script does the following:
 a) Removes the computer from the domain  
 b) renames the computer to a generic name (XATEMPLATE)  
 c) Adds registry keys that will allow sysprep to run  
-d) Configures XenApp to &#8220;Image&#8221; mode  
+d) Configures & to "Image" mode  
 e) Shuts itself down once running the script is complete  
 f) deletes the script from running on startup  
 4) We then set the target to autologin with the local admin user name and password so the startup script in step 3 will be run  
 5) Begins the cloning by making a new-vm with the target machine  
-6) We unplug the NIC from VMWare so that when it starts up the script won&#8217;t actually remove the machine from the domain, but will remove itself from the domain  
+6) We unplug the NIC from VMWare so that when it starts up the script won't actually remove the machine from the domain, but will remove itself from the domain  
 7) start the clone  
-8) the PowerCLI will now wait till the machine turns itself off&#8230;  
+8) the PowerCLI will now wait till the machine turns itself off...  
 9) Then it will reconnect the NIC, remove any stale templates and then makes a new template and then removes the clone VM.
 
 Done! 🙂

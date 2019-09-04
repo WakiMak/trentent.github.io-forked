@@ -21,7 +21,7 @@ tags:
   - AppV
   - scripting
 ---
-So we have an application that requires the &#8220;%CLIENTNAME%&#8221; variable to be passed to it in it&#8217;s exe string. Â The string looks like so:
+So we have an application that requires the "%CLIENTNAME%" variable to be passed to it in it's exe string. Â The string looks like so:
 
 <div>
   <pre class="lang:default decode:true ">prowin32.exe -p \\nas\cfgstart.p -param S,%CLIENTNAME%,120n,citrix,a92,10920 -wy</pre>
@@ -31,7 +31,7 @@ So we have an application that requires the &#8220;%CLIENTNAME%&#8221; variable 
 </div>
 
 <div>
-  The issue we have is APPV does not seem to get that variable and pass it to the program. Â So when the program starts, it makes %clientname% folders in a temp directory and we can&#8217;t have two %clientname% folders in the same directory so only one instance of the application can be launched *period* if we do it this way, as opposed to one per server.
+  The issue we have is APPV does not seem to get that variable and pass it to the program. Â So when the program starts, it makes %clientname% folders in a temp directory and we can't have two %clientname% folders in the same directory so only one instance of the application can be launched *period* if we do it this way, as opposed to one per server.
 </div>
 
 <div>
@@ -98,7 +98,7 @@ prowin32.exe -p \\nas\cfgstart.p -param S,%CLIENTNAME%,120n,citrix,a92,10920 -wy
 </div>
 
 <div>
-  This command was failing. Â It appears that when you are launching the .cmd file directly AppV 5 starts the cmd.exe *outside* the AppV bubble and it doesn&#8217;t connect to the appvve. Â To correct this I tried this command line:
+  This command was failing. Â It appears that when you are launching the .cmd file directly AppV 5 starts the cmd.exe *outside* the AppV bubble and it doesn't connect to the appvve. Â To correct this I tried this command line:
 </div>
 
 <div>

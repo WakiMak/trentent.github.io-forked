@@ -1,6 +1,6 @@
 ---
 id: 2326
-title: 'Citrix Storefront â€“ Performance Testing and Tuning â€“ Part 5 &#8211; Establishing a Peak Load'
+title: 'Citrix Storefront â€“ Performance Testing and Tuning â€“ Part 5 - Establishing a Peak Load'
 date: 2017-06-06T08:17:21-06:00
 author: trententtye
 layout: post
@@ -16,28 +16,28 @@ tags:
   - PowerShell
   - Storefront
 ---
-[In part 1 I setup a script](https://theorypc.ca/2017/05/24/citrix-storefront-performance-testing-and-tuning-part-1/) to load test our Citrix Storefront server, as a user logging in through the website. Â [Part 2 was users connecting](https://theorypc.ca/2017/05/30/citrix-storefront-performance-and-tuning-part-2-pna-traffic-simulation/) via PNA. Â In this part I&#8217;m going to examine our existingÂ load. Â In order to do so, I only want to count the following users:
+[In part 1 I setup a script](https://theorypc.ca/2017/05/24/citrix-storefront-performance-testing-and-tuning-part-1/) to load test our Citrix Storefront server, as a user logging in through the website. Â [Part 2 was users connecting](https://theorypc.ca/2017/05/30/citrix-storefront-performance-and-tuning-part-2-pna-traffic-simulation/) via PNA. Â In this part I'm going to examine our existingÂ load. Â In order to do so, I only want to count the following users:
 
   1. Users must have logged into Web Interface. Â This ensures that we count users who have actually logged in to launch an application. Â Some of our users may have the Web Interface set as their homepage so this way we can avoid idle user counts.
-  2. Users who have launched an application. Â I&#8217;m interested in the users who have actually launched an application via Web Interface.
+  2. Users who have launched an application. Â I'm interested in the users who have actually launched an application via Web Interface.
   3. PNA connections
   4. PNA launches
 
 I want to get these user counts sorted via time in order to determine our peak load.
 
-To get these counts I decided to key into some unique web URL&#8217;s or resources. Â For #1, I decided to search the IIS logs for the &#8220;Logoff.png&#8221;.
+To get these counts I decided to key into some unique web URL's or resources. Â For #1, I decided to search the IIS logs for the "Logoff.png".
 
 <img class="aligncenter size-full wp-image-2327" src="http://theorypc.ca/wp-content/uploads/2017/05/LogOffPng.png" alt="" width="419" height="117" srcset="http://theorypc.ca/wp-content/uploads/2017/05/LogOffPng.png 419w, http://theorypc.ca/wp-content/uploads/2017/05/LogOffPng-300x84.png 300w" sizes="(max-width: 419px) 100vw, 419px" /> 
 
 This icon will only be pulled down for a user who has logged into the Web Interface.
 
-For #2, I decided to look at the IIS logs and search for &#8220;launch.ica&#8221;. Â This will get us the application launches via the sites.
+For #2, I decided to look at the IIS logs and search for "launch.ica". Â This will get us the application launches via the sites.
 
 <img class="aligncenter size-full wp-image-2328" src="http://theorypc.ca/wp-content/uploads/2017/05/Launchica_iislog.png" alt="" width="614" height="39" srcset="http://theorypc.ca/wp-content/uploads/2017/05/Launchica_iislog.png 614w, http://theorypc.ca/wp-content/uploads/2017/05/Launchica_iislog-300x19.png 300w" sizes="(max-width: 614px) 100vw, 614px" /> 
 
-For #3, I decided to look at the IIS logs and search for &#8220;config.xml&#8221;. Â This file is pulled each time PNA is launched or a user logs onto the machine.
+For #3, I decided to look at the IIS logs and search for "config.xml". Â This file is pulled each time PNA is launched or a user logs onto the machine.
 
-For #4, I decided to look at the IIS logs and search for &#8220;launch.aspx&#8221;.
+For #4, I decided to look at the IIS logs and search for "launch.aspx".
 
 ## 
 
@@ -133,9 +133,9 @@ If we do a failover strategy to ensure , say in the future, we unified our archi
 
 ## <span style="color: #ff0000;"><strong>1Â launch every 0.561Â second. (1.78 launches per second)<br /> </strong></span>
 
-Citrix has Storefront guidance that says it can handle connections/users in the ten&#8217;s of thousands. Â I thought we were a large organization, but apparently Storefront has been designed for something even bigger! (Or web-based front ends are rarely the bottle neck&#8230;)
+Citrix has Storefront guidance that says it can handle connections/users in the ten's of thousands. Â I thought we were a large organization, but apparently Storefront has been designed for something even bigger! (Or web-based front ends are rarely the bottle neck...)
 
-So these numbers areÂ _purely_ for logons through the web site. Â But previous testing for PNA functionality showed that it&#8217;s a \*much\* heavier traffic to Web Interface. Â Why is the traffic heavier for PNA? Â Because each time a userÂ _logs on to a workstation_ it kicks in. Â Whereas accessing the web interface requires some work the user must do, PNA is automatic. Â It&#8217;s also more convenient for users as they prefer to launch desktop/start menu icons.
+So these numbers areÂ _purely_ for logons through the web site. Â But previous testing for PNA functionality showed that it's a \*much\* heavier traffic to Web Interface. Â Why is the traffic heavier for PNA? Â Because each time a userÂ _logs on to a workstation_ it kicks in. Â Whereas accessing the web interface requires some work the user must do, PNA is automatic. Â It's also more convenient for users as they prefer to launch desktop/start menu icons.
 
 * * *
 
@@ -145,19 +145,19 @@ How am I going toÂ determine our concurrent connection rate for PNA? Â This is w
 
 <img class="aligncenter size-full wp-image-2340" src="http://theorypc.ca/wp-content/uploads/2017/05/4.7PNA_Storefront.png" alt="" width="638" height="103" srcset="http://theorypc.ca/wp-content/uploads/2017/05/4.7PNA_Storefront.png 638w, http://theorypc.ca/wp-content/uploads/2017/05/4.7PNA_Storefront-300x48.png 300w" sizes="(max-width: 638px) 100vw, 638px" /> 
 
-What I&#8217;m going to do is query the IIS logs for &#8216;<span style="text-decoration: underline;">config.xml</span>&#8216;, as that file gets called only once when Receiver is launched or upon login. Â Once I get that I can search for &#8216;enum.aspx&#8217; command that has been called and divide by the number of config.xml&#8217;s. Â This should get me the number of icon requests per user.
+What I'm going to do is query the IIS logs for '<span style="text-decoration: underline;">config.xml</span>', as that file gets called only once when Receiver is launched or upon login. Â Once I get that I can search for 'enum.aspx' command that has been called and divide by the number of config.xml's. Â This should get me the number of icon requests per user.
 
 After doing the mathÂ I found Receiver makesÂ **2.63** **enum.aspx** request for **every config.xml** requests.
 
 Lastly,
 
-My thought process here is once we get our peak &#8216;Receiver&#8217; connection rate to the Storefront server we can create another script to simulate it. Â I know WCAT can do this as no funny cookie business occurs for Receiver.
+My thought process here is once we get our peak 'Receiver' connection rate to the Storefront server we can create another script to simulate it. Â I know WCAT can do this as no funny cookie business occurs for Receiver.
 
 So what does the PNA Receiver numbers look like?
 
 We have a peak PNA connection rate of 7.531 config.xml connections per second. Â Multiplying by the additional 2.63 enum.aspx requests give us a total of **<span style="text-decoration: underline;">19.806 connections per second</span>** for a peak rate.
 
-For PNA application launches, our peak rate is 30,075 launches in a single hour. Â This was measured by parsing for &#8220;launch.aspx&#8221;. Â Breaking this hour down to 15 minute intervals and a single 15min window contained 53% of the launches. Â For our peak 15 minute window this is 16148 launches. Â This gives us a total of **17.94Â application** launches per second.
+For PNA application launches, our peak rate is 30,075 launches in a single hour. Â This was measured by parsing for "launch.aspx". Â Breaking this hour down to 15 minute intervals and a single 15min window contained 53% of the launches. Â For our peak 15 minute window this is 16148 launches. Â This gives us a total of **17.94Â application** launches per second.
 
 <table style="height: 129px;" width="747">
   <tr>

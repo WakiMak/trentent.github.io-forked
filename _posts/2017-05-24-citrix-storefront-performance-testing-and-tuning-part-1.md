@@ -1,6 +1,6 @@
 ---
 id: 2294
-title: 'Citrix Storefront &#8211; Performance Testing and Tuning &#8211; Part 1'
+title: 'Citrix Storefront - Performance Testing and Tuning - Part 1'
 date: 2017-05-24T14:42:26-06:00
 author: trententtye
 layout: post
@@ -21,7 +21,7 @@ tags:
   - scripting
   - Storefront
 ---
-I&#8217;ve used the [Web Capacity Analysis Tool (WCAT)](https://www.iis.net/downloads/community/2007/05/wcat-63-x86) in the past to measure the [performance of Citrix Web Interface](https://theorypc.ca/2014/11/23/slow-citrix-web-interface-5-4-on-aspx-pages-or-how-to-load-test-your-wi/) with some success. Â So I thought this tool would be perfect for load testing Storefront. Â I loaded up Fiddler, [set up the WCAT extension](http://fiddler2wcat.codeplex.com/releases/view/35356), captured a web logon and then application launch. Â The whole process looked like this:
+I've used the [Web Capacity Analysis Tool (WCAT)](https://www.iis.net/downloads/community/2007/05/wcat-63-x86) in the past to measure the [performance of Citrix Web Interface](https://theorypc.ca/2014/11/23/slow-citrix-web-interface-5-4-on-aspx-pages-or-how-to-load-test-your-wi/) with some success. Â So I thought this tool would be perfect for load testing Storefront. Â I loaded up Fiddler, [set up the WCAT extension](http://fiddler2wcat.codeplex.com/releases/view/35356), captured a web logon and then application launch. Â The whole process looked like this:
 
 <div style="width: 1042px;" class="wp-video">
   <video class="wp-video-shortcode" id="video-2294-20" width="1042" height="766" preload="metadata" controls="controls"><source type="video/mp4" src="http://theorypc.ca/wp-content/uploads/2017/05/Storefront.mp4?_=20" /><a href="http://theorypc.ca/wp-content/uploads/2017/05/Storefront.mp4">http://theorypc.ca/wp-content/uploads/2017/05/Storefront.mp4</a></video>
@@ -33,7 +33,7 @@ I logged on with Domain Passthrough authentication, I clicked on an application 
 
 <img class="aligncenter size-full wp-image-2296" src="http://theorypc.ca/wp-content/uploads/2017/05/fiddler-1.png" alt="" width="1545" height="880" srcset="http://theorypc.ca/wp-content/uploads/2017/05/fiddler-1.png 1545w, http://theorypc.ca/wp-content/uploads/2017/05/fiddler-1-300x171.png 300w, http://theorypc.ca/wp-content/uploads/2017/05/fiddler-1-768x437.png 768w" sizes="(max-width: 1545px) 100vw, 1545px" /> 
 
-I truncated all the icon resource calling. Â You can see it calls around 120 individual icon URLs. Â I have my two custom &#8216;helpers&#8217; (<span style="color: #0000ff;">ADInfo and LogonType</span>) that determine logon preference and whether we should get workspace control enabled or disabled (LogonType.aspx and GroupMembership.aspx).
+I truncated all the icon resource calling. Â You can see it calls around 120 individual icon URLs. Â I have my two custom 'helpers' (<span style="color: #0000ff;">ADInfo and LogonType</span>) that determine logon preference and whether we should get workspace control enabled or disabled (LogonType.aspx and GroupMembership.aspx).
 
 So the actual calls to Storefront revolve around 7 unique queries to the Storefront server. Â They are:
 
@@ -42,8 +42,8 @@ So the actual calls to Storefront revolve around 7 unique queries to the Storefr
 /Authentication/GetUserName
 /ExplicitAuth/AllowSelfServiceAccountManagement
 /Authentication/GetUserName
-/Resources/GetLaunchStatus/&lt;string&gt;
-/Resources/LaunchIca/&lt;string&gt;</pre>
+/Resources/GetLaunchStatus/<string>
+/Resources/LaunchIca/<string></pre>
 
 Fortunately, Citrix [has documented how these need to be configured to successfully call these services](https://citrix.github.io/storefront-sdk/requests/).
 
@@ -59,11 +59,11 @@ With all this setup, I took my scenario file and executed it. Â Nothing appeared
 
 &nbsp;
 
-The part in bold and underlined, is troublesome with WCAT. Â WCAT does not appear to have this ability (read the value of a cookie and set a header to send it back to the web proxy). Â What Storefront does, is send back a set-cookie back to the client which WCAT has no problem with&#8230; Â but the data Storefront sends back is multiple values within that set-cookie command. Â And this is a problem.
+The part in bold and underlined, is troublesome with WCAT. Â WCAT does not appear to have this ability (read the value of a cookie and set a header to send it back to the web proxy). Â What Storefront does, is send back a set-cookie back to the client which WCAT has no problem with... Â but the data Storefront sends back is multiple values within that set-cookie command. Â And this is a problem.
 
 <img class="aligncenter size-full wp-image-2300" src="http://theorypc.ca/wp-content/uploads/2017/05/set-cookie.png" alt="" width="549" height="15" srcset="http://theorypc.ca/wp-content/uploads/2017/05/set-cookie.png 549w, http://theorypc.ca/wp-content/uploads/2017/05/set-cookie-300x8.png 300w" sizes="(max-width: 549px) 100vw, 549px" /> 
 
-This is supposed to take this &#8216;Set-Cookie&#8217; command andÂ set two different values:
+This is supposed to take this 'Set-Cookie' command andÂ set two different values:
 
 <table width="315">
   <tr>
@@ -125,11 +125,11 @@ WCAT creates a cookie with the entirety of a string value instead of separating 
 
 Unfortunately, I was not able to find a way to do this with WCAT.
 
-However, we can use Powershell to accomplish this job. Â [Ryan Butler has created a script](https://github.com/ryancbutler/StorefrontICACreator/blob/master/get-ICAfile_v3_auth.ps1) to query the Storefront services to generate an ICA file. Â This script is about 90% of what I need, however I&#8217;m not interested in doing an explicit logon, I want to do Domain Passthrough (integrateWindows) authentication, and I want to simulate the process as was captured by Fiddler, so I&#8217;ll be calling the additional services (GetUserName, AllowSelfServiceAccountManagement, etc.) and capture the time required for each section.
+However, we can use Powershell to accomplish this job. Â [Ryan Butler has created a script](https://github.com/ryancbutler/StorefrontICACreator/blob/master/get-ICAfile_v3_auth.ps1) to query the Storefront services to generate an ICA file. Â This script is about 90% of what I need, however I'm not interested in doing an explicit logon, I want to do Domain Passthrough (integrateWindows) authentication, and I want to simulate the process as was captured by Fiddler, so I'll be calling the additional services (GetUserName, AllowSelfServiceAccountManagement, etc.) and capture the time required for each section.
 
 My Storefront Logon/Stress testing script:
 
-<pre class="lang:ps decode:true">&lt;#
+<pre class="lang:ps decode:true"><#
 .SYNOPSIS
    This script is a modification from Ryan Butler's get-ICAFile_v3_auth.ps1 file from here:
    https://github.com/ryancbutler/StorefrontICACreator/blob/master/get-ICAfile_v3_auth.ps1
@@ -159,7 +159,7 @@ DESCRIPTION
    ./Stress_Storefront.ps1 -store "http://storefront2.bottheory.local/Citrix/StoreWeb/" -loop $true
    ./Stress_Storefront.ps1 -store "http://storefront2.bottheory.local/Citrix/StoreWeb/" -stressComponent "Domain Pass-Through and Smart Card Authentication"
 
-#&gt;
+#>
 Param
 (
     [string]$store,
@@ -208,10 +208,10 @@ while ($loop) {
 
 
 
-    &lt;#
+    <#
     https://citrix.github.io/storefront-sdk/requests/#client-configuration
     Client Configuration
-    #&gt;
+    #>
     $stage = "Client Configuration"
     write-host  -ForegroundColor Yellow "$stage"
     $headers = @{
@@ -231,11 +231,11 @@ while ($loop) {
 
 
 
-    &lt;#
+    <#
     https://citrix.github.io/storefront-sdk/requests/#authentication-methods
     Note
     The client must first make a POST request to /Resources/List. Since the user is not yet authenticated, this returns a challenge in the form of a CitrixWebReceiver- Authenticate header with the GetAuthMethods URL in the location field.
-    #&gt;
+    #>
     $stage = "Get Authentication Methods"
     write-host  -ForegroundColor Yellow "$stage"
     $headers = @{
@@ -253,9 +253,9 @@ while ($loop) {
 
 
 
-    &lt;#
+    <#
     https://citrix.github.io/storefront-sdk/requests/#example-get-auth-methods
-    #&gt;
+    #>
     $stage = "Get Auth Methods"
     write-host  -ForegroundColor Yellow "$stage"
     #Gets authentication methods
@@ -278,10 +278,10 @@ while ($loop) {
     }
 
 
-    &lt;#
+    <#
     https://citrix.github.io/storefront-sdk/requests/#domain-pass-through-and-smart-card-authentication
     Domain Pass-Through and Smart Card Authentication
-    #&gt;
+    #>
     $stage = "Domain Pass-Through and Smart Card Authentication"
     write-host  -ForegroundColor Yellow "$stage"
     #Start Login Process
@@ -326,10 +326,10 @@ while ($loop) {
 
 
 
-    &lt;#
+    <#
     https://citrix.github.io/storefront-sdk/how-the-api-works/#cookies
     CtxsAuthId - HttpOnly - Response indicating successful authentication - Protects against session fixation attacks
-    #&gt;
+    #>
     #set CtxsAuthId cookie because we authenticated.
     foreach ($item in $content.Headers.'Set-Cookie'.Split(";")) {
         $values = $item.split("=")
@@ -343,11 +343,11 @@ while ($loop) {
     }
 
 
-    &lt;#
+    <#
     https://citrix.github.io/storefront-sdk/requests/#resource-enumeration
     Typically, this request requires an authenticated session, indicated by the cookies ASP.NET_SessionId and CtxsAuthId. However, when the Web Proxy is configured to use an unauthenticated Store, an authenticated session is not required.
     The Web Proxy always performs a fresh enumeration for the user by communicating with the StoreFront Store service to pick up any changes that may have occurred.
-    #&gt;
+    #>
     $stage = "Resource Enumeration"
     write-host  -ForegroundColor Yellow "$stage"
     #Gets resources and required ICA URL
@@ -384,12 +384,12 @@ while ($loop) {
     write-host  -ForegroundColor Yellow "Found $($resources.resources.count) applications"
 
 
-    &lt;#
+    <#
     https://citrix.github.io/storefront-sdk/requests/#get-user-name
     Use this request to obtain the full user name, as configured in Active Directory. If the full user name is unavailable, the user's logon name is returned instead.
     This request requires an authenticated session, indicated by the cookies ASP.NET_SessionId and CtxsAuthId. When using an unauthenticated Store, no user has actually logged on and an HTTP 403 response is returned.
     The Web Proxy uses the StoreFront Token Validation service to obtain the user name from the authentication token.
-    #&gt;
+    #>
     $stage = "Get User Name - 1"
     write-host  -ForegroundColor Yellow "$stage"
     #getUserName
@@ -416,9 +416,9 @@ while ($loop) {
 
 
 
-    &lt;#
+    <#
     undocumented?  For password self reset?
-    #&gt;
+    #>
     $stage = "AllowSelfServiceAccountManagement"
     write-host  -ForegroundColor Yellow "$stage"
     #AllowSelfServiceAccountManagement?
@@ -444,12 +444,12 @@ while ($loop) {
     }
 
 
-    &lt;#
+    <#
     https://citrix.github.io/storefront-sdk/requests/#get-user-name
     Use this request to obtain the full user name, as configured in Active Directory. If the full user name is unavailable, the user's logon name is returned instead.
     This request requires an authenticated session, indicated by the cookies ASP.NET_SessionId and CtxsAuthId. When using an unauthenticated Store, no user has actually logged on and an HTTP 403 response is returned.
     The Web Proxy uses the StoreFront Token Validation service to obtain the user name from the authentication token.
-    #&gt;
+    #>
     $stage = "Get User Name - 2"
     write-host  -ForegroundColor Yellow "$stage"
     $headers = @{
@@ -487,12 +487,12 @@ while ($loop) {
 
 
 
-    &lt;#
+    <#
     https://citrix.github.io/storefront-sdk/requests/#ica-launch
     LaunchIca is a GET instead of a POST.
     /Resources/ GetLaunchStatus/{id}	POST	Request whether the specified resource is ready to launch or not.
     /Resources/LaunchIca/{id}	GET	Request an ICA file for launching the specified resource.
-    #&gt;
+    #>
     $stage = "ICA Launch"
     write-host  -ForegroundColor Yellow "$stage"
 
@@ -535,9 +535,9 @@ while ($loop) {
     }
 
 
-    &lt;#
+    <#
     Export information to CSV
-    #&gt;
+    #>
     $EndMs = Get-Date
     write-host "Loop took $($EndMs - $StartMs)"
     $prop  | Add-Member -type NoteProperty -name "Total Runtime" -value $($EndMs - $StartMs)
@@ -562,7 +562,7 @@ To stress an individual component. Â By stressing the individual component we ca
 Get Auth Methods:  
 <img class="aligncenter size-full wp-image-2302" src="http://theorypc.ca/wp-content/uploads/2017/05/GetAuthMethods.png" alt="" width="689" height="132" srcset="http://theorypc.ca/wp-content/uploads/2017/05/GetAuthMethods.png 689w, http://theorypc.ca/wp-content/uploads/2017/05/GetAuthMethods-300x57.png 300w" sizes="(max-width: 689px) 100vw, 689px" /> 
 
-This component stresses &#8220;Citrix Receiver for Web&#8221;
+This component stresses "Citrix Receiver for Web"
 
 * * *
 
@@ -570,7 +570,7 @@ Domain Pass-Through and Smart Card Authentication:
 
 <img class="aligncenter size-full wp-image-2304" src="http://theorypc.ca/wp-content/uploads/2017/05/DomainPassThrough.png" alt="" width="671" height="130" srcset="http://theorypc.ca/wp-content/uploads/2017/05/DomainPassThrough.png 671w, http://theorypc.ca/wp-content/uploads/2017/05/DomainPassThrough-300x58.png 300w" sizes="(max-width: 671px) 100vw, 671px" /> 
 
-This component stresses &#8220;Citrix Receiver for Web&#8221;Â <span style="text-decoration: underline;"><strong>and</strong></span> &#8220;Citrix Delivery Services Authentication&#8221;
+This component stresses "Citrix Receiver for Web"Â <span style="text-decoration: underline;"><strong>and</strong></span> "Citrix Delivery Services Authentication"
 
 * * *
 
@@ -578,7 +578,7 @@ Resource Enumeration:
 
 <img class="aligncenter size-full wp-image-2305" src="http://theorypc.ca/wp-content/uploads/2017/05/ResourceEnumeration.png" alt="" width="678" height="131" srcset="http://theorypc.ca/wp-content/uploads/2017/05/ResourceEnumeration.png 678w, http://theorypc.ca/wp-content/uploads/2017/05/ResourceEnumeration-300x58.png 300w" sizes="(max-width: 678px) 100vw, 678px" /> 
 
-This component stressesÂ &#8220;Citrix Receiver for Web&#8221;Â <span style="text-decoration: underline;"><strong>and</strong></span> &#8220;Citrix Delivery Services Resources&#8221;
+This component stressesÂ "Citrix Receiver for Web"Â <span style="text-decoration: underline;"><strong>and</strong></span> "Citrix Delivery Services Resources"
 
 * * *
 
@@ -586,7 +586,7 @@ Get User Name:
 
 <img class="aligncenter size-full wp-image-2306" src="http://theorypc.ca/wp-content/uploads/2017/05/GetUserName.png" alt="" width="676" height="130" srcset="http://theorypc.ca/wp-content/uploads/2017/05/GetUserName.png 676w, http://theorypc.ca/wp-content/uploads/2017/05/GetUserName-300x58.png 300w" sizes="(max-width: 676px) 100vw, 676px" /> 
 
-This component stressesÂ &#8220;Citrix Receiver for Web&#8221;
+This component stressesÂ "Citrix Receiver for Web"
 
 * * *
 
@@ -594,15 +594,15 @@ AllowSelfServiceAccountManagement:
 
 <img class="aligncenter size-full wp-image-2307" src="http://theorypc.ca/wp-content/uploads/2017/05/AllowSelfService.png" alt="" width="695" height="137" srcset="http://theorypc.ca/wp-content/uploads/2017/05/AllowSelfService.png 695w, http://theorypc.ca/wp-content/uploads/2017/05/AllowSelfService-300x59.png 300w" sizes="(max-width: 695px) 100vw, 695px" /> 
 
-This component stresses &#8220;Citrix Receiver for Web&#8221;Â <span style="text-decoration: underline;"><strong>and</strong></span> &#8220;Citrix Delivery Services Authentication&#8221;
+This component stresses "Citrix Receiver for Web"Â <span style="text-decoration: underline;"><strong>and</strong></span> "Citrix Delivery Services Authentication"
 
 * * *
 
-&#8220;GetLaunchStatus&#8221;
+"GetLaunchStatus"
 
 <img class="aligncenter size-full wp-image-2308" src="http://theorypc.ca/wp-content/uploads/2017/05/GetLaunchStatus.png" alt="" width="674" height="133" srcset="http://theorypc.ca/wp-content/uploads/2017/05/GetLaunchStatus.png 674w, http://theorypc.ca/wp-content/uploads/2017/05/GetLaunchStatus-300x59.png 300w" sizes="(max-width: 674px) 100vw, 674px" /> 
 
-This component stressesÂ &#8220;Citrix Delivery Services Resources&#8221;
+This component stressesÂ "Citrix Delivery Services Resources"
 
 * * *
 
@@ -610,11 +610,11 @@ LaunchIca
 
 <img class="aligncenter size-full wp-image-2309" src="http://theorypc.ca/wp-content/uploads/2017/05/LaunchICA.png" alt="" width="685" height="137" srcset="http://theorypc.ca/wp-content/uploads/2017/05/LaunchICA.png 685w, http://theorypc.ca/wp-content/uploads/2017/05/LaunchICA-300x60.png 300w" sizes="(max-width: 685px) 100vw, 685px" /> 
 
-This component stressesÂ &#8220;Citrix Delivery Services Resources&#8221;
+This component stressesÂ "Citrix Delivery Services Resources"
 
 * * *
 
-Now that we have this script and we can see the where individual components cause stress, we can begin to push our Storefront server to find its limits and how the different configurations are impacted. Â I&#8217;ll write up my findings on the limits of Storefront next.
+Now that we have this script and we can see the where individual components cause stress, we can begin to push our Storefront server to find its limits and how the different configurations are impacted. Â I'll write up my findings on the limits of Storefront next.
 
 <!-- AddThis Advanced Settings generic via filter on the_content -->
 

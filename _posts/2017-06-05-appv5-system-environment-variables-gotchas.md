@@ -1,6 +1,6 @@
 ---
 id: 2397
-title: 'AppV5 &#8211; System Environment Variables Gotcha&#8217;s'
+title: 'AppV5 - System Environment Variables Gotcha's'
 date: 2017-06-05T09:15:16-06:00
 author: trententtye
 layout: post
@@ -12,7 +12,7 @@ categories:
 tags:
   - AppV
 ---
-We had an application that has its environment configured via &#8216;system environment variables&#8217;. Â System environment variables differ from &#8216;user&#8217; environment variables in that they are global so all users see them, and in a native Windows environment, they are stored in a different location; but still in the registry. Â SoÂ it seemed, like everything else App-V, these values would be captured (they are just registry values). Â Imagine our surprise when they were \*not\* captured.
+We had an application that has its environment configured via 'system environment variables'. Â System environment variables differ from 'user' environment variables in that they are global so all users see them, and in a native Windows environment, they are stored in a different location; but still in the registry. Â SoÂ it seemed, like everything else App-V, these values would be captured (they are just registry values). Â Imagine our surprise when they were \*not\* captured.
 
 <img class="aligncenter size-large wp-image-2398" src="http://theorypc.ca/wp-content/uploads/2017/06/AppV_vs_Registry-1600x460.png" alt="" width="1140" height="328" srcset="http://theorypc.ca/wp-content/uploads/2017/06/AppV_vs_Registry.png 1600w, http://theorypc.ca/wp-content/uploads/2017/06/AppV_vs_Registry-300x86.png 300w, http://theorypc.ca/wp-content/uploads/2017/06/AppV_vs_Registry-768x221.png 768w" sizes="(max-width: 1140px) 100vw, 1140px" /> 
 
@@ -34,13 +34,13 @@ He created a startup script that would modify the environment variables to whate
 
 <img class="aligncenter size-full wp-image-2402" src="http://theorypc.ca/wp-content/uploads/2017/06/AppPrelaunch.cmd_.png" alt="" width="932" height="471" srcset="http://theorypc.ca/wp-content/uploads/2017/06/AppPrelaunch.cmd_.png 932w, http://theorypc.ca/wp-content/uploads/2017/06/AppPrelaunch.cmd_-300x152.png 300w, http://theorypc.ca/wp-content/uploads/2017/06/AppPrelaunch.cmd_-768x388.png 768w" sizes="(max-width: 932px) 100vw, 932px" /> 
 
-BUT, no matter what was set the application always launched with the parameters it was sequenced with. Â In this case it was always PROD. Â We would put a &#8216;SET&#8217; or ECHO &#8216;%TT_SYS1%&#8217; or some such into the batch file, _after_ the &#8216;SET/SETX&#8217; commands we could see theÂ _variables were different_. Â They were what we expected them to be. Â But **<span style="text-decoration: underline;">launching</span>** a new process with these changed variables resulted with the new processÂ _**inheriting the <span style="text-decoration: underline;">original</span> environment variables. Â**_ So it was always PROD. Â Now, these are SYSTEM environment variables and Microsoft released a utility, [setx](https://technet.microsoft.com/en-us/library/cc755104(v=ws.11).aspx), which you can use to manipulate them. Â This utility still did not work as expected, the [variables were not being retained by a child process](https://msdn.microsoft.com/en-us/library/windows/desktop/ms682653(v=vs.85).aspx).
+BUT, no matter what was set the application always launched with the parameters it was sequenced with. Â In this case it was always PROD. Â We would put a 'SET' or ECHO '%TT_SYS1%' or some such into the batch file, _after_ the 'SET/SETX' commands we could see theÂ _variables were different_. Â They were what we expected them to be. Â But **<span style="text-decoration: underline;">launching</span>** a new process with these changed variables resulted with the new processÂ _**inheriting the <span style="text-decoration: underline;">original</span> environment variables. Â**_ So it was always PROD. Â Now, these are SYSTEM environment variables and Microsoft released a utility, [setx](https://technet.microsoft.com/en-us/library/cc755104(v=ws.11).aspx), which you can use to manipulate them. Â This utility still did not work as expected, the [variables were not being retained by a child process](https://msdn.microsoft.com/en-us/library/windows/desktop/ms682653(v=vs.85).aspx).
 
-&#8220;By default, a child process inherits the environment variables of its parent process.&#8221;
+"By default, a child process inherits the environment variables of its parent process."
 
-&#8230;
+...
 
-When this was brought to my attention I suggested we explore &#8216;Exporting the manifest and seeing what was stored there&#8217;.Â Changing the registry entries in the package did NOTHING. Â So I suspected they weren&#8217;t being used at all&#8230;
+When this was brought to my attention I suggested we explore 'Exporting the manifest and seeing what was stored there'.Â Changing the registry entries in the package did NOTHING. Â So I suspected they weren't being used at all...
 
 What we found is when weÂ extracted the manifest file:
 

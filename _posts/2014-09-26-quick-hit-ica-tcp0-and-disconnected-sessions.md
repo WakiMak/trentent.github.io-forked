@@ -1,6 +1,6 @@
 ---
 id: 590
-title: 'Quick Hit &#8211; ICA-TCP#0 and disconnected sessions'
+title: 'Quick Hit - ICA-TCP#0 and disconnected sessions'
 date: 2014-09-26T12:49:00-06:00
 author: trententtye
 layout: post
@@ -19,11 +19,11 @@ categories:
   - Uncategorized
 tags:
   - Citrix
-  - XenApp
+  - &
 ---
-<span style="font-family: 'Segoe UI'; font-size: 9pt;">If you were to login to a Citrix server with your ID and you get ICA-TCP#0 as your session name, then disconnected your session, went to another computer and logged in (in the Metavision environment you don&#8217;t assume the exisiting session &#8212; you get a new one) you will actually take that sessionName &#8220;ICA-TCP#0&#8221; as the disconnected session made it available. If you reconnect to your disconnected session it will update the SessionName variable to ICA-TCP#1. </span>
+<span style="font-family: 'Segoe UI'; font-size: 9pt;">If you were to login to a Citrix server with your ID and you get ICA-TCP#0 as your session name, then disconnected your session, went to another computer and logged in (in the Metavision environment you don't assume the exisiting session - you get a new one) you will actually take that sessionName "ICA-TCP#0" as the disconnected session made it available. If you reconnect to your disconnected session it will update the SessionName variable to ICA-TCP#1. </span>
 
-I bring this up because I was attempting to use this variable in the registry to determine a user&#8217;s process list but it fails because of the disconnected session maintaining that same value.
+I bring this up because I was attempting to use this variable in the registry to determine a user's process list but it fails because of the disconnected session maintaining that same value.
 
 <table>
 </table>

@@ -23,17 +23,17 @@ tags:
   - scripting
   - VMWare
 ---
-I have a Citrix environment without a provisioning server. This means that since I&#8217;m going to build my VM&#8217;s out as opposed to up I need to script a method to automate deployment of Citrix servers within the VM environment. Fortunately, VMWare gives us the PowerCLI. A PowerShell that you can use to manipulate VMWare.
+I have a Citrix environment without a provisioning server. This means that since I'm going to build my VM's out as opposed to up I need to script a method to automate deployment of Citrix servers within the VM environment. Fortunately, VMWare gives us the PowerCLI. A PowerShell that you can use to manipulate VMWare.
 
 While I was working on this I ran into some some weird issues while working with VMWare and deploying OS Customizations.
 
-It turns out if you burn your 3 activations VMWare cannot customize the OS anymore from VMWare. BUT(!) there is a dirty little trick that works for Server 2008 R2 (only one I&#8217;ve tested anyhow) that can allow you to work around the issue. The issue is VMWare&#8217;s OS Customizations does a Generalize pass using Sysprep. If you exceed the 3 activations, sysprep will fail because it will notice this at the Generalize pass. The solution that I&#8217;ve read is to add this line to the sysprep.xml file:
+It turns out if you burn your 3 activations VMWare cannot customize the OS anymore from VMWare. BUT(!) there is a dirty little trick that works for Server 2008 R2 (only one I've tested anyhow) that can allow you to work around the issue. The issue is VMWare's OS Customizations does a Generalize pass using Sysprep. If you exceed the 3 activations, sysprep will fail because it will notice this at the Generalize pass. The solution that I've read is to add this line to the sysprep.xml file:
 
-<pre class="lang:default decode:true ">&lt;settings pass="generalize"&gt;
-        &lt;component name="Microsoft-Windows-Security-Licensing-SLC" processorArchitecture="x86" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
-            &lt;SkipRearm&gt;1&lt;/SkipRearm&gt;
-        &lt;/component&gt;
-    &lt;/settings&gt;</pre>
+<pre class="lang:default decode:true "><settings pass="generalize">
+        <component name="Microsoft-Windows-Security-Licensing-SLC" processorArchitecture="x86" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <SkipRearm>1</SkipRearm>
+        </component>
+    </settings></pre>
 
 http://support.microsoft.com/kb/929828
 
@@ -44,15 +44,15 @@ REG ADD "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Softwar
 
 These two keys will signal to sysprep that this image can be generalized even though it has exceeded its activation count.
 
-So, what I&#8217;ve found is you need to set these registry keys \*prior\* to shutting it down to convert into a template. Then when you deploy from template and it starts up and engages sysprep, sysprep will run without issue.
+So, what I've found is you need to set these registry keys \*prior\* to shutting it down to convert into a template. Then when you deploy from template and it starts up and engages sysprep, sysprep will run without issue.
 
 So how do you put this all together? Here is my scenario:  
 We do NOT have a golden image template of our Citrix environment. This is because it is incredibly fluid. Changes occur to applications on the servers fairly regularly and documentation/memory is difficult to ensure that when we commit to putting these changes into the template that they are actually done. So how are we going to do this? We are going to take a 3 prong approach:  
-1) We have a dev environment where developers can modify/change and generally mess up their VM&#8217;s to their hearts content. The whole goal of this environment is to get their application working at 100%. The developers do not need to answer to anyone and have free reign to modify and experiment.  
+1) We have a dev environment where developers can modify/change and generally mess up their VM's to their hearts content. The whole goal of this environment is to get their application working at 100%. The developers do not need to answer to anyone and have free reign to modify and experiment.  
 2) We have a test environment where, when the developers think the application is tweaked/modified/configured exactly right; will pass off documentation to me to install in this environment. Any errors or modifications that happen outside of their documentation will be further documented and verified.  
 3) Once step two is validated we can then push on to install on the production servers.
 
-The issues we encounter is some of our application installs are huge, multi-step non-automated processes with large configuration tweaks post install. Once we get a solid install on one of the production servers our perferred method of redployment (because I&#8217;ve automated this process thus eliminating possible failure points) will be to template and redeploy with VMWare. This is the script I&#8217;ve written to accomplish this:
+The issues we encounter is some of our application installs are huge, multi-step non-automated processes with large configuration tweaks post install. Once we get a solid install on one of the production servers our perferred method of redployment (because I've automated this process thus eliminating possible failure points) will be to template and redeploy with VMWare. This is the script I've written to accomplish this:
 
 > <pre class="lang:ps decode:true  ">function Clone-List{
 
@@ -120,8 +120,8 @@ REG ADD "\\$name\HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" /v 
 REG ADD "\\$name\HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" /v "AutoAdminLogon" /t REG_DWORD /d 0x5 /F
 REG ADD "\\$name\HKLM\Software\Microsoft\Windows NT\CurrentVersion\Winlogon" /v "AutoLogonCount" /t REG_DWORD /d 0x1 /F
 
-Write-Host "Preparing XenApp for Cloning..."
-psexec \\$name "C:\Program Files (x86)\Citrix\XenApp\ServerConfig\XenAppConfigConsole.exe" /ExecutionMode:ImagePrep /PrepMsmq:True
+Write-Host "Preparing & for Cloning..."
+psexec \\$name "C:\Program Files (x86)\Citrix\&\ServerConfig\&ConfigConsole.exe" /ExecutionMode:ImagePrep /PrepMsmq:True
 
 Write-Host "Cloning"
 New-VM -Name $newname -VM $vm -Location $folder -Datastore $datastore -VMHost $vmhost -DiskStorageFormat $format
@@ -168,7 +168,7 @@ get-VM CDCVXAP03P | get-networkadapter | set-networkadapter -startconnected:$tru
 }
 </pre>
 
-I&#8217;ve shamelessly stolen and modified this script from elsewhere. To execute this script, copy and paste it in a PowerGUI prompt then run:
+I've shamelessly stolen and modified this script from elsewhere. To execute this script, copy and paste it in a PowerGUI prompt then run:
 
 > <pre class="lang:ps decode:true ">get-vm CDCVXAP02P | Clone-List</pre>
 
@@ -189,8 +189,8 @@ Prepares a 20 second count down
 Deletes the script that executes step 2.  
 3) We add the default username and password and autologon registry values. As of this writting this is not working for some reason  
 4) We execute the command that preps the machine for cloning with Citrix. The machine you run this against will need to be rebooted as this will prevent new logons, but existing should continue (I think).  
-5) We start the cloning process and unplug the NIC on the new machine. We don&#8217;t want the new machine to come up and unjoin the original machine from the domain. From here, it will auto-power on. Ideally, it will login automatically and run the preconfigured script. (You may have to login manually to get it to do its thing) Once done it should shut itself down.  
-6) Now VMWare will wait until the machine is powered off. Once it&#8217;s powered off it will reconnect the NIC and make a template out of the VM and delete the temporary clone.  
+5) We start the cloning process and unplug the NIC on the new machine. We don't want the new machine to come up and unjoin the original machine from the domain. From here, it will auto-power on. Ideally, it will login automatically and run the preconfigured script. (You may have to login manually to get it to do its thing) Once done it should shut itself down.  
+6) Now VMWare will wait until the machine is powered off. Once it's powered off it will reconnect the NIC and make a template out of the VM and delete the temporary clone.  
 7) Lastly it will now setup the OS Customization dynmically and create a VM with it.
 
 Voila!

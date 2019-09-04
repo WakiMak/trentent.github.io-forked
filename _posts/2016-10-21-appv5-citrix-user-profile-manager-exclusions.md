@@ -1,6 +1,6 @@
 ---
 id: 1784
-title: 'AppV5 &#8211; Citrix User Profile Manager exclusions'
+title: 'AppV5 - Citrix User Profile Manager exclusions'
 date: 2016-10-21T13:25:39-06:00
 author: trententtye
 layout: post
@@ -44,13 +44,13 @@ The Citrix User Profile Manager (UPM) needs a little configuration tweaking to w
 
 <div class="parbase base richtext section">
   <div>
-    <span style="color: #808080;">Â If you don&#8217;t exclude these items, App-V applications work the first time users access them but they fail, with an error, on subsequent logons.</span>
+    <span style="color: #808080;">Â If you don't exclude these items, App-V applications work the first time users access them but they fail, with an error, on subsequent logons.</span>
   </div>
 </div>
 
-But what happens when you \*don&#8217;t\* exclude this directory?
+But what happens when you \*don't\* exclude this directory?
 
-We upgraded our Citrix UPM to 5.4.1 and in that process we moved from setting our inclusions/exclusions via the ini file to using Group Policy. Â The original thought was simply adding the exclusions would add them to the existing list of default inclusions/exclusions which already has this directory set. Â This line of thinking was incorrect. Â Citrix&#8217;s documentation states:
+We upgraded our Citrix UPM to 5.4.1 and in that process we moved from setting our inclusions/exclusions via the ini file to using Group Policy. Â The original thought was simply adding the exclusions would add them to the existing list of default inclusions/exclusions which already has this directory set. Â This line of thinking was incorrect. Â Citrix's documentation states:
 
 [<span class="importanttitle">Important:</span> If you use Group Policy rather than the .ini file (or you are rolling out a Group Policy deployment after a successful test with the .ini file), note that, unlike the installed .ini file, no items are included or excluded by default in the .adm or .admx file. This means you must add the default items manually to the file.](http://docs.citrix.com/en-us/profile-management/5/upm-tuning-den/upm-include-exclude-defaults-den.html)
 

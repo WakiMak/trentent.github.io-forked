@@ -21,7 +21,7 @@ tags:
   - procmon
   - scripting
 ---
-I recently had a Windows 2008 Server that was unable to execute a VBS script that works with other servers and other combinations of desktops. I decided to break out Process Monitor and try and see if I can figure out what&#8217;s going on&#8230;
+I recently had a Windows 2008 Server that was unable to execute a VBS script that works with other servers and other combinations of desktops. I decided to break out Process Monitor and try and see if I can figure out what's going on...
 
 To simplify this process, I found this vbs script that trys to utilize the Scripting.FileSystemObject in a script:
 
@@ -53,7 +53,7 @@ I ran that script on the affected server and, after clicking OK on the WSH Versi
 
 [<img id="BLOGGER_PHOTO_ID_5645219028569242386" style="display: block; margin: 0px auto 10px; text-align: center; cursor: hand; width: 339px; height: 203px;" src="http://2.bp.blogspot.com/-zzSqlr0AvFM/TlfYy_0lOxI/AAAAAAAAAHc/QMOEZafAIew/s400/windows-script-error1.GIF" alt="" border="0" />](http://2.bp.blogspot.com/-zzSqlr0AvFM/TlfYy_0lOxI/AAAAAAAAAHc/QMOEZafAIew/s1600/windows-script-error1.GIF)
 
-I broke out Process Monitor and monitored on the File System. It sounds like it should be a file system error so we&#8217;ll scope that out first. I filtered for everything but wscript.exe (I executed all my command lines as wscript.exe test.vbs) and nothing appeared. So wscript.exe wasn&#8217;t even getting to the file system. So I enabled registry filtering and filtered for wscript.exe:
+I broke out Process Monitor and monitored on the File System. It sounds like it should be a file system error so we'll scope that out first. I filtered for everything but wscript.exe (I executed all my command lines as wscript.exe test.vbs) and nothing appeared. So wscript.exe wasn't even getting to the file system. So I enabled registry filtering and filtered for wscript.exe:
 
 [<img id="BLOGGER_PHOTO_ID_5645219877427084754" style="display: block; margin: 0px auto 10px; text-align: center; cursor: hand; width: 400px; height: 233px;" src="http://2.bp.blogspot.com/-yTXdhj7FGkM/TlfZkaED_dI/AAAAAAAAAHk/mA3fptiSqu4/s400/procfilter.GIF" alt="" border="0" />](http://2.bp.blogspot.com/-yTXdhj7FGkM/TlfZkaED_dI/AAAAAAAAAHk/mA3fptiSqu4/s1600/procfilter.GIF)
 
@@ -116,7 +116,7 @@ After entering those registry keys, here is my new result.
 
 [<img id="BLOGGER_PHOTO_ID_5645222500158604370" style="display: block; margin: 0px auto 10px; text-align: center; cursor: hand; width: 220px; height: 136px;" src="http://1.bp.blogspot.com/-2R2-1oL77Vo/Tlfb9Ef_BFI/AAAAAAAAAH0/EGofp5dZnEU/s400/success.GIF" alt="" border="0" />](http://1.bp.blogspot.com/-2R2-1oL77Vo/Tlfb9Ef_BFI/AAAAAAAAAH0/EGofp5dZnEU/s1600/success.GIF)
 
-Success! Hopefully, if you encounter the same issue, you are not missing any more, or too many more, registry keys. I wonder why they disappeared, but I don&#8217;t have a way to trace that unfortunately.
+Success! Hopefully, if you encounter the same issue, you are not missing any more, or too many more, registry keys. I wonder why they disappeared, but I don't have a way to trace that unfortunately.
 
 <!-- AddThis Advanced Settings generic via filter on the_content -->
 

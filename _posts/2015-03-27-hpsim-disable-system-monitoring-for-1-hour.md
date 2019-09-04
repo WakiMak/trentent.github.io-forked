@@ -1,6 +1,6 @@
 ---
 id: 566
-title: 'HPSIM &#8211; Disable system monitoring for 1 hour'
+title: 'HPSIM - Disable system monitoring for 1 hour'
 date: 2015-03-27T12:34:00-06:00
 author: trententtye
 layout: post

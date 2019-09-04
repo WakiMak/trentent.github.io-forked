@@ -20,7 +20,7 @@ categories:
 tags:
   - Citrix
   - Provisioning Services
-  - XenApp
+  - &
 ---
 (OS 10061)No connection could be made because the target machine actively refused it.Â : Unable to connect to the CGP tunnel destination (127.0.0.1:1494)
 
@@ -33,18 +33,18 @@ tags:
   
   <tr>
     <td style="text-align: center;">
-      We got this error on a XenApp 6.5 provisioning server
+      We got this error on a & 6.5 provisioning server
     </td>
   </tr>
 </table>
 
-We utilize Citrix PVS for our XenApp servers.Â After updating our XenApp vDisk using our usual method and rebooting the server we got the above error.Â Since we versioned it we had our usual servers working without issue, and a couple of &#8220;test&#8221; versions failing.Â I started troubleshooting this using the google method of shotgun trying the first 5 error/solutions.Â This included, disabling re-enabling ICA listener, setting the listener on only one NIC interface (which it was, I toggled it for all then just one), deleting the ICA listener and recreating it.Â None of them worked so I started troubleshooting.
+We utilize Citrix PVS for our & servers.Â After updating our & vDisk using our usual method and rebooting the server we got the above error.Â Since we versioned it we had our usual servers working without issue, and a couple of "test" versions failing.Â I started troubleshooting this using the google method of shotgun trying the first 5 error/solutions.Â This included, disabling re-enabling ICA listener, setting the listener on only one NIC interface (which it was, I toggled it for all then just one), deleting the ICA listener and recreating it.Â None of them worked so I started troubleshooting.
 
 I encountered this error today and started troubleshooting.Â The first step I did was trace the path to the error using Procmon.exe.Â This, unfortunately, did not reveal anything of substance.Â What I found with this error is the network process is almost exactly the same for both.Â I can see XTE.exe communicating via 2598, I can see, what appears to be it handing it off to IMASrv.exe.Â At this point is when it causes that error message to be displayed on the bad machine, but IMASrv.exe continues on the good machine.
 
-At this point I&#8217;m thinking that maybe the IMA settings for session reliability have become corrupted.Â It was suggested to me to disable session reliability and see if it works by a colleague of mine.
+At this point I'm thinking that maybe the IMA settings for session reliability have become corrupted.Â It was suggested to me to disable session reliability and see if it works by a colleague of mine.
 
-The odd thing about resetting the IMA policy is that it isn&#8217;t even set in the first place.
+The odd thing about resetting the IMA policy is that it isn't even set in the first place.
 
 <table style="margin-left: auto; margin-right: auto; text-align: center;" cellspacing="0" cellpadding="0" align="center">
   <tr>
@@ -55,7 +55,7 @@ The odd thing about resetting the IMA policy is that it isn&#8217;t even set in 
   
   <tr>
     <td style="text-align: center;">
-      &#8220;Add&#8221; means it is not set
+      "Add" means it is not set
     </td>
   </tr>
 </table>
@@ -71,7 +71,7 @@ But I disabled it anyways in the IMA policy in AppCenter, NOT in group policy.Â 
   
   <tr>
     <td style="text-align: center;">
-      Click &#8220;Remove&#8221;
+      Click "Remove"
     </td>
   </tr>
 </table>

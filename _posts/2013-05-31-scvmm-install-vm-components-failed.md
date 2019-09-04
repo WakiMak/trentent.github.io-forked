@@ -21,7 +21,7 @@ tags:
   - 2008R2
   - procmon
 ---
-I&#8217;m attempting to deploy a virtual machine from a template but I get this error: Install VM components: Failed.
+I'm attempting to deploy a virtual machine from a template but I get this error: Install VM components: Failed.
 
 <div style="clear: both; text-align: center;">
   <a style="font-family: 'Courier New', Courier, monospace; font-size: small; margin-left: 1em; margin-right: 1em; text-align: center;" href="http://2.bp.blogspot.com/-HKnNolwRr54/UakFb1kNkwI/AAAAAAAAATQ/JY1h3SS0QBk/s1600/1.png"><img src="http://2.bp.blogspot.com/-HKnNolwRr54/UakFb1kNkwI/AAAAAAAAATQ/JY1h3SS0QBk/s320/1.png" width="320" height="197" border="0" /></a>
@@ -49,16 +49,16 @@ Ensure that the HTTP service and/or the agent on the machine 2012-SCVMM.bottheor
 </div>
 
 TL;DR  
-SO&#8230; Â Long story short; if you are encountering this error, I would suggest booting your VHD file in a VM and re-sysprep /generalize it. Â If you&#8217;ve maxed out on sysprep&#8217;s I have a post earlier in my blog on how to get around the 3-times limit and rerun sysprep. Â Alternatively, you can try what I did, but I can&#8217;t gaurantee your success and replace the BCD file in your Library VHD with a BCD you \*know\* has been sysprepp&#8217;ed and try redeploying it.  
-=&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;=
+SO... Â Long story short; if you are encountering this error, I would suggest booting your VHD file in a VM and re-sysprep /generalize it. Â If you've maxed out on sysprep's I have a post earlier in my blog on how to get around the 3-times limit and rerun sysprep. Â Alternatively, you can try what I did, but I can't gaurantee your success and replace the BCD file in your Library VHD with a BCD you \*know\* has been sysprepp'ed and try redeploying it.  
+=--------------------------------=
 
-I&#8217;ve ensured that HTTP and HTTPS is not blocked (firewall is disabled) and the agent on my SCVMM machine is installed and running. Â So this error message is somewhat useless.
+I've ensured that HTTP and HTTPS is not blocked (firewall is disabled) and the agent on my SCVMM machine is installed and running. Â So this error message is somewhat useless.
 
 <div style="clear: both; text-align: center;">
   <a style="margin-left: 1em; margin-right: 1em;" href="http://4.bp.blogspot.com/-91RpU0TWAYE/UakFdjzToTI/AAAAAAAAAUc/QTLl38FAqvk/s1600/3.png"><img src="http://4.bp.blogspot.com/-91RpU0TWAYE/UakFdjzToTI/AAAAAAAAAUc/QTLl38FAqvk/s320/3.png" width="320" height="228" border="0" /></a>
 </div>
 
-So I took my two boxes, 2012-SCVMM (the SCVMM server) and S5000VXN-SERVER (the Hyper-V host) and procmon&#8217;ed them while it was attempting to &#8220;Install VM Components&#8221; to try and understand what it&#8217;s trying to do.
+So I took my two boxes, 2012-SCVMM (the SCVMM server) and S5000VXN-SERVER (the Hyper-V host) and procmon'ed them while it was attempting to "Install VM Components" to try and understand what it's trying to do.
 
 <div style="clear: both; text-align: center;">
 </div>
@@ -72,7 +72,7 @@ So I took my two boxes, 2012-SCVMM (the SCVMM server) and S5000VXN-SERVER (the H
 
 After reinitating the task, we can see that the vmmAgent.exe on the Hyper-V host accesses the file about 2 seconds after I submit the command to retry the job.
 
-A few seconds after this, it appears to &#8220;CreateFile&#8221; in the WindowsTemp directory; but this is not actually correct.
+A few seconds after this, it appears to "CreateFile" in the WindowsTemp directory; but this is not actually correct.
 
 <div style="clear: both; text-align: center;">
   <a style="margin-left: 1em; margin-right: 1em; text-align: center;" href="http://3.bp.blogspot.com/-UnOO4sy9BTY/UakFeegh-hI/AAAAAAAAAU0/PAkWqFj-eXI/s1600/5.png"><img src="http://3.bp.blogspot.com/-UnOO4sy9BTY/UakFeegh-hI/AAAAAAAAAU0/PAkWqFj-eXI/s320/5.png" width="311" height="320" border="0" /></a>
@@ -94,7 +94,7 @@ What it is really doing is \*mounting\* the VHD into a folder in the WindowsTemp
 <div style="clear: both; text-align: center;">
 </div>
 
-So now that we know it&#8217;s mounting the file as a volume this helps us narrow down on what Hyper-V is attempting to do&#8230; Â And I suspect what it is attempting to do is &#8220;offline servicing&#8221; of the attached vdisk/vhd.
+So now that we know it's mounting the file as a volume this helps us narrow down on what Hyper-V is attempting to do... Â And I suspect what it is attempting to do is "offline servicing" of the attached vdisk/vhd.
 
 <div style="clear: both; text-align: center;">
   <a style="margin-left: 1em; margin-right: 1em;" href="http://1.bp.blogspot.com/-Wt-91NctUiU/UakFe7RrRPI/AAAAAAAAAVA/m8sjBPC-v4A/s1600/8.png"><img src="http://1.bp.blogspot.com/-Wt-91NctUiU/UakFe7RrRPI/AAAAAAAAAVA/m8sjBPC-v4A/s400/8.png" width="400" height="83" border="0" /></a>
@@ -103,7 +103,7 @@ So now that we know it&#8217;s mounting the file as a volume this helps us narro
 <div style="clear: both; text-align: center;">
 </div>
 
-After attaching the vdisk the next thing it does it query the BCD file on the system. Â Maybe it needs to be in a certain mode to operate? Â I&#8217;m not sure&#8230;
+After attaching the vdisk the next thing it does it query the BCD file on the system. Â Maybe it needs to be in a certain mode to operate? Â I'm not sure...
 
 <div style="clear: both; text-align: center;">
   <a style="margin-left: 1em; margin-right: 1em;" href="http://2.bp.blogspot.com/-tV3MwDZla_Q/UakFfN2yevI/AAAAAAAAAVI/I7fqcUoxHA0/s1600/9.png"><img src="http://2.bp.blogspot.com/-tV3MwDZla_Q/UakFfN2yevI/AAAAAAAAAVI/I7fqcUoxHA0/s320/9.png" width="320" height="123" border="0" /></a>
@@ -130,9 +130,9 @@ Continuing on we can see that events are written to the Microsoft-Windows-FileSh
 It showed that it was doing something with the BCD file. Â The Hyper-V host was \*serving\* it out. Â I suspect it was serving it to the SCVMM.  
 Looking back at the SCVMM server we see that was executing some WinRM commands. Â Sadly, we do not know what commands it was trying to send.
 
-If I mount the vhd file and check out the BCD file I can see that it appears to be corrupted in that it doesn&#8217;t know what the proper boot device should be.
+If I mount the vhd file and check out the BCD file I can see that it appears to be corrupted in that it doesn't know what the proper boot device should be.
 
-<pre class="lang:batch decode:true ">C:\Windows\system32&gt;bcdedit /store "K:\boot\bcd" /enum all</pre>
+<pre class="lang:batch decode:true ">C:\Windows\system32>bcdedit /store "K:\boot\bcd" /enum all</pre>
 
 &nbsp;
 
@@ -250,9 +250,9 @@ identifier              {7619dcc8-fafe-11d9-b411-000476eba25f}
 ramdisksdidevice        boot
 ramdisksdipath          \boot\boot.sdi</pre>
 
-It&#8217;s not actually corrupted though; the reason why the devices are unknown is because bcdedit isn&#8217;t finding the disk signature of the volume I mounted. Â But it has the disk signature because I can boot with it without issue.
+It's not actually corrupted though; the reason why the devices are unknown is because bcdedit isn't finding the disk signature of the volume I mounted. Â But it has the disk signature because I can boot with it without issue.
 
-Continuing on&#8230;
+Continuing on...
 
 In order to try and find out what commands WSMAN was sending I enabled debugview on the SCVMM server:  
 <http://support.microsoft.com/kb/970066?wa=wsignin1.0>
@@ -277,7 +277,7 @@ DebugView gave me more information to narrow down what was happening. Â It appea
 
 <http://blogs.technet.com/b/hectorl/archive/2008/08/21/digging-deeper-into-error-13206-virtual-machine-manager-cannot-locate-the-boot-or-system-volume-on-virtual-machine.aspx>
 
-Thinking about it, I do not think my VHD was SysPrep&#8217;ed. Â I find it interesting that sysprep appears to do something to the BCD file. Â To find out what sysprep does to the BCD file I booted up my 2012 VHD into Windows and ran sysprep, generalize and shutdown.
+Thinking about it, I do not think my VHD was SysPrep'ed. Â I find it interesting that sysprep appears to do something to the BCD file. Â To find out what sysprep does to the BCD file I booted up my 2012 VHD into Windows and ran sysprep, generalize and shutdown.
 
 <div style="clear: both; text-align: center;">
   <a style="margin-left: 1em; margin-right: 1em;" href="http://4.bp.blogspot.com/-j93lsMv6bJg/UakFc18B3cI/AAAAAAAAATw/KslHskWaEd8/s1600/15.png"><img src="http://4.bp.blogspot.com/-j93lsMv6bJg/UakFc18B3cI/AAAAAAAAATw/KslHskWaEd8/s320/15.png" width="320" height="243" border="0" /></a>
@@ -285,7 +285,7 @@ Thinking about it, I do not think my VHD was SysPrep&#8217;ed. Â I find it inter
 
 <pre class="">With the VM now generalized I can crack open the VHD and see what's added to the BCD to make it so special...
 
-C:\Users\amttye\Desktop&gt;fc before-sysprep.txt after-sysprep.txt
+C:\Users\amttye\Desktop>fc before-sysprep.txt after-sysprep.txt
 Comparing files before-sysprep.txt and AFTER-SYSPREP.TXT
 ***** before-sysprep.txt
 identifier Â  Â  Â  Â  Â  Â  Â {bootmgr}
@@ -382,7 +382,7 @@ Interestinginly the differences appear to be mostly "locate=%%". Â I guess this 
   <a style="margin-left: 1em; margin-right: 1em;" href="http://2.bp.blogspot.com/-gJXfmbfLAIo/UakFczvKz0I/AAAAAAAAAT4/B9UHmfrKdak/s1600/16.png"><img src="http://2.bp.blogspot.com/-gJXfmbfLAIo/UakFczvKz0I/AAAAAAAAAT4/B9UHmfrKdak/s1600/16.png" border="0" /></a>
 </div>
 
-And&#8230;&#8230;&#8230;.? Â Lets go to DebugView:
+And..........? Â Lets go to DebugView:
 
 <pre class="lang:default decode:true ">[4276] 10B4.000C::05/31-13:57:40.193#16SystemInformation.cs(192): SYSTEM: :\ Version=0.0 HALType=  Memory=2MB, Procs=1 Is64s=False . OSLanguage=0
 [4276] 10B4.000C::05/31-13:57:40.193#16SystemInformation.cs(970): Lookup for '\??\Volume{b42a3001-c871-11e2-93f4-0015172fc019}' in MountedDevices
@@ -408,11 +408,11 @@ And&#8230;&#8230;&#8230;.? Â Lets go to DebugView:
 </div>
 
 <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;"><br /> </span>  
-Voila! Â It appears much better than before. Â It found the drive correctly and checked the BCD file and found it is the &#8220;Generalize&#8221; state. Â The \*actual\* image I originally made was NOT sysprep&#8217;ed and all I did was replace the BCD file, but it allowed it to continue beyond and the machine actually completed the imaging process properly. Â It joined the domain and whatever else the answer file was I gave it in SCVMM.
+Voila! Â It appears much better than before. Â It found the drive correctly and checked the BCD file and found it is the "Generalize" state. Â The \*actual\* image I originally made was NOT sysprep'ed and all I did was replace the BCD file, but it allowed it to continue beyond and the machine actually completed the imaging process properly. Â It joined the domain and whatever else the answer file was I gave it in SCVMM.
 
-It appears I was correct in my earlier assumption about what SCVMM is doing. Â It goes and grabs the BCD file and transfers it from the target machine to itself, &#8220;fixes it up&#8221; (not sure what it&#8217;s doing at this stage precisely), then sends it back for injection. Â Certainly a bit of a complicated process with a fair bit that can go wrong, but shame on Microsoft for having such a poor error message. Â I suspect it wouldn&#8217;t have required much effort to push out a real message; something to the effect of, &#8220;The BCD of this vDisk does not appear to have been through the sysprep /generalize process. Â Please rerun sysprep against the image and try again&#8221;.
+It appears I was correct in my earlier assumption about what SCVMM is doing. Â It goes and grabs the BCD file and transfers it from the target machine to itself, "fixes it up" (not sure what it's doing at this stage precisely), then sends it back for injection. Â Certainly a bit of a complicated process with a fair bit that can go wrong, but shame on Microsoft for having such a poor error message. Â I suspect it wouldn't have required much effort to push out a real message; something to the effect of, "The BCD of this vDisk does not appear to have been through the sysprep /generalize process. Â Please rerun sysprep against the image and try again".
 
-SO&#8230; Â Long story short; if you are encountering this error, I would suggest booting your VHD file in a VM and re-sysprep /generalize it. Â If you&#8217;ve maxed out on sysprep&#8217;s I have a post earlier in my blog on how to get around the 3-times limit and rerun sysprep. Â Alternatively, you can try what I did, but I can&#8217;t gaurantee your success and replace the BCD file in your Library VHD with a BCD you \*know\* has been sysprepp&#8217;ed and try redeploying it.
+SO... Â Long story short; if you are encountering this error, I would suggest booting your VHD file in a VM and re-sysprep /generalize it. Â If you've maxed out on sysprep's I have a post earlier in my blog on how to get around the 3-times limit and rerun sysprep. Â Alternatively, you can try what I did, but I can't gaurantee your success and replace the BCD file in your Library VHD with a BCD you \*know\* has been sysprepp'ed and try redeploying it.
 
 <!-- AddThis Advanced Settings generic via filter on the_content -->
 

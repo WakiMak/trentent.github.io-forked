@@ -1,6 +1,6 @@
 ---
 id: 593
-title: 'AppV5 &#8211; Update files in an already mounted package'
+title: 'AppV5 - Update files in an already mounted package'
 date: 2014-09-04T13:09:00-06:00
 author: trententtye
 layout: post
@@ -19,7 +19,7 @@ categories:
 tags:
   - AppV
 ---
-An issue I&#8217;ve been dealing with lately is we have some in-house applications baked into an AppV package. &nbsp;We are encountering some issues with them and they require updating almost on a daily basis. &nbsp;Since you can&#8217;t update/copy .exe&#8217;s via a preconfig script or by breaking into the environment (CoW restrictions) they need to be baked into the environment.
+An issue I've been dealing with lately is we have some in-house applications baked into an AppV package. &nbsp;We are encountering some issues with them and they require updating almost on a daily basis. &nbsp;Since you can't update/copy .exe's via a preconfig script or by breaking into the environment (CoW restrictions) they need to be baked into the environment.
 
 One of the new features of AppV 5 vs. 4.6 is that it can mount the files as actual files in the filesystem as opposed to a single binary. &nbsp;This exposure of the AppV 5 packages allows for manipulation of the files \*after\* they are deployed, but you need to make some modifications to the mounted files.
 
@@ -61,7 +61,7 @@ One of the new features of AppV 5 vs. 4.6 is that it can mount the files as actu
 </div>
 
 <div>
-  And at this part you can now replace .exe&#8217;s within that folder and subsequent launches of the application now use the new .exe&#8217;s. &nbsp;At this stage I can now replace these files without recreating the package and when another update to that .exe comes down the pipe I don&#8217;t have to open the sequencer to update a file, update the share, update the batch file with the new /appvve: GUID&#8217;s. &nbsp;At least until their software becomes stable and final for this build.
+  And at this part you can now replace .exe's within that folder and subsequent launches of the application now use the new .exe's. &nbsp;At this stage I can now replace these files without recreating the package and when another update to that .exe comes down the pipe I don't have to open the sequencer to update a file, update the share, update the batch file with the new /appvve: GUID's. &nbsp;At least until their software becomes stable and final for this build.
 </div>
 
 <div>

@@ -1,6 +1,6 @@
 ---
 id: 546
-title: 'Troubleshooting Citrix Desktop Service &#8211; &#8220;The Citrix Desktop Service is starting.&#8221;  and then nothing.'
+title: 'Troubleshooting Citrix Desktop Service - "The Citrix Desktop Service is starting."  and then nothing.'
 date: 2015-09-21T16:06:00-06:00
 author: trententtye
 layout: post
@@ -23,23 +23,23 @@ tags:
   - Citrix Desktop Service
   - XenDesktop
 ---
-I&#8217;m troubleshooting an issue with the Citrix Desktop Service on my home lab. Â I have a Citrix XenApp/XenDesktop 7.6 installation and I have setup a Server 2012 R2 box with the &#8220;/servervdi&#8221;. Â Upon reboot, I see the Registration State as Unregistered.
+I'm troubleshooting an issue with the Citrix Desktop Service on my home lab. Â I have a Citrix &/XenDesktop 7.6 installation and I have setup a Server 2012 R2 box with the "/servervdi". Â Upon reboot, I see the Registration State as Unregistered.
 
 <div style="clear: both; text-align: center;">
   <a style="margin-left: 1em; margin-right: 1em;" href="http://2.bp.blogspot.com/-GafPMHiCaiA/VgBsjdy9PQI/AAAAAAAABH0/12XC6hpWQJ4/s1600/1.PNG"><img src="http://2.bp.blogspot.com/-GafPMHiCaiA/VgBsjdy9PQI/AAAAAAAABH0/12XC6hpWQJ4/s320/1.PNG" width="320" height="39" border="0" /></a>
 </div>
 
-Restarting the Citrix Desktop Service and checking the &#8216;Application&#8217; Log for &#8216;Citrix Desktop Service&#8217; yields only event ID 1028 &#8211; &#8220;The Citrix Desktop Service is starting.&#8221;
+Restarting the Citrix Desktop Service and checking the 'Application' Log for 'Citrix Desktop Service' yields only event ID 1028 - "The Citrix Desktop Service is starting."
 
-However, when I &#8216;Stop&#8217; the Citrix Desktop Service the Application event log gives up a few more details:
+However, when I 'Stop' the Citrix Desktop Service the Application event log gives up a few more details:
 
-<span style="font-family: Courier New, Courier, monospace; font-size: x-small;">Event ID 1003 &#8211; Citrix Desktop Service</span>  
+<span style="font-family: Courier New, Courier, monospace; font-size: x-small;">Event ID 1003 - Citrix Desktop Service</span>  
 <span style="font-family: Courier New, Courier, monospace; font-size: x-small;">The Citrix Desktop Service failed to initialize communication services required for interaction between this machine and delivery controllers.Â </span>
 
-<span style="font-family: Courier New, Courier, monospace; font-size: x-small;">If the problem persists please perform a &#8216;repair&#8217; install action or reinstall the Citrix Virtual Desktop Agent. Refer to Citrix Knowledge Base article <a href="http://support.citrix.com/article/CTX119736">CTX119736 Â </a>for Â further information.Â </span>
+<span style="font-family: Courier New, Courier, monospace; font-size: x-small;">If the problem persists please perform a 'repair' install action or reinstall the Citrix Virtual Desktop Agent. Refer to Citrix Knowledge Base article <a href="http://support.citrix.com/article/CTX119736">CTX119736 Â </a>for Â further information.Â </span>
 
 <span style="font-family: Courier New, Courier, monospace; font-size: x-small;">Error details:Â </span>  
-<span style="font-family: Courier New, Courier, monospace; font-size: x-small;">Failed to start WCF services. Exception &#8216;Object reference not set to an instance of an object.&#8217; of type &#8216;System.NullReferenceException&#8217;</span>
+<span style="font-family: Courier New, Courier, monospace; font-size: x-small;">Failed to start WCF services. Exception 'Object reference not set to an instance of an object.' of type 'System.NullReferenceException'</span>
 
 Unfortunately, this CTX article gives little to no details on event 1003 and is more of a shotgun attempt at solving issues as opposed to a nice, precise, surgical solution.
 
@@ -85,7 +85,7 @@ XenDesktop version 7.6.0.5026
  netNamedPipeBinding:
  Citrix.Cds.Protocol.Skylight.ISkylightLaunch:
  net.pipe://localhost/CitrixSkylight:
-Endpoint -&gt; not Tested - net.pipe://localhost/CitrixSkylight
+Endpoint -> not Tested - net.pipe://localhost/CitrixSkylight
  [OK]
  
 --------------------------------------------------------------------
@@ -169,15 +169,15 @@ Summary::
  
 Number of messages reported = 9</pre>
 
-Googling the WCF errors with HTTP/1.1 and Error 503 results in lots of information on reconfiguring your IIS. Â I&#8217;m not convinced this is the issue so I soldiered on&#8230;
+Googling the WCF errors with HTTP/1.1 and Error 503 results in lots of information on reconfiguring your IIS. Â I'm not convinced this is the issue so I soldiered on...
 
-When I procmon on &#8216;BrokerAgent.exe&#8217; I see a few curious entires that maybe associated with &#8216;<span style="font-family: 'Courier New', Courier, monospace; font-size: x-small;">System.NullReferenceException</span>&#8216; (aka, not found) and those are some permissions stating that access is denied to some registry keys and/or some &#8216;Name Not Found&#8217; on some CLSID items.
+When I procmon on 'BrokerAgent.exe' I see a few curious entires that maybe associated with '<span style="font-family: 'Courier New', Courier, monospace; font-size: x-small;">System.NullReferenceException</span>' (aka, not found) and those are some permissions stating that access is denied to some registry keys and/or some 'Name Not Found' on some CLSID items.
 
 <div style="clear: both; text-align: center;">
   <a style="margin-left: 1em; margin-right: 1em;" href="http://3.bp.blogspot.com/-k7EQjMdNqY4/VgBwWVZTAmI/AAAAAAAABIA/-IlW95sJFjc/s1600/2.PNG"><img src="http://3.bp.blogspot.com/-k7EQjMdNqY4/VgBwWVZTAmI/AAAAAAAABIA/-IlW95sJFjc/s400/2.PNG" width="400" height="212" border="0" /></a>
 </div>
 
-During this capture I can see a &#8216;BrokerAgent.config&#8217; file referenced. Â (&#8220;C:\Program Files\Citrix\Virtual Desktop Agent\BrokerAgent.exe.config&#8221; ) Diving into it reveals some additional logging we can enable:
+During this capture I can see a 'BrokerAgent.config' file referenced. Â ("C:\Program Files\Citrix\Virtual Desktop Agent\BrokerAgent.exe.config" ) Diving into it reveals some additional logging we can enable:
 
 <table style="margin-left: auto; margin-right: auto; text-align: center;" cellspacing="0" cellpadding="0" align="center">
   <tr>
@@ -193,11 +193,11 @@ During this capture I can see a &#8216;BrokerAgent.config&#8217; file referenced
   </tr>
 </table>
 
-If we &#8216;enable&#8217; the debug portions and create the C:cdsLogs folder we can get some more information on what is going wrong.  
+If we 'enable' the debug portions and create the C:cdsLogs folder we can get some more information on what is going wrong.  
 <a style="margin-left: auto; margin-right: auto;" href="http://4.bp.blogspot.com/-17zy6-ytTlI/VgBxA1tWgnI/AAAAAAAABIQ/DtICtowp5aI/s1600/4.PNG"><img src="http://4.bp.blogspot.com/-17zy6-ytTlI/VgBxA1tWgnI/AAAAAAAABIQ/DtICtowp5aI/s320/4.PNG" width="320" height="94" border="0" /></a>  
 Logging Enabled
 
-Stopping the &#8216;Citrix Desktop Service&#8217;, editing the .config file, creating the C:\cdslogs folder and starting the service yielded additional information.
+Stopping the 'Citrix Desktop Service', editing the .config file, creating the C:\cdslogs folder and starting the service yielded additional information.
 
 <pre class="lang:default decode:true ">21/09/15 15:04:35.913 3796 2676: BrokerAgent:AgentService() - entry.
 21/09/15 15:04:35.913 3796 2676: BrokerAgent:AgentService.InitializeComponent entry
@@ -274,20 +274,20 @@ Stopping the &#8216;Citrix Desktop Service&#8217;, editing the .config file, cre
    at Citrix.Cds.BrokerAgent.AgentToStack.ConnectToStackControlCOMServer()
    at Citrix.Cds.BrokerAgent.StackManager.ConnectToStackControlComServer(StackCapabilities& actualStackCapabilities, Int32 retryCount)</pre>
 
-We have a &#8216;COM exception&#8217;. Â The nice thing about this log file is we can compare the time stamps to the procmon logs and determine what was happening when this failed.
+We have a 'COM exception'. Â The nice thing about this log file is we can compare the time stamps to the procmon logs and determine what was happening when this failed.
 
 <div style="clear: both; text-align: center;">
   <a style="margin-left: 1em; margin-right: 1em;" href="http://1.bp.blogspot.com/-m_4BvUX74Vg/VgBzOviI0_I/AAAAAAAABIc/bHwCefWi7mE/s1600/5.PNG"><img src="http://1.bp.blogspot.com/-m_4BvUX74Vg/VgBzOviI0_I/AAAAAAAABIc/bHwCefWi7mE/s400/5.PNG" width="400" height="182" border="0" /></a>
 </div>
 
-It appears we are missing [SCService64.exe](http://www.basvankaam.com/2014/12/15/xendesktop-7-x-fma-internals-continued-the-server-vda-in-more-detail/) from our Citrix installation. Â What is &#8216;SCService64.exe&#8217;? Â The registry tells me it&#8217;s the &#8216;IStackControl Type Library&#8217;. Â Which matches up with the error &#8216;ConnectToStackControlCOMServer&#8217;.
+It appears we are missing [SCService64.exe](http://www.basvankaam.com/2014/12/15/xendesktop-7-x-fma-internals-continued-the-server-vda-in-more-detail/) from our Citrix installation. Â What is 'SCService64.exe'? Â The registry tells me it's the 'IStackControl Type Library'. Â Which matches up with the error 'ConnectToStackControlCOMServer'.
 
 So, it appears we need to install SCService64.exe. Â I do not know why or how it went missing but I suspect we can copy it over or extract from the Citrix source files if needed.
 
-To extract the SCService64.exe source file, we can create an administrative installation of the &#8220;TS&#8221; VDA:
+To extract the SCService64.exe source file, we can create an administrative installation of the "TS" VDA:
 
-msiexec /a &#8220;\x79-serversoftwareCitrixXenApp\_and\_XenDesktop7\_6x64Virtual Desktop ComponentsTSIcaTS\_x64.msi&#8221;  
-This makes a folder on the root of the C: called &#8220;Citrix&#8221; which installs all the files there:
+msiexec /a "\x79-serversoftwareCitrix&\_and\_XenDesktop7\_6x64Virtual Desktop ComponentsTSIcaTS\_x64.msi"  
+This makes a folder on the root of the C: called "Citrix" which installs all the files there:
 
 <div>
 </div>
@@ -299,9 +299,9 @@ This makes a folder on the root of the C: called &#8220;Citrix&#8221; which inst
 <div>
 </div>
 
-I installed the Citrix VDA &#8220;WS&#8221; with /servervdi for some testing, but prior to that I had the regular &#8220;TS&#8221; VDA installed. Â Perhaps some combination of my installation/uninstallation caused my issues.
+I installed the Citrix VDA "WS" with /servervdi for some testing, but prior to that I had the regular "TS" VDA installed. Â Perhaps some combination of my installation/uninstallation caused my issues.
 
-Anyways, copying the SCService64.exe to the C:\Program Files (x86)\Citrix\System32 folder and restarting the &#8216;Citrix Desktop Service&#8217; resulted in&#8230;
+Anyways, copying the SCService64.exe to the C:\Program Files (x86)\Citrix\System32 folder and restarting the 'Citrix Desktop Service' resulted in...
 
 <div style="clear: both; text-align: center;">
   <a style="margin-left: 1em; margin-right: 1em;" href="http://3.bp.blogspot.com/-4mV9RKsi_VU/VgB9n5FLy4I/AAAAAAAABI0/Ddqq3qX5Ecw/s1600/7.PNG"><img src="http://3.bp.blogspot.com/-4mV9RKsi_VU/VgB9n5FLy4I/AAAAAAAABI0/Ddqq3qX5Ecw/s320/7.PNG" width="320" height="67" border="0" /></a>
@@ -311,7 +311,7 @@ Registered, Hurray!
 
 And what about our log file?
 
-Previously it died around &#8216;Setting up ALL LaunchManager WCF service&#8217;; this time we see:
+Previously it died around 'Setting up ALL LaunchManager WCF service'; this time we see:
 
 <pre class="lang:default decode:true ">21/09/15 15:48:44.282 3728 6880: BrokerAgent:DoAgentStartWcfServices: Setting up WCF services
 21/09/15 15:48:44.282 3728 6880: BrokerAgent:Setting up ALL LaunchManager WCF service
@@ -335,7 +335,7 @@ Previously it died around &#8216;Setting up ALL LaunchManager WCF service&#8217;
 
 Hurray! Â It continues and operates without issue.
 
-Be sure to re-disabled the logging on the BrokerAgent.config file and restart the service because I&#8217;ve found this BA_1.log can get to become a huge file.
+Be sure to re-disabled the logging on the BrokerAgent.config file and restart the service because I've found this BA_1.log can get to become a huge file.
 
 Running XDPing this time results in [OK] across where the errors once were.
 

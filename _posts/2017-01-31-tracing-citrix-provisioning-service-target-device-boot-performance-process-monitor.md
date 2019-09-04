@@ -1,6 +1,6 @@
 ---
 id: 1986
-title: 'Tracing Citrix Provisioning Service (PVS) Target Device Boot Performance &#8211; Process Monitor'
+title: 'Tracing Citrix Provisioning Service (PVS) Target Device Boot Performance - Process Monitor'
 date: 2017-01-31T07:33:10-06:00
 author: trententtye
 layout: post
@@ -31,7 +31,7 @@ tags:
 ---
 Non-Persistent Citrix PVS Target Devices have more complicated boot processes then a standard VM. Â This is because the Citrix PVS server components play a big role in acting as the boot disk. Â They send UDP packets over the network to the target device. Â This adds a delay that you simply cannot avoid (albeit, possibly a small one but there is no denying network communication should be slower than a local hard disk/SSD).
 
-One of the things we can do is set the PVS target devices up in such a way that we can get real, measurable data on what the target device is doing while it&#8217;s booting. Â This will give us visibility into what we may actually require for our target devices.
+One of the things we can do is set the PVS target devices up in such a way that we can get real, measurable data on what the target device is doing while it's booting. Â This will give us visibility into what we may actually require for our target devices.
 
 There are two programs that I use to measure boot performance. Â [Windows Performance Toolkit](https://msdn.microsoft.com/en-us/windows/hardware/commercialize/test/wpt/index) and [Process Monitor](https://technet.microsoft.com/en-us/sysinternals/processmonitor.aspx). Â I would not recommend running both at the same time because the logging does add some overhead (especially procmon in my humble experience).
 
@@ -41,11 +41,11 @@ The next bit of this post will detail how to offline inject the necessary softwa
 
 For Process Monitor you must extract the boot driver and inject the process monitor executable itself into the image.
 
-To extract the boot driver simple launch process monitor, under the Options menu, select &#8216;Enable Boot Logging&#8217;
+To extract the boot driver simple launch process monitor, under the Options menu, select 'Enable Boot Logging'
 
 <img class="aligncenter size-full wp-image-1988" src="http://theorypc.ca/wp-content/uploads/2017/01/ProcMon_BootLogging-1.png" alt="" width="590" height="326" srcset="http://theorypc.ca/wp-content/uploads/2017/01/ProcMon_BootLogging-1.png 590w, http://theorypc.ca/wp-content/uploads/2017/01/ProcMon_BootLogging-1-300x166.png 300w" sizes="(max-width: 590px) 100vw, 590px" /> 
 
-Then browse to your C:\Windows\System32\Drivers folder, and with &#8220;Show Hidden Files&#8221; enabled, copy out Procmon23.sys
+Then browse to your C:\Windows\System32\Drivers folder, and with "Show Hidden Files" enabled, copy out Procmon23.sys
 
 <img class="aligncenter size-full wp-image-1989" src="http://theorypc.ca/wp-content/uploads/2017/01/Procmon23sys.png" alt="" width="817" height="472" srcset="http://theorypc.ca/wp-content/uploads/2017/01/Procmon23sys.png 817w, http://theorypc.ca/wp-content/uploads/2017/01/Procmon23sys-300x173.png 300w, http://theorypc.ca/wp-content/uploads/2017/01/Procmon23sys-768x444.png 768w" sizes="(max-width: 817px) 100vw, 817px" /> 
 
@@ -88,7 +88,7 @@ On next boot you will have captured boot information:
   <video class="wp-video-shortcode" id="video-1986-19" width="1140" height="944" preload="metadata" controls="controls"><source type="video/mp4" src="http://theorypc.ca/wp-content/uploads/2017/01/ProcMon_PVS_BootLogging-1.mp4?_=19" /><a href="http://theorypc.ca/wp-content/uploads/2017/01/ProcMon_PVS_BootLogging-1.mp4">http://theorypc.ca/wp-content/uploads/2017/01/ProcMon_PVS_BootLogging-1.mp4</a></video>
 </div>
 
-To see how to use [Windows Performance Toolkit for boot tracing Citrix PVS Target Device&#8217;s click here.](https://theorypc.ca/2017/01/31/tracing-citrix-provisioning-service-target-device-boot-performance-windows-performance-toolkit/)
+To see how to use [Windows Performance Toolkit for boot tracing Citrix PVS Target Device's click here.](https://theorypc.ca/2017/01/31/tracing-citrix-provisioning-service-target-device-boot-performance-windows-performance-toolkit/)
 
 <!-- AddThis Advanced Settings generic via filter on the_content -->
 

@@ -20,11 +20,11 @@ categories:
 tags:
   - Citrix
   - Performance
-  - XenApp
+  - &
 ---
 Previously, we encountered performance issues with the Citrix Web Interface due to our user load. Â I devised a test using the Microsoft WCAT to hammer the web interface servers. Â We found that after removing the ASPX processing limitation, logins were slow and we found that some XML brokers were taking a long time to respond.
 
-I&#8217;ve been tasked with finding out why. Â The Citrix XML server is a basic web server that takes an XML post, processes it and spits back a XML file in response. Â To test the performance of the XML server I created a PowerShell script to send the same XML request that occurs when you login through the web interface.
+I've been tasked with finding out why. Â The Citrix XML server is a basic web server that takes an XML post, processes it and spits back a XML file in response. Â To test the performance of the XML server I created a PowerShell script to send the same XML request that occurs when you login through the web interface.
 
 XML-Test.ps1:
 
@@ -44,24 +44,24 @@ $serverPort = $server.Port
 $uri = "http://{0}:{1}/scripts/wpnbr.dll" -f $serverName, $serverPort
 
 $soap = @'
-&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;!DOCTYPE NFuseProtocol SYSTEM "NFuse.dtd"&gt;
-&lt;NFuseProtocol version="5.4"&gt;
-    &lt;RequestAppData&gt;
-        &lt;Scope traverse="subtree"&gt;&lt;/Scope&gt;
-        &lt;DesiredDetails&gt;permissions&lt;/DesiredDetails&gt;
-        &lt;ServerType&gt;all&lt;/ServerType&gt;
-        &lt;ClientType&gt;ica30&lt;/ClientType&gt;
-        &lt;ClientType&gt;content&lt;/ClientType&gt;
-        &lt;Credentials&gt;
-            &lt;UserName&gt;trententtye&lt;/UserName&gt;
-            &lt;Password encoding="ctx1"&gt;PASSWORDLOL&lt;/Password&gt;
-            &lt;Domain type="NT"&gt;HEALTHY&lt;/Domain&gt;
-        &lt;/Credentials&gt;
-        &lt;ClientName&gt;WI_Sl2G71be93Q-ZNqOk&lt;/ClientName&gt;
-        &lt;ClientAddress addresstype="dot"&gt;10.133.74.215&lt;/ClientAddress&gt;
-    &lt;/RequestAppData&gt;
-&lt;/NFuseProtocol&gt;
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE NFuseProtocol SYSTEM "NFuse.dtd">
+<NFuseProtocol version="5.4">
+    <RequestAppData>
+        <Scope traverse="subtree"></Scope>
+        <DesiredDetails>permissions</DesiredDetails>
+        <ServerType>all</ServerType>
+        <ClientType>ica30</ClientType>
+        <ClientType>content</ClientType>
+        <Credentials>
+            <UserName>trententtye</UserName>
+            <Password encoding="ctx1">PASSWORDLOL</Password>
+            <Domain type="NT">HEALTHY</Domain>
+        </Credentials>
+        <ClientName>WI_Sl2G71be93Q-ZNqOk</ClientName>
+        <ClientAddress addresstype="dot">10.133.74.215</ClientAddress>
+    </RequestAppData>
+</NFuseProtocol>
 '@
 
 $numberOfThreads = Get-counter -Counter "\Citrix MetaFrame Presentation Server\Number of XML threads" -ComputerName $serverName
@@ -180,7 +180,7 @@ $output | out-file -append "\\wsctxapp301t\d$\WI_Load_Testing\OutFile.txt"
             url = "/scripts/wpnbr.dll";
             verb = POST;
                         port = 8080;
-            postdata = "&lt;?xml version=\"1.0\" encoding=\"UTF-8\"?&gt;&lt;!DOCTYPE NFuseProtocol SYSTEM \"NFuse.dtd\"&gt;&lt;NFuseProtocol version=\"5.4\"&gt;&lt;RequestAppData&gt;&lt;Scope traverse=\"subtree\"&gt;&lt;/Scope&gt;&lt;DesiredDetails&gt;permissions&lt;/DesiredDetails&gt;&lt;ServerType&gt;all&lt;/ServerType&gt;&lt;ClientType&gt;ica30&lt;/ClientType&gt;&lt;ClientType&gt;content&lt;/ClientType&gt;&lt;Credentials&gt;&lt;UserName&gt;trententtye&lt;/UserName&gt;&lt;Password encoding=\"ctx1\"&gt;PASSWORDLOL&lt;/Password&gt;&lt;Domain type=\"NT\"&gt;HEALTHY&lt;/Domain&gt;&lt;/Credentials&gt;&lt;ClientName&gt;WSCTXAPP301T&lt;/ClientName&gt;&lt;ClientAddress addresstype=\"dot\"&gt;10.132.169.130&lt;/ClientAddress&gt;&lt;/RequestAppData&gt;&lt;/NFuseProtocol&gt;";
+            postdata = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><!DOCTYPE NFuseProtocol SYSTEM \"NFuse.dtd\"><NFuseProtocol version=\"5.4\"><RequestAppData><Scope traverse=\"subtree\"></Scope><DesiredDetails>permissions</DesiredDetails><ServerType>all</ServerType><ClientType>ica30</ClientType><ClientType>content</ClientType><Credentials><UserName>trententtye</UserName><Password encoding=\"ctx1\">PASSWORDLOL</Password><Domain type=\"NT\">HEALTHY</Domain></Credentials><ClientName>WSCTXAPP301T</ClientName><ClientAddress addresstype=\"dot\">10.132.169.130</ClientAddress></RequestAppData></NFuseProtocol>";
             setheader {
                 name = "Content-Type";
                 value = "text/xml";
@@ -207,7 +207,7 @@ $output | out-file -append "\\wsctxapp301t\d$\WI_Load_Testing\OutFile.txt"
     </div>
     
     <div>
-      start &#8220;&#8221; wcclient.exe localhost
+      start "" wcclient.exe localhost
     </div>
     
     <div>
@@ -235,7 +235,7 @@ $output | out-file -append "\\wsctxapp301t\d$\WI_Load_Testing\OutFile.txt"
     </table>
     
     <div>
-      With this testing we can now try to improve the performance of the XML broker. Â We monitored one of our brokers and made some changes to it and reran the test to see the impact. Â The largest positive impact we saw was adding CPU&#8217;s to the XML brokers. Â The following graphs illustrates the differences we saw:
+      With this testing we can now try to improve the performance of the XML broker. Â We monitored one of our brokers and made some changes to it and reran the test to see the impact. Â The largest positive impact we saw was adding CPU's to the XML brokers. Â The following graphs illustrates the differences we saw:
     </div>
     
     <div>
@@ -260,14 +260,14 @@ $output | out-file -append "\\wsctxapp301t\d$\WI_Load_Testing\OutFile.txt"
     </div>
     
     <div>
-      I stopped the graph at around 20,000ms for responding to XML request for the top graph, and the maximum number of concurrent connections for the bottom graph at 3,000ms. Â 3,000ms would be very high for XML enumeration in my humble opinion, but still tolerable. Â On a single CPU system, XML enumeration can only sustain about 12-15 concurrent requests before it tops out, 2 CPU systems do slightly better at 24-28 concurrent requests and 4CPU at 60 concurrent requests. Â 8 CPU&#8217;s and we exceed 3,000ms at 120 concurrent requests. Â Ideally, you would keep all requests under 1,000ms, which for 8 CPU is at 30 concurrent sessions, and 21 sessions for 4CPU. Â 1 CPU can only sustain about 2 concurrent requests to stay under 1,000ms while 2 CPU can sustain about 5 concurrent requests.
+      I stopped the graph at around 20,000ms for responding to XML request for the top graph, and the maximum number of concurrent connections for the bottom graph at 3,000ms. Â 3,000ms would be very high for XML enumeration in my humble opinion, but still tolerable. Â On a single CPU system, XML enumeration can only sustain about 12-15 concurrent requests before it tops out, 2 CPU systems do slightly better at 24-28 concurrent requests and 4CPU at 60 concurrent requests. Â 8 CPU's and we exceed 3,000ms at 120 concurrent requests. Â Ideally, you would keep all requests under 1,000ms, which for 8 CPU is at 30 concurrent sessions, and 21 sessions for 4CPU. Â 1 CPU can only sustain about 2 concurrent requests to stay under 1,000ms while 2 CPU can sustain about 5 concurrent requests.
     </div>
     
     <div>
     </div>
     
     <div>
-      Again, this is the same query that the web interface sends when you login to a farm. Â So if you have 10 farms and they all take 1,000ms to respond to an XML request you will sit at the login screen for 10 seconds. Â Storefront allows parallel requests which would reduce the time to 1 second (potentially) but for Web Interface (and even Store Front), having an optimized XML broker configuration is ideal and, apparently, is very dependent on the number of CPU&#8217;s you can give it. Â Recommendation:
+      Again, this is the same query that the web interface sends when you login to a farm. Â So if you have 10 farms and they all take 1,000ms to respond to an XML request you will sit at the login screen for 10 seconds. Â Storefront allows parallel requests which would reduce the time to 1 second (potentially) but for Web Interface (and even Store Front), having an optimized XML broker configuration is ideal and, apparently, is very dependent on the number of CPU's you can give it. Â Recommendation:
     </div>
     
     <div>

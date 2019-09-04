@@ -23,8 +23,8 @@ tags:
   - scripting
 ---
 <pre class="lang:batch decode:true ">FOR /L %A IN (28,1,60) DO (
-MCLI run assigndisklocator -p disklocatorname=XenApp65Pn03 sitename=AHI storename=XenApp devicename=WSCTXAPP4%A
-MCLI run removedisklocator -p disklocatorname=XenApp65Pn01 sitename=AHI storename=XenApp devicename=WSCTXAPP4%A
+MCLI run assigndisklocator -p disklocatorname=&65Pn03 sitename=AHI storename=& devicename=WSCTXAPP4%A
+MCLI run removedisklocator -p disklocatorname=&65Pn01 sitename=AHI storename=& devicename=WSCTXAPP4%A
 )</pre>
 
 <div>

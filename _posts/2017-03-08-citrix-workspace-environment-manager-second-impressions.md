@@ -37,7 +37,7 @@ tags:
   </p>
   
   <p>
-    How would you apply this setting without WEM? Â The setting is targeted to a specific set of servers that we&#8217;ve put into a group, AND the user must be a member of at least 1 out of about 10 groups for it to apply. Â And this is what we&#8217;ve set. Â It seems fairly logical and the the way the targeting editor is setup it&#8217;s actually fairly easy to follow.
+    How would you apply this setting without WEM? Â The setting is targeted to a specific set of servers that we've put into a group, AND the user must be a member of at least 1 out of about 10 groups for it to apply. Â And this is what we've set. Â It seems fairly logical and the the way the targeting editor is setup it's actually fairly easy to follow.
   </p>
 </div>
 
@@ -97,7 +97,7 @@ Executing this command does result in checking to see if the computer is a membe
 
 Next on the Group Policy Preference is the â€˜AND â€“ ORâ€™.Â We have the filter condition now that ensures these values will only be applied if the computer is in a certain group.Â Now we need the value to apply if the user is a member of a certain group.
 
-An easy solution might be to create a super-group &#8220;HungAppTimeout&#8221; or some such and add all the groups I want that value to apply to that group. Â Another alternative is we can &#8216;configure&#8217; each user group with the &#8216;server must belong to group&#8217; filter and that should satisfy the same requirements. Â I chose this route for our evaluation of WEM to avoid creating large swaths of groups simply for the purpose of applying a single registry entry.
+An easy solution might be to create a super-group "HungAppTimeout" or some such and add all the groups I want that value to apply to that group. Â Another alternative is we can 'configure' each user group with the 'server must belong to group' filter and that should satisfy the same requirements. Â I chose this route for our evaluation of WEM to avoid creating large swaths of groups simply for the purpose of applying a single registry entry.
 
 Instead of doing the â€˜ORâ€™, we select the individual groups that this check would be against and actually specify that we apply this settings to that group.
 

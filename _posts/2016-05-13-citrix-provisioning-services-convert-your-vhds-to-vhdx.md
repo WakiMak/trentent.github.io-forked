@@ -1,6 +1,6 @@
 ---
 id: 1468
-title: 'Citrix Provisioning Services &#8211; Convert your VHD&#8217;s to VHDX'
+title: 'Citrix Provisioning Services - Convert your VHD's to VHDX'
 date: 2016-05-13T12:49:57-06:00
 author: trententtye
 layout: post

@@ -1,6 +1,6 @@
 ---
 id: 522
-title: 'Citrix Provisioning Services &#8211; Updating VMWare Tools and Target Device software &#8212; with all native tools'
+title: 'Citrix Provisioning Services - Updating VMWare Tools and Target Device software - with all native tools'
 date: 2016-04-05T16:01:00-06:00
 author: trententtye
 layout: post
@@ -546,7 +546,7 @@ tags:
                                   </div>
                                   
                                   <div dir="ltr">
-                                    Cvhdmount.exe –p 1 \serversharevDisks-XenAppXenApp65Tn01.13.avhd
+                                    Cvhdmount.exe –p 1 \serversharevDisks-&&65Tn01.13.avhd
                                   </div>
                                   
                                   <p>
@@ -1128,7 +1128,7 @@ tags:
                                           
                                           <td>
                                             <div dir="ltr">
-                                              Select the associated BLD server of this vDisk and right-click and select ‘Edit Settings…’ � In this example, the vDisk I am modifying is XenApp65Tn01 which is associated with BLD server WSCTXBLD351T
+                                              Select the associated BLD server of this vDisk and right-click and select ‘Edit Settings…’ � In this example, the vDisk I am modifying is &65Tn01 which is associated with BLD server WSCTXBLD351T
                                             </div>
                                             
                                             <div dir="ltr">
@@ -1308,7 +1308,7 @@ tags:
                                           
                                           <td>
                                             <div dir="ltr">
-                                              Select the associated BLD server of this vDisk and right-click and select ‘Edit Settings…’ � In this example, the vDisk I am modifying is XenApp65Tn01 which is associated with BLD server WSCTXBLD351T
+                                              Select the associated BLD server of this vDisk and right-click and select ‘Edit Settings…’ � In this example, the vDisk I am modifying is &65Tn01 which is associated with BLD server WSCTXBLD351T
                                             </div>
                                             
                                             <div dir="ltr">
@@ -2509,7 +2509,7 @@ tags:
                                                                       </div>
                                                                       
                                                                       <div dir="ltr">
-                                                                        Cvhdmount.exe –p 1 \serversharevDisks-XenAppXenApp65Tn01.13.avhd
+                                                                        Cvhdmount.exe –p 1 \serversharevDisks-&&65Tn01.13.avhd
                                                                       </div>
                                                                       
                                                                       <p>

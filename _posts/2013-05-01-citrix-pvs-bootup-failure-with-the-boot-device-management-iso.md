@@ -45,7 +45,7 @@ When I did a Wireshark of the line I saw the BDM.ISO boot send out DHCPDISCOVER 
   </tr>
 </table>
 
-The DHCP server was not responding to the DHCPDISCOVER.Â This only occurred with the unicast packet and for some reason was &#8220;load balance to peer&#8221;.Â However it&#8217;s setup, it appears UNICAST BOOTP packets are setup for load balancing but not sending a response.
+The DHCP server was not responding to the DHCPDISCOVER.Â This only occurred with the unicast packet and for some reason was "load balance to peer".Â However it's setup, it appears UNICAST BOOTP packets are setup for load balancing but not sending a response.
 
 <table style="margin-left: auto; margin-right: auto; text-align: center;" cellspacing="0" cellpadding="0" align="center">
   <tr>

@@ -1,6 +1,6 @@
 ---
 id: 558
-title: 'AppV5 &#8211; Recipe for ScreenTest III'
+title: 'AppV5 - Recipe for ScreenTest III'
 date: 2015-07-03T00:53:00-06:00
 author: trententtye
 layout: post
@@ -24,11 +24,11 @@ tags:
 This is the most recent app I sequenced and a good template for how I am going to do my recipes.
 
 Prerequisites:  
-[AppV5 &#8211; Sequencing first steps](http://trentent.blogspot.ca/2015/07/appv5-sequencing-first-steps.html)
+[AppV5 - Sequencing first steps](http://trentent.blogspot.ca/2015/07/appv5-sequencing-first-steps.html)
 
 Recipe:
 
-I create install.cmd files for all of my applications so that, if required in the future, I can re-sequence an application quickly completely through script or via one of those &#8216;PowerShell AppV5 automated GUI&#8217;s&#8217;.
+I create install.cmd files for all of my applications so that, if required in the future, I can re-sequence an application quickly completely through script or via one of those 'PowerShell AppV5 automated GUI's'.
 
 <span style="font-family: Helvetica Neue, Arial, Helvetica, sans-serif;">install.cmd</span>
 
@@ -112,7 +112,7 @@ del /q "C:\Users\Public\Desktop\ScreenTest.lnk"</pre>
 </div>
 
 <div>
-  1) Select &#8216;install.cmd&#8217; and click &#8216;Next&#8217;
+  1) Select 'install.cmd' and click 'Next'
 </div>
 
 <div style="clear: both; text-align: center;">
@@ -123,7 +123,7 @@ del /q "C:\Users\Public\Desktop\ScreenTest.lnk"</pre>
 </div>
 
 <div>
-  2) Name the package and click &#8216;Next&#8217;
+  2) Name the package and click 'Next'
 </div>
 
 <div style="clear: both; text-align: center;">
@@ -131,14 +131,14 @@ del /q "C:\Users\Public\Desktop\ScreenTest.lnk"</pre>
 </div>
 
 <div>
-  3) Let the install script do its thing&#8230;</p> 
+  3) Let the install script do its thing...</p> 
   
   <div style="clear: both; text-align: center;">
     <a style="margin-left: 1em; margin-right: 1em;" href="http://2.bp.blogspot.com/-GlODZ1nptF0/VZYt_QTX4hI/AAAAAAAAA3Y/LVdc9m2Zhz4/s1600/2015-07-03%2B00_37_40.gif"><img src="http://2.bp.blogspot.com/-GlODZ1nptF0/VZYt_QTX4hI/AAAAAAAAA3Y/LVdc9m2Zhz4/s640/2015-07-03%2B00_37_40.gif" width="640" height="504" border="0" /></a>
   </div>
   
   <p>
-    4) AppV5 &#8211; <a href="http://trentent.blogspot.com/2015/07/appv5-post-install-sequencing-steps.html">Post install sequencing steps</a>
+    4) AppV5 - <a href="http://trentent.blogspot.com/2015/07/appv5-post-install-sequencing-steps.html">Post install sequencing steps</a>
   </p>
   
   <p>

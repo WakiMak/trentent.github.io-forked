@@ -1,6 +1,6 @@
 ---
 id: 1647
-title: 'ControlUp &#8211; List AppV5 recent events on various servers'
+title: 'ControlUp - List AppV5 recent events on various servers'
 date: 2016-08-26T15:15:13-06:00
 author: trententtye
 layout: post
@@ -20,7 +20,7 @@ tags:
   - ControlUp
   - PowerShell
   - scripting
-  - XenApp
+  - &
 ---
 [David Falkus just posted a blog post](https://blogs.technet.microsoft.com/virtualshell/2016/08/25/app-v-5-troubleshooting-the-client-using-the-event-logs/) on using Powershell to combine multiple AppV5 logs into a single view and orders them chronologically so you can see the events as they occurred.
 
@@ -44,7 +44,7 @@ Here is the recipe for it:
 
 And the script:
 
-<pre class="lang:ps decode:true  ">&lt;#
+<pre class="lang:ps decode:true  "><#
     .SYNOPSIS
     This script will return logging information amalgamating the AppV Admin, Operational and Virtual Applications logs.
 
@@ -57,17 +57,17 @@ And the script:
     LASTEDIT: 08/26/2016
     VERSI0N : 1.0
 
-#&gt;
+#>
 
 # Adding threading culture change so that get-winevent picks up the messages, if PS culture is set to none en-US then the script will fail
 [System.Threading.Thread]::CurrentThread.CurrentCulture = New-Object "System.Globalization.CultureInfo" "en-US"
 
 $FilterXML_Admin = @"
-&lt;QueryList&gt;
-  &lt;Query Id="0" Path="Microsoft-AppV-Client/Admin"&gt;
-    &lt;Select Path="Microsoft-AppV-Client/Admin"&gt;*[System[TimeCreated[timediff(@SystemTime) &lt;= 86400000]]]&lt;/Select&gt;
-  &lt;/Query&gt;
-&lt;/QueryList&gt;
+<QueryList>
+  <Query Id="0" Path="Microsoft-AppV-Client/Admin">
+    <Select Path="Microsoft-AppV-Client/Admin">*[System[TimeCreated[timediff(@SystemTime) <= 86400000]]]</Select>
+  </Query>
+</QueryList>
 "@
 
 Try {
@@ -81,12 +81,12 @@ Try {
 }
 
 $FilterXML_Operational = @"
-&lt;QueryList&gt;
-  &lt;Query Id="0" Path="Microsoft-AppV-Client/Operational"&gt;
-    &lt;Select Path="Microsoft-AppV-Client/Operational"&gt;*[System[TimeCreated[timediff(@SystemTime) &lt;= 86400000]]]&lt;/Select&gt;
-    &lt;Suppress Path="Microsoft-AppV-Client/Operational"&gt;*[System[(EventID=101 or EventID=102 or EventID=14023 or EventID=14024 or EventID=14025 or EventID=14026)]]&lt;/Suppress&gt;
-  &lt;/Query&gt;
-&lt;/QueryList&gt;
+<QueryList>
+  <Query Id="0" Path="Microsoft-AppV-Client/Operational">
+    <Select Path="Microsoft-AppV-Client/Operational">*[System[TimeCreated[timediff(@SystemTime) <= 86400000]]]</Select>
+    <Suppress Path="Microsoft-AppV-Client/Operational">*[System[(EventID=101 or EventID=102 or EventID=14023 or EventID=14024 or EventID=14025 or EventID=14026)]]</Suppress>
+  </Query>
+</QueryList>
 "@
 
 Try {
@@ -100,11 +100,11 @@ Try {
 }
 
 $FilterXML_VirtApps = @"
-&lt;QueryList&gt;
-  &lt;Query Id="0" Path="Microsoft-AppV-Client/Virtual Applications"&gt;
-    &lt;Select Path="Microsoft-AppV-Client/Virtual Applications"&gt;*[System[TimeCreated[timediff(@SystemTime) &lt;= 86400000]]]&lt;/Select&gt;
-  &lt;/Query&gt;
-&lt;/QueryList&gt;
+<QueryList>
+  <Query Id="0" Path="Microsoft-AppV-Client/Virtual Applications">
+    <Select Path="Microsoft-AppV-Client/Virtual Applications">*[System[TimeCreated[timediff(@SystemTime) <= 86400000]]]</Select>
+  </Query>
+</QueryList>
 "@
 
 Try {

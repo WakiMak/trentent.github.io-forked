@@ -1,6 +1,6 @@
 ---
 id: 538
-title: 'AppV5 &#8211; Using Application Compatibility Toolkit to solve issues'
+title: 'AppV5 - Using Application Compatibility Toolkit to solve issues'
 date: 2015-11-26T18:16:00-06:00
 author: trententtye
 layout: post
@@ -20,13 +20,13 @@ categories:
 ---
 C:
 
-We have several applications that install folders in the root of the C: drive. Â For most AppV5 implementations, this wouldn&#8217;t be an issue but we modify our [PackageInstallationRoot](http://trentent.blogspot.ca/2014/08/appv-5-changing-packageinstallationroot.html) folder so the token {AppVPackageDrive} turns into the drive letter specified in the PackageInstallationRoot registry key. Â For us, that&#8217;s the D: drive. Â This causes an issue because when you sequence an application to C: the application has an expectation for it to be there. Â Ideally, AppV takes care of that by the use of the tokens, but this breaks down when applications are hardcoded.
+We have several applications that install folders in the root of the C: drive. Â For most AppV5 implementations, this wouldn't be an issue but we modify our [PackageInstallationRoot](http://trentent.blogspot.ca/2014/08/appv-5-changing-packageinstallationroot.html) folder so the token {AppVPackageDrive} turns into the drive letter specified in the PackageInstallationRoot registry key. Â For us, that's the D: drive. Â This causes an issue because when you sequence an application to C: the application has an expectation for it to be there. Â Ideally, AppV takes care of that by the use of the tokens, but this breaks down when applications are hardcoded.
 
 <div>
 </div>
 
 <div>
-  So far, we&#8217;ve been able to work around these issues by using junctions or setting the PVAD to the folder as the PVAD acts literally on the value specified, essentially becoming a hard coded, custom, token.
+  So far, we've been able to work around these issues by using junctions or setting the PVAD to the folder as the PVAD acts literally on the value specified, essentially becoming a hard coded, custom, token.
 </div>
 
 <div>
@@ -48,7 +48,7 @@ We have several applications that install folders in the root of the C: drive. Â
   
   <tr>
     <td style="text-align: center;">
-      Hello my nemesis&#8217;s
+      Hello my nemesis's
     </td>
   </tr>
 </table>
@@ -88,7 +88,7 @@ We have several applications that install folders in the root of the C: drive. Â
 </div>
 
 <div>
-  So this isn&#8217;t going to work. Â How can we make it work?
+  So this isn't going to work. Â How can we make it work?
 </div>
 
 <div>
@@ -116,7 +116,7 @@ We have several applications that install folders in the root of the C: drive. Â
 </div>
 
 <div>
-  Launch the &#8220;Compatibility Administrator (32-bit)&#8221;
+  Launch the "Compatibility Administrator (32-bit)"
 </div>
 
 <div style="clear: both; text-align: center;">
@@ -130,7 +130,7 @@ We have several applications that install folders in the root of the C: drive. Â
 </div>
 
 <div>
-  Right-click on &#8220;New Database&#8221; and select &#8220;Create New > Application Fix&#8221;
+  Right-click on "New Database" and select "Create New > Application Fix"
 </div>
 
 <div style="clear: both; text-align: center;">
@@ -144,7 +144,7 @@ We have several applications that install folders in the root of the C: drive. Â
 </div>
 
 <div>
-  Enter the details and browse to the application and click &#8220;Next&#8221;
+  Enter the details and browse to the application and click "Next"
 </div>
 
 <div style="clear: both; text-align: center;">
@@ -158,7 +158,7 @@ We have several applications that install folders in the root of the C: drive. Â
 </div>
 
 <div>
-  Click &#8216;Next&#8217; on the Compatibility Mode screen
+  Click 'Next' on the Compatibility Mode screen
 </div>
 
 <div style="clear: both; text-align: center;">
@@ -172,7 +172,7 @@ We have several applications that install folders in the root of the C: drive. Â
 </div>
 
 <div>
-  Select &#8216;CorrectFilePaths&#8217; and then click &#8216;Parameters&#8217;
+  Select 'CorrectFilePaths' and then click 'Parameters'
 </div>
 
 <div style="clear: both; text-align: center;">
@@ -186,7 +186,7 @@ We have several applications that install folders in the root of the C: drive. Â
 </div>
 
 <div>
-  In command line, enter the path that should exist, then a semi-colon divider &#8220;;&#8221; and then the target path:
+  In command line, enter the path that should exist, then a semi-colon divider ";" and then the target path:
 </div>
 
 <div>
@@ -194,7 +194,7 @@ We have several applications that install folders in the root of the C: drive. Â
 </div>
 
 <div>
-  and click &#8220;OK&#8221;
+  and click "OK"
 </div>
 
 <div style="clear: both; text-align: center;">
@@ -223,7 +223,7 @@ We have several applications that install folders in the root of the C: drive. Â
 </div>
 
 <div>
-  Click &#8216;Next&#8217;
+  Click 'Next'
 </div>
 
 <div style="clear: both; text-align: center;">
@@ -241,7 +241,7 @@ We have several applications that install folders in the root of the C: drive. Â
 </div>
 
 <div>
-  Click &#8216;Save&#8217; then name your database and click &#8220;OK&#8221;:
+  Click 'Save' then name your database and click "OK":
 </div>
 
 <div style="clear: both; text-align: center;">
@@ -287,18 +287,18 @@ We have several applications that install folders in the root of the C: drive. Â
 </div>
 
 <div>
-  <pre class="lang:default decode:true ">&lt;machinescripts&gt;
-    &lt;addpackage&gt;
-      &lt;path&gt;sdbinst.exe&lt;/Path&gt;
-      &lt;arguments&gt;-q "\\healthy.bewell.ca\apps\appv\PortableApps\AppCompat_Fixes\PRIS_WEBFORMS_FIX.sdb"&lt;/Arguments&gt;
-      &lt;wait RollbackOnError="true" Timeout="30"/&gt;
-    &lt;/AddPackage&gt;
-    &lt;removepackage&gt;
-&lt;path&gt;sdbinst.exe&lt;/Path&gt;
-&lt;arguments&gt;-u "\\healthy.bewell.ca\apps\appv\PortableApps\AppCompat_Fixes\PRIS_WEBFORMS_FIX.sdb"&lt;/Arguments&gt;
-      &lt;wait RollbackOnError="false" Timeout="60"/&gt;
-    &lt;/RemovePackage&gt;
-  &lt;/MachineScripts&gt;</pre>
+  <pre class="lang:default decode:true "><machinescripts>
+    <addpackage>
+      <path>sdbinst.exe</Path>
+      <arguments>-q "\\healthy.bewell.ca\apps\appv\PortableApps\AppCompat_Fixes\PRIS_WEBFORMS_FIX.sdb"</Arguments>
+      <wait RollbackOnError="true" Timeout="30"/>
+    </AddPackage>
+    <removepackage>
+<path>sdbinst.exe</Path>
+<arguments>-u "\\healthy.bewell.ca\apps\appv\PortableApps\AppCompat_Fixes\PRIS_WEBFORMS_FIX.sdb"</Arguments>
+      <wait RollbackOnError="false" Timeout="60"/>
+    </RemovePackage>
+  </MachineScripts></pre>
 </div>
 
 <div>

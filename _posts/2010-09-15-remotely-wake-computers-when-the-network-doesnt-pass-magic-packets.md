@@ -1,6 +1,6 @@
 ---
 id: 718
-title: 'Remotely wake computers when the network doesn&#8217;t pass Magic Packets'
+title: 'Remotely wake computers when the network doesn't pass Magic Packets'
 date: 2010-09-15T00:17:00-06:00
 author: trententtye
 layout: post
@@ -20,13 +20,13 @@ categories:
 tags:
   - scripting
 ---
-I&#8217;m in a situation where the network we have doesn&#8217;t pass the UDP 9 magic packet to WoL (wake-on-LAN) remote computers. I&#8217;m not sure why this is, but I&#8217;ve developed a solution around it. It requires you to be a domain administrator (or local admin) because it uses PSEXEC and you need to copy a small command-line program to the local machine to execute. To do this in such a way that you can do multiple computers in one pass, you need to create a text file in the same folder as the batch file (upcoming). The text file has the following format:
+I'm in a situation where the network we have doesn't pass the UDP 9 magic packet to WoL (wake-on-LAN) remote computers. I'm not sure why this is, but I've developed a solution around it. It requires you to be a domain administrator (or local admin) because it uses PSEXEC and you need to copy a small command-line program to the local machine to execute. To do this in such a way that you can do multiple computers in one pass, you need to create a text file in the same folder as the batch file (upcoming). The text file has the following format:
 
 <div>
 </div>
 
 > <div>
->   <span style="font-family: 'courier new';">&#8220;COMPUTER-NAME-OF-SYSTEM-ON-SAME-LAN MAC-ADDRESS&#8221;</span>
+>   <span style="font-family: 'courier new';">"COMPUTER-NAME-OF-SYSTEM-ON-SAME-LAN MAC-ADDRESS"</span>
 > </div>
 
 <div>
@@ -38,7 +38,7 @@ I&#8217;m in a situation where the network we have doesn&#8217;t pass the UDP 9 
 </div>
 
 <div>
-  CAC00855FT is on and on the same LAN as CAC00700ZZ. I&#8217;m on computer SERVER1 and the link between SERVER1 and CAC00700ZZ doesn&#8217;t allow the magic packet to traverse. To wake up CAC00700ZZ, I need to send a WoL packet from CAC00855FT. To do this I create a text file called &#8220;computer-list.txt&#8221; and put in:
+  CAC00855FT is on and on the same LAN as CAC00700ZZ. I'm on computer SERVER1 and the link between SERVER1 and CAC00700ZZ doesn't allow the magic packet to traverse. To wake up CAC00700ZZ, I need to send a WoL packet from CAC00855FT. To do this I create a text file called "computer-list.txt" and put in:
 </div>
 
 <div>

@@ -1,6 +1,6 @@
 ---
 id: 2145
-title: 'ControlUp &#8211; Realtime Troubleshooting Example'
+title: 'ControlUp - Realtime Troubleshooting Example'
 date: 2017-04-13T13:36:48-06:00
 author: trententtye
 layout: post
@@ -20,7 +20,7 @@ tags:
   - Citrix
   - ControlUp
 ---
-I&#8217;ve been using a troubleshooting tool for some time and I can&#8217;t speak highly enough about. Â It has saved myself so much time in finding/resolving and remediating issues. Â I decided to capture myself utilizing the tool \*in realtime\* to remediate a reported issue that came in during a weekend call. Â I was able to find the servers that had the issues within 5 mins and prevent them from hosting users (effectively remediating the issue).
+I've been using a troubleshooting tool for some time and I can't speak highly enough about. Â It has saved myself so much time in finding/resolving and remediating issues. Â I decided to capture myself utilizing the tool \*in realtime\* to remediate a reported issue that came in during a weekend call. Â I was able to find the servers that had the issues within 5 mins and prevent them from hosting users (effectively remediating the issue).
 
 The root of the issue is we had some servers reboot during the daylight savings time change and this messed up some of our scripts that were relying on some timing to load our AppV packages. Â After receiving the call I started my recording.
 

@@ -1,6 +1,6 @@
 ---
 id: 1641
-title: 'Troubleshooting application error &#8220;No Microsoft Outlook profiles have been created&#8221;'
+title: 'Troubleshooting application error "No Microsoft Outlook profiles have been created"'
 date: 2016-08-24T10:40:38-06:00
 author: trententtye
 layout: post
@@ -24,7 +24,7 @@ OK
 
 </pre>
 
-So what&#8217;s going on here?
+So what's going on here?
 
 The application is trying toÂ create an email message and needs to activate Outlook to add the attachment. Â This error can be worked around by launching Outlook \*first\*, which creates our profile, but I would prefer to not launch programs to use resources in the background if it can be avoided.
 
@@ -32,7 +32,7 @@ The application is trying toÂ create an email message and needs to activate Outl
 
 &nbsp;
 
-What I&#8217;d like to do is silently create our Outlook profile and then continue launching the application. Â I didn&#8217;t find a particularly good solution for this, but I did eventually stumble across one with some minor modifications to meet my needs:
+What I'd like to do is silently create our Outlook profile and then continue launching the application. Â I didn't find a particularly good solution for this, but I did eventually stumble across one with some minor modifications to meet my needs:
 
 <pre class="lang:ps decode:true ">$MsOutlook = New-Object -ComObject Outlook.Application 
 $Namespace = $MsOutlook.GetNamespace("MAPI") 
@@ -45,7 +45,7 @@ Or via cmd.exe:
 <pre class="lang:default decode:true">powershell.exe -executionPolicy byPass -command "&{ $MsOutlook = New-Object -ComObject Outlook.Application; $Namespace = $MsOutlook.GetNamespace(\"MAPI\"); $Folder = $Namespace.GetDefaultFolder(\"olFolderInbox\"); $Explorer = $Folder.GetExplorer(); $MsOutlook.quit() }"
 </pre>
 
-This powershell script will launch launch Outlook into the &#8216;Inbox&#8217; and terminate. Â Since it&#8217;sÂ done through &#8217;embedded&#8217; commands the only thing you may see is a brief blip of Outlook with the &#8217;embedded&#8217; icon in the taskbar.
+This powershell script will launch launch Outlook into the 'Inbox' and terminate. Â Since it'sÂ done through 'embedded' commands the only thing you may see is a brief blip of Outlook with the 'embedded' icon in the taskbar.
 
 &nbsp;
 

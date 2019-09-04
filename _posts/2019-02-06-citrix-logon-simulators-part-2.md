@@ -19,7 +19,7 @@ panels_data:
     <ul class="list">
     <li>Windows and network troubleshooting</li>
     <li>Active Directory</li>
-    <li>Citrix XenApp/XenDesktop</li>
+    <li>Citrix &/XenDesktop</li>
     <li>Microsoft MDOP technologies (AppV)</li>
     <li>Remote Desktop/Terminal Services</li>
     </ul>
@@ -91,7 +91,7 @@ panels_data:
                                 </div>
                                 
                                 <p>
-                                  Pebble &#8211;Â We needed a Citrix solution for our graphics team and TheoryPC delivered us a Citrix environment that worked with our 3D applications! Â We were able to use our applications on the road, at home or in China!<!-- AddThis Advanced Settings above via filter on wp_trim_excerpt -->
+                                  Pebble -Â We needed a Citrix solution for our graphics team and TheoryPC delivered us a Citrix environment that worked with our 3D applications! Â We were able to use our applications on the road, at home or in China!<!-- AddThis Advanced Settings above via filter on wp_trim_excerpt -->
                                   
                                   <!-- AddThis Advanced Settings below via filter on wp_trim_excerpt -->
                                   
@@ -127,7 +127,7 @@ panels_data:
                                         </div>
                                         
                                         <p>
-                                          Alberta Health Services &#8211;Â Trentent and Saman setup and configured a province-wide Citrix XenApp environmentÂ for AHS. This included migrating thousands of users from old, unsupported farms and hundreds of applications. Â They also setup AppV5 to work with our XenApp infrastructure to give us large flexibility in how we choose to deploy or configure our servers.<!-- AddThis Advanced Settings above via filter on wp_trim_excerpt -->
+                                          Alberta Health Services -Â Trentent and Saman setup and configured a province-wide Citrix & environmentÂ for AHS. This included migrating thousands of users from old, unsupported farms and hundreds of applications. Â They also setup AppV5 to work with our & infrastructure to give us large flexibility in how we choose to deploy or configure our servers.<!-- AddThis Advanced Settings above via filter on wp_trim_excerpt -->
                                           
                                           <!-- AddThis Advanced Settings below via filter on wp_trim_excerpt -->
                                           
@@ -163,7 +163,7 @@ panels_data:
                                                 </div>
                                                 
                                                 <p>
-                                                  ElectraTek Ltd &#8211;Â As a small business owner in Edmonton, any downtime has significant impact on my bottom line. Â TheoryPC has provided me a robust setup that has survived three office moves and the initial setup was resilientÂ enough that I am now going on 8 years with the same configuration.<!-- AddThis Advanced Settings above via filter on wp_trim_excerpt -->
+                                                  ElectraTek Ltd -Â As a small business owner in Edmonton, any downtime has significant impact on my bottom line. Â TheoryPC has provided me a robust setup that has survived three office moves and the initial setup was resilientÂ enough that I am now going on 8 years with the same configuration.<!-- AddThis Advanced Settings above via filter on wp_trim_excerpt -->
                                                   
                                                   <!-- AddThis Advanced Settings below via filter on wp_trim_excerpt -->
                                                   
@@ -328,7 +328,7 @@ panels_data:
                                                                                 
                                                                                 <div class="event-text-wrap">
                                                                                   <h3 class="event-title">
-                                                                                    <a href="http://theorypc.ca/2019/02/06/citrix-logon-simulators-part-2/">Citrix Logon Simulator&#8217;s &#8211; Part 2</a>
+                                                                                    <a href="http://theorypc.ca/2019/02/06/citrix-logon-simulators-part-2/">Citrix Logon Simulator's - Part 2</a>
                                                                                   </h3>
                                                                                   
                                                                                   <div class="event-text">
@@ -336,7 +336,7 @@ panels_data:
                                                                                     </div>
                                                                                     
                                                                                     <p>
-                                                                                      In my previous post I was looking at utilizing a Logon Simulator to setup some proactive monitoring of a Citrix environment. Â I setup some goals for myself: Minimize the number of VM&#8217;s to run the robots As little resource consumption as possible Still provide operational alerts Operate on-premise I want the footprint of these robots [&hellip;]<!-- AddThis Advanced Settings above via filter on wp_trim_excerpt -->
+                                                                                      In my previous post I was looking at utilizing a Logon Simulator to setup some proactive monitoring of a Citrix environment. Â I setup some goals for myself: Minimize the number of VM's to run the robots As little resource consumption as possible Still provide operational alerts Operate on-premise I want the footprint of these robots [&hellip;]<!-- AddThis Advanced Settings above via filter on wp_trim_excerpt -->
                                                                                       
                                                                                       <!-- AddThis Advanced Settings below via filter on wp_trim_excerpt -->
                                                                                       
@@ -409,7 +409,7 @@ panels_data:
                                                                                                     Active Directory
                                                                                                   </li>
                                                                                                   <li>
-                                                                                                    Citrix XenApp/XenDesktop
+                                                                                                    Citrix &/XenDesktop
                                                                                                   </li>
                                                                                                   <li>
                                                                                                     Microsoft MDOP technologies (AppV)

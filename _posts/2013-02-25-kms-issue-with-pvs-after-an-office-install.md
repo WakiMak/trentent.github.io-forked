@@ -22,7 +22,7 @@ tags:
   - Provisioning Services
   - scripting
 ---
-We use Citrix Provisioning Services (PVS) 6.1 and it has been working well for us in our Citrix XenApp environment.Â We could make versions, promote and patch without issue with our KMS servers.Â Then, we installed Office 2010 with KMS and now each time we make a version of our vDisk, then promote to test or production KMS becomes broken.Â Windows doesn&#8217;t allow RDP sessions until it&#8217;s resolved so this seriously borks our setup.
+We use Citrix Provisioning Services (PVS) 6.1 and it has been working well for us in our Citrix & environment.Â We could make versions, promote and patch without issue with our KMS servers.Â Then, we installed Office 2010 with KMS and now each time we make a version of our vDisk, then promote to test or production KMS becomes broken.Â Windows doesn't allow RDP sessions until it's resolved so this seriously borks our setup.
 
 A fix [I read on this thread](http://forums.citrix.com/message.jspa?messageID=1674701) was to create a startup script that reinstalled the product key (as this key seems to go missing when promoting versions) and reactivate.
 
@@ -36,7 +36,7 @@ cscript //B "%windir%\system32\slmgr.vbs" /ato</pre>
 </div>
 
 <div>
-  For a simple test to see if this works I&#8217;ve added it to the machine startup script on the local system here:
+  For a simple test to see if this works I've added it to the machine startup script on the local system here:
 </div>
 
 <div>

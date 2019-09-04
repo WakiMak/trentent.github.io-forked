@@ -20,7 +20,7 @@ categories:
 tags:
   - scripting
 ---
-I have an issue where I need to ensure I don&#8217;t exceed a certain number of characters in a script. Specifically, I cannot exceed 64 characters while making a group through script in AD. To do this I came up with the following:
+I have an issue where I need to ensure I don't exceed a certain number of characters in a script. Specifically, I cannot exceed 64 characters while making a group through script in AD. To do this I came up with the following:
 
 <pre class="lang:batch decode:true">ECHO OFF
 :Set some variables, the string variable, a second string variable and our starting count.

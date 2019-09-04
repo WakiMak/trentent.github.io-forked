@@ -85,10 +85,10 @@ Citrix Xml Service Communication(10.10.10.13)\Network Traffic  Calls / second
 Citrix Xml Service Communication(10.10.10.13)\Network Traffic Average Time (Microseconds)
 Citrix Xml Service Communication(10.10.10.14)\Network Traffic  Calls / second
 Citrix Xml Service Communication(10.10.10.14)\Network Traffic Average Time (Microseconds)
-Citrix Xml Service Communication(xenapp5.bottheory.local)\Network Traffic  Calls / second
-Citrix Xml Service Communication(xenapp5.bottheory.local)\Network Traffic Average Time (Microseconds)
-Citrix Xml Service Communication(xenapp65t.bottheory.local)\Network Traffic  Calls / second
-Citrix Xml Service Communication(xenapp65t.bottheory.local)\Network Traffic Average Time (Microseconds)</pre>
+Citrix Xml Service Communication(&5.bottheory.local)\Network Traffic  Calls / second
+Citrix Xml Service Communication(&5.bottheory.local)\Network Traffic Average Time (Microseconds)
+Citrix Xml Service Communication(&65t.bottheory.local)\Network Traffic  Calls / second
+Citrix Xml Service Communication(&65t.bottheory.local)\Network Traffic Average Time (Microseconds)</pre>
   
   <p>
     I‚Äôve added 6 farms to the storefront server to examine the load ‚Äúin a real world‚Äù environment as Storefront does do some magic with concurrent enumeration. ¬ What I love that Citrix has done, is actually time the transactions AND gives you the ‚Äòrate‚Äô the transactions are occurring at. ¬ This will make it much easier to baseline what your load is vs how I had to do it to measure the ‚Äòrates‚Äô for Web Interface.
@@ -99,7 +99,7 @@ Citrix Xml Service Communication(xenapp65t.bottheory.local)\Network Traffic Aver
 
 <div class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover">
   <p>
-    <span style="color: #ff0000;">$stage = &#8220;Client Configuration&#8221;</span><br /> $store + <span style="color: #3366ff;">&#8220;config.xml&#8221;</span>
+    <span style="color: #ff0000;">$stage = "Client Configuration"</span><br /> $store + <span style="color: #3366ff;">"config.xml"</span>
   </p>
   
   <p>
@@ -110,11 +110,11 @@ Citrix Xml Service Communication(xenapp65t.bottheory.local)\Network Traffic Aver
 </div>
 
 <div class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover">
-  <span style="color: #ff0000;">$stage = &#8220;PRELAUNCH&#8221;</span>
+  <span style="color: #ff0000;">$stage = "PRELAUNCH"</span>
 </div>
 
 <div class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover">
-  $store + <span style="color: #3366ff;">&#8220;enum.aspx&#8221;</span>
+  $store + <span style="color: #3366ff;">"enum.aspx"</span>
 </div>
 
 <div class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover">
@@ -122,33 +122,33 @@ Citrix Xml Service Communication(xenapp65t.bottheory.local)\Network Traffic Aver
 </div>
 
 <div class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover">
-  <pre class="lang:xhtml decode:true ">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;!DOCTYPE NFuseProtocol SYSTEM "NFuse.dtd"&gt;
-&lt;NFuseProtocol version="4.6"&gt;
-	&lt;RequestAppData&gt;
-		&lt;Scope traverse="onelevel" type="PNFolder"&gt;$PRELAUNCH$&lt;/Scope&gt;
-		&lt;DesiredDetails&gt;permissions&lt;/DesiredDetails&gt;
-		&lt;DesiredDetails&gt;icon-info&lt;/DesiredDetails&gt;
-		&lt;DesiredDetails&gt;all&lt;/DesiredDetails&gt;
-		&lt;ServerType&gt;x&lt;/ServerType&gt;
-		&lt;ServerType&gt;win32&lt;/ServerType&gt;
-		&lt;ClientType&gt;ica30&lt;/ClientType&gt;
-		&lt;ClientType&gt;content&lt;/ClientType&gt;
-		&lt;ClientName&gt;PSStressTest&lt;/ClientName&gt;
-		&lt;ClientAddress&gt;10.10.10.10&lt;/ClientAddress&gt;
-	&lt;/RequestAppData&gt;
-&lt;/NFuseProtocol&gt;</pre>
+  <pre class="lang:xhtml decode:true "><?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE NFuseProtocol SYSTEM "NFuse.dtd">
+<NFuseProtocol version="4.6">
+	<RequestAppData>
+		<Scope traverse="onelevel" type="PNFolder">$PRELAUNCH$</Scope>
+		<DesiredDetails>permissions</DesiredDetails>
+		<DesiredDetails>icon-info</DesiredDetails>
+		<DesiredDetails>all</DesiredDetails>
+		<ServerType>x</ServerType>
+		<ServerType>win32</ServerType>
+		<ClientType>ica30</ClientType>
+		<ClientType>content</ClientType>
+		<ClientName>PSStressTest</ClientName>
+		<ClientAddress>10.10.10.10</ClientAddress>
+	</RequestAppData>
+</NFuseProtocol></pre>
   
   <p>
     Response:
   </p>
   
-  <pre class="lang:xhtml decode:true ">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;!DOCTYPE NFuseProtocol SYSTEM "NFuse.dtd"&gt;
-&lt;NFuseProtocol version="5.8"&gt;
-    &lt;ResponseAppData&gt;
-    &lt;/ResponseAppData&gt;
-&lt;/NFuseProtocol&gt;</pre>
+  <pre class="lang:xhtml decode:true "><?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE NFuseProtocol SYSTEM "NFuse.dtd">
+<NFuseProtocol version="5.8">
+    <ResponseAppData>
+    </ResponseAppData>
+</NFuseProtocol></pre>
   
   <p>
     I do ¬ not have any PRELAUNCH applications.
@@ -159,7 +159,7 @@ Citrix Xml Service Communication(xenapp65t.bottheory.local)\Network Traffic Aver
   </p>
   
   <p>
-    Citrix Resource Subscription\Dispose Calls / second : 1<br /> Citrix Delegated Explicit Authentication\Authenticate Calls / second : 1<br /> Citrix Delegated Explicit Authentication\Authenticate Average Time (Microseconds) : 95,392<br /> Citrix Resources Common\Find all resources ¬ Average Time (Microseconds)¬ : 57,277<br /> Citrix Resources Common\Find all resources ¬ Calls / second : 1<br /> Citrix Xml Service Communication(10.10.10.13)\Network Traffic Calls / second :¬ 1<br /> Citrix Xml Service Communication(10.10.10.14)\Network Traffic Calls / second : 1<br /> Citrix Xml Service Communication(10.10.10.14)\Network Traffic Calls / second :¬ 1<br /> Citrix Xml Service Communication(xenapp5.bottheory.local)\Network Traffic Calls / second :¬ 1<br /> Citrix Xml Service Communication(xenapp65t.bottheory.local)\Network Traffic Calls / second : 1<br /> Citrix Xml Service Communication(10.10.10.13)\Network Traffic Average Time (Microseconds) : 36,383<br /> Citrix Xml Service Communication(10.10.10.14)\Network Traffic Average Time (Microseconds) : 47,260<br /> Citrix Xml Service Communication(10.10.10.14)\Network Traffic Average Time (Microseconds) : 60,759<br /> Citrix Xml Service Communication(xenapp5.bottheory.local)\Network Traffic Average Time (Microseconds) :¬ 30,730<br /> Citrix Xml Service Communication(xenapp65t.bottheory.local)\Network Traffic Average Time (Microseconds) : 44,155
+    Citrix Resource Subscription\Dispose Calls / second : 1<br /> Citrix Delegated Explicit Authentication\Authenticate Calls / second : 1<br /> Citrix Delegated Explicit Authentication\Authenticate Average Time (Microseconds) : 95,392<br /> Citrix Resources Common\Find all resources ¬ Average Time (Microseconds)¬ : 57,277<br /> Citrix Resources Common\Find all resources ¬ Calls / second : 1<br /> Citrix Xml Service Communication(10.10.10.13)\Network Traffic Calls / second :¬ 1<br /> Citrix Xml Service Communication(10.10.10.14)\Network Traffic Calls / second : 1<br /> Citrix Xml Service Communication(10.10.10.14)\Network Traffic Calls / second :¬ 1<br /> Citrix Xml Service Communication(&5.bottheory.local)\Network Traffic Calls / second :¬ 1<br /> Citrix Xml Service Communication(&65t.bottheory.local)\Network Traffic Calls / second : 1<br /> Citrix Xml Service Communication(10.10.10.13)\Network Traffic Average Time (Microseconds) : 36,383<br /> Citrix Xml Service Communication(10.10.10.14)\Network Traffic Average Time (Microseconds) : 47,260<br /> Citrix Xml Service Communication(10.10.10.14)\Network Traffic Average Time (Microseconds) : 60,759<br /> Citrix Xml Service Communication(&5.bottheory.local)\Network Traffic Average Time (Microseconds) :¬ 30,730<br /> Citrix Xml Service Communication(&65t.bottheory.local)\Network Traffic Average Time (Microseconds) : 44,155
   </p>
 </div>
 
@@ -171,11 +171,11 @@ Citrix Xml Service Communication(xenapp65t.bottheory.local)\Network Traffic Aver
 </div>
 
 <div class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover">
-  <span style="color: #ff0000;">$stage = &#8220;Icon-Info All&#8221;</span>
+  <span style="color: #ff0000;">$stage = "Icon-Info All"</span>
 </div>
 
 <div class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover">
-  $store + <span style="color: #3366ff;">&#8220;enum.aspx&#8221;</span>
+  $store + <span style="color: #3366ff;">"enum.aspx"</span>
 </div>
 
 <div class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover">
@@ -183,78 +183,78 @@ Citrix Xml Service Communication(xenapp65t.bottheory.local)\Network Traffic Aver
 </div>
 
 <div class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover">
-  <pre class="lang:xhtml decode:true ">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;NFuseProtocol version="4.6"&gt;
-    &lt;RequestAppData&gt;
-        &lt;Scope traverse="onelevel" type="PNFolder" /&gt;
-        &lt;DesiredDetails&gt;permissions&lt;/DesiredDetails&gt;
-        &lt;DesiredDetails&gt;icon-info&lt;/DesiredDetails&gt;
-        &lt;DesiredDetails&gt;all&lt;/DesiredDetails&gt;
-        &lt;ServerType&gt;x&lt;/ServerType&gt;
-        &lt;ServerType&gt;win32&lt;/ServerType&gt;
-        &lt;ClientType&gt;ica30&lt;/ClientType&gt;
-        &lt;ClientType&gt;content&lt;/ClientType&gt;
-        &lt;ClientName&gt;PSStressTest&lt;/ClientName&gt;
-        &lt;ClientAddress&gt;10.10.10.10&lt;/ClientAddress&gt;
-    &lt;/RequestAppData&gt;
-&lt;/NFuseProtocol&gt;</pre>
+  <pre class="lang:xhtml decode:true "><?xml version="1.0" encoding="UTF-8"?>
+<NFuseProtocol version="4.6">
+    <RequestAppData>
+        <Scope traverse="onelevel" type="PNFolder" />
+        <DesiredDetails>permissions</DesiredDetails>
+        <DesiredDetails>icon-info</DesiredDetails>
+        <DesiredDetails>all</DesiredDetails>
+        <ServerType>x</ServerType>
+        <ServerType>win32</ServerType>
+        <ClientType>ica30</ClientType>
+        <ClientType>content</ClientType>
+        <ClientName>PSStressTest</ClientName>
+        <ClientAddress>10.10.10.10</ClientAddress>
+    </RequestAppData>
+</NFuseProtocol></pre>
   
   <p>
     Response (truncated):
   </p>
   
-  <pre class="lang:default decode:true">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;!DOCTYPE NFuseProtocol SYSTEM "NFuse.dtd"&gt;
-&lt;NFuseProtocol version="5.8"&gt;
-    &lt;ResponseAppData&gt;
-        &lt;AppDataSet&gt;
-            &lt;Scope traverse="onelevel" type="PNFolder"&gt;&lt;/Scope&gt;
-            &lt;AppData type="app"&gt;
-                &lt;InName&gt;CTX:Microsoft Office - Word&lt;/InName&gt;
-                &lt;FName&gt;Microsoft Office - Word&lt;/FName&gt;
-                &lt;Details&gt;
-                    &lt;Settings appisdisabled="false" appisdesktop="false"&gt;
-                        &lt;Folder&gt;Office\Analyst&lt;/Folder&gt;
-                        &lt;Description&gt;Microsoft Office - Word&lt;/Description&gt;
-                        &lt;WinWidth&gt;0&lt;/WinWidth&gt;
-                        &lt;WinHeight&gt;0&lt;/WinHeight&gt;
-                        &lt;WinColor&gt;8&lt;/WinColor&gt;
-                        &lt;WinType&gt;percent&lt;/WinType&gt;
-                        &lt;WinScale&gt;95&lt;/WinScale&gt;
-                        &lt;SoundType minimum="false"&gt;none&lt;/SoundType&gt;
-                        &lt;VideoType minimum="false"&gt;none&lt;/VideoType&gt;
-                        &lt;Encryption minimum="false"&gt;basic&lt;/Encryption&gt;
-                        &lt;AppOnDesktop value="false"&gt;
-                        &lt;/AppOnDesktop&gt;
-                        &lt;AppInStartmenu value="false"&gt;&lt;/AppInStartmenu&gt;
-                        &lt;PublisherName&gt;CTX&lt;/PublisherName&gt;
-                        &lt;SSLEnabled&gt;false&lt;/SSLEnabled&gt;
-                        &lt;RemoteAccessEnabled&gt;false&lt;/RemoteAccessEnabled&gt;
-                    &lt;/Settings&gt;
-                    &lt;Icon&gt;AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAACAAIAAABAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAEAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIPPPPPIPPPPPPPPPPPPPPPPPPPPPPPPIIPPPPIHIIIIIPPPPPPPPPPPPPPPPPPPIIPPPPHHHIHIHIHIIIIIPPPPPPPPPPPPIIPPPPHHIIIIIIPIIIIIHIIIIIPPPPPPIIPPPIHHHIIIIIIPPPPPPIIIIHIPIPPPIIPPPIHHHIHIHIIPPPPIPPPPIPPPIPPPIIPPPIHHHIHIIIIPIPIPIIIPIIPIIPPPIIPPPIHHHIIHHHIIPIPIPIIIIIPIPPPPIIPPPIHHHHHIHHIIIIIIIIIPIIIIPPPPIIPPPIHHGHHHHHIIIIIIIIIIIIPIPPPPIIPPIHHHHGGGHHHHIIHIIHHIHHPIPPPPIIPPIHHHGHGGGHHHHHHHHHHHIHIIPPPPIIPPIHGHHGGGGGHHHHHHHHHHHHPIPPPPIIPPIEHGHGGGGGGEGGHHGHGHHIIIPPPPIIPPIBEEGEEEGGBBGGGGGGGHGIIIPPPPIIPPHEEEBGEEEBJEGGGGGGHGHIIPPPPPIIPPIHGEEEEEAJJEGGGGGGGGGIIIPPPPIIPIHIIIHHHEBJJEGGGGGGGHGIIPPPPPIIPPPIIIIIIBJJJAGGEGGGGGGAIPPPPPIIPPPPPPIIIHAJJJBHIHHGGGGBIIPPPPIIPPPPPPPPPIBJJJJBHIIIIIHBIIIPPPIIPPPPPPPPPIBJJJJJJBBBIBIBJIIHPPIIPPPPPPPPIIHAJJJJJJJJJJJJJJIIHPIIPPPPPPPIIIIIAJJJJJJJJJJJJJJIIHIIPPPPPPPIIIIPIBAJJJJJJJJJJJJJJBIIPPPPPPPIIIIIPPIBBBBJJJJJJJJJBIIIPPPPPPPPIIPPIPPPIIBHBHHBJJJBIPIIPPPPPPPPPPIIPIIIIIIIPPPBJBBPPPIIPPPPPPPPPPPPPPPPPPPPPPPBBHPPPPIIPPPPPPPPPPPPPPPPPPPPPPPAIPPPPPIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&lt;/Icon&gt;
-                    &lt;IconInfo&gt;
-                        &lt;IconType size="32" bpp="32" format="raw"&gt;
-                        &lt;/IconType&gt;
-                        &lt;IconType size="16" bpp="32" format="raw"&gt;
-                        &lt;/IconType&gt;
-                        &lt;IconType size="32" bpp="4" format="raw"&gt;
-                        &lt;/IconType&gt;
-                    &lt;/IconInfo&gt;
-                &lt;/Details&gt;
-                &lt;SeqNo&gt;1490021516&lt;/SeqNo&gt;
-                &lt;ServerType&gt;win32&lt;/ServerType&gt;
-                &lt;ClientType&gt;ica30&lt;/ClientType&gt;
-            &lt;/AppData&gt;
-        &lt;/AppDataSet&gt;
-    &lt;/ResponseAppData&gt;
-&lt;/NFuseProtocol&gt;</pre>
+  <pre class="lang:default decode:true"><?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE NFuseProtocol SYSTEM "NFuse.dtd">
+<NFuseProtocol version="5.8">
+    <ResponseAppData>
+        <AppDataSet>
+            <Scope traverse="onelevel" type="PNFolder"></Scope>
+            <AppData type="app">
+                <InName>CTX:Microsoft Office - Word</InName>
+                <FName>Microsoft Office - Word</FName>
+                <Details>
+                    <Settings appisdisabled="false" appisdesktop="false">
+                        <Folder>Office\Analyst</Folder>
+                        <Description>Microsoft Office - Word</Description>
+                        <WinWidth>0</WinWidth>
+                        <WinHeight>0</WinHeight>
+                        <WinColor>8</WinColor>
+                        <WinType>percent</WinType>
+                        <WinScale>95</WinScale>
+                        <SoundType minimum="false">none</SoundType>
+                        <VideoType minimum="false">none</VideoType>
+                        <Encryption minimum="false">basic</Encryption>
+                        <AppOnDesktop value="false">
+                        </AppOnDesktop>
+                        <AppInStartmenu value="false"></AppInStartmenu>
+                        <PublisherName>CTX</PublisherName>
+                        <SSLEnabled>false</SSLEnabled>
+                        <RemoteAccessEnabled>false</RemoteAccessEnabled>
+                    </Settings>
+                    <Icon>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAACAAIAAABAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAEAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIPPPPPIPPPPPPPPPPPPPPPPPPPPPPPPIIPPPPIHIIIIIPPPPPPPPPPPPPPPPPPPIIPPPPHHHIHIHIHIIIIIPPPPPPPPPPPPIIPPPPHHIIIIIIPIIIIIHIIIIIPPPPPPIIPPPIHHHIIIIIIPPPPPPIIIIHIPIPPPIIPPPIHHHIHIHIIPPPPIPPPPIPPPIPPPIIPPPIHHHIHIIIIPIPIPIIIPIIPIIPPPIIPPPIHHHIIHHHIIPIPIPIIIIIPIPPPPIIPPPIHHHHHIHHIIIIIIIIIPIIIIPPPPIIPPPIHHGHHHHHIIIIIIIIIIIIPIPPPPIIPPIHHHHGGGHHHHIIHIIHHIHHPIPPPPIIPPIHHHGHGGGHHHHHHHHHHHIHIIPPPPIIPPIHGHHGGGGGHHHHHHHHHHHHPIPPPPIIPPIEHGHGGGGGGEGGHHGHGHHIIIPPPPIIPPIBEEGEEEGGBBGGGGGGGHGIIIPPPPIIPPHEEEBGEEEBJEGGGGGGHGHIIPPPPPIIPPIHGEEEEEAJJEGGGGGGGGGIIIPPPPIIPIHIIIHHHEBJJEGGGGGGGHGIIPPPPPIIPPPIIIIIIBJJJAGGEGGGGGGAIPPPPPIIPPPPPPIIIHAJJJBHIHHGGGGBIIPPPPIIPPPPPPPPPIBJJJJBHIIIIIHBIIIPPPIIPPPPPPPPPIBJJJJJJBBBIBIBJIIHPPIIPPPPPPPPIIHAJJJJJJJJJJJJJJIIHPIIPPPPPPPIIIIIAJJJJJJJJJJJJJJIIHIIPPPPPPPIIIIPIBAJJJJJJJJJJJJJJBIIPPPPPPPIIIIIPPIBBBBJJJJJJJJJBIIIPPPPPPPPIIPPIPPPIIBHBHHBJJJBIPIIPPPPPPPPPPIIPIIIIIIIPPPBJBBPPPIIPPPPPPPPPPPPPPPPPPPPPPPBBHPPPPIIPPPPPPPPPPPPPPPPPPPPPPPAIPPPPPIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII</Icon>
+                    <IconInfo>
+                        <IconType size="32" bpp="32" format="raw">
+                        </IconType>
+                        <IconType size="16" bpp="32" format="raw">
+                        </IconType>
+                        <IconType size="32" bpp="4" format="raw">
+                        </IconType>
+                    </IconInfo>
+                </Details>
+                <SeqNo>1490021516</SeqNo>
+                <ServerType>win32</ServerType>
+                <ClientType>ica30</ClientType>
+            </AppData>
+        </AppDataSet>
+    </ResponseAppData>
+</NFuseProtocol></pre>
   
   <p>
     And the Perfmon counter data:
   </p>
   
   <p>
-    Citrix Resource Subscription\Dispose¬ Average Time (Microseconds) : 1<br /> Citrix Resource Subscription\Dispose Calls / second : 1<br /> Citrix Delegated Explicit Authentication\Authenticate Calls / second : 1<br /> Citrix Delegated Explicit Authentication\Authenticate Average Time (Microseconds) :¬ 88,473<br /> Citrix Resources Common\Find all resources ¬ Average Time (Microseconds)¬ :¬ 6,314,583<br /> Citrix Resources Common\Find all resources ¬ Calls / second : 1<br /> Citrix Xml Service Communication(10.10.10.13)\Network Traffic Calls / second :¬ 1<br /> Citrix Xml Service Communication(10.10.10.14)\Network Traffic Calls / second : 1<br /> Citrix Xml Service Communication(10.10.10.14)\Network Traffic Calls / second :¬ 1<br /> Citrix Xml Service Communication(xenapp5.bottheory.local)\Network Traffic Calls / second :¬ 1<br /> Citrix Xml Service Communication(xenapp65t.bottheory.local)\Network Traffic Calls / second : 1<br /> Citrix Xml Service Communication(10.10.10.13)\Network Traffic Average Time (Microseconds) :¬ 42,697<br /> Citrix Xml Service Communication(10.10.10.14)\Network Traffic Average Time (Microseconds) :¬ 37,653<br /> Citrix Xml Service Communication(10.10.10.14)\Network Traffic Average Time (Microseconds) :¬ 64,622<br /> Citrix Xml Service Communication(xenapp5.bottheory.local)\Network Traffic Average Time (Microseconds) :¬ 125,629<br /> Citrix Xml Service Communication(xenapp65t.bottheory.local)\Network Traffic Average Time (Microseconds) :¬ 191,408
+    Citrix Resource Subscription\Dispose¬ Average Time (Microseconds) : 1<br /> Citrix Resource Subscription\Dispose Calls / second : 1<br /> Citrix Delegated Explicit Authentication\Authenticate Calls / second : 1<br /> Citrix Delegated Explicit Authentication\Authenticate Average Time (Microseconds) :¬ 88,473<br /> Citrix Resources Common\Find all resources ¬ Average Time (Microseconds)¬ :¬ 6,314,583<br /> Citrix Resources Common\Find all resources ¬ Calls / second : 1<br /> Citrix Xml Service Communication(10.10.10.13)\Network Traffic Calls / second :¬ 1<br /> Citrix Xml Service Communication(10.10.10.14)\Network Traffic Calls / second : 1<br /> Citrix Xml Service Communication(10.10.10.14)\Network Traffic Calls / second :¬ 1<br /> Citrix Xml Service Communication(&5.bottheory.local)\Network Traffic Calls / second :¬ 1<br /> Citrix Xml Service Communication(&65t.bottheory.local)\Network Traffic Calls / second : 1<br /> Citrix Xml Service Communication(10.10.10.13)\Network Traffic Average Time (Microseconds) :¬ 42,697<br /> Citrix Xml Service Communication(10.10.10.14)\Network Traffic Average Time (Microseconds) :¬ 37,653<br /> Citrix Xml Service Communication(10.10.10.14)\Network Traffic Average Time (Microseconds) :¬ 64,622<br /> Citrix Xml Service Communication(&5.bottheory.local)\Network Traffic Average Time (Microseconds) :¬ 125,629<br /> Citrix Xml Service Communication(&65t.bottheory.local)\Network Traffic Average Time (Microseconds) :¬ 191,408
   </p>
 </div>
 
@@ -266,11 +266,11 @@ Citrix Xml Service Communication(xenapp65t.bottheory.local)\Network Traffic Aver
 </div>
 
 <div class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover">
-  <span style="color: #ff0000;">$stage = &#8220;Icon-Individual Request1&#8221;</span>
+  <span style="color: #ff0000;">$stage = "Icon-Individual Request1"</span>
 </div>
 
 <div class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover">
-  $store + <span style="color: #3366ff;">&#8220;enum.aspx&#8221;</span>
+  $store + <span style="color: #3366ff;">"enum.aspx"</span>
 </div>
 
 <div class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover">
@@ -278,88 +278,88 @@ Citrix Xml Service Communication(xenapp65t.bottheory.local)\Network Traffic Aver
     POST data:
   </p>
   
-  <pre class="lang:xhtml decode:true">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;NFuseProtocol version="4.6"&gt;
-	&lt;RequestAppData&gt;
-		&lt;Scope traverse="onelevel" type="PNFolder" /&gt;
-		&lt;DesiredDetails&gt;icon-info&lt;/DesiredDetails&gt;
-		&lt;ServerType&gt;all&lt;/ServerType&gt;
-		&lt;ClientType&gt;ica30&lt;/ClientType&gt;
-		&lt;ClientType&gt;rade&lt;/ClientType&gt;
-		&lt;ClientType&gt;content&lt;/ClientType&gt;
-		&lt;ClientName&gt;PSStressTest&lt;/ClientName&gt;
-		&lt;ClientAddress&gt;10.10.10.10&lt;/ClientAddress&gt;
-		&lt;Credentials&gt;
-			&lt;UserName&gt;trententtye&lt;/UserName&gt;
-			&lt;Password encoding="ctx1"&gt;JJJHFTEBJKAKLSNVYRHABEHBDHBTTEJWUDBJLOLEO&lt;/Password&gt;
-			&lt;Domain type="NT"&gt;BOTTHEORY.LOCAL&lt;/Domain&gt;&lt;/Credentials&gt;
-			&lt;DesiredIconData size="32" bpp="4" format="raw" /&gt;
-			&lt;DesiredIconData size="48" bpp="32" format="raw" /&gt;
-			&lt;DesiredIconData size="32" bpp="32" format="raw" /&gt;
-			&lt;DesiredIconData size="16" bpp="32" format="raw" /&gt;
-			&lt;AppName&gt;CTX:Microsoft Office - Word&lt;/AppName&gt;
-	&lt;/RequestAppData&gt;
-&lt;/NFuseProtocol&gt;</pre>
+  <pre class="lang:xhtml decode:true"><?xml version="1.0" encoding="UTF-8"?>
+<NFuseProtocol version="4.6">
+	<RequestAppData>
+		<Scope traverse="onelevel" type="PNFolder" />
+		<DesiredDetails>icon-info</DesiredDetails>
+		<ServerType>all</ServerType>
+		<ClientType>ica30</ClientType>
+		<ClientType>rade</ClientType>
+		<ClientType>content</ClientType>
+		<ClientName>PSStressTest</ClientName>
+		<ClientAddress>10.10.10.10</ClientAddress>
+		<Credentials>
+			<UserName>trententtye</UserName>
+			<Password encoding="ctx1">JJJHFTEBJKAKLSNVYRHABEHBDHBTTEJWUDBJLOLEO</Password>
+			<Domain type="NT">BOTTHEORY.LOCAL</Domain></Credentials>
+			<DesiredIconData size="32" bpp="4" format="raw" />
+			<DesiredIconData size="48" bpp="32" format="raw" />
+			<DesiredIconData size="32" bpp="32" format="raw" />
+			<DesiredIconData size="16" bpp="32" format="raw" />
+			<AppName>CTX:Microsoft Office - Word</AppName>
+	</RequestAppData>
+</NFuseProtocol></pre>
   
   <p>
     Response:
   </p>
   
-  <pre class="lang:xhtml decode:true">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;!DOCTYPE NFuseProtocol SYSTEM "NFuse.dtd"&gt;
-&lt;NFuseProtocol version="5.8"&gt;
-    &lt;ResponseAppData&gt;
-        &lt;AppDataSet&gt;
-            &lt;Scope traverse="onelevel" type="PNFolder"&gt;&lt;/Scope&gt;
-            &lt;AppData type="app"&gt;
-                &lt;InName&gt;CTX:Microsoft Office - Word&lt;/InName&gt;
-                &lt;FName&gt;Microsoft Office - Word&lt;/FName&gt;
-                &lt;Details&gt;
-                    &lt;Settings appisdisabled="false" appisdesktop="false"&gt;
-                        &lt;Description&gt;Microsoft Office - Word&lt;/Description&gt;
-                        &lt;WinWidth&gt;0&lt;/WinWidth&gt;
-                        &lt;WinHeight&gt;0&lt;/WinHeight&gt;
-                        &lt;WinColor&gt;0&lt;/WinColor&gt;
-                        &lt;WinScale&gt;0&lt;/WinScale&gt;
-                        &lt;VideoType minimum="false"&gt;none&lt;/VideoType&gt;
-                        &lt;AppOnDesktop value="false"&gt;
-                        &lt;/AppOnDesktop&gt;
-                        &lt;AppInStartmenu value="false"&gt;&lt;/AppInStartmenu&gt;
-                        &lt;SSLEnabled&gt;false&lt;/SSLEnabled&gt;
-                        &lt;RemoteAccessEnabled&gt;false&lt;/RemoteAccessEnabled&gt;
-                    &lt;/Settings&gt;
-                    &lt;IconInfo&gt;
-                        &lt;IconType size="32" bpp="4" format="raw"&gt;
-                        &lt;/IconType&gt;
-                        &lt;IconType size="48" bpp="32" format="raw"&gt;
-                        &lt;/IconType&gt;
-                        &lt;IconType size="32" bpp="32" format="raw"&gt;
-                        &lt;/IconType&gt;
-                        &lt;IconType size="16" bpp="32" format="raw"&gt;
-                        &lt;/IconType&gt;
-                    &lt;/IconInfo&gt;
-                &lt;/Details&gt;
-                &lt;IconData size="32" bpp="4" format="raw"&gt;////////////////AAAAAwAA3cAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==&lt;/IconData&gt;
-                &lt;IconData size="48" bpp="32" format="raw"&gt;////////AAD///////8AAP///////wAA////////AAD///////8AAIAAAAAAAQAAgAAAAAABAACAAAAAAAEAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA&lt;/IconData&gt;
-                &lt;IconData size="32" bpp="32" format="raw"&gt;////////////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA&lt;/IconData&gt;
-                &lt;IconData size="16" bpp="32" format="raw"&gt;//8AAP//AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA&lt;/IconData&gt;
-                &lt;SeqNo&gt;1408469520&lt;/SeqNo&gt;
-                &lt;ClientType&gt;ica30&lt;/ClientType&gt;
-            &lt;/AppData&gt;
-        &lt;/AppDataSet&gt;
-    &lt;/ResponseAppData&gt;
-&lt;/NFuseProtocol&gt;</pre>
+  <pre class="lang:xhtml decode:true"><?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE NFuseProtocol SYSTEM "NFuse.dtd">
+<NFuseProtocol version="5.8">
+    <ResponseAppData>
+        <AppDataSet>
+            <Scope traverse="onelevel" type="PNFolder"></Scope>
+            <AppData type="app">
+                <InName>CTX:Microsoft Office - Word</InName>
+                <FName>Microsoft Office - Word</FName>
+                <Details>
+                    <Settings appisdisabled="false" appisdesktop="false">
+                        <Description>Microsoft Office - Word</Description>
+                        <WinWidth>0</WinWidth>
+                        <WinHeight>0</WinHeight>
+                        <WinColor>0</WinColor>
+                        <WinScale>0</WinScale>
+                        <VideoType minimum="false">none</VideoType>
+                        <AppOnDesktop value="false">
+                        </AppOnDesktop>
+                        <AppInStartmenu value="false"></AppInStartmenu>
+                        <SSLEnabled>false</SSLEnabled>
+                        <RemoteAccessEnabled>false</RemoteAccessEnabled>
+                    </Settings>
+                    <IconInfo>
+                        <IconType size="32" bpp="4" format="raw">
+                        </IconType>
+                        <IconType size="48" bpp="32" format="raw">
+                        </IconType>
+                        <IconType size="32" bpp="32" format="raw">
+                        </IconType>
+                        <IconType size="16" bpp="32" format="raw">
+                        </IconType>
+                    </IconInfo>
+                </Details>
+                <IconData size="32" bpp="4" format="raw">////////////////AAAAAwAA3cAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</IconData>
+                <IconData size="48" bpp="32" format="raw">////////AAD///////8AAP///////wAA////////AAD///////8AAIAAAAAAAQAAgAAAAAABAACAAAAAAAEAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</IconData>
+                <IconData size="32" bpp="32" format="raw">////////////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</IconData>
+                <IconData size="16" bpp="32" format="raw">//8AAP//AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</IconData>
+                <SeqNo>1408469520</SeqNo>
+                <ClientType>ica30</ClientType>
+            </AppData>
+        </AppDataSet>
+    </ResponseAppData>
+</NFuseProtocol></pre>
   
   <p>
     And the Perfmon counter data:
   </p>
   
   <p>
-    Citrix Resource Subscription\Dispose¬ Average Time (Microseconds) : 0.5<br /> Citrix Resource Subscription\Dispose Calls / second :¬ 2<br /> Citrix Delegated Explicit Authentication\Authenticate Calls / second :¬ 2<br /> Citrix Delegated Explicit Authentication\Authenticate Average Time (Microseconds) :¬ 140,062<br /> Citrix Resources Common\Find all resources ¬ Average Time (Microseconds)¬ :¬ 219,619<br /> Citrix Resources Common\Find all resources ¬ Calls / second : 1<br /> Citrix Xml Service Communication(10.10.10.13)\Network Traffic Calls / second :¬ 1<br /> Citrix Xml Service Communication(10.10.10.14)\Network Traffic Calls / second : 1<br /> Citrix Xml Service Communication(10.10.10.14)\Network Traffic Calls / second :¬ 1<br /> Citrix Xml Service Communication(xenapp5.bottheory.local)\Network Traffic Calls / second :¬ 1<br /> Citrix Xml Service Communication(xenapp65t.bottheory.local)\Network Traffic Calls / second : 1<br /> Citrix Xml Service Communication(10.10.10.13)\Network Traffic Average Time (Microseconds) :¬ 44,896<br /> Citrix Xml Service Communication(10.10.10.14)\Network Traffic Average Time (Microseconds) :¬ 40,508<br /> Citrix Xml Service Communication(10.10.10.14)\Network Traffic Average Time (Microseconds) :¬ 36,124<br /> Citrix Xml Service Communication(xenapp5.bottheory.local)\Network Traffic Average Time (Microseconds) :¬ 127,686<br /> Citrix Xml Service Communication(xenapp65t.bottheory.local)\Network Traffic Average Time (Microseconds) :¬ 165,869
+    Citrix Resource Subscription\Dispose¬ Average Time (Microseconds) : 0.5<br /> Citrix Resource Subscription\Dispose Calls / second :¬ 2<br /> Citrix Delegated Explicit Authentication\Authenticate Calls / second :¬ 2<br /> Citrix Delegated Explicit Authentication\Authenticate Average Time (Microseconds) :¬ 140,062<br /> Citrix Resources Common\Find all resources ¬ Average Time (Microseconds)¬ :¬ 219,619<br /> Citrix Resources Common\Find all resources ¬ Calls / second : 1<br /> Citrix Xml Service Communication(10.10.10.13)\Network Traffic Calls / second :¬ 1<br /> Citrix Xml Service Communication(10.10.10.14)\Network Traffic Calls / second : 1<br /> Citrix Xml Service Communication(10.10.10.14)\Network Traffic Calls / second :¬ 1<br /> Citrix Xml Service Communication(&5.bottheory.local)\Network Traffic Calls / second :¬ 1<br /> Citrix Xml Service Communication(&65t.bottheory.local)\Network Traffic Calls / second : 1<br /> Citrix Xml Service Communication(10.10.10.13)\Network Traffic Average Time (Microseconds) :¬ 44,896<br /> Citrix Xml Service Communication(10.10.10.14)\Network Traffic Average Time (Microseconds) :¬ 40,508<br /> Citrix Xml Service Communication(10.10.10.14)\Network Traffic Average Time (Microseconds) :¬ 36,124<br /> Citrix Xml Service Communication(&5.bottheory.local)\Network Traffic Average Time (Microseconds) :¬ 127,686<br /> Citrix Xml Service Communication(&65t.bottheory.local)\Network Traffic Average Time (Microseconds) :¬ 165,869
   </p>
   
   <p>
-    I feel like I&#8217;m detecting a theme here&#8230;
+    I feel like I'm detecting a theme here...
   </p>
 </div>
 
@@ -374,11 +374,11 @@ Citrix Xml Service Communication(xenapp65t.bottheory.local)\Network Traffic Aver
 </div>
 
 <div class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover">
-  <span style="color: #ff0000;">$stage = &#8220;Launch Application&#8221;</span>
+  <span style="color: #ff0000;">$stage = "Launch Application"</span>
 </div>
 
 <div class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover">
-  $store + <span style="color: #3366ff;">&#8220;launch.aspx&#8221;</span>
+  $store + <span style="color: #3366ff;">"launch.aspx"</span>
 </div>
 
 <div class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover">
@@ -405,7 +405,7 @@ Citrix Xml Service Communication(xenapp65t.bottheory.local)\Network Traffic Aver
 </div>
 
 <div class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover">
-  Citrix Xml Service Communication(10.10.10.13)\Network Traffic Calls / second :¬ 4<br /> Citrix Xml Service Communication(xenapp65t.bottheory.local)\Network Traffic Average Time (Microseconds) :¬ 142,010
+  Citrix Xml Service Communication(10.10.10.13)\Network Traffic Calls / second :¬ 4<br /> Citrix Xml Service Communication(&65t.bottheory.local)\Network Traffic Average Time (Microseconds) :¬ 142,010
 </div>
 
 <div class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover">
@@ -426,35 +426,35 @@ Citrix Xml Service Communication(xenapp65t.bottheory.local)\Network Traffic Aver
 </div>
 
 <div class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover">
-  When PNA is used, it makes POST commands to the Storefront web services that then forwards those requests to the XML brokers, compiles the results and sends them back. ¬ It&#8217;s pretty obvious that the performance of the brokers is imperative for PNA to operate efficiently.
+  When PNA is used, it makes POST commands to the Storefront web services that then forwards those requests to the XML brokers, compiles the results and sends them back. ¬ It's pretty obvious that the performance of the brokers is imperative for PNA to operate efficiently.
 </div>
 
 <div class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover">
 </div>
 
 <div class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover">
-  I kind of wish¬ Storefront would break down the XML perfmon requests into their sub categories. ¬ By averaging out all requests to the XML brokers, it would make it difficult to pinpoint which sequence of events may be causing your pain point. ¬ The values will allow to target a specific XML broker for further analysis, but some¬ it could have been further helpful if you knew specifically that the &#8220;xenapp5.bottheory.local&#8221; broker was 10x longer to enumerate your full application icon list. ¬ An average could &#8216;hide&#8217; that bottleneck. ¬ My account has over 400 published applications and gets 100 different individual icon requests after the &#8216;icon-all&#8217; request. ¬ If this counter truly measures the average it would obscure the high &#8216;icon-all&#8217; time as 100 instances of would outweigh the single metric.
+  I kind of wish¬ Storefront would break down the XML perfmon requests into their sub categories. ¬ By averaging out all requests to the XML brokers, it would make it difficult to pinpoint which sequence of events may be causing your pain point. ¬ The values will allow to target a specific XML broker for further analysis, but some¬ it could have been further helpful if you knew specifically that the "&5.bottheory.local" broker was 10x longer to enumerate your full application icon list. ¬ An average could 'hide' that bottleneck. ¬ My account has over 400 published applications and gets 100 different individual icon requests after the 'icon-all' request. ¬ If this counter truly measures the average it would obscure the high 'icon-all' time as 100 instances of would outweigh the single metric.
 </div>
 
 <div class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover">
 </div>
 
 <div class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover">
-  However, this is still fantastic information. ¬ I have written a couple scripts for &#8216;querying&#8217; each stage to measure the response time of Storefront/Web Interface and Citrix has effectively added the ability to just pull that information from real users using these counters! ¬ It&#8217;s now easier and more important than ever to monitor your XML brokers from Storefront to ensure you are running at optimal efficiency.
+  However, this is still fantastic information. ¬ I have written a couple scripts for 'querying' each stage to measure the response time of Storefront/Web Interface and Citrix has effectively added the ability to just pull that information from real users using these counters! ¬ It's now easier and more important than ever to monitor your XML brokers from Storefront to ensure you are running at optimal efficiency.
 </div>
 
 <div class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover">
 </div>
 
 <div class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover">
-  To put these counters in context, the &#8216;Network Traffic Calls / second&#8217; and &#8216;Network Traffic Calls / Total&#8217; will tell you which of your XML brokers are getting hit the most. ¬ The Total will give you that big picture, &#8220;this guy gets hit alot&#8221; and the per second counter will give you that real time data.
+  To put these counters in context, the 'Network Traffic Calls / second' and 'Network Traffic Calls / Total' will tell you which of your XML brokers are getting hit the most. ¬ The Total will give you that big picture, "this guy gets hit alot" and the per second counter will give you that real time data.
 </div>
 
 <div class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover">
 </div>
 
 <div class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover">
-  The &#8220;Network Average Time&#8221; will give you the data on how long or how hard that particular broker is working. ¬ The higher the number the more work it&#8217;s doing or the more you should focus on optimizing it. ¬ I don&#8217;t have a guide for what these numbers should be, as different users will have different expectations. ¬ But I have shown what the values we get and I would argue we get great performance so I would try to keep your numbers below mine üôÇ
+  The "Network Average Time" will give you the data on how long or how hard that particular broker is working. ¬ The higher the number the more work it's doing or the more you should focus on optimizing it. ¬ I don't have a guide for what these numbers should be, as different users will have different expectations. ¬ But I have shown what the values we get and I would argue we get great performance so I would try to keep your numbers below mine üôÇ
 </div>
 
 <!-- AddThis Advanced Settings generic via filter on the_content -->

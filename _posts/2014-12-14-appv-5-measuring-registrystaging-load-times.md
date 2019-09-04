@@ -1,6 +1,6 @@
 ---
 id: 581
-title: 'AppV 5 &#8211; Measuring RegistryStaging load times'
+title: 'AppV 5 - Measuring RegistryStaging load times'
 date: 2014-12-14T21:23:00-06:00
 author: trententtye
 layout: post

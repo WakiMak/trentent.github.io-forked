@@ -1,6 +1,6 @@
 ---
 id: 1981
-title: 'Tracing Citrix Provisioning Service (PVS) Target Device Boot Performance &#8211; Windows Performance Toolkit'
+title: 'Tracing Citrix Provisioning Service (PVS) Target Device Boot Performance - Windows Performance Toolkit'
 date: 2017-01-31T07:31:46-06:00
 author: trententtye
 layout: post
@@ -31,7 +31,7 @@ tags:
 ---
 Non-Persistent Citrix PVS Target Devices have more complicated boot processes then a standard VM. Â This is because the Citrix PVS server components play a big role in acting as the boot disk. Â They send UDP packets over the network to the target device. Â This adds a delay that you simply cannot avoid (albeit, possibly a small one but there is no denying network communication should be slower than a local hard disk/SSD).
 
-One of the things we can do is set the PVS target devices up in such a way that we can get real, measurable data on what the target device is doing while it&#8217;s booting. Â This will give us visibility into what we may actually require for our target devices.
+One of the things we can do is set the PVS target devices up in such a way that we can get real, measurable data on what the target device is doing while it's booting. Â This will give us visibility into what we may actually require for our target devices.
 
 There are two programs that I use to measure boot performance. Â [Windows Performance Toolkit](https://msdn.microsoft.com/en-us/windows/hardware/commercialize/test/wpt/index) and [Process Monitor](https://technet.microsoft.com/en-us/sysinternals/processmonitor.aspx). Â I would not recommend running both at the same time because the logging does add some overhead (especially procmon in my humble experience).
 
@@ -51,7 +51,7 @@ To offline inject, simply mount your vDisk image and copy the files there:
 
 &nbsp;
 
-Then the portion of it that we are interested in is &#8220;xbootmgr.exe&#8221; (aka boot logging). Â In order to enable boot logging we need to inject the following registry key into our PVS Image:
+Then the portion of it that we are interested in is "xbootmgr.exe" (aka boot logging). Â In order to enable boot logging we need to inject the following registry key into our PVS Image:
 
 <pre class="lang:reg decode:true ">Windows Registry Editor Version 5.00
 
@@ -431,7 +431,7 @@ On next boot you will have captured boot information:
   <video class="wp-video-shortcode" id="video-1981-17" width="1140" height="938" preload="metadata" controls="controls"><source type="video/mp4" src="http://theorypc.ca/wp-content/uploads/2017/01/WPT_In_Action-1.mp4?_=17" /><a href="http://theorypc.ca/wp-content/uploads/2017/01/WPT_In_Action-1.mp4">http://theorypc.ca/wp-content/uploads/2017/01/WPT_In_Action-1.mp4</a></video>
 </div>
 
-To see how to use [Process MonitorÂ for boot tracing Citrix PVS Target Device&#8217;s click here](https://theorypc.ca/2017/01/31/tracing-citrix-provisioning-service-target-device-boot-performance-process-monitor/).
+To see how to use [Process MonitorÂ for boot tracing Citrix PVS Target Device's click here](https://theorypc.ca/2017/01/31/tracing-citrix-provisioning-service-target-device-boot-performance-process-monitor/).
 
 <!-- AddThis Advanced Settings generic via filter on the_content -->
 

@@ -20,7 +20,7 @@ categories:
 tags:
   - scripting
 ---
-I&#8217;ve come across a problem where users are filling up their hard disks and we need to move the highest utilization users to a new disk. In order to accomplish this I&#8217;ve setup a robocopy to move their files to a new disk and have it constantly mirrored until after-hours; where we run this script to move the file shares:
+I've come across a problem where users are filling up their hard disks and we need to move the highest utilization users to a new disk. In order to accomplish this I've setup a robocopy to move their files to a new disk and have it constantly mirrored until after-hours; where we run this script to move the file shares:
 
 > <pre class="lang:batch decode:true  ">:backup original shares:
 reg export "HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\lanmanserver\Shares" C:\shares-backup.reg /y
@@ -40,7 +40,7 @@ net start server</pre>
 
 What this script does is:  
 1) Backs up the existing share structure  
-2) Queries the file shares for the specific path of the share we&#8217;re going to move  
+2) Queries the file shares for the specific path of the share we're going to move  
 3) Using SED.exe we change the drive letter from E: to G:  
 4) Using reg.exe we overwrite the registry key with the new value  
 5) we then stop and restart the server service to get the new shares working.

@@ -22,12 +22,12 @@ tags:
   - procmon
   - Provisioning Services
   - Registry
-  - XenApp
+  - &
 ---
-We have run into an issue where we have Provisioning Service 6.1 and XenApp 6.5 working together. After we update the vDisk (say, for Windows Update) we run through a script that does things like the &#8220;XenApp Prep&#8221; to allow the XenApp 6.5 ready for imaging. It appears that there is a bug in the XenApp Prep that sometimes causes it to not fully get XenApp 6.5 ready for rejoining the farm. The initial symptoms I found were:
+We have run into an issue where we have Provisioning Service 6.1 and & 6.5 working together. After we update the vDisk (say, for Windows Update) we run through a script that does things like the "& Prep" to allow the & 6.5 ready for imaging. It appears that there is a bug in the & Prep that sometimes causes it to not fully get & 6.5 ready for rejoining the farm. The initial symptoms I found were:
 
 Event ID 4003  
-&#8220;The Citrix Independent Management Architecture service is exiting. The XenApp Server Configuration tool has not been run on this server.&#8221;
+"The Citrix Independent Management Architecture service is exiting. The & Server Configuration tool has not been run on this server."
 
 I found this [CTX article](http://support.citrix.com/article/CTX137758) about it, but nothing of it was applicable.
 
@@ -37,7 +37,7 @@ I did procmon traces and I found the following registry keys were missing on the
 A broken system missing the Status Registry key
 
 [<img src="http://4.bp.blogspot.com/-PKUVY--m4Hs/UkNGQvPv5rI/AAAAAAAAAYk/5hx7JfVaHtc/s320/3.png" border="0" />](http://4.bp.blogspot.com/-PKUVY--m4Hs/UkNGQvPv5rI/AAAAAAAAAYk/5hx7JfVaHtc/s1600/3.png)  
-A working system with the Status key. Note Joined is &#8220;0&#8221;
+A working system with the Status key. Note Joined is "0"
 
 After adding the Status Registry key:
 
@@ -57,14 +57,14 @@ That is ACCESS DENIED when trying to see that registry key. It turns out that th
 
 [<img src="http://4.bp.blogspot.com/-ikCgcmS39MI/UkNIJHBkqkI/AAAAAAAAAY8/zo4rXGOnmds/s320/5.png" border="0" />](http://4.bp.blogspot.com/-ikCgcmS39MI/UkNIJHBkqkI/AAAAAAAAAY8/zo4rXGOnmds/s1600/5.png)
 
-Notice that none of the permissions are inherited and &#8220;NETWORK SERVICE&#8221; is added with full control to this key. Now when we try and start the Citrix Independent Management Architecture service we get the following errors:
+Notice that none of the permissions are inherited and "NETWORK SERVICE" is added with full control to this key. Now when we try and start the Citrix Independent Management Architecture service we get the following errors:
 
 <pre class="lang:default decode:true ">eventid 3989:
-Citrix XenApp failed to connect to the Data Store. ODBC error while connecting to the database: S1000 -&gt; General error: Invalid file dsn ''
+Citrix & failed to connect to the Data Store. ODBC error while connecting to the database: S1000 -> General error: Invalid file dsn ''
 eventid 3636:
-The server running Citrix XenApp failed to connect to the data store. An unknown failure occurred while connecting to the database. Error: IMA_RESULT_FAILURE Indirect: 0 Server: DSN file: 
+The server running Citrix & failed to connect to the data store. An unknown failure occurred while connecting to the database. Error: IMA_RESULT_FAILURE Indirect: 0 Server: DSN file: 
 eventid 3615
-The server running Citrix XenApp failed to connect to the Data Store. Error - IMA_RESULT_FAILURE An unknown failure occurred while connecting to the database.
+The server running Citrix & failed to connect to the Data Store. Error - IMA_RESULT_FAILURE An unknown failure occurred while connecting to the database.
 eventid 3609 
 Failed to load plugin C:\Program Files (x86)\Citrix\System32\Citrix\IMA\SubSystems\ImaWorkerGroupSs.dll with error IMA_RESULT_FAILURE
 eventid 3601

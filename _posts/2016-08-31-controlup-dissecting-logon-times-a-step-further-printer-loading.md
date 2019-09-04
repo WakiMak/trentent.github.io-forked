@@ -1,6 +1,6 @@
 ---
 id: 1683
-title: 'ControlUp &#8211; Dissecting Logon Times a step further (Printer loading)'
+title: 'ControlUp - Dissecting Logon Times a step further (Printer loading)'
 date: 2016-08-31T00:46:10-06:00
 author: trententtye
 layout: post
@@ -13,25 +13,25 @@ tags:
   - ControlUp
   - PowerShell
   - scripting
-  - XenApp
+  - &
 ---
-We have applications that require printers be loaded before the application is started. Â This is usually because the application will check for a specific printer or default printer and if one is not set (because it hasn&#8217;t mapped into the session) then it&#8217;ll throw up a dialog or not start entirely.
+We have applications that require printers be loaded before the application is started. Â This is usually because the application will check for a specific printer or default printer and if one is not set (because it hasn't mapped into the session) then it'll throw up a dialog or not start entirely.
 
-So we have this value &#8216;unchecked&#8217;Â for some applications:
+So we have this value 'unchecked'Â for some applications:
 
 <img class="aligncenter size-full wp-image-1684" src="http://theorypc.ca/wp-content/uploads/2016/08/Screen-Shot-2016-08-31-at-12.12.08-AM.png" alt="Screen Shot 2016-08-31 at 12.12.08 AM" width="483" height="61" srcset="http://theorypc.ca/wp-content/uploads/2016/08/Screen-Shot-2016-08-31-at-12.12.08-AM.png 483w, http://theorypc.ca/wp-content/uploads/2016/08/Screen-Shot-2016-08-31-at-12.12.08-AM-300x38.png 300w" sizes="(max-width: 483px) 100vw, 483px" /> 
 
 But how does this impact our logon times?
 
-Well&#8230; Our organization just underwent a print server migration/upgrade where some print servers were decommissioned and don&#8217;t exist. Â But some users still have them or references to them on their end points. Â We do have policies that only map your default printer, but some users are on a policy to map &#8216;all&#8217; printers they have on their system.
+Well... Our organization just underwent a print server migration/upgrade where some print servers were decommissioned and don't exist. Â But some users still have them or references to them on their end points. Â We do have policies that only map your default printer, but some users are on a policy to map 'all' printers they have on their system.
 
-What&#8217;s the impact?
+What's the impact?
 
 <div id="attachment_1685" style="width: 528px" class="wp-caption aligncenter">
   <img aria-describedby="caption-attachment-1685" class="wp-image-1685 size-full" src="http://theorypc.ca/wp-content/uploads/2016/08/Screen-Shot-2016-08-31-at-12.15.10-AM.png" alt="Screen Shot 2016-08-31 at 12.15.10 AM" width="518" height="85" srcset="http://theorypc.ca/wp-content/uploads/2016/08/Screen-Shot-2016-08-31-at-12.15.10-AM.png 518w, http://theorypc.ca/wp-content/uploads/2016/08/Screen-Shot-2016-08-31-at-12.15.10-AM-300x49.png 300w" sizes="(max-width: 518px) 100vw, 518px" /></p> 
   
   <p id="caption-attachment-1685" class="wp-caption-text">
-    Waiting for printers before starting the application&#8230;
+    Waiting for printers before starting the application...
   </p>
 </div>
 
@@ -47,19 +47,19 @@ What&#8217;s the impact?
 
 16 Seconds? Â How is that so?
 
-Well, it turns out waiting for printers and the subsystem components to support them add a fair amount of time, and then worse is network printers that don&#8217;t go anywhere anymore. Â I&#8217;ve seen these logons wait for connection before timing out, all the while the user sits there and waits. Â The script that comes with ControlUp for analyzing logons is good, but I wanted to know more on why some systems had long logon times and the only clue was Pre-Shell (userinit) taking up all the time. Â So I dug into the print logs and found a way to measure their impact.
+Well, it turns out waiting for printers and the subsystem components to support them add a fair amount of time, and then worse is network printers that don't go anywhere anymore. Â I've seen these logons wait for connection before timing out, all the while the user sits there and waits. Â The script that comes with ControlUp for analyzing logons is good, but I wanted to know more on why some systems had long logon times and the only clue was Pre-Shell (userinit) taking up all the time. Â So I dug into the print logs and found a way to measure their impact.
 
 <img class="aligncenter size-full wp-image-1689" src="http://theorypc.ca/wp-content/uploads/2016/08/Screen-Shot-2016-08-31-at-12.32.05-AM.png" alt="Screen Shot 2016-08-31 at 12.32.05 AM" width="613" height="564" srcset="http://theorypc.ca/wp-content/uploads/2016/08/Screen-Shot-2016-08-31-at-12.32.05-AM.png 613w, http://theorypc.ca/wp-content/uploads/2016/08/Screen-Shot-2016-08-31-at-12.32.05-AM-300x276.png 300w" sizes="(max-width: 613px) 100vw, 613px" /> 
 
-With my modified script we can clearly see waiting for the printers takes ~15.4s with a few printers over a few seconds and the rest at 0.5 seconds or so. Â One thing about this process is that mapping printers is synchronous. Â So when or if 1 stalls, the whole process gets stuck. Â All my printers were local except for the &#8216;Generic / Text Only&#8217; which was a network printer where I powered off the server. Â It hung the longest at 5.9 seconds, but I&#8217;ve seen &#8216;non-existant&#8217; network mapped printers hang for 150 seconds or so&#8230;
+With my modified script we can clearly see waiting for the printers takes ~15.4s with a few printers over a few seconds and the rest at 0.5 seconds or so. Â One thing about this process is that mapping printers is synchronous. Â So when or if 1 stalls, the whole process gets stuck. Â All my printers were local except for the 'Generic / Text Only' which was a network printer where I powered off the server. Â It hung the longest at 5.9 seconds, but I've seen 'non-existant' network mapped printers hang for 150 seconds or so...
 
 To facilitate finding the printers we need to pass the clientName to the server and the Print Service Logs need to be enabled.
 
 You can enable the print service logs on server 2008R2 by executing the following:
 
-<pre class="lang:batch decode:true ">REG ADD "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WINEVT\Channels\Microsoft-Windows-PrintService/Operational" /V "Enabled" /T REG_DWORD /D 1 /F &gt;NUL
-REG ADD "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WINEVT\Channels\Microsoft-Windows-PrintService/Operational" /V "MaxSize" /T REG_DWORD /D 20971520 /F &gt;NUL
-REG ADD "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WINEVT\Channels\Microsoft-Windows-PrintService/Operational" /V "MaxSizeUpper" /T REG_DWORD /D 0 /F &gt;NUL
+<pre class="lang:batch decode:true ">REG ADD "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WINEVT\Channels\Microsoft-Windows-PrintService/Operational" /V "Enabled" /T REG_DWORD /D 1 /F >NUL
+REG ADD "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WINEVT\Channels\Microsoft-Windows-PrintService/Operational" /V "MaxSize" /T REG_DWORD /D 20971520 /F >NUL
+REG ADD "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WINEVT\Channels\Microsoft-Windows-PrintService/Operational" /V "MaxSizeUpper" /T REG_DWORD /D 0 /F >NUL
 WEVTUTIL SL Microsoft-Windows-PrintService/Operational /E:TRUE
 </pre>
 
@@ -241,31 +241,31 @@ and (Data=`"C:\Windows\System32\mpnotify.exe`")]]
 
 $ProfStartXpath = @"
 *[System[(EventID='10')
-and TimeCreated[@SystemTime &gt; '$ISO8601Date']]]
+and TimeCreated[@SystemTime > '$ISO8601Date']]]
 and *[EventData[Data and (Data='$UserName')]]
 "@
 
 $ProfEndXpath = @"
 *[System[(EventID='1')
-and  TimeCreated[@SystemTime&gt;='$ISO8601Date']]]
+and  TimeCreated[@SystemTime>='$ISO8601Date']]]
 and *[System[Security[@UserID='$($Logon.UserSID)']]]
 "@
 
 $UserProfStartXPath = @"
 *[System[(EventID='1')
-and  TimeCreated[@SystemTime&gt;='$ISO8601Date']]]
+and  TimeCreated[@SystemTime>='$ISO8601Date']]]
 and *[System[Security[@UserID='$($Logon.UserSID)']]]
 "@
 
 $UserProfEndXPath = @"
 *[System[(EventID='2')
-and  TimeCreated[@SystemTime&gt;='$ISO8601Date']]]
+and  TimeCreated[@SystemTime>='$ISO8601Date']]]
 and *[System[Security[@UserID='$($Logon.UserSID)']]]
 "@
 
 $GPStartXPath = @"
 *[System[(EventID='4001')
-and  TimeCreated[@SystemTime&gt;='$ISO8601Date']]]
+and  TimeCreated[@SystemTime>='$ISO8601Date']]]
 and *[EventData[Data[@Name='PrincipalSamName'] 
 and (Data=`"$UserDomain\$UserName`")]] 
 "@
@@ -278,7 +278,7 @@ and (Data=`"$UserDomain\$UserName`")]]
 
 $GPScriptStartXPath = @"
 *[System[(EventID='4018')
-and  TimeCreated[@SystemTime&gt;='$ISO8601Date']]]
+and  TimeCreated[@SystemTime>='$ISO8601Date']]]
 and *[EventData[Data[@Name='PrincipalSamName'] 
 and (Data=`"$UserDomain\$UserName`")]] 
 and *[EventData[Data[@Name='ScriptType'] 
@@ -287,7 +287,7 @@ and (Data='1')]]
 
 $GPScriptEndXPath = @"
 *[System[(EventID='5018')
-and  TimeCreated[@SystemTime&gt;='$ISO8601Date']]]
+and  TimeCreated[@SystemTime>='$ISO8601Date']]]
 and *[EventData[Data[@Name='PrincipalSamName'] 
 and (Data=`"$UserDomain\$UserName`")]] 
 and *[EventData[Data[@Name='ScriptType'] 
@@ -383,8 +383,8 @@ if (-not($clientName -eq "0")) {
 
 
         $PrinterStartXPath = @"
-*[System[TimeCreated[@SystemTime&gt;='$ISO8601Date' 
-and @SystemTime&lt;='$PrinterSearchISO8601Date']]]
+*[System[TimeCreated[@SystemTime>='$ISO8601Date' 
+and @SystemTime<='$PrinterSearchISO8601Date']]]
 "@
 
         $printerEvents = Get-WinEvent -ProviderName "Microsoft-Windows-PrintService" -FilterXPath $PrinterStartXPath | ?{$_.message -like "*$clientName*"} | sort -Property TimeCreated

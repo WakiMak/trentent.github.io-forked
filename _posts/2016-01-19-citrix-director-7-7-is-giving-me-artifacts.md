@@ -90,7 +90,7 @@ We are still in a pilot-preupgrade phase of Citrix Director 7.7 and found an iss
 </table>
 
 <div>
-  Citrix says the following about Director and &#8216;Compatibility View&#8217;:
+  Citrix says the following about Director and 'Compatibility View':
 </div>
 
 [**Director does not support Internet Explorer compatibility mode.** Please use the recommended browser settings. When you install Internet Explorer, accept the default to use the recommended security and compatibility settings. If you already installed the browser and chose not to use the recommended settings, go to Tools > Internet Options > Advanced > Reset and follow the instructions](https://www.citrix.com/blogs/2014/06/09/browser-best-practices-for-citrix-director-4/)
@@ -99,21 +99,21 @@ We are still in a pilot-preupgrade phase of Citrix Director 7.7 and found an iss
 </div>
 
 <div>
-  Because we use a group policy to push this setting out, disabling it and re-enabling it on a site-per-site configuration isn&#8217;t acceptable. Â There is an option to set the &#8216;zone assignment&#8217; of our Citrix Director server to be on &#8216;Trusted Sites&#8217; instead of &#8216;Local Intranet&#8217; but this would be another policy that would have to be pushed out to the ~80,000 workstations we have. Â Instead, there is another option. Â We can edit the default.html file in the Citrix Director folder and add a line in thesection to tell IE to exclude this site from compatibility mode. Â To execute this:
+  Because we use a group policy to push this setting out, disabling it and re-enabling it on a site-per-site configuration isn't acceptable. Â There is an option to set the 'zone assignment' of our Citrix Director server to be on 'Trusted Sites' instead of 'Local Intranet' but this would be another policy that would have to be pushed out to the ~80,000 workstations we have. Â Instead, there is another option. Â We can edit the default.html file in the Citrix Director folder and add a line in thesection to tell IE to exclude this site from compatibility mode. Â To execute this:
 </div>
 
 <div>
 </div>
 
 <div>
-  Edit the Default.html file (&#8220;C:inetpubwwwrootDirectordefault.html&#8221;) and add this line:
+  Edit the Default.html file ("C:inetpubwwwrootDirectordefault.html") and add this line:
 </div>
 
 <div>
-  <pre class="lang:default decode:true ">&lt;meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=EDGE" /&gt;</pre>
+  <pre class="lang:default decode:true "><meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=EDGE" /></pre>
 </div>
 
-To the &#8216;head&#8217; section. Â Example:
+To the 'head' section. Â Example:
 
 <div>
 </div>

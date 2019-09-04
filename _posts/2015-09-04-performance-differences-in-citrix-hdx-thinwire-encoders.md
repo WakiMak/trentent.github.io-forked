@@ -20,10 +20,10 @@ categories:
 tags:
   - Citrix
   - HDX
-  - XenApp
+  - &
   - XenDesktop
 ---
-Per my previous post, changing the [Citrix HDX Thinwire Encoder on the fly](http://trentent.blogspot.com/2015/09/change-citrix-hdx-encoder-on-fly-for.html), we can test the performance differences in the different encoder&#8217;s Citrix provides. &nbsp;I have done so by running through a demo of the [Uniengine Heaven](https://unigine.com/en/products/benchmarks/heaven/) benchmark. &nbsp;The demo is exactly 4 minutes and 20 seconds long. &nbsp;I did a perfmon trace of the CPU %, total bytes sent in MBits/sec and the Thinwire Output in MBit/sec.
+Per my previous post, changing the [Citrix HDX Thinwire Encoder on the fly](http://trentent.blogspot.com/2015/09/change-citrix-hdx-encoder-on-fly-for.html), we can test the performance differences in the different encoder's Citrix provides. &nbsp;I have done so by running through a demo of the [Uniengine Heaven](https://unigine.com/en/products/benchmarks/heaven/) benchmark. &nbsp;The demo is exactly 4 minutes and 20 seconds long. &nbsp;I did a perfmon trace of the CPU %, total bytes sent in MBits/sec and the Thinwire Output in MBit/sec.
 
 Time for some results!
 

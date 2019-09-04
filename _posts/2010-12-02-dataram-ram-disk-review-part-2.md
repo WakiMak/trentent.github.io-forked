@@ -20,7 +20,7 @@ categories:
 tags:
   - Uncategorized
 ---
-I&#8217;ve purchased some RAM to replace my 1GB sticks. This new RAM allows my system to operate at 1333MHz DRAM speed without issues. So, I&#8217;ve set my RAM to this new bandwidth speed and my memory went to:
+I've purchased some RAM to replace my 1GB sticks. This new RAM allows my system to operate at 1333MHz DRAM speed without issues. So, I've set my RAM to this new bandwidth speed and my memory went to:
 
 <div>
 </div>
@@ -47,7 +47,7 @@ I&#8217;ve purchased some RAM to replace my 1GB sticks. This new RAM allows my s
 </div>
 
 <div>
-  With a 23% Read performance improvement will DataRAM&#8217;s RAMDrive solution improve?
+  With a 23% Read performance improvement will DataRAM's RAMDrive solution improve?
 </div>
 
 <div>
@@ -61,21 +61,21 @@ I&#8217;ve purchased some RAM to replace my 1GB sticks. This new RAM allows my s
 </div>
 
 <div>
-  It appears something else is holding the performance of the RAMDrive software down. IOMeter *did* see some improvement (from 5000Mb/s to 5094MB/s&#8230; a 1.9% improvement) but pretty insignificant from what it *should* be, if it was hardware being the hold up.
+  It appears something else is holding the performance of the RAMDrive software down. IOMeter *did* see some improvement (from 5000Mb/s to 5094MB/s... a 1.9% improvement) but pretty insignificant from what it *should* be, if it was hardware being the hold up.
 </div>
 
 <div>
 </div>
 
 <div>
-  The &#8220;bandwidth&#8221; of the RAMDrive is 40Gbps, a pretty large leap from the maximum you could get from SATA at it&#8217;s best (6Gbps), but I hope DataRAM investigates what the performance ceiling is of their software and can explain or correct what&#8217;s causing it.
+  The "bandwidth" of the RAMDrive is 40Gbps, a pretty large leap from the maximum you could get from SATA at it's best (6Gbps), but I hope DataRAM investigates what the performance ceiling is of their software and can explain or correct what's causing it.
 </div>
 
 <div>
 </div>
 
 <div>
-  Overall though, I&#8217;m still happy with the software and for a free 4GB RAM disk or $10 for a maximum of ~64GB, I think it&#8217;s a great value. I have 18GB of RAM in my system and utilize this software for programs like StarCraft or VMWare machines and the loading speeds are great.
+  Overall though, I'm still happy with the software and for a free 4GB RAM disk or $10 for a maximum of ~64GB, I think it's a great value. I have 18GB of RAM in my system and utilize this software for programs like StarCraft or VMWare machines and the loading speeds are great.
 </div>
 
 <div>

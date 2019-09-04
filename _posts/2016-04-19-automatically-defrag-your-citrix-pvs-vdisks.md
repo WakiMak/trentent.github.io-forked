@@ -21,7 +21,7 @@ tags:
   - Provisioning Services
   - PVS
 ---
-Here is a script to automate &#8216;offline defragging&#8217; your PVS vDisks. Â [Why Defrag? Â It&#8217;s explained nicely here](https://www.citrix.com/blogs/2015/01/19/size-matters-pvs-ram-cache-overflow-sizing/?_ga=1.24764090.1091830672.1452712354).
+Here is a script to automate 'offline defragging' your PVS vDisks. Â [Why Defrag? Â It's explained nicely here](https://www.citrix.com/blogs/2015/01/19/size-matters-pvs-ram-cache-overflow-sizing/?_ga=1.24764090.1091830672.1452712354).
 
 > <span style="font-family: Arial, Helvetica, sans-serif;"><b>Effects of Fragmentation on Write Cache Size</b><br /> The culprit above in excessive write cache size is fragmentation. This is caused because PVS redirection is block based and not file based. The redirection to the write cache is based on the logical block level structure of the vDisk. To illustrate this, consider the scenario below.</span>
 
@@ -55,8 +55,8 @@ And the script:
 $PVSServer = "PVS04"
 #PVS Port number
 $PVSPort = "54321"
-$TargetvDiskName = "XenApp65Tn05"
-$PVSStore = "XenApp"
+$TargetvDiskName = "&65Tn05"
+$PVSStore = "&"
 $PVSSite = "BDC"
  
 #Domain used

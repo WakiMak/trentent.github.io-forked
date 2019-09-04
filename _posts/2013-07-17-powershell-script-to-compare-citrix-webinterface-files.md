@@ -22,7 +22,7 @@ tags:
   - PowerShell
   - Web Interface
 ---
-I&#8217;ve created a powershell script that will compare Citrix Webinterface files then export them out to a csv file.
+I've created a powershell script that will compare Citrix Webinterface files then export them out to a csv file.
 
 <pre class="lang:ps decode:true ">#***************************************************************************************************************
 #* Created by:  Trentent Tye

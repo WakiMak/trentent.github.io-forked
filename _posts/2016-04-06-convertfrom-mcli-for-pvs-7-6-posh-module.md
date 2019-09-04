@@ -20,7 +20,7 @@ tags:
   - PowerShell
   - Provisioning Services
 ---
-[Martin Zugec made a POSH script](https://www.citrix.com/blogs/2012/07/23/provisioning-services-and-powershell-easier-method/) to convert output from mcli.exe to a PowerShell object, but his script fails with the new PVS 7.6 POSH module. Â From looking at his script he is trying to key on &#8216;spaces&#8217; to set the properties of the objects. Â MCLI.exe outputs the properties with spaces. Â PVS 7.6 POSH module fails because it doesn&#8217;t format it&#8217;s output as spaces.
+[Martin Zugec made a POSH script](https://www.citrix.com/blogs/2012/07/23/provisioning-services-and-powershell-easier-method/) to convert output from mcli.exe to a PowerShell object, but his script fails with the new PVS 7.6 POSH module. Â From looking at his script he is trying to key on 'spaces' to set the properties of the objects. Â MCLI.exe outputs the properties with spaces. Â PVS 7.6 POSH module fails because it doesn't format it's output as spaces.
 
 MCLI.EXE output:
 
@@ -44,7 +44,7 @@ access: 1</pre>
 
 Notice the subtle difference? No spaces.
 
-To get Martin&#8217;s original script working we need to change the script to look for another character we can key on. Fortunately(?) it \*appears\* that the PVS POSH module outputs properties to start with a lower case letter. If we modify his script here:
+To get Martin's original script working we need to change the script to look for another character we can key on. Fortunately(?) it \*appears\* that the PVS POSH module outputs properties to start with a lower case letter. If we modify his script here:
 
 <pre class="lang:ps decode:true ">If ($Line[0] -eq " " -or $Line.StartsWith("Record #")) {</pre>
 
@@ -54,7 +54,7 @@ To this:
 
 It now outputs properties correctly from the PVS POSH module:
 
-<pre class="lang:ps decode:true ">PS C:\swinst\VMTools_and_TargetDeviceSoftwareUpdate&gt; mcli-get diskversion -p diskLocatorName=XenApp65Tn02,siteName=BDC,storeName=XenApp -f access | ConvertFrom-MCLI
+<pre class="lang:ps decode:true ">PS C:\swinst\VMTools_and_TargetDeviceSoftwareUpdate> mcli-get diskversion -p diskLocatorName=&65Tn02,siteName=BDC,storeName=& -f access | ConvertFrom-MCLI
 Retrieved 2 objects
  
 access                                                                                                                     

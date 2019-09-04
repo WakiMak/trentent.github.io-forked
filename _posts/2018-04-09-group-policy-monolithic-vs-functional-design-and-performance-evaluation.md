@@ -70,7 +70,7 @@ panels_data:
                                   <div id="recentpost-2923" class="columns twelve omega imageon">
                                     <div class="recent-item">
                                       <h3 class="recent-title">
-                                        <a href="http://theorypc.ca/2019/02/06/citrix-logon-simulators-part-2/">Citrix Logon Simulator&#8217;s &#8211; Part 2</a>
+                                        <a href="http://theorypc.ca/2019/02/06/citrix-logon-simulators-part-2/">Citrix Logon Simulator's - Part 2</a>
                                       </h3>
                                       
                                       <p>
@@ -88,7 +88,7 @@ panels_data:
                                         </div>
                                         
                                         <p>
-                                          In my previous post I was looking at utilizing a Logon Simulator to setup some proactive monitoring of a Citrix environment. Â I setup some goals for myself: Minimize the number of VM&#8217;s to run the robots As little resource consumption as possible Still provide operational alerts Operate on-premise I want the footprint of these robots [&hellip;]<!-- AddThis Advanced Settings above via filter on wp_trim_excerpt -->
+                                          In my previous post I was looking at utilizing a Logon Simulator to setup some proactive monitoring of a Citrix environment. Â I setup some goals for myself: Minimize the number of VM's to run the robots As little resource consumption as possible Still provide operational alerts Operate on-premise I want the footprint of these robots [&hellip;]<!-- AddThis Advanced Settings above via filter on wp_trim_excerpt -->
                                           
                                           <!-- AddThis Advanced Settings below via filter on wp_trim_excerpt -->
                                           
@@ -111,7 +111,7 @@ panels_data:
                                           <div id="recentpost-2916" class="columns twelve omega imageoff">
                                             <div class="recent-item">
                                               <h3 class="recent-title">
-                                                <a href="http://theorypc.ca/2019/02/04/citrix-logon-simulators-part-1/">Citrix Logon Simulator&#8217;s &#8211; Part 1</a>
+                                                <a href="http://theorypc.ca/2019/02/04/citrix-logon-simulators-part-1/">Citrix Logon Simulator's - Part 1</a>
                                               </h3>
                                               
                                               <p>
@@ -126,7 +126,7 @@ panels_data:
                                                 </div>
                                                 
                                                 <p>
-                                                  &#8220;Help!Â I can&#8217;t launch my application!&#8221; &#8220;Is something wrong with Citrix?&#8221; &#8220;Hey man, I heard Citrix was down?&#8221; &#8220;Can you help? I need to get this work done!Â The deadline is today and I can&#8217;t open my app!&#8221; Welcome to the world of a Citrix Administrator.Â If an application stops working then the calls flood [&hellip;]<!-- AddThis Advanced Settings above via filter on wp_trim_excerpt -->
+                                                  "Help!Â I can't launch my application!" "Is something wrong with Citrix?" "Hey man, I heard Citrix was down?" "Can you help? I need to get this work done!Â The deadline is today and I can't open my app!" Welcome to the world of a Citrix Administrator.Â If an application stops working then the calls flood [&hellip;]<!-- AddThis Advanced Settings above via filter on wp_trim_excerpt -->
                                                   
                                                   <!-- AddThis Advanced Settings below via filter on wp_trim_excerpt -->
                                                   
@@ -149,7 +149,7 @@ panels_data:
                                                   <div id="recentpost-2829" class="columns twelve omega imageoff">
                                                     <div class="recent-item">
                                                       <h3 class="recent-title">
-                                                        <a href="http://theorypc.ca/2018/10/29/citrix-pvs-image-management-design-challenges-case-study/">Citrix PVS Image Management Design Challenges &#8211; Case Study</a>
+                                                        <a href="http://theorypc.ca/2018/10/29/citrix-pvs-image-management-design-challenges-case-study/">Citrix PVS Image Management Design Challenges - Case Study</a>
                                                       </h3>
                                                       
                                                       <p>
@@ -164,7 +164,7 @@ panels_data:
                                                         </div>
                                                         
                                                         <p>
-                                                          Challenge: Different applications have differing levels of operating system support.&nbsp; A vendor might only support their app on a specific operating system, or multiple /older/ operating systems, or the organization hasn&#8217;t updated to a new version that supports the new OS; whether because the new version has a cost attached to upgrading the org cannot [&hellip;]<!-- AddThis Advanced Settings above via filter on wp_trim_excerpt -->
+                                                          Challenge: Different applications have differing levels of operating system support.&nbsp; A vendor might only support their app on a specific operating system, or multiple /older/ operating systems, or the organization hasn't updated to a new version that supports the new OS; whether because the new version has a cost attached to upgrading the org cannot [&hellip;]<!-- AddThis Advanced Settings above via filter on wp_trim_excerpt -->
                                                           
                                                           <!-- AddThis Advanced Settings below via filter on wp_trim_excerpt -->
                                                           
@@ -187,7 +187,7 @@ panels_data:
                                                           <div id="recentpost-2799" class="columns twelve omega imageon">
                                                             <div class="recent-item">
                                                               <h3 class="recent-title">
-                                                                <a href="http://theorypc.ca/2018/09/14/meltdown-spectre-performance-impact-analysis-take-2/">Meltdown + Spectre &#8211; Performance Impact Analysis (Take 2)</a>
+                                                                <a href="http://theorypc.ca/2018/09/14/meltdown-spectre-performance-impact-analysis-take-2/">Meltdown + Spectre - Performance Impact Analysis (Take 2)</a>
                                                               </h3>
                                                               
                                                               <p>
@@ -205,7 +205,7 @@ panels_data:
                                                                 </div>
                                                                 
                                                                 <p>
-                                                                  I want to start this off by thanking ControlUp, LoginVSI and Ryan Ververs-Bijkerk for his assistance in helping me with this post. Building on my last evaluation of the performance impact of Meltdown and Spectre, I was graciously given a trial of the LoginVSI software product used to simulate user loads and ControlUp&#8217;s cloud based [&hellip;]<!-- AddThis Advanced Settings above via filter on wp_trim_excerpt -->
+                                                                  I want to start this off by thanking ControlUp, LoginVSI and Ryan Ververs-Bijkerk for his assistance in helping me with this post. Building on my last evaluation of the performance impact of Meltdown and Spectre, I was graciously given a trial of the LoginVSI software product used to simulate user loads and ControlUp's cloud based [&hellip;]<!-- AddThis Advanced Settings above via filter on wp_trim_excerpt -->
                                                                   
                                                                   <!-- AddThis Advanced Settings below via filter on wp_trim_excerpt -->
                                                                   
@@ -228,7 +228,7 @@ panels_data:
                                                                   <div id="recentpost-2807" class="columns twelve omega imageon">
                                                                     <div class="recent-item">
                                                                       <h3 class="recent-title">
-                                                                        <a href="http://theorypc.ca/2018/06/30/user-profile-manager-unavoidable-delays/">User Profile Manager &#8211; Unavoidable Delays</a>
+                                                                        <a href="http://theorypc.ca/2018/06/30/user-profile-manager-unavoidable-delays/">User Profile Manager - Unavoidable Delays</a>
                                                                       </h3>
                                                                       
                                                                       <p>
@@ -246,7 +246,7 @@ panels_data:
                                                                         </div>
                                                                         
                                                                         <p>
-                                                                          https://twitter.com/TrententTye/status/1011396648688185344 I&#8217;ve been exploring optimizing logon times and noticed &#8220;User Profile Service&#8221; always showed up for 1-3 seconds. Â I asked why and began my investigation. The first thing I needed to do is separate the &#8220;User Profile Service&#8221; into it&#8217;s own process. Â It&#8217;s originally configured to share the same process as other services which makes [&hellip;]<!-- AddThis Advanced Settings above via filter on wp_trim_excerpt -->
+                                                                          https://twitter.com/TrententTye/status/1011396648688185344 I've been exploring optimizing logon times and noticed "User Profile Service" always showed up for 1-3 seconds. Â I asked why and began my investigation. The first thing I needed to do is separate the "User Profile Service" into it's own process. Â It's originally configured to share the same process as other services which makes [&hellip;]<!-- AddThis Advanced Settings above via filter on wp_trim_excerpt -->
                                                                           
                                                                           <!-- AddThis Advanced Settings below via filter on wp_trim_excerpt -->
                                                                           
@@ -269,7 +269,7 @@ panels_data:
                                                                           <div id="recentpost-2788" class="columns twelve omega imageon">
                                                                             <div class="recent-item">
                                                                               <h3 class="recent-title">
-                                                                                <a href="http://theorypc.ca/2018/05/02/citrix-provisioning-service-network-service-starting-stopping-services-remotely/">Citrix Provisioning Service &#8211; Network Service Starting/Stopping services remotely</a>
+                                                                                <a href="http://theorypc.ca/2018/05/02/citrix-provisioning-service-network-service-starting-stopping-services-remotely/">Citrix Provisioning Service - Network Service Starting/Stopping services remotely</a>
                                                                               </h3>
                                                                               
                                                                               <p>
@@ -287,7 +287,7 @@ panels_data:
                                                                                 </div>
                                                                                 
                                                                                 <p>
-                                                                                  Citrix Provisioning Services has a feature within the &#8220;Provisioning Services Console&#8221; that allows you to stop/restart/start the streaming service on another server: &nbsp; This feature worked with Server 2008R2 but with 2012R2 and greater it stopped working.Â CitrixÂ partially identified the issue here: &nbsp; I was exploring starting and stopping the streaming service on other PVS [&hellip;]<!-- AddThis Advanced Settings above via filter on wp_trim_excerpt -->
+                                                                                  Citrix Provisioning Services has a feature within the "Provisioning Services Console" that allows you to stop/restart/start the streaming service on another server: &nbsp; This feature worked with Server 2008R2 but with 2012R2 and greater it stopped working.Â CitrixÂ partially identified the issue here: &nbsp; I was exploring starting and stopping the streaming service on other PVS [&hellip;]<!-- AddThis Advanced Settings above via filter on wp_trim_excerpt -->
                                                                                   
                                                                                   <!-- AddThis Advanced Settings below via filter on wp_trim_excerpt -->
                                                                                   
@@ -310,7 +310,7 @@ panels_data:
                                                                                   <div id="recentpost-2744" class="columns twelve omega imageon">
                                                                                     <div class="recent-item">
                                                                                       <h3 class="recent-title">
-                                                                                        <a href="http://theorypc.ca/2018/04/30/meltdown-spectre-performance-analysis/">Meltdown + Spectre &#8211; Performance Analysis</a>
+                                                                                        <a href="http://theorypc.ca/2018/04/30/meltdown-spectre-performance-analysis/">Meltdown + Spectre - Performance Analysis</a>
                                                                                       </h3>
                                                                                       
                                                                                       <p>
@@ -328,7 +328,7 @@ panels_data:
                                                                                         </div>
                                                                                         
                                                                                         <p>
-                                                                                          Meltdown and Spectre (variant 2) are two vulnerabilities that came out at the same time, however they are vastly different. Â Patches for both were released extremely quickly for Microsoft OS&#8217;s but because of a variety of issues with Spectre, only Meltdown was truly available to be mitigated. Â Spectre (variant 2) mitigation had a problematic release, [&hellip;]<!-- AddThis Advanced Settings above via filter on wp_trim_excerpt -->
+                                                                                          Meltdown and Spectre (variant 2) are two vulnerabilities that came out at the same time, however they are vastly different. Â Patches for both were released extremely quickly for Microsoft OS's but because of a variety of issues with Spectre, only Meltdown was truly available to be mitigated. Â Spectre (variant 2) mitigation had a problematic release, [&hellip;]<!-- AddThis Advanced Settings above via filter on wp_trim_excerpt -->
                                                                                           
                                                                                           <!-- AddThis Advanced Settings below via filter on wp_trim_excerpt -->
                                                                                           
@@ -369,7 +369,7 @@ panels_data:
                                                                                                 </div>
                                                                                                 
                                                                                                 <p>
-                                                                                                  In various discussions I&#8217;ve read about the drawbacks of Group Policy Preferences but is it really that bad? &nbsp; &#8230;Or is it how you are using it? &nbsp; There are two methods of applying registry keys/values with Group Policy. Â The Group Policy Registry Extension is the &#8220;traditional&#8221; form of applying policies. Â Also known as ADM [&hellip;]<!-- AddThis Advanced Settings above via filter on wp_trim_excerpt -->
+                                                                                                  In various discussions I've read about the drawbacks of Group Policy Preferences but is it really that bad? &nbsp; ...Or is it how you are using it? &nbsp; There are two methods of applying registry keys/values with Group Policy. Â The Group Policy Registry Extension is the "traditional" form of applying policies. Â Also known as ADM [&hellip;]<!-- AddThis Advanced Settings above via filter on wp_trim_excerpt -->
                                                                                                   
                                                                                                   <!-- AddThis Advanced Settings below via filter on wp_trim_excerpt -->
                                                                                                   
@@ -392,7 +392,7 @@ panels_data:
                                                                                                   <div id="recentpost-2691" class="columns twelve omega imageon">
                                                                                                     <div class="recent-item">
                                                                                                       <h3 class="recent-title">
-                                                                                                        <a href="http://theorypc.ca/2018/04/09/group-policy-monolithic-vs-functional-design-and-performance-evaluation/">Group Policy &#8211; Monolithic vs Functional Design and Performance Evaluation</a>
+                                                                                                        <a href="http://theorypc.ca/2018/04/09/group-policy-monolithic-vs-functional-design-and-performance-evaluation/">Group Policy - Monolithic vs Functional Design and Performance Evaluation</a>
                                                                                                       </h3>
                                                                                                       
                                                                                                       <p>
@@ -410,7 +410,7 @@ panels_data:
                                                                                                         </div>
                                                                                                         
                                                                                                         <p>
-                                                                                                          Group Policy Design is a hotly discussed topic, with lots of different ideas and discussions. Â However, there is not a whole lot of actual metrics. Â ADM and ADMX templates apply registry keys in an &#8216;enforced&#8217; manner. Â That is, if you or the machine has access to read the policies, the registry keys within are applied. [&hellip;]<!-- AddThis Advanced Settings above via filter on wp_trim_excerpt -->
+                                                                                                          Group Policy Design is a hotly discussed topic, with lots of different ideas and discussions. Â However, there is not a whole lot of actual metrics. Â ADM and ADMX templates apply registry keys in an 'enforced' manner. Â That is, if you or the machine has access to read the policies, the registry keys within are applied. [&hellip;]<!-- AddThis Advanced Settings above via filter on wp_trim_excerpt -->
                                                                                                           
                                                                                                           <!-- AddThis Advanced Settings below via filter on wp_trim_excerpt -->
                                                                                                           
@@ -460,7 +460,7 @@ panels_data:
                                                                                                       
                                                                                                       <ul id="recentcomments">
                                                                                                         <li class="recentcomments">
-                                                                                                          <span class="comment-author-link">Julien</span> on <a href="http://theorypc.ca/2017/05/01/citrix-storefront-pass-uri-parameters-to-an-application/#comment-10523">Citrix Storefront &#8211; Pass URI parameters to an application</a>
+                                                                                                          <span class="comment-author-link">Julien</span> on <a href="http://theorypc.ca/2017/05/01/citrix-storefront-pass-uri-parameters-to-an-application/#comment-10523">Citrix Storefront - Pass URI parameters to an application</a>
                                                                                                         </li>
                                                                                                         <li class="recentcomments">
                                                                                                           <span class="comment-author-link">Aaron</span> on <a href="http://theorypc.ca/2019/03/05/printers-and-their-impact-on-logon-duration/#comment-10145">Printers and their impact on logon duration</a>
@@ -472,16 +472,16 @@ panels_data:
                                                                                                           <span class="comment-author-link">IstvÃ¡n Siroki</span> on <a href="http://theorypc.ca/2017/06/28/remove-ghost-devices-natively-with-powershell/#comment-10049">Remove Ghost devices natively with Powershell</a>
                                                                                                         </li>
                                                                                                         <li class="recentcomments">
-                                                                                                          <span class="comment-author-link">Rui Paz</span> on <a href="http://theorypc.ca/2016/10/19/windows-update-errors/#comment-9867">Windows Update &#8211; Errors 80070057, 800736B3, 8024400E</a>
+                                                                                                          <span class="comment-author-link">Rui Paz</span> on <a href="http://theorypc.ca/2016/10/19/windows-update-errors/#comment-9867">Windows Update - Errors 80070057, 800736B3, 8024400E</a>
                                                                                                         </li>
                                                                                                         <li class="recentcomments">
-                                                                                                          <span class="comment-author-link">JamieT</span> on <a href="http://theorypc.ca/2018/10/29/citrix-pvs-image-management-design-challenges-case-study/#comment-9766">Citrix PVS Image Management Design Challenges &#8211; Case Study</a>
+                                                                                                          <span class="comment-author-link">JamieT</span> on <a href="http://theorypc.ca/2018/10/29/citrix-pvs-image-management-design-challenges-case-study/#comment-9766">Citrix PVS Image Management Design Challenges - Case Study</a>
                                                                                                         </li>
                                                                                                         <li class="recentcomments">
-                                                                                                          <span class="comment-author-link"><a href='https://ketoinfinite.org/' rel='external nofollow' class='url'>ketoinfinite.org</a></span> on <a href="http://theorypc.ca/2017/05/07/citrix-storefront-adventures-in-customization-dynamically-configure-workspace-control-based-on-group-membership/#comment-9660">Citrix Storefront &#8211; Adventures in customization &#8211; Dynamically configure workspace control based on group membership</a>
+                                                                                                          <span class="comment-author-link"><a href='https://ketoinfinite.org/' rel='external nofollow' class='url'>ketoinfinite.org</a></span> on <a href="http://theorypc.ca/2017/05/07/citrix-storefront-adventures-in-customization-dynamically-configure-workspace-control-based-on-group-membership/#comment-9660">Citrix Storefront - Adventures in customization - Dynamically configure workspace control based on group membership</a>
                                                                                                         </li>
                                                                                                         <li class="recentcomments">
-                                                                                                          <span class="comment-author-link"><a href='http://www.vcdx200.com' rel='external nofollow' class='url'>David Pasek</a></span> on <a href="http://theorypc.ca/2018/04/30/meltdown-spectre-performance-analysis/#comment-9354">Meltdown + Spectre &#8211; Performance Analysis</a>
+                                                                                                          <span class="comment-author-link"><a href='http://www.vcdx200.com' rel='external nofollow' class='url'>David Pasek</a></span> on <a href="http://theorypc.ca/2018/04/30/meltdown-spectre-performance-analysis/#comment-9354">Meltdown + Spectre - Performance Analysis</a>
                                                                                                         </li>
                                                                                                         <li class="recentcomments">
                                                                                                           <span class="comment-author-link">Aaron</span> on <a href="http://theorypc.ca/2019/03/05/printers-and-their-impact-on-logon-duration/#comment-9288">Printers and their impact on logon duration</a>
@@ -496,19 +496,19 @@ panels_data:
                                                                                                           <span class="comment-author-link">Bent Johansen</span> on <a href="http://theorypc.ca/2019/03/05/printers-and-their-impact-on-logon-duration/#comment-8861">Printers and their impact on logon duration</a>
                                                                                                         </li>
                                                                                                         <li class="recentcomments">
-                                                                                                          <span class="comment-author-link">trententtye</span> on <a href="http://theorypc.ca/2017/04/24/citrix-storefront-experiences-with-storefront-customization-sdk-and-web-api/#comment-8115">Citrix StoreFront &#8211; Experiences with Storefront Customization SDK and Web API</a>
+                                                                                                          <span class="comment-author-link">trententtye</span> on <a href="http://theorypc.ca/2017/04/24/citrix-storefront-experiences-with-storefront-customization-sdk-and-web-api/#comment-8115">Citrix StoreFront - Experiences with Storefront Customization SDK and Web API</a>
                                                                                                         </li>
                                                                                                         <li class="recentcomments">
-                                                                                                          <span class="comment-author-link">Julien</span> on <a href="http://theorypc.ca/2017/04/24/citrix-storefront-experiences-with-storefront-customization-sdk-and-web-api/#comment-7989">Citrix StoreFront &#8211; Experiences with Storefront Customization SDK and Web API</a>
+                                                                                                          <span class="comment-author-link">Julien</span> on <a href="http://theorypc.ca/2017/04/24/citrix-storefront-experiences-with-storefront-customization-sdk-and-web-api/#comment-7989">Citrix StoreFront - Experiences with Storefront Customization SDK and Web API</a>
                                                                                                         </li>
                                                                                                         <li class="recentcomments">
-                                                                                                          <span class="comment-author-link">Julien DESTOMBES</span> on <a href="http://theorypc.ca/2017/04/24/citrix-storefront-experiences-with-storefront-customization-sdk-and-web-api/#comment-7988">Citrix StoreFront &#8211; Experiences with Storefront Customization SDK and Web API</a>
+                                                                                                          <span class="comment-author-link">Julien DESTOMBES</span> on <a href="http://theorypc.ca/2017/04/24/citrix-storefront-experiences-with-storefront-customization-sdk-and-web-api/#comment-7988">Citrix StoreFront - Experiences with Storefront Customization SDK and Web API</a>
                                                                                                         </li>
                                                                                                         <li class="recentcomments">
                                                                                                           <span class="comment-author-link">Matthew Lewallen</span> on <a href="http://theorypc.ca/2017/06/28/remove-ghost-devices-natively-with-powershell/#comment-6686">Remove Ghost devices natively with Powershell</a>
                                                                                                         </li>
                                                                                                         <li class="recentcomments">
-                                                                                                          <span class="comment-author-link"><a href='https://theorypc.ca/2019/02/04/citrix-logon-simulators-part-1/' rel='external nofollow' class='url'>Citrix Logon Simulator&#8217;s &#8211; Part 1 &#8211; Trentent Tye &#8211; Microsoft MVP</a></span> on <a href="http://theorypc.ca/2017/05/24/citrix-storefront-performance-testing-and-tuning-part-1/#comment-6589">Citrix Storefront &#8211; Performance Testing and Tuning &#8211; Part 1</a>
+                                                                                                          <span class="comment-author-link"><a href='https://theorypc.ca/2019/02/04/citrix-logon-simulators-part-1/' rel='external nofollow' class='url'>Citrix Logon Simulator's - Part 1 - Trentent Tye - Microsoft MVP</a></span> on <a href="http://theorypc.ca/2017/05/24/citrix-storefront-performance-testing-and-tuning-part-1/#comment-6589">Citrix Storefront - Performance Testing and Tuning - Part 1</a>
                                                                                                         </li>
                                                                                                         <li class="recentcomments">
                                                                                                           <span class="comment-author-link">Deepak Sanadi</span> on <a href="http://theorypc.ca/2017/06/27/citrix-provisioning-services-target-device-upgrade-woes/#comment-5849">Citrix Provisioning Services Target Device Upgrade Woes</a>
@@ -532,10 +532,10 @@ panels_data:
                                                                                                           <span class="comment-author-link">frank</span> on <a href="http://theorypc.ca/2017/05/09/citrix-storefront-adventures-in-customization-restrict-app-visibility-with-single-factor-authentication-show-all-apps-with-two-factor-authentication/#comment-4474">Citrix Storefront â€“ Adventures in customization â€“ Restrict app visibility with single factor authentication, show all apps with two-factor authentication</a>
                                                                                                         </li>
                                                                                                         <li class="recentcomments">
-                                                                                                          <span class="comment-author-link">Ray</span> on <a href="http://theorypc.ca/2017/08/02/citrix-provisioning-services-reverse-imaging-2017-edition/#comment-4420">Citrix Provisioning Services Reverse Imaging &#8211; 2017 edition</a>
+                                                                                                          <span class="comment-author-link">Ray</span> on <a href="http://theorypc.ca/2017/08/02/citrix-provisioning-services-reverse-imaging-2017-edition/#comment-4420">Citrix Provisioning Services Reverse Imaging - 2017 edition</a>
                                                                                                         </li>
                                                                                                         <li class="recentcomments">
-                                                                                                          <span class="comment-author-link">Herman</span> on <a href="http://theorypc.ca/2017/04/24/citrix-storefront-experiences-with-storefront-customization-sdk-and-web-api/#comment-4357">Citrix StoreFront &#8211; Experiences with Storefront Customization SDK and Web API</a>
+                                                                                                          <span class="comment-author-link">Herman</span> on <a href="http://theorypc.ca/2017/04/24/citrix-storefront-experiences-with-storefront-customization-sdk-and-web-api/#comment-4357">Citrix StoreFront - Experiences with Storefront Customization SDK and Web API</a>
                                                                                                         </li>
                                                                                                         <li class="recentcomments">
                                                                                                           <span class="comment-author-link">SÃ©bastien</span> on <a href="http://theorypc.ca/2017/07/31/citrix-storefront-adventures-in-customization-change-any-ica-parameter/#comment-4338">Citrix Storefront â€“ Adventures in customization â€“ Change any ICA parameter</a>
@@ -544,7 +544,7 @@ panels_data:
                                                                                                           <span class="comment-author-link">trententtye</span> on <a href="http://theorypc.ca/2017/10/31/citrix-storefront-adventures-in-customization-prepopulate-explicit-logon-credentials/#comment-4266">Citrix Storefront â€“ Adventures in customization â€“ Prepopulate Explicit Logon Credentials</a>
                                                                                                         </li>
                                                                                                         <li class="recentcomments">
-                                                                                                          <span class="comment-author-link"><a href='http://carlstalhood.com/delivery-controller-1808-and-licensing/' rel='external nofollow' class='url'>Delivery Controller 1808 and Licensing &#8211; Carl Stalhood</a></span> on <a href="http://theorypc.ca/2017/11/29/citrix-xendesktopxenapp-7-15-the-local-host-cache-in-action/#comment-4238">Citrix XenDesktop/XenApp 7.15 &#8211; The local host cache in action</a>
+                                                                                                          <span class="comment-author-link"><a href='http://carlstalhood.com/delivery-controller-1808-and-licensing/' rel='external nofollow' class='url'>Delivery Controller 1808 and Licensing - Carl Stalhood</a></span> on <a href="http://theorypc.ca/2017/11/29/citrix-xendesktop&-7-15-the-local-host-cache-in-action/#comment-4238">Citrix XenDesktop/& 7.15 - The local host cache in action</a>
                                                                                                         </li>
                                                                                                         <li class="recentcomments">
                                                                                                           <span class="comment-author-link"><a href='http://wwww.telindus.lu' rel='external nofollow' class='url'>Pierre Altmayer</a></span> on <a href="http://theorypc.ca/2017/10/31/citrix-storefront-adventures-in-customization-prepopulate-explicit-logon-credentials/#comment-4221">Citrix Storefront â€“ Adventures in customization â€“ Prepopulate Explicit Logon Credentials</a>

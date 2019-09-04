@@ -13,12 +13,12 @@ tags:
   - Citrix
   - scripting
   - Storefront
-  - XenApp
+  - &
   - XenDesktop
 ---
 Currently, Storefront does not grant the ability to define applications with specific resolutions.Â In order to configure the resolution, [Citrix recommends you modify the default.ica file](https://support.citrix.com/article/CTX116357).Â This is terrible!Â If you had specific applications that required specific resolutions, what are you to do?Â Direct users to a variety of stores depending on the resolution required?!
 
-Fortunately, again, we can extend StoreFront to make it so we can configure custom resolutions for different applications on the same store.Â The [solution is a Storefront extension](https://theorypc.ca/2017/07/31/citrix-storefront-adventures-in-customization-change-any-ica-parameter/) I&#8217;ve already written.
+Fortunately, again, we can extend StoreFront to make it so we can configure custom resolutions for different applications on the same store.Â The [solution is a Storefront extension](https://theorypc.ca/2017/07/31/citrix-storefront-adventures-in-customization-change-any-ica-parameter/) I've already written.
 
 The steps to set this up:
 
@@ -26,21 +26,21 @@ The steps to set this up:
   2. Copy the file toÂ C:\inetpub\wwwroot\Citrix\Store\bin  
 <img class="aligncenter size-full wp-image-2569" src="http://theorypc.ca/wp-content/uploads/2017/11/StoreCustomization_Launch.png" alt="" width="1112" height="489" srcset="http://theorypc.ca/wp-content/uploads/2017/11/StoreCustomization_Launch.png 1112w, http://theorypc.ca/wp-content/uploads/2017/11/StoreCustomization_Launch-300x132.png 300w, http://theorypc.ca/wp-content/uploads/2017/11/StoreCustomization_Launch-768x338.png 768w" sizes="(max-width: 1112px) 100vw, 1112px" /> 
   3. Edit the web.config in theÂ **Store** directory and enable the extension
-  4. <pre class="lang:xhtml decode:true">&lt;appSettings&gt;
-  &lt;add key="modifyICAProperties" value="true" /&gt;
-  &lt;/appSettings&gt;
+  4. <pre class="lang:xhtml decode:true"><appSettings>
+  <add key="modifyICAProperties" value="true" />
+  </appSettings>
 </pre>
 
-  5. We need to enable Header pass-through for DesiredHRES, DesiredVRES, and TWIMode in the &#8220;C:\inetpub\wwwroot\Citrix\StoreWeb\web.config&#8221; file:
-  6. <pre class="lang:xhtml decode:true">&lt;communication attempts="1" timeout="00:03:00" loopback="Off"
-          loopbackPortUsingHttp="80"&gt;
-          &lt;proxy enabled="true" processName="Fiddler" port="8888" /&gt;
-          &lt;forwardedHeaders&gt;
-			&lt;header name="DesiredHRES" /&gt;
-			&lt;header name="DesiredVRES" /&gt;
-			&lt;header name="TWIMode" /&gt;
-          &lt;/forwardedHeaders&gt;
-        &lt;/communication&gt;</pre>
+  5. We need to enable Header pass-through for DesiredHRES, DesiredVRES, and TWIMode in the "C:\inetpub\wwwroot\Citrix\StoreWeb\web.config" file:
+  6. <pre class="lang:xhtml decode:true"><communication attempts="1" timeout="00:03:00" loopback="Off"
+          loopbackPortUsingHttp="80">
+          <proxy enabled="true" processName="Fiddler" port="8888" />
+          <forwardedHeaders>
+			<header name="DesiredHRES" />
+			<header name="DesiredVRES" />
+			<header name="TWIMode" />
+          </forwardedHeaders>
+        </communication></pre>
 
   7. Lastly, add the following to the custom.js file in your StoreWeb/custom folder: <pre class="lang:js decode:true ">CTXS.Extensions.doLaunch =  function(app, action) {
 	//check for Calculator and configure custom resolution

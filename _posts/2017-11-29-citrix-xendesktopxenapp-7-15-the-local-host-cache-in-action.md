@@ -1,11 +1,11 @@
 ---
 id: 2607
-title: 'Citrix XenDesktop/XenApp 7.15 &#8211; The local host cache in action'
+title: 'Citrix XenDesktop/& 7.15 - The local host cache in action'
 date: 2017-11-29T20:40:19-06:00
 author: trententtye
 layout: post
-guid: http://theorypc.ca/?p=2607
-permalink: /2017/11/29/citrix-xendesktopxenapp-7-15-the-local-host-cache-in-action/
+guid: http://theorypc.ca/p=2607
+permalink: /2017/11/29/citrix-xendesktop&-7-15-the-local-host-cache-in-action/
 image: /wp-content/uploads/2017/11/stopClumsy.png
 categories:
   - Blog
@@ -14,20 +14,20 @@ tags:
   - LHC
   - Local Host Cache
   - Performance
-  - XenApp
+  - &
   - XenDesktop
 ---
-The Citrix Local Host Cache feature, introduced in XenDesktop/XenApp 7.12, has some nuances that maybe better demonstrated in realtime then typed out in text. Â I will do both in this article to share both a &#8216;step by step&#8217; of what happens when you have a network or site database outage and what occurs as well as a realtime video highlighting the feature in action. Â There are many other blogs and articles that do a great job going into the step by step details of the feature but I find seeing it in action to be very informative.
+The Citrix Local Host Cache feature, introduced in XenDesktop/& 7.12, has some nuances that maybe better demonstrated in realtime then typed out in text.  I will do both in this article to share both a 'step by step' of what happens when you have a network or site database outage and what occurs as well as a realtime video highlighting the feature in action.  There are many other blogs and articles that do a great job going into the step by step details of the feature but I find seeing it in action to be very informative.
 
-To view a video of this process, scroll to the very end, [or click here.](https://www.youtube.com/watch?v=X9GH_NDUgrQ)
+To view a video of this process, scroll to the very end, [or click here.](https://www.youtube.com/watchv=X9GH_NDUgrQ)
 
-To start, I&#8217;ve created a powershell scriptÂ that simulates a user querying the broker for a list of applicaitons.
+To start, I've created a powershell scriptÂ that simulates a user querying the broker for a list of applicaitons.
 
 <img class="aligncenter size-full wp-image-2608" src="http://theorypc.ca/wp-content/uploads/2017/11/list.png" alt="" width="232" height="223" /> 
 
 Columns are time of the response, the payload size received (in bytes) and the total time to respond in milliseconds.
 
-As we&#8217;re querying the broker, the broker is reaching out to the database and then responding to the user with the information requested.
+As we're querying the broker, the broker is reaching out to the database and then responding to the user with the information requested.
 
 <img class="aligncenter size-full wp-image-2609" src="http://theorypc.ca/wp-content/uploads/2017/11/broker.png" alt="" width="215" height="517" srcset="http://theorypc.ca/wp-content/uploads/2017/11/broker.png 215w, http://theorypc.ca/wp-content/uploads/2017/11/broker-125x300.png 125w" sizes="(max-width: 215px) 100vw, 215px" /> 
 
@@ -39,7 +39,7 @@ To show the network connection failing, I am going to setup a continuous ping to
 
 <img class="aligncenter size-full wp-image-2610" src="http://theorypc.ca/wp-content/uploads/2017/11/ping.png" alt="" width="373" height="193" srcset="http://theorypc.ca/wp-content/uploads/2017/11/ping.png 373w, http://theorypc.ca/wp-content/uploads/2017/11/ping-300x155.png 300w" sizes="(max-width: 373px) 100vw, 373px" /> 
 
-To simulate a network failure, I&#8217;m going to use the tool [clumsy](https://jagt.github.io/clumsy/) to drop all packets to and from the database server.
+To simulate a network failure, I'm going to use the tool [clumsy](https://jagt.github.io/clumsy/) to drop all packets to and from the database server.
 
 Clicking start in clumsy immediately stops the simulated user from getting their list of applications.
 
@@ -47,13 +47,13 @@ Clicking start in clumsy immediately stops the simulated user from getting their
 
 &nbsp;
 
-And the ping&#8217;s now time out in their requests.<img class="aligncenter size-large wp-image-2612" src="http://theorypc.ca/wp-content/uploads/2017/11/pingtimeout.png" alt="" width="143" height="145" srcset="http://theorypc.ca/wp-content/uploads/2017/11/pingtimeout.png 143w, http://theorypc.ca/wp-content/uploads/2017/11/pingtimeout-50x50.png 50w, http://theorypc.ca/wp-content/uploads/2017/11/pingtimeout-100x100.png 100w" sizes="(max-width: 143px) 100vw, 143px" />
+And the ping's now time out in their requests.<img class="aligncenter size-large wp-image-2612" src="http://theorypc.ca/wp-content/uploads/2017/11/pingtimeout.png" alt="" width="143" height="145" srcset="http://theorypc.ca/wp-content/uploads/2017/11/pingtimeout.png 143w, http://theorypc.ca/wp-content/uploads/2017/11/pingtimeout-50x50.png 50w, http://theorypc.ca/wp-content/uploads/2017/11/pingtimeout-100x100.png 100w" sizes="(max-width: 143px) 100vw, 143px" />
 
-The broker has a 20 second time out that after which it will respond to requests with what it thinks is the current status. The first timed out request receives a response of &#8220;working&#8221; and then thereafter a response of &#8220;pending failed&#8221; will be returned
+The broker has a 20 second time out that after which it will respond to requests with what it thinks is the current status. The first timed out request receives a response of "working" and then thereafter a response of "pending failed" will be returned
 
 <img class="aligncenter size-full wp-image-2613" src="http://theorypc.ca/wp-content/uploads/2017/11/broker_responses.png" alt="" width="268" height="161" /> 
 
-Around 24 seconds the broker has noticed the database has failed and has logged it&#8217;s first event, 1201, &#8220;The connection between the Citrix Broker Service and the database has been lost&#8221;
+Around 24 seconds the broker has noticed the database has failed and has logged it's first event, 1201, "The connection between the Citrix Broker Service and the database has been lost"
 
 <img class="aligncenter size-full wp-image-2614" src="http://theorypc.ca/wp-content/uploads/2017/11/eventlog.png" alt="" width="1380" height="55" srcset="http://theorypc.ca/wp-content/uploads/2017/11/eventlog.png 1380w, http://theorypc.ca/wp-content/uploads/2017/11/eventlog-300x12.png 300w, http://theorypc.ca/wp-content/uploads/2017/11/eventlog-768x31.png 768w" sizes="(max-width: 1380px) 100vw, 1380px" /> 
 
@@ -61,7 +61,7 @@ Now one-minute thirty three seconds into the failure, other Citrix services are 
 
 <img class="aligncenter size-full wp-image-2615" src="http://theorypc.ca/wp-content/uploads/2017/11/otherLogs.png" alt="" width="1006" height="183" srcset="http://theorypc.ca/wp-content/uploads/2017/11/otherLogs.png 1006w, http://theorypc.ca/wp-content/uploads/2017/11/otherLogs-300x55.png 300w, http://theorypc.ca/wp-content/uploads/2017/11/otherLogs-768x140.png 768w" sizes="(max-width: 1006px) 100vw, 1006px" /> 
 
-Just shy of 2 minutes, the broker service has now exceeded it&#8217;s timeout for contacting the database and is in the process of switching to the local host cache. It stops the &#8220;primary broker&#8221;.
+Just shy of 2 minutes, the broker service has now exceeded it's timeout for contacting the database and is in the process of switching to the local host cache. It stops the "primary broker".
 
 <img class="aligncenter size-full wp-image-2616" src="http://theorypc.ca/wp-content/uploads/2017/11/stopped_primarybroker.png" alt="" width="1394" height="75" srcset="http://theorypc.ca/wp-content/uploads/2017/11/stopped_primarybroker.png 1394w, http://theorypc.ca/wp-content/uploads/2017/11/stopped_primarybroker-300x16.png 300w, http://theorypc.ca/wp-content/uploads/2017/11/stopped_primarybroker-768x41.png 768w" sizes="(max-width: 1394px) 100vw, 1394px" /> 
 
@@ -75,13 +75,13 @@ In my simulation the amount of time it took the user to receive a response from 
   <img aria-describedby="caption-attachment-2618" class="wp-image-2618 size-full" src="http://theorypc.ca/wp-content/uploads/2017/11/cutOver.png" alt="" width="260" height="519" srcset="http://theorypc.ca/wp-content/uploads/2017/11/cutOver.png 260w, http://theorypc.ca/wp-content/uploads/2017/11/cutOver-150x300.png 150w" sizes="(max-width: 260px) 100vw, 260px" /></p> 
   
   <p id="caption-attachment-2618" class="wp-caption-text">
-    Top, site database response times &#8211; middle is the outage &#8211; bottom is LHC response times
+    Top, site database response times - middle is the outage - bottom is LHC response times
   </p>
 </div>
 
-How long does it take to &#8220;fall back&#8221; to the database when connectivity is restored?
+How long does it take to "fall back" to the database when connectivity is restored
 
-I &#8220;Stopped&#8221; clumsy to restore our network connection and started a timer.
+I "Stopped" clumsy to restore our network connection and started a timer.
 
 <img class="aligncenter size-large wp-image-2620" src="http://theorypc.ca/wp-content/uploads/2017/11/stopClumsy.png" alt="" width="157" height="141" /> 
 

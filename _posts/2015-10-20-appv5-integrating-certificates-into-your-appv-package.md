@@ -1,6 +1,6 @@
 ---
 id: 542
-title: 'AppV5 &#8211; Integrating Certificates into your AppV package'
+title: 'AppV5 - Integrating Certificates into your AppV package'
 date: 2015-10-20T13:20:00-06:00
 author: trententtye
 layout: post
@@ -20,7 +20,7 @@ categories:
 tags:
   - AppV
 ---
-These are the steps I&#8217;ve found to sequence root certificates into your AppV5 application.
+These are the steps I've found to sequence root certificates into your AppV5 application.
 
 <pre class="lang:batch decode:true ">certmgr.exe -add AddTrustCert.cer -s -r localMachine root</pre>
 
@@ -28,11 +28,11 @@ Where do you get [certmgr.exe](https://msdn.microsoft.com/en-us/library/e78byta0
 
 The [visual studio downloads](https://www.visualstudio.com/downloads/download-visual-studio-vs) apparently contains this tool.
 
-Once you&#8217;ve started your sequencer and run the command it will add the certificate to these two places:  
+Once you've started your sequencer and run the command it will add the certificate to these two places:  
 HKLM\SOFTWARE\Microsoft\SystemCertificates\ROOT\Certificates\  
 HKLM\SOFTWARE\Wow6432Node\Microsoft\SystemCertificates\ROOT\Certificates
 
-And that&#8217;s how you add certificates to a sequenced package.
+And that's how you add certificates to a sequenced package.
 
 <!-- AddThis Advanced Settings generic via filter on the_content -->
 

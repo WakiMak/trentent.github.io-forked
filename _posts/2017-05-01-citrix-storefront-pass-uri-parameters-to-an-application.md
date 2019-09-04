@@ -1,6 +1,6 @@
 ---
 id: 2182
-title: 'Citrix Storefront &#8211; Pass URI parameters to an application'
+title: 'Citrix Storefront - Pass URI parameters to an application'
 date: 2017-05-01T14:47:59-06:00
 author: trententtye
 layout: post
@@ -15,26 +15,26 @@ tags:
   - PowerShell
   - Storefront
   - Web Interface
-  - XenApp
+  - &
   - XenDesktop
 ---
 [In my previous post](https://theorypc.ca/2017/04/24/citrix-storefront-experiences-with-storefront-customization-sdk-and-web-api/), I was exploring takingÂ URI parameters and passing them to an application.
 
-The main issue we are facing is that Storefront launches the ica file via an iframe src. Â When launching the ica via this method the iframe does a simple &#8216;GET&#8217; without passing any HEADER parameters &#8212; which is the only (documented) way to pass data to Storefront.
+The main issue we are facing is that Storefront launches the ica file via an iframe src. Â When launching the ica via this method the iframe does a simple 'GET' without passing any HEADER parameters - which is the only (documented) way to pass data to Storefront.
 
-What can I do?Â I think what I need to do is create my own \*custom\* launchica command. Â Because this will be against an unauthenticated store we should be able remove the authentication portions AND any unique identifiers (eg, csrf data). Â Really, we just need the two options &#8212; the application to launch and the parameter to pass into it. Â I am <span style="text-decoration: underline;"><strong>NOT</strong> </span>a web developer, I do not know what would be the best solution to this problem, but here is something I came up with.
+What can I do?Â I think what I need to do is create my own \*custom\* launchica command. Â Because this will be against an unauthenticated store we should be able remove the authentication portions AND any unique identifiers (eg, csrf data). Â Really, we just need the two options - the application to launch and the parameter to pass into it. Â I am <span style="text-decoration: underline;"><strong>NOT</strong> </span>a web developer, I do not know what would be the best solution to this problem, but here is something I came up with.
 
-My first thought is this needs to be a URL that must be queried and that URL must return a specific content-type. Â I know Powershell has lots of control over specifying things like this and I have some familiarity with Powershell so I&#8217;ve chosen that as my tool of choice to solve this problem.
+My first thought is this needs to be a URL that must be queried and that URL must return a specific content-type. Â I know Powershell has lots of control over specifying things like this and I have some familiarity with Powershell so I've chosen that as my tool of choice to solve this problem.
 
 In order to start I need to create or find something that will get data from a URL to powershell. Â Fortunately, a brilliant person by the name of [SteveÂ Lee](https://twitter.com/steve_msft) solved this [first problem for me](https://www.powershellgallery.com/packages/HttpListener/1.0.2).
 
 What he created is a Powershell module that creates a HTTP listener than waits for a request. We can take this listener and modify it so it listens for our two variables (CTX_Application and NFuseAppCommandLine) and then returns a ICA file. Â Since this is an unauthenticated URL I had to remove the authentication feature of the script and I added a function to query the real Storefront services to generate the ICA file.
 
-So what I&#8217;m envisioning is replacing the &#8220;LaunchIca&#8221; command with my custom one.
+So what I'm envisioning is replacing the "LaunchIca" command with my custom one.
 
 &nbsp;
 
-This is my modification of Steve&#8217;s script:
+This is my modification of Steve's script:
 
 <pre class="lang:ps decode:true"># Copyright (c) 2014 Microsoft Corp.
 #
@@ -59,7 +59,7 @@ This is my modification of Steve&#8217;s script:
 # Modified by Trentent Tye for ICA file returning.
 
 Function ConvertTo-HashTable {
-    &lt;#
+    <#
     .Synopsis
         Convert an object to a HashTable
     .Description
@@ -74,7 +74,7 @@ Function ConvertTo-HashTable {
     .Example
         $bios = get-ciminstance win32_bios
         $bios | ConvertTo-HashTable
-    #&gt;
+    #>
     
     Param (
         [Parameter(Mandatory=$true,ValueFromPipeline=$true)]
@@ -107,7 +107,7 @@ Function ConvertTo-HashTable {
 }
 
 Function Get-ICA {
-    &lt;#
+    <#
     .Synopsis
         Queries An Anonymous Store for an ICA file and sets the LongCommand in the ICA with a URI parameter
     .Description
@@ -122,7 +122,7 @@ Function Get-ICA {
         The extra command string to pass to the program.  Eg, "C:\Windows\WindowsUpdate.Log"
     .Example
         Get-ICA -Store "http://$env:COMPUTERNAME/Citrix/PLBWeb/" -Program "Notepad 2016 - PLB" -LongCommand "C:\Windows\WindowsUpdate.Log"
-    #&gt;
+    #>
     Param (
     [Parameter()]
     [String] $Store = "",
@@ -178,7 +178,7 @@ Function Get-ICA {
 }
 
 Function Start-HTTPListener {
-    &lt;#
+    <#
     .Synopsis
         Creates a new HTTP Listener accepting PowerShell command line to execute
     .Description
@@ -196,7 +196,7 @@ Function Start-HTTPListener {
     .Example
         Start-HTTPListener -Port 80 -Url "Citrix/PLBWeb/ica_launcher" -Auth Anonymous
         Invoke-WebRequest -Uri "http://localhost/Citrix/PLBWeb/ica_launcher?CTX_Application=Notepad%202016%20-%20PLB&NFuse_AppCommandLine=C:\Windows\WindowsUpdate.log" -UseDefaultCredentials | Format-List *
-    #&gt;
+    #>
     
     Param (
         [Parameter()]
@@ -238,7 +238,7 @@ Function Start-HTTPListener {
 
  
                 if (-not $request.QueryString.HasKeys()) {
-                    $commandOutput = "SYNTAX: command=&lt;string&gt; format=[JSON|TEXT|XML|NONE|CLIXML]"
+                    $commandOutput = "SYNTAX: command=<string> format=[JSON|TEXT|XML|NONE|CLIXML]"
                     $Format = "TEXT"
                 } else {
                     
@@ -247,12 +247,12 @@ Function Start-HTTPListener {
                     $NFuse_AppCommandLine = $request.QueryString.Item("NFuse_AppCommandLine")
 
                     #uncomment next portion to allow remote exit of the listener
-                    &lt;#
+                    <#
                     if ($CTX_Application -eq "exit") {
                         Write-Verbose "Received command to exit listener"
                         return
                     }
-                    #&gt;
+                    #>
 
                     $Format = $request.QueryString.Item("format")
                     if ($Format -eq $Null) {
@@ -265,7 +265,7 @@ Function Start-HTTPListener {
 
 
                     Write-Verbose "Executing Command"
-                    ## execute command here...  --&gt; ensure you change "PLBWeb" to your proper store
+                    ## execute command here...  --> ensure you change "PLBWeb" to your proper store
                     $script = get-ica -store "http://$env:COMPUTERNAME/Citrix/PLBWeb/" -Program "$CTX_Application" -LongCommand $NFuse_AppCommandLine
                     write-verbose "are we back yet?"
                         
@@ -310,13 +310,13 @@ Eventually, this will need to be converted to a scheduled task or a service. Â W
 
 &nbsp;
 
-I originally planned to use the &#8216;WebAPI&#8217; and create a custom StoreFront, but I really, really want to use the new Storefront UI. Â In addition, I do NOT want to have to copy a file around to each Storefront server to enable this feature. Â So I started to wonder if it would be possible to modify Storefront via the extensible customization API&#8217;s it provides. Â This involves adding javascript to theÂ &#8220;C:\inetpub\wwwroot\Citrix\StoreWeb\custom\script.js&#8221; and modifying theÂ &#8220;C:\inetpub\wwwroot\Citrix\StoreWeb\custom\style.css&#8221; files. Â To start, my goal is to mimic our existing functionality and UI to an extent that makes sense.
+I originally planned to use the 'WebAPI' and create a custom StoreFront, but I really, really want to use the new Storefront UI. Â In addition, I do NOT want to have to copy a file around to each Storefront server to enable this feature. Â So I started to wonder if it would be possible to modify Storefront via the extensible customization API's it provides. Â This involves adding javascript to theÂ "C:\inetpub\wwwroot\Citrix\StoreWeb\custom\script.js" and modifying theÂ "C:\inetpub\wwwroot\Citrix\StoreWeb\custom\style.css" files. Â To start, my goal is to mimic our existing functionality and UI to an extent that makes sense.
 
 The Web Interface 5.4 version of this web launcher looked like this:
 
 <img class="aligncenter size-full wp-image-2185" src="http://theorypc.ca/wp-content/uploads/2017/05/WI_UnauthStore.png" alt="" width="951" height="308" srcset="http://theorypc.ca/wp-content/uploads/2017/05/WI_UnauthStore.png 951w, http://theorypc.ca/wp-content/uploads/2017/05/WI_UnauthStore-300x97.png 300w, http://theorypc.ca/wp-content/uploads/2017/05/WI_UnauthStore-768x249.png 768w" sizes="(max-width: 951px) 100vw, 951px" /> 
 
-When you browse to the URL in Web Interface 5.4 the application is automatically launched. Â If it doesn&#8217;t launch, &#8220;click to connect&#8221; will launch it for you manually. Â This is the function and features I want.
+When you browse to the URL in Web Interface 5.4 the application is automatically launched. Â If it doesn't launch, "click to connect" will launch it for you manually. Â This is the function and features I want.
 
 Storefront, without any modifications, looks like this with an authenticated store:
 
@@ -325,10 +325,10 @@ Storefront, without any modifications, looks like this with an authenticated sto
 So, I need to make a few modifications.
 
   1. I need to hide all applications that are NOT my target application
-  2. I need to add the additional messaging &#8220;If your application does not appear within a few seconds, <span style="text-decoration: underline;">click to connect.</span>&#8221; with the underlined as a URL to our launcher.
-  3. I want to minimize the interface by hiding the toolbar. Â Since only one application will be displayed we do not need to see &#8220;All | Categories Â Search All Apps&#8221;
-  4. I want to hide the &#8216;All Apps&#8217; text
-  5. I want to hide &#8220;Details&#8221;, we&#8217;re going to keep this UI minimal.
+  2. I need to add the additional messaging "If your application does not appear within a few seconds, <span style="text-decoration: underline;">click to connect.</span>" with the underlined as a URL to our launcher.
+  3. I want to minimize the interface by hiding the toolbar. Â Since only one application will be displayed we do not need to see "All | Categories Â Search All Apps"
+  4. I want to hide the 'All Apps' text
+  5. I want to hide "Details", we're going to keep this UI minimal.
 
 The beauty of Storefront, in its current incarnation, is most of this is CSS modifications. Â I made the following modifications to the CSS to get my UI minimalized:
 
@@ -364,7 +364,7 @@ This resulted in a UI that looked like this:
 
 So now I want to remove all apps except my targeted application that should come in a query string.
 
-I was curious if the &#8216;script.js&#8217; would recognize the URI parameter passed to Storefront. Â I modified my &#8216;script.js&#8217; with the following:
+I was curious if the 'script.js' would recognize the URI parameter passed to Storefront. Â I modified my 'script.js' with the following:
 
 <pre class="lang:js decode:true ">// Edit this file to add your customized JavaScript or load additional JavaScript files.
 
@@ -375,7 +375,7 @@ var getUrlParameter = function getUrlParameter(sParam) {
 		sParameterName,
 		i;
 
-	for (i = 0; i &lt; sURLVariables.length; i++) {
+	for (i = 0; i < sURLVariables.length; i++) {
 		sParameterName = sURLVariables[i].split('=');
 
 		if (sParameterName[0] === sParam) {
@@ -391,7 +391,7 @@ console.log("NFuse_AppCommandLine " + NFuse_AppCommandLine);
 console.log("CTX_Application " + CTX_Application);
 </pre>
 
-Going to my URL and checking the &#8216;Console&#8217; in Chrome revealed:
+Going to my URL and checking the 'Console' in Chrome revealed:
 
 <img class="aligncenter size-full wp-image-2188" src="http://theorypc.ca/wp-content/uploads/2017/05/scriptjs_uri.png" alt="" width="892" height="607" srcset="http://theorypc.ca/wp-content/uploads/2017/05/scriptjs_uri.png 892w, http://theorypc.ca/wp-content/uploads/2017/05/scriptjs_uri-300x204.png 300w, http://theorypc.ca/wp-content/uploads/2017/05/scriptjs_uri-768x523.png 768w" sizes="(max-width: 892px) 100vw, 892px" /> 
 
@@ -399,12 +399,12 @@ Yes, indeed, we are getting the URI parameters!
 
 Great! Â So can we filter our application list to only display the app in the URI?
 
-Citrix [offers a bunch of &#8216;extensions&#8217;](https://docs.citrix.com/en-us/storefront/3-5/migrate-wi-to-storefront/receiver-extension-apis.html). Â Can one of them work for our purpose? Â This one sounds interesting:
+Citrix [offers a bunch of 'extensions'](https://docs.citrix.com/en-us/storefront/3-5/migrate-wi-to-storefront/receiver-extension-apis.html). Â Can one of them work for our purpose? Â This one sounds interesting:
 
 <pre class="lang:default decode:true ">excludeApp(app)
 Exclude an application completely from all UI, even if it would normally be included</pre>
 
-Can we do a simple check that if the application does not equal &#8220;CTX_Application&#8221; to exclude it?
+Can we do a simple check that if the application does not equal "CTX_Application" to exclude it?
 
 The function looks like this:
 
@@ -421,7 +421,7 @@ Did it work?
 
 <img class="aligncenter size-full wp-image-2189" src="http://theorypc.ca/wp-content/uploads/2017/05/Exclude_App.png" alt="" width="595" height="498" srcset="http://theorypc.ca/wp-content/uploads/2017/05/Exclude_App.png 595w, http://theorypc.ca/wp-content/uploads/2017/05/Exclude_App-300x251.png 300w" sizes="(max-width: 595px) 100vw, 595px" /> 
 
-Yes! Â Perfectly! Â Can we append a message to the application? Â Looking at Citrix&#8217;s extensions this one looks promising:
+Yes! Â Perfectly! Â Can we append a message to the application? Â Looking at Citrix's extensions this one looks promising:
 
 <pre class="lang:default decode:true ">onAppHTMLGeneration(element)
 Called when HTML is generated for one or more app tile, passing the parent container. Intended for deep customization. (Warning this sort of change is likely to be version specific)</pre>
@@ -432,7 +432,7 @@ So what elements could we manipulate to add our text?
 
 <img class="aligncenter size-full wp-image-2190" src="http://theorypc.ca/wp-content/uploads/2017/05/storeapp-name.png" alt="" width="867" height="370" srcset="http://theorypc.ca/wp-content/uploads/2017/05/storeapp-name.png 867w, http://theorypc.ca/wp-content/uploads/2017/05/storeapp-name-300x128.png 300w, http://theorypc.ca/wp-content/uploads/2017/05/storeapp-name-768x328.png 768w, http://theorypc.ca/wp-content/uploads/2017/05/storeapp-name-750x320.png 750w" sizes="(max-width: 867px) 100vw, 867px" /> 
 
-Could we add another &#8220;p class=storeapp-name&#8221; (this is just text) for our messaging? Â The onAppHTMLGeneration function says it is returned when the HTML is generated for an app, so what does this look like?
+Could we add another "p class=storeapp-name" (this is just text) for our messaging? Â The onAppHTMLGeneration function says it is returned when the HTML is generated for an app, so what does this look like?
 
 I added the following to script.js:
 
@@ -446,7 +446,7 @@ And this was the result in the Chrome Console:
 
 <img class="aligncenter size-full wp-image-2191" src="http://theorypc.ca/wp-content/uploads/2017/05/Chrome_Console.png" alt="" width="1128" height="447" srcset="http://theorypc.ca/wp-content/uploads/2017/05/Chrome_Console.png 1128w, http://theorypc.ca/wp-content/uploads/2017/05/Chrome_Console-300x119.png 300w, http://theorypc.ca/wp-content/uploads/2017/05/Chrome_Console-768x304.png 768w" sizes="(max-width: 1128px) 100vw, 1128px" /> 
 
-So this is returning an [DomHTMLElement](https://www.w3schools.com/jsref/dom_obj_all.asp). Â DOMHTMLElements have numerous methods to add/create/append/modify data to them. Â Perfect. Â Doing some research (I&#8217;m not a web developer) I found that you can modify the content of an element by this style command:
+So this is returning an [DomHTMLElement](https://www.w3schools.com/jsref/dom_obj_all.asp). Â DOMHTMLElements have numerous methods to add/create/append/modify data to them. Â Perfect. Â Doing some research (I'm not a web developer) I found that you can modify the content of an element by this style command:
 
 <pre class="lang:default decode:true">CTXS.Extensions.onAppHTMLGeneration = function(element) {
 	//this function is not guaranteed to work across Storefront versions.  Ensure proper testing is conducted when upgrading.
@@ -463,20 +463,20 @@ We have text!
 
 Great.
 
-My preference is to have the text match the application name&#8217;s format. Â I also wanted to test if I could add a link to the text. Â So I modified my css line:
+My preference is to have the text match the application name's format. Â I also wanted to test if I could add a link to the text. Â So I modified my css line:
 
 <pre class="lang:default decode:true">CTXS.Extensions.onAppHTMLGeneration = function(element) {
 	//this function is not guaranteed to work across Storefront versions.  Ensure proper testing is conducted when upgrading.
 	//tested on StoreFront 3.9
-	$( "div.storeapp-details-container" ).append( "&lt;p class=\"storeapp-name\"&gt;&lt;br&gt;&lt;/p&gt;" );
-	$( "div.storeapp-details-container" ).append( "&lt;p class=\"storeapp-name\"&gt;If your application does not appear within a few seconds, &lt;a href=\"http://www.google.ca\"&gt;click to connect&lt;/a&gt;&lt;/p&gt;" );
+	$( "div.storeapp-details-container" ).append( "<p class=\"storeapp-name\"><br></p>" );
+	$( "div.storeapp-details-container" ).append( "<p class=\"storeapp-name\">If your application does not appear within a few seconds, <a href=\"http://www.google.ca\">click to connect</a></p>" );
 };</pre>
 
 The result?
 
 <img class="aligncenter size-full wp-image-2193" src="http://theorypc.ca/wp-content/uploads/2017/05/Link_Working.png" alt="" width="568" height="339" srcset="http://theorypc.ca/wp-content/uploads/2017/05/Link_Working.png 568w, http://theorypc.ca/wp-content/uploads/2017/05/Link_Working-300x179.png 300w" sizes="(max-width: 568px) 100vw, 568px" /> 
 
-Oh man. Â This is looking good. Â My &#8216;click to connect&#8217; link isn&#8217;t working at this point, it just goes to google, but at least I know I can add a URL and have it work! Â Now I just need to generate a URL and set that to replace &#8216;click to connect&#8217;.
+Oh man. Â This is looking good. Â My 'click to connect' link isn't working at this point, it just goes to google, but at least I know I can add a URL and have it work! Â Now I just need to generate a URL and set that to replace 'click to connect'.
 
 When I made my HTTPListener I purposefully made it with the following:
 
@@ -495,28 +495,28 @@ So the request actually starts at the storename. Â And if I want this to work wi
 <pre class="lang:default decode:true ">//generated launch URL
 var launchURL = "ica_launcher?CTX_Application=" + CTX_Application + "&NFuse_AppCommandLine=" + NFuse_AppCommandLine</pre>
 
-and then I can replace my &#8216;click to connect&#8217; link with:
+and then I can replace my 'click to connect' link with:
 
 <pre class="lang:default decode:true ">CTXS.Extensions.onAppHTMLGeneration = function(element) {
 	//this function is not guaranteed to work across Storefront versions.  Ensure proper testing is conducted when upgrading.
 	//tested on StoreFront 3.9
-	$( "div.storeapp-details-container" ).append( "&lt;p class=\"storeapp-name\"&gt;&lt;br&gt;&lt;/p&gt;" );
-	$( "div.storeapp-details-container" ).append( "&lt;p class=\"storeapp-name\"&gt;If your application does not appear within a few seconds, &lt;a href=\"" + launchURL + "\"&gt;click to connect&lt;/a&gt;&lt;/p&gt;" );
+	$( "div.storeapp-details-container" ).append( "<p class=\"storeapp-name\"><br></p>" );
+	$( "div.storeapp-details-container" ).append( "<p class=\"storeapp-name\">If your application does not appear within a few seconds, <a href=\"" + launchURL + "\">click to connect</a></p>" );
 };</pre>
 
 The result?
 
 <img class="aligncenter size-full wp-image-2194" src="http://theorypc.ca/wp-content/uploads/2017/05/hover_link.png" alt="" width="802" height="461" srcset="http://theorypc.ca/wp-content/uploads/2017/05/hover_link.png 802w, http://theorypc.ca/wp-content/uploads/2017/05/hover_link-300x172.png 300w, http://theorypc.ca/wp-content/uploads/2017/05/hover_link-768x441.png 768w" sizes="(max-width: 802px) 100vw, 802px" /> 
 
-The url on the &#8220;click to connect&#8221; goes to my launcher! Â And it works! Â Excellent!
+The url on the "click to connect" goes to my launcher! Â And it works! Â Excellent!
 
-Now I have one last thing I need to get working. Â If I click the &#8216;Notepad 2016 &#8211; PLB&#8217; icon I get the regular Storefront ica file, so I don&#8217;t get my LongCommandLine added into it. Â Can I change where it&#8217;s trying to launch from?
+Now I have one last thing I need to get working. Â If I click the 'Notepad 2016 - PLB' icon I get the regular Storefront ica file, so I don't get my LongCommandLine added into it. Â Can I change where it's trying to launch from?
 
 Citrix appears to offer one extension that may allow this:
 
 <img class="aligncenter size-full wp-image-2195" src="http://theorypc.ca/wp-content/uploads/2017/05/doLaunch.png" alt="" width="778" height="189" srcset="http://theorypc.ca/wp-content/uploads/2017/05/doLaunch.png 778w, http://theorypc.ca/wp-content/uploads/2017/05/doLaunch-300x73.png 300w, http://theorypc.ca/wp-content/uploads/2017/05/doLaunch-768x187.png 768w" sizes="(max-width: 778px) 100vw, 778px" /> 
 
-Huh. Â Well. Â That&#8217;s not much documentation at all.
+Huh. Â Well. Â That's not much documentation at all.
 
 Fortunately, a [Citrix blog post came to rescue](https://www.citrix.com/blogs/2015/03/19/receiver-x1-apis/) with some more information:
 
@@ -552,7 +552,7 @@ Fortunately, a [Citrix blog post came to rescue](https://www.citrix.com/blogs/20
   </p>
   
   <p>
-    Well, look that that. Â There is a property called &#8216;launchurl&#8217;. Â Can we modify this property and have it point to our custom launcher?
+    Well, look that that. Â There is a property called 'launchurl'. Â Can we modify this property and have it point to our custom launcher?
   </p>
   
   <p>
@@ -611,7 +611,7 @@ var getUrlParameter = function getUrlParameter(sParam) {
 		sParameterName,
 		i;
 
-	for (i = 0; i &lt; sURLVariables.length; i++) {
+	for (i = 0; i < sURLVariables.length; i++) {
 		sParameterName = sURLVariables[i].split('=');
 
 		if (sParameterName[0] === sParam) {
@@ -649,8 +649,8 @@ CTXS.Extensions.doLaunch =  function(app, action) {
 CTXS.Extensions.onAppHTMLGeneration = function(element) {
 	//this function is not guaranteed to work across Storefront versions.  Ensure proper testing is conducted when upgrading.
 	//tested on StoreFront 3.9
-	$( "div.storeapp-details-container" ).append( "&lt;p class=\"storeapp-name\"&gt;&lt;br&gt;&lt;/p&gt;" );
-	$( "div.storeapp-details-container" ).append( "&lt;p class=\"storeapp-name\"&gt;If your application does not appear within a few seconds, &lt;a href=\"" + launchURL + "\"&gt;click to connect&lt;/a&gt;&lt;/p&gt;" );
+	$( "div.storeapp-details-container" ).append( "<p class=\"storeapp-name\"><br></p>" );
+	$( "div.storeapp-details-container" ).append( "<p class=\"storeapp-name\">If your application does not appear within a few seconds, <a href=\"" + launchURL + "\">click to connect</a></p>" );
 };
 
 //autolaunch application
@@ -662,7 +662,7 @@ CTXS.Extensions.noteApp = function(app) {
 </pre>
   
   <p>
-    And that&#8217;s it. Â We are able to accomplish this with a Powershell script, and two customization files. Â I think this has a better chance of &#8216;working&#8217; across Storefront versions then the SDK attempt I did earlier, or creating my own custom Storefront front end.
+    And that's it. Â We are able to accomplish this with a Powershell script, and two customization files. Â I think this has a better chance of 'working' across Storefront versions then the SDK attempt I did earlier, or creating my own custom Storefront front end.
   </p>
   
   <!-- AddThis Advanced Settings generic via filter on the_content -->

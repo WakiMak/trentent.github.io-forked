@@ -22,7 +22,7 @@ tags:
   - Group Policy
   - Provisioning Services
 ---
-Due to the CGP issue, our solution is to add a startup script to each vDisk. Â Since I don&#8217;t want to make a version of each vDisk than attach it to a server than boot it up than gpedit.msc&#8230; Â We have around 10 vDisks and that process would be annoying and take a while. Â So I decided to investigate doing it offline as mounting a VHD using cvhdmount.exe and then injecting the startup script would be a lot easier.
+Due to the CGP issue, our solution is to add a startup script to each vDisk. Â Since I don't want to make a version of each vDisk than attach it to a server than boot it up than gpedit.msc... Â We have around 10 vDisks and that process would be annoying and take a while. Â So I decided to investigate doing it offline as mounting a VHD using cvhdmount.exe and then injecting the startup script would be a lot easier.
 
 <div style="clear: both; text-align: center;">
 </div>
@@ -38,7 +38,7 @@ Due to the CGP issue, our solution is to add a startup script to each vDisk. Â S
   
   <div>
     <div>
-      &#8220;C:\windows\system32\GroupPolicy\Machine\Scripts\Startup&#8221; (for machine startup script, aka, a script that starts when your computer starts up) or &#8220;C:\windows\system32\GroupPolicyUsers\Machine\Scripts\Startup&#8221; (for all users startup script [I&#8217;m assuming since I actually didn&#8217;t go through and test the user portion]) and copy your script file there.
+      "C:\windows\system32\GroupPolicy\Machine\Scripts\Startup" (for machine startup script, aka, a script that starts when your computer starts up) or "C:\windows\system32\GroupPolicyUsers\Machine\Scripts\Startup" (for all users startup script [I'm assuming since I actually didn't go through and test the user portion]) and copy your script file there.
     </div>
     
     <div>

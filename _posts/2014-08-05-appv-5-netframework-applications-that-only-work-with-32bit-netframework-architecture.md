@@ -1,6 +1,6 @@
 ---
 id: 601
-title: 'AppV 5 &#8211; .NetFramework applications that only work with 32bit .NetFramework architecture'
+title: 'AppV 5 - .NetFramework applications that only work with 32bit .NetFramework architecture'
 date: 2014-08-05T11:29:00-06:00
 author: trententtye
 layout: post
@@ -87,7 +87,7 @@ So, my application was defaulting to the .NetFramework64 architecture and no lau
 </div>
 
 <div style="background-attachment: initial; background-clip: initial; background-image: initial; background-origin: initial; background-position: initial; background-repeat: initial; background-size: initial; border: 0px; clear: both; font-family: Arial, 'Liberation Sans', 'DejaVu Sans', sans-serif; font-size: 14px; line-height: 17.804800033569336px; margin-bottom: 1em; padding: 0px; vertical-align: baseline;">
-  Alternatively, run corflags.exe against your executable to force it only utilize the 32bit .NetFramework. Â Corflags.exe can be gotten from the &#8220;<a href="http://www.microsoft.com/en-us/download/confirmation.aspx?id=15354">.NET Framework 2.0 Software Development Kit (SDK) (x64)</a>&#8220;
+  Alternatively, run corflags.exe against your executable to force it only utilize the 32bit .NetFramework. Â Corflags.exe can be gotten from the "<a href="http://www.microsoft.com/en-us/download/confirmation.aspx?id=15354">.NET Framework 2.0 Software Development Kit (SDK) (x64)</a>"
 </div>
 
 <div style="background-attachment: initial; background-clip: initial; background-image: initial; background-origin: initial; background-position: initial; background-repeat: initial; background-size: initial; border: 0px; clear: both; font-family: Arial, 'Liberation Sans', 'DejaVu Sans', sans-serif; font-size: 14px; line-height: 17.804800033569336px; margin-bottom: 1em; padding: 0px; vertical-align: baseline;">

@@ -1,6 +1,6 @@
 ---
 id: 565
-title: 'Install 64bit Windows OS (7+) on older 64bit Mac&#8217;s (2007 32bit EFI white MacBook)'
+title: 'Install 64bit Windows OS (7+) on older 64bit Mac's (2007 32bit EFI white MacBook)'
 date: 2015-04-09T16:55:00-06:00
 author: trententtye
 layout: post
@@ -20,7 +20,7 @@ categories:
 tags:
   - Uncategorized
 ---
-When working at HP I came up with a Windows Vista restore/install solution that worked using Windows PE for both 32bit and 64bit architectures. Â A few years ago, I tried the same solution against my 2007 White MacBook, and, lo and behold, I was able to install 64bit Windows 7 on my MacBook. Â I didn&#8217;t have the time to document it as it was just for curiosity, but I am doing so here now because I am repurposing my MacBook as a 3D Printer server.
+When working at HP I came up with a Windows Vista restore/install solution that worked using Windows PE for both 32bit and 64bit architectures. Â A few years ago, I tried the same solution against my 2007 White MacBook, and, lo and behold, I was able to install 64bit Windows 7 on my MacBook. Â I didn't have the time to document it as it was just for curiosity, but I am doing so here now because I am repurposing my MacBook as a 3D Printer server.
 
 To start, you need a 32bit Windows install on DVD and the version of Windows you want to install on a USB key (or another DVD). Â This is because the MacBook will not DVD boot off of a 64bit install, or the USB key.
 
@@ -28,7 +28,7 @@ To start, you need a 32bit Windows install on DVD and the version of Windows you
 
 2) Shift-F10 into a command prompt.
 
-3) Format your hard drive/partition. Â Make sure you only have 1 partition. Â You may need to use diskpart, whenever I used the Windows Setup it created 2 partitions which causes 0xc000000f errors on startup because the BCD file is configured to look for [boot]pathtowim which doesn&#8217;t reside on the boot drive.
+3) Format your hard drive/partition. Â Make sure you only have 1 partition. Â You may need to use diskpart, whenever I used the Windows Setup it created 2 partitions which causes 0xc000000f errors on startup because the BCD file is configured to look for [boot]pathtowim which doesn't reside on the boot drive.
 
 <div style="clear: both; text-align: center;">
   <a style="margin-left: 1em; margin-right: 1em;" href="http://1.bp.blogspot.com/-DN0CuLfAyPk/VScDRzkbg8I/AAAAAAAAAxQ/E-hTLNluoek/s1600/FullSizeRender.jpg"><img src="http://1.bp.blogspot.com/-DN0CuLfAyPk/VScDRzkbg8I/AAAAAAAAAxQ/E-hTLNluoek/s1600/FullSizeRender.jpg" width="320" height="240" border="0" /></a>

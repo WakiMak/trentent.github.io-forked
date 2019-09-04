@@ -1,6 +1,6 @@
 ---
 id: 555
-title: 'Citrix Universal Print Server &#8211; Troubleshooting printing blank pages or inconsistent printing.'
+title: 'Citrix Universal Print Server - Troubleshooting printing blank pages or inconsistent printing.'
 date: 2015-07-08T23:45:00-06:00
 author: trententtye
 layout: post
@@ -20,7 +20,7 @@ categories:
 tags:
   - Citrix
 ---
-We have an application that is hard coded to map printers via a UNC path. &nbsp;This is the bane of a Citrix admin whom wants to minimize the number of drivers on the XenApp server as each UNC connection can prompt for a driver install (this is how our environment is configured). &nbsp;User&#8217;s click &#8216;Install Driver&#8217; and boom, your Citrix server has another driver on your server and another point of possible instability.
+We have an application that is hard coded to map printers via a UNC path. &nbsp;This is the bane of a Citrix admin whom wants to minimize the number of drivers on the & server as each UNC connection can prompt for a driver install (this is how our environment is configured). &nbsp;User's click 'Install Driver' and boom, your Citrix server has another driver on your server and another point of possible instability.
 
 Citrix has attempted to solve this using the Universal Print Driver (UPD) but this just maps printers from your local system to the Citrix session. &nbsp;Each printer is given a unique name and each queue is given a unique port as well.
 
@@ -34,9 +34,9 @@ Citrix has attempted to solve this using the Universal Print Driver (UPD) but th
   <a href="http://1.bp.blogspot.com/-h5ELEzcdSJI/VZ3aLcOhHOI/AAAAAAAAA6M/bmdLnBLu7VM/s1600/Screen%2BShot%2B2015-07-08%2Bat%2B8.12.27%2BPM.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="159" src="http://1.bp.blogspot.com/-h5ELEzcdSJI/VZ3aLcOhHOI/AAAAAAAAA6M/bmdLnBLu7VM/s320/Screen%2BShot%2B2015-07-08%2Bat%2B8.12.27%2BPM.png" width="320" /></a>
 </div>
 
-Unfortunately, this makes it impossible for our hardcoded app to use a consistent printer as these queues and names do not exist unless we install them locally. &nbsp;If the program displayed a simple print dialog this wouldn&#8217;t be an issue but it is not coded that way.
+Unfortunately, this makes it impossible for our hardcoded app to use a consistent printer as these queues and names do not exist unless we install them locally. &nbsp;If the program displayed a simple print dialog this wouldn't be an issue but it is not coded that way.
 
-Fortunately, Citrix has come up with a \*fairly\* elegant solution: Citrix Universal Print Server (UPS). &nbsp;How this works is it forces the mapped network printers to come across using the Citrix Universal Print Driver. &nbsp;There are two parts to this, the Citrix UPS and the Universal Print Client (UPC). &nbsp;The UPS goes on your Windows Print Server and the UPC goes on your XenApp servers.
+Fortunately, Citrix has come up with a \*fairly\* elegant solution: Citrix Universal Print Server (UPS). &nbsp;How this works is it forces the mapped network printers to come across using the Citrix Universal Print Driver. &nbsp;There are two parts to this, the Citrix UPS and the Universal Print Client (UPC). &nbsp;The UPS goes on your Windows Print Server and the UPC goes on your & servers.
 
 <table align="center" cellpadding="0" cellspacing="0" style="margin-left: auto; margin-right: auto; text-align: center;">
   <tr>
@@ -47,7 +47,7 @@ Fortunately, Citrix has come up with a \*fairly\* elegant solution: Citrix Unive
   
   <tr>
     <td style="text-align: center;">
-      XenApp server
+      & server
     </td>
   </tr>
 </table>
@@ -68,13 +68,13 @@ Fortunately, Citrix has come up with a \*fairly\* elegant solution: Citrix Unive
   </tr>
 </table>
 
-To enable the UPS functionality and have your network printers use the Citrix UPD you need to enable a Citrix group policy object on the XenApp server (that&#8217;s why you see Citrix Group Policy Management (x64) 1.7.0.0). &nbsp;If you have a version older than 1.7.0.0 then you won&#8217;t have the relevant policy available to you:
+To enable the UPS functionality and have your network printers use the Citrix UPD you need to enable a Citrix group policy object on the & server (that's why you see Citrix Group Policy Management (x64) 1.7.0.0). &nbsp;If you have a version older than 1.7.0.0 then you won't have the relevant policy available to you:
 
 <div style="clear: both; text-align: center;">
   <a href="http://3.bp.blogspot.com/-5PnZeJjjWm4/VZ3c3JcuilI/AAAAAAAAA6s/-4nYQRv7X2s/s1600/Screen%2BShot%2B2015-07-08%2Bat%2B8.30.25%2BPM.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="456" src="http://3.bp.blogspot.com/-5PnZeJjjWm4/VZ3c3JcuilI/AAAAAAAAA6s/-4nYQRv7X2s/s320/Screen%2BShot%2B2015-07-08%2Bat%2B8.30.25%2BPM.png" width="640" /></a>
 </div>
 
-Setting this setting to either &#8220;Enabled&#8221; setting turns on the UPC feature. &nbsp;For any network printer that you map to the Windows Print Server with the UPS it will use the Citrix UPD. &nbsp;To verify this, go to your XenApp server and map a printer from the UPS and look at the driver.
+Setting this setting to either "Enabled" setting turns on the UPC feature. &nbsp;For any network printer that you map to the Windows Print Server with the UPS it will use the Citrix UPD. &nbsp;To verify this, go to your & server and map a printer from the UPS and look at the driver.
 
 <table align="center" cellpadding="0" cellspacing="0" style="margin-left: auto; margin-right: auto; text-align: center;">
   <tr>
@@ -85,7 +85,7 @@ Setting this setting to either &#8220;Enabled&#8221; setting turns on the UPC fe
   
   <tr>
     <td style="text-align: center;">
-      UPS in Action. &nbsp;Note the driver for the network printer is &#8220;Citrix Universal Printer&#8221;
+      UPS in Action. &nbsp;Note the driver for the network printer is "Citrix Universal Printer"
     </td>
   </tr>
 </table>
@@ -94,9 +94,9 @@ Ok, so with UPS installed and working we should be good right?
 
 Right? &nbsp;🙂
 
-Well&#8230; &nbsp;It turns out that our label printers were printing out blanks with Citrix UPS. &nbsp;To determine if it was truly the UPS causing my problem I enabled printer mapping, added the network printer locally complete with the native driver and launched my app. &nbsp;This mapped my local printer into my session with the Citrix UPD. &nbsp;I tried printing and&#8230; &nbsp; nothing. &nbsp;Just a blank label came out.
+Well... &nbsp;It turns out that our label printers were printing out blanks with Citrix UPS. &nbsp;To determine if it was truly the UPS causing my problem I enabled printer mapping, added the network printer locally complete with the native driver and launched my app. &nbsp;This mapped my local printer into my session with the Citrix UPD. &nbsp;I tried printing and... &nbsp; nothing. &nbsp;Just a blank label came out.
 
-To troubleshoot this process, Zebra actually has a good document on determining if your printer is rendering/printing correctly by [printing to a text file](https://km.zebra.com/kb/index?page=content&id=SO6873). &nbsp;If you have a new enough Zebra printer installed you can [actually use it to &#8216;preview&#8217; the label](https://km.zebra.com/kb/index?page=content&id=SO8374&actp=LIST) so you don&#8217;t waste paper, AND you don&#8217;t need have a label printer physically present beside you. &nbsp;Older Zebra&#8217;s don&#8217;t seem to have this functionality (LP 2824 I&#8217;m looking at you!). &nbsp;I had a PDF file I tried printing from PDF Architect that output to the text file.
+To troubleshoot this process, Zebra actually has a good document on determining if your printer is rendering/printing correctly by [printing to a text file](https://km.zebra.com/kb/index?page=content&id=SO6873). &nbsp;If you have a new enough Zebra printer installed you can [actually use it to 'preview' the label](https://km.zebra.com/kb/index?page=content&id=SO8374&actp=LIST) so you don't waste paper, AND you don't need have a label printer physically present beside you. &nbsp;Older Zebra's don't seem to have this functionality (LP 2824 I'm looking at you!). &nbsp;I had a PDF file I tried printing from PDF Architect that output to the text file.
 
 So, what did my print job look like?
 
@@ -141,7 +141,7 @@ Well then. Curiously, if I printed the same document from Adobe Reader it came o
 </div>
 
 <div style="-webkit-text-stroke-color: initial; margin: 0px; padding: 0px;">
-  So, when we print from Adobe Reader we get the expected result. &nbsp;But if we print from PDF Architect or directly from our&nbsp;application we don&#8217;t get anything and the data is missing entirely! &nbsp;This is a strange issue indeed. &nbsp;The Zebra driver shows its supported formats:
+  So, when we print from Adobe Reader we get the expected result. &nbsp;But if we print from PDF Architect or directly from our&nbsp;application we don't get anything and the data is missing entirely! &nbsp;This is a strange issue indeed. &nbsp;The Zebra driver shows its supported formats:
 </div>
 
 <div style="-webkit-text-stroke-color: initial; margin: 0px; padding: 0px;">
@@ -155,7 +155,7 @@ Well then. Curiously, if I printed the same document from Adobe Reader it came o
 </div>
 
 <div style="-webkit-text-stroke-color: initial; margin: 0px; padding: 0px;">
-  RAW or EMF&#8230; &nbsp;The Citrix UPD has two modes, EMF (standard &#8220;Citrix Universal Print Driver&#8221;) or XPS (&#8220;Citrix XPS Universal Print Driver&#8221;). &nbsp;I would assume <a href="http://support.citrix.com/servlet/KbServlet/download/32205-102-696273/Printing%20Planning%20Guide.pdf">EMF to EMF</a> would be the way to go?
+  RAW or EMF... &nbsp;The Citrix UPD has two modes, EMF (standard "Citrix Universal Print Driver") or XPS ("Citrix XPS Universal Print Driver"). &nbsp;I would assume <a href="http://support.citrix.com/servlet/KbServlet/download/32205-102-696273/Printing%20Planning%20Guide.pdf">EMF to EMF</a> would be the way to go?
 </div>
 
 <div style="-webkit-text-stroke-color: initial; margin: 0px; padding: 0px;">
@@ -169,7 +169,7 @@ Well then. Curiously, if I printed the same document from Adobe Reader it came o
 </div>
 
 <div style="-webkit-text-stroke-color: initial; margin: 0px; padding: 0px;">
-  By utilizing the &#8216;printer mapped&#8217; UPD, avoiding the UPS, we can enable &#8216;Print Preview&#8217; functionality and look at the EMF file as it&#8217;s placed in the print queue. &nbsp;Here&#8217;s is what I see:
+  By utilizing the 'printer mapped' UPD, avoiding the UPS, we can enable 'Print Preview' functionality and look at the EMF file as it's placed in the print queue. &nbsp;Here's is what I see:
 </div>
 
 <div style="-webkit-text-stroke-color: initial; margin: 0px; padding: 0px;">
@@ -193,14 +193,14 @@ Well then. Curiously, if I printed the same document from Adobe Reader it came o
 </div>
 
 <div style="-webkit-text-stroke-color: initial; margin: 0px; padding: 0px;">
-  Well, there is content being sent to the print queue from both applications. &nbsp;Adobe Reader looked slightly heavier in its lines vs. PDF Architect but both SPL files had content. &nbsp;This is still very confusing why Adobe Reader actually prints but PDF Architect does not. &nbsp;Maybe it&#8217;s in the way Adobe Reader processes its file? &nbsp;I don&#8217;t know. &nbsp;Maybe there&#8217;s a way to modify EMF on Citrix? &nbsp;It turns out, you can.
+  Well, there is content being sent to the print queue from both applications. &nbsp;Adobe Reader looked slightly heavier in its lines vs. PDF Architect but both SPL files had content. &nbsp;This is still very confusing why Adobe Reader actually prints but PDF Architect does not. &nbsp;Maybe it's in the way Adobe Reader processes its file? &nbsp;I don't know. &nbsp;Maybe there's a way to modify EMF on Citrix? &nbsp;It turns out, you can.
 </div>
 
 <div style="-webkit-text-stroke-color: initial; margin: 0px; padding: 0px;">
 </div>
 
 <div style="-webkit-text-stroke-color: initial; margin: 0px; padding: 0px;">
-  Citrix offers the ability to modify the way it&#8217;s EMF driver works by reprocessing it. &nbsp;You can enable this feature via Group Policy. &nbsp;
+  Citrix offers the ability to modify the way it's EMF driver works by reprocessing it. &nbsp;You can enable this feature via Group Policy. &nbsp;
 </div>
 
 <div style="-webkit-text-stroke-color: initial; margin: 0px; padding: 0px;">
@@ -344,7 +344,7 @@ Well then. Curiously, if I printed the same document from Adobe Reader it came o
   </div>
   
   <div>
-    To that end, I am concluding my work. &nbsp;Unfortunately, I do not know why Adobe Reader always worked without issue where two other applications did not. &nbsp;When on EMF mode, I could send a test page to the printer via print properties and it would have the full content, I could also print from notepad to the EMF queue and it worked just fine. &nbsp;For some reason, whatever path PDF Architect and my other application uses to print to the EMF driver just didn&#8217;t work. &nbsp;The Citrix EMF Viewer would display content, implying there is data. &nbsp;I do know there are several versions of EMF (NT EMF 1.003-8) you can choose on the printer processor properties, but it appears the Zebra driver ignores those settings in favour of it&#8217;s selection I posted previously. &nbsp;Forcing a different print processor (HP or Lexmark) in addition to an incompatible print processor type (TEXT/XPS) the Zebra driver will still work. &nbsp;So maybe it&#8217;s a <a href="https://msdn.microsoft.com/en-us/library/cc231034.aspx">EMF version compatibility</a> thing and whatever version Adobe Reader is passing works? &nbsp;
+    To that end, I am concluding my work. &nbsp;Unfortunately, I do not know why Adobe Reader always worked without issue where two other applications did not. &nbsp;When on EMF mode, I could send a test page to the printer via print properties and it would have the full content, I could also print from notepad to the EMF queue and it worked just fine. &nbsp;For some reason, whatever path PDF Architect and my other application uses to print to the EMF driver just didn't work. &nbsp;The Citrix EMF Viewer would display content, implying there is data. &nbsp;I do know there are several versions of EMF (NT EMF 1.003-8) you can choose on the printer processor properties, but it appears the Zebra driver ignores those settings in favour of it's selection I posted previously. &nbsp;Forcing a different print processor (HP or Lexmark) in addition to an incompatible print processor type (TEXT/XPS) the Zebra driver will still work. &nbsp;So maybe it's a <a href="https://msdn.microsoft.com/en-us/library/cc231034.aspx">EMF version compatibility</a> thing and whatever version Adobe Reader is passing works? &nbsp;
   </div>
 </div>
 

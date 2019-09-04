@@ -21,7 +21,7 @@ tags:
   - 2008R2
   - Windows Update
 ---
-Recently, I was applying Windows Update to a 2008 system and it failed on 4 updates after being successful for months. Â I was unsure why, but the updates were Office updates. Â I don&#8217;t think that the fact they were Office updates are important, but it&#8217;s something to mention anyways.
+Recently, I was applying Windows Update to a 2008 system and it failed on 4 updates after being successful for months. Â I was unsure why, but the updates were Office updates. Â I don't think that the fact they were Office updates are important, but it's something to mention anyways.
 
 <div style="clear: both; text-align: center;">
   <a style="margin-left: 1em; margin-right: 1em;" href="http://1.bp.blogspot.com/-ow6esL559Lo/UZUWuyngr-I/AAAAAAAAAPE/EaknDqhqZDk/s1600/2.PNG"><img src="http://1.bp.blogspot.com/-ow6esL559Lo/UZUWuyngr-I/AAAAAAAAAPE/EaknDqhqZDk/s320/2.PNG" width="320" height="226" border="0" /></a>
@@ -29,7 +29,7 @@ Recently, I was applying Windows Update to a 2008 system and it failed on 4 upda
 
 Symptoms of the issues I found and the resolution for this issue.
 
-1) Getting &#8220;ERROR 8024402C&#8221; when running Windows Update.  
+1) Getting "ERROR 8024402C" when running Windows Update.  
 2) Checking %WINDIR%\WindowsUpdate.log reveals lines like:
 
 <pre class="lang:default decode:true ">2013-05-16 10:41:01:577 1404 820 DnldMgr BITS job {97BB86BA-69EA-4091-91E6-DBD1EE012652} hit a transient error, updateId = {E6EC40C4-CD27-4D9C-A8C2-CE2B8A31E903}.201, error = 0x80072EE7
@@ -56,7 +56,7 @@ Windows update was going to the wrong server! Â The event viewer said it was goi
   <a style="margin-left: 1em; margin-right: 1em;" href="http://1.bp.blogspot.com/-nCtRBrQ017k/UZUYXD_UcRI/AAAAAAAAAPc/K5y8W5f4g18/s1600/4.PNG"><img src="http://1.bp.blogspot.com/-nCtRBrQ017k/UZUYXD_UcRI/AAAAAAAAAPc/K5y8W5f4g18/s320/4.PNG" width="320" height="109" border="0" /></a>
 </div>
 
-Checking regedit for the WU preferences showed it was pointing to the correct server, but for some reason Windows Update wasn&#8217;t picking up the new server. Â Rebooting the machine and refreshing the GPO did not resolve the issue.
+Checking regedit for the WU preferences showed it was pointing to the correct server, but for some reason Windows Update wasn't picking up the new server. Â Rebooting the machine and refreshing the GPO did not resolve the issue.
 
 <table style="margin-left: auto; margin-right: auto; text-align: center;" cellspacing="0" cellpadding="0" align="center">
   <tr>

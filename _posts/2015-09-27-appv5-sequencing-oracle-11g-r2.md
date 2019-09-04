@@ -1,6 +1,6 @@
 ---
 id: 544
-title: 'AppV5 &#8211; Sequencing Oracle 11g R2'
+title: 'AppV5 - Sequencing Oracle 11g R2'
 date: 2015-09-27T01:55:00-06:00
 author: trententtye
 layout: post
@@ -41,16 +41,16 @@ Oracle 11G only allows paths without spaces and special characters.
   </tr>
 </table>
 
-This \*maybe\* fixed now, but I experienced issues with trying to install Oracle 11g to the 8.3 folder structure to place it under &#8220;Program Files&#8221; or &#8220;Program Files (x86)&#8221;. Â The sequenced application would be broken. Â [This was a known/reported issue with AppV 5SP2 HF4](http://trentent.blogspot.ca/2014/08/appv-5-short-file-names-are-not-created.html) that was marked as &#8216;fixed&#8217; by Microsoft for SP3+. Â I have not had the ability to confirm that and will continue this post with what I know works&#8230; Â I also believe that when expanded out it uses the full path with spaces as opposed to the 8.3 path.
+This \*maybe\* fixed now, but I experienced issues with trying to install Oracle 11g to the 8.3 folder structure to place it under "Program Files" or "Program Files (x86)". Â The sequenced application would be broken. Â [This was a known/reported issue with AppV 5SP2 HF4](http://trentent.blogspot.ca/2014/08/appv-5-short-file-names-are-not-created.html) that was marked as 'fixed' by Microsoft for SP3+. Â I have not had the ability to confirm that and will continue this post with what I know works... Â I also believe that when expanded out it uses the full path with spaces as opposed to the 8.3 path.
 
 **Second Issue:**  
-Installing Oracle 11G to the default &#8216;recommended&#8217; directory will fail if you move your [PackageInstallationRoot](http://trentent.blogspot.ca/2014/08/appv-5-changing-packageinstallationroot.html)Â to a different drive.
+Installing Oracle 11G to the default 'recommended' directory will fail if you move your [PackageInstallationRoot](http://trentent.blogspot.ca/2014/08/appv-5-changing-packageinstallationroot.html)Â to a different drive.
 
 <div style="clear: both; text-align: center;">
   <a style="margin-left: 1em; margin-right: 1em;" href="http://1.bp.blogspot.com/-FKIBo_haoeM/VgeC1X8-TSI/AAAAAAAABJo/Dt6B1pwncpA/s1600/oracle2.PNG"><img src="http://1.bp.blogspot.com/-FKIBo_haoeM/VgeC1X8-TSI/AAAAAAAABJo/Dt6B1pwncpA/s320/oracle2.PNG" width="320" height="142" border="0" /></a>
 </div>
 
-This is because the second folder (apps &#8211; in this example) is not tokenized. Â Forcing AppV5 to utilize the token &#8220;appvPackgeDrive&#8221; which can expand out differently then you expect, breaking the application.
+This is because the second folder (apps - in this example) is not tokenized. Â Forcing AppV5 to utilize the token "appvPackgeDrive" which can expand out differently then you expect, breaking the application.
 
 **Third Issue:**  
 Cannot install to PVAD.
@@ -61,9 +61,9 @@ The reason I chose to NOT utilize PVAD is if you do then Oracle [cannot be used 
 
 The direction I went was to ensure the directory I sequenced the installer to was a tokenized directory. Â It also needed to a directory that, when expanded in the virtualized environment, does not contain any spaces or special characters.
 
-The list of directories AppV5 tokenize&#8217;s can be found in the AppV 5.0 Sequencing Guide.
+The list of directories AppV5 tokenize's can be found in the AppV 5.0 Sequencing Guide.
 
-I&#8217;ll list them here:
+I'll list them here:
 
 <table style="border-collapse: collapse; border: none; mso-border-alt: solid #7BA0CD 1.0pt; mso-border-themecolor: accent1; mso-border-themetint: 191; mso-padding-alt: 0in 5.4pt 0in 5.4pt; mso-yfti-tbllook: 1184;" border="1" cellspacing="0" cellpadding="0">
   <tr>
@@ -1386,7 +1386,7 @@ I&#8217;ll list them here:
 &nbsp;
 
 <div>
-  There are multiple directories we can choose. Â I opted to use &#8220;Common AppData&#8221;. Â That means I will install the Oracle client here: &#8220;C:ProgramData&#8221;. Â It does not contain a space, is tokenized, and when expanded will remain on the C: drive. Â I created a &#8216;response&#8217; file for the Oracle install.
+  There are multiple directories we can choose. Â I opted to use "Common AppData". Â That means I will install the Oracle client here: "C:ProgramData". Â It does not contain a space, is tokenized, and when expanded will remain on the C: drive. Â I created a 'response' file for the Oracle install.
 </div>
 
 <div>
@@ -1548,11 +1548,11 @@ oracle.install.client.schedulerAgentPortNumber=</pre>
 
 <div>
   <pre class="lang:batch decode:true ">setup.exe -nowait -nowelcome -silent -responseFile "%~dp0\silent.rsp"
-ping 127.0.0.1 -n 60 &gt;NUL
+ping 127.0.0.1 -n 60 >NUL
 copy /y *.ora "C:\ProgramData\Oracle\product\11.2.0\client_1\network\admin"</pre>
   
   <p>
-    And that&#8217;s it!
+    And that's it!
   </p>
 </div>
 

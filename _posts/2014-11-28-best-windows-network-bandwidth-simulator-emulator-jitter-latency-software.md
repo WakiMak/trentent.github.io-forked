@@ -20,7 +20,7 @@ categories:
 tags:
   - Uncategorized
 ---
-It&#8217;s called [Clumsy](http://jagt.github.io/clumsy/index.html). &nbsp;It&#8217;s really good. &nbsp;It&#8217;s a portable application, no installation necessary, &nbsp; It&#8217;s the best Windows Network Bandwidth Emulator Simulator software out there currently.
+It's called [Clumsy](http://jagt.github.io/clumsy/index.html). &nbsp;It's really good. &nbsp;It's a portable application, no installation necessary, &nbsp; It's the best Windows Network Bandwidth Emulator Simulator software out there currently.
 
 <!-- AddThis Advanced Settings generic via filter on the_content -->
 

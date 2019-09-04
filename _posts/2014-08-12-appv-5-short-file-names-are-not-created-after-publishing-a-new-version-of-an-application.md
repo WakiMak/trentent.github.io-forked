@@ -1,6 +1,6 @@
 ---
 id: 600
-title: 'AppV 5 &#8211; Short file names are not created after publishing a new version of an application'
+title: 'AppV 5 - Short file names are not created after publishing a new version of an application'
 date: 2014-08-12T10:33:00-06:00
 author: trententtye
 layout: post
@@ -34,7 +34,7 @@ tags:
     </div>
     
     <div style="border: none; font-family: inherit; font-style: inherit; font-weight: inherit; list-style-type: none; margin: 0px 0px 1em; outline: 0px; padding: 0px; text-decoration: none;">
-      We have an application that makes file system calls in the 8.3 space (awesome, I know). Â When launching the application I can see a trace of it hitting 8.3 name spaces (via Procmon) and the application works without issue. Â So, we required a tweak to the package, I added to the management server, published the application and refreshed on the AppV Client, saw the new package get loaded and ran the application. Â Only now when I trace via Procmon.exe I can see that it&#8217;s using Long File Names instead of the 8.3 name space and the program errors out because it&#8217;s trying to find a .exe with the short name. Â I can confirm the original published package has the 8.3 namespace via dir /x and the new version does NOT.
+      We have an application that makes file system calls in the 8.3 space (awesome, I know). Â When launching the application I can see a trace of it hitting 8.3 name spaces (via Procmon) and the application works without issue. Â So, we required a tweak to the package, I added to the management server, published the application and refreshed on the AppV Client, saw the new package get loaded and ran the application. Â Only now when I trace via Procmon.exe I can see that it's using Long File Names instead of the 8.3 name space and the program errors out because it's trying to find a .exe with the short name. Â I can confirm the original published package has the 8.3 namespace via dir /x and the new version does NOT.
     </div>
     
     <div style="border: none; font-family: inherit; font-style: inherit; font-weight: inherit; list-style-type: none; margin: 0px 0px 1em; outline: 0px; padding: 0px; text-decoration: none;">
@@ -46,11 +46,11 @@ tags:
     </div>
     
     <div style="border: none; font-family: inherit; font-style: inherit; font-weight: inherit; list-style-type: none; margin: 0px 0px 1em; outline: 0px; padding: 0px; text-decoration: none;">
-      8 dot 3 exists for folders but not files&#8230;
+      8 dot 3 exists for folders but not files...
     </div>
     
     <div style="border: none; font-family: inherit; font-style: inherit; font-weight: inherit; list-style-type: none; margin: 0px 0px 1em; outline: 0px; padding: 0px; text-decoration: none;">
-      In the image above, the version 1E65&#8230;&#8230; was published to the server first and EE168&#8230;. is the new version published later in the day.
+      In the image above, the version 1E65...... was published to the server first and EE168.... is the new version published later in the day.
     </div>
     
     <div style="border: none; list-style-type: none; margin-bottom: 1em; outline: 0px; padding: 0px;">

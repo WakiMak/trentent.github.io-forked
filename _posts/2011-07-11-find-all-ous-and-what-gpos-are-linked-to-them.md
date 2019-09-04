@@ -1,6 +1,6 @@
 ---
 id: 703
-title: 'Find all OU&#8217;s and what GPO&#8217;s are linked to them'
+title: 'Find all OU's and what GPO's are linked to them'
 date: 2011-07-11T11:11:00-06:00
 author: trententtye
 layout: post
@@ -22,10 +22,10 @@ tags:
   - Group Policy
   - scripting
 ---
-I made a script using SED and ADFIND to find all OU&#8217;s and what GPO&#8217;s were linked to them:
+I made a script using SED and ADFIND to find all OU's and what GPO's were linked to them:
 
-> <pre class="lang:batch decode:true ">adfind -b DC=ccs,DC=corp -f "(&(objectCategory=organizationalUnit)(gPLink=*))" cn gplink -csv -csvdelim : &gt; gplinks.txt
-adfind -b DC=ccs,DC=corp -f "(&(objectCategory=groupPolicyContainer)(cn=*))" cn displayName -nodn -csv &gt; gpnames.txt
+> <pre class="lang:batch decode:true ">adfind -b DC=ccs,DC=corp -f "(&(objectCategory=organizationalUnit)(gPLink=*))" cn gplink -csv -csvdelim : > gplinks.txt
+adfind -b DC=ccs,DC=corp -f "(&(objectCategory=groupPolicyContainer)(cn=*))" cn displayName -nodn -csv > gpnames.txt
 sed -i "s/\"//g" gpnames.txt
 sed -i "s/\[LDAP:\/\/..=//g" gplinks.txt
 sed -r -i "s/..=.olicies,..=.ystem,DC=ccs,DC=corp\\;.\]//g" gplinks.txt
@@ -35,14 +35,14 @@ del sed* /q</pre>
 
 Love it 🙂
 
-To expand on the above, here is a batch file that will find all empty OU&#8217;s and what GPO&#8217;s are linked to them:
+To expand on the above, here is a batch file that will find all empty OU's and what GPO's are linked to them:
 
 > <pre class="lang:batch decode:true ">:This script requires SED.txt and ADFIND.exe
 
 :Goes through every OU and finds every GPO linked to it
-adfind -b DC=ccs,DC=corp -f "(&(objectCategory=organizationalUnit)(gPLink=*))" cn gplink -csv -csvdelim : &gt; gplinks.txt
+adfind -b DC=ccs,DC=corp -f "(&(objectCategory=organizationalUnit)(gPLink=*))" cn gplink -csv -csvdelim : > gplinks.txt
 :Goes through every GPO and finds it's common name
-adfind -b DC=ccs,DC=corp -f "(&(objectCategory=groupPolicyContainer)(cn=*))" cn displayName -nodn -csv &gt; gpnames.txt
+adfind -b DC=ccs,DC=corp -f "(&(objectCategory=groupPolicyContainer)(cn=*))" cn displayName -nodn -csv > gpnames.txt
 
 :run some text clean up commands. Deletes double-quotes
 sed -i "s/\"//g" gpnames.txt
@@ -63,8 +63,8 @@ IF EXIST EmptyOUs.txt DEL /F /Q EmptyOUs.txt
 SET OUQry=DSQuery OU -Name * -Limit 0
 FOR /F "delims=#" %%o IN ('%OUQry%') Do (
 Echo Processing: %%o
-DSQuery * %%o -Limit 0 | Find "CN=" &gt;NUL
-IF ERRORLEVEL 1 Echo %%o&gt;&gt;EmptyOUs.txt
+DSQuery * %%o -Limit 0 | Find "CN=" >NUL
+IF ERRORLEVEL 1 Echo %%o>>EmptyOUs.txt
 )
 Echo.
 Echo Search Complete! Check 'EmptyOUs.txt' file.

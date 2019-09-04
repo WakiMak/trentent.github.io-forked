@@ -29,15 +29,15 @@ tags:
   - Citrix
   - Storefront
 ---
-I ran into a frustrating issue [with my last post (changing the clientname based on the application)](https://theorypc.ca/2017/07/13/citrix-storefront-adventures-in-customization-assign-a-custom-clientname-to-an-application/). Â The issue was, it wasn&#8217;t working! Â Sometimes! Â On some versions of IE! Â On some Operating Systems!
+I ran into a frustrating issue [with my last post (changing the clientname based on the application)](https://theorypc.ca/2017/07/13/citrix-storefront-adventures-in-customization-assign-a-custom-clientname-to-an-application/). Â The issue was, it wasn't working! Â Sometimes! Â On some versions of IE! Â On some Operating Systems!
 
 WTF.
 
-On Windows 10, IE11 or Edge it worked fine. Â On Windows 7 or Server 2008 R2 with IE11 it worked&#8230; Â SOMETIMES.
+On Windows 10, IE11 or Edge it worked fine. Â On Windows 7 or Server 2008 R2 with IE11 it worked... Â SOMETIMES.
 
-I started to dig into what was happening. Â Why wasn&#8217;t the ClientName being set consistently?
+I started to dig into what was happening. Â Why wasn't the ClientName being set consistently?
 
-It turns out that the code path for the &#8220;StoreFront Customization SDK&#8221; (at least the ICA file modification portion) operates when a request is made to [&#8220;GetLaunchStatus&#8221;](https://citrix.github.io/storefront-sdk/requests/#ica-launch). Â A working application launch from StoreFront looks like this:
+It turns out that the code path for the "StoreFront Customization SDK" (at least the ICA file modification portion) operates when a request is made to ["GetLaunchStatus"](https://citrix.github.io/storefront-sdk/requests/#ica-launch). Â A working application launch from StoreFront looks like this:
 
 <div style="width: 1140px;" class="wp-video">
   <video class="wp-video-shortcode" id="video-2515-25" width="1140" height="351" preload="metadata" controls="controls"><source type="video/mp4" src="http://theorypc.ca/wp-content/uploads/2017/07/CorrectStoreFront.mp4?_=25" /><a href="http://theorypc.ca/wp-content/uploads/2017/07/CorrectStoreFront.mp4">http://theorypc.ca/wp-content/uploads/2017/07/CorrectStoreFront.mp4</a></video>
@@ -45,15 +45,15 @@ It turns out that the code path for the &#8220;StoreFront Customization SDK&#822
 
 Notice when I click the application icon, TWO requests are made. Â The first one, GetLaunchStatus contains the headers that is passed to the SDK customization plugin, the second is a hidden iFrame to pull the ICA file.
 
-Now, if I login to a server or PC that I&#8217;ve never logged into before (so that I have a fresh profile) and launch IE and immediately go to Storefront, this is the result:
+Now, if I login to a server or PC that I've never logged into before (so that I have a fresh profile) and launch IE and immediately go to Storefront, this is the result:
 
 <div style="width: 1140px;" class="wp-video">
   <video class="wp-video-shortcode" id="video-2515-26" width="1140" height="351" preload="metadata" controls="controls"><source type="video/mp4" src="http://theorypc.ca/wp-content/uploads/2017/07/IE_Broken.mp4?_=26" /><a href="http://theorypc.ca/wp-content/uploads/2017/07/IE_Broken.mp4">http://theorypc.ca/wp-content/uploads/2017/07/IE_Broken.mp4</a></video>
 </div>
 
-Notice it only goes to &#8220;LaunchIca&#8221;. Â Because of this my ClientName is not modified.
+Notice it only goes to "LaunchIca". Â Because of this my ClientName is not modified.
 
-To validate the theory a bit further that something in Storefront maybe causing my issue, I opened up Chrome and changed it&#8217;s UserAgent to be identical of IE11 on Server 2008 R2:
+To validate the theory a bit further that something in Storefront maybe causing my issue, I opened up Chrome and changed it's UserAgent to be identical of IE11 on Server 2008 R2:
 
 <pre class="lang:default decode:true ">Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko</pre>
 
@@ -65,7 +65,7 @@ And what happened?
 
 Only LaunchIca is called. Â We have a reproducible failure.
 
-As I was digging into the Citrix code to launch the &#8220;GetLaunchStatus&#8221; URL I found it would &#8220;skip&#8221; going to URL under a series of conditions, one of them relates to checking for the presence of IE (CTXS.Device.isIE). Â I found two candidate functions that maybe causing this failure, and I think this one is the most likely:
+As I was digging into the Citrix code to launch the "GetLaunchStatus" URL I found it would "skip" going to URL under a series of conditions, one of them relates to checking for the presence of IE (CTXS.Device.isIE). Â I found two candidate functions that maybe causing this failure, and I think this one is the most likely:
 
 <pre class="lang:js decode:true">function b(a, c) {
         function k(f, e, l) {
@@ -157,7 +157,7 @@ The end result now looks like this:
 };
 </pre>
 
-And now my customizations are called correctly and work with IE11. Â I haven&#8217;t done extensive testing so &#8220;your mileage may vary&#8221; with this fix, but if you are finding your customizations aren&#8217;t operating correctly you may want to try this fix.
+And now my customizations are called correctly and work with IE11. Â I haven't done extensive testing so "your mileage may vary" with this fix, but if you are finding your customizations aren't operating correctly you may want to try this fix.
 
 &nbsp;
 

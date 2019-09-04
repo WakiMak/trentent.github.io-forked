@@ -1,6 +1,6 @@
 ---
 id: 2219
-title: 'Citrix Storefront &#8211; Adventures in customization &#8211; Dynamically configure workspace control based on group membership'
+title: 'Citrix Storefront - Adventures in customization - Dynamically configure workspace control based on group membership'
 date: 2017-05-07T22:31:31-06:00
 author: trententtye
 layout: post
@@ -15,10 +15,10 @@ tags:
   - Performance
   - Storefront
   - Web Interface
-  - XenApp
+  - &
   - XenDesktop
 ---
-I&#8217;ve been exploring the customization capabilities of Citrix Storefront and have some exciting ideas on simplifying our deployment. Â What I&#8217;d really like is to reduce our store count down to a as fewÂ stores as possible. Â In our Web Interface we have multiple stores based on the non-configurable settings. Â They are:
+I've been exploring the customization capabilities of Citrix Storefront and have some exciting ideas on simplifying our deployment. Â What I'd really like is to reduce our store count down to a as fewÂ stores as possible. Â In our Web Interface we have multiple stores based on the non-configurable settings. Â They are:
 
   * Workspace Control Enabled with Explicit Logon
   * Workspace Control Disabled with Explicit Logon
@@ -26,9 +26,9 @@ I&#8217;ve been exploring the customization capabilities of Citrix Storefront an
   * Workspace Control Disabled with Domain Passthrough authentication
   * Anonymous site
 
-We can&#8217;t mix and match authenticated sites and anonymous sites (right?&#8230; ?) but Citrix does offer the ability to configure Authentication methods AND Workspace Control options via their [&#8216;Receiver Extension API&#8217;s&#8217;](https://docs.citrix.com/en-us/storefront/3/migrate-wi-to-storefront/receiver-extension-apis.html).
+We can't mix and match authenticated sites and anonymous sites (right?... ?) but Citrix does offer the ability to configure Authentication methods AND Workspace Control options via their ['Receiver Extension API's'](https://docs.citrix.com/en-us/storefront/3/migrate-wi-to-storefront/receiver-extension-apis.html).
 
-These are the API&#8217;s in question:
+These are the API's in question:
 
 <pre class="lang:default decode:true">includeAuthenticationMethod(authenticationMethod)
 excludeAuthenticationMethod(authenticationMethod)
@@ -37,13 +37,13 @@ showWebDisconnectMenu(bool_showByDefault)
 webReconnectAtStartup(bool_ReconnectByDefault)
 webLogoffIcaAction(string_defaultAction)</pre>
 
-There isn&#8217;t really a whole lot of documentation on them and how to use them. Â Richard Hayton has created the [Citrix Customization Cookbook](https://www.citrix.com/blogs/2015/08/25/citrix-customization-cookbook/) which details some examples of some of the API&#8217;s. Â He has several [blog articles on the Citrix website](https://www.citrix.com/blogs/author/richardha/)Â that have varying degrees of applicability. Â Unfortunately, he hasn&#8217;t blogged in over a year on this topic as itÂ _feels_ like the situation has changed a bit with the [Citrix Store API&#8217;s available as well](https://citrix.github.io/storefront-sdk/requests/)Â (note: these are different!).
+There isn't really a whole lot of documentation on them and how to use them. Â Richard Hayton has created the [Citrix Customization Cookbook](https://www.citrix.com/blogs/2015/08/25/citrix-customization-cookbook/) which details some examples of some of the API's. Â He has several [blog articles on the Citrix website](https://www.citrix.com/blogs/author/richardha/)Â that have varying degrees of applicability. Â Unfortunately, he hasn't blogged in over a year on this topic as itÂ _feels_ like the situation has changed a bit with the [Citrix Store API's available as well](https://citrix.github.io/storefront-sdk/requests/)Â (note: these are different!).
 
-My target is to make it so these options can be setÂ _**dynamically**_ based on the users group membership. Â If you&#8217;re a member of the group &#8216;workspaceControlEnabled&#8217; you get all the settings set to true, if you&#8217;re a member of &#8216;workspaceControlDisabled&#8217; you get all the settings set to false.
+My target is to make it so these options can be setÂ _**dynamically**_ based on the users group membership. Â If you're a member of the group 'workspaceControlEnabled' you get all the settings set to true, if you're a member of 'workspaceControlDisabled' you get all the settings set to false.
 
 Seems like a pretty straightforward goal?
 
-So I thought I&#8217;d start with something pretty simple. Â I have a store with Workspace Control Enabled, with show &#8216;Connect and Disconnect&#8217; buttons selected:
+So I thought I'd start with something pretty simple. Â I have a store with Workspace Control Enabled, with show 'Connect and Disconnect' buttons selected:
 
 <img class="aligncenter size-full wp-image-2220" src="http://theorypc.ca/wp-content/uploads/2017/05/Screen-Shot-2017-05-07-at-1.15.34-PM.png" alt="" width="806" height="596" srcset="http://theorypc.ca/wp-content/uploads/2017/05/Screen-Shot-2017-05-07-at-1.15.34-PM.png 806w, http://theorypc.ca/wp-content/uploads/2017/05/Screen-Shot-2017-05-07-at-1.15.34-PM-300x222.png 300w, http://theorypc.ca/wp-content/uploads/2017/05/Screen-Shot-2017-05-07-at-1.15.34-PM-768x568.png 768w" sizes="(max-width: 806px) 100vw, 806px" /> 
 
@@ -53,7 +53,7 @@ If I log into the site:
 
 I see everything (as I should).
 
-So let&#8217;s start with a simple customization. Â Let&#8217;s try using the API to disable these options. Â I created a totally blank script.js file and added the following lines:
+So let's start with a simple customization. Â Let's try using the API to disable these options. Â I created a totally blank script.js file and added the following lines:
 
 <pre class="lang:js decode:true ">CTXS.Extensions.showWebReconnectMenu = function () {return false};
 CTXS.Extensions.showWebDisconnectMenu = function () {return false};
@@ -129,17 +129,17 @@ function setWorkspaceControl (bool) {
  var WSC = workspaceControlEnabled(username);
  setWorkspaceControl(WSC);</pre>
 
-In order to trace the error, you simply enter &#8220;#-tr&#8221; to the end of your store URL:
+In order to trace the error, you simply enter "#-tr" to the end of your store URL:
 
 <img class="aligncenter size-full wp-image-2223" src="http://theorypc.ca/wp-content/uploads/2017/05/Screen-Shot-2017-05-07-at-1.44.15-PM.png" alt="" width="312" height="20" srcset="http://theorypc.ca/wp-content/uploads/2017/05/Screen-Shot-2017-05-07-at-1.44.15-PM.png 312w, http://theorypc.ca/wp-content/uploads/2017/05/Screen-Shot-2017-05-07-at-1.44.15-PM-300x19.png 300w" sizes="(max-width: 312px) 100vw, 312px" /> 
 
-and allow pop-ups. Â A new tab will open allowing you to follow the &#8216;flow&#8217; of Storefront as it executes its commands. Â Mine crashed at:
+and allow pop-ups. Â A new tab will open allowing you to follow the 'flow' of Storefront as it executes its commands. Â Mine crashed at:
 
 <img class="aligncenter size-full wp-image-2224" src="http://theorypc.ca/wp-content/uploads/2017/05/Screen-Shot-2017-05-07-at-1.49.01-PM.png" alt="" width="658" height="858" srcset="http://theorypc.ca/wp-content/uploads/2017/05/Screen-Shot-2017-05-07-at-1.49.01-PM.png 658w, http://theorypc.ca/wp-content/uploads/2017/05/Screen-Shot-2017-05-07-at-1.49.01-PM-230x300.png 230w" sizes="(max-width: 658px) 100vw, 658px" /> 
 
-&#8220;get username data:&#8221;
+"get username data:"
 
-And it makes sense why it crashed there. Â I haven&#8217;t even logged in yet so it has no idea who or how to get the username so it looks like Storefront just returns the login page. Â We need to call our functions **_after_** logging in.
+And it makes sense why it crashed there. Â I haven't even logged in yet so it has no idea who or how to get the username so it looks like Storefront just returns the login page. Â We need to call our functions **_after_** logging in.
 
 Citrix provides the following event-based functions we can hook into:
 
@@ -160,7 +160,7 @@ Citrix provides the following event-based functions we can hook into:
 </h3>
 
 <p style="padding-left: 30px;">
-  Web browsers only. Called prior to displaying any logon dialogs. You may call &#8216;showMessage&#8217; here, or add your own UI.
+  Web browsers only. Called prior to displaying any logon dialogs. You may call 'showMessage' here, or add your own UI.
 </p>
 
 <h3 style="padding-left: 30px;">
@@ -238,15 +238,15 @@ Before adding my code to the post-logon event functions I just added it back -pl
 
 <img class="aligncenter size-large wp-image-2229" src="http://theorypc.ca/wp-content/uploads/2017/05/WSC_Menu-1600x456.png" alt="" width="1140" height="325" srcset="http://theorypc.ca/wp-content/uploads/2017/05/WSC_Menu-1600x456.png 1600w, http://theorypc.ca/wp-content/uploads/2017/05/WSC_Menu-300x85.png 300w, http://theorypc.ca/wp-content/uploads/2017/05/WSC_Menu-768x219.png 768w" sizes="(max-width: 1140px) 100vw, 1140px" /> 
 
-What I found is these extensions appear to have a fixed entry order point. Â The workspace control extensionsÂ <span style="text-decoration: underline;"><strong>cannot</strong></span> be calledÂ _after_ &#8220;beforeDisplayHomeScreen&#8221; stage. Â If you do not call the workspace control extensions before the callback on the &#8216;beforeDisplayHomeScreen&#8217; function you will be unable to control the setting. Â The trace log in my screenshot for these extensions will always occur at this point in time regardless if you actually set it in &#8216;preInitialize,Â postInitialize,Â postConfigurationLoaded, orÂ beforeLogon&#8217;. Â And if you attempt to set it in either of the two later functions it will not log anything and your code has no effect. Â So the only point in time where I can take the username and set these values are in theÂ event function beforeDisplayHomeScreen.
+What I found is these extensions appear to have a fixed entry order point. Â The workspace control extensionsÂ <span style="text-decoration: underline;"><strong>cannot</strong></span> be calledÂ _after_ "beforeDisplayHomeScreen" stage. Â If you do not call the workspace control extensions before the callback on the 'beforeDisplayHomeScreen' function you will be unable to control the setting. Â The trace log in my screenshot for these extensions will always occur at this point in time regardless if you actually set it in 'preInitialize,Â postInitialize,Â postConfigurationLoaded, orÂ beforeLogon'. Â And if you attempt to set it in either of the two later functions it will not log anything and your code has no effect. Â So the only point in time where I can take the username and set these values are in theÂ event function beforeDisplayHomeScreen.
 
 _<Digress>_
 
-_During the course of my testing this feature I hadÂ thought about adding a button that would allow you to toggle this feature &#8216;enabled or disabled&#8217; on your own whim. Â But it appears once you call the Extension it&#8217;s a one and done. Â I also discovered that it appears you must set the workspace control featureÂ **early** in the process. Â If I set it in postAppListLoaded or afterDisplayHomeScreen nothing happened. Â To be fair, I do not know how to reinitialize the menu, maybe that would allow it to kick in dynamically&#8230;? Â I guess that&#8217;s for further exploration on another day&#8230;_
+_During the course of my testing this feature I hadÂ thought about adding a button that would allow you to toggle this feature 'enabled or disabled' on your own whim. Â But it appears once you call the Extension it's a one and done. Â I also discovered that it appears you must set the workspace control featureÂ **early** in the process. Â If I set it in postAppListLoaded or afterDisplayHomeScreen nothing happened. Â To be fair, I do not know how to reinitialize the menu, maybe that would allow it to kick in dynamically...? Â I guess that's for further exploration on another day..._
 
 _</Digress>_
 
-Ok, so we&#8217;ve found the one and only functional place we can execute our code. Â So I added it.
+Ok, so we've found the one and only functional place we can execute our code. Â So I added it.
 
 <pre class="lang:js decode:true ">CTXS.Extensions.beforeDisplayHomeScreen = function (callback) {
 	CTXS.trace("beforeDisplayHomeScreen stage");
@@ -264,15 +264,15 @@ Ok, so we&#8217;ve found the one and only functional place we can execute our co
 
 The result? Â Nothing. Â Nothing happened.
 
-Well, that&#8217;s notÂ _entirely_ true.
+Well, that's notÂ _entirely_ true.
 
 <img class="aligncenter size-large wp-image-2230" src="http://theorypc.ca/wp-content/uploads/2017/05/Screen-Shot-2017-05-07-at-9.31.59-PM-1600x583.png" alt="" width="1140" height="415" srcset="http://theorypc.ca/wp-content/uploads/2017/05/Screen-Shot-2017-05-07-at-9.31.59-PM-1600x583.png 1600w, http://theorypc.ca/wp-content/uploads/2017/05/Screen-Shot-2017-05-07-at-9.31.59-PM-300x109.png 300w, http://theorypc.ca/wp-content/uploads/2017/05/Screen-Shot-2017-05-07-at-9.31.59-PM-768x280.png 768w" sizes="(max-width: 1140px) 100vw, 1140px" /> 
 
-I&#8217;ve highlighted in yellow/orange my &#8220;getUsername&#8221; function. Â We can see on <span style="text-decoration: underline;"><strong>line 35</strong></span> we get into the function. Â And on <span style="text-decoration: underline;"><strong>line 67</strong></span> it is successfully finding and returning my name. Â But the problem is that it&#8217;s getting that informationÂ _after_ the point in time that we can set the WSC features (highlighted in blue &#8212; <span style="text-decoration: underline;"><strong>line 60-62</strong></span>).
+I've highlighted in yellow/orange my "getUsername" function. Â We can see on <span style="text-decoration: underline;"><strong>line 35</strong></span> we get into the function. Â And on <span style="text-decoration: underline;"><strong>line 67</strong></span> it is successfully finding and returning my name. Â But the problem is that it's getting that informationÂ _after_ the point in time that we can set the WSC features (highlighted in blue - <span style="text-decoration: underline;"><strong>line 60-62</strong></span>).
 
-I found that using ajax for this command and attempting to use async was causing my failure. Â I understand it&#8217;s bad practice toÂ do synchronous commands, especially in javascript as they will lock the UI while executing, but, thus far it&#8217;s the only way I know to ensure it gets completed **in the proper order.** Â I am really not a web developer so I don&#8217;t know what&#8217;s the proper technique here to send a couple ajax requests that only blocks at the specificÂ point in time that WSC kicks in&#8230; Â Or find a way to redraw the menu? Â But for the purposes of getting this working, this is the solution I&#8217;ve chosen to go with. Â I&#8217;m wide open to better suggestions. Â The real big extension that would be an issue is the &#8216;webReconnectAtStartup&#8217;. Â This feature will reconnect any existing sessions you have and the way that Citrix currently implements it, they want it run as soon as the UI is displayed. Â This makes some sense as that&#8217;s the whole point. Â You don&#8217;t want to wait around after logging in some indeterminate or random amount of seconds for your session to reconnect&#8230; Â But, this issue can be alleviated. Â _<span style="text-decoration: underline;">Citrix actually offers a way to implement this feature yourself via the Store API</span>_ so we could implement our own custom version of this function that would get all your sessions and reconnect them&#8230;
+I found that using ajax for this command and attempting to use async was causing my failure. Â I understand it's bad practice toÂ do synchronous commands, especially in javascript as they will lock the UI while executing, but, thus far it's the only way I know to ensure it gets completed **in the proper order.** Â I am really not a web developer so I don't know what's the proper technique here to send a couple ajax requests that only blocks at the specificÂ point in time that WSC kicks in... Â Or find a way to redraw the menu? Â But for the purposes of getting this working, this is the solution I've chosen to go with. Â I'm wide open to better suggestions. Â The real big extension that would be an issue is the 'webReconnectAtStartup'. Â This feature will reconnect any existing sessions you have and the way that Citrix currently implements it, they want it run as soon as the UI is displayed. Â This makes some sense as that's the whole point. Â You don't want to wait around after logging in some indeterminate or random amount of seconds for your session to reconnect... Â But, this issue can be alleviated. Â _<span style="text-decoration: underline;">Citrix actually offers a way to implement this feature yourself via the Store API</span>_ so we could implement our own custom version of this function that would get all your sessions and reconnect them...
 
-Which could just leave building the menu as something that could be moved back to asyncÂ if I can figure out how to rebuild it or build it dynamically&#8230;
+Which could just leave building the menu as something that could be moved back to asyncÂ if I can figure out how to rebuild it or build it dynamically...
 
 Anyway, that maybe for another day. Â For today, the following works for my purpose.
 
@@ -406,7 +406,7 @@ Here is the LDAP_HttpListener.psm1
 # Modified by Trentent Tye for ICA file returning.
 
 Function ConvertTo-HashTable {
-    &lt;#
+    <#
     .Synopsis
         Convert an object to a HashTable
     .Description
@@ -421,7 +421,7 @@ Function ConvertTo-HashTable {
     .Example
         $bios = get-ciminstance win32_bios
         $bios | ConvertTo-HashTable
-    #&gt;
+    #>
     
     Param (
         [Parameter(Mandatory=$true,ValueFromPipeline=$true)]
@@ -454,7 +454,7 @@ Function ConvertTo-HashTable {
 }
 
 Function Get-GroupMembership {
-    &lt;#
+    <#
     .Synopsis
         Queries Active Directory for a group and returns true or false
     .Description
@@ -465,7 +465,7 @@ Function Get-GroupMembership {
         AD attribute "displayName".  eg, "Trentent Tye" or "Trentent Tye - Admin"
     .Example
         Get-GroupMembership -displayName "Trentent Tye"
-    #&gt;
+    #>
     Param (
     [Parameter()]
     [String] $DisplayName = ""
@@ -488,7 +488,7 @@ Function Get-GroupMembership {
 }
 
 Function Start-HTTPListener {
-    &lt;#
+    <#
     .Synopsis
         Creates a new HTTP Listener accepting PowerShell command line to execute
     .Description
@@ -506,7 +506,7 @@ Function Start-HTTPListener {
     .Example
         Start-HTTPListener -Port 8080 -Url PowerShell
         Invoke-WebRequest -Uri "http://localhost:8888/PowerShell?command=get-service winmgmt&format=text" -UseDefaultCredentials | Format-List *
-    #&gt;
+    #>
     
     Param (
         [Parameter()]
@@ -548,7 +548,7 @@ Function Start-HTTPListener {
 
  
                 if (-not $request.QueryString.HasKeys()) {
-                    $commandOutput = "SYNTAX: command=&lt;string&gt; format=[JSON|TEXT|XML|NONE|CLIXML]"
+                    $commandOutput = "SYNTAX: command=<string> format=[JSON|TEXT|XML|NONE|CLIXML]"
                     $Format = "TEXT"
                 } else {
                     
@@ -556,12 +556,12 @@ Function Start-HTTPListener {
                     $displayName = $request.QueryString.Item("displayName")
 
                     #uncomment next portion to allow remote exit of the listener
-                    &lt;#
+                    <#
                     if ($displayName -eq "exit") {
                         Write-Verbose "Received command to exit listener"
                         return
                     }
-                    #&gt;
+                    #>
 
                     $Format = $request.QueryString.Item("format")
                     if ($Format -eq $Null) {

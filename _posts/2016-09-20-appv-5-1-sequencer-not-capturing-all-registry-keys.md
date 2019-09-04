@@ -1,6 +1,6 @@
 ---
 id: 1722
-title: 'AppV 5.1 Sequencer &#8211; Not capturing all registry keys'
+title: 'AppV 5.1 Sequencer - Not capturing all registry keys'
 date: 2016-09-20T12:46:06-06:00
 author: trententtye
 layout: post
@@ -17,13 +17,13 @@ Video of this issue:
 
 [https://theorypc-my.sharepoint.com/personal/trententtye\_theorypc\_onmicrosoft\_com/\_layouts/15/guestaccess.aspx?guestaccesstoken=vq4pmhseZam8zGPBh6Q8bn%2bgvaZrVuFc4fXo%2fziYmeA%3d&docid=08e53da35fa314929a7ce6578c69bf5c5](https://theorypc-my.sharepoint.com/personal/trententtye_theorypc_onmicrosoft_com/_layouts/15/guestaccess.aspx?guestaccesstoken=vq4pmhseZam8zGPBh6Q8bn%2bgvaZrVuFc4fXo%2fziYmeA%3d&docid=08e53da35fa314929a7ce6578c69bf5c5)
 
-The issue is when sequencing an application (100% reproducable on Epic and the VMWare Hypervisor) and then you add a large &#8216;update&#8217; (for Epic this is the client pack) then not all registry keys are captured. Â At 8:20 seconds you can see keys that are present in the local registry are not present in the package.
+The issue is when sequencing an application (100% reproducable on Epic and the VMWare Hypervisor) and then you add a large 'update' (for Epic this is the client pack) then not all registry keys are captured. Â At 8:20 seconds you can see keys that are present in the local registry are not present in the package.
 
 <img class="aligncenter size-full wp-image-1723" src="http://theorypc.ca/wp-content/uploads/2016/09/AppV_Bug.png" alt="appv_bug" width="586" height="826" srcset="http://theorypc.ca/wp-content/uploads/2016/09/AppV_Bug.png 586w, http://theorypc.ca/wp-content/uploads/2016/09/AppV_Bug-213x300.png 213w" sizes="(max-width: 586px) 100vw, 586px" /> 
 
 &nbsp;
 
-Notice the &#8220;0&#8221;, &#8220;win32&#8221; and FLAGS keys are missing in the AppV package.
+Notice the "0", "win32" and FLAGS keys are missing in the AppV package.
 
 This is the script I used to compare the local registry vs the package:
 

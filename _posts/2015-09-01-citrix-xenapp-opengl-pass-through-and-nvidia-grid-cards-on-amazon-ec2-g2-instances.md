@@ -1,17 +1,17 @@
 ---
 id: 551
-title: Citrix XenApp, OpenGL pass-through and Nvidia GRID cards on Amazon EC2 (G2 Instances)
+title: Citrix &, OpenGL pass-through and Nvidia GRID cards on Amazon EC2 (G2 Instances)
 date: 2015-09-01T15:55:00-06:00
 author: trententtye
 layout: post
-guid: http://theorypc.ca/blog/2015/09/01/citrix-xenapp-opengl-pass-through-and-nvidia-grid-cards-on-amazon-ec2-g2-instances/
-permalink: /2015/09/01/citrix-xenapp-opengl-pass-through-and-nvidia-grid-cards-on-amazon-ec2-g2-instances/
+guid: http://theorypc.ca/blog/2015/09/01/citrix-&-opengl-pass-through-and-nvidia-grid-cards-on-amazon-ec2-g2-instances/
+permalink: /2015/09/01/citrix-&-opengl-pass-through-and-nvidia-grid-cards-on-amazon-ec2-g2-instances/
 blogger_blog:
   - trentent.blogspot.com
 blogger_author:
   - Trentent
 blogger_permalink:
-  - /2015/09/citrix-xenapp-opengl-pass-through-and.html
+  - /2015/09/citrix-&-opengl-pass-through-and.html
 blogger_internal:
   - /feeds/7977773/posts/default/267529103177304288
 categories:
@@ -20,14 +20,14 @@ categories:
 tags:
   - Citrix
   - Performance
-  - XenApp
+  - &
   - XenDesktop
 ---
-I&#8217;m attempting to do a Proof of Concept (POC) for a client and one of the ideas was to utilize the Amazon EC2 cloud to provide GPU instances to the users for their applications (Maya, SolidWorks, etc.). Â In order to understand how GPU sharing works, I setup my home lab to take advantage of these features first, in order to understand how it operates.
+I'm attempting to do a Proof of Concept (POC) for a client and one of the ideas was to utilize the Amazon EC2 cloud to provide GPU instances to the users for their applications (Maya, SolidWorks, etc.). Â In order to understand how GPU sharing works, I setup my home lab to take advantage of these features first, in order to understand how it operates.
 
-[Citrix provides documentation on setting up the GPU sharing](http://support.citrix.com/proddocs/topic/xenapp-xendesktop-76/xad-hdx3dpro-gpu-accel-server.html). Â For my test, I&#8217;m doing this on a bare metal Citrix server. Â Essentially, the notes state that OpenGL is automatically shared and enabled and special steps must be taken for DirectX, OpenCL, CUDA and Windows Server 2012. Â To enable GPU sharing for XenApp for these features, the following registry file will enable these:
+[Citrix provides documentation on setting up the GPU sharing](http://support.citrix.com/proddocs/topic/&-xendesktop-76/xad-hdx3dpro-gpu-accel-server.html). Â For my test, I'm doing this on a bare metal Citrix server. Â Essentially, the notes state that OpenGL is automatically shared and enabled and special steps must be taken for DirectX, OpenCL, CUDA and Windows Server 2012. Â To enable GPU sharing for & for these features, the following registry file will enable these:
 
-> <span style="font-family: Courier New, Courier, monospace; font-size: x-small;">Windows Registry Editor Version 5.00<br /> Windows Registry Editor Version 5.00<br /> [HKEY_LOCAL_MACHINE\SOFTWARE\Citrix\CtxHook\AppInit_Dlls\Graphics Helper]<br /> &#8220;DirectX&#8221;=dword:00000001<br /> [HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Citrix\CtxHook\AppInit_Dlls\Graphics Helper]<br /> &#8220;DirectX&#8221;=dword:00000001<br /> [HKEY_LOCAL_MACHINE\SOFTWARE\Citrix\CtxHook\AppInit_Dlls\Multiple Monitor Hook]<br /> &#8220;EnableWPFHook&#8221;=dword:00000001<br /> [HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Citrix\CtxHook\AppInit_Dlls\Multiple Monitor Hook]<br /> &#8220;EnableWPFHook&#8221;=dword:00000001<br /> [HKEY_LOCAL_MACHINE\SOFTWARE\Citrix\CtxHook\AppInit_Dlls\Graphics Helper]<br /> &#8220;CUDA&#8221;=dword:00000001<br /> [HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Citrix\CtxHook\AppInit_Dlls\Graphics Helper]<br /> &#8220;CUDA&#8221;=dword:00000001<br /> [HKEY_LOCAL_MACHINE\SOFTWARE\Citrix\CtxHook\AppInit_Dlls\Graphics Helper]<br /> &#8220;OpenCL&#8221;=dword:00000001<br /> [HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Citrix\CtxHook\AppInit_Dlls\Graphics Helper]<br /> &#8220;OpenCL&#8221;=dword:00000001 </span>
+> <span style="font-family: Courier New, Courier, monospace; font-size: x-small;">Windows Registry Editor Version 5.00<br /> Windows Registry Editor Version 5.00<br /> [HKEY_LOCAL_MACHINE\SOFTWARE\Citrix\CtxHook\AppInit_Dlls\Graphics Helper]<br /> "DirectX"=dword:00000001<br /> [HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Citrix\CtxHook\AppInit_Dlls\Graphics Helper]<br /> "DirectX"=dword:00000001<br /> [HKEY_LOCAL_MACHINE\SOFTWARE\Citrix\CtxHook\AppInit_Dlls\Multiple Monitor Hook]<br /> "EnableWPFHook"=dword:00000001<br /> [HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Citrix\CtxHook\AppInit_Dlls\Multiple Monitor Hook]<br /> "EnableWPFHook"=dword:00000001<br /> [HKEY_LOCAL_MACHINE\SOFTWARE\Citrix\CtxHook\AppInit_Dlls\Graphics Helper]<br /> "CUDA"=dword:00000001<br /> [HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Citrix\CtxHook\AppInit_Dlls\Graphics Helper]<br /> "CUDA"=dword:00000001<br /> [HKEY_LOCAL_MACHINE\SOFTWARE\Citrix\CtxHook\AppInit_Dlls\Graphics Helper]<br /> "OpenCL"=dword:00000001<br /> [HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Citrix\CtxHook\AppInit_Dlls\Graphics Helper]<br /> "OpenCL"=dword:00000001 </span>
 
 In addition to this registry file, for Server 2012, the following Group Policy object is required:
 
@@ -37,9 +37,9 @@ In addition to this registry file, for Server 2012, the following Group Policy o
   </li>
 </ul>
 
-My initial setup is a Q87M-E system with a Intel 4771 and onboard graphics. Â My system is setup with Windows 2012 R2 with Citrix XenApp 7.6.
+My initial setup is a Q87M-E system with a Intel 4771 and onboard graphics. Â My system is setup with Windows 2012 R2 with Citrix & 7.6.
 
-Launching an ICA session to the XenApp 7.6 server results in:
+Launching an ICA session to the & 7.6 server results in:
 
 <div style="clear: both; text-align: center;">
 </div>
@@ -62,7 +62,7 @@ Launching an ICA session to the XenApp 7.6 server results in:
 <div style="clear: both; text-align: center;">
 </div>
 
-We have OpenGL working, DirectX 11, and OpenCL (the onboard Intel GPU&#8217;s do not support CUDA). Â So we have a full, working implementation of GPU sharing in a ICA session on a XenApp server.
+We have OpenGL working, DirectX 11, and OpenCL (the onboard Intel GPU's do not support CUDA). Â So we have a full, working implementation of GPU sharing in a ICA session on a & server.
 
 But the onboard Intel graphics card will not get the me the performance I want. Â I had a Nvidia GTX 670 video card on hand to see if I can get better 3D performance. Â I installed that card in the system, installed the video drivers and checked the results.
 
@@ -76,7 +76,7 @@ But the onboard Intel graphics card will not get the me the performance I want. 
   <a style="margin-left: 1em; margin-right: 1em;" href="http://4.bp.blogspot.com/-h6HdlnA8OR4/VeSdufJ4GiI/AAAAAAAABCk/AsEu-4Jy2n4/s1600/GTX670_ICA_Info2.PNG"><img src="http://4.bp.blogspot.com/-h6HdlnA8OR4/VeSdufJ4GiI/AAAAAAAABCk/AsEu-4Jy2n4/s640/GTX670_ICA_Info2.PNG" width="640" height="298" border="0" /></a>
 </div>
 
-Where did my OpenGL go? Â Everything else is working correctly; Direct3D, CUDA, Open<u>C</u>L, but not OpenGL. Â My understanding from Nvidia is that OpenGL should just be &#8216;passed through&#8217; by Citrix. Â I know that it \*does\* pass-through because we, literally, just saw it with the onboard Intel GPU and the Intel drivers.
+Where did my OpenGL go? Â Everything else is working correctly; Direct3D, CUDA, Open<u>C</u>L, but not OpenGL. Â My understanding from Nvidia is that OpenGL should just be 'passed through' by Citrix. Â I know that it \*does\* pass-through because we, literally, just saw it with the onboard Intel GPU and the Intel drivers.
 
 My next thought is maybe it had to do with the drivers? Â Maybe if I tried the Quadro drivers? Â It turns out Nvidia has released special [Quadro drivers that enable OpenGL in a RDP session](http://www.nvidia.com/download/driverResults.aspx/78297/en-us). Maybe if I modified the INF to add my GTX670 to these special drivers I could get OpenGL to work?
 
@@ -92,7 +92,7 @@ My next thought is maybe it had to do with the drivers? Â Maybe if I tried the Q
 
 It did not work. Â OpenGL remained disabled in RDP/ICA sessions.
 
-Suspecting Nvidia is doing some form of detection that is disabling OpenGL (it&#8217;s probably considered a &#8216;pro&#8217;-feature) I acquired a Quadro FX5800 and using the \*same\* modified Quadro drivers, these were my results:
+Suspecting Nvidia is doing some form of detection that is disabling OpenGL (it's probably considered a 'pro'-feature) I acquired a Quadro FX5800 and using the \*same\* modified Quadro drivers, these were my results:
 
 <div style="clear: both; text-align: center;">
   <a style="margin-left: 1em; margin-right: 1em;" href="http://2.bp.blogspot.com/-z8Aa0toQUgo/VeTFRMZ0ZfI/AAAAAAAABDM/_dnJYilroi8/s1600/FX5800_QuadroDrivers.PNG"><img src="http://2.bp.blogspot.com/-z8Aa0toQUgo/VeTFRMZ0ZfI/AAAAAAAABDM/_dnJYilroi8/s640/FX5800_QuadroDrivers.PNG" width="640" height="238" border="0" /></a>
@@ -106,7 +106,7 @@ Suspecting Nvidia is doing some form of detection that is disabling OpenGL (it&#
 
 OpenGL is now working!!
 
-Ok, so, at this point I know how to enable GPU sharing for Citrix XenApp, I know how to check and verify it&#8217;s functionality, and I know that different Nvidia cards can have OpenGL enabled or disabled but am not sure if it&#8217;s the driver that matters or the hardware. Â If it&#8217;s the hardware I&#8217;m a bit surprised Intel would incorporate hardware accelerated OpenGL into ICA sessions for their consumer pieces but Nvidia would not for their discrete cards. Â To \*attempt\* to test this I went and got the oldest driver I could find that would support a FX5800:
+Ok, so, at this point I know how to enable GPU sharing for Citrix &, I know how to check and verify it's functionality, and I know that different Nvidia cards can have OpenGL enabled or disabled but am not sure if it's the driver that matters or the hardware. Â If it's the hardware I'm a bit surprised Intel would incorporate hardware accelerated OpenGL into ICA sessions for their consumer pieces but Nvidia would not for their discrete cards. Â To \*attempt\* to test this I went and got the oldest driver I could find that would support a FX5800:
 
 <div style="clear: both; text-align: center;">
   <a style="margin-left: 1em; margin-right: 1em;" href="http://1.bp.blogspot.com/-Sd7BNnSId7M/VeTNci95HlI/AAAAAAAABDg/MruHqOpoCQU/s1600/working_old_fx5800.PNG"><img src="http://1.bp.blogspot.com/-Sd7BNnSId7M/VeTNci95HlI/AAAAAAAABDg/MruHqOpoCQU/s640/working_old_fx5800.PNG" width="640" height="238" border="0" /></a>
@@ -114,9 +114,9 @@ Ok, so, at this point I know how to enable GPU sharing for Citrix XenApp, I know
 
 Sure enough, it works.
 
-My last thought is maybe Nvidia has it hard coded somewhere to check for a string or a specific &#8216;type&#8217; of video card and, if found, enable OpenGL?
+My last thought is maybe Nvidia has it hard coded somewhere to check for a string or a specific 'type' of video card and, if found, enable OpenGL?
 
-My thinking is that the Nvidia drivers are doing some kind of detection and making a determination between a console session and all others. Â If I&#8217;m lucky, maybe they only implemented this in their \*newer\* drivers, maybe after they started the RDS OpenGL acceleration&#8230;
+My thinking is that the Nvidia drivers are doing some kind of detection and making a determination between a console session and all others. Â If I'm lucky, maybe they only implemented this in their \*newer\* drivers, maybe after they started the RDS OpenGL acceleration...
 
 To test this theory I went and grabbed the oldest driver I could find for my GTX 670 that would work on Windows 2012R2. Â [327.23](http://www.nvidia.com/object/win8-win7-winvista-64bit-327.23-whql-driver.html).
 
@@ -130,9 +130,9 @@ To test this theory I went and grabbed the oldest driver I could find for my GTX
   <a style="margin-left: 1em; margin-right: 1em;" href="http://4.bp.blogspot.com/-ZNAY2NO6iJ8/VeYNmdaa7mI/AAAAAAAABD4/m1mXGKGHxXs/s1600/GTX670_ICA_Working.PNG"><img src="http://4.bp.blogspot.com/-ZNAY2NO6iJ8/VeYNmdaa7mI/AAAAAAAABD4/m1mXGKGHxXs/s640/GTX670_ICA_Working.PNG" width="640" height="294" border="0" /></a>
 </div>
 
-Well now&#8230; Â OpenGL is working. Â This is interesting. Â And leads evidence that OpenGL is being disabled in ICA via the driver. Â I attempted to find when OpenGL \*stopped\* working.
+Well now... Â OpenGL is working. Â This is interesting. Â And leads evidence that OpenGL is being disabled in ICA via the driver. Â I attempted to find when OpenGL \*stopped\* working.
 
-[331.82](http://www.nvidia.com/download/driverResults.aspx/70184/en-us) &#8211;> Works, and now with OpenGL 4.4
+[331.82](http://www.nvidia.com/download/driverResults.aspx/70184/en-us) -> Works, and now with OpenGL 4.4
 
 <div style="clear: both; text-align: center;">
   <a style="margin-left: 1em; margin-right: 1em;" href="http://1.bp.blogspot.com/-dkuv3zzsz3g/VeYQwm8uHwI/AAAAAAAABEI/eNHlddtMMMY/s1600/GTX670_ICA_Working331.82.PNG"><img src="http://1.bp.blogspot.com/-dkuv3zzsz3g/VeYQwm8uHwI/AAAAAAAABEI/eNHlddtMMMY/s640/GTX670_ICA_Working331.82.PNG" width="640" height="304" border="0" /></a>
@@ -144,23 +144,23 @@ Well now&#8230; Â OpenGL is working. Â This is interesting. Â And leads evidence
   <a style="margin-left: 1em; margin-right: 1em;" href="http://4.bp.blogspot.com/-Ra8xW8qeQLk/VeYSGg_vaeI/AAAAAAAABEU/1vbk6z6sR_Y/s1600/GTX670_ICA_Working337.88.PNG"><img src="http://4.bp.blogspot.com/-Ra8xW8qeQLk/VeYSGg_vaeI/AAAAAAAABEU/1vbk6z6sR_Y/s640/GTX670_ICA_Working337.88.PNG" width="640" height="304" border="0" /></a>
 </div>
 
-[340.52](http://www.nvidia.com/download/driverresults.aspx/77224/en-us) -> No OpenGL. Â This driver ([340.52](http://www.nvidia.com/download/driverresults.aspx/77224/en-us)) is now the first gaming driver \*After\* the &#8220;OpenGL on RDS release&#8221; ([340.43](http://www.nvidia.com/download/driverResults.aspx/76507/en-us)). Â It appears something on or after the 340.XX branch is disabling OpenGL in ICA sessions.
+[340.52](http://www.nvidia.com/download/driverresults.aspx/77224/en-us) -> No OpenGL. Â This driver ([340.52](http://www.nvidia.com/download/driverresults.aspx/77224/en-us)) is now the first gaming driver \*After\* the "OpenGL on RDS release" ([340.43](http://www.nvidia.com/download/driverResults.aspx/76507/en-us)). Â It appears something on or after the 340.XX branch is disabling OpenGL in ICA sessions.
 
 <div style="clear: both; text-align: center;">
   <a style="margin-left: 1em; margin-right: 1em;" href="http://1.bp.blogspot.com/-JGcsTKTLNOY/VeYVGjopkmI/AAAAAAAABEg/StMab4luh1Y/s1600/GTX670_ICA_NotWorking340.52.PNG"><img src="http://1.bp.blogspot.com/-JGcsTKTLNOY/VeYVGjopkmI/AAAAAAAABEg/StMab4luh1Y/s640/GTX670_ICA_NotWorking340.52.PNG" width="640" height="298" border="0" /></a>
 </div>
 
-At the same time I was testing my Nvidia gaming GPU on my home lab, I was testing Amazon. Â The GPU instance that Amazon provides utilize the Nvidia GRID K520 card as a vGPU. Â This card is marketed as a &#8216;[GRID Gaming](http://www.nvidia.ca/object/cloud-gaming-gpu-boards.html)&#8216; card. Â I setup this instance with Citrix XenApp and, at the time, used the latest driver ([347.70](http://www.nvidia.com/download/driverResults.aspx/87194/en-us)). Â At the time of this testing, this was my 3rd rebuild of this instance so I went with Server 2008 because my previous 2 builds were 2012 and I was convinced I was doing something wrong. Â The OS shouldn&#8217;t matter, but I&#8217;m noting it here.
+At the same time I was testing my Nvidia gaming GPU on my home lab, I was testing Amazon. Â The GPU instance that Amazon provides utilize the Nvidia GRID K520 card as a vGPU. Â This card is marketed as a '[GRID Gaming](http://www.nvidia.ca/object/cloud-gaming-gpu-boards.html)' card. Â I setup this instance with Citrix & and, at the time, used the latest driver ([347.70](http://www.nvidia.com/download/driverResults.aspx/87194/en-us)). Â At the time of this testing, this was my 3rd rebuild of this instance so I went with Server 2008 because my previous 2 builds were 2012 and I was convinced I was doing something wrong. Â The OS shouldn't matter, but I'm noting it here.
 
-[347.70](http://www.nvidia.com/download/driverResults.aspx/87194/en-us) &#8211;> No OpenGL (just like the gaming card):
+[347.70](http://www.nvidia.com/download/driverResults.aspx/87194/en-us) -> No OpenGL (just like the gaming card):
 
 <div style="clear: both; text-align: center;">
   <a style="margin-left: 1em; margin-right: 1em;" href="http://4.bp.blogspot.com/-OC7sByPzYpY/VeYYE44I05I/AAAAAAAABEs/dGeu4Qam8Yk/s1600/K520_347.70_Fail.PNG"><img src="http://4.bp.blogspot.com/-OC7sByPzYpY/VeYYE44I05I/AAAAAAAABEs/dGeu4Qam8Yk/s640/K520_347.70_Fail.PNG" width="640" height="280" border="0" /></a>
 </div>
 
-Knowing that downgrading the gaming card&#8217;s driver worked, I installed the oldest driver I could for the K520:
+Knowing that downgrading the gaming card's driver worked, I installed the oldest driver I could for the K520:
 
-[320.59](http://www.nvidia.com/object/grid-win8-win7-winserv2008r2-winserv2012-64bit-320.59-driver.html) &#8211;> OpenGL Works!
+[320.59](http://www.nvidia.com/object/grid-win8-win7-winserv2008r2-winserv2012-64bit-320.59-driver.html) -> OpenGL Works!
 
 <div style="clear: both; text-align: center;">
   <a style="margin-left: 1em; margin-right: 1em;" href="http://1.bp.blogspot.com/-fHA7VR7SqH4/VeYasnEe4EI/AAAAAAAABE4/KL3ngi5W1pU/s1600/K520_320.59_Working.PNG"><img src="http://1.bp.blogspot.com/-fHA7VR7SqH4/VeYasnEe4EI/AAAAAAAABE4/KL3ngi5W1pU/s640/K520_320.59_Working.PNG" width="640" height="278" border="0" /></a>
@@ -172,9 +172,9 @@ Just like the gaming card. Â I suspect the K520 will have the same issue as the 
   <a style="margin-left: 1em; margin-right: 1em;" href="http://3.bp.blogspot.com/-cN596DOsw1I/VeYey5Omy0I/AAAAAAAABFE/G0urvS0q0tM/s1600/K520_ICA_Working335.35.PNG"><img src="http://3.bp.blogspot.com/-cN596DOsw1I/VeYey5Omy0I/AAAAAAAABFE/G0urvS0q0tM/s640/K520_ICA_Working335.35.PNG" width="640" height="272" border="0" /></a>
 </div>
 
-OpenGL Works! Â So it appears driver 340 and newer will disable OpenGL for ICA sessions across various types of Nvidia GPU&#8217;s, but not Quadro&#8217;s..
+OpenGL Works! Â So it appears driver 340 and newer will disable OpenGL for ICA sessions across various types of Nvidia GPU's, but not Quadro's..
 
-If you want OpenGL to work on Amazon EC2 instances, you must (at the time of this writing&#8230; Â hopefully Nvidia corrects this over sight for all cards &#8211; consumer and not) you must use a driver older than 340.
+If you want OpenGL to work on Amazon EC2 instances, you must (at the time of this writing... Â hopefully Nvidia corrects this over sight for all cards - consumer and not) you must use a driver older than 340.
 
 <!-- AddThis Advanced Settings generic via filter on the_content -->
 

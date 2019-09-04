@@ -1,6 +1,6 @@
 ---
 id: 572
-title: 'PVS Target Device Update Script &#8212; Supplemental File, WindowsUpdate.cmd / updatehfs.vbs'
+title: 'PVS Target Device Update Script - Supplemental File, WindowsUpdate.cmd / updatehfs.vbs'
 date: 2015-03-20T15:00:00-06:00
 author: trententtye
 layout: post
@@ -63,39 +63,39 @@ IF "%2"=="" (
 :: Configure Windows Update service to start automatically and stop the service
 ::=============================================================================================================
 ECHO Configure Windows Update Service
-SC CONFIG wuauserv START= auto &gt;NUL
-SC STOP wuauserv &gt;NUL
+SC CONFIG wuauserv START= auto >NUL
+SC STOP wuauserv >NUL
  
 ::=============================================================================================================
 :: Reset SUSClientID
 ::=============================================================================================================
 ECHO Reset SusClient ID
-REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate" /V AccountDomainSid /F &gt;NUL
-REG DELETE HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate /V PingID /F &gt;NUL
-REG DELETE HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate /V SusClientId /F &gt;NUL
+REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate" /V AccountDomainSid /F >NUL
+REG DELETE HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate /V PingID /F >NUL
+REG DELETE HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate /V SusClientId /F >NUL
  
 ::=============================================================================================================
 :: Enable WindowsUpdate and Point to Internal WSUS server
 ::=============================================================================================================
 ECHO Enable WindowsUpdate and Point to Internal WSUS server
-REG ADD HKLM\SOFTWARE\Policies\Microsoft\windows\WindowsUpdate\AU /V UseWUServer /T REG_DWORD /D 1 /F &gt;NUL
-REG ADD HKLM\SOFTWARE\Policies\Microsoft\windows\WindowsUpdate /V WUSERVER /T REG_SZ /D http://WSUSSERVER.ca /F &gt;NUL
-REG ADD HKLM\SOFTWARE\Policies\Microsoft\windows\WindowsUpdate /V WUStatusServer /T REG_SZ /D http://WSUSSERVER.ca /F &gt;NUL
-REG ADD HKLM\SOFTWARE\Policies\Microsoft\windows\WindowsUpdate /V TargetGroupEnabled /T REG_DWORD /D 1 /F &gt;NUL
-REG ADD HKLM\SOFTWARE\Policies\Microsoft\windows\WindowsUpdate /V TargetGroup /T REG_SZ /D %WSUSComputerGroup% /F &gt;NUL
+REG ADD HKLM\SOFTWARE\Policies\Microsoft\windows\WindowsUpdate\AU /V UseWUServer /T REG_DWORD /D 1 /F >NUL
+REG ADD HKLM\SOFTWARE\Policies\Microsoft\windows\WindowsUpdate /V WUSERVER /T REG_SZ /D http://WSUSSERVER.ca /F >NUL
+REG ADD HKLM\SOFTWARE\Policies\Microsoft\windows\WindowsUpdate /V WUStatusServer /T REG_SZ /D http://WSUSSERVER.ca /F >NUL
+REG ADD HKLM\SOFTWARE\Policies\Microsoft\windows\WindowsUpdate /V TargetGroupEnabled /T REG_DWORD /D 1 /F >NUL
+REG ADD HKLM\SOFTWARE\Policies\Microsoft\windows\WindowsUpdate /V TargetGroup /T REG_SZ /D %WSUSComputerGroup% /F >NUL
  
 ::=============================================================================================================
 :: Start Windows Update service
 ::=============================================================================================================
 ECHO Start Windows Update service
-SC START wuauserv &gt;NUL
+SC START wuauserv >NUL
  
 ::=============================================================================================================
 :: Download and install all missing approved updates for NewBuild WSUS computer group
 ::=============================================================================================================
 ECHO Download and install all missing approved updates for %WSUSComputerGroup% WSUS computer group
-PUSHD "\\fileshare\_DATA\Scripts\NewBuild\Tools\WindowsUpdate" &gt;NUL
-cscript.exe //nologo updatehf.vbs action:install mode:silent SMTPServer:mail.crha-health.ab.ca email:%EmailAddress% restart:0 &gt;NUL
+PUSHD "\\fileshare\_DATA\Scripts\NewBuild\Tools\WindowsUpdate" >NUL
+cscript.exe //nologo updatehf.vbs action:install mode:silent SMTPServer:mail.crha-health.ab.ca email:%EmailAddress% restart:0 >NUL
 POPD
 ECHO Windows Update is Complete
  
@@ -103,17 +103,17 @@ ECHO Windows Update is Complete
 :: Disable Windows Update
 ::=============================================================================================================
 ECHO Disable Windows Update
-REG ADD "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update" /V AUOptions /T REG_DWORD /D 1 /F &gt;NUL
-REG DELETE HKLM\SOFTWARE\Policies\Microsoft\windows\WindowsUpdate /F &gt;NUL
-REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate" /V AccountDomainSid /F &gt;NUL
-REG DELETE HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate /V PingID /F &gt;NUL
-REG DELETE HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate /V SusClientId /F &gt;NUL
-SC CONFIG wuauserv START= disabled &gt;NUL
-SC STOP wuauserv &gt;NUL
+REG ADD "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update" /V AUOptions /T REG_DWORD /D 1 /F >NUL
+REG DELETE HKLM\SOFTWARE\Policies\Microsoft\windows\WindowsUpdate /F >NUL
+REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate" /V AccountDomainSid /F >NUL
+REG DELETE HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate /V PingID /F >NUL
+REG DELETE HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate /V SusClientId /F >NUL
+SC CONFIG wuauserv START= disabled >NUL
+SC STOP wuauserv >NUL
  
 ECHO ================================================================</pre>
 
-updatehf.vbs &#8212; please note there is an error in this script. Because of formatting with HTML, you&#8217;ll need to search and replace &#8220;..script&#8221; with &#8220;script&#8221;
+updatehf.vbs - please note there is an error in this script. Because of formatting with HTML, you'll need to search and replace "..script" with "script"
 
 <pre class="lang:vb decode:true ">strScriptVer = "2.6a"
 '~~[author]~~
@@ -144,30 +144,30 @@ updatehf.vbs &#8212; please note there is an error in this script. Because of fo
 '~~[/keywords]~~
 '
 '~~[usage]~~
-'Install updates silently, email you a logfile, then restart the computer -&gt; 
+'Install updates silently, email you a logfile, then restart the computer -> 
 'updatehf.vbs action:install mode:silent email:you@yourdomain.com restart:1 
 ' 
-'Detect missing updates, email you a logfile, then do nothing (no restart) -&gt; 
+'Detect missing updates, email you a logfile, then do nothing (no restart) -> 
 'updatehf.vbs action:detect mode:verbose email:you@yourdomain.com restart:0 
 ' 
 'Prompt user to let them decide whether or not to install updates, email 
-' you a logfile, prompt user for restart -&gt; 
+' you a logfile, prompt user for restart -> 
 'updatehf.vbs action:prompt mode:verbose email:you@yourdomain.com restart:1 
 ' 
 'Install updates silently, email you a logfile, then shutdown the computer 
-' if a reboot is pending-&gt; 
+' if a reboot is pending-> 
 'updatehf.vbs action:install mode:silent email:you@yourdomain.com restart:2 
 ' 
 'Install updates silently, email you a logfile, then shutdown the computer 
-' no matter if a reboot is pending or not-&gt; 
+' no matter if a reboot is pending or not-> 
 'updatehf.vbs action:install mode:silent email:you@yourdomain.com restart:2 force:1 
 ' 
 'Detect missing updates or pending reboot silently, email you a logfile, then 
-' restart if there is a pending reboot -&gt; 
+' restart if there is a pending reboot -> 
 'updatehf.vbs action:detect mode:silent email:you@yourdomain.com restart:1 
 ' 
 'Detect missing updates or pending reboot silently, email you a logfile, then 
-' restart no matter if there is a pending reboot -&gt; 
+' restart no matter if there is a pending reboot -> 
 'updatehf.vbs action:detect mode:silent email:you@yourdomain.com restart:1 force:1 
 '
 '~~[/usage]~~
@@ -309,7 +309,7 @@ strDomain = WshSysEnv("userdomain")
 strOU = "Computer OU: Not detected"
  
 Set objComputer = GetObject("LDAP://" & strComputer1)
-If objComputer.Parent &lt;&gt; "" Then 
+If objComputer.Parent <> "" Then 
     strOU = "Computer OU: " & replace(objComputer.Parent,"LDAP://","")
 End If
  
@@ -448,9 +448,9 @@ Set objArgs = WScript.Arguments
 writelog("Log file used: " & logfile)
 If intdebug = 1 then wscript.echo "Objargs.count = " & objArgs.count
  
-If objArgs.Count &gt; 0 Then
+If objArgs.Count > 0 Then
 For I = 0 to objArgs.Count - 1
-  If objArgs.Count &gt; 0 Then
+  If objArgs.Count > 0 Then
     if instr(LCase(objargs(i)),"action:") Then
       strArrAction = split(objargs(0),":")
       strAction = strArrAction(1)
@@ -526,7 +526,7 @@ l.writeline "------------------------------------------------------------------"
  
 If blnEmail = 1 then 
     writelog("SMTP Authentication type specified: " & strAuthType)
-    If lcase(strAuthType) &lt;&gt; "cdoanonymous" Then
+    If lcase(strAuthType) <> "cdoanonymous" Then
       If strAuthType = "" Then
         strAuthType = "cdoanonymous"
       Else
@@ -535,12 +535,12 @@ If blnEmail = 1 then
         If SMTPUserID = "" then 
           writelog("No SMTP user ID was specified, even though SMTP Authentication was configured for " & strAuthType & ".  Attempting to switch to anonymous authentication...")
           strAuthType = "cdoanonymous"
-          If strAuthPassword &lt;&gt; "" then writelog("You have specified a SMTP password, but no user ID has been configured for authentication.  Check the INI file (" & sINI & ") again and re-run the script.")
+          If strAuthPassword <> "" then writelog("You have specified a SMTP password, but no user ID has been configured for authentication.  Check the INI file (" & sINI & ") again and re-run the script.")
         Else
           if strAuthPassword = "" then writelog("You have specified a SMTP user ID, but have not specified a password.  Switching to anonymous authentication.")
           strAuthType = "cdoanonymous"
         End if
-        If strAuthPassword &lt;&gt; "" then writelog("SMTP password configured, but hidden...")
+        If strAuthPassword <> "" then writelog("SMTP password configured, but hidden...")
      
       End If
     End If
@@ -597,7 +597,7 @@ writelog("Update Server: " & regWSUSServer)
 strValueName = "TargetGroup"
  
 oReg.GetStringValue HKEY_LOCAL_MACHINE,strKeyPath,strValueName,regTargetGroup
-if regTargetGroup &lt;&gt; "" then 
+if regTargetGroup <> "" then 
   writelog("Target Group: " & regTargetGroup)
 Else
   writelog("Target Group: Not specified")
@@ -623,7 +623,7 @@ End Select
  
 fstyle = "tahoma,arial,verdana"
 bgcolor1 = "aliceblue"
-fformat = "&lt;font face='" & fstyle & "'&gt;"
+fformat = "<font face='" & fstyle & "'>"
  
 'set some IE status indicator variables...
 blnDebugMode = True
@@ -640,7 +640,7 @@ writelog("Instantiating Searcher")
 Set searchResult = updateSearcher.Search("IsAssigned=1 and IsHidden=0 and IsInstalled=0 and Type='Software'")
  
 'Handle some common errors here
-If cstr(err.number) &lt;&gt; 0 Then
+If cstr(err.number) <> 0 Then
   If cstr(err.number) = "-2147012744" Then
     strMsg = "ERROR_HTTP_INVALID_SERVER_RESPONSE - The server response could not be parsed." & vbcrlf & vbcrlf & "Actual error was: " _
       & " - Error [" & cstr(err.number) & "] - '" & err.description & "'"
@@ -652,7 +652,7 @@ If cstr(err.number) &lt;&gt; 0 Then
      & vbcrlf & vbcrlf & "Actual error was [" & err.number & "] - " & chr(34) _
       & err.description & chr(34)
     blnFatal = false
-  ElseIf cstr(err.number) &lt;&gt; 0 and cstr(err.number) = "-2147012867" Then
+  ElseIf cstr(err.number) <> 0 and cstr(err.number) = "-2147012867" Then
     strMsg = "ERROR_INTERNET_CANNOT_CONNECT - The attempt to connect to the server failed." & vbcrlf _
       & vbcrlf & "Actual error was [" & err.number & "] - " & chr(34) _
       & err.description & chr(34)
@@ -685,7 +685,7 @@ If cstr(err.number) &lt;&gt; 0 Then
     strMsg = "Error - [" & err.number & "] - " & chr(34) & errdescription & chr(34) & "." & vbcrlf & vbcrlf _
      & "This error is undefined in the script, but you can refer to " & strAddr & "to look up the error number." _
      & strScriptAbort
-     strMsgHTML = replace(strMsg,strAddr,"&lt;a href='" & strAddr & "'&gt;" & strAddr & "&lt;/a&gt;")
+     strMsgHTML = replace(strMsg,strAddr,"<a href='" & strAddr & "'>" & strAddr & "</a>")
     If silent = 0 Then objdiv.innerhtml = replace(strMsgHTML,"vbcrlf","
 ")
    End If
@@ -708,11 +708,11 @@ if silent = 0 then objdiv.innerhtml = strMsg
 'cause WU agent to detect
 on error resume next
 autoUpdateClient.detectnow()
-if err.number &lt;&gt; 0 then call ErrorHandler("WUA refresh",err.number & " - " & err.description,false)
+if err.number <> 0 then call ErrorHandler("WUA refresh",err.number & " - " & err.description,false)
 err.clear
 on error goto 0 
  
-strMsg = "WUA mode: &lt;font color='navy'&gt;" & strACtion & "&lt;/font&gt;
+strMsg = "WUA mode: <font color='navy'>" & strACtion & "</font>
 WU Server: " & regWSUSServer _
  & "
 Target Group: " & regTargetGroup & "
@@ -741,7 +741,7 @@ For i = 0 To searchResult.Updates.Count-1
     writelog("Missing: " & searchResult.Updates.Item(i) & ", Category ID: " &  objCategories.Item(i).CategoryID)
 Next
  
-if err.number &lt;&gt; 0 then
+if err.number <> 0 then
     writelog("An error has occured while instantiating search results.  Error " & err.number & " - " & err.description _
         & ".  Check the " & wshShell.ExpandEnvironmentStrings("%windir%") & "\windowsupdate.log file for further information.")
  
@@ -762,7 +762,7 @@ If searchResult.Updates.Count = 0 Then
 End If
  
 If intdebug = 1 then WScript.Echo vbCRLF & "Creating collection of updates to download:"
-If strAction &lt;&gt; "detect" Then writelog("Creating a catalog of needed updates") 
+If strAction <> "detect" Then writelog("Creating a catalog of needed updates") 
  
 writelog("********** Cataloging updates **********")
  
@@ -780,7 +780,7 @@ Next
 if silent = 0 then objdiv.innerhtml = ""
 strMsg = fformat & "This PC requires updates from the configured Update Server" _
  & " (" & regWSUSServer & ").  "
-If strAction &lt;&gt; "detect" Then strmsg = strmsg & "
+If strAction <> "detect" Then strmsg = strmsg & "
  
  Downloading needed updates.  Please stand by..."
  
@@ -799,7 +799,7 @@ Else
  
     downloader.Download()
  
-    if err.number &lt;&gt; 0 then
+    if err.number <> 0 then
         writelog("Error " & err.number & " has occured.  Error description: " & err.description)
     End if
  
@@ -895,7 +895,7 @@ ElseIf strResult = 6 Then
   if silent = 0 then objdiv.innerhtml = strMsg
  
  
- if err.number &lt;&gt; 0 then
+ if err.number <> 0 then
     writelog("Error " & err.number & " has occured.  Error description: " & err.description)
  
  end if
@@ -907,7 +907,7 @@ ElseIf strResult = 6 Then
   on error resume next  
     Set installationResult = installer.Install()
      
-  If err.number &lt;&gt; 0 then 
+  If err.number <> 0 then 
         'strMsg = "Error installing updates... Actual error was " & err.number & " - " & err.description & "."
         'writelog(strmsg)
         if silent = 0 then objdiv.innerhtml = strMsg
@@ -983,7 +983,7 @@ If blnProgressMode Then
                 HorScreen = v.CurrentHorizontalResolution
                 VerScreen = v.CurrentVerticalResolution
         next
-    If err.number &lt;&gt; 0 then
+    If err.number <> 0 then
         dbgLeft = 100
         dbgTop = 200
         err.clear
@@ -1030,39 +1030,39 @@ If blnProgressMode Then
     ws.CreateTextFile (strTempFile)
         Set f1 = ws.GetFile(strTempFile)
         Set ts = f1.OpenAsTextStream(2, True)
-        ts.WriteLine("&lt;!-- saved from url=(0014)about:internet --&gt;")
-        ts.WriteLine("&lt;html&gt;&lt;head&gt;&lt;title&gt;" & dbgTitle & " " & strScriptVer & " &lt;/title&gt;")
-        ts.WriteLine("&lt;style&gt;.errortext {color:red}")
-        ts.WriteLine(".hightext {color:blue}&lt;/style&gt;")
-    ts.WriteLine("&lt;/head&gt;")
+        ts.WriteLine("<!-- saved from url=(0014)about:internet -->")
+        ts.WriteLine("<html><head><title>" & dbgTitle & " " & strScriptVer & " </title>")
+        ts.WriteLine("<style>.errortext {color:red}")
+        ts.WriteLine(".hightext {color:blue}</style>")
+    ts.WriteLine("</head>")
     ts.WriteLine(strHDRCode & " 
-&lt;strong&gt;&lt;font size='2' color='" & fcolor & "' face='" & fstyle & "'&gt;" _
+<strong><font size='2' color='" & fcolor & "' face='" & fstyle & "'>" _
         & "  Running Windows Update Client...
 " _
         & "   
 ")
-    ts.WriteLine("&lt;center&gt;&lt;table width='100%' bgcolor='" & bgcolor1 & "'&gt;&lt;tr&gt;&lt;td&gt;")
+    ts.WriteLine("<center><table width='100%' bgcolor='" & bgcolor1 & "'><tr><td>")
     If blnDebugMode Then
-        ts.WriteLine("&lt;body bgcolor ='" & stsBGColor & "' scroll='yes' topmargin='0' leftmargin='0'"_
+        ts.WriteLine("<body bgcolor ='" & stsBGColor & "' scroll='yes' topmargin='0' leftmargin='0'"_
         & " style='font-family: " & fstyle & "; font-size: 0.6em color: #000000;"_
-        & " font-weight: bold; text-align: left'&gt;&lt;center&gt;&lt;font face=" & fstyle & "&gt;"_
-        & " &lt;font size='0.8em'&gt; &lt;hr color='blue'&gt;")
+        & " font-weight: bold; text-align: left'><center><font face=" & fstyle & ">"_
+        & " <font size='0.8em'> <hr color='blue'>")
     Else
-        ts.WriteLine("&lt;body bgcolor = '" & stsBGColor & "' scroll='no' topmargin='0' leftmargin='0' "_
+        ts.WriteLine("<body bgcolor = '" & stsBGColor & "' scroll='no' topmargin='0' leftmargin='0' "_
         & " style='font-family: " & fstyle & "; font-size: 0.6em color: #000000;"_
-        & " font-weight: bold; text-align: left'&gt;&lt;center&gt;&lt;font face=" & fstyle & "&gt;"_
-        & " &lt;font size='0.8em'&gt; &lt;hr color='blue'&gt;")
+        & " font-weight: bold; text-align: left'><center><font face=" & fstyle & ">"_
+        & " <font size='0.8em'> <hr color='blue'>")
     End If
-    ts.WriteLine("&lt;div id='ProgObject' align='left'align='left' style='width: 450px;height: 140px;overflow:scroll'&gt;&lt;/div&gt;&lt;hr color='blue'&gt;")            
+    ts.WriteLine("<div id='ProgObject' align='left'align='left' style='width: 450px;height: 140px;overflow:scroll'></div><hr color='blue'>")            
     If blnDebugMode Then
-        ts.WriteLine("&lt;div id='ProgDebug' align='left'&gt;&lt;/div&gt;")
+        ts.WriteLine("<div id='ProgDebug' align='left'></div>")
     End If
  
-    ts.WriteLine("&lt;script LANGUAGE='JavaScript1.2'&gt;")
-    ts.WriteLine("&lt;!-- Begin")
+    ts.WriteLine("<script LANGUAGE='JavaScript1.2'>")
+    ts.WriteLine("<!-- Begin")
     ts.WriteLine("function initArray() {")
     ts.WriteLine("this.length = initArray.arguments.length;")
-    ts.WriteLine("for (var i = 0; i &lt; this.length; i++) {")
+    ts.WriteLine("for (var i = 0; i < this.length; i++) {")
     ts.WriteLine("this[i] = initArray.arguments[i];")
     ts.WriteLine("   }")
     ts.WriteLine("}")
@@ -1073,20 +1073,20 @@ If blnProgressMode Then
     ts.WriteLine("'red',")
     ts.WriteLine("'blue'")
     ts.WriteLine(");")
-    ts.WriteLine("document.write('&lt;div id=" & Chr(34) & "ProgFlash" & Chr(34) & "&gt;"_
-     & "&lt;center&gt;'+ctext+'&lt;/center&gt;&lt;/div&gt;');")
+    ts.WriteLine("document.write('<div id=" & Chr(34) & "ProgFlash" & Chr(34) & ">"_
+     & "<center>'+ctext+'</center></div>');")
     ts.WriteLine("function chcolor(){")
     ts.WriteLine("document.all.ProgFlash.style.color = color[x];")
-    ts.WriteLine("(x &lt; color.length-1) ? x++ : x = 0;")
+    ts.WriteLine("(x < color.length-1) ? x++ : x = 0;")
     ts.WriteLine("}")
     ts.WriteLine("setInterval('chcolor()',1000);")
-    ts.WriteLine("// End --&gt;")
-    ts.WriteLine("&lt;/..script&gt;")
-    ts.WriteLine("&lt;div id='ProgBarId' align='left'&gt;&lt;/div&gt;")
-    ts.WriteLine("&lt;/font&gt;&lt;/center&gt;")
-    ts.WriteLine("&lt;/tr&gt;&lt;/td&gt;")
-    ts.WriteLine("&lt;/table&gt;&lt;/center&gt;")
-    ts.WriteLine("&lt;/body&gt;&lt;/html&gt;")
+    ts.WriteLine("// End -->")
+    ts.WriteLine("</..script>")
+    ts.WriteLine("<div id='ProgBarId' align='left'></div>")
+    ts.WriteLine("</font></center>")
+    ts.WriteLine("</tr></td>")
+    ts.WriteLine("</table></center>")
+    ts.WriteLine("</body></html>")
     ts.Close
     fctSetupIE(strTempFile)
     Set objDIV = IE.Document.All("ProgObject")
@@ -1150,7 +1150,7 @@ If objSettings.ScheduledInstallationTime = 0 Then
 ElseIf objSettings.ScheduledInstallationTime = 12 Then
     strScheduledTime = "12:00 PM"
 Else
-    If objSettings.ScheduledInstallationTime &gt; 12 Then
+    If objSettings.ScheduledInstallationTime > 12 Then
         intScheduledTime = objSettings.ScheduledInstallationTime - 12
         strScheduledTime = intScheduledTime & ":00 PM"
     Else
@@ -1176,7 +1176,7 @@ If Err.Number = 0 Then
   If replace(updateInfo,strLocaleDelim,"") = replace(strWUAgentVersion,strLocaleDelim,"") then
     writelog("File versions match (" & updateinfo & "). Windows Update Agent is up to date.")
     bUpdateNeeded = False
-  ElseIf updateInfo &gt; strWUAgentVersion Then
+  ElseIf updateInfo > strWUAgentVersion Then
       writelog("Your installed version of the Windows Update Agent (" & updateinfo & ") is newer than the referenced version (" & strWUAgentVersion & ").")
           bUpdateNeeded = False
     End If
@@ -1207,7 +1207,7 @@ Loop
   writelog("Attempting to install agent from '" & sExePath & "'")
   WshShell.Run sExePath & " /quiet /norestart", 1, True
  
-  If CStr(err.number) &lt;&gt; 0 Then
+  If CStr(err.number) <> 0 Then
     blnFatal = false
     strMsg = "Error executing Agent EXE - [" & err.number & "]: " & err.description & " (" & sExePath & ")"
     call ErrorHandler("Program Execution",strMsg,blnFatal)
@@ -1227,8 +1227,8 @@ writelog("From: " & strMailFrom)
 writelog("Subject: " & strSubject)
 writelog("SMTP Server: " & strSMTPServer)
  
-'If silent = 0 Then objdiv.innerhtml = "&lt;font face=" & strFontStyle & " color=" & strFontColor2& "&gt;" _
-' & "sending mail to " & strMailTo & "...&lt;/font&gt;
+'If silent = 0 Then objdiv.innerhtml = "<font face=" & strFontStyle & " color=" & strFontColor2& ">" _
+' & "sending mail to " & strMailTo & "...</font>
 "
  
 '//  Create the CDO connections.
@@ -1236,7 +1236,7 @@ Set iMsg = CreateObject("CDO.Message")
 Set iConf = CreateObject("CDO.Configuration")
 Set Flds = iConf.Fields
  
-If lcase(strAuthType) &lt;&gt; "cdoanonymous" Then
+If lcase(strAuthType) <> "cdoanonymous" Then
   'Type of authentication, NONE, Basic (Base64 encoded), NTLM
   iMsg.Configuration.Fields.Item _
 ("http://schemas.microsoft.com/cdo/configuration/smtpauthenticate") = strAuthType
@@ -1263,7 +1263,7 @@ End With
  
 Dim r
 Set r = ws.OpenTextFile (logfile, ForReading, False, TristateUseDefault)
-strMessage = "&lt;font face='" & strFontStyle & "' size='2'&gt;" & r.readall & "&lt;/font&gt;"
+strMessage = "<font face='" & strFontStyle & "' size='2'>" & r.readall & "</font>"
  
 '//  Set the message properties.
 With iMsg
@@ -1283,7 +1283,7 @@ on error resume next
 iMsg.Send ' send the message.
 Set iMsg = nothing
  
-If CStr(err.number) &lt;&gt; 0 Then
+If CStr(err.number) <> 0 Then
     strMsg = "Problem sending mail to " & strSMTPServer & "." _
    & "Error [" & err.number & "]: " & err.description & "
 "
@@ -1298,13 +1298,13 @@ Else
   writelog(strStatus)
     strStatus = strStatus & "
  
-&lt;font face=" & strFontStyle & " color=" & strFontColor2& "&gt;" _
- & "sent email to " & strMailTo & "...&lt;/font&gt;
+<font face=" & strFontStyle & " color=" & strFontColor2& ">" _
+ & "sent email to " & strMailTo & "...</font>
  
 " _
      & "Script complete.
  
-&lt;a href='" & logfile & "'&gt;View log file&lt;/a&gt;"
+<a href='" & logfile & "'>View log file</a>"
     If silent = 0 Then objdiv.innerhtml = strStatus
 End If
  
@@ -1331,7 +1331,7 @@ Function RestartAction
     Set OpSysSet = GetObject("winmgmts:{(Shutdown)}//" & strComputer & "/root/cimv2").ExecQuery("select * from Win32_OperatingSystem"_
      & " where Primary=true") 
       
-    If CStr(err.number) &lt;&gt; 0 Then
+    If CStr(err.number) <> 0 Then
       strMsg = "There was an error while attempting to connect to " & strComputer & "." & vbcrlf & vbcrlf _
          & "The actual error was: " & err.description
         writelog(strMsg)
@@ -1434,7 +1434,7 @@ Function EndOfScript
 This computer has no pending reboots"
   End If
    
-  If intSleep &gt; 0 Then
+  If intSleep > 0 Then
       ' So the user have a chance to see the last output before closing IE
       WScript.Sleep intSleep
       ' Just in case the IE window is already closed by the user
@@ -1479,8 +1479,8 @@ Function CheckPendingStatus(beforeorafter)
         If not ComputerStatus.RebootRequired Then strMsg = "This computer does not have any pending reboots (" & strCheck & ")."
   End If
    
-     If strMsg &lt;&gt; "" Then writelog(strMsg)
-     If silent = 0 and strMsg &lt;&gt; "" then objdiv.innerhtml = strMsg
+     If strMsg <> "" Then writelog(strMsg)
+     If silent = 0 and strMsg <> "" then objdiv.innerhtml = strMsg
      'wscript.sleep 4000
             
 End Function

@@ -10,7 +10,7 @@ panels_data:
   - |
     a:3:{s:7:"widgets";a:3:{i:0;a:21:{s:5:"title";s:8:"About Me";s:8:"subtitle";s:29:"Trentent Tye - Microsoft MVP ";s:4:"text";s:1851:"My name is Trentent Tye and I currently work out of Calgary, Alberta.
     
-    I took a fun ride to where I am now.  I started my career with VoodooPC (acquired by HP in 2006) in 2003 and developed an automated software deployment for them from the operating system to drivers and applications.  I then designed the award winning Omen chassis, integrated water-cooling, and then worked on the other product lines to bring that success to them.  When HP bought VoodooPC I worked on the design and review systems of the HP Blackbird systems, winning multiple awards.  During 2008 HP shutdown the Canada branch of VoodooPC and I moved onto working for Healthcare and Oil and Gas organizations providing IT support as an Active Directory administrator than as a Citrix XenApp administrator.  As a Citrix XenApp administrator I was introduced to the AppV technologies and immediately saw the value that they offer to providing a consistent application delivery mechanism as well as the ease of upgrading or running multiple versions simultaneously.  I became hooked onto the technology and have been exploring its advantages and limitations ever since.
+    I took a fun ride to where I am now.  I started my career with VoodooPC (acquired by HP in 2006) in 2003 and developed an automated software deployment for them from the operating system to drivers and applications.  I then designed the award winning Omen chassis, integrated water-cooling, and then worked on the other product lines to bring that success to them.  When HP bought VoodooPC I worked on the design and review systems of the HP Blackbird systems, winning multiple awards.  During 2008 HP shutdown the Canada branch of VoodooPC and I moved onto working for Healthcare and Oil and Gas organizations providing IT support as an Active Directory administrator than as a Citrix & administrator.  As a Citrix & administrator I was introduced to the AppV technologies and immediately saw the value that they offer to providing a consistent application delivery mechanism as well as the ease of upgrading or running multiple versions simultaneously.  I became hooked onto the technology and have been exploring its advantages and limitations ever since.
     
     I enjoy learning new technologies and what they can offer and working to implement them.  I like pushing the boundaries of best practices and understanding why things are and if they can be better.  I love learning and try to keep up with technologies and this blog is a result of my progress in this journey.  I originally started it to document simple things I found useful but it has evolved to showing how I have solved issues, how issues that can't be solved might be managed and to demonstrate some features that aren't overly visible.
     
@@ -38,7 +38,7 @@ panels_data:
                         </p>
                         
                         <p>
-                          I took a fun ride to where I am now. I started my career with VoodooPC (acquired by HP in 2006) in 2003 and developed an automated software deployment for them from the operating system to drivers and applications. I then designed the award winning Omen chassis, integrated water-cooling, and then worked on the other product lines to bring that success to them. When HP bought VoodooPC I worked on the design and review systems of the HP Blackbird systems, winning multiple awards. During 2008 HP shutdown the Canada branch of VoodooPC and I moved onto working for Healthcare and Oil and Gas organizations providing IT support as an Active Directory administrator than as a Citrix XenApp administrator. As a Citrix XenApp administrator I was introduced to the AppV technologies and immediately saw the value that they offer to providing a consistent application delivery mechanism as well as the ease of upgrading or running multiple versions simultaneously. I became hooked onto the technology and have been exploring its advantages and limitations ever since.
+                          I took a fun ride to where I am now. I started my career with VoodooPC (acquired by HP in 2006) in 2003 and developed an automated software deployment for them from the operating system to drivers and applications. I then designed the award winning Omen chassis, integrated water-cooling, and then worked on the other product lines to bring that success to them. When HP bought VoodooPC I worked on the design and review systems of the HP Blackbird systems, winning multiple awards. During 2008 HP shutdown the Canada branch of VoodooPC and I moved onto working for Healthcare and Oil and Gas organizations providing IT support as an Active Directory administrator than as a Citrix & administrator. As a Citrix & administrator I was introduced to the AppV technologies and immediately saw the value that they offer to providing a consistent application delivery mechanism as well as the ease of upgrading or running multiple versions simultaneously. I became hooked onto the technology and have been exploring its advantages and limitations ever since.
                         </p>
                         
                         <p>
@@ -168,7 +168,7 @@ panels_data:
                                             </p>
                                             
                                             <h3 class="recent-title">
-                                              <a href="http://theorypc.ca/2016/05/31/eventid-6003-the-winlogon-notification-subscriber-was-unavailable-to-handle-a-critical-notification-event/">EventID 6003 &#8211; The winlogon notification subscriber <TrustedInstaller> was unavailable to handle a critical notification event.</a>
+                                              <a href="http://theorypc.ca/2016/05/31/eventid-6003-the-winlogon-notification-subscriber-was-unavailable-to-handle-a-critical-notification-event/">EventID 6003 - The winlogon notification subscriber <TrustedInstaller> was unavailable to handle a critical notification event.</a>
                                             </h3>
                                             
                                             <div class="clear">
@@ -179,7 +179,7 @@ panels_data:
                                               </div>
                                               
                                               <p>
-                                                We updated one of our Citrix XenApp servers and this message started flooding our Application event log: &#8220;The winlogon notification subscriber <TrustedInstaller> was unavailable to handle a critical notification event.&#8221; So what&#8217;s going on here? Examining the registry on a &#8216;good&#8217; working system and the &#8216;bad&#8217; system revealed the following: &nbsp; How did that value [&hellip;]<!-- AddThis Advanced Settings above via filter on wp_trim_excerpt -->
+                                                We updated one of our Citrix & servers and this message started flooding our Application event log: "The winlogon notification subscriber <TrustedInstaller> was unavailable to handle a critical notification event." So what's going on here? Examining the registry on a 'good' working system and the 'bad' system revealed the following: &nbsp; How did that value [&hellip;]<!-- AddThis Advanced Settings above via filter on wp_trim_excerpt -->
                                                 
                                                 <!-- AddThis Advanced Settings below via filter on wp_trim_excerpt -->
                                                 
@@ -223,7 +223,7 @@ panels_data:
                                                       </div>
                                                       
                                                       <p>
-                                                        J C Hornbeck/Joe Tindale touched on this topic on a Microsoft blog post here. In that post he touches on what&#8217;s actually happening: Cause:Â The error, 0x80244010, means WU_E_PT_EXCEEDED_MAX_SERVER_TRIPS and happens when a client has exceeded the number of trips allowed to a WSUS server.Â We have defined the maximum number of trips as 200 within [&hellip;]<!-- AddThis Advanced Settings above via filter on wp_trim_excerpt -->
+                                                        J C Hornbeck/Joe Tindale touched on this topic on a Microsoft blog post here. In that post he touches on what's actually happening: Cause:Â The error, 0x80244010, means WU_E_PT_EXCEEDED_MAX_SERVER_TRIPS and happens when a client has exceeded the number of trips allowed to a WSUS server.Â We have defined the maximum number of trips as 200 within [&hellip;]<!-- AddThis Advanced Settings above via filter on wp_trim_excerpt -->
                                                         
                                                         <!-- AddThis Advanced Settings below via filter on wp_trim_excerpt -->
                                                         
@@ -267,7 +267,7 @@ panels_data:
                                                               </div>
                                                               
                                                               <p>
-                                                                When launching a Citrix application a user was getting a the &#8216;Citrix launch bar&#8217; then, after a few seconds, it would immediately go away. Â Checking the Application log in the event viewer displayed these entries: The winlogon notification subscriber TermSrvÂ failed a critical notification event. Event ID 6001 The winlogon notification subscriber SensÂ failed a notification event.Â Event [&hellip;]<!-- AddThis Advanced Settings above via filter on wp_trim_excerpt -->
+                                                                When launching a Citrix application a user was getting a the 'Citrix launch bar' then, after a few seconds, it would immediately go away. Â Checking the Application log in the event viewer displayed these entries: The winlogon notification subscriber TermSrvÂ failed a critical notification event. Event ID 6001 The winlogon notification subscriber SensÂ failed a notification event.Â Event [&hellip;]<!-- AddThis Advanced Settings above via filter on wp_trim_excerpt -->
                                                                 
                                                                 <!-- AddThis Advanced Settings below via filter on wp_trim_excerpt -->
                                                                 

@@ -20,7 +20,7 @@ categories:
 tags:
   - PowerShell
 ---
-A quick and dirty script to download and install the latest SEP12 virus definitions from Symantec&#8217;s FTP site. Â We use this script to force the latest updates when we update our Citrix PVS vDisk.
+A quick and dirty script to download and install the latest SEP12 virus definitions from Symantec's FTP site. Â We use this script to force the latest updates when we update our Citrix PVS vDisk.
 
 This script output looks like so:
 

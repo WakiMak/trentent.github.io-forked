@@ -1,6 +1,6 @@
 ---
 id: 1725
-title: 'AppV5 &#8211; Applications being published to &#8220;C:\App-V Packages&#8221; instead of %PACKAGEINSTALLATIONROOT%'
+title: 'AppV5 - Applications being published to "C:\App-V Packages" instead of %PACKAGEINSTALLATIONROOT%'
 date: 2016-09-21T10:13:06-06:00
 author: trententtye
 layout: post
@@ -20,13 +20,13 @@ tags:
   - procmon
   - Registry
 ---
-The last little while we&#8217;ve had an issue with some applications seemingly being published toÂ &#8220;C:\App-V Packages&#8221; instead of our defined path &#8220;D:\AppVData\PackageInstallationRoot&#8221;.
+The last little while we've had an issue with some applications seemingly being published toÂ "C:\App-V Packages" instead of our defined path "D:\AppVData\PackageInstallationRoot".
 
 <div id="attachment_1728" style="width: 692px" class="wp-caption aligncenter">
   <img aria-describedby="caption-attachment-1728" class="wp-image-1728 size-full" src="http://theorypc.ca/wp-content/uploads/2016/09/Screen-Shot-2016-09-21-at-9.37.59-AM.png" alt="AppV-Packages" width="682" height="928" srcset="http://theorypc.ca/wp-content/uploads/2016/09/Screen-Shot-2016-09-21-at-9.37.59-AM.png 682w, http://theorypc.ca/wp-content/uploads/2016/09/Screen-Shot-2016-09-21-at-9.37.59-AM-220x300.png 220w" sizes="(max-width: 682px) 100vw, 682px" /></p> 
   
   <p id="caption-attachment-1728" class="wp-caption-text">
-    Notice the timestamps? Packages published during the same &#8216;publishing refresh&#8217;
+    Notice the timestamps? Packages published during the same 'publishing refresh'
   </p>
 </div>
 
@@ -38,13 +38,13 @@ Video of the issue in action that I was able to setup a repro:
   <video class="wp-video-shortcode" id="video-1725-12" width="1140" height="845" preload="metadata" controls="controls"><source type="video/mp4" src="http://theorypc.ca/wp-content/uploads/2016/09/App-VPackages_popping_up.m4v?_=12" /><a href="http://theorypc.ca/wp-content/uploads/2016/09/App-VPackages_popping_up.m4v">http://theorypc.ca/wp-content/uploads/2016/09/App-VPackages_popping_up.m4v</a></video>
 </div>
 
-So what&#8217;s going on here that would cause this to happen?
+So what's going on here that would cause this to happen?
 
-I turned to the event viewer to find the time when this package &#8220;8FE4C99E&#8230;&#8221; was published and just looked to see if there was anything surrounding it.
+I turned to the event viewer to find the time when this package "8FE4C99E..." was published and just looked to see if there was anything surrounding it.
 
 <img class="aligncenter size-large wp-image-1729" src="http://theorypc.ca/wp-content/uploads/2016/09/Screen-Shot-2016-09-21-at-8.10.41-AM-1024x560.png" alt="Highlighted is the package publish event" width="1024" height="560" srcset="http://theorypc.ca/wp-content/uploads/2016/09/Screen-Shot-2016-09-21-at-8.10.41-AM-1024x560.png 1024w, http://theorypc.ca/wp-content/uploads/2016/09/Screen-Shot-2016-09-21-at-8.10.41-AM-300x164.png 300w, http://theorypc.ca/wp-content/uploads/2016/09/Screen-Shot-2016-09-21-at-8.10.41-AM-768x420.png 768w, http://theorypc.ca/wp-content/uploads/2016/09/Screen-Shot-2016-09-21-at-8.10.41-AM-550x300.png 550w, http://theorypc.ca/wp-content/uploads/2016/09/Screen-Shot-2016-09-21-at-8.10.41-AM-750x409.png 750w" sizes="(max-width: 1024px) 100vw, 1024px" /> 
 
-This is the event showing the package being published to &#8220;C:\App-V Packages&#8221;. Â There is an odd thing different about this publish event compared to the rest (that you can see above). Â Between &#8216;Configure Package&#8217; and when the &#8216;Streaming&#8217; starts there is a &#8216;Publishing Refresh&#8217; event.
+This is the event showing the package being published to "C:\App-V Packages". Â There is an odd thing different about this publish event compared to the rest (that you can see above). Â Between 'Configure Package' and when the 'Streaming' starts there is a 'Publishing Refresh' event.
 
 <img class="aligncenter size-large wp-image-1730" src="http://theorypc.ca/wp-content/uploads/2016/09/Screen-Shot-2016-09-21-at-8.11.03-AM-1024x394.png" alt="Publishing refresh" width="1024" height="394" srcset="http://theorypc.ca/wp-content/uploads/2016/09/Screen-Shot-2016-09-21-at-8.11.03-AM-1024x394.png 1024w, http://theorypc.ca/wp-content/uploads/2016/09/Screen-Shot-2016-09-21-at-8.11.03-AM-300x115.png 300w, http://theorypc.ca/wp-content/uploads/2016/09/Screen-Shot-2016-09-21-at-8.11.03-AM-768x295.png 768w" sizes="(max-width: 1024px) 100vw, 1024px" /> 
 
@@ -66,19 +66,19 @@ The key is deleted then recreated and inbetween the AppV service is trying to re
 
 So what is happening here?
 
-At our organization weÂ prefer to set Group Policies using Group Policies Preferences &#8211; Registry because of the power and flexibility of Item Level Targetting. Â We prefer to only apply registry keys/policies to specific systems in certain groups rather than having a complicated OU structure. Â Since I know we have a policy that configures our AppV5 values I went and looked into how this value was being configured:
+At our organization weÂ prefer to set Group Policies using Group Policies Preferences - Registry because of the power and flexibility of Item Level Targetting. Â We prefer to only apply registry keys/policies to specific systems in certain groups rather than having a complicated OU structure. Â Since I know we have a policy that configures our AppV5 values I went and looked into how this value was being configured:
 
 <div id="attachment_1735" style="width: 1034px" class="wp-caption aligncenter">
   <img aria-describedby="caption-attachment-1735" class="wp-image-1735 size-large" src="http://theorypc.ca/wp-content/uploads/2016/09/Screen-Shot-2016-09-21-at-8.38.51-AM-1024x277.png" alt="GroupPolicyManagement" width="1024" height="277" srcset="http://theorypc.ca/wp-content/uploads/2016/09/Screen-Shot-2016-09-21-at-8.38.51-AM-1024x277.png 1024w, http://theorypc.ca/wp-content/uploads/2016/09/Screen-Shot-2016-09-21-at-8.38.51-AM-300x81.png 300w, http://theorypc.ca/wp-content/uploads/2016/09/Screen-Shot-2016-09-21-at-8.38.51-AM-768x207.png 768w" sizes="(max-width: 1024px) 100vw, 1024px" /></p> 
   
   <p id="caption-attachment-1735" class="wp-caption-text">
-    The &#8216;Action&#8217; is &#8216;Replace&#8217;
+    The 'Action' is 'Replace'
   </p>
 </div>
 
 <img class="aligncenter size-large wp-image-1737" src="http://theorypc.ca/wp-content/uploads/2016/09/Screen-Shot-2016-09-21-at-8.44.18-AM-1024x406.png" alt="screen-shot-2016-09-21-at-8-44-18-am" width="1024" height="406" srcset="http://theorypc.ca/wp-content/uploads/2016/09/Screen-Shot-2016-09-21-at-8.44.18-AM-1024x406.png 1024w, http://theorypc.ca/wp-content/uploads/2016/09/Screen-Shot-2016-09-21-at-8.44.18-AM-300x119.png 300w, http://theorypc.ca/wp-content/uploads/2016/09/Screen-Shot-2016-09-21-at-8.44.18-AM-768x304.png 768w, http://theorypc.ca/wp-content/uploads/2016/09/Screen-Shot-2016-09-21-at-8.44.18-AM.png 1204w" sizes="(max-width: 1024px) 100vw, 1024px" /> 
 
-We have this value set to &#8216;[Replace](https://technet.microsoft.com/en-us/library/cc753092%28v=ws.11%29.aspx?f=255&MSPPError=-2147217396)&#8216;. Â What does replace do?
+We have this value set to '[Replace](https://technet.microsoft.com/en-us/library/cc753092%28v=ws.11%29.aspx?f=255&MSPPError=-2147217396)'. Â What does replace do?
 
 <table summary="table">
   <tr>
@@ -97,32 +97,32 @@ We have this value set to &#8216;[Replace](https://technet.microsoft.com/en-us/l
   </tr>
 </table>
 
-Well, process monitor is showing EXACTLY that scenario. Â Replace is deleting the key and recreating it. Â In between that time &#8216;AppVClient.exe&#8217; is trying to read that value. Â If PackageInstallationRoot doesn&#8217;t exist, then AppV defaults to &#8216;C:\App-V Packages&#8221; as the PackageInstallationRoot.
+Well, process monitor is showing EXACTLY that scenario. Â Replace is deleting the key and recreating it. Â In between that time 'AppVClient.exe' is trying to read that value. Â If PackageInstallationRoot doesn't exist, then AppV defaults to 'C:\App-V Packages" as the PackageInstallationRoot.
 
 <div id="attachment_1736" style="width: 1034px" class="wp-caption aligncenter">
   <img aria-describedby="caption-attachment-1736" class="wp-image-1736 size-large" src="http://theorypc.ca/wp-content/uploads/2016/09/Screen-Shot-2016-09-21-at-10.01.23-AM-1024x470.png" alt="screen-shot-2016-09-21-at-10-01-23-am" width="1024" height="470" srcset="http://theorypc.ca/wp-content/uploads/2016/09/Screen-Shot-2016-09-21-at-10.01.23-AM-1024x470.png 1024w, http://theorypc.ca/wp-content/uploads/2016/09/Screen-Shot-2016-09-21-at-10.01.23-AM-300x138.png 300w, http://theorypc.ca/wp-content/uploads/2016/09/Screen-Shot-2016-09-21-at-10.01.23-AM-768x352.png 768w" sizes="(max-width: 1024px) 100vw, 1024px" /></p> 
   
   <p id="caption-attachment-1736" class="wp-caption-text">
-    No &#8220;PackageInstallationRoot&#8221; key -> &#8220;C:\App-V Packages&#8221; folder is where packages go.
+    No "PackageInstallationRoot" key -> "C:\App-V Packages" folder is where packages go.
   </p>
 </div>
 
 &nbsp;
 
-It appears we have a race condition between group policy being applied and when our AppVClient is refreshing. Â It isÂ less than 600ms but that&#8217;s enough time for a package or two to start their refresh and get caught in &#8216;default folder&#8217; purgatory.
+It appears we have a race condition between group policy being applied and when our AppVClient is refreshing. Â It isÂ less than 600ms but that's enough time for a package or two to start their refresh and get caught in 'default folder' purgatory.
 
 How can we fix this?
 
 The easiest solution and the one we are going to implement:
 
-We&#8217;re going to change the action to &#8220;Update&#8221;. Â When I initially tried toÂ change the action was greyed out. Â When &#8220;Remove this item when it is no longer applied&#8221; is checked, it forces the action to &#8220;Replace&#8221;.  
+We're going to change the action to "Update". Â When I initially tried toÂ change the action was greyed out. Â When "Remove this item when it is no longer applied" is checked, it forces the action to "Replace".  
 <img class="aligncenter size-large wp-image-1738" src="http://theorypc.ca/wp-content/uploads/2016/09/Screen-Shot-2016-09-21-at-8.44.27-AM.png" alt="screen-shot-2016-09-21-at-8-44-27-am" width="402" height="446" srcset="http://theorypc.ca/wp-content/uploads/2016/09/Screen-Shot-2016-09-21-at-8.44.27-AM.png 402w, http://theorypc.ca/wp-content/uploads/2016/09/Screen-Shot-2016-09-21-at-8.44.27-AM-270x300.png 270w" sizes="(max-width: 402px) 100vw, 402px" /> 
 
-I had to &#8216;uncheck&#8217; that value
+I had to 'uncheck' that value
 
 <img class="aligncenter size-large wp-image-1739" src="http://theorypc.ca/wp-content/uploads/2016/09/Screen-Shot-2016-09-21-at-8.44.34-AM.png" alt="screen-shot-2016-09-21-at-8-44-34-am" width="267" height="25" /> 
 
-And then I could select &#8216;Update&#8217;.
+And then I could select 'Update'.
 
 <img class="aligncenter size-large wp-image-1740" src="http://theorypc.ca/wp-content/uploads/2016/09/Screen-Shot-2016-09-21-at-8.44.43-AM.png" alt="screen-shot-2016-09-21-at-8-44-43-am" width="401" height="448" srcset="http://theorypc.ca/wp-content/uploads/2016/09/Screen-Shot-2016-09-21-at-8.44.43-AM.png 401w, http://theorypc.ca/wp-content/uploads/2016/09/Screen-Shot-2016-09-21-at-8.44.43-AM-269x300.png 269w" sizes="(max-width: 401px) 100vw, 401px" /> 
 
@@ -130,7 +130,7 @@ After updating the GPO and refreshing policies on the affected system, I ran pro
 
 <img class="aligncenter size-large wp-image-1741" src="http://theorypc.ca/wp-content/uploads/2016/09/Screen-Shot-2016-09-21-at-9.32.09-AM-1-1024x358.png" alt="GPP_Update" width="1024" height="358" srcset="http://theorypc.ca/wp-content/uploads/2016/09/Screen-Shot-2016-09-21-at-9.32.09-AM-1-1024x358.png 1024w, http://theorypc.ca/wp-content/uploads/2016/09/Screen-Shot-2016-09-21-at-9.32.09-AM-1-300x105.png 300w, http://theorypc.ca/wp-content/uploads/2016/09/Screen-Shot-2016-09-21-at-9.32.09-AM-1-768x268.png 768w, http://theorypc.ca/wp-content/uploads/2016/09/Screen-Shot-2016-09-21-at-9.32.09-AM-1.png 1354w" sizes="(max-width: 1024px) 100vw, 1024px" /> 
 
-It does not delete the value, it now &#8216;Sets&#8217; the value to the same string we had before. Â I don&#8217;t know if the individual &#8216;Set&#8217; action will cause an issue; I suspect not since the value will always exist and is technically the same value throughout the entire set of actions that this issue is now &#8216;resolved&#8217; for us.
+It does not delete the value, it now 'Sets' the value to the same string we had before. Â I don't know if the individual 'Set' action will cause an issue; I suspect not since the value will always exist and is technically the same value throughout the entire set of actions that this issue is now 'resolved' for us.
 
 <!-- AddThis Advanced Settings generic via filter on the_content -->
 

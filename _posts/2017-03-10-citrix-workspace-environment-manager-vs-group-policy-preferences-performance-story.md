@@ -14,20 +14,20 @@ tags:
   - Performance
   - Workspace Environment Manager
 ---
-Part one:Â [Citrix Workspace Environment Manager &#8211; First Impressions](https://theorypc.ca/2017/03/02/citrix-workspace-environment-manager-first-impressions/)  
-Part two: [Citrix Workspace Environment Manager &#8211; Second Impressions](https://theorypc.ca/2017/03/08/citrix-workspace-environment-manager-second-impressions/)
+Part one:Â [Citrix Workspace Environment Manager - First Impressions](https://theorypc.ca/2017/03/02/citrix-workspace-environment-manager-first-impressions/)  
+Part two: [Citrix Workspace Environment Manager - Second Impressions](https://theorypc.ca/2017/03/08/citrix-workspace-environment-manager-second-impressions/)
 
-If you&#8217;ve been following me, I&#8217;ve been exploring using WEM to apply some registry values instead of using Group Policy Preference. Â WEM does things differently which requires some thinking on how to implement it. Â The lack of a Boolean OR value is the biggest draw back, but it is possible to get around it, although our environment hasn&#8217;t required multiple AND OR AND OR AND OR statements, so all the settings migrations I have done were possible.
+If you've been following me, I've been exploring using WEM to apply some registry values instead of using Group Policy Preference. Â WEM does things differently which requires some thinking on how to implement it. Â The lack of a Boolean OR value is the biggest draw back, but it is possible to get around it, although our environment hasn't required multiple AND OR AND OR AND OR statements, so all the settings migrations I have done were possible.
 
 But the meat of this post is HOW quickly can WEM process registry entries vs. GPP.
 
-In order to compare these two I&#8217;ve subscribed to an old standby &#8212; Procmon. Â I logged into one of my Citrix servers with another account, and started procmon. Â I then launched an application published on this server (notepad). Â I used [ControlUp](http://www.controlup.com) to measure the performance of the actual logon and group policy extension processing. Â The one we are particularly interested in is the Group Policy Registry entry. Â This measures the performance of the Group Policy Registry portion:
+In order to compare these two I've subscribed to an old standby - Procmon. Â I logged into one of my Citrix servers with another account, and started procmon. Â I then launched an application published on this server (notepad). Â I used [ControlUp](http://www.controlup.com) to measure the performance of the actual logon and group policy extension processing. Â The one we are particularly interested in is the Group Policy Registry entry. Â This measures the performance of the Group Policy Registry portion:
 
 <img class="aligncenter size-full wp-image-2063" src="http://theorypc.ca/wp-content/uploads/2017/03/GP_Extension_Time.png" alt="" width="931" height="427" srcset="http://theorypc.ca/wp-content/uploads/2017/03/GP_Extension_Time.png 931w, http://theorypc.ca/wp-content/uploads/2017/03/GP_Extension_Time-300x138.png 300w, http://theorypc.ca/wp-content/uploads/2017/03/GP_Extension_Time-768x352.png 768w" sizes="(max-width: 931px) 100vw, 931px" /> 
 
 &nbsp;
 
-**Group Policy Registry executed in <span style="text-decoration: underline;">3494ms</span>.** Â However, I have two GPO objects with values that were evaluated by this client side extension. Â For WEM I only migrated a single GPO so I&#8217;ll have to focus on that single one for the CSE. Â To find the Group Policy engine, I used ControlUp to discover it via selecting svchost.exe&#8217;s processes and discovering them. Â The PID was 1872:
+**Group Policy Registry executed in <span style="text-decoration: underline;">3494ms</span>.** Â However, I have two GPO objects with values that were evaluated by this client side extension. Â For WEM I only migrated a single GPO so I'll have to focus on that single one for the CSE. Â To find the Group Policy engine, I used ControlUp to discover it via selecting svchost.exe's processes and discovering them. Â The PID was 1872:
 
 <img class="aligncenter size-full wp-image-2064" src="http://theorypc.ca/wp-content/uploads/2017/03/PID.png" alt="" width="437" height="577" srcset="http://theorypc.ca/wp-content/uploads/2017/03/PID.png 437w, http://theorypc.ca/wp-content/uploads/2017/03/PID-227x300.png 227w" sizes="(max-width: 437px) 100vw, 437px" /> 
 
@@ -37,7 +37,7 @@ For the Group Policy Registry CSE I can see it was activated at exactly 2:33:12.
 
 <img class="aligncenter size-full wp-image-2065" src="http://theorypc.ca/wp-content/uploads/2017/03/Procmon_CSE.png" alt="" width="1258" height="576" srcset="http://theorypc.ca/wp-content/uploads/2017/03/Procmon_CSE.png 1258w, http://theorypc.ca/wp-content/uploads/2017/03/Procmon_CSE-300x137.png 300w, http://theorypc.ca/wp-content/uploads/2017/03/Procmon_CSE-768x352.png 768w" sizes="(max-width: 1258px) 100vw, 1258px" /> 
 
-With this particular policy, we actually check to see if it&#8217;s a 32bit or 64bit system, we check for various pieces of software to see if they&#8217;re installed or not and we then apply registry keys based on those results. Â For instance:
+With this particular policy, we actually check to see if it's a 32bit or 64bit system, we check for various pieces of software to see if they're installed or not and we then apply registry keys based on those results. Â For instance:
 
 <img class="aligncenter size-full wp-image-2066" src="http://theorypc.ca/wp-content/uploads/2017/03/Procmon_CSE_PDFArchitech.png" alt="" width="1261" height="211" srcset="http://theorypc.ca/wp-content/uploads/2017/03/Procmon_CSE_PDFArchitech.png 1261w, http://theorypc.ca/wp-content/uploads/2017/03/Procmon_CSE_PDFArchitech-300x50.png 300w, http://theorypc.ca/wp-content/uploads/2017/03/Procmon_CSE_PDFArchitech-768x129.png 768w" sizes="(max-width: 1261px) 100vw, 1261px" /> 
 
@@ -45,19 +45,19 @@ We have a GPP Registry values that are set via some item-level-targetting that a
 
 However cool this is, this GPO is not the one I want ðŸ™‚
 
-I want the next GPO ({E6775312-&#8230;}). Â This GPO is the one that I have converted to WEM as it only dealt with group membership. Â WEM can filter on conditions like a file/folder exist but since I didn&#8217;t want to do another thousand or so registry entries I focused on the smaller GPO.
+I want the next GPO ({E6775312-...}). Â This GPO is the one that I have converted to WEM as it only dealt with group membership. Â WEM can filter on conditions like a file/folder exist but since I didn't want to do another thousand or so registry entries I focused on the smaller GPO.
 
 <img class="aligncenter size-full wp-image-2067" src="http://theorypc.ca/wp-content/uploads/2017/03/the_real_meat.png" alt="" width="1245" height="745" srcset="http://theorypc.ca/wp-content/uploads/2017/03/the_real_meat.png 1245w, http://theorypc.ca/wp-content/uploads/2017/03/the_real_meat-300x180.png 300w, http://theorypc.ca/wp-content/uploads/2017/03/the_real_meat-768x460.png 768w, http://theorypc.ca/wp-content/uploads/2017/03/the_real_meat-550x330.png 550w" sizes="(max-width: 1245px) 100vw, 1245px" /> 
 
 &nbsp;
 
-This is the real meat. Â We can see the GPO I&#8217;m interested in started processing at 2:33:14:5252890.
+This is the real meat. Â We can see the GPO I'm interested in started processing at 2:33:14:5252890.
 
 <img class="aligncenter size-full wp-image-2068" src="http://theorypc.ca/wp-content/uploads/2017/03/the_real_meat_is_cooked.png" alt="" width="1394" height="357" srcset="http://theorypc.ca/wp-content/uploads/2017/03/the_real_meat_is_cooked.png 1394w, http://theorypc.ca/wp-content/uploads/2017/03/the_real_meat_is_cooked-300x77.png 300w, http://theorypc.ca/wp-content/uploads/2017/03/the_real_meat_is_cooked-768x197.png 768w" sizes="(max-width: 1394px) 100vw, 1394px" /> 
 
 And then completed at 2:33:15.2480580.
 
-The CSE didn&#8217;t actually finish though, until 2:33:15.706579 :
+The CSE didn't actually finish though, until 2:33:15.706579 :
 
 <img class="aligncenter size-full wp-image-2069" src="http://theorypc.ca/wp-content/uploads/2017/03/cleanup_complete_activities.png" alt="" width="1377" height="161" srcset="http://theorypc.ca/wp-content/uploads/2017/03/cleanup_complete_activities.png 1377w, http://theorypc.ca/wp-content/uploads/2017/03/cleanup_complete_activities-300x35.png 300w, http://theorypc.ca/wp-content/uploads/2017/03/cleanup_complete_activities-768x90.png 768w" sizes="(max-width: 1377px) 100vw, 1377px" /> 
 
@@ -67,7 +67,7 @@ It looks like it was finishing some RSOP stuff Â (RSOPLogging is disabled, BTW) 
 
 <span style="text-decoration: underline;"><strong>~3501ms.</strong></span>
 
-The total time reported by ControlUp was 3494ms. Â So I&#8217;m probably a bit off by the start/finish of the CSE but pretty goddamn close. Â The real meat of the GPO Registry processing (eg, the GPO I was actually concerned about) was:
+The total time reported by ControlUp was 3494ms. Â So I'm probably a bit off by the start/finish of the CSE but pretty goddamn close. Â The real meat of the GPO Registry processing (eg, the GPO I was actually concerned about) was:
 
 <span style="text-decoration: underline;"><strong>1181ms</strong></span>.
 
@@ -75,15 +75,15 @@ The total time reported by ControlUp was 3494ms. Â So I&#8217;m probably a bit o
 
 So how does WEM do?
 
-One of the ways that WEM &#8216;helps&#8217; counting stats is by pushing the processing into the user session where it can be processed asynchronously. Â WEM creates a log in your %userprofile% folder that you can examine to see when it starts:
+One of the ways that WEM 'helps' counting stats is by pushing the processing into the user session where it can be processed asynchronously. Â WEM creates a log in your %userprofile% folder that you can examine to see when it starts:
 
 <img class="aligncenter size-full wp-image-2072" src="http://theorypc.ca/wp-content/uploads/2017/03/WEM_Yolo-1.png" alt="" width="904" height="400" srcset="http://theorypc.ca/wp-content/uploads/2017/03/WEM_Yolo-1.png 904w, http://theorypc.ca/wp-content/uploads/2017/03/WEM_Yolo-1-300x133.png 300w, http://theorypc.ca/wp-content/uploads/2017/03/WEM_Yolo-1-768x340.png 768w" sizes="(max-width: 904px) 100vw, 904px" /> 
 
 &nbsp;
 
-Unfortunately, WEM&#8217;s log isn&#8217;t very granular. Â Procmon will fix that again ðŸ™‚
+Unfortunately, WEM's log isn't very granular. Â Procmon will fix that again ðŸ™‚
 
-The entry I&#8217;m looking for in WEM is &#8220;MainController.ProcessRegistryValues()&#8221;. Â This tells us when it starts doing the registry work:
+The entry I'm looking for in WEM is "MainController.ProcessRegistryValues()". Â This tells us when it starts doing the registry work:
 
 <img class="aligncenter size-full wp-image-2073" src="http://theorypc.ca/wp-content/uploads/2017/03/WEM_Registry-1.png" alt="" width="822" height="408" srcset="http://theorypc.ca/wp-content/uploads/2017/03/WEM_Registry-1.png 822w, http://theorypc.ca/wp-content/uploads/2017/03/WEM_Registry-1-300x149.png 300w, http://theorypc.ca/wp-content/uploads/2017/03/WEM_Registry-1-768x381.png 768w" sizes="(max-width: 822px) 100vw, 822px" /> 
 
@@ -93,7 +93,7 @@ The processing started after 3:34:39. Â Procmon will help us zero in on that tim
 
 We can see pretty clearly that it starts applying registry values at 3:34:39.4995477.
 
-It completes at&#8230;
+It completes at...
 
 <img class="aligncenter size-full wp-image-2075" src="http://theorypc.ca/wp-content/uploads/2017/03/last_registry_entry.png" alt="" width="1269" height="398" srcset="http://theorypc.ca/wp-content/uploads/2017/03/last_registry_entry.png 1269w, http://theorypc.ca/wp-content/uploads/2017/03/last_registry_entry-300x94.png 300w, http://theorypc.ca/wp-content/uploads/2017/03/last_registry_entry-768x241.png 768w" sizes="(max-width: 1269px) 100vw, 1269px" /> 
 
@@ -105,9 +105,9 @@ Total time:
 
 <span style="text-decoration: underline;"><strong>7076ms</strong></span>.
 
-Hmmm. Â About twice as slow. Â It is certainly possible that the WMI queries are what is killing my performance, but without a way to check the group membership of the server the user is on, I am hobbled. Â It&#8217;s possible that if we were implementing WEM from the get go we could think of a naming scheme that would work better for us, with the limitations of the wildcard (although I think it&#8217;s a bug in WEM as opposed to a poor naming scheme &#8212; just my opinion), but to rework our entire environment is not feasible.
+Hmmm. Â About twice as slow. Â It is certainly possible that the WMI queries are what is killing my performance, but without a way to check the group membership of the server the user is on, I am hobbled. Â It's possible that if we were implementing WEM from the get go we could think of a naming scheme that would work better for us, with the limitations of the wildcard (although I think it's a bug in WEM as opposed to a poor naming scheme - just my opinion), but to rework our entire environment is not feasible.
 
-In order to determine if WEM will perform better without the WQL queries, I manually edited the condition to be focused on &#8216;Computer Name Match&#8217; and specified all the relevant servers.
+In order to determine if WEM will perform better without the WQL queries, I manually edited the condition to be focused on 'Computer Name Match' and specified all the relevant servers.
 
 The results?
 
@@ -135,13 +135,13 @@ So there is big savings without doing any WQL processing.
 
 &nbsp;
 
-But it still doesn&#8217;t compare to the Group Policy Preferences &#8211; Registry CSE. Â The speed of the CSE is still faster. Â Pretty significantly, actually. Â And there are other considerations you need to consider for WEM as well. Â It applies the registry values \*after\* you&#8217;ve logged in, whereas GPP does it before. Â This allows WEM to operate asynchronously and should reduce logon times but there is a drawback. Â And for us it&#8217;s a big drawback. Â When it applies the registry values, for most of our apps they need to be in place \*before\* you launch the application. Â So setting the values after or while an application is launching may lead to some inconsistent experiences. Â For us,Â **this caveat only applies to a _XenApp_** environment.
+But it still doesn't compare to the Group Policy Preferences - Registry CSE. Â The speed of the CSE is still faster. Â Pretty significantly, actually. Â And there are other considerations you need to consider for WEM as well. Â It applies the registry values \*after\* you've logged in, whereas GPP does it before. Â This allows WEM to operate asynchronously and should reduce logon times but there is a drawback. Â And for us it's a big drawback. Â When it applies the registry values, for most of our apps they need to be in place \*before\* you launch the application. Â So setting the values after or while an application is launching may lead to some inconsistent experiences. Â For us,Â **this caveat only applies to a _&_** environment.
 
 When talking about a XenDesktop environment a premium is generally placed on _**getting to the desktop**_ where a user has to navigate to an application to launch it, which would probably require enough time that WEM will be able to apply its required values before the user is able to launch their application. Â In this scenario, saving 3-4 seconds of the user waiting for their desktop to appear are valuable and WEM (mostly) solves this issue by pushing it asynchronously to the shell.
 
-For XenApp, we are still considering WEM to see how it performs with roaming users and having printers change for session reconnections; depending on their client name/ip space or some other variable. Â That investigation will come in the future. Â For now, it looks like we&#8217;re going to keep using Group Policy Preferences for our registry application for XenApp.
+For &, we are still considering WEM to see how it performs with roaming users and having printers change for session reconnections; depending on their client name/ip space or some other variable. Â That investigation will come in the future. Â For now, it looks like we're going to keep using Group Policy Preferences for our registry application for &.
 
-Stay tuned for some WEM gotcha&#8217;s I&#8217;ve learned doing this exercise.
+Stay tuned for some WEM gotcha's I've learned doing this exercise.
 
 &nbsp;
 

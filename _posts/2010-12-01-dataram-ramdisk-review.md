@@ -33,14 +33,14 @@ tags:
 
 
 <div style="text-align: left;">
-  I&#8217;ve purchased a product called Dataram RAMDISK and am going to do a quick review on it. It&#8217;s free for RAM Disk&#8217;s up to 4GB in size. Beyond that size and you need to pay $9.99 for a license file that allows you to increase it to whatever amount of free RAM you have in your system up to a maximum of 64GB. My system is a P6T SE with 6 RAM slots, 3x2GB RAM and 3x1GB RAM sticks are installed, giving me 9GB in total. This configuration activates triple-channel mode, so I&#8217;m getting the full 192bit of available bandwidth from my memory.
+  I've purchased a product called Dataram RAMDISK and am going to do a quick review on it. It's free for RAM Disk's up to 4GB in size. Beyond that size and you need to pay $9.99 for a license file that allows you to increase it to whatever amount of free RAM you have in your system up to a maximum of 64GB. My system is a P6T SE with 6 RAM slots, 3x2GB RAM and 3x1GB RAM sticks are installed, giving me 9GB in total. This configuration activates triple-channel mode, so I'm getting the full 192bit of available bandwidth from my memory.
 </div>
 
 <div>
 </div>
 
 <div>
-  All of my RAM is DDR3 @ 1333MHz (PC3-10600), but Everest is reporting a speed of 800MHz. My theoretical MB/s speed should max out at 32000MB/s, but if Everest is only operating at 800MHz that means my theoretical maximum speed is 19200MB/s. I think the reason I did this is because my triple channel puked at the unmatched channels causing BSOD&#8217;s and non-boots, but I&#8217;ll investigate later as it&#8217;s a huge performance penalty. Everest confirms this is the measured speed I&#8217;m running at 19200MB/s
+  All of my RAM is DDR3 @ 1333MHz (PC3-10600), but Everest is reporting a speed of 800MHz. My theoretical MB/s speed should max out at 32000MB/s, but if Everest is only operating at 800MHz that means my theoretical maximum speed is 19200MB/s. I think the reason I did this is because my triple channel puked at the unmatched channels causing BSOD's and non-boots, but I'll investigate later as it's a huge performance penalty. Everest confirms this is the measured speed I'm running at 19200MB/s
 </div>
 
 <div>
@@ -75,7 +75,7 @@ tags:
 </div>
 
 <div>
-  With that said, my current theoretical maximum speed my RAM should be able to operate at is 19200MB/s. I&#8217;m going to test my RAM first to gauge it&#8217;s maximum speed, then test the RAM Disk to see if it matches up.
+  With that said, my current theoretical maximum speed my RAM should be able to operate at is 19200MB/s. I'm going to test my RAM first to gauge it's maximum speed, then test the RAM Disk to see if it matches up.
 </div>
 
 <div>
@@ -103,7 +103,7 @@ tags:
 </div>
 
 <div>
-  Before that, he&#8217;s Everest Disk Benchmark result (everything is automatic &#8211; Linear Read):
+  Before that, he's Everest Disk Benchmark result (everything is automatic - Linear Read):
 </div>
 
 <div style="text-align: center;">
@@ -146,7 +146,7 @@ tags:
 </div>
 
 <div>
-  Align I/O&#8217;s 1MB
+  Align I/O's 1MB
 </div>
 
 <div>
@@ -179,14 +179,14 @@ tags:
 </div>
 
 <div>
-  So writes are more intensive then reads, as they usually are, but I cannot get anywhere close to the speed of reading a 16MB sized file in 1MB chunks to the maximum theoretical speed of the RAM. I&#8217;m unsure as to why that may be, but I suspect it&#8217;s the path the file takes from the RAMDisk -> Driver -> Bus -> CPU&#8230;?
+  So writes are more intensive then reads, as they usually are, but I cannot get anywhere close to the speed of reading a 16MB sized file in 1MB chunks to the maximum theoretical speed of the RAM. I'm unsure as to why that may be, but I suspect it's the path the file takes from the RAMDisk -> Driver -> Bus -> CPU...?
 </div>
 
 <div>
 </div>
 
 <div>
-  To try and maximize the speed of the drive and match up to Everest Linear read to gauge the maximum speed of the disk, I&#8217;ll setup IO Meter to match Everest&#8217;s description of the Linear Read test:
+  To try and maximize the speed of the drive and match up to Everest Linear read to gauge the maximum speed of the disk, I'll setup IO Meter to match Everest's description of the Linear Read test:
 </div>
 
 <div>
@@ -210,7 +210,7 @@ tags:
 </div>
 
 <div>
-  Using Procmon, I was able to verify that Linear Read uses a 64KB block size and reads the entire disk. Doing this with IO Meter I achieved the same results as above in the MB/s, but much higher IO/s. I&#8217;m unsure why IOMeter is unable to match Everest&#8217;s results.
+  Using Procmon, I was able to verify that Linear Read uses a 64KB block size and reads the entire disk. Doing this with IO Meter I achieved the same results as above in the MB/s, but much higher IO/s. I'm unsure why IOMeter is unable to match Everest's results.
 </div>
 
 <div>
@@ -231,7 +231,7 @@ tags:
 </div>
 
 <div>
-  To compare this RAMDisk to other HDD&#8217;s I turned to Anandtech and used his settings to compare some SSD drives. <a href="http://www.anandtech.com/show/2614/8">His results are here.</a>
+  To compare this RAMDisk to other HDD's I turned to Anandtech and used his settings to compare some SSD drives. <a href="http://www.anandtech.com/show/2614/8">His results are here.</a>
 </div>
 
 <div>
@@ -261,7 +261,7 @@ tags:
 </div>
 
 <div>
-  Compared to the first gen Intel SSD&#8217;s the RAM Disk is:
+  Compared to the first gen Intel SSD's the RAM Disk is:
 </div>
 
 <div>
@@ -293,14 +293,14 @@ tags:
 </div>
 
 <div>
-  In the end, I&#8217;m unsure if I&#8217;ve hit a wall with my numbers, but it feels artificial. Everest does come within 70% of the numbers it achieved in a pure memory test, but even the Everest test tops out at exactly 8192MB/s.
+  In the end, I'm unsure if I've hit a wall with my numbers, but it feels artificial. Everest does come within 70% of the numbers it achieved in a pure memory test, but even the Everest test tops out at exactly 8192MB/s.
 </div>
 
 <div>
 </div>
 
 <div>
-  I&#8217;ll try changing my memory speeds to something faster and see if this limit is artificial or a limit of my system.
+  I'll try changing my memory speeds to something faster and see if this limit is artificial or a limit of my system.
 </div>
 
 <!-- AddThis Advanced Settings generic via filter on the_content -->

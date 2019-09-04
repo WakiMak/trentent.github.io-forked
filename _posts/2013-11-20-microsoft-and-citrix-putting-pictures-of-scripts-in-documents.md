@@ -1,6 +1,6 @@
 ---
 id: 621
-title: 'Microsoft and Citrix putting pictures of scripts in documents&#8230;'
+title: 'Microsoft and Citrix putting pictures of scripts in documents...'
 date: 2013-11-20T12:50:00-06:00
 author: trententtye
 layout: post
@@ -26,7 +26,7 @@ Come on guys, a little more effort than that.Â How are you supposed to copy past
 
 The script is the following:
 
-It&#8217;s supposed to pull the application and command-line to execute it in AppV5.Â I got the script from this document:  
+It's supposed to pull the application and command-line to execute it in AppV5.Â I got the script from this document:  
 <http://www.microsoft.com/en-us/download/details.aspx?id=40885>
 
 <pre class="lang:ps decode:true ">"PackageName,Application Name,ApplicationPath"|out-file .\appPath.txt -Append

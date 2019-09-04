@@ -24,7 +24,7 @@ tags:
 Apply a security policy using an .inf file
 
 [Unicode]Unicode=yes  
-[Version]signature=&#8221;$CHICAGO$&#8221;  
+[Version]signature="$CHICAGO$"  
 Revision=1  
 [Profile Description]  
 Description=profile description  
@@ -33,8 +33,8 @@ MinimumPasswordAge = 10
 MaximumPasswordAge = 30  
 MinimumPasswordLength = 6  
 RequireLogonToChangePassword = 0  
-NewAdministratorName = &#8220;NewAdminAccountName&#8221;  
-NewGuestName = &#8220;NewGuestAccountName&#8221;
+NewAdministratorName = "NewAdminAccountName"  
+NewGuestName = "NewGuestAccountName"
 
 Simple to apply from a cmd line
 

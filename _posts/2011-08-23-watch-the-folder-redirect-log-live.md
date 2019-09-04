@@ -20,9 +20,9 @@ categories:
 tags:
   - scripting
 ---
-If you&#8217;ve enabled the folder redirect log, you can watch it on a remote computer using the tail command and SED.exe.
+If you've enabled the folder redirect log, you can watch it on a remote computer using the tail command and SED.exe.
 
-Currently, the fdeploy.log (for XP anyways) stores the log as a binary file with a NULL character between each character. To clean up this output you can pipe tail.exe into sed and tell sed to delete the NULL characters&#8230;
+Currently, the fdeploy.log (for XP anyways) stores the log as a binary file with a NULL character between each character. To clean up this output you can pipe tail.exe into sed and tell sed to delete the NULL characters...
 
 [<img id="BLOGGER_PHOTO_ID_5644164972883700738" style="display: block; margin: 0px auto 10px; text-align: center; cursor: hand; width: 400px; height: 300px;" src="http://1.bp.blogspot.com/-GrSWWOhRrYA/TlQaI4ZvbAI/AAAAAAAAAHM/QqU6KQmEELY/s400/fdeploy-bad.GIF" alt="" border="0" />](http://1.bp.blogspot.com/-GrSWWOhRrYA/TlQaI4ZvbAI/AAAAAAAAAHM/QqU6KQmEELY/s1600/fdeploy-bad.GIF)
 

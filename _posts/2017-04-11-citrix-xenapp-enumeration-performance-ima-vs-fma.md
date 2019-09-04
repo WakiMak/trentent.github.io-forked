@@ -1,39 +1,39 @@
 ---
 id: 2101
-title: 'Citrix XenApp Enumeration Performance &#8211; IMA vs FMA'
+title: 'Citrix & Enumeration Performance - IMA vs FMA'
 date: 2017-04-11T16:48:17-06:00
 author: trententtye
 layout: post
 guid: http://theorypc.ca/?p=2101
-permalink: /2017/04/11/citrix-xenapp-enumeration-performance-ima-vs-fma/
+permalink: /2017/04/11/citrix-&-enumeration-performance-ima-vs-fma/
 image: /wp-content/uploads/2017/04/PErf.png
 categories:
   - Blog
 tags:
   - Citrix
   - Performance
-  - XenApp
+  - &
 ---
-We&#8217;re exploring upgrading our Citrix XenApp 6.5 environment to 7.X (currently 7.13) and we have some architecture decisions that are driven by the performance of the infrastructure components of XenApp. Â In 6.5 these components are theÂ &#8220;Citrix Independent Management Architecture&#8221; and in 7.13 this is the &#8220;Citrix Broker Service&#8221;. Â The performance I&#8217;ll be measuring is how long it takes to enumerate applications for a user. Â In XenApp 6.5 this is the most intensive task put on the broker. Â I&#8217;ve taken our existing XenApp 6.5 TEST environment and &#8220;migrated&#8221; it to 7.X. Â The details of the environment are 189 enabled applications with various security groups applied to each application. Â The user I will be testing with has access to 55Â of them. Â What the broker/IMA service has to do when it receives the XML request is evaluate each application to see if the user has permissions and return the results. Â The &#8216;request&#8217; is slightly different to the broker vs the IMA. Â This is what the FMA requests will look like:
+We're exploring upgrading our Citrix & 6.5 environment to 7.X (currently 7.13) and we have some architecture decisions that are driven by the performance of the infrastructure components of &. Â In 6.5 these components are theÂ "Citrix Independent Management Architecture" and in 7.13 this is the "Citrix Broker Service". Â The performance I'll be measuring is how long it takes to enumerate applications for a user. Â In & 6.5 this is the most intensive task put on the broker. Â I've taken our existing & 6.5 TEST environment and "migrated" it to 7.X. Â The details of the environment are 189 enabled applications with various security groups applied to each application. Â The user I will be testing with has access to 55Â of them. Â What the broker/IMA service has to do when it receives the XML request is evaluate each application to see if the user has permissions and return the results. Â The 'request' is slightly different to the broker vs the IMA. Â This is what the FMA requests will look like:
 
 <pre class="lang:ps decode:true ">$soap7XD = @'
-&lt;NFuseProtocol version="5.5"&gt;
-    &lt;RequestAppData&gt;
-        &lt;Scope Traverse="subtree"&gt;&lt;/Scope&gt;
-        &lt;DesiredDetails&gt;permissions&lt;/DesiredDetails&gt;
-        &lt;ServerType&gt;all&lt;/ServerType&gt;
-        &lt;ClientType&gt;ica30&lt;/ClientType&gt;
-        &lt;ClientType&gt;rade&lt;/ClientType&gt;
-        &lt;ClientType&gt;content&lt;/ClientType&gt;
-        &lt;Credentials&gt;
-            &lt;UserName&gt;adtest90&lt;/UserName&gt;
-            &lt;Password encoding="ctx1"&gt;PASSWORDLOL&lt;/Password&gt;
-            &lt;Domain type="NT"&gt;HEALTHY&lt;/Domain&gt;
-        &lt;/Credentials&gt;
-        &lt;Clientname&gt;LOADTESTER&lt;/Clientname&gt;
-        &lt;ClientAddress addresstype="dot"&gt;10.10.10.10&lt;/ClientAddress&gt;
-    &lt;/RequestAppData&gt;
-&lt;/NFuseProtocol&gt;
+<NFuseProtocol version="5.5">
+    <RequestAppData>
+        <Scope Traverse="subtree"></Scope>
+        <DesiredDetails>permissions</DesiredDetails>
+        <ServerType>all</ServerType>
+        <ClientType>ica30</ClientType>
+        <ClientType>rade</ClientType>
+        <ClientType>content</ClientType>
+        <Credentials>
+            <UserName>adtest90</UserName>
+            <Password encoding="ctx1">PASSWORDLOL</Password>
+            <Domain type="NT">HEALTHY</Domain>
+        </Credentials>
+        <Clientname>LOADTESTER</Clientname>
+        <ClientAddress addresstype="dot">10.10.10.10</ClientAddress>
+    </RequestAppData>
+</NFuseProtocol>
 '@</pre>
 
 &nbsp;
@@ -41,27 +41,27 @@ We&#8217;re exploring upgrading our Citrix XenApp 6.5 environment to 7.X (curren
 And the IMA requests:
 
 <pre class="lang:ps decode:true ">$soap = @'
-&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;!DOCTYPE NFuseProtocol SYSTEM "NFuse.dtd"&gt;
-&lt;NFuseProtocol version="5.4"&gt;
-    &lt;RequestAppData&gt;
-        &lt;Scope traverse="subtree"&gt;&lt;/Scope&gt;
-        &lt;DesiredDetails&gt;permissions&lt;/DesiredDetails&gt;
-        &lt;ServerType&gt;all&lt;/ServerType&gt;
-        &lt;ClientType&gt;ica30&lt;/ClientType&gt;
-        &lt;ClientType&gt;content&lt;/ClientType&gt;
-        &lt;Credentials&gt;
-            &lt;UserName&gt;adtest90&lt;/UserName&gt;
-            &lt;Password encoding="ctx1"&gt;PASSWORDLOL&lt;/Password&gt;
-            &lt;Domain type="NT"&gt;HEALTHY&lt;/Domain&gt;
-        &lt;/Credentials&gt;
-        &lt;ClientName&gt;LOADTESTER&lt;/ClientName&gt;
-        &lt;ClientAddress addresstype="dot"&gt;10.10.10.10&lt;/ClientAddress&gt;
-    &lt;/RequestAppData&gt;
-&lt;/NFuseProtocol&gt;
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE NFuseProtocol SYSTEM "NFuse.dtd">
+<NFuseProtocol version="5.4">
+    <RequestAppData>
+        <Scope traverse="subtree"></Scope>
+        <DesiredDetails>permissions</DesiredDetails>
+        <ServerType>all</ServerType>
+        <ClientType>ica30</ClientType>
+        <ClientType>content</ClientType>
+        <Credentials>
+            <UserName>adtest90</UserName>
+            <Password encoding="ctx1">PASSWORDLOL</Password>
+            <Domain type="NT">HEALTHY</Domain>
+        </Credentials>
+        <ClientName>LOADTESTER</ClientName>
+        <ClientAddress addresstype="dot">10.10.10.10</ClientAddress>
+    </RequestAppData>
+</NFuseProtocol>
 '@</pre>
 
-In our environment, we have measured a &#8216;peak&#8217; load of 600 concurrent connections per second to our XenApp 6.5 IMA service. Â We split this load over 7 servers and the load is load-balanced via Netscaler VIP&#8217;s. Â This lessens the peak load toÂ 85 concurrent connections per server per second. Â What&#8217;s a &#8220;connection&#8221;? Â A connection is a request to theÂ IMA service and a response from it. Â This would be considered a single connection in my definition:
+In our environment, we have measured a 'peak' load of 600 concurrent connections per second to our & 6.5 IMA service. Â We split this load over 7 servers and the load is load-balanced via Netscaler VIP's. Â This lessens the peak load toÂ 85 concurrent connections per server per second. Â What's a "connection"? Â A connection is a request to theÂ IMA service and a response from it. Â This would be considered a single connection in my definition:
 
 <img class="aligncenter size-full wp-image-2102" src="http://theorypc.ca/wp-content/uploads/2017/04/Connection.png" alt="" width="542" height="595" srcset="http://theorypc.ca/wp-content/uploads/2017/04/Connection.png 542w, http://theorypc.ca/wp-content/uploads/2017/04/Connection-273x300.png 273w" sizes="(max-width: 542px) 100vw, 542px" /> 
 
@@ -69,7 +69,7 @@ In our environment, we have measured a &#8216;peak&#8217; load of 600 concurrent
 
 This is a single request (in RED) and response (in BLUE). Â No further follow up is required by the client.
 
-I&#8217;m going to profile a single response and request to better understand the individual performance of each product.
+I'm going to profile a single response and request to better understand the individual performance of each product.
 
 This is what my network traffic will look like (on the 7.X broker service):
 
@@ -82,72 +82,72 @@ Connection: Keep-Alive
 
 HTTP/1.1 100 Continue
 
-&lt;NFuseProtocol version="5.5"&gt;
-    &lt;RequestAppData&gt;
-        &lt;Scope Traverse="subtree"&gt;&lt;/Scope&gt;
-        &lt;DesiredDetails&gt;permissions&lt;/DesiredDetails&gt;
-        &lt;ServerType&gt;all&lt;/ServerType&gt;
-        &lt;ClientType&gt;ica30&lt;/ClientType&gt;
-        &lt;ClientType&gt;rade&lt;/ClientType&gt;
-        &lt;ClientType&gt;content&lt;/ClientType&gt;
-        &lt;Credentials&gt;
-            &lt;UserName&gt;adtest90&lt;/UserName&gt;
-            &lt;Password encoding="ctx1"&gt;PASSWORDLOL&lt;/Password&gt;
-            &lt;Domain type="NT"&gt;HEALTHY&lt;/Domain&gt;
-        &lt;/Credentials&gt;
-        &lt;Clientname&gt;LOADTESTER&lt;/Clientname&gt;
-        &lt;ClientAddress addresstype="dot"&gt;10.10.10.10&lt;/ClientAddress&gt;
-    &lt;/RequestAppData&gt;
-&lt;/NFuseProtocol&gt;HTTP/1.1 200 OK
+<NFuseProtocol version="5.5">
+    <RequestAppData>
+        <Scope Traverse="subtree"></Scope>
+        <DesiredDetails>permissions</DesiredDetails>
+        <ServerType>all</ServerType>
+        <ClientType>ica30</ClientType>
+        <ClientType>rade</ClientType>
+        <ClientType>content</ClientType>
+        <Credentials>
+            <UserName>adtest90</UserName>
+            <Password encoding="ctx1">PASSWORDLOL</Password>
+            <Domain type="NT">HEALTHY</Domain>
+        </Credentials>
+        <Clientname>LOADTESTER</Clientname>
+        <ClientAddress addresstype="dot">10.10.10.10</ClientAddress>
+    </RequestAppData>
+</NFuseProtocol>HTTP/1.1 200 OK
 Content-Length: 23712
 Content-Type: text/xml
 Server: Microsoft-HTTPAPI/2.0
 Date: Tue, 11 Apr 2017 15:38:37 GMT
 
-&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;!DOCTYPE NFuseProtocol SYSTEM "NFuse.dtd"&gt;
-&lt;NFuseProtocol version="5.9"&gt;
-    &lt;ResponseAppData&gt;
-        &lt;LeasingStatus&gt;working&lt;/LeasingStatus&gt;
-        &lt;AppDataSet&gt;
-            &lt;Scope&gt;&lt;/Scope&gt;
-            &lt;AppData&gt;
-                &lt;InName&gt;Notepad&lt;/InName&gt;
-                &lt;FName&gt;Notepad 2016&lt;/FName&gt;
-                &lt;Details&gt;
-                &lt;/Details&gt;
-                &lt;SeqNo&gt;-1770193386&lt;/SeqNo&gt;
-                &lt;ServerType&gt;win32&lt;/ServerType&gt;
-                &lt;ClientType&gt;ica30&lt;/ClientType&gt;
-                &lt;Permissions&gt;
-                &lt;/Permissions&gt;
-            &lt;/AppData&gt;
-            &lt;AppData&gt;
-                &lt;InName&gt;Notepad 2016 - PLB&lt;/InName&gt;
-                &lt;FName&gt;Notepad 2016 - PLB&lt;/FName&gt;
-                &lt;Details&gt;
-                &lt;/Details&gt;
-                &lt;SeqNo&gt;-2064164981&lt;/SeqNo&gt;
-                &lt;ServerType&gt;win32&lt;/ServerType&gt;
-                &lt;ClientType&gt;ica30&lt;/ClientType&gt;
-                &lt;Permissions&gt;
-                &lt;/Permissions&gt;
-            &lt;/AppData&gt;
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE NFuseProtocol SYSTEM "NFuse.dtd">
+<NFuseProtocol version="5.9">
+    <ResponseAppData>
+        <LeasingStatus>working</LeasingStatus>
+        <AppDataSet>
+            <Scope></Scope>
+            <AppData>
+                <InName>Notepad</InName>
+                <FName>Notepad 2016</FName>
+                <Details>
+                </Details>
+                <SeqNo>-1770193386</SeqNo>
+                <ServerType>win32</ServerType>
+                <ClientType>ica30</ClientType>
+                <Permissions>
+                </Permissions>
+            </AppData>
+            <AppData>
+                <InName>Notepad 2016 - PLB</InName>
+                <FName>Notepad 2016 - PLB</FName>
+                <Details>
+                </Details>
+                <SeqNo>-2064164981</SeqNo>
+                <ServerType>win32</ServerType>
+                <ClientType>ica30</ClientType>
+                <Permissions>
+                </Permissions>
+            </AppData>
 ... 70 applications later...
-            &lt;AppData&gt;
-                &lt;InName&gt;Test notepad-wsct-2&lt;/InName&gt;
-                &lt;FName&gt;Test notepad-wsctxapp401t&lt;/FName&gt;
-                &lt;Details&gt;
-                &lt;/Details&gt;
-                &lt;SeqNo&gt;-1347715524&lt;/SeqNo&gt;
-                &lt;ServerType&gt;win32&lt;/ServerType&gt;
-                &lt;ClientType&gt;ica30&lt;/ClientType&gt;
-                &lt;Permissions&gt;
-                &lt;/Permissions&gt;
-            &lt;/AppData&gt;
-        &lt;/AppDataSet&gt;
-    &lt;/ResponseAppData&gt;
-&lt;/NFuseProtocol&gt;
+            <AppData>
+                <InName>Test notepad-wsct-2</InName>
+                <FName>Test notepad-wsctxapp401t</FName>
+                <Details>
+                </Details>
+                <SeqNo>-1347715524</SeqNo>
+                <ServerType>win32</ServerType>
+                <ClientType>ica30</ClientType>
+                <Permissions>
+                </Permissions>
+            </AppData>
+        </AppDataSet>
+    </ResponseAppData>
+</NFuseProtocol>
 </pre>
 
 The total time between when the FMA broker receives a single request to beginning the response is:
@@ -184,10 +184,10 @@ Total time for IMA request for list of applications and the response for that li
 
 Why the size difference (18KB vs 24KB)?
 
-Looking at the data returned from the FMA via the IMA shows there is a new field passed by the FMA broker as apart of &#8216;AppData&#8217;
+Looking at the data returned from the FMA via the IMA shows there is a new field passed by the FMA broker as apart of 'AppData'
 
-<pre class="lang:default decode:true ">&lt;Permissions&gt;
-                &lt;/Permissions&gt;</pre>
+<pre class="lang:default decode:true "><Permissions>
+                </Permissions></pre>
 
 These two lines add 61 bytes per application. Â A standard application response is (with title) ~331 bytes per IMA application and ~400 bytes per FMA application.
 
@@ -201,7 +201,7 @@ In order to get a better feel I ran the requests continuously in a loop, sending
 
 IMA is faster by approx 30ms per request.
 
-[Next up is load testing IMA vs FMA](https://theorypc.ca/2017/04/12/citrix-xenapp-enumeration-performance-ima-vs-fma-load-testing/).
+[Next up is load testing IMA vs FMA](https://theorypc.ca/2017/04/12/citrix-&-enumeration-performance-ima-vs-fma-load-testing/).
 
 <!-- AddThis Advanced Settings generic via filter on the_content -->
 

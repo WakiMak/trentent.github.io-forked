@@ -14,25 +14,25 @@ tags:
   - scripting
   - Storefront
 ---
-Continuing on from my previous post, in XenApp 6.5 and Web Interface we created 2 sites, one with **explicit logon** (user name and password) set as the authentication method and one set with **domain passthrough**. Â What was configured was an AD group, &#8220;ExplicitLogon&#8221;, and then <span style="text-decoration: underline;">Windows Authentication</span> was configured on the <span style="text-decoration: underline;">IIS sites</span>. Â When the user connected to the site, if they were a member of the domain, it would go to a custom aspx script that detected whether the user was a member of &#8216;ExplicitLogon&#8217; or not. Â If they were not a member they went directly to the domain passthrough site. Â If they were a member, they would go to the explicit logon site and be prompted again for credentials. Â Why is this configuration useful? Â Two reasons&#8230;
+Continuing on from my previous post, in & 6.5 and Web Interface we created 2 sites, one with **explicit logon** (user name and password) set as the authentication method and one set with **domain passthrough**. Â What was configured was an AD group, "ExplicitLogon", and then <span style="text-decoration: underline;">Windows Authentication</span> was configured on the <span style="text-decoration: underline;">IIS sites</span>. Â When the user connected to the site, if they were a member of the domain, it would go to a custom aspx script that detected whether the user was a member of 'ExplicitLogon' or not. Â If they were not a member they went directly to the domain passthrough site. Â If they were a member, they would go to the explicit logon site and be prompted again for credentials. Â Why is this configuration useful? Â Two reasons...
 
-  1. Allows lower level AD accounts to get an opportunity to logon to Citrix with accounts that have elevated permissions. Â If your organization enforces &#8216;non-admin&#8217; accounts for your local computers, then being a part of ExplicitLogon will direct you to the site where you can logon with an elevated account.
+  1. Allows lower level AD accounts to get an opportunity to logon to Citrix with accounts that have elevated permissions. Â If your organization enforces 'non-admin' accounts for your local computers, then being a part of ExplicitLogon will direct you to the site where you can logon with an elevated account.
   2. Shared accounts that are not allowed access to Citrix applications. Â If a shared account is detected as a member of ExplicitLogon it will give theÂ _real_ user a logon prompt where they can logon with their own credentials.
 
 This configuration has served us fairly well for the last few years, but it has a couple drawbacks.
 
-  1. Non-domain joined machines get the ugly &#8216;prompt&#8217; to enter some form of credentials so the group check can be executed where they will have to enter credentials again (if a member of ExplicitLogon).
-  2. Non-domain joined machine may get an error after entering credentials in the initial prompt (if they areÂ _NOT_ a member of ExplicitLogon). Â The reason for this, that I can determine (and happens with non-domain joined Macintosh computers), is the browser will pass those AD credentials to the initial group membership check script but not to the next level &#8212; the domain passthrough check.
+  1. Non-domain joined machines get the ugly 'prompt' to enter some form of credentials so the group check can be executed where they will have to enter credentials again (if a member of ExplicitLogon).
+  2. Non-domain joined machine may get an error after entering credentials in the initial prompt (if they areÂ _NOT_ a member of ExplicitLogon). Â The reason for this, that I can determine (and happens with non-domain joined Macintosh computers), is the browser will pass those AD credentials to the initial group membership check script but not to the next level - the domain passthrough check.
 
 Can we solve the drawbacks with Storefront?
 
 My thoughts are a new workflow that works like this:
 
-1 &#8211; Attempt to query group membership with the browser&#8217;s &#8220;user&#8221;Â _first  
-_ 2- If we&#8217;re unable to to find group membership -> proceed to ExplicitLogon page  
-3 &#8211; If we retrieve group membership -> check for ExplicitLogon group  
-4 &#8211; if &#8216;ExplicitLogon&#8217; group == true -> proceed to ExplicitLogon page  
-5 &#8211; if &#8216;ExplicitLogon&#8217; group == false -> proceed with domain passthrough
+1 - Attempt to query group membership with the browser's "user"Â _first  
+_ 2- If we're unable to to find group membership -> proceed to ExplicitLogon page  
+3 - If we retrieve group membership -> check for ExplicitLogon group  
+4 - if 'ExplicitLogon' group == true -> proceed to ExplicitLogon page  
+5 - if 'ExplicitLogon' group == false -> proceed with domain passthrough
 
 This is the logical structure:
 
@@ -48,19 +48,19 @@ Can I make this happen? Â To start I created a store with both ExplicitLogon (Us
 
 The server side script to check group membership:
 
-<pre class="lang:asp decode:true">&lt;%
+<pre class="lang:asp decode:true"><%
 // Created by:		Saman Salehian
 // Creation Date:	Dec 02, 2013
 // Modified Date:	Apr 18, 2014
 // File Name:		GroupMembership.aspx
-// Description:		Redirect user to appropriate Citrix XenApp Web Site based on group membership
+// Description:		Redirect user to appropriate Citrix & Web Site based on group membership
 // Modified:            May 08, 2017 - Trentent Tye - Modified to check for group membership for ExplicitLogon
 //                      and return the result.
-%&gt;
+%>
 
-&lt;%@ Page Language="C#" %&gt;
-&lt;%@ Import Namespace="System.Security.Principal" %&gt;
-&lt;%
+<%@ Page Language="C#" %>
+<%@ Import Namespace="System.Security.Principal" %>
+<%
 {
 System.Security.Principal.WindowsIdentity UserIdentity = (WindowsIdentity)Context.User.Identity;
 System.Security.Principal.WindowsPrincipal UserPrincipal = new System.Security.Principal.WindowsPrincipal(UserIdentity);
@@ -80,7 +80,7 @@ string UserDomainName = UserIdentityArr[0];
 	Response.Write("Unknown");
 	}
 }
-%&gt;
+%>
 </pre>
 
 And the technical flow:

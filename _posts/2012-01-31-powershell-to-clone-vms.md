@@ -1,6 +1,6 @@
 ---
 id: 688
-title: 'PowerShell to Clone VM&#8217;s'
+title: 'PowerShell to Clone VM's'
 date: 2012-01-31T17:25:00-06:00
 author: trententtye
 layout: post
@@ -23,7 +23,7 @@ tags:
   - scripting
   - VMWare
 ---
-I need to create a Provisioning Server of my own. We don&#8217;t want to purchase the software to do so and we may not need to do so&#8230; VMWare has PowerCLI which may provide enough to do the following:
+I need to create a Provisioning Server of my own. We don't want to purchase the software to do so and we may not need to do so... VMWare has PowerCLI which may provide enough to do the following:
 
 1) Notify the VM that it needs to disable Citrix logins  
 2) Have the VM disable logins and then check for logins. If none are found kick-off the cloning process. Kick off consists of:  
@@ -31,16 +31,16 @@ I need to create a Provisioning Server of my own. We don&#8217;t want to purchas
 2b) Shutdown  
 If users are still logged in, log them off forcefully at midnight and start the process  
 3) Use VMWare Templates to clone the VM with the VM name.  
-4) Shutdown original VM&#8217;s with the same names  
-5) Startup new VM&#8217;s and join to domain&#8230;
+4) Shutdown original VM's with the same names  
+5) Startup new VM's and join to domain...
 
 Done?
 
-I have a script that does the cloning&#8230; I got it from this site:  
+I have a script that does the cloning... I got it from this site:  
 http://www.vtesseract.com/post/16447807254/clone-list-powercli-function  
 http://communities.vmware.com/docs/DOC-18155
 
-I had issues with running it though. For some reason my PowerShell wouldn&#8217;t run it with the comments in it so I had to take them out:
+I had issues with running it though. For some reason my PowerShell wouldn't run it with the comments in it so I had to take them out:
 
 > <pre class="lang:ps decode:true ">function Clone-List{
 
@@ -96,9 +96,9 @@ You can run it with a command like so:
 
 > Get-VM MyVM | Clone-List
 
-I will need to modify this script to see if I can use VMWare Templates (I think that&#8217;s the right terminology) and Citrix XA PowerShell to see if I can get this to work&#8230; We shall see 🙂
+I will need to modify this script to see if I can use VMWare Templates (I think that's the right terminology) and Citrix XA PowerShell to see if I can get this to work... We shall see 🙂
 
-EDIT &#8211; It&#8217;s not VMWare Templates&#8230; It&#8217;s OSCustomizationSpec I think.
+EDIT - It's not VMWare Templates... It's OSCustomizationSpec I think.
 
 <!-- AddThis Advanced Settings generic via filter on the_content -->
 

@@ -22,7 +22,7 @@ tags:
   - PowerShell
   - scripting
 ---
-With Windows Server 2008 and on the event log &#8220;Group Policy&#8221; will track how long it takes a user to login. I&#8217;ve created a script that will pull all this information into a file.
+With Windows Server 2008 and on the event log "Group Policy" will track how long it takes a user to login. I've created a script that will pull all this information into a file.
 
 <pre class="lang:default decode:true ">=================List-of-comps.txt======================
 Server1

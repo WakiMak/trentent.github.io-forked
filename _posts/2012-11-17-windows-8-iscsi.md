@@ -22,7 +22,7 @@ tags:
 ---
 iSCSI and Windows 8 changes
 
-It appears Windows 8 has removed the CriticalDeviceDatabase key. &nbsp;Or, it looks like it just moved it to HKLMSystemControlSet001ControlDeviceLocations. &nbsp;Under the old CDD key there was thousands of listings of hardware ID&#8217;s that were useless. &nbsp;It appears they just eliminated them and then renamed CDD to DeviceLocations.
+It appears Windows 8 has removed the CriticalDeviceDatabase key. &nbsp;Or, it looks like it just moved it to HKLMSystemControlSet001ControlDeviceLocations. &nbsp;Under the old CDD key there was thousands of listings of hardware ID's that were useless. &nbsp;It appears they just eliminated them and then renamed CDD to DeviceLocations.
 
 There you go.
 

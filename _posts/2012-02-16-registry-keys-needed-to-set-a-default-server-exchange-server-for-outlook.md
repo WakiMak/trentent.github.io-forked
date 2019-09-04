@@ -21,7 +21,7 @@ tags:
   - Group Policy
   - Registry
 ---
-We recently upgraded our Exchange infrastructure from 2007 to 2010. During this we changed the host name of the server from an internal name to a nice, easy to remember one (outlook.company.corp). But, we did not update our Outlook&#8217;s defaults to this server, so when you open Outlook for the first time you are presented with this message:
+We recently upgraded our Exchange infrastructure from 2007 to 2010. During this we changed the host name of the server from an internal name to a nice, easy to remember one (outlook.company.corp). But, we did not update our Outlook's defaults to this server, so when you open Outlook for the first time you are presented with this message:
 
 <div style="clear: both; text-align: center;">
   <a style="margin-left: 1em; margin-right: 1em;" href="http://1.bp.blogspot.com/-KJKF0dsFBi4/Tz2QWYEIV1I/AAAAAAAAAIs/WmYYhUXubLw/s1600/exchange-error.png"><img src="http://1.bp.blogspot.com/-KJKF0dsFBi4/Tz2QWYEIV1I/AAAAAAAAAIs/WmYYhUXubLw/s400/exchange-error.png" width="400" height="225" border="0" /></a>
@@ -32,14 +32,14 @@ Microsoft Exchange is unavailable.
 With the options:  
 Retry, Work Offline, and Cancel. If you choose Work Offline you are given this error message:
 
-&#8220;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;  
+"---------  
 Microsoft Office Outlook  
-&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;  
+---------  
 Outlook cannot log on. Verify you are connected to the network and are using the proper server and mailbox name. The connection to Microsoft Exchange is unavailable. Outlook must be online or connected to complete this action.  
-&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;  
+---------  
 OK  
-&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;  
-&#8221;
+---------  
+"
 
 then the opportunity to enter the server name to connect to:
 
@@ -79,13 +79,13 @@ The GPO object needs to look like so:
 
 Notice the %LogonUser% variable.
 
-Each &#8220;Key Path&#8221; requires your username substituted for the %LogonUser% variable as well:
+Each "Key Path" requires your username substituted for the %LogonUser% variable as well:
 
 <div style="clear: both; text-align: center;">
   <a style="margin-left: 1em; margin-right: 1em;" href="http://2.bp.blogspot.com/-jMiGriU4L7U/Tz2SQUbZlzI/AAAAAAAAAJQ/1M38oYBf-oc/s1600/choose-exchange-server.png"><img src="http://2.bp.blogspot.com/-jMiGriU4L7U/Tz2SQUbZlzI/AAAAAAAAAJQ/1M38oYBf-oc/s400/choose-exchange-server.png" width="400" height="180" border="0" /></a>
 </div>
 
-Set this GPO with a loopback processing setting and you&#8217;re rolling. The negative that I&#8217;ve seen with this approach is that it will set the registry keys on a new login, but launching Outlook for the first time will overwrite them with the defaults set in the PRF. If you cancel out and relaunch the registry keys will apply again and the server you specified in them will work.
+Set this GPO with a loopback processing setting and you're rolling. The negative that I've seen with this approach is that it will set the registry keys on a new login, but launching Outlook for the first time will overwrite them with the defaults set in the PRF. If you cancel out and relaunch the registry keys will apply again and the server you specified in them will work.
 
 Or you can setup a DNS Alias, but this was an interesting exercise anyways 🙂
 

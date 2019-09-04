@@ -1,6 +1,6 @@
 ---
 id: 589
-title: 'Group Policy Preferences &#8211; Scheduled Task fails to apply'
+title: 'Group Policy Preferences - Scheduled Task fails to apply'
 date: 2014-10-03T15:43:00-06:00
 author: trententtye
 layout: post
@@ -42,10 +42,10 @@ tags:
 
 <div style="font-family: Helvetica; font-size: 12px;">
   <pre class="lang:default decode:true ">2014-10-03 10:42:19.372 [pid=0x59c,tid=0x1294] No item to delete.
-2014-10-03 10:42:19.372 [pid=0x59c,tid=0x1294] pWorkItemV2-&gt;Create [ hr = 0x80070534 "No mapping between account names and security IDs was done." ]
+2014-10-03 10:42:19.372 [pid=0x59c,tid=0x1294] pWorkItemV2->Create [ hr = 0x80070534 "No mapping between account names and security IDs was done." ]
 2014-10-03 10:42:19.372 [pid=0x59c,tid=0x1294] replaceTask [ hr = 0x80070534 "No mapping between account names and security IDs was done." ]
 2014-10-03 10:42:19.372 [pid=0x59c,tid=0x1294] Properties handled. [ hr = 0x80070534 "No mapping between account names and security IDs was done." ]
-2014-10-03 10:42:19.388 [pid=0x59c,tid=0x1294] EVENT : The computer 'AHS-Add-GlobalPrinters' preference item in the 'CTX XenApp 65 Test {E6775312-AAC0-45C3-8A1C-5F5EA46701A7}' Group Policy object did not apply because it failed with error code '0x80070534 No mapping between account names and security IDs was done.'%100790275
+2014-10-03 10:42:19.388 [pid=0x59c,tid=0x1294] EVENT : The computer 'AHS-Add-GlobalPrinters' preference item in the 'CTX & 65 Test {E6775312-AAC0-45C3-8A1C-5F5EA46701A7}' Group Policy object did not apply because it failed with error code '0x80070534 No mapping between account names and security IDs was done.'%100790275
 2014-10-03 10:42:19.388 [pid=0x59c,tid=0x1294] Completed class - AHS-Add-GlobalPrinters. [ hr = 0x80070534 "No mapping between account names and security IDs was done." ]
 2014-10-03 10:42:19.388 [pid=0x59c,tid=0x1294] Error suppressed. [ hr = 0x80070534 "No mapping between account names and security IDs was done." ]</pre>
 </div>
@@ -54,7 +54,7 @@ tags:
 </div>
 
 <div>
-  So it can&#8217;t map between user ID&#8217;s. Â It&#8217;d be nice if it told us which mapping failed, but it gives us a pretty good hint. Looking at the XML file the GPP creates (stored here: Â &#8220;C:\ProgramData\Microsoft\Group Policy\History\\Machine\Preferences\ScheduledTasks\ScheduledTasks.xml&#8221; )
+  So it can't map between user ID's. Â It'd be nice if it told us which mapping failed, but it gives us a pretty good hint. Looking at the XML file the GPP creates (stored here: Â "C:\ProgramData\Microsoft\Group Policy\History\\Machine\Preferences\ScheduledTasks\ScheduledTasks.xml" )
 </div>
 
 <div>
@@ -62,44 +62,44 @@ tags:
 </div>
 
 <div style="font-family: Helvetica; font-size: 12px;">
-  <pre class="lang:default decode:true ">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;&lt;ScheduledTasks clsid="{CC63F200-7309-4ba0-B154-A71CD118DBCC}"&gt;  
- &lt;TaskV2 clsid="{D8896631-B747-47a7-84A6-C155337F3BC8}" name="AHS-Add-GlobalPrinters" image="1" changed="2014-10-03 17:15:15" uid="{EDDCD78F-46AC-414A-92B2-65D37D12E3F9}" bypassErrors="0" userContext="0" removePolicy="1" desc="Create Network Printer Queues on Cancer Control XenApp Servers" policyApplied="1"&gt; 
- &lt;Properties action="R" name="AHS-Add-GlobalPrinters" runAs="NT AUTHORITY\SYSTEM" logonType="S4U"&gt; 
- &lt;Task version="1.2"&gt; 
- &lt;RegistrationInfo&gt; 
- &lt;Author&gt;HEALTHY\ssalehianadm&lt;/Author&gt; 
- &lt;Description&gt;Create Network Printer Queues on Cancer Control XenApp Servers&lt;/Description&gt;&lt;/RegistrationInfo&gt; 
- &lt;Principals&gt; 
- &lt;Principal id="Author"&gt; 
- &lt;RunLevel&gt;HighestAvailable&lt;/RunLevel&gt; 
- &lt;LogonType&gt;S4U&lt;/LogonType&gt; 
- &lt;UserId&gt;BUILTIN\SYSTEM&lt;/UserId&gt;&lt;/Principal&gt;&lt;/Principals&gt; 
- &lt;Settings&gt; 
- &lt;IdleSettings&gt; 
- &lt;Duration&gt;PT10M&lt;/Duration&gt; 
- &lt;WaitTimeout&gt;PT1H&lt;/WaitTimeout&gt; 
- &lt;StopOnIdleEnd&gt;true&lt;/StopOnIdleEnd&gt; 
- &lt;RestartOnIdle&gt;false&lt;/RestartOnIdle&gt;&lt;/IdleSettings&gt; 
- &lt;MultipleInstancesPolicy&gt;IgnoreNew&lt;/MultipleInstancesPolicy&gt; 
- &lt;DisallowStartIfOnBatteries&gt;true&lt;/DisallowStartIfOnBatteries&gt; 
- &lt;StopIfGoingOnBatteries&gt;true&lt;/StopIfGoingOnBatteries&gt; 
- &lt;AllowHardTerminate&gt;false&lt;/AllowHardTerminate&gt; 
- &lt;AllowStartOnDemand&gt;true&lt;/AllowStartOnDemand&gt; 
- &lt;Enabled&gt;true&lt;/Enabled&gt; 
- &lt;Hidden&gt;false&lt;/Hidden&gt; 
- &lt;ExecutionTimeLimit&gt;PT0S&lt;/ExecutionTimeLimit&gt; 
- &lt;Priority&gt;7&lt;/Priority&gt;&lt;/Settings&gt; 
- &lt;Triggers&gt;&lt;/Triggers&gt; 
- &lt;Actions&gt; 
- &lt;Exec&gt; 
- &lt;Command&gt;C:\Windows\System32\cmd.exe&lt;/Command&gt; 
- &lt;Arguments&gt;/c C:\PublishedApplications\AHS-Add-GlobalPrinters.cmd WSLBLPRINT01&lt;/Arguments&gt;&lt;/Exec&gt;&lt;/Actions&gt;&lt;/Task&gt;&lt;/Properties&gt; 
- &lt;Filters&gt;</pre>
+  <pre class="lang:default decode:true "><?xml version="1.0" encoding="UTF-8" ?><ScheduledTasks clsid="{CC63F200-7309-4ba0-B154-A71CD118DBCC}">  
+ <TaskV2 clsid="{D8896631-B747-47a7-84A6-C155337F3BC8}" name="AHS-Add-GlobalPrinters" image="1" changed="2014-10-03 17:15:15" uid="{EDDCD78F-46AC-414A-92B2-65D37D12E3F9}" bypassErrors="0" userContext="0" removePolicy="1" desc="Create Network Printer Queues on Cancer Control & Servers" policyApplied="1"> 
+ <Properties action="R" name="AHS-Add-GlobalPrinters" runAs="NT AUTHORITY\SYSTEM" logonType="S4U"> 
+ <Task version="1.2"> 
+ <RegistrationInfo> 
+ <Author>HEALTHY\ssalehianadm</Author> 
+ <Description>Create Network Printer Queues on Cancer Control & Servers</Description></RegistrationInfo> 
+ <Principals> 
+ <Principal id="Author"> 
+ <RunLevel>HighestAvailable</RunLevel> 
+ <LogonType>S4U</LogonType> 
+ <UserId>BUILTIN\SYSTEM</UserId></Principal></Principals> 
+ <Settings> 
+ <IdleSettings> 
+ <Duration>PT10M</Duration> 
+ <WaitTimeout>PT1H</WaitTimeout> 
+ <StopOnIdleEnd>true</StopOnIdleEnd> 
+ <RestartOnIdle>false</RestartOnIdle></IdleSettings> 
+ <MultipleInstancesPolicy>IgnoreNew</MultipleInstancesPolicy> 
+ <DisallowStartIfOnBatteries>true</DisallowStartIfOnBatteries> 
+ <StopIfGoingOnBatteries>true</StopIfGoingOnBatteries> 
+ <AllowHardTerminate>false</AllowHardTerminate> 
+ <AllowStartOnDemand>true</AllowStartOnDemand> 
+ <Enabled>true</Enabled> 
+ <Hidden>false</Hidden> 
+ <ExecutionTimeLimit>PT0S</ExecutionTimeLimit> 
+ <Priority>7</Priority></Settings> 
+ <Triggers></Triggers> 
+ <Actions> 
+ <Exec> 
+ <Command>C:\Windows\System32\cmd.exe</Command> 
+ <Arguments>/c C:\PublishedApplications\AHS-Add-GlobalPrinters.cmd WSLBLPRINT01</Arguments></Exec></Actions></Task></Properties> 
+ <Filters></pre>
 </div>
 
 <div>
   <div>
-    Everything validates. Â Googling for BUILTIN\SYSTEM brought up that several people were getting the same error when using BUILTIN\SYSTEM. Â Which makes some sense as &#8220;BUILTIN\SYSTEM&#8221; isn&#8217;t a real account. Â We renamed it to NT AUTHORITY\SYSTEM. Â This time we got a new error message:
+    Everything validates. Â Googling for BUILTIN\SYSTEM brought up that several people were getting the same error when using BUILTIN\SYSTEM. Â Which makes some sense as "BUILTIN\SYSTEM" isn't a real account. Â We renamed it to NT AUTHORITY\SYSTEM. Â This time we got a new error message:
   </div>
   
   <div style="font-family: Helvetica; font-size: 12px;">
@@ -110,7 +110,7 @@ tags:
   
   <div>
     <div style="font-family: Helvetica; font-size: 12px;">
-      <pre class="lang:default decode:true ">The computer 'AHS-Add-GlobalPrinters' preference item in the 'CTX XenApp 65 Prod {CB954F1D-7AE5-4706-9BCC-995A0D83CED5}' Group Policy object did not apply because it failed with error code '0x80041316 The task XML contains an unexpected node.' See trace file for more details.</pre>
+      <pre class="lang:default decode:true ">The computer 'AHS-Add-GlobalPrinters' preference item in the 'CTX & 65 Prod {CB954F1D-7AE5-4706-9BCC-995A0D83CED5}' Group Policy object did not apply because it failed with error code '0x80041316 The task XML contains an unexpected node.' See trace file for more details.</pre>
     </div>
   </div>
   
@@ -118,46 +118,46 @@ tags:
   </div>
   
   <div>
-    This doesn&#8217;t tell us a whole lot of information. Â What is the unexpected node? Looking again at the XML file it looked like so:
+    This doesn't tell us a whole lot of information. Â What is the unexpected node? Looking again at the XML file it looked like so:
   </div>
   
   <div>
   </div>
   
   <div>
-    <pre class="lang:default decode:true ">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;&lt;ScheduledTasks clsid="{CC63F200-7309-4ba0-B154-A71CD118DBCC}"&gt;  
-&lt;TaskV2 clsid="{D8896631-B747-47a7-84A6-C155337F3BC8}" name="AHS-Add-GlobalPrinters" image="1" changed="2014-10-03 17:15:15" uid="{EDDCD78F-46AC-414A-92B2-65D37D12E3F9}" bypassErrors="0" userContext="0" removePolicy="1" desc="Create Network Printer Queues on Cancer Control XenApp Servers" policyApplied="1"&gt; 
-&lt;Properties action="R" name="AHS-Add-GlobalPrinters" runAs="NT AUTHORITY\SYSTEM" logonType="S4U"&gt; 
-&lt;Task version="1.2"&gt; 
-&lt;RegistrationInfo&gt; 
-&lt;Author&gt;HEALTHY\ssalehianadm&lt;/Author&gt; 
-&lt;Description&gt;Create Network Printer Queues on Cancer Control XenApp Servers&lt;/Description&gt;&lt;/RegistrationInfo&gt; 
-&lt;Principals&gt; 
-&lt;Principal id="Author"&gt; 
-&lt;RunLevel&gt;HighestAvailable&lt;/RunLevel&gt; 
-&lt;LogonType&gt;S4U&lt;/LogonType&gt; 
-&lt;GroupId&gt;NT AUTHORITY\SYSTEM&lt;/GroupId&gt;&lt;/Principal&gt;&lt;/Principals&gt; 
-&lt;Settings&gt; 
-&lt;IdleSettings&gt; 
-&lt;Duration&gt;PT10M&lt;/Duration&gt; 
-&lt;WaitTimeout&gt;PT1H&lt;/WaitTimeout&gt; 
-&lt;StopOnIdleEnd&gt;true&lt;/StopOnIdleEnd&gt; 
-&lt;RestartOnIdle&gt;false&lt;/RestartOnIdle&gt;&lt;/IdleSettings&gt; 
-&lt;MultipleInstancesPolicy&gt;IgnoreNew&lt;/MultipleInstancesPolicy&gt; 
-&lt;DisallowStartIfOnBatteries&gt;true&lt;/DisallowStartIfOnBatteries&gt; 
-&lt;StopIfGoingOnBatteries&gt;true&lt;/StopIfGoingOnBatteries&gt; 
-&lt;AllowHardTerminate&gt;false&lt;/AllowHardTerminate&gt; 
-&lt;AllowStartOnDemand&gt;true&lt;/AllowStartOnDemand&gt; 
-&lt;Enabled&gt;true&lt;/Enabled&gt; 
-&lt;Hidden&gt;false&lt;/Hidden&gt; 
-&lt;ExecutionTimeLimit&gt;PT0S&lt;/ExecutionTimeLimit&gt; 
-&lt;Priority&gt;7&lt;/Priority&gt;&lt;/Settings&gt; 
-&lt;Triggers&gt;&lt;/Triggers&gt; 
-&lt;Actions&gt; 
-&lt;Exec&gt; 
-&lt;Command&gt;C:\Windows\System32\cmd.exe&lt;/Command&gt; 
-&lt;Arguments&gt;/c C:\PublishedApplications\AHS-Add-GlobalPrinters.cmd WSLBLPRINT01&lt;/Arguments&gt;&lt;/Exec&gt;&lt;/Actions&gt;&lt;/Task&gt;&lt;/Properties&gt; 
-&lt;Filters&gt;</pre>
+    <pre class="lang:default decode:true "><?xml version="1.0" encoding="UTF-8" ?><ScheduledTasks clsid="{CC63F200-7309-4ba0-B154-A71CD118DBCC}">  
+<TaskV2 clsid="{D8896631-B747-47a7-84A6-C155337F3BC8}" name="AHS-Add-GlobalPrinters" image="1" changed="2014-10-03 17:15:15" uid="{EDDCD78F-46AC-414A-92B2-65D37D12E3F9}" bypassErrors="0" userContext="0" removePolicy="1" desc="Create Network Printer Queues on Cancer Control & Servers" policyApplied="1"> 
+<Properties action="R" name="AHS-Add-GlobalPrinters" runAs="NT AUTHORITY\SYSTEM" logonType="S4U"> 
+<Task version="1.2"> 
+<RegistrationInfo> 
+<Author>HEALTHY\ssalehianadm</Author> 
+<Description>Create Network Printer Queues on Cancer Control & Servers</Description></RegistrationInfo> 
+<Principals> 
+<Principal id="Author"> 
+<RunLevel>HighestAvailable</RunLevel> 
+<LogonType>S4U</LogonType> 
+<GroupId>NT AUTHORITY\SYSTEM</GroupId></Principal></Principals> 
+<Settings> 
+<IdleSettings> 
+<Duration>PT10M</Duration> 
+<WaitTimeout>PT1H</WaitTimeout> 
+<StopOnIdleEnd>true</StopOnIdleEnd> 
+<RestartOnIdle>false</RestartOnIdle></IdleSettings> 
+<MultipleInstancesPolicy>IgnoreNew</MultipleInstancesPolicy> 
+<DisallowStartIfOnBatteries>true</DisallowStartIfOnBatteries> 
+<StopIfGoingOnBatteries>true</StopIfGoingOnBatteries> 
+<AllowHardTerminate>false</AllowHardTerminate> 
+<AllowStartOnDemand>true</AllowStartOnDemand> 
+<Enabled>true</Enabled> 
+<Hidden>false</Hidden> 
+<ExecutionTimeLimit>PT0S</ExecutionTimeLimit> 
+<Priority>7</Priority></Settings> 
+<Triggers></Triggers> 
+<Actions> 
+<Exec> 
+<Command>C:\Windows\System32\cmd.exe</Command> 
+<Arguments>/c C:\PublishedApplications\AHS-Add-GlobalPrinters.cmd WSLBLPRINT01</Arguments></Exec></Actions></Task></Properties> 
+<Filters></pre>
   </div>
   
   <div style="font-family: Helvetica; font-size: 12px;">
@@ -176,7 +176,7 @@ tags:
     </div>
     
     <div>
-      The SYSTEM account is NOT a group. Â We changed how we selected the SYSTEM account by &#8220;Browsing&#8221; AD, going into the root of the domain, going into the Builtin OU, and selecting SYSTEM. Â This populated as &#8220;NT AUTHORITY\Well-Known-Security-Id-System&#8221;. Â This will fail because there is no such user account called &#8220;Well-Known-Security-Id-System&#8221;. Â At this point we renamed it to &#8220;NT AUTHORITY\SYSTEM&#8221;.
+      The SYSTEM account is NOT a group. Â We changed how we selected the SYSTEM account by "Browsing" AD, going into the root of the domain, going into the Builtin OU, and selecting SYSTEM. Â This populated as "NT AUTHORITY\Well-Known-Security-Id-System". Â This will fail because there is no such user account called "Well-Known-Security-Id-System". Â At this point we renamed it to "NT AUTHORITY\SYSTEM".
     </div>
     
     <div>
@@ -209,7 +209,7 @@ tags:
     </div>
     
     <div>
-      If you are having issues with your GPP Scheduled task item running as the SYSTEM account I would HIGHLY recommend you check your XML file and confirm it is set as &#8220;<span style="text-decoration: underline;"><strong>NT AUTHORITY\SYSTEM</strong></span>&#8221; and it is surrounded by UserIdÂ <span style="text-decoration: underline;"><strong>NOT</strong></span>Â Â GroupId.
+      If you are having issues with your GPP Scheduled task item running as the SYSTEM account I would HIGHLY recommend you check your XML file and confirm it is set as "<span style="text-decoration: underline;"><strong>NT AUTHORITY\SYSTEM</strong></span>" and it is surrounded by UserIdÂ <span style="text-decoration: underline;"><strong>NOT</strong></span>Â Â GroupId.
     </div>
   </div>
 </div>

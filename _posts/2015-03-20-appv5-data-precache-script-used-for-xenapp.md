@@ -1,11 +1,11 @@
 ---
 id: 568
-title: 'AppV5 &#8211; Data Precache script (used for XenApp)'
+title: 'AppV5 - Data Precache script (used for &)'
 date: 2015-03-20T15:42:00-06:00
 author: trententtye
 layout: post
-guid: http://theorypc.ca/blog/2015/03/20/appv5-data-precache-script-used-for-xenapp/
-permalink: /2015/03/20/appv5-data-precache-script-used-for-xenapp/
+guid: http://theorypc.ca/blog/2015/03/20/appv5-data-precache-script-used-for-&/
+permalink: /2015/03/20/appv5-data-precache-script-used-for-&/
 blogger_blog:
   - trentent.blogspot.com
 blogger_author:
@@ -24,7 +24,7 @@ tags:
   - scripting
   - Target Device
 ---
-This is the AppV5 Data Precache script we use to load our AppV5 packages on our Citrix XenApp servers. � Because we use PVS and store the AppV package installation root folder on a persistent disk, we sometimes encounter issues that require us to &#8216;clean up&#8217; the package installation root folder before the AppV5 packages will load. � What this script attempts to do is setup AppV5 as if it&#8217;s a new install, grab any packages from the publishing server, then, if sharedcontentstore is disabled, fully mount/load the packages.
+This is the AppV5 Data Precache script we use to load our AppV5 packages on our Citrix & servers. � Because we use PVS and store the AppV package installation root folder on a persistent disk, we sometimes encounter issues that require us to 'clean up' the package installation root folder before the AppV5 packages will load. � What this script attempts to do is setup AppV5 as if it's a new install, grab any packages from the publishing server, then, if sharedcontentstore is disabled, fully mount/load the packages.
 
 AppV5DataPrecache.cmd
 
@@ -39,7 +39,7 @@ AppV5DataPrecache.cmd
 ::
 :: File Name:       AppV5_Data_PreCache.cmd
 ::
-:: Description:     Pre-Cache App-V Applications/Packages on XenApp Server
+:: Description:     Pre-Cache App-V Applications/Packages on & Server
 :: Updates:             Updated to remove the 15min timeout and added a cleanup to remove stale AppV5 packages
 :: Updates:             Feb 05, 2015 -- TTYE - delete "C:\ProgramData\Microsoft\AppV\Client" added to prevent vDisk from caching faulty junctions
 ::
@@ -62,19 +62,19 @@ IF NOT EXIST "C:\Program Files\Microsoft Application Virtualization\Client\AppVC
 SET ZDC=CTX301
 IF /I [%COMPUTERNAME:~-1,1%] EQU [T] SET ZDC=CTX301T
  
- &gt;%WINDIR%\Temp\Set-Server-Offline.ps1 ECHO.
-&gt;&gt;%WINDIR%\Temp\Set-Server-Offline.ps1 ECHO if ( (Get-PSSnapin -Name Citrix.XenApp.Commands -ErrorAction SilentlyContinue) -eq $null )
-&gt;&gt;%WINDIR%\Temp\Set-Server-Offline.ps1 ECHO {
-&gt;&gt;%WINDIR%\Temp\Set-Server-Offline.ps1 ECHO   Add-PSSnapin Citrix.XenApp.Commands
-&gt;&gt;%WINDIR%\Temp\Set-Server-Offline.ps1 ECHO   $offline = @()
-&gt;&gt;%WINDIR%\Temp\Set-Server-Offline.ps1 ECHO   $offlineNames = Get-XAWorkerGroup "Offline" -Computername %ZDC%
-&gt;&gt;%WINDIR%\Temp\Set-Server-Offline.ps1 ECHO   $offline += $offlineNames.ServerNames
-&gt;&gt;%WINDIR%\Temp\Set-Server-Offline.ps1 ECHO   $offline += $env:computername
-&gt;&gt;%WINDIR%\Temp\Set-Server-Offline.ps1 ECHO   Set-XAWorkerGroup "Offline" -ServerNames $offline -Computername %ZDC%
-&gt;&gt;%WINDIR%\Temp\Set-Server-Offline.ps1 ECHO }
+ >%WINDIR%\Temp\Set-Server-Offline.ps1 ECHO.
+>>%WINDIR%\Temp\Set-Server-Offline.ps1 ECHO if ( (Get-PSSnapin -Name Citrix.&.Commands -ErrorAction SilentlyContinue) -eq $null )
+>>%WINDIR%\Temp\Set-Server-Offline.ps1 ECHO {
+>>%WINDIR%\Temp\Set-Server-Offline.ps1 ECHO   Add-PSSnapin Citrix.&.Commands
+>>%WINDIR%\Temp\Set-Server-Offline.ps1 ECHO   $offline = @()
+>>%WINDIR%\Temp\Set-Server-Offline.ps1 ECHO   $offlineNames = Get-XAWorkerGroup "Offline" -Computername %ZDC%
+>>%WINDIR%\Temp\Set-Server-Offline.ps1 ECHO   $offline += $offlineNames.ServerNames
+>>%WINDIR%\Temp\Set-Server-Offline.ps1 ECHO   $offline += $env:computername
+>>%WINDIR%\Temp\Set-Server-Offline.ps1 ECHO   Set-XAWorkerGroup "Offline" -ServerNames $offline -Computername %ZDC%
+>>%WINDIR%\Temp\Set-Server-Offline.ps1 ECHO }
 "%SystemRoot%\system32\WindowsPowerShell\v1.0\powershell.exe"   -ExecutionPolicy bypass -file "%WINDIR%\Temp\Set-Server-Offline.ps1"
  
-PING LOCALHOST -n 120 &gt;NUL
+PING LOCALHOST -n 120 >NUL
  
 gpupdate /target:computer /force
 :: Disable Logons
@@ -111,17 +111,17 @@ net start appvclient
 :: App-V 5 - Remove old packages
 :: ================================================================================
 IF EXIST %SYSTEMROOT%\SysWOW64\notepad.exe (
-    &gt;Appv5ClientRefresh-01.ps1 ECHO.
-    &gt;&gt;Appv5ClientRefresh-01.ps1 ECHO Import-Module AppVClient
-    &gt;&gt;Appv5ClientRefresh-01.ps1 ECHO Stop-AppvClientConnectionGroup *
-    &gt;&gt;Appv5ClientRefresh-01.ps1 ECHO Stop-AppvClientPackage *
-    &gt;&gt;Appv5ClientRefresh-01.ps1 ECHO Stop-AppvClientConnectionGroup *
-    &gt;&gt;Appv5ClientRefresh-01.ps1 ECHO Stop-AppvClientPackage *
-    &gt;&gt;Appv5ClientRefresh-01.ps1 ECHO Remove-AppvClientConnectionGroup *
-    &gt;&gt;Appv5ClientRefresh-01.ps1 ECHO Remove-AppvClientPackage *
+    >Appv5ClientRefresh-01.ps1 ECHO.
+    >>Appv5ClientRefresh-01.ps1 ECHO Import-Module AppVClient
+    >>Appv5ClientRefresh-01.ps1 ECHO Stop-AppvClientConnectionGroup *
+    >>Appv5ClientRefresh-01.ps1 ECHO Stop-AppvClientPackage *
+    >>Appv5ClientRefresh-01.ps1 ECHO Stop-AppvClientConnectionGroup *
+    >>Appv5ClientRefresh-01.ps1 ECHO Stop-AppvClientPackage *
+    >>Appv5ClientRefresh-01.ps1 ECHO Remove-AppvClientConnectionGroup *
+    >>Appv5ClientRefresh-01.ps1 ECHO Remove-AppvClientPackage *
     "%SystemRoot%\system32\WindowsPowerShell\v1.0\powershell.exe"  -ExecutionPolicy bypass -File .\Appv5ClientRefresh-01.ps1
     rmdir /s /q "C:\ProgramData\Microsoft\AppV\Client"
-    DEL /F /Q Appv5ClientRefresh-01.ps1 &gt;NUL
+    DEL /F /Q Appv5ClientRefresh-01.ps1 >NUL
 )
  
  
@@ -143,7 +143,7 @@ IF EXIST %SYSTEMROOT%\SysWOW64\notepad.exe (
 )
  
 mkdir D:\AppVData\PackageInstallationRoot
-ping 127.0.0.1 &gt;NUL
+ping 127.0.0.1 >NUL
  
 :: ================================================================================
 :: App-V 5 - Shorten package paths to hopefully take ownership/delete them
@@ -151,10 +151,10 @@ ping 127.0.0.1 &gt;NUL
 D:
 cd /d D:\AppVData\PackageInstallationRoot
 IF NOT EXIST D:\AppVData\PackageInstallationRoot GOTO SKIPPATH
-        ECHO. &gt;%TEMP%\shortenPath.ps1
-        ECHO for ($i=1; $i -le 40; $i++) { &gt;&gt;%TEMP%\shortenPath.ps1 
-        ECHO gci ^| rename-item -newname { [string]($_.name).substring(1) } &gt;&gt;%TEMP%\shortenPath.ps1 
-        ECHO } &gt;&gt;%TEMP%\shortenPath.ps1 
+        ECHO. >%TEMP%\shortenPath.ps1
+        ECHO for ($i=1; $i -le 40; $i++) { >>%TEMP%\shortenPath.ps1 
+        ECHO gci ^| rename-item -newname { [string]($_.name).substring(1) } >>%TEMP%\shortenPath.ps1 
+        ECHO } >>%TEMP%\shortenPath.ps1 
     "%SystemRoot%\system32\WindowsPowerShell\v1.0\powershell.exe"  -ExecutionPolicy bypass -file "%TEMP%\shortenPath.ps1"
  
 ::Shorten all version paths as well...
@@ -181,7 +181,7 @@ IF EXIST %SYSTEMROOT%\SysWOW64\notepad.exe (
 :: App-V 5 - Take Ownership of PackageInstallationRoot
 :: ================================================================================
 IF EXIST %SYSTEMROOT%\SysWOW64\notepad.exe (
-        takeown /F D:\AppVData\PackageInstallationRoot /R /A &gt;NUL
+        takeown /F D:\AppVData\PackageInstallationRoot /R /A >NUL
         for /f "tokens=*" %%A IN ('dir /b /s D:\AppVData\PackageInstallationRoot') do takeown /F "%%A"
         for /f "tokens=*" %%A IN ('dir /b /s D:\AppVData\PackageInstallationRoot') do takeown /F "%%A" /A
         for /f "tokens=*" %%A IN ('dir /b /s D:\AppVData\PackageInstallationRoot') do icacls %%A /T /grant Administrators:F
@@ -192,7 +192,7 @@ EVENTCREATE /ID 2 /L SYSTEM /T INFORMATION /SO "AppV5_Data_PreCache.cmd" /D "App
 :: App-V 5 - Grant Control Admins PackageInstallationRoot
 :: ================================================================================
 IF EXIST %SYSTEMROOT%\SysWOW64\notepad.exe (
-        icacls D:\AppVData\PackageInstallationRoot /T /grant Administrators:F &gt;NUL
+        icacls D:\AppVData\PackageInstallationRoot /T /grant Administrators:F >NUL
 )
 EVENTCREATE /ID 2 /L SYSTEM /T INFORMATION /SO "AppV5_Data_PreCache.cmd" /D "App-V 5 - Grant Control Admins PackageInstallationRoot, ERRORLEVEL %ERRORLEVEL%"
  
@@ -209,7 +209,7 @@ EVENTCREATE /ID 2 /L SYSTEM /T INFORMATION /SO "AppV5_Data_PreCache.cmd" /D "App
 :: App-V 5 - Take Ownership of PackageInstallationRoot
 :: ================================================================================
 IF EXIST %SYSTEMROOT%\SysWOW64\notepad.exe (
-        takeown /F D:\AppVData\PackageInstallationRoot /R &gt;NUL
+        takeown /F D:\AppVData\PackageInstallationRoot /R >NUL
 )
 EVENTCREATE /ID 2 /L SYSTEM /T INFORMATION /SO "AppV5_Data_PreCache.cmd" /D "App-V 5 - Take Ownership of PackageInstallationRoot 2, ERRORLEVEL %ERRORLEVEL%"
  
@@ -217,7 +217,7 @@ EVENTCREATE /ID 2 /L SYSTEM /T INFORMATION /SO "AppV5_Data_PreCache.cmd" /D "App
 :: App-V 5 - Grant Control Admins PackageInstallationRoot
 :: ================================================================================
 IF EXIST %SYSTEMROOT%\SysWOW64\notepad.exe (
-        icacls D:\AppVData\PackageInstallationRoot /T /grant Administrators:F &gt;NUL
+        icacls D:\AppVData\PackageInstallationRoot /T /grant Administrators:F >NUL
 )
 EVENTCREATE /ID 2 /L SYSTEM /T INFORMATION /SO "AppV5_Data_PreCache.cmd" /D "App-V 5 - Grant Control Admins PackageInstallationRoot 2, ERRORLEVEL %ERRORLEVEL%"
  
@@ -262,44 +262,44 @@ EVENTCREATE /ID 2 /L SYSTEM /T INFORMATION /SO "AppV5_Data_PreCache.cmd" /D "App
 :: running it from %windir%\Temp works as it will always be there.
 :: ================================================================================
 :RETRYMOUNT
-ping 127.0.0.1 -n 60 &gt;NUL
+ping 127.0.0.1 -n 60 >NUL
  
  
 EVENTCREATE /ID 2 /L SYSTEM /T INFORMATION /SO "AppV5_Data_PreCache.cmd" /D "App-V 5 - Checking packages..."
  
-    &gt;%WINDIR%\Temp\check-packages.ps1 ECHO.
-    &gt;&gt;%WINDIR%\Temp\check-packages.ps1 ECHO Write-EventLog –LogName SYSTEM –Source "AppV5_Data_PreCache.cmd" –EntryType Information –EventID 4 –Message ("Starting Check Packages Script")
-    &gt;&gt;%WINDIR%\Temp\check-packages.ps1 ECHO Import-Module AppVClient
-    &gt;&gt;%WINDIR%\Temp\check-packages.ps1 ECHO Get-AppvPublishingServer ^| Sync-AppvPublishingServer
-    &gt;&gt;%WINDIR%\Temp\check-packages.ps1 ECHO Get-AppvClientConnectionGroup
-    &gt;&gt;%WINDIR%\Temp\check-packages.ps1 ECHO Get-AppvClientPackage
-    &gt;&gt;%WINDIR%\Temp\check-packages.ps1 ECHO $apps = Get-AppvClientPackage
-    &gt;&gt;%WINDIR%\Temp\check-packages.ps1 ECHO $SCSMode = Get-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\AppV\Client\Streaming  -Name "SharedContentStoreMode"
-    &gt;&gt;%WINDIR%\Temp\check-packages.ps1 ECHO if ($SCSMode.SharedContentStoreMode -eq 0) { $apps ^| Mount-AppvClientPackage }
-    &gt;&gt;%WINDIR%\Temp\check-packages.ps1 ECHO sleep 60
-    &gt;&gt;%WINDIR%\Temp\check-packages.ps1 ECHO Get-AppvPublishingServer ^| Sync-AppvPublishingServer
-    &gt;&gt;%WINDIR%\Temp\check-packages.ps1 ECHO Get-AppvClientConnectionGroup
-    &gt;&gt;%WINDIR%\Temp\check-packages.ps1 ECHO Get-AppvClientPackage
-    &gt;&gt;%WINDIR%\Temp\check-packages.ps1 ECHO $apps ^| Add-AppvClientPackage
-    &gt;&gt;%WINDIR%\Temp\check-packages.ps1 ECHO $apps ^| Publish-AppvClientPackage -Global
-    &gt;&gt;%WINDIR%\Temp\check-packages.ps1 ECHO $apps = Get-AppvClientPackage
-    &gt;&gt;%WINDIR%\Temp\check-packages.ps1 ECHO if ($SCSMode.SharedContentStoreMode -eq 0) { $apps ^| Mount-AppvClientPackage }
-    &gt;&gt;%WINDIR%\Temp\check-packages.ps1 ECHO $string = $apps ^| Select-Object Name,PercentLoaded ^| out-string
-    &gt;&gt;%WINDIR%\Temp\check-packages.ps1 ECHO $string += $SCSMode ^| Select-Object SharedContentStoreMode ^| out-string
-    &gt;&gt;%WINDIR%\Temp\check-packages.ps1 ECHO Write-EventLog –LogName SYSTEM –Source "AppV5_Data_PreCache.cmd" –EntryType Information –EventID 4 –Message ($string)
-    &gt;&gt;%WINDIR%\Temp\check-packages.ps1 ECHO if ($apps.Count -eq 0) { Start-Process -FilePath "C:\swinst\AppV_Data_PreCache\AppV5_Data_PreCache.cmd" %COUNT% }
-        ping 127.0.0.1 -n 5 &gt;NUL
+    >%WINDIR%\Temp\check-packages.ps1 ECHO.
+    >>%WINDIR%\Temp\check-packages.ps1 ECHO Write-EventLog –LogName SYSTEM –Source "AppV5_Data_PreCache.cmd" –EntryType Information –EventID 4 –Message ("Starting Check Packages Script")
+    >>%WINDIR%\Temp\check-packages.ps1 ECHO Import-Module AppVClient
+    >>%WINDIR%\Temp\check-packages.ps1 ECHO Get-AppvPublishingServer ^| Sync-AppvPublishingServer
+    >>%WINDIR%\Temp\check-packages.ps1 ECHO Get-AppvClientConnectionGroup
+    >>%WINDIR%\Temp\check-packages.ps1 ECHO Get-AppvClientPackage
+    >>%WINDIR%\Temp\check-packages.ps1 ECHO $apps = Get-AppvClientPackage
+    >>%WINDIR%\Temp\check-packages.ps1 ECHO $SCSMode = Get-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\AppV\Client\Streaming  -Name "SharedContentStoreMode"
+    >>%WINDIR%\Temp\check-packages.ps1 ECHO if ($SCSMode.SharedContentStoreMode -eq 0) { $apps ^| Mount-AppvClientPackage }
+    >>%WINDIR%\Temp\check-packages.ps1 ECHO sleep 60
+    >>%WINDIR%\Temp\check-packages.ps1 ECHO Get-AppvPublishingServer ^| Sync-AppvPublishingServer
+    >>%WINDIR%\Temp\check-packages.ps1 ECHO Get-AppvClientConnectionGroup
+    >>%WINDIR%\Temp\check-packages.ps1 ECHO Get-AppvClientPackage
+    >>%WINDIR%\Temp\check-packages.ps1 ECHO $apps ^| Add-AppvClientPackage
+    >>%WINDIR%\Temp\check-packages.ps1 ECHO $apps ^| Publish-AppvClientPackage -Global
+    >>%WINDIR%\Temp\check-packages.ps1 ECHO $apps = Get-AppvClientPackage
+    >>%WINDIR%\Temp\check-packages.ps1 ECHO if ($SCSMode.SharedContentStoreMode -eq 0) { $apps ^| Mount-AppvClientPackage }
+    >>%WINDIR%\Temp\check-packages.ps1 ECHO $string = $apps ^| Select-Object Name,PercentLoaded ^| out-string
+    >>%WINDIR%\Temp\check-packages.ps1 ECHO $string += $SCSMode ^| Select-Object SharedContentStoreMode ^| out-string
+    >>%WINDIR%\Temp\check-packages.ps1 ECHO Write-EventLog –LogName SYSTEM –Source "AppV5_Data_PreCache.cmd" –EntryType Information –EventID 4 –Message ($string)
+    >>%WINDIR%\Temp\check-packages.ps1 ECHO if ($apps.Count -eq 0) { Start-Process -FilePath "C:\swinst\AppV_Data_PreCache\AppV5_Data_PreCache.cmd" %COUNT% }
+        ping 127.0.0.1 -n 5 >NUL
         IF EXIST "%WINDIR%\Temp\check-packages.ps1" EVENTCREATE /ID 2 /L SYSTEM /T INFORMATION /SO "AppV5_Data_PreCache.cmd" /D "App-V 5 - Checking packages ps1 exists"
  
     "%SystemRoot%\system32\WindowsPowerShell\v1.0\powershell.exe" -ExecutionPolicy bypass -file "%WINDIR%\Temp\check-packages.ps1"
         EVENTCREATE /ID 2 /L SYSTEM /T INFORMATION /SO "AppV5_Data_PreCache.cmd" /D "App-V 5 - Check Packages Script, ERRORLEVEL %ERROR%"
  
-     &gt;%WINDIR%\Temp\Set-Server-Online.ps1 ECHO.
-    &gt;&gt;%WINDIR%\Temp\Set-Server-Online.ps1 ECHO if ( (Get-PSSnapin -Name Citrix.XenApp.Commands -ErrorAction SilentlyContinue) -eq $null )
-    &gt;&gt;%WINDIR%\Temp\Set-Server-Online.ps1 ECHO {
-    &gt;&gt;%WINDIR%\Temp\Set-Server-Online.ps1 ECHO   Add-PsSnapin Citrix.XenApp.Commands
-    &gt;&gt;%WINDIR%\Temp\Set-Server-Online.ps1 ECHO   Remove-XAWorkerGroupServer -WorkerGroupName "Offline" -ServerNames $env:computername -Computername %ZDC%
-    &gt;&gt;%WINDIR%\Temp\Set-Server-Online.ps1 ECHO }
+     >%WINDIR%\Temp\Set-Server-Online.ps1 ECHO.
+    >>%WINDIR%\Temp\Set-Server-Online.ps1 ECHO if ( (Get-PSSnapin -Name Citrix.&.Commands -ErrorAction SilentlyContinue) -eq $null )
+    >>%WINDIR%\Temp\Set-Server-Online.ps1 ECHO {
+    >>%WINDIR%\Temp\Set-Server-Online.ps1 ECHO   Add-PsSnapin Citrix.&.Commands
+    >>%WINDIR%\Temp\Set-Server-Online.ps1 ECHO   Remove-XAWorkerGroupServer -WorkerGroupName "Offline" -ServerNames $env:computername -Computername %ZDC%
+    >>%WINDIR%\Temp\Set-Server-Online.ps1 ECHO }
     "%SystemRoot%\system32\WindowsPowerShell\v1.0\powershell.exe"  -ExecutionPolicy bypass -file "%WINDIR%\Temp\Set-Server-Online.ps1"
     "%SystemRoot%\system32\WindowsPowerShell\v1.0\powershell.exe" Set-ExecutionPolicy Restricted
  
@@ -310,7 +310,7 @@ EVENTCREATE /ID 2 /L SYSTEM /T INFORMATION /SO "AppV5_Data_PreCache.cmd" /D "App
         pop %~dp0
  
  
-ping 127.0.0.1 -n 60 &gt;NUL
+ping 127.0.0.1 -n 60 >NUL
  
 gpupdate /target:computer /force
 :: Disable Logons

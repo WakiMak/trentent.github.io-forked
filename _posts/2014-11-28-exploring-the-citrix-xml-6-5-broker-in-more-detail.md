@@ -20,9 +20,9 @@ categories:
 tags:
   - Citrix
   - Performance
-  - XenApp
+  - &
 ---
-The Citrix XML broker actually relies on many pieces to ensure fast and proper operation. [This CTX article](http://support.citrix.com/article/CTX129585) describes the process for XenApp 6 (seems applicable to 6.5 as well).
+The Citrix XML broker actually relies on many pieces to ensure fast and proper operation. [This CTX article](http://support.citrix.com/article/CTX129585) describes the process for & 6 (seems applicable to 6.5 as well).
 
 The part that is relevant to the XML broker is steps 4-9.
 
@@ -46,26 +46,26 @@ So what does this look like (click to blow it up)?
 
 Starting with packet #32 we see the initial POST request for a list of applications.
 
-<pre class="lang:default decode:true ">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;!DOCTYPE NFuseProtocol SYSTEM "NFuse.dtd"&gt;
-	&lt;NFuseProtocol version="5.4"&gt;
-		&lt;RequestAppData&gt;
-			&lt;Scope traverse="subtree"&gt;&lt;/Scope&gt;
-			&lt;DesiredDetails&gt;permissions&lt;/DesiredDetails&gt;
-			&lt;ServerType&gt;all&lt;/ServerType&gt;
-			&lt;ClientType&gt;ica30&lt;/ClientType&gt;
-			&lt;ClientType&gt;content&lt;/ClientType&gt;
-			&lt;Credentials&gt;
-				&lt;UserName&gt;trententtye&lt;/UserName&gt;
-				&lt;Password encoding="ctx1"&gt;PASSWORDLOL&lt;/Password&gt;
-				&lt;Domain type="NT"&gt;HEALTHY&lt;/Domain&gt;
-			&lt;/Credentials&gt;
-			&lt;ClientName&gt;WSCTXAPP301T&lt;/ClientName&gt;
-			&lt;ClientAddress addresstype="dot"&gt;10.132.169.130&lt;/ClientAddress&gt;
-		&lt;/RequestAppData&gt;
-	&lt;/NFuseProtocol&gt;</pre>
+<pre class="lang:default decode:true "><?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE NFuseProtocol SYSTEM "NFuse.dtd">
+	<NFuseProtocol version="5.4">
+		<RequestAppData>
+			<Scope traverse="subtree"></Scope>
+			<DesiredDetails>permissions</DesiredDetails>
+			<ServerType>all</ServerType>
+			<ClientType>ica30</ClientType>
+			<ClientType>content</ClientType>
+			<Credentials>
+				<UserName>trententtye</UserName>
+				<Password encoding="ctx1">PASSWORDLOL</Password>
+				<Domain type="NT">HEALTHY</Domain>
+			</Credentials>
+			<ClientName>WSCTXAPP301T</ClientName>
+			<ClientAddress addresstype="dot">10.132.169.130</ClientAddress>
+		</RequestAppData>
+	</NFuseProtocol></pre>
 
-Steps 5, 6 and 7 are packets 36-86. Â LSASS goes back to AD to grab the SID&#8217;s.
+Steps 5, 6 and 7 are packets 36-86. Â LSASS goes back to AD to grab the SID's.
 
 Step 7.5: It appears that the first time you enumerate applications on a broker that information is queried to the SQL database and stored in the local host cache. Â This would be packets 87-94. Â Additional queries done do not show this traffic.
 
@@ -107,22 +107,22 @@ Again, the IMASrv.exe will actually NOT be present in this list if you have exec
 
 So, what could contribute to slow XML broker performance?
 
-Utilizing the WCAT script we can continuously hammer the XML broker with however many connections we desire. Â The XML brokers have a maximum of 16 threads to deal with the incoming traffic but at 80ms per request/response the queue would have to get fairly long to create a noticeable performance impact. Â In addition, previous tests on the 4.5 broker showed additional CPU&#8217;s help improve the performance of the XML broker, I think the 6.5 broker shows better performance with lesser CPU&#8217;s.
+Utilizing the WCAT script we can continuously hammer the XML broker with however many connections we desire. Â The XML brokers have a maximum of 16 threads to deal with the incoming traffic but at 80ms per request/response the queue would have to get fairly long to create a noticeable performance impact. Â In addition, previous tests on the 4.5 broker showed additional CPU's help improve the performance of the XML broker, I think the 6.5 broker shows better performance with lesser CPU's.
 
-Utilizing the bandwidth emulator, [clumsy](http://jagt.github.io/clumsy/), I&#8217;m going to simulate some poor network performance on the XML broker to see what the effects will be of how XML response times will vary. Â The only network hits I can see are from the source (Web Interface), Active Directory, and (potentially) the SQL database.
+Utilizing the bandwidth emulator, [clumsy](http://jagt.github.io/clumsy/), I'm going to simulate some poor network performance on the XML broker to see what the effects will be of how XML response times will vary. Â The only network hits I can see are from the source (Web Interface), Active Directory, and (potentially) the SQL database.
 
-Just starting the clumsy software with it&#8217;s filtering by IP capabilities added about 800ms to the total roundtrip time. Â Something to consider with other network management/threat protection software I imagine&#8230;
+Just starting the clumsy software with it's filtering by IP capabilities added about 800ms to the total roundtrip time. Â Something to consider with other network management/threat protection software I imagine...
 
 <div style="clear: both; text-align: center;">
   <a style="margin-left: 1em; margin-right: 1em;" href="http://4.bp.blogspot.com/-_Nx8LtE3IjE/VHirc_RlqzI/AAAAAAAAAsg/HacU96cPu10/s1600/Screen%2BShot%2B2014-11-28%2Bat%2B10.04.38%2BAM.png"><img src="http://4.bp.blogspot.com/-_Nx8LtE3IjE/VHirc_RlqzI/AAAAAAAAAsg/HacU96cPu10/s1600/Screen%2BShot%2B2014-11-28%2Bat%2B10.04.38%2BAM.png" width="320" height="196" border="0" /></a>
 </div>
 
-Anyways, adding just 20ms of lag to and from the web interface to the XML broker increased processing time by another 500ms of total time. Â That is, 1500ms on the low end on 2200 on the high. Â Increasing packet latency to 100ms brought the total processing time to 2700ms on the lowend and 3800ms on the high end. Â I think it&#8217;s safe to say that having the web interface and XML brokers beside each other for the lowest possible latency is a big performance win.
+Anyways, adding just 20ms of lag to and from the web interface to the XML broker increased processing time by another 500ms of total time. Â That is, 1500ms on the low end on 2200 on the high. Â Increasing packet latency to 100ms brought the total processing time to 2700ms on the lowend and 3800ms on the high end. Â I think it's safe to say that having the web interface and XML brokers beside each other for the lowest possible latency is a big performance win.
 
 Targeting Active Directory with a latency of 20ms brought times from 420ms to 550ms. Â Increasing that to 100ms brought the response times put to 890ms. Â Not too shabby. Â Seems AD is more resilient to latency.
 
 Targeting the SQL database with a latency of 100ms showed the first query after the LHC was rebuilt went to 600ms and then back down to 420ms there after. Â Locality to the database seems to have the lowest impact, but the 100ms lag did increase the LHC rebuild time to about 3 minutes from near instantly before.  
-I did try to test a heavy disk load against the XML broker but I was running this server with PVS with RAMDisk Cache overflow enabled which means my LHC is stored in RAM and no matter how hard I punted the C:\ drive I couldn&#8217;t make an impact.
+I did try to test a heavy disk load against the XML broker but I was running this server with PVS with RAMDisk Cache overflow enabled which means my LHC is stored in RAM and no matter how hard I punted the C:\ drive I couldn't make an impact.
 
 <!-- AddThis Advanced Settings generic via filter on the_content -->
 

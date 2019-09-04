@@ -21,7 +21,7 @@ tags:
   - AppV
   - Performance
 ---
-We are looking to utilize AppV 5&#8217;s shared content store and one of the things I was interested in was knowing what kind of overhead network performance may vs. local disk. Â What I have is a physical server with 3x300GB 10,000 RPM SAS drives in a RAID-5 vs. a CIFS share on SSD. Â The catch about the CIFS share is it is 300 kilometers (200 miles) away in another city. Â I used this share as I don&#8217;t have another share local to the physical box and this brings the performance of the share down, but it&#8217;s still faster than the disk. Â The IOMETER readings for the Shared Content Store and the local disk hosting the PackageInstallationRoot are:
+We are looking to utilize AppV 5's shared content store and one of the things I was interested in was knowing what kind of overhead network performance may vs. local disk. Â What I have is a physical server with 3x300GB 10,000 RPM SAS drives in a RAID-5 vs. a CIFS share on SSD. Â The catch about the CIFS share is it is 300 kilometers (200 miles) away in another city. Â I used this share as I don't have another share local to the physical box and this brings the performance of the share down, but it's still faster than the disk. Â The IOMETER readings for the Shared Content Store and the local disk hosting the PackageInstallationRoot are:
 
 <pre class="lang:default decode:true ">Local Disk (D:)
 IOPS Â  Â  MB/s Â Avg IO/s Â Max IO latency Â %CPU
@@ -43,8 +43,8 @@ SCS: 9.7s
 
 For the 30 runs the Local Disk deviated +/- 0.2s from average so the range was from 9.4s to 9.8s.
 
-For the SCS the deviation was much bigger, probably to be expected when you&#8217;re pulling from a file share 6ms away across a shared pipe. Â Deviation on the network was:  
-+/- 1.85s with a range from 8.2s to 11.9s. Â Amazingly, there were numerous runs where the network bested the local disk under 9.4s for launch time. Â I&#8217;m sure if the SCS was local we&#8217;d get even more consistent performance and probably even faster performance. Â A local server to the share gets about 8x better IOMeter numbers.
+For the SCS the deviation was much bigger, probably to be expected when you're pulling from a file share 6ms away across a shared pipe. Â Deviation on the network was:  
++/- 1.85s with a range from 8.2s to 11.9s. Â Amazingly, there were numerous runs where the network bested the local disk under 9.4s for launch time. Â I'm sure if the SCS was local we'd get even more consistent performance and probably even faster performance. Â A local server to the share gets about 8x better IOMeter numbers.
 
 Now, how about when the application has already been launched so files are cached? Â Results (average of all 30 runs):
 
@@ -90,7 +90,7 @@ Local D 18:22.1 18:25.7 00:03.6
 Local D 18:25.7 18:29.3 00:03.6
 Local D 18:29.4 18:33.0 00:03.7</pre>
 
-I&#8217;m not sure if that&#8217;s the application or AppV has a caching structure but I&#8217;m leading towards AppV/Windows doing something with the file cache. Â I&#8217;m unsure how to prove this out.
+I'm not sure if that's the application or AppV has a caching structure but I'm leading towards AppV/Windows doing something with the file cache. Â I'm unsure how to prove this out.
 
 <!-- AddThis Advanced Settings generic via filter on the_content -->
 

@@ -1,6 +1,6 @@
 ---
 id: 523
-title: 'AppV5 &#8211; Package {GUID} version {GUID} failed configuration in folder &#8216;%packageinstallationroot% with error 0x4C40310C-0x12'
+title: 'AppV5 - Package {GUID} version {GUID} failed configuration in folder '%packageinstallationroot% with error 0x4C40310C-0x12'
 date: 2016-03-30T11:06:00-06:00
 author: trententtye
 layout: post
@@ -20,11 +20,11 @@ tags:
   - AppV
   - procmon
 ---
-We experienced this error on a package on one of our Citrix servers in the AppVClientAdmin event logs. Â Attempting to procmon this error didn&#8217;t reveal anything substantial for what could be causing this issue. Â [I then tried my last post to enable AppV debug logs to see if we can see what&#8217;s going on](http://theorypc.ca/2016/03/24/appv5-the-trouble-with-appv5-logs-and-a-solution/).
+We experienced this error on a package on one of our Citrix servers in the AppVClientAdmin event logs. Â Attempting to procmon this error didn't reveal anything substantial for what could be causing this issue. Â [I then tried my last post to enable AppV debug logs to see if we can see what's going on](http://theorypc.ca/2016/03/24/appv5-the-trouble-with-appv5-logs-and-a-solution/).
 
 Because this server was being used by other users the log generated a lot of noise. Â I stopped the log as soon as I got the error message though, which meant the error should be at the end of the generated log. Â Fortunately, you can search for the error message:
 
-<span style="font-family: 'courier new' , 'courier' , monospace; font-size: x-small;">[2]06B0.2DE4::â€Ž2016â€Ž-â€Ž03â€Ž-â€Ž30 09:41:30.817 [Microsoft-AppV-Client]Package {499ed340-c809-47dc-a533-2cdeab537e93} version {3589c28b-edb7-41d6-865d-e01c4fdd4318} failed configuration in folder &#8216;D:AppVDataPackageInstallationRoot&#8217; with error 0x4C40310C-0x12.Â </span>
+<span style="font-family: 'courier new' , 'courier' , monospace; font-size: x-small;">[2]06B0.2DE4::â€Ž2016â€Ž-â€Ž03â€Ž-â€Ž30 09:41:30.817 [Microsoft-AppV-Client]Package {499ed340-c809-47dc-a533-2cdeab537e93} version {3589c28b-edb7-41d6-865d-e01c4fdd4318} failed configuration in folder 'D:AppVDataPackageInstallationRoot' with error 0x4C40310C-0x12.Â </span>
 
 I suspect the first bit of hexadecimal code (06B0.2DE4) are probably an identifier for a thread or some such so I suspect if I search for just this code I can be shown all events that lead up to this error:
 
@@ -76,25 +76,25 @@ With the error time code, I can compare what Procmon says is going on. Â And pro
   <a style="margin-left: 1em; margin-right: 1em;" href="https://1.bp.blogspot.com/-zohqSAx47VM/VvwENAgF0uI/AAAAAAAABsE/GeH54SznqZYutVEjkJcCIucMNDS-p44LA/s1600/13.PNG"><img src="https://1.bp.blogspot.com/-zohqSAx47VM/VvwENAgF0uI/AAAAAAAABsE/GeH54SznqZYutVEjkJcCIucMNDS-p44LA/s320/13.PNG" width="320" height="176" border="0" /></a>
 </div>
 
-Procmon has the AppVClient.exe doing the following action &#8220;QuerySecurityFile&#8221; and it&#8217;s looking for &#8220;Information:Owner&#8221;. Â So what is this the value of this property?
+Procmon has the AppVClient.exe doing the following action "QuerySecurityFile" and it's looking for "Information:Owner". Â So what is this the value of this property?
 
 <div style="clear: both; text-align: center;">
   <a style="margin-left: 1em; margin-right: 1em;" href="https://1.bp.blogspot.com/-cAzqrv3NJZg/VvwEevq9iwI/AAAAAAAABsI/n9agZnYXgdwBjgk9SRhJsNUL9j6JhQb-Q/s1600/14.PNG"><img src="https://1.bp.blogspot.com/-cAzqrv3NJZg/VvwEevq9iwI/AAAAAAAABsI/n9agZnYXgdwBjgk9SRhJsNUL9j6JhQb-Q/s320/14.PNG" width="320" height="240" border="0" /></a>
 </div>
 
-Hmmm&#8230; Â This does not look correct to me. Â From my experience, I think the current owner ends up being &#8216;SYSTEM&#8217; because that&#8217;s the account the AppVClient.exe runs under when it creates this folder. Â As a hunch, I looked at a system that is operating correctly and compared it&#8217;s Owner attribute:
+Hmmm... Â This does not look correct to me. Â From my experience, I think the current owner ends up being 'SYSTEM' because that's the account the AppVClient.exe runs under when it creates this folder. Â As a hunch, I looked at a system that is operating correctly and compared it's Owner attribute:
 
 <div style="clear: both; text-align: center;">
   <a style="margin-left: 1em; margin-right: 1em;" href="https://2.bp.blogspot.com/-MLxVNPa_jhI/VvwEyvh7gMI/AAAAAAAABsM/P1_DX9Qv9tQGNKKUfCtx_b5SH4KI7MOLQ/s1600/15.PNG"><img src="https://2.bp.blogspot.com/-MLxVNPa_jhI/VvwEyvh7gMI/AAAAAAAABsM/P1_DX9Qv9tQGNKKUfCtx_b5SH4KI7MOLQ/s320/15.PNG" width="320" height="215" border="0" /></a>
 </div>
 
-Sure enough, on a working system the Owner is SYSTEM. Â So I&#8217;ll attempt to modify the non-working system and retry adding the package:
+Sure enough, on a working system the Owner is SYSTEM. Â So I'll attempt to modify the non-working system and retry adding the package:
 
 <div style="clear: both; text-align: center;">
   <a style="margin-left: 1em; margin-right: 1em;" href="https://4.bp.blogspot.com/-Yx53tiqFKIU/VvwFxi6inMI/AAAAAAAABsY/JLVZQssDskIfp5-CCyvFlx8HRqK8eDwow/s1600/16.PNG"><img src="https://4.bp.blogspot.com/-Yx53tiqFKIU/VvwFxi6inMI/AAAAAAAABsY/JLVZQssDskIfp5-CCyvFlx8HRqK8eDwow/s320/16.PNG" width="320" height="202" border="0" /></a>
 </div>
 
-Success! Â So it appears this error &#8220;<span style="font-family: 'courier new' , 'courier' , monospace; font-size: x-small;">0x4C40310C-0x12&#8243;Â </span>is DIRECTLY related to the ownership attribute on your PackageInstallationRoot folder. Â If it is anything but SYSTEM it looks like it fails. Â I do not know why that attribute changed, but changing it back to SYSTEM resolves this error code.
+Success! Â So it appears this error "<span style="font-family: 'courier new' , 'courier' , monospace; font-size: x-small;">0x4C40310C-0x12&8243;Â </span>is DIRECTLY related to the ownership attribute on your PackageInstallationRoot folder. Â If it is anything but SYSTEM it looks like it fails. Â I do not know why that attribute changed, but changing it back to SYSTEM resolves this error code.
 
 <!-- AddThis Advanced Settings generic via filter on the_content -->
 

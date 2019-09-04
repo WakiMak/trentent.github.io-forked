@@ -1,6 +1,6 @@
 ---
 id: 647
-title: 'AppV Error 25109 &#8211; The installation program could not create the configuration data store.  Please see the installation log file for more information.'
+title: 'AppV Error 25109 - The installation program could not create the configuration data store.  Please see the installation log file for more information.'
 date: 2013-05-09T11:31:00-06:00
 author: trententtye
 layout: post
@@ -26,7 +26,7 @@ We recently encountered this issue with AppV 4.6 Management server when installi
 
 The issue appeared to us to be related to a permissions issue on the database.Â For some awful reason, to resolve this issue we had to add the SYSADMIN right to the account on the SQL database.Â Since we are running an enterprise solution here, adding the user to the Domain Admins as suggested all over the web would not work as we segregate those services.Â It also makes sense that adding the account to the Domain Admins would work on the smaller environments because SQL Express uses AD permissions and would add the Domain Admins to the highest privileges to the local install of SQL Express.
 
-So, for enterprise accounts out there, Microsoft has a horrible setup for adding servers to AppV as the account that does the install needs the highest rights on the DB.Â I don&#8217;t know why but it really screams to me that this is poor design.
+So, for enterprise accounts out there, Microsoft has a horrible setup for adding servers to AppV as the account that does the install needs the highest rights on the DB.Â I don't know why but it really screams to me that this is poor design.
 
 <!-- AddThis Advanced Settings generic via filter on the_content -->
 

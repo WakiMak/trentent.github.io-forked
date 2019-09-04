@@ -1,6 +1,6 @@
 ---
 id: 1964
-title: 'ControlUp &#8211; Script Based Action (SBA) Action Auditing'
+title: 'ControlUp - Script Based Action (SBA) Action Auditing'
 date: 2017-01-30T08:54:45-06:00
 author: trententtye
 layout: post
@@ -20,11 +20,11 @@ tags:
   - PowerShell
   - scripting
 ---
-[ControlUp](http://controlup.com) is a tool we use to monitor our Citrix environment. Â We have multiple people and multiple times actions are runÂ via ControlUp and an easier way to review the actions would be nice. Â ControlUp keeps all machine actions executed by them on the local machine&#8217;s event log. Â To review these logs I decided, what better way than to use ControlUp!
+[ControlUp](http://controlup.com) is a tool we use to monitor our Citrix environment. Â We have multiple people and multiple times actions are runÂ via ControlUp and an easier way to review the actions would be nice. Â ControlUp keeps all machine actions executed by them on the local machine's event log. Â To review these logs I decided, what better way than to use ControlUp!
 
 The Script Based Action (SBA):
 
-<pre class="lang:ps decode:true">&lt;#
+<pre class="lang:ps decode:true"><#
     .SYNOPSIS
     This script will return logging information about any ControlUp actions.
 
@@ -41,7 +41,7 @@ The Script Based Action (SBA):
     LASTEDIT: 01/26/2017
     VERSI0N : 1.0
 
-#&gt;
+#>
 
 # Adding threading culture change so that get-winevent picks up the messages, if PS culture is set to none en-US then the script will fail
 [System.Threading.Thread]::CurrentThread.CurrentCulture = New-Object "System.Globalization.CultureInfo" "en-US"
@@ -52,22 +52,22 @@ if ($args[2]) {
 $time = [int]$args[2]*1000*60*60
 
 $FilterXML = @"
-&lt;QueryList&gt;
-  &lt;Query Id="0" Path="Application"&gt;
-    &lt;Select Path="Application"&gt;
+<QueryList>
+  <Query Id="0" Path="Application">
+    <Select Path="Application">
     *[System[Provider[@Name='ControlUp action auditing'] 
-    and TimeCreated[timediff(@SystemTime) &lt;= $($time)]]]
-    &lt;/Select&gt;
-  &lt;/Query&gt;
-&lt;/QueryList&gt;
+    and TimeCreated[timediff(@SystemTime) <= $($time)]]]
+    </Select>
+  </Query>
+</QueryList>
 "@
 } else {
 $FilterXML = @"
-&lt;QueryList&gt;
-  &lt;Query Id="0" Path="Application"&gt;
-    &lt;Select Path="Application"&gt;*[System[Provider[@Name='ControlUp action auditing']]]&lt;/Select&gt;
-  &lt;/Query&gt;
-&lt;/QueryList&gt;
+<QueryList>
+  <Query Id="0" Path="Application">
+    <Select Path="Application">*[System[Provider[@Name='ControlUp action auditing']]]</Select>
+  </Query>
+</QueryList>
 "@
 }
 
@@ -108,16 +108,16 @@ if ($args[1] -eq "TEXT") {
 
 And the steps to create the SBA:
 
-  1. Create a new SBA and name it &#8220;ControlUp Action Auditing&#8221; and click &#8216;Next&#8217;  
+  1. Create a new SBA and name it "ControlUp Action Auditing" and click 'Next'  
 <img class="aligncenter size-full wp-image-1966" src="http://theorypc.ca/wp-content/uploads/2017/01/SBA1.png" alt="" width="596" height="443" srcset="http://theorypc.ca/wp-content/uploads/2017/01/SBA1.png 596w, http://theorypc.ca/wp-content/uploads/2017/01/SBA1-300x223.png 300w" sizes="(max-width: 596px) 100vw, 596px" /> 
-  2. Set the &#8216;Assigned to:&#8217; &#8220;Computer&#8221; and &#8216;Execution Context:&#8217; as &#8220;ControlUp Console&#8221;  
+  2. Set the 'Assigned to:' "Computer" and 'Execution Context:' as "ControlUp Console"  
 <img class="aligncenter size-full wp-image-1967" src="http://theorypc.ca/wp-content/uploads/2017/01/SBA2.png" alt="" width="596" height="445" srcset="http://theorypc.ca/wp-content/uploads/2017/01/SBA2.png 596w, http://theorypc.ca/wp-content/uploads/2017/01/SBA2-300x224.png 300w" sizes="(max-width: 596px) 100vw, 596px" /> 
-  3. Add the script and set the &#8216;Execution Timeout (seconds)&#8217; to whatever will satisfy querying your remote systems (I set mine to 120).  
+  3. Add the script and set the 'Execution Timeout (seconds)' to whatever will satisfy querying your remote systems (I set mine to 120).  
 <img class="aligncenter size-full wp-image-1968" src="http://theorypc.ca/wp-content/uploads/2017/01/SBA3.png" alt="" width="598" height="446" srcset="http://theorypc.ca/wp-content/uploads/2017/01/SBA3.png 598w, http://theorypc.ca/wp-content/uploads/2017/01/SBA3-300x224.png 300w" sizes="(max-width: 598px) 100vw, 598px" /> 
   4. Setup the variables  
-<img class="aligncenter size-full wp-image-1969" src="http://theorypc.ca/wp-content/uploads/2017/01/SBA6.png" alt="" width="592" height="150" srcset="http://theorypc.ca/wp-content/uploads/2017/01/SBA6.png 592w, http://theorypc.ca/wp-content/uploads/2017/01/SBA6-300x76.png 300w" sizes="(max-width: 592px) 100vw, 592px" /> $args[0] = &#8216;Name&#8217; property  
+<img class="aligncenter size-full wp-image-1969" src="http://theorypc.ca/wp-content/uploads/2017/01/SBA6.png" alt="" width="592" height="150" srcset="http://theorypc.ca/wp-content/uploads/2017/01/SBA6.png 592w, http://theorypc.ca/wp-content/uploads/2017/01/SBA6-300x76.png 300w" sizes="(max-width: 592px) 100vw, 592px" /> $args[0] = 'Name' property  
     $args[1]:Â<img class="aligncenter size-full wp-image-1970" src="http://theorypc.ca/wp-content/uploads/2017/01/SBA4.png" alt="" width="437" height="417" srcset="http://theorypc.ca/wp-content/uploads/2017/01/SBA4.png 437w, http://theorypc.ca/wp-content/uploads/2017/01/SBA4-300x286.png 300w" sizes="(max-width: 437px) 100vw, 437px" />  
-    (note the &#8220;pipe&#8221; symbol in the &#8216;Input Validation string&#8217;  
+    (note the "pipe" symbol in the 'Input Validation string'  
     $args[2]:Â<img class="aligncenter size-full wp-image-1971" src="http://theorypc.ca/wp-content/uploads/2017/01/SBA5.png" alt="" width="438" height="414" srcset="http://theorypc.ca/wp-content/uploads/2017/01/SBA5.png 438w, http://theorypc.ca/wp-content/uploads/2017/01/SBA5-300x284.png 300w" sizes="(max-width: 438px) 100vw, 438px" /> 
   5. Save and Finalize the SBA. Â And now it in action:
 

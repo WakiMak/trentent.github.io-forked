@@ -47,7 +47,7 @@ This is pretty simple. Install the [NTBackup for Windows 7](http://www.microsoft
 </div>
 
 <div>
-  That&#8217;s it!
+  That's it!
 </div>
 
 <!-- AddThis Advanced Settings generic via filter on the_content -->

@@ -1,6 +1,6 @@
 ---
 id: 1694
-title: 'ControlUp &#8211; Dissecting Logon Times a step further (invalid Home Directory impact)'
+title: 'ControlUp - Dissecting Logon Times a step further (invalid Home Directory impact)'
 date: 2016-09-07T21:00:47-06:00
 author: trententtye
 layout: post
@@ -15,7 +15,7 @@ tags:
   - Performance
   - PowerShell
   - scripting
-  - XenApp
+  - &
 ---
 Continuing on from my [previous post](http://theorypc.ca/2016/08/31/controlup-dissecting-logon-times-a-step-further-printer-loading/), we were still having certain users with logons in the dozens of seconds to minutes. Â I wanted to find out why and see if there is anything further that could be done.
 
@@ -23,7 +23,7 @@ Continuing on from my [previous post](http://theorypc.ca/2016/08/31/controlup-di
 
 &nbsp;
 
-After identifying a user with a long logon with ControlUpÂ I ran the &#8216;Analyze Logon Duration&#8217; script:
+After identifying a user with a long logon with ControlUpÂ I ran the 'Analyze Logon Duration' script:
 
 <img class="aligncenter size-full wp-image-1695" src="http://theorypc.ca/wp-content/uploads/2016/09/51.1second_Profile.png" alt="51-1second_profile" width="547" height="356" srcset="http://theorypc.ca/wp-content/uploads/2016/09/51.1second_Profile.png 547w, http://theorypc.ca/wp-content/uploads/2016/09/51.1second_Profile-300x195.png 300w" sizes="(max-width: 547px) 100vw, 547px" /> 
 
@@ -33,11 +33,11 @@ Jeez, 59.4 seconds to logon with 51.2 seconds of that spent on the User Profile 
 
 <img class="aligncenter size-full wp-image-1697" src="http://theorypc.ca/wp-content/uploads/2016/09/Screen-Shot-2016-09-07-at-8.24.18-PM.png" alt="screen-shot-2016-09-07-at-8-24-18-pm" width="567" height="172" srcset="http://theorypc.ca/wp-content/uploads/2016/09/Screen-Shot-2016-09-07-at-8.24.18-PM.png 567w, http://theorypc.ca/wp-content/uploads/2016/09/Screen-Shot-2016-09-07-at-8.24.18-PM-300x91.png 300w" sizes="(max-width: 567px) 100vw, 567px" /> 
 
-Well, there appears to be a 1 minute gap between the cmd.exe commandÂ from when WinLogon.exe starts it. Â The stage it &#8216;freezes&#8217; at is &#8220;Please wait for the user profile service&#8221;.
+Well, there appears to be a 1 minute gap between the cmd.exe commandÂ from when WinLogon.exe starts it. Â The stage it 'freezes' at is "Please wait for the user profile service".
 
 &nbsp;
 
-Since there is no data recorded by Process Monitor I tested by deleting the users profile. Â It made no difference, still 60 seconds. Â But, since I now know it&#8217;s not the user profile it must be something else. Â Experience has taught me to blame the user object and look for network paths. Â 50 seconds or so just \*feels\* like a network timeout. Â So I examined the users AD object:
+Since there is no data recorded by Process Monitor I tested by deleting the users profile. Â It made no difference, still 60 seconds. Â But, since I now know it's not the user profile it must be something else. Â Experience has taught me to blame the user object and look for network paths. Â 50 seconds or so just \*feels\* like a network timeout. Â So I examined the users AD object:
 
 <img class="aligncenter size-full wp-image-1699" src="http://theorypc.ca/wp-content/uploads/2016/09/Screen-Shot-2016-09-07-at-8.46.19-PM.png" alt="screen-shot-2016-09-07-at-8-46-19-pm" width="400" height="396" srcset="http://theorypc.ca/wp-content/uploads/2016/09/Screen-Shot-2016-09-07-at-8.46.19-PM.png 400w, http://theorypc.ca/wp-content/uploads/2016/09/Screen-Shot-2016-09-07-at-8.46.19-PM-150x150.png 150w, http://theorypc.ca/wp-content/uploads/2016/09/Screen-Shot-2016-09-07-at-8.46.19-PM-300x297.png 300w, http://theorypc.ca/wp-content/uploads/2016/09/Screen-Shot-2016-09-07-at-8.46.19-PM-50x50.png 50w, http://theorypc.ca/wp-content/uploads/2016/09/Screen-Shot-2016-09-07-at-8.46.19-PM-100x100.png 100w" sizes="(max-width: 400px) 100vw, 400px" /> 
 
@@ -55,19 +55,19 @@ It is not valid. Â So is my suspicion correct? Â I removed the Home Directory pa
 
 <img class="aligncenter size-full wp-image-1701" src="http://theorypc.ca/wp-content/uploads/2016/09/without_homedir_logon_time.png" alt="without_homedir_logon_time" width="706" height="82" srcset="http://theorypc.ca/wp-content/uploads/2016/09/without_homedir_logon_time.png 706w, http://theorypc.ca/wp-content/uploads/2016/09/without_homedir_logon_time-300x35.png 300w" sizes="(max-width: 706px) 100vw, 706px" /> 
 
-Well that&#8217;s much, much better!
+Well that's much, much better!
 
-So now I want ControlUp to identify this potential issue. Â Unfortunately, I don&#8217;t really see any events I can key in on that says &#8216;Attempting to map home drive&#8217;. Â But what we can do is pull that AD attribute and test to see if it&#8217;s valid and let us know if it&#8217;s not. Â This is the output I now generate:
+So now I want ControlUp to identify this potential issue. Â Unfortunately, I don't really see any events I can key in on that says 'Attempting to map home drive'. Â But what we can do is pull that AD attribute and test to see if it's valid and let us know if it's not. Â This is the output I now generate:
 
 <img class="aligncenter size-full wp-image-1702" src="http://theorypc.ca/wp-content/uploads/2016/09/new_script.png" alt="new_script" width="741" height="432" srcset="http://theorypc.ca/wp-content/uploads/2016/09/new_script.png 741w, http://theorypc.ca/wp-content/uploads/2016/09/new_script-300x175.png 300w" sizes="(max-width: 741px) 100vw, 741px" /> 
 
 &nbsp;
 
-I revised the messaging slightly as I&#8217;ve found theÂ &#8216;Group Policy&#8217; phase can be affected if GPP Drive Maps reference the home directory attribute as well.
+I revised the messaging slightly as I've found theÂ 'Group Policy' phase can be affected if GPP Drive Maps reference the home directory attribute as well.
 
 &nbsp;
 
-So I [took my previous script](http://theorypc.ca/2016/08/31/controlup-dissecting-logon-times-a-step-further-printer-loading/)Â and updated it further. Â This time with a check for valid home directories. Â I also added some window sizing information to give greater width for the response as &#8216;Interim Delay&#8217; was getting truncated when there were long printer names. Â Here is the further updated script:
+So I [took my previous script](http://theorypc.ca/2016/08/31/controlup-dissecting-logon-times-a-step-further-printer-loading/)Â and updated it further. Â This time with a check for valid home directories. Â I also added some window sizing information to give greater width for the response as 'Interim Delay' was getting truncated when there were long printer names. Â Here is the further updated script:
 
 <pre class="lang:ps decode:true ">#expand output window so it looks better in ControlUp
 $pshost = get-host
@@ -254,31 +254,31 @@ and (Data=`"C:\Windows\System32\mpnotify.exe`")]]
 
 $ProfStartXpath = @"
 *[System[(EventID='10')
-and TimeCreated[@SystemTime &gt; '$ISO8601Date']]]
+and TimeCreated[@SystemTime > '$ISO8601Date']]]
 and *[EventData[Data and (Data='$UserName')]]
 "@
 
 $ProfEndXpath = @"
 *[System[(EventID='1')
-and TimeCreated[@SystemTime&gt;='$ISO8601Date']]]
+and TimeCreated[@SystemTime>='$ISO8601Date']]]
 and *[System[Security[@UserID='$($Logon.UserSID)']]]
 "@
 
 $UserProfStartXPath = @"
 *[System[(EventID='1')
-and TimeCreated[@SystemTime&gt;='$ISO8601Date']]]
+and TimeCreated[@SystemTime>='$ISO8601Date']]]
 and *[System[Security[@UserID='$($Logon.UserSID)']]]
 "@
 
 $UserProfEndXPath = @"
 *[System[(EventID='2')
-and TimeCreated[@SystemTime&gt;='$ISO8601Date']]]
+and TimeCreated[@SystemTime>='$ISO8601Date']]]
 and *[System[Security[@UserID='$($Logon.UserSID)']]]
 "@
 
 $GPStartXPath = @"
 *[System[(EventID='4001')
-and TimeCreated[@SystemTime&gt;='$ISO8601Date']]]
+and TimeCreated[@SystemTime>='$ISO8601Date']]]
 and *[EventData[Data[@Name='PrincipalSamName'] 
 and (Data=`"$UserDomain\$UserName`")]] 
 "@
@@ -291,7 +291,7 @@ and (Data=`"$UserDomain\$UserName`")]]
 
 $GPScriptStartXPath = @"
 *[System[(EventID='4018')
-and TimeCreated[@SystemTime&gt;='$ISO8601Date']]]
+and TimeCreated[@SystemTime>='$ISO8601Date']]]
 and *[EventData[Data[@Name='PrincipalSamName'] 
 and (Data=`"$UserDomain\$UserName`")]] 
 and *[EventData[Data[@Name='ScriptType'] 
@@ -300,7 +300,7 @@ and (Data='1')]]
 
 $GPScriptEndXPath = @"
 *[System[(EventID='5018')
-and TimeCreated[@SystemTime&gt;='$ISO8601Date']]]
+and TimeCreated[@SystemTime>='$ISO8601Date']]]
 and *[EventData[Data[@Name='PrincipalSamName'] 
 and (Data=`"$UserDomain\$UserName`")]] 
 and *[EventData[Data[@Name='ScriptType'] 
@@ -396,8 +396,8 @@ if (-not($clientName -eq "0")) {
 
 
  $PrinterStartXPath = @"
-*[System[TimeCreated[@SystemTime&gt;='$ISO8601Date' 
-and @SystemTime&lt;='$PrinterSearchISO8601Date']]]
+*[System[TimeCreated[@SystemTime>='$ISO8601Date' 
+and @SystemTime<='$PrinterSearchISO8601Date']]]
 "@
 
  $printerEvents = Get-WinEvent -ProviderName "Microsoft-Windows-PrintService" -FilterXPath $PrinterStartXPath | ?{$_.message -like "*$clientName*"} | sort -Property TimeCreated

@@ -20,7 +20,7 @@ categories:
 tags:
   - scripting
 ---
-We are App-V&#8217;ing a bunch of our applications and one of the applications requires a different .ini file depending if it&#8217;s test, production or training. &nbsp;To get around creating 3 different packages with just a single file, I&#8217;ve written a pre-launch batch file that will auto-create the .ini depending on the parameters passed to it.
+We are App-V'ing a bunch of our applications and one of the applications requires a different .ini file depending if it's test, production or training. &nbsp;To get around creating 3 different packages with just a single file, I've written a pre-launch batch file that will auto-create the .ini depending on the parameters passed to it.
 
 <div>
   <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">:===========================================================================================</span>
@@ -55,7 +55,7 @@ We are App-V&#8217;ing a bunch of our applications and one of the applications r
 </div>
 
 <div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">: &nbsp; &nbsp; &nbsp; &nbsp; launch to self configure. &nbsp;If no parameter is passed, it&#8217;s assumed to be</span>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">: &nbsp; &nbsp; &nbsp; &nbsp; launch to self configure. &nbsp;If no parameter is passed, it's assumed to be</span>
 </div>
 
 <div>
@@ -111,7 +111,7 @@ We are App-V&#8217;ing a bunch of our applications and one of the applications r
 </div>
 
 <div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">:2) filter out &#8221; and &#8216;</span>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">:2) filter out " and '</span>
 </div>
 
 <div>
@@ -163,11 +163,11 @@ We are App-V&#8217;ing a bunch of our applications and one of the applications r
 </div>
 
 <div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">call set PARAMS=%%PARAMS:&#8221;= %%</span>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">call set PARAMS=%%PARAMS:"= %%</span>
 </div>
 
 <div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">call set PARAMS=%%PARAMS:&#8217;= %%</span>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">call set PARAMS=%%PARAMS:'= %%</span>
 </div>
 
 <div>
@@ -183,111 +183,111 @@ We are App-V&#8217;ing a bunch of our applications and one of the applications r
 </div>
 
 <div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">:Break each set of parameters into it&#8217;s own set seperated by the equals sign.</span>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">:Break each set of parameters into it's own set seperated by the equals sign.</span>
 </div>
 
 <div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">:If there is no parameter stored we &#8220;breakout&#8221;</span>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">:If there is no parameter stored we "breakout"</span>
 </div>
 
 <div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">for /f &#8220;tokens=1-26 delims= &#8221; %%A IN (&#8220;%PARAMS%&#8221;) DO (</span>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">for /f "tokens=1-26 delims= " %%A IN ("%PARAMS%") DO (</span>
 </div>
 
 <div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">IF &#8216;%%A&#8217; EQU &#8221; GOTO BREAKOUT</span>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">IF '%%A' EQU " GOTO BREAKOUT</span>
 </div>
 
 <div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO %%A > &#8220;%TEMP%variables.txt&#8221;</span>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO %%A > "%TEMP%variables.txt"</span>
 </div>
 
 <div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">IF &#8216;%%B&#8217; EQU &#8221; GOTO BREAKOUT</span>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">IF '%%B' EQU " GOTO BREAKOUT</span>
 </div>
 
 <div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO %%B >> &#8220;%TEMP%variables.txt&#8221;</span>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO %%B >> "%TEMP%variables.txt"</span>
 </div>
 
 <div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">IF &#8216;%%C&#8217; EQU &#8221; GOTO BREAKOUT</span>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">IF '%%C' EQU " GOTO BREAKOUT</span>
 </div>
 
 <div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO %%C >> &#8220;%TEMP%variables.txt&#8221;</span>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO %%C >> "%TEMP%variables.txt"</span>
 </div>
 
 <div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">IF &#8216;%%D&#8217; EQU &#8221; GOTO BREAKOUT</span>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">IF '%%D' EQU " GOTO BREAKOUT</span>
 </div>
 
 <div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO %%D >> &#8220;%TEMP%variables.txt&#8221;</span>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO %%D >> "%TEMP%variables.txt"</span>
 </div>
 
 <div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">IF &#8216;%%E&#8217; EQU &#8221; GOTO BREAKOUT</span>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">IF '%%E' EQU " GOTO BREAKOUT</span>
 </div>
 
 <div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO %%E >> &#8220;%TEMP%variables.txt&#8221;</span>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO %%E >> "%TEMP%variables.txt"</span>
 </div>
 
 <div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">IF &#8216;%%F&#8217; EQU &#8221; GOTO BREAKOUT</span>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">IF '%%F' EQU " GOTO BREAKOUT</span>
 </div>
 
 <div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO %%F >> &#8220;%TEMP%variables.txt&#8221;</span>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO %%F >> "%TEMP%variables.txt"</span>
 </div>
 
 <div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">IF &#8216;%%G&#8217; EQU &#8221; GOTO BREAKOUT</span>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">IF '%%G' EQU " GOTO BREAKOUT</span>
 </div>
 
 <div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO %%G >> &#8220;%TEMP%variables.txt&#8221;</span>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO %%G >> "%TEMP%variables.txt"</span>
 </div>
 
 <div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">IF &#8216;%%H&#8217; EQU &#8221; GOTO BREAKOUT</span>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">IF '%%H' EQU " GOTO BREAKOUT</span>
 </div>
 
 <div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO %%H >> &#8220;%TEMP%variables.txt&#8221;</span>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO %%H >> "%TEMP%variables.txt"</span>
 </div>
 
 <div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">IF &#8216;%%I&#8217; EQU &#8221; GOTO BREAKOUT</span>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">IF '%%I' EQU " GOTO BREAKOUT</span>
 </div>
 
 <div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO %%I >> &#8220;%TEMP%variables.txt&#8221;</span>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO %%I >> "%TEMP%variables.txt"</span>
 </div>
 
 <div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">IF &#8216;%%J&#8217; EQU &#8221; GOTO BREAKOUT</span>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">IF '%%J' EQU " GOTO BREAKOUT</span>
 </div>
 
 <div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO %%J >> &#8220;%TEMP%variables.txt&#8221;</span>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO %%J >> "%TEMP%variables.txt"</span>
 </div>
 
 <div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">IF &#8216;%%K&#8217; EQU &#8221; GOTO BREAKOUT</span>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">IF '%%K' EQU " GOTO BREAKOUT</span>
 </div>
 
 <div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO %%K >> &#8220;%TEMP%variables.txt&#8221;</span>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO %%K >> "%TEMP%variables.txt"</span>
 </div>
 
 <div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">IF &#8216;%%L&#8217; EQU &#8221; GOTO BREAKOUT</span>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">IF '%%L' EQU " GOTO BREAKOUT</span>
 </div>
 
 <div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO %%L >> &#8220;%TEMP%variables.txt&#8221;</span>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO %%L >> "%TEMP%variables.txt"</span>
 </div>
 
 <div>
@@ -311,35 +311,35 @@ We are App-V&#8217;ing a bunch of our applications and one of the applications r
 </div>
 
 <div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">for /f &#8220;tokens=1-2 delims==&#8221; %%A IN (&#8216;TYPE &#8220;%TEMP%variables.txt&#8221;&#8216;) DO (</span>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">for /f "tokens=1-2 delims==" %%A IN ('TYPE "%TEMP%variables.txt"') DO (</span>
 </div>
 
 <div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">IF /I &#8216;%%A&#8217; EQU &#8216;REQUEST&#8217; set REQUEST=%%B</span>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">IF /I '%%A' EQU 'REQUEST' set REQUEST=%%B</span>
 </div>
 
 <div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">IF /I &#8216;%%A&#8217; EQU &#8216;OBJECTNAME&#8217; set OBJECTNAME=%%B</span>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">IF /I '%%A' EQU 'OBJECTNAME' set OBJECTNAME=%%B</span>
 </div>
 
 <div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">IF /I &#8216;%%A&#8217; EQU &#8216;HOSTNAME&#8217; set HOSTNAME=%%B</span>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">IF /I '%%A' EQU 'HOSTNAME' set HOSTNAME=%%B</span>
 </div>
 
 <div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">IF /I &#8216;%%A&#8217; EQU &#8216;REQUESTBROKER&#8217; set REQUESTBROKER=%%B</span>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">IF /I '%%A' EQU 'REQUESTBROKER' set REQUESTBROKER=%%B</span>
 </div>
 
 <div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">IF /I &#8216;%%A&#8217; EQU &#8216;RequestBrokerBackup&#8217; set RequestBrokerBackup=%%B</span>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">IF /I '%%A' EQU 'RequestBrokerBackup' set RequestBrokerBackup=%%B</span>
 </div>
 
 <div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">IF /I &#8216;%%A&#8217; EQU &#8216;ServerGroup&#8217; set ServerGroup=%%B</span>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">IF /I '%%A' EQU 'ServerGroup' set ServerGroup=%%B</span>
 </div>
 
 <div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">IF /I &#8216;%%B&#8217; EQU &#8221; set ALIAS=%%A</span>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">IF /I '%%B' EQU " set ALIAS=%%A</span>
 </div>
 
 <div>
@@ -359,7 +359,7 @@ We are App-V&#8217;ing a bunch of our applications and one of the applications r
 </div>
 
 <div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">SET PARISPATH=&#8221;%TEMP%paris.ini&#8221;</span>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">SET PARISPATH="%TEMP%paris.ini"</span>
 </div>
 
 <div>
@@ -367,139 +367,63 @@ We are App-V&#8217;ing a bunch of our applications and one of the applications r
 </div>
 
 <div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO [PreLogin] >&#8221;%PARISPATH%&#8221;</span>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO [PreLogin] >"%PARISPATH%"</span>
 </div>
 
 <div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO ClientDLL=STAPPClientLogin >>&#8221;%PARISPATH%&#8221;</span>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO ClientDLL=STAPPClientLogin >>"%PARISPATH%"</span>
 </div>
 
 <div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO FunctionName=DoLogin >>&#8221;%PARISPATH%&#8221;</span>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO FunctionName=DoLogin >>"%PARISPATH%"</span>
 </div>
 
 <div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO ServerDLL=STServerLogin >>&#8221;%PARISPATH%&#8221;</span>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO ServerDLL=STServerLogin >>"%PARISPATH%"</span>
 </div>
 
 <div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO DataModule=Login >>&#8221;%PARISPATH%&#8221;</span>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO DataModule=Login >>"%PARISPATH%"</span>
 </div>
 
 <div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO. >>&#8221;%PARISPATH%&#8221;</span>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO. >>"%PARISPATH%"</span>
 </div>
 
 <div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO [PostLogin] >>&#8221;%PARISPATH%&#8221;</span>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO [PostLogin] >>"%PARISPATH%"</span>
 </div>
 
 <div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO ServerDLL=STSRVLogin >>&#8221;%PARISPATH%&#8221;</span>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO ServerDLL=STSRVLogin >>"%PARISPATH%"</span>
 </div>
 
 <div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO DataModule=Login >>&#8221;%PARISPATH%&#8221;</span>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO DataModule=Login >>"%PARISPATH%"</span>
 </div>
 
 <div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO. >>&#8221;%PARISPATH%&#8221;</span>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO. >>"%PARISPATH%"</span>
 </div>
 
 <div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO [Timer] >>&#8221;%PARISPATH%&#8221;</span>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO [Timer] >>"%PARISPATH%"</span>
 </div>
 
 <div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO Enabled=0 >>&#8221;%PARISPATH%&#8221;</span>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO Enabled=0 >>"%PARISPATH%"</span>
 </div>
 
 <div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO Interval=10000 >>&#8221;%PARISPATH%&#8221;</span>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO Interval=10000 >>"%PARISPATH%"</span>
 </div>
 
 <div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO. >>&#8221;%PARISPATH%&#8221;</span>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO. >>"%PARISPATH%"</span>
 </div>
 
 <div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO [Host] >>&#8221;%PARISPATH%&#8221;</span>
-</div>
-
-<div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;"><br /></span>
-</div>
-
-<div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;"><br /></span>
-</div>
-
-<div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">if /I &#8220;%REQUEST%&#8221; EQU &#8220;&#8221; ECHO #Request=0 >>&#8221;%PARISPATH%&#8221;</span>
-</div>
-
-<div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">if /I &#8220;%REQUEST%&#8221; NEQ &#8220;&#8221; ECHO Request=%REQUEST% >>&#8221;%PARISPATH%&#8221;</span>
-</div>
-
-<div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;"><br /></span>
-</div>
-
-<div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">if /I &#8220;%OBJECTNAME%&#8221; EQU &#8220;&#8221; ECHO #objectname=I4AppServer >>&#8221;%PARISPATH%&#8221;</span>
-</div>
-
-<div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">if /I &#8220;%OBJECTNAME%&#8221; NEQ &#8220;&#8221; ECHO objectname=%OBJECTNAME% >>&#8221;%PARISPATH%&#8221;</span>
-</div>
-
-<div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;"><br /></span>
-</div>
-
-<div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">if /I &#8220;%HOSTNAME%&#8221; EQU &#8220;&#8221; ECHO #hostname=AComputerName >>&#8221;%PARISPATH%&#8221;</span>
-</div>
-
-<div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">if /I &#8220;%HOSTNAME%&#8221; NEQ &#8220;&#8221; ECHO hostname=%HOSTNAME% >>&#8221;%PARISPATH%&#8221;</span>
-</div>
-
-<div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;"><br /></span>
-</div>
-
-<div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">if /I &#8220;%REQUESTBROKER%&#8221; EQU &#8220;&#8221; ECHO #RequestBroker=AComputerName >>&#8221;%PARISPATH%&#8221;</span>
-</div>
-
-<div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">if /I &#8220;%REQUESTBROKER%&#8221; NEQ &#8220;&#8221; ECHO RequestBroker=%REQUESTBROKER% >>&#8221;%PARISPATH%&#8221;</span>
-</div>
-
-<div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;"><br /></span>
-</div>
-
-<div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">if /I &#8220;%RequestBrokerBackup%&#8221; EQU &#8220;&#8221; ECHO #RequestBrokerBackup=AnotherComputerName >>&#8221;%PARISPATH%&#8221;</span>
-</div>
-
-<div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">if /I &#8220;%RequestBrokerBackup%&#8221; NEQ &#8220;&#8221; ECHO RequestBrokerBackup=%RequestBrokerBackup% >>&#8221;%PARISPATH%&#8221;</span>
-</div>
-
-<div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;"><br /></span>
-</div>
-
-<div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">if /I &#8220;%ServerGroup%&#8221; EQU &#8220;&#8221; ECHO #ServerGroup=AnotherComputerName >>&#8221;%PARISPATH%&#8221;</span>
-</div>
-
-<div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">if /I &#8220;%ServerGroup%&#8221; NEQ &#8220;&#8221; ECHO ServerGroup=%ServerGroup% >>&#8221;%PARISPATH%&#8221;</span>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO [Host] >>"%PARISPATH%"</span>
 </div>
 
 <div>
@@ -511,27 +435,103 @@ We are App-V&#8217;ing a bunch of our applications and one of the applications r
 </div>
 
 <div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO. >>&#8221;%PARISPATH%&#8221;</span>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">if /I "%REQUEST%" EQU "" ECHO #Request=0 >>"%PARISPATH%"</span>
 </div>
 
 <div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO [Settings] >>&#8221;%PARISPATH%&#8221;</span>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">if /I "%REQUEST%" NEQ "" ECHO Request=%REQUEST% >>"%PARISPATH%"</span>
 </div>
 
 <div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO MaxLookup=200 >>&#8221;%PARISPATH%&#8221;</span>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;"><br /></span>
 </div>
 
 <div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO NotifyInterval=30000 >>&#8221;%PARISPATH%&#8221;</span>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">if /I "%OBJECTNAME%" EQU "" ECHO #objectname=I4AppServer >>"%PARISPATH%"</span>
 </div>
 
 <div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO #Interval between refresh of InBox screen (1second=1000) >>&#8221;%PARISPATH%&#8221;</span>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">if /I "%OBJECTNAME%" NEQ "" ECHO objectname=%OBJECTNAME% >>"%PARISPATH%"</span>
 </div>
 
 <div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO Helpfile=paris1.chm >>&#8221;%PARISPATH%&#8221;</span>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;"><br /></span>
+</div>
+
+<div>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">if /I "%HOSTNAME%" EQU "" ECHO #hostname=AComputerName >>"%PARISPATH%"</span>
+</div>
+
+<div>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">if /I "%HOSTNAME%" NEQ "" ECHO hostname=%HOSTNAME% >>"%PARISPATH%"</span>
+</div>
+
+<div>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;"><br /></span>
+</div>
+
+<div>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">if /I "%REQUESTBROKER%" EQU "" ECHO #RequestBroker=AComputerName >>"%PARISPATH%"</span>
+</div>
+
+<div>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">if /I "%REQUESTBROKER%" NEQ "" ECHO RequestBroker=%REQUESTBROKER% >>"%PARISPATH%"</span>
+</div>
+
+<div>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;"><br /></span>
+</div>
+
+<div>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">if /I "%RequestBrokerBackup%" EQU "" ECHO #RequestBrokerBackup=AnotherComputerName >>"%PARISPATH%"</span>
+</div>
+
+<div>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">if /I "%RequestBrokerBackup%" NEQ "" ECHO RequestBrokerBackup=%RequestBrokerBackup% >>"%PARISPATH%"</span>
+</div>
+
+<div>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;"><br /></span>
+</div>
+
+<div>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">if /I "%ServerGroup%" EQU "" ECHO #ServerGroup=AnotherComputerName >>"%PARISPATH%"</span>
+</div>
+
+<div>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">if /I "%ServerGroup%" NEQ "" ECHO ServerGroup=%ServerGroup% >>"%PARISPATH%"</span>
+</div>
+
+<div>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;"><br /></span>
+</div>
+
+<div>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;"><br /></span>
+</div>
+
+<div>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO. >>"%PARISPATH%"</span>
+</div>
+
+<div>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO [Settings] >>"%PARISPATH%"</span>
+</div>
+
+<div>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO MaxLookup=200 >>"%PARISPATH%"</span>
+</div>
+
+<div>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO NotifyInterval=30000 >>"%PARISPATH%"</span>
+</div>
+
+<div>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO #Interval between refresh of InBox screen (1second=1000) >>"%PARISPATH%"</span>
+</div>
+
+<div>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO Helpfile=paris1.chm >>"%PARISPATH%"</span>
 </div>
 
 <div>
@@ -551,15 +551,15 @@ We are App-V&#8217;ing a bunch of our applications and one of the applications r
 </div>
 
 <div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">:copy /y &#8220;%PARISPATH%&#8221; &#8220;B:In4tek_Paris_37_MNTParisbinSTAPPParisShellDCOM.INI&#8221;</span>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">:copy /y "%PARISPATH%" "B:In4tek_Paris_37_MNTParisbinSTAPPParisShellDCOM.INI"</span>
 </div>
 
 <div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO &#8220;B:In4tek_Paris_37_MNTParisbinSTAPPParisShellDCOM.exe -alias %ALIAS%</span>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">ECHO "B:In4tek_Paris_37_MNTParisbinSTAPPParisShellDCOM.exe -alias %ALIAS%</span>
 </div>
 
 <div>
-  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">type &#8220;%PARISPATH%&#8221;</span>
+  <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;">type "%PARISPATH%"</span>
 </div>
 
 <div>

@@ -1,6 +1,6 @@
 ---
 id: 626
-title: 'HyperV 2012 R2 &#8220;Enhanced Session Mode&#8221;'
+title: 'HyperV 2012 R2 "Enhanced Session Mode"'
 date: 2013-09-18T09:32:00-06:00
 author: trententtye
 layout: post
@@ -20,9 +20,9 @@ categories:
 tags:
   - Uncategorized
 ---
-I hate it when I read &#8220;wow Hyper-V 2012 R2 now comes with enhanced session mode, allowing you to redirect audio, usb, etc to the client VM!&#8221;
+I hate it when I read "wow Hyper-V 2012 R2 now comes with enhanced session mode, allowing you to redirect audio, usb, etc to the client VM!"
 
-I was excited to read about that until I also read it only works on Windows 8.1 and Server 2012 R2. &nbsp;So much for it working on Windows 7 or other guest VM&#8217;s.
+I was excited to read about that until I also read it only works on Windows 8.1 and Server 2012 R2. &nbsp;So much for it working on Windows 7 or other guest VM's.
 
 Disappointing.
 

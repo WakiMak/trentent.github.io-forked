@@ -22,13 +22,13 @@ tags:
   - Provisioning Services
   - scripting
 ---
-I&#8217;ve written this script to utilize MCLI.exe to add a comment to the newest version of a vDisk and have marked which fields correspond to what.
+I've written this script to utilize MCLI.exe to add a comment to the newest version of a vDisk and have marked which fields correspond to what.
 
-<pre class="lang:batch decode:true ">"C:\Program Files\Citrix\Provisioning Services\MCLI.exe" get diskversion -p disklocatorname=XenApp65Tn03 sitename=SHW storename=XenApp | FINDSTR /i /C:"version" &gt; %TEMP%\diskver.txt
+<pre class="lang:batch decode:true ">"C:\Program Files\Citrix\Provisioning Services\MCLI.exe" get diskversion -p disklocatorname=&65Tn03 sitename=SHW storename=& | FINDSTR /i /C:"version" > %TEMP%\diskver.txt
 
 FOR /F "tokens=1-2 delims=: " %%A IN ('type %TEMP%\diskver.txt') DO set VERSIONN=%%B
 
-"C:\Program Files\Citrix\Provisioning Services\MCLI.exe" set diskversion -p version=%VERSIONN% disklocatorname=XenApp65Tn03 sitename=SHW storename=XenApp -r description="Test"</pre>
+"C:\Program Files\Citrix\Provisioning Services\MCLI.exe" set diskversion -p version=%VERSIONN% disklocatorname=&65Tn03 sitename=SHW storename=& -r description="Test"</pre>
 
 &nbsp;
 
@@ -42,7 +42,7 @@ FOR /F "tokens=1-2 delims=: " %%A IN ('type %TEMP%\diskver.txt') DO set VERSIONN
   <a style="margin-left: 1em; margin-right: 1em;" href="http://4.bp.blogspot.com/-7Mn6Kp63GD8/UeWAM2-F85I/AAAAAAAAAXA/N18_eKkHSLM/s1600/2.bmp"><img src="http://4.bp.blogspot.com/-7Mn6Kp63GD8/UeWAM2-F85I/AAAAAAAAAXA/N18_eKkHSLM/s320/2.bmp" width="320" height="117" border="0" /></a>
 </div>
 
-This script can now be added to the &#8220;PVS Automatic&#8221; update feature to automatically comment the latest vDisk when it is updated.
+This script can now be added to the "PVS Automatic" update feature to automatically comment the latest vDisk when it is updated.
 
 <!-- AddThis Advanced Settings generic via filter on the_content -->
 

@@ -1,6 +1,6 @@
 ---
 id: 575
-title: 'AppV5 &#8211; Package failed configuration in folder with error 0xA040132A-0x3'
+title: 'AppV5 - Package failed configuration in folder with error 0xA040132A-0x3'
 date: 2015-03-04T12:15:00-06:00
 author: trententtye
 layout: post
@@ -26,7 +26,7 @@ When publishing AppV5 applications on a PVS server we sometimes encounter an iss
   <a style="margin-left: 1em; margin-right: 1em;" href="http://2.bp.blogspot.com/-gkwnyioz_v0/VPdKegmNHEI/AAAAAAAAAwA/1KJHWYUZ0-4/s1600/Screen%2BShot%2B2015-03-04%2Bat%2B11.09.49%2BAM.png"><img src="http://2.bp.blogspot.com/-gkwnyioz_v0/VPdKegmNHEI/AAAAAAAAAwA/1KJHWYUZ0-4/s1600/Screen%2BShot%2B2015-03-04%2Bat%2B11.09.49%2BAM.png" width="320" height="138" border="0" /></a>
 </div>
 
-Package {5075e8a4-4335-4101-991e-be88f5862575} version {940e4d49-af37-428c-a129-3bd37e3e4539} failed configuration in folder &#8216;D:\AppVData\PackageInstallationRoot\5075E8A4-4335-4101-991E-BE88F5862575\940E4D49-AF37-428C-A129-3BD37E3E4539&#8217; with error 0xA040132A-0x3. with error 0xA040132A-0x3.
+Package {5075e8a4-4335-4101-991e-be88f5862575} version {940e4d49-af37-428c-a129-3bd37e3e4539} failed configuration in folder 'D:\AppVData\PackageInstallationRoot\5075E8A4-4335-4101-991E-BE88F5862575\940E4D49-AF37-428C-A129-3BD37E3E4539' with error 0xA040132A-0x3. with error 0xA040132A-0x3.
 
 With another event that follows:
 
@@ -37,9 +37,9 @@ With another event that follows:
 Part or all packages publish failed.  
 published: 14  
 failed: 10  
-Please check the error events of &#8216;Configure/Publish Package&#8217; before this message for the details of the failure.
+Please check the error events of 'Configure/Publish Package' before this message for the details of the failure.
 
-This issue is typically caused by two factors: folders not existing in the &#8220;PackageInstallationRoot&#8221;, in my example that is D:\AppVData\PackageInstallationRoot. Â You can find this value in the registry here:  
+This issue is typically caused by two factors: folders not existing in the "PackageInstallationRoot", in my example that is D:\AppVData\PackageInstallationRoot. Â You can find this value in the registry here:  
 HKEY\_LOCAL\_MACHINE\SOFTWARE\Microsoft\AppV\Client\Streaming /vÂ PackageInstallationRoot /dÂ D:\AppVData\PackageInstallationRoot
 
 and registry entries existing here:  

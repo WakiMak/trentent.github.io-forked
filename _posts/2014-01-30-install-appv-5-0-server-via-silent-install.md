@@ -72,13 +72,13 @@ IF '%ERRORLEVEL%' EQU '0' SET MSVC2010x64=0
 :: ===========================================================================================================
 :: Web Server + required features
 :: ===========================================================================================================
-        &gt;FeatureCheck.ps1 ECHO.
-        &gt;&gt;FeatureCheck.ps1 ECHO Import-Module servermanager
-        &gt;&gt;FeatureCheck.ps1 ECHO get-windowsfeature web-* ^| where-object {$_.Installed -eq $True} ^| out-file $env:temp\windowFeature.txt
+        >FeatureCheck.ps1 ECHO.
+        >>FeatureCheck.ps1 ECHO Import-Module servermanager
+        >>FeatureCheck.ps1 ECHO get-windowsfeature web-* ^| where-object {$_.Installed -eq $True} ^| out-file $env:temp\windowFeature.txt
         "%SystemRoot%\system32\WindowsPowerShell\v1.0\powershell.exe" Set-ExecutionPolicy Unrestricted
         "%SystemRoot%\system32\WindowsPowerShell\v1.0\powershell.exe" .\FeatureCheck.ps1
         "%SystemRoot%\system32\WindowsPowerShell\v1.0\powershell.exe" Set-ExecutionPolicy Restricted
-        DEL /F /Q FeatureCheck.ps1 &gt;NUL
+        DEL /F /Q FeatureCheck.ps1 >NUL
 
 :: Find Web-Server
 SET Web-Server=1
@@ -134,17 +134,17 @@ IF '%ERRORLEVEL%' EQU '0' SET Web-Mgmt-Console=0
 :: ===========================================================================================================
 :: Windows Management Framework 3.0 (PowerShell 3.0)
 :: ===========================================================================================================
-        &gt;WMF3.ps1 ECHO.
-        &gt;&gt;WMF3.ps1 ECHO $osresult = $null 
-        &gt;&gt;WMF3.ps1 ECHO $os = (Get-WmiObject Win32_OperatingSystem).Name 
-        &gt;&gt;WMF3.ps1 ECHO if ($os -like "*Windows 8*") {$osresult = "True"} 
-        &gt;&gt;WMF3.ps1 ECHO if ($os -like "*Server 2012*") {$osresult = "True"} 
-        &gt;&gt;WMF3.ps1 ECHO $hfchk = Get-WmiObject -Query "select HotFixID from Win32_QuickFixEngineering where HotFixID like 'KB2506143'"
-        &gt;&gt;WMF3.ps1 ECHO $hfchk.HotFixID ^|out-file $env:temp\WMF3.txt
+        >WMF3.ps1 ECHO.
+        >>WMF3.ps1 ECHO $osresult = $null 
+        >>WMF3.ps1 ECHO $os = (Get-WmiObject Win32_OperatingSystem).Name 
+        >>WMF3.ps1 ECHO if ($os -like "*Windows 8*") {$osresult = "True"} 
+        >>WMF3.ps1 ECHO if ($os -like "*Server 2012*") {$osresult = "True"} 
+        >>WMF3.ps1 ECHO $hfchk = Get-WmiObject -Query "select HotFixID from Win32_QuickFixEngineering where HotFixID like 'KB2506143'"
+        >>WMF3.ps1 ECHO $hfchk.HotFixID ^|out-file $env:temp\WMF3.txt
         "%SystemRoot%\system32\WindowsPowerShell\v1.0\powershell.exe" Set-ExecutionPolicy Unrestricted
         "%SystemRoot%\system32\WindowsPowerShell\v1.0\powershell.exe" .\WMF3.ps1
         "%SystemRoot%\system32\WindowsPowerShell\v1.0\powershell.exe" Set-ExecutionPolicy Restricted
-        DEL /F /Q WMF3.ps1 &gt;NUL
+        DEL /F /Q WMF3.ps1 >NUL
 
 SET WMF3=1
 type %TEMP%\WMF3.txt | findstr /I /C:"KB2506143"
@@ -171,7 +171,7 @@ ECHO Web-Filtering=%Web-Filtering%
 ECHO Web-Mgmt-Console=%Web-Mgmt-Console%
 ECHO WMF3=%WMF3%
 
-ping 127.0.0.1 -n 5 &gt;NUL
+ping 127.0.0.1 -n 5 >NUL
 
 IF /I '%DOTNET%' EQU '1' (
 ECHO Installing .NetFramework 4.0...
@@ -191,45 +191,45 @@ ECHO Installing Microsoft Visual C++ 2010 SP1 Redistributable Package (x64)
 :: ===========================================================================================================
 :: Web Server + required features
 :: ===========================================================================================================
-        &gt;InstallIIS.ps1 ECHO.
-        &gt;&gt;InstallIIS.ps1 ECHO Import-Module servermanager
+        >InstallIIS.ps1 ECHO.
+        >>InstallIIS.ps1 ECHO Import-Module servermanager
 
 IF /I '%Web-Server%' EQU '1' (
-        &gt;&gt;InstallIIS.ps1 ECHO Add-WindowsFeature Web-Server
+        >>InstallIIS.ps1 ECHO Add-WindowsFeature Web-Server
 )
 IF /I '%Web-Static-Content%' EQU '1' (
-        &gt;&gt;InstallIIS.ps1 ECHO Add-WindowsFeature Web-Static-Content
+        >>InstallIIS.ps1 ECHO Add-WindowsFeature Web-Static-Content
 )
 IF /I '%Web-Default-Doc%' EQU '1' (
-        &gt;&gt;InstallIIS.ps1 ECHO Add-WindowsFeature Web-Default-Doc
+        >>InstallIIS.ps1 ECHO Add-WindowsFeature Web-Default-Doc
 )
 IF /I '%Web-Asp-Net%' EQU '1' (
-        &gt;&gt;InstallIIS.ps1 ECHO Add-WindowsFeature Web-Asp-Net
+        >>InstallIIS.ps1 ECHO Add-WindowsFeature Web-Asp-Net
 )
 IF /I '%Web-Net-Ext%' EQU '1' (
-        &gt;&gt;InstallIIS.ps1 ECHO Add-WindowsFeature Web-Net-Ext
+        >>InstallIIS.ps1 ECHO Add-WindowsFeature Web-Net-Ext
 )
 IF /I '%Web-ISAPI-Ext%' EQU '1' (
-        &gt;&gt;InstallIIS.ps1 ECHO Add-WindowsFeature Web-ISAPI-Ext
+        >>InstallIIS.ps1 ECHO Add-WindowsFeature Web-ISAPI-Ext
 )
 IF /I '%Web-ISAPI-Filter%' EQU '1' (
-        &gt;&gt;InstallIIS.ps1 ECHO Add-WindowsFeature Web-ISAPI-Filter
+        >>InstallIIS.ps1 ECHO Add-WindowsFeature Web-ISAPI-Filter
 )
 IF /I '%Web-Windows-Auth%' EQU '1' (
-        &gt;&gt;InstallIIS.ps1 ECHO Add-WindowsFeature Web-Windows-Auth
+        >>InstallIIS.ps1 ECHO Add-WindowsFeature Web-Windows-Auth
 )
 IF /I '%Web-Filtering%' EQU '1' (
-        &gt;&gt;InstallIIS.ps1 ECHO Add-WindowsFeature Web-Filtering
+        >>InstallIIS.ps1 ECHO Add-WindowsFeature Web-Filtering
 )
 IF /I '%Web-Mgmt-Console%' EQU '1' (
-        &gt;&gt;InstallIIS.ps1 ECHO Add-WindowsFeature Web-Mgmt-Console
+        >>InstallIIS.ps1 ECHO Add-WindowsFeature Web-Mgmt-Console
 )
 
 ECHO Installing Web Server and required features...
         "%SystemRoot%\system32\WindowsPowerShell\v1.0\powershell.exe" Set-ExecutionPolicy Unrestricted
         "%SystemRoot%\system32\WindowsPowerShell\v1.0\powershell.exe" .\InstallIIS.ps1
         "%SystemRoot%\system32\WindowsPowerShell\v1.0\powershell.exe" Set-ExecutionPolicy Restricted
-        DEL /F /Q InstallIIS.ps1 &gt;NUL
+        DEL /F /Q InstallIIS.ps1 >NUL
 
 ECHO Installing Windows Management Framework 3.0...
 IF /I '%WMF3%' EQU '1' (
@@ -245,18 +245,18 @@ ECHO You may have to login to this server with a local admin account
 ECHO to execute the install...
 
 cd /d "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup"
-        &gt;startup.cmd ECHO @ECHO OFF
-        &gt;&gt;startup.cmd ECHO c:\windows\microsoft.net\framework\v4.0.30319\aspnet_regiis.exe -ir
-        &gt;&gt;startup.cmd ECHO c:\windows\microsoft.net\framework64\v4.0.30319\aspnet_regiis.exe -ir
-        &gt;&gt;startup.cmd ECHO net use Z: "\\FILESERVER\ctx_images_bdc\_ISO\AppV\App-V for RDS v5.0 SP1\APP-V 5.0 SERVER SP1"
-        &gt;&gt;startup.cmd ECHO Z:
-        &gt;&gt;startup.cmd ECHO ECHO Installing Management Server...
-        &gt;&gt;startup.cmd ECHO APPV_SERVER_SETUP.EXE /QUIET  /AcceptEULA /MANAGEMENT_SERVER /MANAGEMENT_ADMINACCOUNT="DOMAIN\APV.Admins" /MANAGEMENT_WEBSITE_NAME="Microsoft App-V Management Service" /MANAGEMENT_WEBSITE_PORT="12345" /EXISTING_MANAGEMENT_DB_REMOTE_SQL_SERVER_NAME="WSSQL" /EXISTING_MANAGEMENT_DB_CUSTOM_SQLINSTANCE="PRDINST01" /EXISTING_MANAGEMENT_DB_NAME="APPV5DB"
-        &gt;&gt;startup.cmd ECHO ECHO Installing Publishing Server...
-        &gt;&gt;startup.cmd ECHO APPV_SERVER_SETUP.EXE /QUIET /AcceptEULA /PUBLISHING_SERVER /PUBLISHING_MGT_SERVER="http://%COMPUTERNAME%.%USERDNSDOMAIN%:12345" /PUBLISHING_WEBSITE_NAME="Microsoft App-V Publishing Service" /PUBLISHING_WEBSITE_PORT="55555"
-        &gt;&gt;startup.cmd ECHO cd /d "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup"
-        &gt;&gt;startup.cmd ECHO START shutdown.exe -r -t 60 -f
-        &gt;&gt;startup.cmd ECHO DEL /F /Q startup.cmd
+        >startup.cmd ECHO @ECHO OFF
+        >>startup.cmd ECHO c:\windows\microsoft.net\framework\v4.0.30319\aspnet_regiis.exe -ir
+        >>startup.cmd ECHO c:\windows\microsoft.net\framework64\v4.0.30319\aspnet_regiis.exe -ir
+        >>startup.cmd ECHO net use Z: "\\FILESERVER\ctx_images_bdc\_ISO\AppV\App-V for RDS v5.0 SP1\APP-V 5.0 SERVER SP1"
+        >>startup.cmd ECHO Z:
+        >>startup.cmd ECHO ECHO Installing Management Server...
+        >>startup.cmd ECHO APPV_SERVER_SETUP.EXE /QUIET  /AcceptEULA /MANAGEMENT_SERVER /MANAGEMENT_ADMINACCOUNT="DOMAIN\APV.Admins" /MANAGEMENT_WEBSITE_NAME="Microsoft App-V Management Service" /MANAGEMENT_WEBSITE_PORT="12345" /EXISTING_MANAGEMENT_DB_REMOTE_SQL_SERVER_NAME="WSSQL" /EXISTING_MANAGEMENT_DB_CUSTOM_SQLINSTANCE="PRDINST01" /EXISTING_MANAGEMENT_DB_NAME="APPV5DB"
+        >>startup.cmd ECHO ECHO Installing Publishing Server...
+        >>startup.cmd ECHO APPV_SERVER_SETUP.EXE /QUIET /AcceptEULA /PUBLISHING_SERVER /PUBLISHING_MGT_SERVER="http://%COMPUTERNAME%.%USERDNSDOMAIN%:12345" /PUBLISHING_WEBSITE_NAME="Microsoft App-V Publishing Service" /PUBLISHING_WEBSITE_PORT="55555"
+        >>startup.cmd ECHO cd /d "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup"
+        >>startup.cmd ECHO START shutdown.exe -r -t 60 -f
+        >>startup.cmd ECHO DEL /F /Q startup.cmd
 
 ECHO Rebooting...
 shutdown -r -t 60 -f</pre>

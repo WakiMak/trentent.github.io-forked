@@ -21,7 +21,7 @@ tags:
   - AppV
 ---
 <div style="mso-layout-grid-align: none; mso-pagination: none; text-autospace: none;">
-  <span lang="EN-US" style="font-family: Arial; font-size: 13.0pt;">Crystal Reports 13 and AppV 5 have issues. Â Crystal Reports 13 (CR) installs to some long paths which fail when loaded AppV5 tries to &#8216;integrate&#8217; them. Â A </span><span lang="EN-US"><a href="http://ryanwill.com/app-v-5-sp2-and-crystal-reports-runtime-13/">blog detailed shortening the installdir</a></span><span lang="EN-US" style="font-family: Arial; font-size: 13.0pt;"> path to something much shorter but CR still failed for me. Â My path without modifying the INSTALLDIR property was:</span>
+  <span lang="EN-US" style="font-family: Arial; font-size: 13.0pt;">Crystal Reports 13 and AppV 5 have issues. Â Crystal Reports 13 (CR) installs to some long paths which fail when loaded AppV5 tries to 'integrate' them. Â A </span><span lang="EN-US"><a href="http://ryanwill.com/app-v-5-sp2-and-crystal-reports-runtime-13/">blog detailed shortening the installdir</a></span><span lang="EN-US" style="font-family: Arial; font-size: 13.0pt;"> path to something much shorter but CR still failed for me. Â My path without modifying the INSTALLDIR property was:</span>
 </div>
 
 <div style="mso-layout-grid-align: none; mso-pagination: none; text-autospace: none;">
@@ -86,14 +86,14 @@ tags:
 </div>
 
 <div style="mso-layout-grid-align: none; mso-pagination: none; text-autospace: none;">
-  <span lang="EN-US" style="font-family: Calibri; font-size: 11.0pt; mso-bidi-font-family: Calibri;">&#8216;The type initializer for &#8216;CrystalDecisions.CrystalReports.Engine.CRPE&#8217; threw an exception.</span>
+  <span lang="EN-US" style="font-family: Calibri; font-size: 11.0pt; mso-bidi-font-family: Calibri;">'The type initializer for 'CrystalDecisions.CrystalReports.Engine.CRPE' threw an exception.</span>
 </div>
 
 <div style="mso-layout-grid-align: none; mso-pagination: none; text-autospace: none;">
 </div>
 
 <div style="mso-layout-grid-align: none; mso-pagination: none; text-autospace: none;">
-  <span lang="EN-US" style="font-family: Arial; font-size: 13.0pt;">Attempting to register the DLL&#8217;s related to these resulted in these errors:</span>
+  <span lang="EN-US" style="font-family: Arial; font-size: 13.0pt;">Attempting to register the DLL's related to these resulted in these errors:</span>
 </div>
 
 <div style="mso-layout-grid-align: none; mso-pagination: none; text-autospace: none;">
@@ -127,7 +127,7 @@ tags:
 </div>
 
 <div style="mso-layout-grid-align: none; mso-pagination: none; text-autospace: none;">
-  <span lang="EN-US" style="font-family: Arial; font-size: 13.0pt;">The module &#8220;clientdoc.dll&#8221; may not compatible with the version of Windows that you&#8217;re running. Check if the module is compatible with an x86 (32-bit) or x64 (64-bit) version of regsvr32.exe.</span>
+  <span lang="EN-US" style="font-family: Arial; font-size: 13.0pt;">The module "clientdoc.dll" may not compatible with the version of Windows that you're running. Check if the module is compatible with an x86 (32-bit) or x64 (64-bit) version of regsvr32.exe.</span>
 </div>
 
 <div style="mso-layout-grid-align: none; mso-pagination: none; text-autospace: none;">
@@ -141,7 +141,7 @@ tags:
 </div>
 
 <div style="mso-layout-grid-align: none; mso-pagination: none; text-autospace: none;">
-  <span lang="EN-US" style="font-family: Times; font-size: 13.0pt; mso-bidi-font-family: Times;">Since AppV5 integrates HKCR keys natively into the system, if you can&#8217;t register a DLL via a long path, then you will error with CR.</span>
+  <span lang="EN-US" style="font-family: Times; font-size: 13.0pt; mso-bidi-font-family: Times;">Since AppV5 integrates HKCR keys natively into the system, if you can't register a DLL via a long path, then you will error with CR.</span>
 </div>
 
 <div style="mso-layout-grid-align: none; mso-pagination: none; text-autospace: none;">
@@ -157,7 +157,7 @@ tags:
 </div>
 
 <div style="mso-layout-grid-align: none; mso-pagination: none; text-autospace: none;">
-  <span lang="EN-US" style="font-family: Arial; font-size: 13.0pt;">You can actually replicate a similar error by trying to &#8216;install&#8217; CR with a long path, so it&#8217;s not AppV5 that&#8217;s at fault, but apparently something within the CR DLL&#8217;s. Â Trying to install to a path similar in length to the AppV5 path will fail:</span>
+  <span lang="EN-US" style="font-family: Arial; font-size: 13.0pt;">You can actually replicate a similar error by trying to 'install' CR with a long path, so it's not AppV5 that's at fault, but apparently something within the CR DLL's. Â Trying to install to a path similar in length to the AppV5 path will fail:</span>
 </div>
 
 <div style="mso-layout-grid-align: none; mso-pagination: none; text-autospace: none;">
@@ -198,7 +198,7 @@ tags:
 &nbsp;
 
 <div style="mso-layout-grid-align: none; mso-pagination: none; text-autospace: none;">
-  <span lang="EN-US" style="font-family: Arial; font-size: 13.0pt;">259 total characters. Â At 260 characters or greater the installer fails with an error similar to the above. I&#8217;m not sure why the AppV5 path is significantly less, but it is for some reason.</span>
+  <span lang="EN-US" style="font-family: Arial; font-size: 13.0pt;">259 total characters. Â At 260 characters or greater the installer fails with an error similar to the above. I'm not sure why the AppV5 path is significantly less, but it is for some reason.</span>
 </div>
 
 <div style="mso-layout-grid-align: none; mso-pagination: none; text-autospace: none;">
@@ -263,7 +263,7 @@ tags:
       </div>
       
       <div style="mso-layout-grid-align: none; mso-pagination: none; text-autospace: none;">
-        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt;">Copy the ScreenTest III installation source files to a temporary folder C:swinst on the sequencing machine (WSAPVSEQ07 &#8211; Windows 2008 R2 SP1 in this case).</span>
+        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt;">Copy the ScreenTest III installation source files to a temporary folder C:swinst on the sequencing machine (WSAPVSEQ07 - Windows 2008 R2 SP1 in this case).</span>
       </div>
       
       <div style="mso-layout-grid-align: none; mso-pagination: none; text-autospace: none;">

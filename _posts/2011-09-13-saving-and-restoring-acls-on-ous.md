@@ -1,6 +1,6 @@
 ---
 id: 696
-title: 'Saving and restoring ACL&#8217;s on OU&#8217;s'
+title: 'Saving and restoring ACL's on OU's'
 date: 2011-09-13T14:42:00-06:00
 author: trententtye
 layout: post
@@ -26,7 +26,7 @@ Saving and moving OU ACLs
 I’ve written a batch file that will move ACLs from one OU to another. It works by you outputting the results of a ACL from a OU to a text file, specifying the new OU in a batch file and inputting the text file you just created. I use three utilities to accomplish this: adfind.exe, sed.exe and dsacls.exe.  
 The command to save the text file is:
 
-> <pre class="lang:batch decode:true ">adfind -b "OU=Users,OU=LAB,DC=LAB,DC=CORP" -f (distinguishedName=OU=Users,OU=LAB,DC=LAB,DC=corp) -sddl++ -resolvesids -onlydacl ntsecuritydescriptor -sddlnotfilter ;inherited| sed.exe "s/;;/; ;/g" | sed.exe "s/;;/; ;/g" | sed.exe "s/;;/; ;/g" | sed.exe "s/;;/; ;/g" &gt; %PATHTOFILE%.txt</pre>
+> <pre class="lang:batch decode:true ">adfind -b "OU=Users,OU=LAB,DC=LAB,DC=CORP" -f (distinguishedName=OU=Users,OU=LAB,DC=LAB,DC=corp) -sddl++ -resolvesids -onlydacl ntsecuritydescriptor -sddlnotfilter ;inherited| sed.exe "s/;;/; ;/g" | sed.exe "s/;;/; ;/g" | sed.exe "s/;;/; ;/g" | sed.exe "s/;;/; ;/g" > %PATHTOFILE%.txt</pre>
 
 From here, you need to delete the header in the text file and the footer.  
 Once that is done, run this script, changing the two variables at the top:

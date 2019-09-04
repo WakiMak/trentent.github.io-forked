@@ -20,7 +20,7 @@ categories:
 tags:
   - 2008R2
 ---
-Recently, I&#8217;ve been getting an error from Windows Backup:
+Recently, I've been getting an error from Windows Backup:
 
 <div>
 </div>
@@ -307,12 +307,12 @@ Recently, I&#8217;ve been getting an error from Windows Backup:
 </div>
 
 <div>
-  And what does it all mean? Well, I just recently installed a new hard disk and installed an alternative OS onto it. This new hard disk is appearing as &#8220;Disk 0&#8221; in Disk Management and it *is* the boot device. When I boot off it and then select my Windows partition I get these error messages. It appears VSS attempts to access/lock the drive that booted the OS and it fails. If I attempt to take &#8220;Disk 0&#8221; offline, I get the following error message:
+  And what does it all mean? Well, I just recently installed a new hard disk and installed an alternative OS onto it. This new hard disk is appearing as "Disk 0" in Disk Management and it *is* the boot device. When I boot off it and then select my Windows partition I get these error messages. It appears VSS attempts to access/lock the drive that booted the OS and it fails. If I attempt to take "Disk 0" offline, I get the following error message:
 </div>
 
 <div>
   <div>
-    &#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;
+    ---------
   </div>
   
   <div>
@@ -320,7 +320,7 @@ Recently, I&#8217;ve been getting an error from Windows Backup:
   </div>
   
   <div>
-    &#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;
+    ---------
   </div>
   
   <div>
@@ -328,7 +328,7 @@ Recently, I&#8217;ve been getting an error from Windows Backup:
   </div>
   
   <div>
-    &#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;
+    ---------
   </div>
   
   <div>
@@ -336,7 +336,7 @@ Recently, I&#8217;ve been getting an error from Windows Backup:
   </div>
   
   <div>
-    &#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;
+    ---------
   </div>
 </div>
 
@@ -344,14 +344,14 @@ Recently, I&#8217;ve been getting an error from Windows Backup:
 </div>
 
 <div>
-  Using Procmon I can see that VSSVC.exe attempts to access a filesystem that it cannot&#8230; Well, the only disk that it can&#8217;t access is the lone &#8220;Alternative OS&#8221; disk. I suspect removing that disk or forcing my BIOS to boot directly to the Windows partition will resolve my issues. If you&#8217;re in a similar situation as me, I would suggest checking your boot order, removing any extraneous disks or ensuring your boot drive is appearing as &#8220;Disk 0&#8221; in disk management.
+  Using Procmon I can see that VSSVC.exe attempts to access a filesystem that it cannot... Well, the only disk that it can't access is the lone "Alternative OS" disk. I suspect removing that disk or forcing my BIOS to boot directly to the Windows partition will resolve my issues. If you're in a similar situation as me, I would suggest checking your boot order, removing any extraneous disks or ensuring your boot drive is appearing as "Disk 0" in disk management.
 </div>
 
 <div>
 </div>
 
 <div>
-  I&#8217;ve just tested and confirmed that forcing my BIOS to boot directly to my OS drive without going through an alternative drive has enabled the backup program to operate without any errors.
+  I've just tested and confirmed that forcing my BIOS to boot directly to my OS drive without going through an alternative drive has enabled the backup program to operate without any errors.
 </div>
 
 <div>

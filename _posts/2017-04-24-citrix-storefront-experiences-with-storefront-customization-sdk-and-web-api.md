@@ -1,6 +1,6 @@
 ---
 id: 2150
-title: 'Citrix StoreFront &#8211; Experiences with Storefront Customization SDK and Web API'
+title: 'Citrix StoreFront - Experiences with Storefront Customization SDK and Web API'
 date: 2017-04-24T12:43:41-06:00
 author: trententtye
 layout: post
@@ -15,10 +15,10 @@ tags:
   - PowerShell
   - Storefront
   - Web Interface
-  - XenApp
+  - &
   - XenDesktop
 ---
-Our organization has been exploring upgrading our Citrix environment from 6.5 to 7.X. Â The biggest road blocks we&#8217;ve been experiencing? Â VariousÂ _nuanced_ features in Citrix XenApp 6.5 don&#8217;t work or are not supported in 7.X.
+Our organization has been exploring upgrading our Citrix environment from 6.5 to 7.X. Â The biggest road blocks we've been experiencing? Â VariousÂ _nuanced_ features in Citrix & 6.5 don't work or are not supported in 7.X.
 
 This brings me to this post and an example of the difficulties we are facing, my exploration of solutions to this problem, and our potential solution.
 
@@ -26,11 +26,11 @@ In Citrix Web Interface 5.1+ you can create a URI with a set of application laun
 
 By following that guide and modifying your Web Interface you can change one of your sites so that it accepts launch parameters. Â You simply enter a specific URI in your browser, and the application would launch with said parameters. Â An example:
 
-<span style="color: #3366ff;">http://bottheory.local/Citrix/XenApp/site/launcher.aspx?CTX_Application=Citrix.MPS.App.XenApp.Notepad&LaunchId=1263894298505&NFuse_AppCommandLine=C:\Windows\WindowsUpdate.log</span>
+<span style="color: #3366ff;">http://bottheory.local/Citrix/&/site/launcher.aspx?CTX_Application=Citrix.MPS.App.&.Notepad&LaunchId=1263894298505&NFuse_AppCommandLine=C:\Windows\WindowsUpdate.log</span>
 
-This allows you to send links around to other people and they can click to automatically launch an application with the parameters specified. Â If you are really unlucky, your org mightÂ document this as an official way to launch a hostedÂ application and this actually gets coded into certain applications. Â So now you may have tens of _localÂ_ apps utilizing this as an acceptable method to launch aÂ _hosted_ application. Â For an organization, thisÂ _may be_Â an acceptable way to launch certain hosted applications since around ~2008 so this &#8220;feature&#8221;, unfortunately, has built up quiteÂ a bit of inertia.
+This allows you to send links around to other people and they can click to automatically launch an application with the parameters specified. Â If you are really unlucky, your org mightÂ document this as an official way to launch a hostedÂ application and this actually gets coded into certain applications. Â So now you may have tens of _localÂ_ apps utilizing this as an acceptable method to launch aÂ _hosted_ application. Â For an organization, thisÂ _may be_Â an acceptable way to launch certain hosted applications since around ~2008 so this "feature", unfortunately, has built up quiteÂ a bit of inertia.
 
-We can&#8217;t let this feature break when we move to StoreFront. Â We track the number of launches from these hosted applications and it&#8217;s in the hundreds/thousands per day. Â This is a critical and well used feature.
+We can't let this feature break when we move to StoreFront. Â We track the number of launches from these hosted applications and it's in the hundreds/thousands per day. Â This is a critical and well used feature.
 
 So how does this work in Web Interface and what actually happens?
 
@@ -42,11 +42,11 @@ So how does this work in Web Interface and what actually happens?
   </p>
 </div>
 
-The modifications that you apply add a new &#8216;query&#8217; to the URI that is picked up. Â This &#8216;query&#8217; is &#8220;NFuse_AppCommandLine&#8221; and theÂ value it isÂ equal to (&#8220;C:\Windows\WindowsUpdate.log&#8221; in my example) is passed into the ICA file.
+The modifications that you apply add a new 'query' to the URI that is picked up. Â This 'query' is "NFuse_AppCommandLine" and theÂ value it isÂ equal to ("C:\Windows\WindowsUpdate.log" in my example) is passed into the ICA file.
 
-The ICA file, when launched, will pass the parameter to a special string &#8220;%\*\*&#8221; the is set on the command line of the published application. Â This token &#8220;%\*\*&#8221; gets replaced by the parameter specified in the ICA which then generates the launch string. Â This string is executed and the result is the program launches.
+The ICA file, when launched, will pass the parameter to a special string "%\*\*" the is set on the command line of the published application. Â This token "%\*\*" gets replaced by the parameter specified in the ICA which then generates the launch string. Â This string is executed and the result is the program launches.
 
-Can we do this with Storefront? Â Well, first things first, is this even possible with XenApp/XenDesktop 7.X? Â In order to test this I created an application and specified the special token.
+Can we do this with Storefront? Â Well, first things first, is this even possible with &/XenDesktop 7.X? Â In order to test this I created an application and specified the special token.
 
 <img class="aligncenter size-full wp-image-2153" src="http://theorypc.ca/wp-content/uploads/2017/04/Screen-Shot-2017-04-22-at-1.39.21-PM.png" alt="" width="795" height="580" srcset="http://theorypc.ca/wp-content/uploads/2017/04/Screen-Shot-2017-04-22-at-1.39.21-PM.png 795w, http://theorypc.ca/wp-content/uploads/2017/04/Screen-Shot-2017-04-22-at-1.39.21-PM-300x219.png 300w, http://theorypc.ca/wp-content/uploads/2017/04/Screen-Shot-2017-04-22-at-1.39.21-PM-768x560.png 768w" sizes="(max-width: 795px) 100vw, 795px" /> 
 
@@ -66,7 +66,7 @@ Did it work?
   </p>
 </div>
 
-Success! Â So XenApp/XenDesktop 7.X will substitute the tokens with the LongCommandLine in the ICA file. Â Excellent. Â So now we just need Storefront to take the URI and add it to the LongCommandLine. Â Storefront does not do this out of the box.
+Success! Â So &/XenDesktop 7.X will substitute the tokens with the LongCommandLine in the ICA file. Â Excellent. Â So now we just need Storefront to take the URI and add it to the LongCommandLine. Â Storefront does not do this out of the box.
 
 However, Citrix offers a couple ofÂ possible solutions to this problem (that I explored).
 
@@ -79,7 +79,7 @@ What are these and how do they work?
 
 This API is billed as:
 
-## &#8220;Write a new Web UI or integrate StoreFront into your own Web portal&#8221;
+## "Write a new Web UI or integrate StoreFront into your own Web portal"
 
 We are going to need to either modify Storefront or write our own in order to take and parameters in the URI. Â I decided to write our own. Â Using the ApiExample.html in the WebAPI I addedÂ the following:
 
@@ -89,7 +89,7 @@ We are going to need to either modify Storefront or write our own in order to ta
 			sParameterName,
 			i;
 
-		for (i = 0; i &lt; sURLVariables.length; i++) {
+		for (i = 0; i < sURLVariables.length; i++) {
 			sParameterName = sURLVariables[i].split('=');
 
 			if (sParameterName[0] === sParam) {
@@ -101,14 +101,14 @@ We are going to need to either modify Storefront or write our own in order to ta
 	var NFuse_AppCommandLine = getUrlParameter('NFuse_AppCommandLine');
 	var CTX_Application = getUrlParameter('CTX_Application');</pre>
 
-This looks into the URI and allows you to get the value of either query string. Â In my example I am grabbing the values for &#8220;CTX\_Application&#8221; and &#8220;NFuse\_AppCommandLine&#8221;.
+This looks into the URI and allows you to get the value of either query string. Â In my example I am grabbing the values for "CTX\_Application" and "NFuse\_AppCommandLine".
 
-I then removed a bunch of the authentication portions from the ApiExample.html (I&#8217;ll be using an unauthenticated store). Â In order to automatically select the specified application I added some javascript to check the resource list and get the launch URL:
+I then removed a bunch of the authentication portions from the ApiExample.html (I'll be using an unauthenticated store). Â In order to automatically select the specified application I added some javascript to check the resource list and get the launch URL:
 
 <pre class="lang:default decode:true ">function listResourcesSuccess(data) {
         resourcesData = data.resources;
 
-        for (var i = 0; i &lt; resourcesData.length; i++) {
+        for (var i = 0; i < resourcesData.length; i++) {
 	    if (resourcesData[i].name == CTX_Application) {
 	        console.log("Name Matches");
 	        console.log(resourcesData[i]);
@@ -119,14 +119,14 @@ I then removed a bunch of the authentication portions from the ApiExample.html (
 
 There is a function within the ApiExample.html file that pulls the ICA file. Â Could we take this and modify it before returning it with the LongCommandLine addition? Â We have the NFuse_AppCommandLine now.
 
-It turns out, you can. You can capture the ICA file as a variable and then using javascripts &#8216;.replace&#8217; method you can modify the line so that it contains your string. Â But how do you pass the ICA file to the system to launch?
+It turns out, you can. You can capture the ICA file as a variable and then using javascripts '.replace' method you can modify the line so that it contains your string. Â But how do you pass the ICA file to the system to launch?
 
 This is how Citrix launches the ICA file in the ApiExample.html:
 
 <pre class="lang:js decode:true ">// To initiate a launch, an ICA file is loaded into a hidden iframe.
         // The ICA file is returned with content type "application/x-ica", allowing it to be intercepted by the Citrix HDX
         // browser plug-in in Firefox/Chrome/Safari. For IE, the user may be prompted to open the ICA file.
-        $('#hidden-iframes').append('&lt;iframe id="' + frameId + '" name="' + frameId + '"&gt;&lt;/iframe&gt;');
+        $('#hidden-iframes').append('<iframe id="' + frameId + '" name="' + frameId + '"></iframe>');
 
         if (csrfToken != null) {
             icaFileUrl = updateQueryString(icaFileUrl, "CsrfToken", csrfToken);
@@ -139,13 +139,13 @@ This is how Citrix launches the ICA file in the ApiExample.html:
 
 It generates a URL then sets it as the src in the iframe. Â The actual result looks like this:
 
-<pre class="lang:default decode:true ">&lt;iframe id="launchframe_1493045843944" name="launchframe_1493045843944" src="Resources/LaunchIca/QUhTQ1RYLk5vdGVwYWQtWGVuQXBwNjUgSGVucnk-.ica?CsrfToken=DB1E8E5D042DB7226C2635FCB855BF3C&amp;launchId=1493045843944"&gt;&lt;/iframe&gt;</pre>
+<pre class="lang:default decode:true "><iframe id="launchframe_1493045843944" name="launchframe_1493045843944" src="Resources/LaunchIca/QUhTQ1RYLk5vdGVwYWQtWGVuQXBwNjUgSGVucnk-.ica?CsrfToken=DB1E8E5D042DB7226C2635FCB855BF3C&amp;launchId=1493045843944"></iframe></pre>
 
 The ICA file is returned in this line:
 
 <pre class="lang:default decode:true">src="Resources/LaunchIca/QUhTQ1RYLk5vdGVwYWQtWGVuQXBwNjUgSGVucnk-.ica?CsrfToken=DB1E8E5D042DB7226C2635FCB855BF3C&amp;launchId=1493045843944"</pre>
 
-When we capture the ICA file as a variable the only way that I&#8217;ve found you can reference it is via a [blob](https://developer.mozilla.org/en/docs/Web/API/Blob). Â What does the src path look like when do that?
+When we capture the ICA file as a variable the only way that I've found you can reference it is via a [blob](https://developer.mozilla.org/en/docs/Web/API/Blob). Â What does the src path look like when do that?
 
 <pre class="lang:default decode:true">src="blob:http://bottheory.local/3f19b9e1-403e-4ab7-b741-a4c77a486b95"</pre>
 
@@ -153,7 +153,7 @@ Ok, this looks great! Â I can create an ICA file than modify it all through WebA
 
 Yes and no. ğŸ™
 
-It works in Chrome and Firefox, but IE doesn&#8217;t auto-launch. Â It prompts to &#8216;save&#8217; a file. Â Why? Â [IE doesn&#8217;t support opening &#8216;non-standard&#8217; blobs](https://connect.microsoft.com/IE/feedback/details/1021584/url-createobjecturl-blob-dontt-work-for-pdf). Â MS offers a method called &#8220;msSaveOrOpenBlob&#8221; which you can use instead, and this method then prompts for opening the blob. Â This will work for opening the ICA file but now the end user requires an extra step. Â So this won&#8217;t work. Â It needs to be automatic like its supposed to be for a good experience.
+It works in Chrome and Firefox, but IE doesn't auto-launch. Â It prompts to 'save' a file. Â Why? Â [IE doesn't support opening 'non-standard' blobs](https://connect.microsoft.com/IE/feedback/details/1021584/url-createobjecturl-blob-dontt-work-for-pdf). Â MS offers a method called "msSaveOrOpenBlob" which you can use instead, and this method then prompts for opening the blob. Â This will work for opening the ICA file but now the end user requires an extra step. Â So this won't work. Â It needs to be automatic like its supposed to be for a good experience.
 
 So WebAPI appears to offer part of the solution. Â We can capture the nFuse_AppCommandLine but we need to get it to LongCommandLine.
 
@@ -169,38 +169,38 @@ That sounds perfect!
 
 The StoreFront store customization SDK bills one of its features as:
 
-## The Store Customization SDK allows you to apply custom logic to the process of displaying resources to users and to <span style="text-decoration: underline;">adjust launch parameters</span>. For example, you can use the SDK to control which apps and desktops are displayed to users, to change ICA virtual channel parameters, or to modify access conditions through XenApp and XenDesktop policy selection.
+## The Store Customization SDK allows you to apply custom logic to the process of displaying resources to users and to <span style="text-decoration: underline;">adjust launch parameters</span>. For example, you can use the SDK to control which apps and desktops are displayed to users, to change ICA virtual channel parameters, or to modify access conditions through & and XenDesktop policy selection.
 
-I underlined the part that is important to me. Â That&#8217;s what I want, exactly! Â I want to adjust launch parameters.
+I underlined the part that is important to me. Â That's what I want, exactly! Â I want to adjust launch parameters.
 
-To start, one of the tasks that I need is to take my nFuse_AppCommandLine and get it passed to the SDK. Â The only way I&#8217;ve found to make this [happen is to enable &#8216;forwardedHeaders](https://www.citrix.com/blogs/2015/06/30/whats-new-in-storefront-3-0/)&#8216; in your web.config file.
+To start, one of the tasks that I need is to take my nFuse_AppCommandLine and get it passed to the SDK. Â The only way I've found to make this [happen is to enable 'forwardedHeaders](https://www.citrix.com/blogs/2015/06/30/whats-new-in-storefront-3-0/)' in your web.config file.
 
-<pre class="lang:xhtml decode:true ">&lt;communication attempts="1" timeout="00:03:00" loopback="On" loopbackPortUsingHttp="80"&gt;
-          &lt;proxy enabled="false" processName="Fiddler" port="8888" /&gt;
-          &lt;forwardedHeaders&gt;
-            &lt;header name="nFuseAppCMDLine" /&gt;
-          &lt;/forwardedHeaders&gt;
-        &lt;/communication&gt;</pre>
+<pre class="lang:xhtml decode:true "><communication attempts="1" timeout="00:03:00" loopback="On" loopbackPortUsingHttp="80">
+          <proxy enabled="false" processName="Fiddler" port="8888" />
+          <forwardedHeaders>
+            <header name="nFuseAppCMDLine" />
+          </forwardedHeaders>
+        </communication></pre>
 
 With this, you need to set your POST/GET Header on your request to Storefront to get this parameter passed to the SDK. Â Here is how I setup my SDK:
 
-Install the &#8220;[Microsoft Visual StudioÂ Community Edition](https://www.visualstudio.com/downloads/)&#8221; on a test StoreFront server.
+Install the "[Microsoft Visual StudioÂ Community Edition](https://www.visualstudio.com/downloads/)" on a test StoreFront server.
 
 <img class="aligncenter size-full wp-image-2156" src="http://theorypc.ca/wp-content/uploads/2017/04/VS_Install.png" alt="" width="1250" height="634" srcset="http://theorypc.ca/wp-content/uploads/2017/04/VS_Install.png 1250w, http://theorypc.ca/wp-content/uploads/2017/04/VS_Install-300x152.png 300w, http://theorypc.ca/wp-content/uploads/2017/04/VS_Install-768x390.png 768w" sizes="(max-width: 1250px) 100vw, 1250px" /> 
 
 &nbsp;
 
-Download the StoreCustomizationSDK and open the &#8216;Customization_Launch&#8217; project file:
+Download the StoreCustomizationSDK and open the 'Customization_Launch' project file:
 
 <img class="aligncenter size-full wp-image-2157" src="http://theorypc.ca/wp-content/uploads/2017/04/customization_launch.png" alt="" width="792" height="266" srcset="http://theorypc.ca/wp-content/uploads/2017/04/customization_launch.png 792w, http://theorypc.ca/wp-content/uploads/2017/04/customization_launch-300x101.png 300w, http://theorypc.ca/wp-content/uploads/2017/04/customization_launch-768x258.png 768w" sizes="(max-width: 792px) 100vw, 792px" /> 
 
 &nbsp;
 
-Right-click &#8216;Customization_Launch&#8217; and select &#8216;Properties&#8217;.<img class="aligncenter size-full wp-image-2159" src="http://theorypc.ca/wp-content/uploads/2017/04/Customzation_Launch_Properties.png" alt="" width="341" height="638" srcset="http://theorypc.ca/wp-content/uploads/2017/04/Customzation_Launch_Properties.png 341w, http://theorypc.ca/wp-content/uploads/2017/04/Customzation_Launch_Properties-160x300.png 160w" sizes="(max-width: 341px) 100vw, 341px" />
+Right-click 'Customization_Launch' and select 'Properties'.<img class="aligncenter size-full wp-image-2159" src="http://theorypc.ca/wp-content/uploads/2017/04/Customzation_Launch_Properties.png" alt="" width="341" height="638" srcset="http://theorypc.ca/wp-content/uploads/2017/04/Customzation_Launch_Properties.png 341w, http://theorypc.ca/wp-content/uploads/2017/04/Customzation_Launch_Properties-160x300.png 160w" sizes="(max-width: 341px) 100vw, 341px" />
 
 &nbsp;
 
-Modify the Outpath in Build to the &#8220;%site%\bin&#8221; location. Â This is NOT the %site%<span style="text-decoration: underline;">Web</span>, but just the %site%.
+Modify the Outpath in Build to the "%site%\bin" location. Â This is NOT the %site%<span style="text-decoration: underline;">Web</span>, but just the %site%.
 
 <img class="aligncenter size-full wp-image-2160" src="http://theorypc.ca/wp-content/uploads/2017/04/SDK_CustomizationLaunch.png" alt="" width="1006" height="778" srcset="http://theorypc.ca/wp-content/uploads/2017/04/SDK_CustomizationLaunch.png 1006w, http://theorypc.ca/wp-content/uploads/2017/04/SDK_CustomizationLaunch-300x232.png 300w, http://theorypc.ca/wp-content/uploads/2017/04/SDK_CustomizationLaunch-768x594.png 768w" sizes="(max-width: 1006px) 100vw, 1006px" /> 
 
@@ -214,7 +214,7 @@ Set a breakpoint somewhere in the file.
 
 <img class="aligncenter size-full wp-image-2162" src="http://theorypc.ca/wp-content/uploads/2017/04/BreakPoint.png" alt="" width="706" height="175" srcset="http://theorypc.ca/wp-content/uploads/2017/04/BreakPoint.png 706w, http://theorypc.ca/wp-content/uploads/2017/04/BreakPoint-300x74.png 300w" sizes="(max-width: 706px) 100vw, 706px" /> 
 
-Build > Build &#8216;Customization_Launch&#8217;
+Build > Build 'Customization_Launch'
 
 <img class="aligncenter size-full wp-image-2163" src="http://theorypc.ca/wp-content/uploads/2017/04/Build_CustomizationLaunch.png" alt="" width="397" height="135" srcset="http://theorypc.ca/wp-content/uploads/2017/04/Build_CustomizationLaunch.png 397w, http://theorypc.ca/wp-content/uploads/2017/04/Build_CustomizationLaunch-300x102.png 300w" sizes="(max-width: 397px) 100vw, 397px" /> 
 
@@ -236,17 +236,17 @@ OK
 
 <img class="aligncenter size-full wp-image-2165" src="http://theorypc.ca/wp-content/uploads/2017/04/Error_Message.png" alt="" width="481" height="222" srcset="http://theorypc.ca/wp-content/uploads/2017/04/Error_Message.png 481w, http://theorypc.ca/wp-content/uploads/2017/04/Error_Message-300x138.png 300w" sizes="(max-width: 481px) 100vw, 481px" /> 
 
-Just ignore it. Â We&#8217;re compiling a library and not an executable and that&#8217;s why you get this message.
+Just ignore it. Â We're compiling a library and not an executable and that's why you get this message.
 
-Now we connect to the debugger to the &#8216;Citrix Delivery Services Resources&#8217;. Â Select &#8216;Attach to Process&#8230;&#8217;
+Now we connect to the debugger to the 'Citrix Delivery Services Resources'. Â Select 'Attach to Process...'
 
 <img class="aligncenter size-full wp-image-2166" src="http://theorypc.ca/wp-content/uploads/2017/04/Attach_To_Process.png" alt="" width="388" height="138" srcset="http://theorypc.ca/wp-content/uploads/2017/04/Attach_To_Process.png 388w, http://theorypc.ca/wp-content/uploads/2017/04/Attach_To_Process-300x107.png 300w" sizes="(max-width: 388px) 100vw, 388px" /> 
 
-Select the w3wp.exe process whose user name is &#8216;Citrix Delivery Services Resources&#8217;. Â You may need to select &#8216;Show processes from all users&#8217; and click &#8216; Attach.
+Select the w3wp.exe process whose user name is 'Citrix Delivery Services Resources'. Â You may need to select 'Show processes from all users' and click ' Attach.
 
 <img class="aligncenter size-full wp-image-2168" src="http://theorypc.ca/wp-content/uploads/2017/04/SDK_Debugger-1.png" alt="" width="857" height="609" srcset="http://theorypc.ca/wp-content/uploads/2017/04/SDK_Debugger-1.png 857w, http://theorypc.ca/wp-content/uploads/2017/04/SDK_Debugger-1-300x213.png 300w, http://theorypc.ca/wp-content/uploads/2017/04/SDK_Debugger-1-768x546.png 768w" sizes="(max-width: 857px) 100vw, 857px" /> 
 
-Click &#8216;Attach&#8217;.
+Click 'Attach'.
 
 <img class="aligncenter size-full wp-image-2169" src="http://theorypc.ca/wp-content/uploads/2017/04/attach.png" alt="" width="415" height="238" srcset="http://theorypc.ca/wp-content/uploads/2017/04/attach.png 415w, http://theorypc.ca/wp-content/uploads/2017/04/attach-300x172.png 300w" sizes="(max-width: 415px) 100vw, 415px" /> 
 
@@ -260,7 +260,7 @@ Your debugger should pause at the breakpoint:
 
 And you can inspect the values.
 
-At this point I wasn&#8217;t interested in trying to re-write the ApiExample.html to get this testing underway, I instead used PowerShell to submit my POST&#8217;s and GET&#8217;s. Â Remember, I&#8217;m using an unauthenticated store so I could cut down on the requests sent to StoreFront to get my apps. Â I found a script from [Ryan Butler](https://www.techdrabble.com/citrix/21-create-an-ica-file-from-storefront-using-powershell-or-javascript) and made some modifications to it. Â I modified it to remove the parameters since I&#8217;m doing testing via hardcoding ğŸ™‚
+At this point I wasn't interested in trying to re-write the ApiExample.html to get this testing underway, I instead used PowerShell to submit my POST's and GET's. Â Remember, I'm using an unauthenticated store so I could cut down on the requests sent to StoreFront to get my apps. Â I found a script from [Ryan Butler](https://www.techdrabble.com/citrix/21-create-an-ica-file-from-storefront-using-powershell-or-javascript) and made some modifications to it. Â I modified it to remove the parameters since I'm doing testing via hardcoding ğŸ™‚
 
 <pre class="lang:ps decode:true">$unauthurl = "http://bottheory.local/Citrix/SDKTestSiteWeb/"
 $appname = "Notepad 2016 - PLB"
@@ -320,7 +320,7 @@ Browse to ICAFile.cs
 
 &nbsp;
 
-At this point we can use the helper methods within the IcaFile.cs. Â To do so, just add &#8220;using Examples.Helpers;&#8221; to the top of the file:
+At this point we can use the helper methods within the IcaFile.cs. Â To do so, just add "using Examples.Helpers;" to the top of the file:
 
 <img class="aligncenter size-full wp-image-2178" src="http://theorypc.ca/wp-content/uploads/2017/04/Using_Examples.png" alt="" width="640" height="237" srcset="http://theorypc.ca/wp-content/uploads/2017/04/Using_Examples.png 640w, http://theorypc.ca/wp-content/uploads/2017/04/Using_Examples-300x111.png 300w" sizes="(max-width: 640px) 100vw, 640px" /> 
 
@@ -379,19 +379,19 @@ The result?
 
 <img class="aligncenter size-full wp-image-2179" src="http://theorypc.ca/wp-content/uploads/2017/04/ICAResult.png" alt="" width="1220" height="665" srcset="http://theorypc.ca/wp-content/uploads/2017/04/ICAResult.png 1220w, http://theorypc.ca/wp-content/uploads/2017/04/ICAResult-300x164.png 300w, http://theorypc.ca/wp-content/uploads/2017/04/ICAResult-768x419.png 768w" sizes="(max-width: 1220px) 100vw, 1220px" /> 
 
-Success! Â We&#8217;ve used the WebAPI and the StoreFront Customization SDK to supply a header, modify the ICA file, and return it with the value needed! Â The ICA file returned works perfectly! Â Ok, so I&#8217;m thinking this looks pretty good right?! Â We just need to get the iframe to supply a custom header when the src gets updated.
+Success! Â We've used the WebAPI and the StoreFront Customization SDK to supply a header, modify the ICA file, and return it with the value needed! Â The ICA file returned works perfectly! Â Ok, so I'm thinking this looks pretty good right?! Â We just need to get the iframe to supply a custom header when the src gets updated.
 
-Except I don&#8217;t think it&#8217;s possible to tag a custom header when you update a src in an iframe. Â So then I started thinking maybe I can use a cookie! Â If I can pass a cookie into the Storefront Customization SDK I could use that instead of the header. Â Unfortunately, I do not see anyway to query a custom cookie or pass a custom cookie into the SDK. Â Citrix appears to have (rightfully!) locked down Storefront that this doesn&#8217;t seem possible. Â No custom cookies are passed into the httpcontext (that I can see).
+Except I don't think it's possible to tag a custom header when you update a src in an iframe. Â So then I started thinking maybe I can use a cookie! Â If I can pass a cookie into the Storefront Customization SDK I could use that instead of the header. Â Unfortunately, I do not see anyway to query a custom cookie or pass a custom cookie into the SDK. Â Citrix appears to have (rightfully!) locked down Storefront that this doesn't seem possible. Â No custom cookies are passed into the httpcontext (that I can see).
 
 So all this work appears to be for naught (outside of an exercise on how one could setup and customize Storefront).
 
 &nbsp;
 
-But what about the Storefront feature &#8220;[add shortcutsÂ to websites](http://docs.citrix.com/en-us/storefront/3/manage-citrix-receiver-for-web-site/sf-configure-site.html?_ga=1.241941066.975940291.1416084467)&#8220;?
+But what about the Storefront feature "[add shortcutsÂ to websites](http://docs.citrix.com/en-us/storefront/3/manage-citrix-receiver-for-web-site/sf-configure-site.html?_ga=1.241941066.975940291.1416084467)"?
 
-AlthoughÂ doing that will allow to launch an app via a URL, it doesn&#8217;t offer any method to pass values into the URL. Â So it&#8217;s a non-starter as well.
+AlthoughÂ doing that will allow to launch an app via a URL, it doesn't offer any method to pass values into the URL. Â So it's a non-starter as well.
 
-Next will be a workaround/solution that appears to work&#8230;
+Next will be a workaround/solution that appears to work...
 
 <!-- AddThis Advanced Settings generic via filter on the_content -->
 

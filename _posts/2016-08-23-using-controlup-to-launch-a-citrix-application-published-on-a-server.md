@@ -18,18 +18,18 @@ tags:
   - Citrix
   - ControlUp
   - scripting
-  - XenApp
+  - &
 ---
-Occasionally, we have Citrix servers that &#8216;die&#8217; in a peculiar way. Â What happens may vary when they die but the usual symptoms are something like:
+Occasionally, we have Citrix servers that 'die' in a peculiar way. Â What happens may vary when they die but the usual symptoms are something like:
 
   1. The server is still somewhat responsive. Â It responds to pings, RPC requests (tasklist /s %servername%)
   2. The server is not responsive. Â You cannot RDP to it, console CTRL-ALT-DEL fails, etc.
 
-This is frustrating because the services appear to be operating so the Citrix server will say, &#8220;hey, I&#8217;m working! Â I can take sessions!&#8221; Â And usually these servers won&#8217;t have any sessions because logons actually fail so their &#8220;XenApp Server Load&#8221; is low, so its priority for sessions to be directed to it is higher! Â So how do we detect these servers with these issues? Â Unfortunately, I haven&#8217;t seen any events in the Event Viewer or anything that stands out to search and find these troublesome servers. Â Using ControlUp, sometimes it&#8217;s obvious because that troublesome server will have a much lower session count than other servers or something else is at fault and triggers the &#8216;Stress Level&#8217; to go critical. Â But these flags don&#8217;t usually exist if the problem has just occurred, they usually are more visible after time has passed.
+This is frustrating because the services appear to be operating so the Citrix server will say, "hey, I'm working! Â I can take sessions!" Â And usually these servers won't have any sessions because logons actually fail so their "& Server Load" is low, so its priority for sessions to be directed to it is higher! Â So how do we detect these servers with these issues? Â Unfortunately, I haven't seen any events in the Event Viewer or anything that stands out to search and find these troublesome servers. Â Using ControlUp, sometimes it's obvious because that troublesome server will have a much lower session count than other servers or something else is at fault and triggers the 'Stress Level' to go critical. Â But these flags don't usually exist if the problem has just occurred, they usually are more visible after time has passed.
 
-Our helpdesk asked if there was a way they could test servers to help pinpoint a troublesome one. Â I came up with a &#8220;Script-based Action&#8221; that targets a specific Citrix server and lists all published applications on that server. Â You then select the application and it generates a ICA file and tries to launch it. Â You need to have permission to the application on Citrix and Powershell remoting enabled on the XenApp servers/ZDC&#8217;s . Â So if your a Citrix admin and PS Remoting is enabled this script will work out of the box.
+Our helpdesk asked if there was a way they could test servers to help pinpoint a troublesome one. Â I came up with a "Script-based Action" that targets a specific Citrix server and lists all published applications on that server. Â You then select the application and it generates a ICA file and tries to launch it. Â You need to have permission to the application on Citrix and Powershell remoting enabled on the & servers/ZDC's . Â So if your a Citrix admin and PS Remoting is enabled this script will work out of the box.
 
-However,Â I tried to make the script dynamic so you could query the XenApp servers from a standalone server without installingÂ Citrix Powershell SDK locally. Â To do this I use PowerShell remoting so you need to have [PowerShell remoting enabled](https://technet.microsoft.com/en-us/library/hh849694.aspx) on your Citrix servers in your environment. Â Secondly, if you have &#8216;lower&#8217; privilege users you need to grant them the ability to connect to the servers via PowerShell remoting (by default only Administrators have access). Â [To grant them access you need to do the following](https://blogs.msdn.microsoft.com/powershell/2009/11/22/you-dont-have-to-be-an-administrator-to-run-remote-powershell-commands/):
+However,Â I tried to make the script dynamic so you could query the & servers from a standalone server without installingÂ Citrix Powershell SDK locally. Â To do this I use PowerShell remoting so you need to have [PowerShell remoting enabled](https://technet.microsoft.com/en-us/library/hh849694.aspx) on your Citrix servers in your environment. Â Secondly, if you have 'lower' privilege users you need to grant them the ability to connect to the servers via PowerShell remoting (by default only Administrators have access). Â [To grant them access you need to do the following](https://blogs.msdn.microsoft.com/powershell/2009/11/22/you-dont-have-to-be-an-administrator-to-run-remote-powershell-commands/):
 
 <pre class="lang:ps decode:true">Set-PSSessionConfiguration -Name Microsoft.PowerShell32 -showSecurityDescriptorUI -Confirm:$false
 Set-PSSessionConfiguration -Name Microsoft.PowerShell -showSecurityDescriptorUI -Confirm:$false
@@ -37,7 +37,7 @@ Restart-service -Name "WinRM"</pre>
 
 <img class="aligncenter size-large wp-image-1628" src="http://theorypc.ca/wp-content/uploads/2016/08/powershell-perms.png" alt="powershell-perms" width="889" height="167" srcset="http://theorypc.ca/wp-content/uploads/2016/08/powershell-perms.png 889w, http://theorypc.ca/wp-content/uploads/2016/08/powershell-perms-300x56.png 300w, http://theorypc.ca/wp-content/uploads/2016/08/powershell-perms-768x144.png 768w" sizes="(max-width: 889px) 100vw, 889px" /> 
 
-And in the &#8216;Set-PSSessionConfiguration&#8217; command you need to enable the &#8216;Invoke&#8217; permissions on your supportÂ group:  
+And in the 'Set-PSSessionConfiguration' command you need to enable the 'Invoke' permissions on your supportÂ group:  
 <img class="aligncenter size-full wp-image-1629" src="http://theorypc.ca/wp-content/uploads/2016/08/permissions.png" alt="permissions" width="365" height="443" srcset="http://theorypc.ca/wp-content/uploads/2016/08/permissions.png 365w, http://theorypc.ca/wp-content/uploads/2016/08/permissions-247x300.png 247w" sizes="(max-width: 365px) 100vw, 365px" />  
 As well, you need to grant view properties on your Citrix farm since the group needs to query application properties, and workergroups (if you publish your applications to workergroups):
 
@@ -55,17 +55,17 @@ So what does this look like?
 
 And the script:
 
-<pre class="lang:ps decode:true">&lt;# 
+<pre class="lang:ps decode:true"><# 
 .SYNOPSIS
- Connects to Citrix XenApp 6.5 server and finds all applications published for that server.
+ Connects to Citrix & 6.5 server and finds all applications published for that server.
  The script then displays a GUI with the list and presents you a choice to launch your application.
- Requires you to have rights to query XenApp for the published applications list, zones and
+ Requires you to have rights to query & for the published applications list, zones and
  you must have rights to launch the application.
 .PARAMETER serverNameToFind
  The name of the server you selected.
 .UPDATED 2016-08-27 - Allowed for caching of multiple different farms
-                    - Tested with XenApp 5.0 successfully with XenApp Commands CTP4 and PSRemoting enabled on 2003.
-#&gt;
+                    - Tested with & 5.0 successfully with & Commands CTP4 and PSRemoting enabled on 2003.
+#>
 
 #grab the server we are looking for from the powershell arguments
 $serverNameToFind = $args[0]
@@ -80,7 +80,7 @@ $ReturnXAZDC = $null
 write-host "Getting Farm Name..."
 $ReturnXAFarm = Invoke-Command -ComputerName $serverNameToFind -ScriptBlock {
 
- Add-PsSnapin Citrix.XenApp.Commands
+ Add-PsSnapin Citrix.&.Commands
  #Get Zones
  Try {
  $XAFarmName = (get-xafarm).FarmName
@@ -96,7 +96,7 @@ $ReturnXAFarm = Invoke-Command -ComputerName $serverNameToFind -ScriptBlock {
 write-host "Connecting to server remotely to get its local Zone Data Collector..."
 $ReturnXAZDC = Invoke-Command -ComputerName $serverNameToFind -ScriptBlock {
 
- Add-PsSnapin Citrix.XenApp.Commands
+ Add-PsSnapin Citrix.&.Commands
  #Get server information
  $serverObject = (get-xaserver -servername $args[0]).ZoneName
 
@@ -160,7 +160,7 @@ if (-not(test-path "$env:temp\$ReturnXAFarm.xml")) {
  $SessionCitrix = New-PSSession -ComputerName $ReturnXAZDC
  $allApps = Invoke-Command -session $SessionCitrix -ScriptBlock {
 
- Add-PsSnapin Citrix.XenApp.Commands
+ Add-PsSnapin Citrix.&.Commands
  #Get server information
  $allApps = Get-XAApplicationReport -BrowserName * | select DisplayName,Enabled,Accounts,FolderPath,@{N='ServerNames';E={$_.serverNames+($_|?{$_.WorkerGroupNames}|%{Get-XAWorkerGroup $_.WorkerGroupNames}).ServerNames | sort}}
  $allAppsWithoutDisabled = @()

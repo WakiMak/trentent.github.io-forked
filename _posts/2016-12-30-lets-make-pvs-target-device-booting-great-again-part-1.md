@@ -23,9 +23,9 @@ tags:
   - Target Device
   - Windows 10
 ---
-Some discussions have swirled recently about implementing VDI. Â One of the challenges with VDI are things like slow boot times necessitating having machines pre-powered on, requiring a pool of machines sitting using server resources until a logon request comes in and more machines are powered on to meet the demand&#8230; Â But what if your boot time is measured in the seconds? Â Something so low you could keep the &#8216;pool&#8217; of machines sitting on standby to 1 or 2 or even none!
+Some discussions have swirled recently about implementing VDI. Â One of the challenges with VDI are things like slow boot times necessitating having machines pre-powered on, requiring a pool of machines sitting using server resources until a logon request comes in and more machines are powered on to meet the demand... Â But what if your boot time is measured in the seconds? Â Something so low you could keep the 'pool' of machines sitting on standby to 1 or 2 or even none!
 
-I&#8217;m interested in investigating if this is possible. Â I previously looked at this as a curiosity and achieved some good results:
+I'm interested in investigating if this is possible. Â I previously looked at this as a curiosity and achieved some good results:
 
 <img class="aligncenter size-full wp-image-1875" src="http://theorypc.ca/wp-content/uploads/2016/12/PVS_Boot_Time.jpg" alt="" width="814" height="862" srcset="http://theorypc.ca/wp-content/uploads/2016/12/PVS_Boot_Time.jpg 814w, http://theorypc.ca/wp-content/uploads/2016/12/PVS_Boot_Time-283x300.jpg 283w, http://theorypc.ca/wp-content/uploads/2016/12/PVS_Boot_Time-768x813.jpg 768w" sizes="(max-width: 814px) 100vw, 814px" /> 
 
@@ -33,13 +33,13 @@ I&#8217;m interested in investigating if this is possible. Â I previously looked
 
 However, that was a non-domain Server 2012 R2 fresh out of the box. Â I tweaked my infrastructure a bit by storing the vDisk on a RAM Disk with Jumbo Frames (9k) to supercharge it somewhat.
 
-Today, I&#8217;m going to investigate this again with PVS 7.12, UEFI, Windows 10, on a domain. Â I&#8217;ll show how I investigated booting performance and see what we can do to improve it.
+Today, I'm going to investigate this again with PVS 7.12, UEFI, Windows 10, on a domain. Â I'll show how I investigated booting performance and see what we can do to improve it.
 
-The first thing I&#8217;m going to do is install Windows 10, join it to the domain and create a vDisk.
+The first thing I'm going to do is install Windows 10, join it to the domain and create a vDisk.
 
 <img class="aligncenter size-full wp-image-1876" src="http://theorypc.ca/wp-content/uploads/2016/12/Win10_vDisk.png" alt="" width="522" height="288" srcset="http://theorypc.ca/wp-content/uploads/2016/12/Win10_vDisk.png 522w, http://theorypc.ca/wp-content/uploads/2016/12/Win10_vDisk-300x166.png 300w" sizes="(max-width: 522px) 100vw, 522px" /> 
 
-Done. Â Because I don&#8217;t have SCVMM setup on my home lab I had to muck my way to enabling UEFI HDD boot. Â I went into the PVS folder (C:\ProgramData\Citrix\Provisioning Services) and copied out the BDMTemplate_uefi.vhd to my Hyper-V target Device folder
+Done. Â Because I don't have SCVMM setup on my home lab I had to muck my way to enabling UEFI HDD boot. Â I went into the PVS folder (C:\ProgramData\Citrix\Provisioning Services) and copied out the BDMTemplate_uefi.vhd to my Hyper-V target Device folder
 
 <img class="aligncenter size-full wp-image-1877" src="http://theorypc.ca/wp-content/uploads/2016/12/UEFIHDD.png" alt="" width="776" height="337" srcset="http://theorypc.ca/wp-content/uploads/2016/12/UEFIHDD.png 776w, http://theorypc.ca/wp-content/uploads/2016/12/UEFIHDD-300x130.png 300w, http://theorypc.ca/wp-content/uploads/2016/12/UEFIHDD-768x334.png 768w" sizes="(max-width: 776px) 100vw, 776px" /> 
 
@@ -71,13 +71,13 @@ And Viola! Â It Booted.
 
 <img class="aligncenter size-full wp-image-1882" src="http://theorypc.ca/wp-content/uploads/2016/12/8sBootTime.png" alt="" width="452" height="484" srcset="http://theorypc.ca/wp-content/uploads/2016/12/8sBootTime.png 452w, http://theorypc.ca/wp-content/uploads/2016/12/8sBootTime-280x300.png 280w" sizes="(max-width: 452px) 100vw, 452px" /> 
 
-And out of the gate we are getting 8 second boot times. Â At this point I don&#8217;t have it set with a RAM drive or anything so this is pretty stock, albeit on really fast hardware. Â My throughput is crushing my previous speed record, so if I can reduce the amount of bytes read (it&#8217;s literally bytes read/time = throughput) I can improve the speed of my boot time. Â On the flip side, I can try to increase my throughput but that&#8217;s a bit harder.
+And out of the gate we are getting 8 second boot times. Â At this point I don't have it set with a RAM drive or anything so this is pretty stock, albeit on really fast hardware. Â My throughput is crushing my previous speed record, so if I can reduce the amount of bytes read (it's literally bytes read/time = throughput) I can improve the speed of my boot time. Â On the flip side, I can try to increase my throughput but that's a bit harder.
 
 However, there are some tricks I can try.
 
 I have Jumbo Frames enabled across my network. Â At this stage I do not have them set but we can enable them to see if it helps.
 
-To verify their operation I&#8217;m going to trace the boot operation from the PVS server using procmon:
+To verify their operation I'm going to trace the boot operation from the PVS server using procmon:
 
 <img class="aligncenter size-full wp-image-1883" src="http://theorypc.ca/wp-content/uploads/2016/12/UDP.png" alt="" width="962" height="800" srcset="http://theorypc.ca/wp-content/uploads/2016/12/UDP.png 962w, http://theorypc.ca/wp-content/uploads/2016/12/UDP-300x249.png 300w, http://theorypc.ca/wp-content/uploads/2016/12/UDP-768x639.png 768w" sizes="(max-width: 962px) 100vw, 962px" /> 
 
@@ -99,15 +99,15 @@ I then made a new vDisk version and enabled Jumbo Frames in the OS of the target
 
 <img class="aligncenter size-full wp-image-1887" src="http://theorypc.ca/wp-content/uploads/2016/12/Jumbo_Frames_working.png" alt="" width="771" height="702" srcset="http://theorypc.ca/wp-content/uploads/2016/12/Jumbo_Frames_working.png 771w, http://theorypc.ca/wp-content/uploads/2016/12/Jumbo_Frames_working-300x273.png 300w, http://theorypc.ca/wp-content/uploads/2016/12/Jumbo_Frames_working-768x699.png 768w" sizes="(max-width: 771px) 100vw, 771px" /> 
 
-I then did started procmon on the PVS server, set the target device to boot&#8230;
+I then did started procmon on the PVS server, set the target device to boot...
 
-and&#8230;
+and...
 
 <img class="aligncenter size-full wp-image-1888" src="http://theorypc.ca/wp-content/uploads/2016/12/1464.png" alt="" width="1025" height="335" srcset="http://theorypc.ca/wp-content/uploads/2016/12/1464.png 1025w, http://theorypc.ca/wp-content/uploads/2016/12/1464-300x98.png 300w, http://theorypc.ca/wp-content/uploads/2016/12/1464-768x251.png 768w" sizes="(max-width: 1025px) 100vw, 1025px" /> 
 
 &nbsp;
 
-1464 sized UDP packets. Â A little smaller than the 9000 bytes or so it&#8217;s supposed to be. Â Scrolling down a little futher, however, shows:
+1464 sized UDP packets. Â A little smaller than the 9000 bytes or so it's supposed to be. Â Scrolling down a little futher, however, shows:
 
 <img class="aligncenter size-full wp-image-1889" src="http://theorypc.ca/wp-content/uploads/2016/12/JumboUDP.png" alt="" width="1151" height="105" srcset="http://theorypc.ca/wp-content/uploads/2016/12/JumboUDP.png 1151w, http://theorypc.ca/wp-content/uploads/2016/12/JumboUDP-300x27.png 300w, http://theorypc.ca/wp-content/uploads/2016/12/JumboUDP-768x70.png 768w" sizes="(max-width: 1151px) 100vw, 1151px" /> 
 
@@ -119,7 +119,7 @@ Notice the amount of UDP packets sent in the smaller frame size?
 
 &nbsp;
 
-Approximately 24 packets until it gets a &#8220;Receive&#8221; notification to send the next batch of packets. Â These 24 packets account for ~34,112 bytes of data per sequence. Â Total time for each batch of packets is 4-6ms.
+Approximately 24 packets until it gets a "Receive" notification to send the next batch of packets. Â These 24 packets account for ~34,112 bytes of data per sequence. Â Total time for each batch of packets is 4-6ms.
 
 If we follow through to when the jumbo frames kick in we see the following:
 
@@ -127,13 +127,13 @@ If we follow through to when the jumbo frames kick in we see the following:
 
 This is a bit harder to read because the MIO (Multiple Input Output) kicks in here and so there are actually two threads executing the read operations as opposed to the single thread above.
 
-Regardless, I think I&#8217;ve hit on a portion that is executing more-or-less sequentially. Â The total amount of data being passed in these sequences is ~32,992 bytes but the time to execute on them is 1-2ms! Â We have essentially doubled the performance of ourÂ _latency_ on our hard disk.
+Regardless, I think I've hit on a portion that is executing more-or-less sequentially. Â The total amount of data being passed in these sequences is ~32,992 bytes but the time to execute on them is 1-2ms! Â We have essentially doubled the performance of ourÂ _latency_ on our hard disk.
 
 So why is the data being sent like this? Â Again, procmon brings some visibility here:
 
 <img class="aligncenter size-full wp-image-1892" src="http://theorypc.ca/wp-content/uploads/2016/12/StreamProcess.png" alt="" width="1150" height="589" srcset="http://theorypc.ca/wp-content/uploads/2016/12/StreamProcess.png 1150w, http://theorypc.ca/wp-content/uploads/2016/12/StreamProcess-300x154.png 300w, http://theorypc.ca/wp-content/uploads/2016/12/StreamProcess-768x393.png 768w" sizes="(max-width: 1150px) 100vw, 1150px" /> 
 
-Each &#8220;UDP Receieve&#8221; packet is a validation that the data it received was good and instructs the Sream Process to read and send the next portion of the file on the disk. Â If we move to the jumbo frame portion of the boot process we can see IO goes all over the place in size and where the reads are to occur:
+Each "UDP Receieve" packet is a validation that the data it received was good and instructs the Sream Process to read and send the next portion of the file on the disk. Â If we move to the jumbo frame portion of the boot process we can see IO goes all over the place in size and where the reads are to occur:
 
 <img class="aligncenter size-full wp-image-1893" src="http://theorypc.ca/wp-content/uploads/2016/12/Read_Requests.png" alt="" width="1138" height="804" srcset="http://theorypc.ca/wp-content/uploads/2016/12/Read_Requests.png 1138w, http://theorypc.ca/wp-content/uploads/2016/12/Read_Requests-300x212.png 300w, http://theorypc.ca/wp-content/uploads/2016/12/Read_Requests-768x543.png 768w" sizes="(max-width: 1138px) 100vw, 1138px" /> 
 
@@ -167,13 +167,13 @@ Does this help our throughput? Â Yes, it does:
 
 &nbsp;
 
-&#8220;But Trentent! Â That doesn&#8217;t show the massive gains you are spewing! Â It&#8217;s only 4MB/s more in Through-put!&#8221;
+"But Trentent! Â That doesn't show the massive gains you are spewing! Â It's only 4MB/s more in Through-put!"
 
-And you are correct. Â So why aren&#8217;t we seeing more gains? Â The issue lies with how PVS boots. Â It boots in two stages. Â If you are familiar with PVS on Hyper-V from a year ago or more you are probably more aware of this issue. Â Essentially, PVS breaks the boot into the first stage (bootloader stage) which starts in, essentially, a lower-performance mode (standard MTU). Â Once the BNIStack loads it kicks into Jumbo Packet mode with the loading of the Synthetic NIC driver. Â The benefits from Jumbo Frames doesn&#8217;t occur until this stage. Â So when does Jumbo Frames kick in? Â You can see it in Event Viewer.
+And you are correct. Â So why aren't we seeing more gains? Â The issue lies with how PVS boots. Â It boots in two stages. Â If you are familiar with PVS on Hyper-V from a year ago or more you are probably more aware of this issue. Â Essentially, PVS breaks the boot into the first stage (bootloader stage) which starts in, essentially, a lower-performance mode (standard MTU). Â Once the BNIStack loads it kicks into Jumbo Packet mode with the loading of the Synthetic NIC driver. Â The benefits from Jumbo Frames doesn't occur until this stage. Â So when does Jumbo Frames kick in? Â You can see it in Event Viewer.
 
 <img class="aligncenter size-full wp-image-1897" src="http://theorypc.ca/wp-content/uploads/2016/12/First_Stage_Boot.png" alt="" width="641" height="461" srcset="http://theorypc.ca/wp-content/uploads/2016/12/First_Stage_Boot.png 641w, http://theorypc.ca/wp-content/uploads/2016/12/First_Stage_Boot-300x216.png 300w" sizes="(max-width: 641px) 100vw, 641px" /> 
 
-From everything I see with Procmon, first stage boot ends on that first Ntfs event. Â So out of the original 8 seconds, 4 is spent on first stage boot where Jumbo Packets are not enabled. Â Everything after there is impacted (positively). Â So for our 4 seconds &#8220;standard MTU&#8221; boot, bringing that down by a second is a 25% improvement! Â Not small potatoes.
+From everything I see with Procmon, first stage boot ends on that first Ntfs event. Â So out of the original 8 seconds, 4 is spent on first stage boot where Jumbo Packets are not enabled. Â Everything after there is impacted (positively). Â So for our 4 seconds "standard MTU" boot, bringing that down by a second is a 25% improvement! Â Not small potatoes.
 
 I intend to do more investigation into what I can do to improve boot performance for PVS target devices so stay tuned! Â ðŸ™‚
 
