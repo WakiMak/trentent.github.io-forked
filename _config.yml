@@ -2,3 +2,4 @@ url: http://theorypc.ca
 name: 'Trentent Tye - Microsoft MVP'
 description: Adventures in application delivery
 markdown: kramdown
+permalink: /blog/:year/:month/:day/:title
