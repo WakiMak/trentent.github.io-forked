@@ -1,11 +1,11 @@
 ---
 id: 689
-title: Cool PowerShell commands for manipulating &
+title: Cool PowerShell commands for manipulating XenApp
 date: 2012-01-11T12:08:00-06:00
 author: trententtye
 layout: post
-guid: http://theorypc.ca/blog/2012/01/11/cool-powershell-commands-for-manipulating-&/
-permalink: /2012/01/11/cool-powershell-commands-for-manipulating-&/
+guid: http://theorypc.ca/blog/2012/01/11/cool-powershell-commands-for-manipulating-xenapp/
+permalink: /2012/01/11/cool-powershell-commands-for-manipulating-xenapp/
 blogger_blog:
   - trentent.blogspot.com
 blogger_author:
