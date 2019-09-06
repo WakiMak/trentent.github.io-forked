@@ -15,7 +15,7 @@ tags:
   - Performance
   - Storefront
   - Web Interface
-  - &
+
   - XenDesktop
 ---
 I've been exploring the customization capabilities of Citrix Storefront and have some exciting ideas on simplifying our deployment. Â What I'd really like is to reduce our store count down to a as fewÂ stores as possible. Â In our Web Interface we have multiple stores based on the non-configurable settings. Â They are:

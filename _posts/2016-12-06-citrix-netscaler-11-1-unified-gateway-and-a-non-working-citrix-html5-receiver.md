@@ -12,7 +12,7 @@ categories:
 tags:
   - Citrix
   - Citrix Receiver
-  - &
+
   - XenDesktop
 ---
 We setup a Citrix Unified Gateway for a proof of concept and were having an issue getting the HTML5 Receiver to connect for external connections. Â It was presenting an error message: "Citrix Receiver cannot connect to the server". Â We [followed this documentation](https://www.citrix.com/blogs/2015/07/08/receiver-internals-how-receiver-for-html5-chrome-connections-work/). Â It states, for our use case:

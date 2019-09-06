@@ -12,7 +12,7 @@ categories:
 tags:
   - Citrix
   - Performance
-  - &
+
 ---
 In the [previous post we found IMA outperformed FMA in terms of an individual request for resources](https://theorypc.ca/2017/04/11/citrix-&-enumeration-performance-ima-vs-fma/). Â However, the 30ms difference would be imperceptible for a end user. Â This post will focus on maximum load for an individual broker. Â In the past we discovered that the IMA service is heavily dependent on the number of CPU's. Â The more [CPU's allocated to the machine hosting the IMA service](https://theorypc.ca/2014/11/27/load-testing-citrix-xml-broker/), the more requests could be handled (supposedly to a max of 16 - the maxmium number for threads for IMA).
 

@@ -20,7 +20,7 @@ categories:
 tags:
   - Citrix
   - HDX
-  - &
+
 ---
 [Rachel Berry](https://virtuallyvisual.wordpress.com/) posted an article on [optimizing HDX for gaming.](https://virtuallyvisual.wordpress.com/2015/08/02/did-i-really-see-a-165-thin-client-doing-55fps-with-borderlands-2-with-hdx-3d-pro-citrix-xendesktop/)Â In this article she highlighted that Citrix has some 'special' registry keys for modifying [different parameters of the Thinwire encoder](https://virtuallyvisual.wordpress.com/2015/07/26/hdx-and-h-264-artefacts-in-citrix-xendesktop&/). Â One of these keys was changing the encoder itself:
 

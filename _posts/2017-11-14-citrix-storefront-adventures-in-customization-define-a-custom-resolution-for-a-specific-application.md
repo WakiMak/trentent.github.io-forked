@@ -13,7 +13,7 @@ tags:
   - Citrix
   - scripting
   - Storefront
-  - &
+
   - XenDesktop
 ---
 Currently, Storefront does not grant the ability to define applications with specific resolutions.Â In order to configure the resolution, [Citrix recommends you modify the default.ica file](https://support.citrix.com/article/CTX116357).Â This is terrible!Â If you had specific applications that required specific resolutions, what are you to do?Â Direct users to a variety of stores depending on the resolution required?!

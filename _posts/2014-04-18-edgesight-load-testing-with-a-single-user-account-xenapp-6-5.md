@@ -20,7 +20,7 @@ categories:
 tags:
   - Citrix
   - Citrix Receiver
-  - &
+
 ---
 I've been doing some EdgeSight Load Testing with & 6.5; which I haven't done in a few months. Â We have updated our Citrix servers since then with the newer HotFix RollUp (HFRU) pack and now I'm testing a new application. Â Our typical setup is to use a single generic account and connect it via multiple sessions to the same Citrix server and capture some metrics (CPU, Network, Memory, etc). Â In the past, this seemed to work pretty flawlessly but in the last week I was having issues. Â By the time the 3rd session was connecting to the Citrix server, instead of creating a new session it would 'steal' the 1st session. Â This prevented me from having more than 2 sessions connected to a server.
 

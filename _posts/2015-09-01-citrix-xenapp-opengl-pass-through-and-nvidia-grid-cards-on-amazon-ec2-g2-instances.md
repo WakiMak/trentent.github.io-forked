@@ -20,7 +20,7 @@ categories:
 tags:
   - Citrix
   - Performance
-  - &
+
   - XenDesktop
 ---
 I'm attempting to do a Proof of Concept (POC) for a client and one of the ideas was to utilize the Amazon EC2 cloud to provide GPU instances to the users for their applications (Maya, SolidWorks, etc.). Â In order to understand how GPU sharing works, I setup my home lab to take advantage of these features first, in order to understand how it operates.

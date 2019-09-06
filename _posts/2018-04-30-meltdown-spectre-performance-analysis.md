@@ -16,7 +16,7 @@ tags:
   - Performance
   - Registry
   - Spectre
-  - &
+
 ---
 Meltdown and Spectre (variant 2) are two vulnerabilities that came out at the same time, however they are vastly different. Â Patches for both were released extremely quickly for Microsoft OS's but because of a variety of issues with Spectre, only Meltdown was truly available to be mitigated. Â Spectre (variant 2) mitigation had a problematic release, causing numerous issues for whomever installed the fix, that it had to be recalled and the release delayed weeks. Â However, around March/April 2018, the release of the Spectre patch was finalized and the microcode released.
 

@@ -12,7 +12,7 @@ tags:
   - Citrix
   - Group Policy
   - Registry
-  - &
+
 ---
 We apply our several group policy settings via Active Directory group policy objects, within them we set 'Citrix' policies. Â This includes things like 'Licensing', platform, etc.
 

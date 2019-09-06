@@ -15,7 +15,7 @@ tags:
   - PowerShell
   - Storefront
   - Web Interface
-  - &
+
   - XenDesktop
 ---
 [In my previous post](https://theorypc.ca/2017/04/24/citrix-storefront-experiences-with-storefront-customization-sdk-and-web-api/), I was exploring takingÂ URI parameters and passing them to an application.

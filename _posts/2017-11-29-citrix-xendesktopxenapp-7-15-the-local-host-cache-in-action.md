@@ -14,7 +14,7 @@ tags:
   - LHC
   - Local Host Cache
   - Performance
-  - &
+
   - XenDesktop
 ---
 The Citrix Local Host Cache feature, introduced in XenDesktop/& 7.12, has some nuances that maybe better demonstrated in realtime then typed out in text.  I will do both in this article to share both a 'step by step' of what happens when you have a network or site database outage and what occurs as well as a realtime video highlighting the feature in action.  There are many other blogs and articles that do a great job going into the step by step details of the feature but I find seeing it in action to be very informative.

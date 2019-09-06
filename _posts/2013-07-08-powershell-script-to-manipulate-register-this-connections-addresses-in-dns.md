@@ -23,7 +23,7 @@ tags:
   - PowerShell
   - Provisioning Services
   - scripting
-  - &
+
 ---
 We run a multihome NIC setup with our Citrix PVS servers and the "Provisioning" Network is a seperate VLAN that is only used by the PVS servers and goes no where. Â Unfortunately, however, the "Provision" NIC can register itself in the DNS, causing devices outside of the Provisioning network (everyone) to resolve to the incorrect address. Â To resolve this I ran this script across all my vDisks to remove the ability of the provision network to register itself as available in DNS.:
 

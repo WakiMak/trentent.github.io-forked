@@ -22,7 +22,7 @@ tags:
   - PowerShell
   - Provisioning Services
   - Registry
-  - &
+
 ---
 <div style="clear: both; text-align: center;">
 </div>

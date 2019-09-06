@@ -14,7 +14,7 @@ tags:
   - Performance
   - Registry
   - scripting
-  - &
+
 ---
 I've seen this happen a few times now where the "Citrix Independent Management Architecture" (aka IMAService) won't start, erroring with various errors:
 

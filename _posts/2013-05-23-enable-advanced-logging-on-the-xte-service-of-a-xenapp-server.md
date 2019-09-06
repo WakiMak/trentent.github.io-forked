@@ -20,7 +20,7 @@ categories:
 tags:
   - Citrix
   - Provisioning Services
-  - &
+
 ---
 Back in February or March we did Windows updates on our PVS & servers and then sometime after the servers do not allow anyone to login.
 

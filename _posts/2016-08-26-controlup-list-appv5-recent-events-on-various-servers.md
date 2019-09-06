@@ -20,7 +20,7 @@ tags:
   - ControlUp
   - PowerShell
   - scripting
-  - &
+
 ---
 [David Falkus just posted a blog post](https://blogs.technet.microsoft.com/virtualshell/2016/08/25/app-v-5-troubleshooting-the-client-using-the-event-logs/) on using Powershell to combine multiple AppV5 logs into a single view and orders them chronologically so you can see the events as they occurred.
 

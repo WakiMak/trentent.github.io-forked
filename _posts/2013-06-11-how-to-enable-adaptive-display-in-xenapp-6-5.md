@@ -21,7 +21,7 @@ tags:
   - Citrix
   - Group Policy
   - Performance
-  - &
+
 ---
 Contrary to the documentation in the Group Policy settings for Citrix, & requires the following settings configured for Adaptive Display to be enabled:
 

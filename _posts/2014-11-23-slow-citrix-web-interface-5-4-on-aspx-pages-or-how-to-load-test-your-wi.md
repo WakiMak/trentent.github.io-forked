@@ -21,7 +21,7 @@ tags:
   - Citrix
   - Performance
   - Web Interface
-  - &
+
 ---
 We've been having issues with our Citrix Web Interface (5.4.2) with it cratering to the point that you cannot even get to the explicit logon page, stuck on SilentDetection.aspx or another aspx page.
 

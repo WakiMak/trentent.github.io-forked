@@ -15,7 +15,7 @@ tags:
   - PowerShell
   - Storefront
   - Web Interface
-  - &
+
   - XenDesktop
 ---
 Our organization has been exploring upgrading our Citrix environment from 6.5 to 7.X. Â The biggest road blocks we've been experiencing? Â VariousÂ _nuanced_ features in Citrix & 6.5 don't work or are not supported in 7.X.

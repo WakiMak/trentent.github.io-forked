@@ -19,7 +19,7 @@ categories:
   - Uncategorized
 tags:
   - Citrix
-  - &
+
   - XenDesktop
 ---
 While investigating a performance issue with an application in our Citrix farm a curiosity was discovered when someone opened up Process Explorer and found the CPU utilization on the server was much higher than expected or reported by various monitoring tools we use. 

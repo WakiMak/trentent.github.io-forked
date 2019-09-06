@@ -13,7 +13,7 @@ tags:
   - ControlUp
   - PowerShell
   - scripting
-  - &
+
 ---
 We have applications that require printers be loaded before the application is started. Â This is usually because the application will check for a specific printer or default printer and if one is not set (because it hasn't mapped into the session) then it'll throw up a dialog or not start entirely.
 

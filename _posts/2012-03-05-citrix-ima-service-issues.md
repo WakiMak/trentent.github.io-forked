@@ -19,7 +19,7 @@ categories:
   - Uncategorized
 tags:
   - Citrix
-  - &
+
 ---
 If Citrix is giving you grief because IMA won't start after unjoining and rejoining a farm, do the following:  
 IMA Service Fails to Start and MFCOM Service Hangs in a Starting State  

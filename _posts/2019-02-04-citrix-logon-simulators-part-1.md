@@ -14,7 +14,7 @@ tags:
   - Logons
   - Performance
   - Storefront
-  - &
+
   - XenDesktop
 ---
 "Help!Â I can't launch my application!"  

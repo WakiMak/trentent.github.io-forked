@@ -22,7 +22,7 @@ tags:
   - 2008R2
   - AppV
   - Citrix
-  - &
+
   - XPSP3
 ---
 <pre class="lang:reg decode:true  ">Windows Registry Editor Version 5.00

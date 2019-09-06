@@ -20,7 +20,7 @@ categories:
 tags:
   - PowerShell
   - scripting
-  - &
+
 ---
 After installing the & 6 SDK you can do some neat PowerShell scripts to help move things around. I recently created a test farm and needed a way to move all the applications and their settings from the original farm. These commands did it:
 

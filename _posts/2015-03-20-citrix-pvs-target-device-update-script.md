@@ -22,7 +22,7 @@ tags:
   - Provisioning Services
   - scripting
   - Target Device
-  - &
+
 ---
 Saman and I have created a Citrix PVS update script we use and run each time we update a PVS target device. Â This script has been generated after finding numerous issues that needed to be fixed after updating a PVS image. Â It includes fixes to issues with AppV5, PVS, & 6.5, etc.
 

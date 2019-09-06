@@ -18,7 +18,7 @@ tags:
   - Citrix
   - ControlUp
   - scripting
-  - &
+
 ---
 Occasionally, we have Citrix servers that 'die' in a peculiar way. Â What happens may vary when they die but the usual symptoms are something like:
 

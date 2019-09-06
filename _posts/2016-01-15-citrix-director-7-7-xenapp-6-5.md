@@ -20,7 +20,7 @@ categories:
 tags:
   - Citrix
   - Citrix Director
-  - &
+
 ---
 Citrix has 'replaced' Edgesight with a new tool called Citrix <span style="text-decoration: line-through;">Desktop</span>Director. It's a monitoring tool that provides help desk or other type of technicians with data on what's going on in user sessions (when referring to &). Although vastly inferior to [ControlUp](http://controlup.com/), it is free.
 

@@ -20,7 +20,7 @@ categories:
 tags:
   - Citrix
   - Performance
-  - &
+
 ---
 The Citrix XML broker actually relies on many pieces to ensure fast and proper operation. [This CTX article](http://support.citrix.com/article/CTX129585) describes the process for & 6 (seems applicable to 6.5 as well).
 

@@ -13,7 +13,7 @@ tags:
   - Citrix
   - ControlUp
   - Performance
-  - &
+
 ---
 Touching on my last point with an invalid AD Home Directory attribute, I decided to examine it in more detail as what is causing the slowness on logon.
 

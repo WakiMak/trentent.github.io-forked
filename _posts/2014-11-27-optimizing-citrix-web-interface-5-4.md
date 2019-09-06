@@ -21,7 +21,7 @@ tags:
   - Citrix
   - Performance
   - Web Interface
-  - &
+
 ---
 My previous post detailed [testing the limits of your Citrix Web Interface](http://trentent.blogspot.ca/2014/11/slow-citrix-web-interface-54-on-aspx.html). Â During this testing we discovered there appeared to be a limit on the number of connections the Citrix Web Interface could accommodate. Â This discovery masked the true limitation: the Citrix Web Interface is limited by the number of threads its w3wp.exe process can spawn to handle ASPX pages. Â The w3wp.exe process spawn threads to handle the number of connections/load and once it exceeded 48 threads then further requests go into the application queue. Â This limitation exists when running a ASP.NET application under ASP.NET 2.0 in **<u>Classic</u>** mode. Â In integrated mode this limitation is determined differently and not applicable. Â Unfortunately, the Citrix Web Interface runs in Classic mode under ASP.NET 2.0.
 

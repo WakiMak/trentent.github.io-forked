@@ -21,7 +21,7 @@ tags:
   - Citrix
   - Performance
   - procmon
-  - &
+
 ---
 We have an application (Meditech) that users have reported as performing poorly in Citrix. &nbsp;They were able to confirm the poor performance by comparing it to a desktop that had the same software installed. &nbsp;I was brought on to try and understand these performance differences and why Citrix would be performing so much worse. &nbsp;To measure the performance, the user took me to a screen where they held down a key on the keyboard to increment a counter in the software. &nbsp;When holding the key down on the desktop the counter was quick and incremented at a steady pace, on Citrix it seemed OK at first but then slowed as time went on. &nbsp; To illustrate these performance differences, I made a video:
 

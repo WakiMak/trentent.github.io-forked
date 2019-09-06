@@ -20,7 +20,7 @@ categories:
 tags:
   - Citrix
   - Group Policy
-  - &
+
 ---
 We recently ran across an issue with & 6.5 where we were publishing an application that required the "Beep" but it wasn't working. Â The following is the troubleshooting steps I did to enable audio to work on that application.
 

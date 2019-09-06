@@ -11,7 +11,7 @@ categories:
 tags:
   - Citrix
   - scripting
-  - &
+
 ---
 Step 1) Open the SDKSetup.exe and stop at the EULA, and go into your %TEMP% folder and go into a folder "ctx-%GUID"
 

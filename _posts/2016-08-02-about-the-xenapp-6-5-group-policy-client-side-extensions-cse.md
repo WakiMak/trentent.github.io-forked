@@ -12,7 +12,7 @@ tags:
   - Citrix
   - Group Policy
   - printing
-  - &
+
 ---
 > <p class="">
 >   TLDR; using a newer Citrix Group Policy Management (GPM) than 1.7.X on & 6.5 will cause your policies to disappear if you upgrade your Client Side Extensions to a version higher than 1.7.6.

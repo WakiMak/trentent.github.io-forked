@@ -28,7 +28,7 @@ tags:
   - PowerShell
   - printing
   - scripting
-  - &
+
   - XenDesktop
 ---
 40 second logons.&nbsp; 100 second logons.&nbsp; 200 second logons.&nbsp;&nbsp;

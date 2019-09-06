@@ -14,7 +14,7 @@ tags:
   - Citrix
   - Performance
   - VMWare
-  - &
+
 ---
 Meltdown came out and it's a vulnerability whose fix may have a performance impact. Â Microsoft has stipulated that the impact will be more severe if you:
 

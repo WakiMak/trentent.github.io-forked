@@ -12,7 +12,7 @@ categories:
 tags:
   - Citrix
   - Performance
-  - &
+
 ---
 We're exploring upgrading our Citrix & 6.5 environment to 7.X (currently 7.13) and we have some architecture decisions that are driven by the performance of the infrastructure components of &. Â In 6.5 these components are theÂ "Citrix Independent Management Architecture" and in 7.13 this is the "Citrix Broker Service". Â The performance I'll be measuring is how long it takes to enumerate applications for a user. Â In & 6.5 this is the most intensive task put on the broker. Â I've taken our existing & 6.5 TEST environment and "migrated" it to 7.X. Â The details of the environment are 189 enabled applications with various security groups applied to each application. Â The user I will be testing with has access to 55Â of them. Â What the broker/IMA service has to do when it receives the XML request is evaluate each application to see if the user has permissions and return the results. Â The 'request' is slightly different to the broker vs the IMA. Â This is what the FMA requests will look like:
 

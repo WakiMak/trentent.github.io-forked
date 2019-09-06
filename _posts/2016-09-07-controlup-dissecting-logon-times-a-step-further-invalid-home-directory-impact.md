@@ -15,7 +15,7 @@ tags:
   - Performance
   - PowerShell
   - scripting
-  - &
+
 ---
 Continuing on from my [previous post](http://theorypc.ca/2016/08/31/controlup-dissecting-logon-times-a-step-further-printer-loading/), we were still having certain users with logons in the dozens of seconds to minutes. Â I wanted to find out why and see if there is anything further that could be done.
 

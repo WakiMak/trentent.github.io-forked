@@ -12,7 +12,7 @@ categories:
 tags:
   - Citrix
   - Performance
-  - &
+
 ---
 During the course of [load testing FMA to see how it compares with IMA](https://theorypc.ca/2017/04/12/citrix-&-enumeration-performance-ima-vs-fma-load-testing/) in terms of performance I encountered some oddities with FMA. Â It definitely is more efficient at enumerating & applications compared to IMA. Â But... Â The differences in my testing may have been overstated.
 

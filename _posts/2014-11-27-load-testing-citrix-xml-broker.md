@@ -20,7 +20,7 @@ categories:
 tags:
   - Citrix
   - Performance
-  - &
+
 ---
 Previously, we encountered performance issues with the Citrix Web Interface due to our user load. Â I devised a test using the Microsoft WCAT to hammer the web interface servers. Â We found that after removing the ASPX processing limitation, logins were slow and we found that some XML brokers were taking a long time to respond.
 

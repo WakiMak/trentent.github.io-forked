@@ -21,7 +21,7 @@ tags:
   - AppV
   - Citrix
   - scripting
-  - &
+
 ---
 It appears you can't launch an AppV environment around an application with the /appvve switch as Microsoft automatically strips the /appvve switch OR because icast.exe freaks out.
 

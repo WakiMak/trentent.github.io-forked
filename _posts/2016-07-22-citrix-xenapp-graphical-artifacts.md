@@ -30,7 +30,7 @@ tags:
   - Performance
   - procmon
   - Registry
-  - &
+
 ---
 In our Citrix & 6.5 environment we started having a couple applications encounter an issue where they would experience some serious graphical artifacts. Â What was supposed to look like this:
 

@@ -22,7 +22,7 @@ tags:
   - PowerCLI
   - PowerShell
   - VMWare
-  - &
+
 ---
 Because my company doesn't utilize provisioining servers for deploy new Citrix & servers, I've had to come up with a couple of PowerShell scripts to make VMWare Templates that I can then deploy multiple & servers. You need VMWare PowerCLI to run this script. This is my script:
 

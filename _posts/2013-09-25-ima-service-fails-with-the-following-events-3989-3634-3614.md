@@ -22,7 +22,7 @@ tags:
   - procmon
   - Provisioning Services
   - Registry
-  - &
+
 ---
 We have run into an issue where we have Provisioning Service 6.1 and & 6.5 working together. After we update the vDisk (say, for Windows Update) we run through a script that does things like the "& Prep" to allow the & 6.5 ready for imaging. It appears that there is a bug in the & Prep that sometimes causes it to not fully get & 6.5 ready for rejoining the farm. The initial symptoms I found were:
 

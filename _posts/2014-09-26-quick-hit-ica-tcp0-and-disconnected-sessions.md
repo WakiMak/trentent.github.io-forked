@@ -19,7 +19,7 @@ categories:
   - Uncategorized
 tags:
   - Citrix
-  - &
+
 ---
 <span style="font-family: 'Segoe UI'; font-size: 9pt;">If you were to login to a Citrix server with your ID and you get ICA-TCP#0 as your session name, then disconnected your session, went to another computer and logged in (in the Metavision environment you don't assume the exisiting session - you get a new one) you will actually take that sessionName "ICA-TCP#0" as the disconnected session made it available. If you reconnect to your disconnected session it will update the SessionName variable to ICA-TCP#1. </span>
 
