@@ -1,6 +1,6 @@
 ---
 id: 2263
-title: Citrix Storefront – Adventures in customization – Dynamically configure features based on group membership
+title: Citrix Storefront - Adventures in customization - Dynamically configure features based on group membership
 date: 2017-05-11T08:09:17-06:00
 author: trententtye
 layout: post

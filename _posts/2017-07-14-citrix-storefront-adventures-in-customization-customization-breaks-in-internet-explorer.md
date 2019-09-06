@@ -1,6 +1,6 @@
 ---
 id: 2515
-title: Citrix Storefront – Adventures in customization – Customization breaks in internet explorer
+title: Citrix Storefront - Adventures in customization - Customization breaks in internet explorer
 date: 2017-07-14T12:38:02-06:00
 author: trententtye
 layout: post

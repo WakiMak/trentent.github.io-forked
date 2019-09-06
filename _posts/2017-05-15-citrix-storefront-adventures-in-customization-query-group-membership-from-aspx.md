@@ -1,6 +1,6 @@
 ---
 id: 2275
-title: Citrix Storefront – Adventures in customization – Query group membership from aspx
+title: Citrix Storefront - Adventures in customization - Query group membership from aspx
 date: 2017-05-15T08:19:41-06:00
 author: trententtye
 layout: post

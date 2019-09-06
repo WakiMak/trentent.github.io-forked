@@ -1,6 +1,6 @@
 ---
 id: 2544
-title: Citrix Storefront – Adventures in customization – Login via credentials in URL search query
+title: Citrix Storefront - Adventures in customization - Login via credentials in URL search query
 date: 2017-10-30T08:34:31-06:00
 author: trententtye
 layout: post

@@ -1,6 +1,6 @@
 ---
 id: 2129
-title: Citrix & Enumeration Performance – IMA vs FMA - oddities
+title: Citrix & Enumeration Performance - IMA vs FMA - oddities
 date: 2017-04-13T12:20:32-06:00
 author: trententtye
 layout: post

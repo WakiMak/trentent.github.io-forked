@@ -1,6 +1,6 @@
 ---
 id: 1797
-title: AppV 5.1 Sequencer – Not capturing all registry keys - Update
+title: AppV 5.1 Sequencer - Not capturing all registry keys - Update
 date: 2016-10-31T15:31:05-06:00
 author: trententtye
 layout: post

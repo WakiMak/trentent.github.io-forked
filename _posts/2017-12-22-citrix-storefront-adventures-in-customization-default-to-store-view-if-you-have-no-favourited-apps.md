@@ -1,6 +1,6 @@
 ---
 id: 2637
-title: Citrix Storefront – Adventures in customization – Default to "Store" view if you have no favourited app's
+title: Citrix Storefront - Adventures in customization - Default to "Store" view if you have no favourited app's
 date: 2017-12-22T12:33:06-06:00
 author: trententtye
 layout: post

@@ -268,7 +268,7 @@ ping 127.0.0.1 -n 60 >NUL
 EVENTCREATE /ID 2 /L SYSTEM /T INFORMATION /SO "AppV5_Data_PreCache.cmd" /D "App-V 5 - Checking packages..."
  
     >%WINDIR%\Temp\check-packages.ps1 ECHO.
-    >>%WINDIR%\Temp\check-packages.ps1 ECHO Write-EventLog –LogName SYSTEM –Source "AppV5_Data_PreCache.cmd" –EntryType Information –EventID 4 –Message ("Starting Check Packages Script")
+    >>%WINDIR%\Temp\check-packages.ps1 ECHO Write-EventLog -LogName SYSTEM -Source "AppV5_Data_PreCache.cmd" -EntryType Information -EventID 4 -Message ("Starting Check Packages Script")
     >>%WINDIR%\Temp\check-packages.ps1 ECHO Import-Module AppVClient
     >>%WINDIR%\Temp\check-packages.ps1 ECHO Get-AppvPublishingServer ^| Sync-AppvPublishingServer
     >>%WINDIR%\Temp\check-packages.ps1 ECHO Get-AppvClientConnectionGroup
@@ -286,7 +286,7 @@ EVENTCREATE /ID 2 /L SYSTEM /T INFORMATION /SO "AppV5_Data_PreCache.cmd" /D "App
     >>%WINDIR%\Temp\check-packages.ps1 ECHO if ($SCSMode.SharedContentStoreMode -eq 0) { $apps ^| Mount-AppvClientPackage }
     >>%WINDIR%\Temp\check-packages.ps1 ECHO $string = $apps ^| Select-Object Name,PercentLoaded ^| out-string
     >>%WINDIR%\Temp\check-packages.ps1 ECHO $string += $SCSMode ^| Select-Object SharedContentStoreMode ^| out-string
-    >>%WINDIR%\Temp\check-packages.ps1 ECHO Write-EventLog –LogName SYSTEM –Source "AppV5_Data_PreCache.cmd" –EntryType Information –EventID 4 –Message ($string)
+    >>%WINDIR%\Temp\check-packages.ps1 ECHO Write-EventLog -LogName SYSTEM -Source "AppV5_Data_PreCache.cmd" -EntryType Information -EventID 4 -Message ($string)
     >>%WINDIR%\Temp\check-packages.ps1 ECHO if ($apps.Count -eq 0) { Start-Process -FilePath "C:\swinst\AppV_Data_PreCache\AppV5_Data_PreCache.cmd" %COUNT% }
         ping 127.0.0.1 -n 5 >NUL
         IF EXIST "%WINDIR%\Temp\check-packages.ps1" EVENTCREATE /ID 2 /L SYSTEM /T INFORMATION /SO "AppV5_Data_PreCache.cmd" /D "App-V 5 - Checking packages ps1 exists"

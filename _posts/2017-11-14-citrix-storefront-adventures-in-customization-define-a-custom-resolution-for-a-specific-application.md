@@ -1,6 +1,6 @@
 ---
 id: 2566
-title: Citrix Storefront – Adventures in customization – Define a custom resolution for a specific application
+title: Citrix Storefront - Adventures in customization - Define a custom resolution for a specific application
 date: 2017-11-14T14:33:13-06:00
 author: trententtye
 layout: post

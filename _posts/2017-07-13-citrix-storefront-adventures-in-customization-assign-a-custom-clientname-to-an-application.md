@@ -1,6 +1,6 @@
 ---
 id: 2508
-title: Citrix Storefront – Adventures in customization – Assign a custom clientname to an application
+title: Citrix Storefront - Adventures in customization - Assign a custom clientname to an application
 date: 2017-07-13T11:45:25-06:00
 author: trententtye
 layout: post

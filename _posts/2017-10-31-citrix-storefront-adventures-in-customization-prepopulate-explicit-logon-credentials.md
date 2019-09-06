@@ -1,6 +1,6 @@
 ---
 id: 2552
-title: Citrix Storefront – Adventures in customization – Prepopulate Explicit Logon Credentials
+title: Citrix Storefront - Adventures in customization - Prepopulate Explicit Logon Credentials
 date: 2017-10-31T08:48:15-06:00
 author: trententtye
 layout: post

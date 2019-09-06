@@ -1,6 +1,6 @@
 ---
 id: 2048
-title: Citrix Workspace Environment Manager â€“ Second Impressions
+title: Citrix Workspace Environment Manager - Second Impressions
 date: 2017-03-08T09:06:25-06:00
 author: trententtye
 layout: post
@@ -64,8 +64,8 @@ The Active Directory filter conditions are only evaluated against the user and n
 
 Our server naming convention is CTX (for Citrix) APP or silo name (eg, EPIC) ### (3 digit numerical designation) and the letter â€œTâ€ at the end for a test server or no letter for a production server.Â So our naming scheme would look like so:
 
-CTXAPP301 â€“ for a prod server  
-CTXAPP301T â€“ for a test server
+CTXAPP301 - for a prod server  
+CTXAPP301T - for a test server
 
 The guide for WEM does specify you can use a wild card â€œ*â€ to allow arbitrary matches.Â So I tested it and found it has limitations.
 
@@ -95,7 +95,7 @@ I modified my command as such:
 
 Executing this command does result in checking to see if the computer is a member of a specific group.Â The only caveat is the user account that logs on must have permissions within AD to check group memberships.Â Which is usually granted.Â And in my case, it is so this command works.
 
-Next on the Group Policy Preference is the â€˜AND â€“ ORâ€™.Â We have the filter condition now that ensures these values will only be applied if the computer is in a certain group.Â Now we need the value to apply if the user is a member of a certain group.
+Next on the Group Policy Preference is the â€˜AND - ORâ€™.Â We have the filter condition now that ensures these values will only be applied if the computer is in a certain group.Â Now we need the value to apply if the user is a member of a certain group.
 
 An easy solution might be to create a super-group "HungAppTimeout" or some such and add all the groups I want that value to apply to that group. Â Another alternative is we can 'configure' each user group with the 'server must belong to group' filter and that should satisfy the same requirements. Â I chose this route for our evaluation of WEM to avoid creating large swaths of groups simply for the purpose of applying a single registry entry.
 

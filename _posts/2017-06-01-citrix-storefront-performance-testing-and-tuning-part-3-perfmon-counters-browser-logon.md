@@ -1,6 +1,6 @@
 ---
 id: 2380
-title: Citrix Storefront – Performance Testing and Tuning – Part 3 – PerfMon Counters, browser logon
+title: Citrix Storefront - Performance Testing and Tuning - Part 3 - PerfMon Counters, browser logon
 date: 2017-06-01T14:42:02-06:00
 author: trententtye
 layout: post

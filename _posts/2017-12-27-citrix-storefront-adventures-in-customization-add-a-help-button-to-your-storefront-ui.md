@@ -1,6 +1,6 @@
 ---
 id: 2641
-title: Citrix Storefront – Adventures in customization – Add a help button to your Storefront UI
+title: Citrix Storefront - Adventures in customization - Add a help button to your Storefront UI
 date: 2017-12-27T07:00:27-06:00
 author: trententtye
 layout: post

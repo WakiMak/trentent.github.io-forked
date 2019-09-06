@@ -1,6 +1,6 @@
 ---
 id: 2119
-title: Citrix & Enumeration Performance – IMA vs FMA load testing
+title: Citrix & Enumeration Performance - IMA vs FMA load testing
 date: 2017-04-12T09:17:12-06:00
 author: trententtye
 layout: post

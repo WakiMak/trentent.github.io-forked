@@ -1,6 +1,6 @@
 ---
 id: 2377
-title: Citrix Storefront – Performance Testing and Tuning – Part 6 - Testing Peak Load
+title: Citrix Storefront - Performance Testing and Tuning - Part 6 - Testing Peak Load
 date: 2017-06-13T15:06:52-06:00
 author: trententtye
 layout: post

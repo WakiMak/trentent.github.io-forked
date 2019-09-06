@@ -1,6 +1,6 @@
 ---
 id: 2237
-title: Citrix Storefront – Adventures in customization – Dynamically configure authentication based on group membership
+title: Citrix Storefront - Adventures in customization - Dynamically configure authentication based on group membership
 date: 2017-05-10T13:31:04-06:00
 author: trententtye
 layout: post

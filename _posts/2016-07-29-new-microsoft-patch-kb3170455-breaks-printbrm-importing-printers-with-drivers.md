@@ -88,31 +88,31 @@ if ([System.Diagnostics.EventLog]::SourceExists("Local GP Startup Script - ""$co
 
 sleep 2
 
-Write-EventLog –LogName APPLICATION –Source "Local GP Startup Script - ""$commandName'""" –EntryType Information –EventID 1 –Message ("Starting PrinterExport-Import script")
+Write-EventLog -LogName APPLICATION -Source "Local GP Startup Script - ""$commandName'""" -EntryType Information -EventID 1 -Message ("Starting PrinterExport-Import script")
 
 sleep 2
 
-Write-EventLog –LogName APPLICATION –Source "Local GP Startup Script - ""$commandName'""" –EntryType Information –EventID 1 –Message ("Import-Module ServerManager")
+Write-EventLog -LogName APPLICATION -Source "Local GP Startup Script - ""$commandName'""" -EntryType Information -EventID 1 -Message ("Import-Module ServerManager")
 
 ipmo ServerManager
 add-WindowsFeature Print-Server
 
-Write-EventLog –LogName APPLICATION –Source "Local GP Startup Script - ""$commandName'""" –EntryType Information –EventID 1 –Message ("Getting NetView of {0}" -f $ServerName)
+Write-EventLog -LogName APPLICATION -Source "Local GP Startup Script - ""$commandName'""" -EntryType Information -EventID 1 -Message ("Getting NetView of {0}" -f $ServerName)
 $netView = net view $serverName | findstr /i /C:"Print "
 $netView = $netView -replace "\sPrint\s",","
 $netView = $netView -replace "\s",""
 $netView = $netView | ConvertFrom-CSV -Header "Printer"
-Write-EventLog –LogName APPLICATION –Source "Local GP Startup Script - ""$commandName'""" –EntryType Information –EventID 1 –Message ("Number of printers detected: {0}" -f $netView.Printer.Count)
+Write-EventLog -LogName APPLICATION -Source "Local GP Startup Script - ""$commandName'""" -EntryType Information -EventID 1 -Message ("Number of printers detected: {0}" -f $netView.Printer.Count)
 
 #Remove Printer Exports from server if they already exist
 cd\
 if (Test-Path -Path C:\printerExport) {
-    Write-EventLog –LogName APPLICATION –Source "Local GP Startup Script - ""$commandName'""" –EntryType Information –EventID 1 –Message ("Removing C:\printerExport")
+    Write-EventLog -LogName APPLICATION -Source "Local GP Startup Script - ""$commandName'""" -EntryType Information -EventID 1 -Message ("Removing C:\printerExport")
     Remove-Item C:\printerExport -Force -Recurse
 }
 
 if (Test-Path -Path  C:\modified.printerExport) {
-    Write-EventLog –LogName APPLICATION –Source "Local GP Startup Script - ""$commandName'""" –EntryType Information –EventID 1 –Message ("Removing C:\modified.printerExport")
+    Write-EventLog -LogName APPLICATION -Source "Local GP Startup Script - ""$commandName'""" -EntryType Information -EventID 1 -Message ("Removing C:\modified.printerExport")
     Remove-Item C:\modified.printerExport
 }
 
@@ -123,7 +123,7 @@ foreach ($printer in $netView) {
 }
 
 #need to restart the spooler to enable the ports
-Write-EventLog –LogName APPLICATION –Source "Local GP Startup Script - ""$commandName'""" –EntryType Information –EventID 1 –Message ("Restarting print spooler services to enable ports")
+Write-EventLog -LogName APPLICATION -Source "Local GP Startup Script - ""$commandName'""" -EntryType Information -EventID 1 -Message ("Restarting print spooler services to enable ports")
 net stop cpsvc /y
 sleep 2
 net stop spooler /y
@@ -132,13 +132,13 @@ net start spooler
 sleep 2
 net start cpsvc
 sleep 2
-Write-EventLog –LogName APPLICATION –Source "Local GP Startup Script - ""$commandName'""" –EntryType Information –EventID 1 –Message ("Completed print spooler services to enable ports")
+Write-EventLog -LogName APPLICATION -Source "Local GP Startup Script - ""$commandName'""" -EntryType Information -EventID 1 -Message ("Completed print spooler services to enable ports")
 
 
 #unpack printer properties file
 mkdir C:\printerExport
 C:\Windows\System32\spool\tools\PrintBRM.exe -R -D C:\printerExport -F $printFile
-Write-EventLog –LogName APPLICATION –Source "Local GP Startup Script - ""$commandName'""" –EntryType Information –EventID 1 –Message ("Unpacked printerExport file")
+Write-EventLog -LogName APPLICATION -Source "Local GP Startup Script - ""$commandName'""" -EntryType Information -EventID 1 -Message ("Unpacked printerExport file")
 
 #modify printer properties
 echo `<PRINTERPORTS`>`</PRINTERPORTS`> > "C:\printerExport\BrmPorts.xml"
@@ -146,7 +146,7 @@ echo `<PRINTERPORTS`>`</PRINTERPORTS`> > "C:\printerExport\BrmPorts.xml"
 #configure print queues
 cd C:\printerExport\Printers
 
-Write-EventLog –LogName APPLICATION –Source "Local GP Startup Script - ""$commandName'""" –EntryType Information –EventID 1 –Message ("Configuring Print Queues")
+Write-EventLog -LogName APPLICATION -Source "Local GP Startup Script - ""$commandName'""" -EntryType Information -EventID 1 -Message ("Configuring Print Queues")
 $files = ls
 foreach ($file in $files) {
     $xml = [xml](Get-Content $file)
@@ -165,11 +165,11 @@ foreach ($file in $files) {
 }
 
 # repack printerExport
-Write-EventLog –LogName APPLICATION –Source "Local GP Startup Script - ""$commandName'""" –EntryType Information –EventID 1 –Message ("Repacking printerExport")
+Write-EventLog -LogName APPLICATION -Source "Local GP Startup Script - ""$commandName'""" -EntryType Information -EventID 1 -Message ("Repacking printerExport")
 C:\Windows\System32\spool\tools\PrintBRM.exe -B -D C:\printerExport -F C:\modified.printerExport
 
 # windows firewall needs to be enabled to import
-Write-EventLog –LogName APPLICATION –Source "Local GP Startup Script - ""$commandName'""" –EntryType Information –EventID 1 –Message ("Starting Windows Firewall to import printers")
+Write-EventLog -LogName APPLICATION -Source "Local GP Startup Script - ""$commandName'""" -EntryType Information -EventID 1 -Message ("Starting Windows Firewall to import printers")
 
 sc.exe config MpsSvc start= auto
 sleep 2
@@ -177,19 +177,19 @@ net start MpsSvc
 sleep 2
 
 # import changed file
-Write-EventLog –LogName APPLICATION –Source "Local GP Startup Script - ""$commandName'""" –EntryType Information –EventID 1 –Message ("Importing print queues")
+Write-EventLog -LogName APPLICATION -Source "Local GP Startup Script - ""$commandName'""" -EntryType Information -EventID 1 -Message ("Importing print queues")
 C:\Windows\System32\spool\tools\PrintBRM.exe -R -F C:\modified.printerExport
-Write-EventLog –LogName APPLICATION –Source "Local GP Startup Script - ""$commandName'""" –EntryType Information –EventID 1 –Message ("Completed importing print queues")
+Write-EventLog -LogName APPLICATION -Source "Local GP Startup Script - ""$commandName'""" -EntryType Information -EventID 1 -Message ("Completed importing print queues")
 
 sleep 2
 
-Write-EventLog –LogName APPLICATION –Source "Local GP Startup Script - ""$commandName'""" –EntryType Information –EventID 1 –Message ("Stopping and disabling Windows Firewall")
+Write-EventLog -LogName APPLICATION -Source "Local GP Startup Script - ""$commandName'""" -EntryType Information -EventID 1 -Message ("Stopping and disabling Windows Firewall")
 net stop MpsSvc /y
 sc.exe config MpsSvc start= disabled
 
 #need to restart the spooler to alphabeticalize the printer list
 sleep 2
-Write-EventLog –LogName APPLICATION –Source "Local GP Startup Script - ""$commandName'""" –EntryType Information –EventID 1 –Message ("Restarting print services to alphabeticalize printer list")
+Write-EventLog -LogName APPLICATION -Source "Local GP Startup Script - ""$commandName'""" -EntryType Information -EventID 1 -Message ("Restarting print services to alphabeticalize printer list")
 net stop cpsvc /y
 sleep 2
 net stop spooler /y
@@ -197,10 +197,10 @@ sleep 2
 net start spooler
 sleep 2
 net start cpsvc
-Write-EventLog –LogName APPLICATION –Source "Local GP Startup Script - ""$commandName'""" –EntryType Information –EventID 1 –Message ("Finished restarting print services to alphabeticalize printer list")
+Write-EventLog -LogName APPLICATION -Source "Local GP Startup Script - ""$commandName'""" -EntryType Information -EventID 1 -Message ("Finished restarting print services to alphabeticalize printer list")
 
 sleep 2
-Write-EventLog –LogName APPLICATION –Source "Local GP Startup Script - ""$commandName'""" –EntryType Information –EventID 1 –Message ("Completed PrinterExport-Import script")</pre>
+Write-EventLog -LogName APPLICATION -Source "Local GP Startup Script - ""$commandName'""" -EntryType Information -EventID 1 -Message ("Completed PrinterExport-Import script")</pre>
 
 So, what does this have to do with� KB3170455? � Well, since installing KB3170455 it prevents importing printer files with print drivers embedded. � This is what it looks like with KB3170455 installed:
 

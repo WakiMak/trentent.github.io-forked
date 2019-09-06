@@ -1,6 +1,6 @@
 ---
 id: 2388
-title: Citrix Storefront – Performance Testing and Tuning – Part 4 – PerfMon Counters, PNA Logon
+title: Citrix Storefront - Performance Testing and Tuning - Part 4 - PerfMon Counters, PNA Logon
 date: 2017-06-02T07:59:28-06:00
 author: trententtye
 layout: post

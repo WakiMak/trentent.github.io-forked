@@ -1,6 +1,6 @@
 ---
 id: 2239
-title: Citrix Storefront – Adventures in customization – Restrict app visibility with single factor authentication, show all apps with two-factor authentication
+title: Citrix Storefront - Adventures in customization - Restrict app visibility with single factor authentication, show all apps with two-factor authentication
 date: 2017-05-09T22:16:33-06:00
 author: trententtye
 layout: post

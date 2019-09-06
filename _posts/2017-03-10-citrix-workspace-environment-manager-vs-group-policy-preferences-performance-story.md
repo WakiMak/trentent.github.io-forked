@@ -1,6 +1,6 @@
 ---
 id: 2062
-title: Citrix Workspace Environment Manager vs. Group Policy Preferences – Performance Story
+title: Citrix Workspace Environment Manager vs. Group Policy Preferences - Performance Story
 date: 2017-03-10T13:10:45-06:00
 author: trententtye
 layout: post

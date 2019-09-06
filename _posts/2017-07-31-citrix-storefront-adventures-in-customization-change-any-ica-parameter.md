@@ -1,6 +1,6 @@
 ---
 id: 2525
-title: Citrix Storefront – Adventures in customization – Change any ICA parameter
+title: Citrix Storefront - Adventures in customization - Change any ICA parameter
 date: 2017-07-31T17:04:07-06:00
 author: trententtye
 layout: post
