@@ -31,7 +31,7 @@ Symptoms
 IMA Service fails to start and MFCOM Service hangs in a Starting state.  
 Event ID: 7024  
 The Independent Management Architecture service terminated with service-specific error: 2147483649 (0x80000001).  
-- Or –  
+- Or -  
 The IMA service terminated with service-specific error: 2147483647  
 Cause  
 When looking into the services manager, the MFCOM Service is in status “starting”. MFCOM and IMA Service fail to start because of a corrupt radeoffline DB.  
