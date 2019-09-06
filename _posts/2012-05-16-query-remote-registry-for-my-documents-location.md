@@ -48,10 +48,7 @@ FOR /F "tokens=*" %%a IN ('type %1') DO (
 )
 notepad "%temp%\redir.txt"</pre>
 
-`<br />
-`  
-`<br />
-`  
+
 To use the script; get a list of computers or IP addresses and then run the script as:  
 find-redir.cmd "list-of-computers.txt"
 
