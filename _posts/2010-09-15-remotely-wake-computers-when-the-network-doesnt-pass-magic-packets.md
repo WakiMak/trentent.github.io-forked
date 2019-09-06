@@ -1,6 +1,6 @@
 ---
 id: 718
-title: 'Remotely wake computers when the network doesnt pass Magic Packets'
+title: Remotely wake computers when the network doesn't pass Magic Packets
 date: 2010-09-15T00:17:00-06:00
 author: trententtye
 layout: post
