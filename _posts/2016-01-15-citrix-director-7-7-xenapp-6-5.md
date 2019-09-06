@@ -1,10 +1,10 @@
 ---
 id: 533
-title: 'Citrix Director 7.7 & & 6.5'
+title: 'Citrix Director 7.7 & XenApp 6.5'
 date: 2016-01-15T15:59:00-06:00
 author: trententtye
 layout: post
-permalink: /2016/01/15/citrix-director-7-7-&-6-5/
+permalink: /2016/01/15/citrix-director-7-7-xenapp-6-5/
 blogger_blog:
   - trentent.blogspot.com
 blogger_author:
