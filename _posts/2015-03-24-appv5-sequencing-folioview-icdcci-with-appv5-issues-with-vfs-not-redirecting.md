@@ -38,7 +38,7 @@ OK
 </div>
 
 <div>
-  This error seems to appear because VFS either isn't fully loaded by the time Views.exe is loaded so the program/dlls actually traverse down a non-virtual path, or they somehow break the AppV bubble and don't find whatever it is they are looking for. Â To correct this issue, you need to create a symbolic link to the VFS'd program directory from where the actual directory is supposed to reside. Â For instance, I sequenced FolioView to:
+  This error seems to appear because VFS either isn't fully loaded by the time Views.exe is loaded so the program/dlls actually traverse down a non-virtual path, or they somehow break the AppV bubble and don't find whatever it is they are looking for.  To correct this issue, you need to create a symbolic link to the VFS'd program directory from where the actual directory is supposed to reside.  For instance, I sequenced FolioView to:
 </div>
 
 <div>
@@ -93,7 +93,7 @@ OK
 </div>
 
 <div>
-  "C:\Program Files (x86)\CIHI\CIHI_PUB_2015\Cihi32\Views.exe" Â -L1033 -cSoftware\CIHI\2015\ICD10\English -i"\\q9-v-citrix-lif1.healthy.bewell.ca\CTX_APPS\FolioView2015\cci_2015_eng.sdw"
+  "C:\Program Files (x86)\CIHI\CIHI_PUB_2015\Cihi32\Views.exe"  -L1033 -cSoftware\CIHI\2015\ICD10\English -i"\\q9-v-citrix-lif1.healthy.bewell.ca\CTX_APPS\FolioView2015\cci_2015_eng.sdw"
 </div>
 
 <div>
@@ -131,14 +131,14 @@ OK
 </div>
 
 <div>
-  There are several calls that appear to look for files (nfomgr4, fcctrl4, mpr, davInt) that maybe generating the error message, but, I am not skilled enough at WinDBG at this time to be able to dig deeper. Â Either way, there appears to be a limitation within AppV5 that prevents this program from operating correctly. Â The same program works in AppV 4.6 without issue though, so it appears AppV5 sill has some work to go to get full compatibility with PITA applications.
+  There are several calls that appear to look for files (nfomgr4, fcctrl4, mpr, davInt) that maybe generating the error message, but, I am not skilled enough at WinDBG at this time to be able to dig deeper.  Either way, there appears to be a limitation within AppV5 that prevents this program from operating correctly.  The same program works in AppV 4.6 without issue though, so it appears AppV5 sill has some work to go to get full compatibility with PITA applications.
 </div>
 
 <div>
 </div>
 
 <div>
-  Here's the application working fine in AppV 4.6. Â The application was installed identically for both AppV versions.
+  Here's the application working fine in AppV 4.6.  The application was installed identically for both AppV versions.
 </div>
 
 <div>

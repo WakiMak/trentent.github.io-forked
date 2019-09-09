@@ -22,7 +22,7 @@ tags:
   - PowerShell
   - scripting
 ---
-I am attempting to read a CSV file and decided the best way to do it was with PowerShell's native import-csv tool.Â What was required was to read this CSV and then generate a registry file for import into numerous computers.Â This was my result:
+I am attempting to read a CSV file and decided the best way to do it was with PowerShell's native import-csv tool. What was required was to read this CSV and then generate a registry file for import into numerous computers. This was my result:
 
 <pre class="lang:ps decode:true ">########################################################################################
 #
@@ -88,10 +88,10 @@ write-host "Importing registry"
 regedit /s "$env:temp\MetaReg.reg"
 Get-Date</pre>
 
-The CSV file we have has about 1500 lines in it.Â To generate the registry key utilizing this method took 6 minutes and 45 seconds.Â This is unacceptably slow.Â I then started googling ways to speed up this processing and came across this article:  
+The CSV file we have has about 1500 lines in it. To generate the registry key utilizing this method took 6 minutes and 45 seconds. This is unacceptably slow. I then started googling ways to speed up this processing and came across this article:  
 <http://stackoverflow.com/questions/6386793/how-to-use-powershell-to-reorder-csv-columns>
 
-Where Roman Kuzmin suggested to handle the file as a text file instead of a PowerShell object.Â The syntax used to generate convert the file into objects that can replace text as needed is a bit different but I decided to explore it.Â His example code is as follows:
+Where Roman Kuzmin suggested to handle the file as a text file instead of a PowerShell object. The syntax used to generate convert the file into objects that can replace text as needed is a bit different but I decided to explore it. His example code is as follows:
 
 <pre class="lang:ps decode:true ">$reader = [System.IO.File]::OpenText('data1.csv')
 $writer = New-Object System.IO.StreamWriter 'data2.csv'

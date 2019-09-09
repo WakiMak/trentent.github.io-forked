@@ -22,7 +22,7 @@ tags:
   - Group Policy
   - Provisioning Services
 ---
-Due to the CGP issue, our solution is to add a startup script to each vDisk. Â Since I don't want to make a version of each vDisk than attach it to a server than boot it up than gpedit.msc... Â We have around 10 vDisks and that process would be annoying and take a while. Â So I decided to investigate doing it offline as mounting a VHD using cvhdmount.exe and then injecting the startup script would be a lot easier.
+Due to the CGP issue, our solution is to add a startup script to each vDisk.  Since I don't want to make a version of each vDisk than attach it to a server than boot it up than gpedit.msc...  We have around 10 vDisks and that process would be annoying and take a while.  So I decided to investigate doing it offline as mounting a VHD using cvhdmount.exe and then injecting the startup script would be a lot easier.
 
 <div style="clear: both; text-align: center;">
 </div>

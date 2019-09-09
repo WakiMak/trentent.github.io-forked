@@ -20,9 +20,9 @@ categories:
 tags:
   - AppV
 ---
-Apparently this is a fun topic. Â How [do you sequence Oracle 11G R2 on AppV5](https://social.technet.microsoft.com/Forums/en-US/b39d8600-28f2-40db-b38d-160bb551cd45/sequencing-oracle-odbc-drivers-with-appv-5?forum=mdopappv)?
+Apparently this is a fun topic.  How [do you sequence Oracle 11G R2 on AppV5](https://social.technet.microsoft.com/Forums/en-US/b39d8600-28f2-40db-b38d-160bb551cd45/sequencing-oracle-odbc-drivers-with-appv-5?forum=mdopappv)?
 
-I believe I have an answer. Â In my attempts to sequence Oracle 11G on AppV5 I came across a few issues and have come up with solutions that work for various applications that rely on this tool.
+I believe I have an answer.  In my attempts to sequence Oracle 11G on AppV5 I came across a few issues and have come up with solutions that work for various applications that rely on this tool.
 
 **The first issue:**  
 Oracle 11G only allows paths without spaces and special characters.
@@ -41,16 +41,16 @@ Oracle 11G only allows paths without spaces and special characters.
   </tr>
 </table>
 
-This \*maybe\* fixed now, but I experienced issues with trying to install Oracle 11g to the 8.3 folder structure to place it under "Program Files" or "Program Files (x86)". Â The sequenced application would be broken. Â [This was a known/reported issue with AppV 5SP2 HF4](http://trentent.blogspot.ca/2014/08/appv-5-short-file-names-are-not-created.html) that was marked as 'fixed' by Microsoft for SP3+. Â I have not had the ability to confirm that and will continue this post with what I know works... Â I also believe that when expanded out it uses the full path with spaces as opposed to the 8.3 path.
+This \*maybe\* fixed now, but I experienced issues with trying to install Oracle 11g to the 8.3 folder structure to place it under "Program Files" or "Program Files (x86)".  The sequenced application would be broken.  [This was a known/reported issue with AppV 5SP2 HF4](http://trentent.blogspot.ca/2014/08/appv-5-short-file-names-are-not-created.html) that was marked as 'fixed' by Microsoft for SP3+.  I have not had the ability to confirm that and will continue this post with what I know works...  I also believe that when expanded out it uses the full path with spaces as opposed to the 8.3 path.
 
 **Second Issue:**  
-Installing Oracle 11G to the default 'recommended' directory will fail if you move your [PackageInstallationRoot](http://trentent.blogspot.ca/2014/08/appv-5-changing-packageinstallationroot.html)Â to a different drive.
+Installing Oracle 11G to the default 'recommended' directory will fail if you move your [PackageInstallationRoot](http://trentent.blogspot.ca/2014/08/appv-5-changing-packageinstallationroot.html) to a different drive.
 
 <div style="clear: both; text-align: center;">
   <a style="margin-left: 1em; margin-right: 1em;" href="http://1.bp.blogspot.com/-FKIBo_haoeM/VgeC1X8-TSI/AAAAAAAABJo/Dt6B1pwncpA/s1600/oracle2.PNG"><img src="http://1.bp.blogspot.com/-FKIBo_haoeM/VgeC1X8-TSI/AAAAAAAABJo/Dt6B1pwncpA/s320/oracle2.PNG" width="320" height="142" border="0" /></a>
 </div>
 
-This is because the second folder (apps - in this example) is not tokenized. Â Forcing AppV5 to utilize the token "appvPackgeDrive" which can expand out differently then you expect, breaking the application.
+This is because the second folder (apps - in this example) is not tokenized.  Forcing AppV5 to utilize the token "appvPackgeDrive" which can expand out differently then you expect, breaking the application.
 
 **Third Issue:**  
 Cannot install to PVAD.
@@ -59,7 +59,7 @@ The reason I chose to NOT utilize PVAD is if you do then Oracle [cannot be used 
 
 **So how do you resolve all these issues and sequence Oracle 11G R2?**
 
-The direction I went was to ensure the directory I sequenced the installer to was a tokenized directory. Â It also needed to a directory that, when expanded in the virtualized environment, does not contain any spaces or special characters.
+The direction I went was to ensure the directory I sequenced the installer to was a tokenized directory.  It also needed to a directory that, when expanded in the virtualized environment, does not contain any spaces or special characters.
 
 The list of directories AppV5 tokenize's can be found in the AppV 5.0 Sequencing Guide.
 
@@ -1386,7 +1386,7 @@ I'll list them here:
 &nbsp;
 
 <div>
-  There are multiple directories we can choose. Â I opted to use "Common AppData". Â That means I will install the Oracle client here: "C:ProgramData". Â It does not contain a space, is tokenized, and when expanded will remain on the C: drive. Â I created a 'response' file for the Oracle install.
+  There are multiple directories we can choose.  I opted to use "Common AppData".  That means I will install the Oracle client here: "C:ProgramData".  It does not contain a space, is tokenized, and when expanded will remain on the C: drive.  I created a 'response' file for the Oracle install.
 </div>
 
 <div>

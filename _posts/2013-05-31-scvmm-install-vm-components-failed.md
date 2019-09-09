@@ -45,14 +45,14 @@ Ensure that the HTTP service and/or the agent on the machine 2012-SCVMM.bottheor
 </pre>
 
 <div style="clear: both; text-align: center;">
-  <span style="font-family: Courier New, Courier, monospace; font-size: x-small;">Â </span>
+  <span style="font-family: Courier New, Courier, monospace; font-size: x-small;"> </span>
 </div>
 
 TL;DR  
-SO... Â Long story short; if you are encountering this error, I would suggest booting your VHD file in a VM and re-sysprep /generalize it. Â If you've maxed out on sysprep's I have a post earlier in my blog on how to get around the 3-times limit and rerun sysprep. Â Alternatively, you can try what I did, but I can't gaurantee your success and replace the BCD file in your Library VHD with a BCD you \*know\* has been sysprepp'ed and try redeploying it.  
+SO...  Long story short; if you are encountering this error, I would suggest booting your VHD file in a VM and re-sysprep /generalize it.  If you've maxed out on sysprep's I have a post earlier in my blog on how to get around the 3-times limit and rerun sysprep.  Alternatively, you can try what I did, but I can't gaurantee your success and replace the BCD file in your Library VHD with a BCD you \*know\* has been sysprepp'ed and try redeploying it.  
 =--------------------------------=
 
-I've ensured that HTTP and HTTPS is not blocked (firewall is disabled) and the agent on my SCVMM machine is installed and running. Â So this error message is somewhat useless.
+I've ensured that HTTP and HTTPS is not blocked (firewall is disabled) and the agent on my SCVMM machine is installed and running.  So this error message is somewhat useless.
 
 <div style="clear: both; text-align: center;">
   <a style="margin-left: 1em; margin-right: 1em;" href="http://4.bp.blogspot.com/-91RpU0TWAYE/UakFdjzToTI/AAAAAAAAAUc/QTLl38FAqvk/s1600/3.png"><img src="http://4.bp.blogspot.com/-91RpU0TWAYE/UakFdjzToTI/AAAAAAAAAUc/QTLl38FAqvk/s320/3.png" width="320" height="228" border="0" /></a>
@@ -78,7 +78,7 @@ A few seconds after this, it appears to "CreateFile" in the WindowsTemp director
   <a style="margin-left: 1em; margin-right: 1em; text-align: center;" href="http://3.bp.blogspot.com/-UnOO4sy9BTY/UakFeegh-hI/AAAAAAAAAU0/PAkWqFj-eXI/s1600/5.png"><img src="http://3.bp.blogspot.com/-UnOO4sy9BTY/UakFeegh-hI/AAAAAAAAAU0/PAkWqFj-eXI/s320/5.png" width="311" height="320" border="0" /></a>
 </div>
 
-What it is really doing is \*mounting\* the VHD into a folder in the WindowsTemp directory. Â You can actually watch this in action if you view Disk Management on the Hyper-V host while you execute the task.
+What it is really doing is \*mounting\* the VHD into a folder in the WindowsTemp directory.  You can actually watch this in action if you view Disk Management on the Hyper-V host while you execute the task.
 
 <div style="clear: both; text-align: center;">
   <a style="margin-left: 1em; margin-right: 1em;" href="http://3.bp.blogspot.com/-SZ-Q51Dnjbg/UakFeQ0dhRI/AAAAAAAAAUw/43OCE5hxzRg/s1600/6.png"><img src="http://3.bp.blogspot.com/-SZ-Q51Dnjbg/UakFeQ0dhRI/AAAAAAAAAUw/43OCE5hxzRg/s320/6.png" width="320" height="261" border="0" /></a>
@@ -94,7 +94,7 @@ What it is really doing is \*mounting\* the VHD into a folder in the WindowsTemp
 <div style="clear: both; text-align: center;">
 </div>
 
-So now that we know it's mounting the file as a volume this helps us narrow down on what Hyper-V is attempting to do... Â And I suspect what it is attempting to do is "offline servicing" of the attached vdisk/vhd.
+So now that we know it's mounting the file as a volume this helps us narrow down on what Hyper-V is attempting to do...  And I suspect what it is attempting to do is "offline servicing" of the attached vdisk/vhd.
 
 <div style="clear: both; text-align: center;">
   <a style="margin-left: 1em; margin-right: 1em;" href="http://1.bp.blogspot.com/-Wt-91NctUiU/UakFe7RrRPI/AAAAAAAAAVA/m8sjBPC-v4A/s1600/8.png"><img src="http://1.bp.blogspot.com/-Wt-91NctUiU/UakFe7RrRPI/AAAAAAAAAVA/m8sjBPC-v4A/s400/8.png" width="400" height="83" border="0" /></a>
@@ -103,13 +103,13 @@ So now that we know it's mounting the file as a volume this helps us narrow down
 <div style="clear: both; text-align: center;">
 </div>
 
-After attaching the vdisk the next thing it does it query the BCD file on the system. Â Maybe it needs to be in a certain mode to operate? Â I'm not sure...
+After attaching the vdisk the next thing it does it query the BCD file on the system.  Maybe it needs to be in a certain mode to operate?  I'm not sure...
 
 <div style="clear: both; text-align: center;">
   <a style="margin-left: 1em; margin-right: 1em;" href="http://2.bp.blogspot.com/-tV3MwDZla_Q/UakFfN2yevI/AAAAAAAAAVI/I7fqcUoxHA0/s1600/9.png"><img src="http://2.bp.blogspot.com/-tV3MwDZla_Q/UakFfN2yevI/AAAAAAAAAVI/I7fqcUoxHA0/s320/9.png" width="320" height="123" border="0" /></a>
 </div>
 
-Continuing on we can see that events are written to the Microsoft-Windows-FileShareShadowCopyProvider Operational.evtx, System.evtx, and Microsoft-Windows-Bits-CompactServer Operational.evtx event logs. Â Examining each log at the time stamp showed the FileShareShadowCopyProvider and System log were just noticed of volume shadow copy starting, but the BITS event log was interesting.
+Continuing on we can see that events are written to the Microsoft-Windows-FileShareShadowCopyProvider Operational.evtx, System.evtx, and Microsoft-Windows-Bits-CompactServer Operational.evtx event logs.  Examining each log at the time stamp showed the FileShareShadowCopyProvider and System log were just noticed of volume shadow copy starting, but the BITS event log was interesting.
 
 <div style="clear: both; text-align: center;">
   <a style="margin-left: 1em; margin-right: 1em;" href="http://2.bp.blogspot.com/-pO_gsbRxKQw/UakFcAdTDeI/AAAAAAAAATU/I54xm9N5L4s/s1600/10.png"><img src="http://2.bp.blogspot.com/-pO_gsbRxKQw/UakFcAdTDeI/AAAAAAAAATU/I54xm9N5L4s/s400/10.png" width="400" height="291" border="0" /></a>
@@ -127,8 +127,8 @@ Continuing on we can see that events are written to the Microsoft-Windows-FileSh
   <a style="margin-left: 1em; margin-right: 1em;" href="http://2.bp.blogspot.com/-HU-lFdkamOU/UakFcaaTZ8I/AAAAAAAAATk/GaX6xju3NPI/s1600/12.png"><img src="http://2.bp.blogspot.com/-HU-lFdkamOU/UakFcaaTZ8I/AAAAAAAAATk/GaX6xju3NPI/s400/12.png" width="400" height="278" border="0" /></a>
 </div>
 
-It showed that it was doing something with the BCD file. Â The Hyper-V host was \*serving\* it out. Â I suspect it was serving it to the SCVMM.  
-Looking back at the SCVMM server we see that was executing some WinRM commands. Â Sadly, we do not know what commands it was trying to send.
+It showed that it was doing something with the BCD file.  The Hyper-V host was \*serving\* it out.  I suspect it was serving it to the SCVMM.  
+Looking back at the SCVMM server we see that was executing some WinRM commands.  Sadly, we do not know what commands it was trying to send.
 
 If I mount the vhd file and check out the BCD file I can see that it appears to be corrupted in that it doesn't know what the proper boot device should be.
 
@@ -250,7 +250,7 @@ identifier              {7619dcc8-fafe-11d9-b411-000476eba25f}
 ramdisksdidevice        boot
 ramdisksdipath          \boot\boot.sdi</pre>
 
-It's not actually corrupted though; the reason why the devices are unknown is because bcdedit isn't finding the disk signature of the volume I mounted. Â But it has the disk signature because I can boot with it without issue.
+It's not actually corrupted though; the reason why the devices are unknown is because bcdedit isn't finding the disk signature of the volume I mounted.  But it has the disk signature because I can boot with it without issue.
 
 Continuing on...
 
@@ -263,7 +263,7 @@ I then reproduced the error by rerunning the Create Virtual Machine job.
   <a style="margin-left: 1em; margin-right: 1em;" href="http://3.bp.blogspot.com/-fsU-9jEWFHo/UakFcnZ0EwI/AAAAAAAAAT0/TWbDpWyJkLI/s1600/14.png"><img src="http://3.bp.blogspot.com/-fsU-9jEWFHo/UakFcnZ0EwI/AAAAAAAAAT0/TWbDpWyJkLI/s320/14.png" width="320" height="192" border="0" /></a>
 </div>
 
-DebugView gave me more information to narrow down what was happening. Â It appears that the process is failing with:
+DebugView gave me more information to narrow down what was happening.  It appears that the process is failing with:
 
 <pre class="lang:default decode:true ">[4276] 10B4.000C::05/31-12:52:00.894#16BcdUtil.cs(1987): bootDevice UnknownDevice
 [4276] 10B4.000C::05/31-12:52:01.334#16MountedVhd.cs(91): MountedVhd windows volume not found
@@ -273,11 +273,11 @@ DebugView gave me more information to narrow down what was happening. Â It appea
 <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;"><br /> </span>Doing some googling on this took me to a Korean Microsoft page where the following was stated:  
 <http://social.technet.microsoft.com/Forums/ko-KR/momsmsmofko/thread/fedbc514-1fc0-4b55-979b-7d07babb074b/>
 
-<pre class="lang:default decode:true ">When creating a new VM from template, and that template contains a blank VHD or a non-Windows OS or a Windows OS that has not been generalized (i.e. the OS is not sysprepped), then the job will fail because VMM expects a VM from template to go through the sysprep customization process (hence why we ask for an OS profile). VMM will crack open the VHD and check of the OS is in a sysprep state. If not, then the job will fail. To create a proper template, you can use an existing Vm with a running Windows OS (right click on it and select New Templateâ€¦ this will kick off sysprep in the OS and then store the VM to Library as templateâ€¦ this removes the original VM). Orâ€¦ if you already have VHDs that have been sysprepped, simply import them to the Library and then when you create a new templateâ€¦ attach that VHD instead of the blank one. Lastâ€¦ you can create a new template that does not require a sysprepped OS by selecting â€˜Customization Not Requiredâ€™ from the Guest OS profile dropdown:</pre>
+<pre class="lang:default decode:true ">When creating a new VM from template, and that template contains a blank VHD or a non-Windows OS or a Windows OS that has not been generalized (i.e. the OS is not sysprepped), then the job will fail because VMM expects a VM from template to go through the sysprep customization process (hence why we ask for an OS profile). VMM will crack open the VHD and check of the OS is in a sysprep state. If not, then the job will fail. To create a proper template, you can use an existing Vm with a running Windows OS (right click on it and select New Template€¦ this will kick off sysprep in the OS and then store the VM to Library as template€¦ this removes the original VM). Or€¦ if you already have VHDs that have been sysprepped, simply import them to the Library and then when you create a new template€¦ attach that VHD instead of the blank one. Last€¦ you can create a new template that does not require a sysprepped OS by selecting €˜Customization Not Required€™ from the Guest OS profile dropdown:</pre>
 
 <http://blogs.technet.com/b/hectorl/archive/2008/08/21/digging-deeper-into-error-13206-virtual-machine-manager-cannot-locate-the-boot-or-system-volume-on-virtual-machine.aspx>
 
-Thinking about it, I do not think my VHD was SysPrep'ed. Â I find it interesting that sysprep appears to do something to the BCD file. Â To find out what sysprep does to the BCD file I booted up my 2012 VHD into Windows and ran sysprep, generalize and shutdown.
+Thinking about it, I do not think my VHD was SysPrep'ed.  I find it interesting that sysprep appears to do something to the BCD file.  To find out what sysprep does to the BCD file I booted up my 2012 VHD into Windows and ran sysprep, generalize and shutdown.
 
 <div style="clear: both; text-align: center;">
   <a style="margin-left: 1em; margin-right: 1em;" href="http://4.bp.blogspot.com/-j93lsMv6bJg/UakFc18B3cI/AAAAAAAAATw/KslHskWaEd8/s1600/15.png"><img src="http://4.bp.blogspot.com/-j93lsMv6bJg/UakFc18B3cI/AAAAAAAAATw/KslHskWaEd8/s320/15.png" width="320" height="243" border="0" /></a>
@@ -288,93 +288,93 @@ Thinking about it, I do not think my VHD was SysPrep'ed. Â I find it interesting
 C:\Users\amttye\Desktop>fc before-sysprep.txt after-sysprep.txt
 Comparing files before-sysprep.txt and AFTER-SYSPREP.TXT
 ***** before-sysprep.txt
-identifier Â  Â  Â  Â  Â  Â  Â {bootmgr}
-device Â  Â  Â  Â  Â  Â  Â  Â  Â partition=K:
-description Â  Â  Â  Â  Â  Â  Windows Boot Manager
+identifier              {bootmgr}
+device                  partition=K:
+description             Windows Boot Manager
 ***** AFTER-SYSPREP.TXT
-identifier Â  Â  Â  Â  Â  Â  Â {bootmgr}
-<b><u><i>device Â  Â  Â  Â  Â  Â  Â  Â  Â locate=unknown</i></u></b>
-description Â  Â  Â  Â  Â  Â  Windows Boot Manager
+identifier              {bootmgr}
+<b><u><i>device                  locate=unknown</i></u></b>
+description             Windows Boot Manager
 *****
 
 ***** before-sysprep.txt
-toolsdisplayorder Â  Â  Â  {memdiag}
-timeout Â  Â  Â  Â  Â  Â  Â  Â  3
+toolsdisplayorder       {memdiag}
+timeout                 3
 
 ***** AFTER-SYSPREP.TXT
-toolsdisplayorder Â  Â  Â  {memdiag}
-<b><u><i>timeout Â  Â  Â  Â  Â  Â  Â  Â  30</i></u></b>
+toolsdisplayorder       {memdiag}
+<b><u><i>timeout                 30</i></u></b>
 
 *****
 
 ***** before-sysprep.txt
-identifier Â  Â  Â  Â  Â  Â  Â {default}
-device Â  Â  Â  Â  Â  Â  Â  Â  Â partition=K:
-path Â  Â  Â  Â  Â  Â  Â  Â  Â  Â \Windows\system32\winload.exe
+identifier              {default}
+device                  partition=K:
+path                    \Windows\system32\winload.exe
 ***** AFTER-SYSPREP.TXT
-identifier Â  Â  Â  Â  Â  Â  Â {default}
-<b><u><i>device Â  Â  Â  Â  Â  Â  Â  Â  Â locate=\Windows\system32\winload.exe</i></u></b>
-path Â  Â  Â  Â  Â  Â  Â  Â  Â  Â \Windows\system32\winload.exe
+identifier              {default}
+<b><u><i>device                  locate=\Windows\system32\winload.exe</i></u></b>
+path                    \Windows\system32\winload.exe
 *****
 
 ***** before-sysprep.txt
-inherit Â  Â  Â  Â  Â  Â  Â  Â  {bootloadersettings}
+inherit                 {bootloadersettings}
 allowedinmemorysettings 0x15000075
-osdevice Â  Â  Â  Â  Â  Â  Â  Â partition=K:
-systemroot Â  Â  Â  Â  Â  Â  Â \Windows
+osdevice                partition=K:
+systemroot              \Windows
 ***** AFTER-SYSPREP.TXT
-inherit Â  Â  Â  Â  Â  Â  Â  Â  {bootloadersettings}
-<b><u><i>recoveryenabled Â  Â  Â  Â  No</i></u></b>
+inherit                 {bootloadersettings}
+<b><u><i>recoveryenabled         No</i></u></b>
 allowedinmemorysettings 0x15000075
-<b><u><i>osdevice Â  Â  Â  Â  Â  Â  Â  Â locate=\Windows</i></u></b>
-systemroot Â  Â  Â  Â  Â  Â  Â \Windows
+<b><u><i>osdevice                locate=\Windows</i></u></b>
+systemroot              \Windows
 *****
 
 ***** before-sysprep.txt
-nx Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â OptOut
-detecthal Â  Â  Â  Â  Â  Â  Â  Yes
+nx                      OptOut
+detecthal               Yes
 
 ***** AFTER-SYSPREP.TXT
-nx Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â OptOut
+nx                      OptOut
 
 *****
 
 ***** before-sysprep.txt
-identifier Â  Â  Â  Â  Â  Â  Â {b520e13c-48da-11e2-9a8b-00155d011700}
-device Â  Â  Â  Â  Â  Â  Â  Â  Â partition=K:
-path Â  Â  Â  Â  Â  Â  Â  Â  Â  Â \Windows\system32\winresume.exe
+identifier              {b520e13c-48da-11e2-9a8b-00155d011700}
+device                  partition=K:
+path                    \Windows\system32\winresume.exe
 ***** AFTER-SYSPREP.TXT
-identifier Â  Â  Â  Â  Â  Â  Â {b520e13c-48da-11e2-9a8b-00155d011700}
-<b><u><i>device Â  Â  Â  Â  Â  Â  Â  Â  Â locate=\Windows\system32\winresume.exe</i></u></b>
-path Â  Â  Â  Â  Â  Â  Â  Â  Â  Â \Windows\system32\winresume.exe
+identifier              {b520e13c-48da-11e2-9a8b-00155d011700}
+<b><u><i>device                  locate=\Windows\system32\winresume.exe</i></u></b>
+path                    \Windows\system32\winresume.exe
 *****
 
 ***** before-sysprep.txt
-inherit Â  Â  Â  Â  Â  Â  Â  Â  {resumeloadersettings}
+inherit                 {resumeloadersettings}
 allowedinmemorysettings 0x15000075
-filepath Â  Â  Â  Â  Â  Â  Â  Â \hiberfil.sys
+filepath                \hiberfil.sys
 
 ***** AFTER-SYSPREP.TXT
-inherit Â  Â  Â  Â  Â  Â  Â  Â  {resumeloadersettings}
-<b><u><i>recoveryenabled Â  Â  Â  Â  No</i></u></b>
+inherit                 {resumeloadersettings}
+<b><u><i>recoveryenabled         No</i></u></b>
 allowedinmemorysettings 0x15000075
-filedevice Â  Â  Â  Â  Â  Â  Â locate=\hiberfil.sys
-filepath Â  Â  Â  Â  Â  Â  Â  Â \hiberfil.sys
-<b><u><i>debugoptionenabled Â  Â  Â No</i></u></b>
+filedevice              locate=\hiberfil.sys
+filepath                \hiberfil.sys
+<b><u><i>debugoptionenabled      No</i></u></b>
 
 *****
 
 ***** before-sysprep.txt
-identifier Â  Â  Â  Â  Â  Â  Â {memdiag}
-device Â  Â  Â  Â  Â  Â  Â  Â  Â unknown
-path Â  Â  Â  Â  Â  Â  Â  Â  Â  Â \boot\memtest.exe
+identifier              {memdiag}
+device                  unknown
+path                    \boot\memtest.exe
 ***** AFTER-SYSPREP.TXT
-identifier Â  Â  Â  Â  Â  Â  Â {memdiag}
-<b><u><i>device Â  Â  Â  Â  Â  Â  Â  Â  Â locate=\boot\memtest.exe</i></u></b>
-path Â  Â  Â  Â  Â  Â  Â  Â  Â  Â \boot\memtest.exe
+identifier              {memdiag}
+<b><u><i>device                  locate=\boot\memtest.exe</i></u></b>
+path                    \boot\memtest.exe
 *****
 
-Interestinginly the differences appear to be mostly "locate=%%". Â I guess this would make sense as the assumption is the BCD is being moved to a new disk with a new disk signature and so it can't lock on to the existing signature. Â Some other oddities is the removal of "detecthal" and explicit declarations of debugoptionenabled and recoveryenabled. Â I suspect that a generalized BCD file is portable, so I'm going to extract it from this image and inject it into my previously "failing" image. Â I then edited the template and removed the old VHD and added the new one.
+Interestinginly the differences appear to be mostly "locate=%%".  I guess this would make sense as the assumption is the BCD is being moved to a new disk with a new disk signature and so it can't lock on to the existing signature.  Some other oddities is the removal of "detecthal" and explicit declarations of debugoptionenabled and recoveryenabled.  I suspect that a generalized BCD file is portable, so I'm going to extract it from this image and inject it into my previously "failing" image.  I then edited the template and removed the old VHD and added the new one.
 
 </pre>
 
@@ -382,7 +382,7 @@ Interestinginly the differences appear to be mostly "locate=%%". Â I guess this 
   <a style="margin-left: 1em; margin-right: 1em;" href="http://2.bp.blogspot.com/-gJXfmbfLAIo/UakFczvKz0I/AAAAAAAAAT4/B9UHmfrKdak/s1600/16.png"><img src="http://2.bp.blogspot.com/-gJXfmbfLAIo/UakFczvKz0I/AAAAAAAAAT4/B9UHmfrKdak/s1600/16.png" border="0" /></a>
 </div>
 
-And..........? Â Lets go to DebugView:
+And..........?  Lets go to DebugView:
 
 <pre class="lang:default decode:true ">[4276] 10B4.000C::05/31-13:57:40.193#16SystemInformation.cs(192): SYSTEM: :\ Version=0.0 HALType=  Memory=2MB, Procs=1 Is64s=False . OSLanguage=0
 [4276] 10B4.000C::05/31-13:57:40.193#16SystemInformation.cs(970): Lookup for '\??\Volume{b42a3001-c871-11e2-93f4-0015172fc019}' in MountedDevices
@@ -408,11 +408,11 @@ And..........? Â Lets go to DebugView:
 </div>
 
 <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;"><br /> </span>  
-Voila! Â It appears much better than before. Â It found the drive correctly and checked the BCD file and found it is the "Generalize" state. Â The \*actual\* image I originally made was NOT sysprep'ed and all I did was replace the BCD file, but it allowed it to continue beyond and the machine actually completed the imaging process properly. Â It joined the domain and whatever else the answer file was I gave it in SCVMM.
+Voila!  It appears much better than before.  It found the drive correctly and checked the BCD file and found it is the "Generalize" state.  The \*actual\* image I originally made was NOT sysprep'ed and all I did was replace the BCD file, but it allowed it to continue beyond and the machine actually completed the imaging process properly.  It joined the domain and whatever else the answer file was I gave it in SCVMM.
 
-It appears I was correct in my earlier assumption about what SCVMM is doing. Â It goes and grabs the BCD file and transfers it from the target machine to itself, "fixes it up" (not sure what it's doing at this stage precisely), then sends it back for injection. Â Certainly a bit of a complicated process with a fair bit that can go wrong, but shame on Microsoft for having such a poor error message. Â I suspect it wouldn't have required much effort to push out a real message; something to the effect of, "The BCD of this vDisk does not appear to have been through the sysprep /generalize process. Â Please rerun sysprep against the image and try again".
+It appears I was correct in my earlier assumption about what SCVMM is doing.  It goes and grabs the BCD file and transfers it from the target machine to itself, "fixes it up" (not sure what it's doing at this stage precisely), then sends it back for injection.  Certainly a bit of a complicated process with a fair bit that can go wrong, but shame on Microsoft for having such a poor error message.  I suspect it wouldn't have required much effort to push out a real message; something to the effect of, "The BCD of this vDisk does not appear to have been through the sysprep /generalize process.  Please rerun sysprep against the image and try again".
 
-SO... Â Long story short; if you are encountering this error, I would suggest booting your VHD file in a VM and re-sysprep /generalize it. Â If you've maxed out on sysprep's I have a post earlier in my blog on how to get around the 3-times limit and rerun sysprep. Â Alternatively, you can try what I did, but I can't gaurantee your success and replace the BCD file in your Library VHD with a BCD you \*know\* has been sysprepp'ed and try redeploying it.
+SO...  Long story short; if you are encountering this error, I would suggest booting your VHD file in a VM and re-sysprep /generalize it.  If you've maxed out on sysprep's I have a post earlier in my blog on how to get around the 3-times limit and rerun sysprep.  Alternatively, you can try what I did, but I can't gaurantee your success and replace the BCD file in your Library VHD with a BCD you \*know\* has been sysprepp'ed and try redeploying it.
 
 <!-- AddThis Advanced Settings generic via filter on the_content -->
 

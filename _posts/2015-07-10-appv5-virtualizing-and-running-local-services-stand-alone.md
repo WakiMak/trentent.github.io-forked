@@ -20,13 +20,13 @@ categories:
 tags:
   - AppV
 ---
-AppV5 allows you to virtualize Services that run under the LocalService account. Â The issue I've seen with this approach is AppV5 will load the service for a user upon <u>environment</u> launch (which is good for VDI / desktop deployments) and the service will terminate upon that AppV environment exiting. Â For remote desktop / Citrix & deployments, this can be a big bother. Â If the service is required for running the application the standard answer is to extract it and install it using DeploymentConfig.xml or some other on application publish.
+AppV5 allows you to virtualize Services that run under the LocalService account.  The issue I've seen with this approach is AppV5 will load the service for a user upon <u>environment</u> launch (which is good for VDI / desktop deployments) and the service will terminate upon that AppV environment exiting.  For remote desktop / Citrix & deployments, this can be a big bother.  If the service is required for running the application the standard answer is to extract it and install it using DeploymentConfig.xml or some other on application publish.
 
-But what if you have a service that is NOT required to run an application, just needs to run in the background, AND can run as the LocalService? Â This service would be prime for being virtualized!
+But what if you have a service that is NOT required to run an application, just needs to run in the background, AND can run as the LocalService?  This service would be prime for being virtualized!
 
-Do I have an example of such an application? Â Why yes I do.
+Do I have an example of such an application?  Why yes I do.
 
-Epic SystemPulse is an application that captures performance information and uploads it to a DB. Â It only runs under a LocalService account.
+Epic SystemPulse is an application that captures performance information and uploads it to a DB.  It only runs under a LocalService account.
 
 Using my [Citrix PVS Sequencer](http://trentent.blogspot.ca/2015/07/setting-up-pvs-appv5-sequencer.html), here is how I sequenced it:
 
@@ -80,9 +80,9 @@ These next screenshots illustrate the simplicity of this application:
 
 Now, the problem.
 
-I am running this service on a RDS/& server. Â This service needs to run while an application, Epic Hyperspace, is running. Â My first thought was the use a connection group so that whenever Hyperspace is launched, SystemPulse will launch with it.
+I am running this service on a RDS/& server.  This service needs to run while an application, Epic Hyperspace, is running.  My first thought was the use a connection group so that whenever Hyperspace is launched, SystemPulse will launch with it.
 
-This, initially, worked. Â The first user who launched HyperSpace also had SystemPulse running at the same time. Â Subsequent user whom launched HyperSpace, had their SystemPulse service start and terminate, with the first service continuing to run. Â It looked like a success!
+This, initially, worked.  The first user who launched HyperSpace also had SystemPulse running at the same time.  Subsequent user whom launched HyperSpace, had their SystemPulse service start and terminate, with the first service continuing to run.  It looked like a success!
 
 <table style="margin-left: auto; margin-right: auto; text-align: center;" cellspacing="0" cellpadding="0" align="center">
   <tr>
@@ -98,29 +98,29 @@ This, initially, worked. Â The first user who launched HyperSpace also had Syste
   </tr>
 </table>
 
-Eventually, that first user logged off. Â And the SystemPulse processes exited with it.
+Eventually, that first user logged off.  And the SystemPulse processes exited with it.
 
-I thought being SYSTEM processes they were started in some way that a 'SYSTEM' process wouldn't terminate willy-nilly. Â This is not the case. Â A quick test of 'get-appvclientpackage' shows the package as 'In Use', signifying that AppV5 is tracking the processes. Â The users logging off will turn that 'True' into a 'False'.
+I thought being SYSTEM processes they were started in some way that a 'SYSTEM' process wouldn't terminate willy-nilly.  This is not the case.  A quick test of 'get-appvclientpackage' shows the package as 'In Use', signifying that AppV5 is tracking the processes.  The users logging off will turn that 'True' into a 'False'.
 
 <div style="clear: both; text-align: center;">
   <a style="margin-left: 1em; margin-right: 1em;" href="http://4.bp.blogspot.com/-gd3w0UeHOGM/VZ9SwCMN30I/AAAAAAAAA-s/iEoc-o56Ya8/s1600/Screen%2BShot%2B2015-07-09%2Bat%2B11.04.52%2BPM.png"><img src="http://4.bp.blogspot.com/-gd3w0UeHOGM/VZ9SwCMN30I/AAAAAAAAA-s/iEoc-o56Ya8/s320/Screen%2BShot%2B2015-07-09%2Bat%2B11.04.52%2BPM.png" width="320" height="99" border="0" /></a>
 </div>
 
-Now, we had to wait until the next user started the application to have the service start back up. Â This was an unacceptable solution.
+Now, we had to wait until the next user started the application to have the service start back up.  This was an unacceptable solution.
 
-But we know that this AppV5 package will work as a service. Â We can reap all the benefits of AppV; we can deploy this package on a whim, it's not a local/permanent install, it works! Â So now the question becomes how can we keep these advantages and what are the drawbacks?
+But we know that this AppV5 package will work as a service.  We can reap all the benefits of AppV; we can deploy this package on a whim, it's not a local/permanent install, it works!  So now the question becomes how can we keep these advantages and what are the drawbacks?
 
 The first drawback I encountered was 'how do I open a AppV Virtual Environment (appvve) so this service will start?'
 
 I tried several things.
 
-I created a script/scheduled task that would check to see if the process was running and if not, open a appvve. Â This failed. Â I tried this using the LOCAL SERVICE to start my script to open my environment and it would not. Â I tried using the SYSTEM account and it failed. Â It turns out you can't use either of these accounts to open a appvve.
+I created a script/scheduled task that would check to see if the process was running and if not, open a appvve.  This failed.  I tried this using the LOCAL SERVICE to start my script to open my environment and it would not.  I tried using the SYSTEM account and it failed.  It turns out you can't use either of these accounts to open a appvve.
 
-With this failing, I moved to another method. Â AppV has the ability to start a script upon application publishing, could I use this to start my service when the application is published? Â It turns out that the account that runs when this context is started is the SYSTEM account, and it failed same as the scheduled task.
+With this failing, I moved to another method.  AppV has the ability to start a script upon application publishing, could I use this to start my service when the application is published?  It turns out that the account that runs when this context is started is the SYSTEM account, and it failed same as the scheduled task.
 
-At this point I figured my problem is the account I'm trying to open the appvve with. Â I need to launch it with a service account. Â My first attempt I made a script with a hard-coded username/password string with PSEXEC.exe to open my appvve. Â I put this script in deploymentconfig.xml.
+At this point I figured my problem is the account I'm trying to open the appvve with.  I need to launch it with a service account.  My first attempt I made a script with a hard-coded username/password string with PSEXEC.exe to open my appvve.  I put this script in deploymentconfig.xml.
 
-And it worked! Â It opened my appvve environment, the services started, and everything looked great! The only issue I had now is the hard-coded username/password combo. Â There is no way having that would be acceptable in a plain text file.
+And it worked!  It opened my appvve environment, the services started, and everything looked great! The only issue I had now is the hard-coded username/password combo.  There is no way having that would be acceptable in a plain text file.
 
 So I created a exe with AutoIt, 'RunAsWait.exe'.
 
@@ -208,7 +208,7 @@ EXIT /b 0</pre>
 
 With this, my service will start upon application publish.
 
-I set it to launch a exe that gets installed with the package (SystemPulseConfigEditor.exe) as I needed a unique name I could key in on to determine if the package started successfully. Â This has a drawback though, the exe I chose has a GUI and I launch the process with -WindowStyle Hidden; if the service crashes, this EXE prompts for attention. Â When RDP'ed into a server this notice comes up as "Interactive Service" something-or-other and clicking on it brings this exe visible. Â I have considered making a AutoIT app that has no GUI and just sits in the background doing nothing, but time has not permitted me this yet. Â Sometimes the SystemPulse service will crash so I added the /RESTART to this batch file to get it to kick off. Â By removing the package then 'rsync'ing with the publishing server we trigger PublishPackage script which launches the service.
+I set it to launch a exe that gets installed with the package (SystemPulseConfigEditor.exe) as I needed a unique name I could key in on to determine if the package started successfully.  This has a drawback though, the exe I chose has a GUI and I launch the process with -WindowStyle Hidden; if the service crashes, this EXE prompts for attention.  When RDP'ed into a server this notice comes up as "Interactive Service" something-or-other and clicking on it brings this exe visible.  I have considered making a AutoIT app that has no GUI and just sits in the background doing nothing, but time has not permitted me this yet.  Sometimes the SystemPulse service will crash so I added the /RESTART to this batch file to get it to kick off.  By removing the package then 'rsync'ing with the publishing server we trigger PublishPackage script which launches the service.
 
 <!-- AddThis Advanced Settings generic via filter on the_content -->
 

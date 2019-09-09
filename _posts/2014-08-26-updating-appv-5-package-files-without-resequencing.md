@@ -20,7 +20,7 @@ categories:
 tags:
   - AppV
 ---
-With AppV 5.0 HF4 you can update the files inside a package without having to go through resequencing. Â The only catch is you have to prestage the file you want to replace/update first in the location you want, and I don't think you can update files in the PVAD, only VFS.
+With AppV 5.0 HF4 you can update the files inside a package without having to go through resequencing.  The only catch is you have to prestage the file you want to replace/update first in the location you want, and I don't think you can update files in the PVAD, only VFS.
 
 <div style="clear: both; text-align: center;">
   <a style="margin-left: 1em; margin-right: 1em;" href="http://1.bp.blogspot.com/-LE3CJdwHKcU/U_z5cQsv-KI/AAAAAAAAAgI/t0EPKahnbPU/s1600/1.png"><img src="http://1.bp.blogspot.com/-LE3CJdwHKcU/U_z5cQsv-KI/AAAAAAAAAgI/t0EPKahnbPU/s1600/1.png" width="320" height="223" border="0" /></a>
@@ -56,7 +56,7 @@ Browse to the file, select it, click "Open".
   <a style="margin-left: 1em; margin-right: 1em;" href="http://4.bp.blogspot.com/-rvkbEp6GFFk/U_z5fb1_HSI/AAAAAAAAAgc/tmB-w1Q3P6M/s1600/6.png"><img src="http://4.bp.blogspot.com/-rvkbEp6GFFk/U_z5fb1_HSI/AAAAAAAAAgc/tmB-w1Q3P6M/s1600/6.png" width="320" height="183" border="0" /></a>
 </div>
 
-Click "OK" to make a new VFS mapping. Â Choose File > Save and save your package.
+Click "OK" to make a new VFS mapping.  Choose File > Save and save your package.
 
 If you have the original package and rename it to .zip from .appv and get properties on your file, and do the same on your new version of the package (after making a copy of it) you should see that they are different and you have a new file in the new version without having to "Update" the package; avoiding capturing additional garbage that happens when you update an application.
 

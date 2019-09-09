@@ -23,7 +23,7 @@ tags:
   - Citrix Desktop Service
   - XenDesktop
 ---
-I'm troubleshooting an issue with the Citrix Desktop Service on my home lab. Â I have a Citrix &/XenDesktop 7.6 installation and I have setup a Server 2012 R2 box with the "/servervdi". Â Upon reboot, I see the Registration State as Unregistered.
+I'm troubleshooting an issue with the Citrix Desktop Service on my home lab.  I have a Citrix &/XenDesktop 7.6 installation and I have setup a Server 2012 R2 box with the "/servervdi".  Upon reboot, I see the Registration State as Unregistered.
 
 <div style="clear: both; text-align: center;">
   <a style="margin-left: 1em; margin-right: 1em;" href="http://2.bp.blogspot.com/-GafPMHiCaiA/VgBsjdy9PQI/AAAAAAAABH0/12XC6hpWQJ4/s1600/1.PNG"><img src="http://2.bp.blogspot.com/-GafPMHiCaiA/VgBsjdy9PQI/AAAAAAAABH0/12XC6hpWQJ4/s320/1.PNG" width="320" height="39" border="0" /></a>
@@ -34,11 +34,11 @@ Restarting the Citrix Desktop Service and checking the 'Application' Log for 'Ci
 However, when I 'Stop' the Citrix Desktop Service the Application event log gives up a few more details:
 
 <span style="font-family: Courier New, Courier, monospace; font-size: x-small;">Event ID 1003 - Citrix Desktop Service</span>  
-<span style="font-family: Courier New, Courier, monospace; font-size: x-small;">The Citrix Desktop Service failed to initialize communication services required for interaction between this machine and delivery controllers.Â </span>
+<span style="font-family: Courier New, Courier, monospace; font-size: x-small;">The Citrix Desktop Service failed to initialize communication services required for interaction between this machine and delivery controllers. </span>
 
-<span style="font-family: Courier New, Courier, monospace; font-size: x-small;">If the problem persists please perform a 'repair' install action or reinstall the Citrix Virtual Desktop Agent. Refer to Citrix Knowledge Base article <a href="http://support.citrix.com/article/CTX119736">CTX119736 Â </a>for Â further information.Â </span>
+<span style="font-family: Courier New, Courier, monospace; font-size: x-small;">If the problem persists please perform a 'repair' install action or reinstall the Citrix Virtual Desktop Agent. Refer to Citrix Knowledge Base article <a href="http://support.citrix.com/article/CTX119736">CTX119736  </a>for  further information. </span>
 
-<span style="font-family: Courier New, Courier, monospace; font-size: x-small;">Error details:Â </span>  
+<span style="font-family: Courier New, Courier, monospace; font-size: x-small;">Error details: </span>  
 <span style="font-family: Courier New, Courier, monospace; font-size: x-small;">Failed to start WCF services. Exception 'Object reference not set to an instance of an object.' of type 'System.NullReferenceException'</span>
 
 Unfortunately, this CTX article gives little to no details on event 1003 and is more of a shotgun attempt at solving issues as opposed to a nice, precise, surgical solution.
@@ -169,7 +169,7 @@ Summary::
  
 Number of messages reported = 9</pre>
 
-Googling the WCF errors with HTTP/1.1 and Error 503 results in lots of information on reconfiguring your IIS. Â I'm not convinced this is the issue so I soldiered on...
+Googling the WCF errors with HTTP/1.1 and Error 503 results in lots of information on reconfiguring your IIS.  I'm not convinced this is the issue so I soldiered on...
 
 When I procmon on 'BrokerAgent.exe' I see a few curious entires that maybe associated with '<span style="font-family: 'Courier New', Courier, monospace; font-size: x-small;">System.NullReferenceException</span>' (aka, not found) and those are some permissions stating that access is denied to some registry keys and/or some 'Name Not Found' on some CLSID items.
 
@@ -177,7 +177,7 @@ When I procmon on 'BrokerAgent.exe' I see a few curious entires that maybe assoc
   <a style="margin-left: 1em; margin-right: 1em;" href="http://3.bp.blogspot.com/-k7EQjMdNqY4/VgBwWVZTAmI/AAAAAAAABIA/-IlW95sJFjc/s1600/2.PNG"><img src="http://3.bp.blogspot.com/-k7EQjMdNqY4/VgBwWVZTAmI/AAAAAAAABIA/-IlW95sJFjc/s400/2.PNG" width="400" height="212" border="0" /></a>
 </div>
 
-During this capture I can see a 'BrokerAgent.config' file referenced. Â ("C:\Program Files\Citrix\Virtual Desktop Agent\BrokerAgent.exe.config" ) Diving into it reveals some additional logging we can enable:
+During this capture I can see a 'BrokerAgent.config' file referenced.  ("C:\Program Files\Citrix\Virtual Desktop Agent\BrokerAgent.exe.config" ) Diving into it reveals some additional logging we can enable:
 
 <table style="margin-left: auto; margin-right: auto; text-align: center;" cellspacing="0" cellpadding="0" align="center">
   <tr>
@@ -274,15 +274,15 @@ Stopping the 'Citrix Desktop Service', editing the .config file, creating the C:
    at Citrix.Cds.BrokerAgent.AgentToStack.ConnectToStackControlCOMServer()
    at Citrix.Cds.BrokerAgent.StackManager.ConnectToStackControlComServer(StackCapabilities& actualStackCapabilities, Int32 retryCount)</pre>
 
-We have a 'COM exception'. Â The nice thing about this log file is we can compare the time stamps to the procmon logs and determine what was happening when this failed.
+We have a 'COM exception'.  The nice thing about this log file is we can compare the time stamps to the procmon logs and determine what was happening when this failed.
 
 <div style="clear: both; text-align: center;">
   <a style="margin-left: 1em; margin-right: 1em;" href="http://1.bp.blogspot.com/-m_4BvUX74Vg/VgBzOviI0_I/AAAAAAAABIc/bHwCefWi7mE/s1600/5.PNG"><img src="http://1.bp.blogspot.com/-m_4BvUX74Vg/VgBzOviI0_I/AAAAAAAABIc/bHwCefWi7mE/s400/5.PNG" width="400" height="182" border="0" /></a>
 </div>
 
-It appears we are missing [SCService64.exe](http://www.basvankaam.com/2014/12/15/xendesktop-7-x-fma-internals-continued-the-server-vda-in-more-detail/) from our Citrix installation. Â What is 'SCService64.exe'? Â The registry tells me it's the 'IStackControl Type Library'. Â Which matches up with the error 'ConnectToStackControlCOMServer'.
+It appears we are missing [SCService64.exe](http://www.basvankaam.com/2014/12/15/xendesktop-7-x-fma-internals-continued-the-server-vda-in-more-detail/) from our Citrix installation.  What is 'SCService64.exe'?  The registry tells me it's the 'IStackControl Type Library'.  Which matches up with the error 'ConnectToStackControlCOMServer'.
 
-So, it appears we need to install SCService64.exe. Â I do not know why or how it went missing but I suspect we can copy it over or extract from the Citrix source files if needed.
+So, it appears we need to install SCService64.exe.  I do not know why or how it went missing but I suspect we can copy it over or extract from the Citrix source files if needed.
 
 To extract the SCService64.exe source file, we can create an administrative installation of the "TS" VDA:
 
@@ -299,7 +299,7 @@ This makes a folder on the root of the C: called "Citrix" which installs all the
 <div>
 </div>
 
-I installed the Citrix VDA "WS" with /servervdi for some testing, but prior to that I had the regular "TS" VDA installed. Â Perhaps some combination of my installation/uninstallation caused my issues.
+I installed the Citrix VDA "WS" with /servervdi for some testing, but prior to that I had the regular "TS" VDA installed.  Perhaps some combination of my installation/uninstallation caused my issues.
 
 Anyways, copying the SCService64.exe to the C:\Program Files (x86)\Citrix\System32 folder and restarting the 'Citrix Desktop Service' resulted in...
 
@@ -333,7 +333,7 @@ Previously it died around 'Setting up ALL LaunchManager WCF service'; this time 
 21/09/15 15:48:44.376 3728 6880: BrokerAgent:DoAgentStartWcfServices: Stack Controller WCF services started
 21/09/15 15:48:44.376 3728 6880: BrokerAgent:AgentService.DoAgentStartVdaParentOuDetection - entry; operation mode Brokered</pre>
 
-Hurray! Â It continues and operates without issue.
+Hurray!  It continues and operates without issue.
 
 Be sure to re-disabled the logging on the BrokerAgent.config file and restart the service because I've found this BA_1.log can get to become a huge file.
 

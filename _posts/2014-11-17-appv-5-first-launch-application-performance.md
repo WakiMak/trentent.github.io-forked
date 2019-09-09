@@ -22,11 +22,11 @@ tags:
   - Performance
   - scripting
 ---
-Our AppV 5 environment is a full infrastructure implementation. Â We utilize the management/streaming server to pull the applications down to our Citrix & 6.5 servers. Â Our & servers are Citrix PVS servers, we enable the Cache on RAM with disk overflow and the write-cache intermediate mode. Â To maximize CPU performance we have our ESXi hosts set to maximum performance and disable power management in the BIOS of the hosts. Â We have some applications that are very latency sensitive and the switching of power states on the ESXi hosts have caused performance degradation so we have power management disabled. Â We have setup our PVS servers with the secondary D: WriteCache disk where we fully mount the AppV 5 packages, removing the streaming latency that going over a network may add.
+Our AppV 5 environment is a full infrastructure implementation.  We utilize the management/streaming server to pull the applications down to our Citrix & 6.5 servers.  Our & servers are Citrix PVS servers, we enable the Cache on RAM with disk overflow and the write-cache intermediate mode.  To maximize CPU performance we have our ESXi hosts set to maximum performance and disable power management in the BIOS of the hosts.  We have some applications that are very latency sensitive and the switching of power states on the ESXi hosts have caused performance degradation so we have power management disabled.  We have setup our PVS servers with the secondary D: WriteCache disk where we fully mount the AppV 5 packages, removing the streaming latency that going over a network may add.
 
-Because of some performance concerns with the Shared Content Store (SCS) I was tasked with coming up with a way of determining if there is a performance impact of switching from fully mounted applications. Â In order to determine the impact my plan was to measure a baseline based on disk performance. Â Our SMB share that we are storing our .appv packages actually has the same performance as the local disk. Â Since AppV packages are immutable, the only performance consideration we should be concerned is READ performance from the SMB share compared to the local disk. Â The writes occur in the %userprofile%appdatavfs which is stored on the C:\ drive. Â The Cache to RAM with disk overflow feature would ensure that write performance into those directories are fast and should be near instant.
+Because of some performance concerns with the Shared Content Store (SCS) I was tasked with coming up with a way of determining if there is a performance impact of switching from fully mounted applications.  In order to determine the impact my plan was to measure a baseline based on disk performance.  Our SMB share that we are storing our .appv packages actually has the same performance as the local disk.  Since AppV packages are immutable, the only performance consideration we should be concerned is READ performance from the SMB share compared to the local disk.  The writes occur in the %userprofile%appdatavfs which is stored on the C:\ drive.  The Cache to RAM with disk overflow feature would ensure that write performance into those directories are fast and should be near instant.
 
-With that said, I've used the [diskspd.exe](http://blogs.technet.com/b/josebda/archive/2014/10/13/diskspd-powershell-and-storage-performance-measuring-iops-throughput-and-latency-for-both-local-disks-and-smb-file-shares.aspx) application (new from Microsoft) to measure performance. AppV 5 utilizes a [64KB](http://trentent.blogspot.ca/2014/08/appv-5-minimum-mounted-file-size-is.html) allocation size so that's what we'll set as our -b value. Â We'll measure Latency statistics comparing local disk to the file share as well.
+With that said, I've used the [diskspd.exe](http://blogs.technet.com/b/josebda/archive/2014/10/13/diskspd-powershell-and-storage-performance-measuring-iops-throughput-and-latency-for-both-local-disks-and-smb-file-shares.aspx) application (new from Microsoft) to measure performance. AppV 5 utilizes a [64KB](http://trentent.blogspot.ca/2014/08/appv-5-minimum-mounted-file-size-is.html) allocation size so that's what we'll set as our -b value.  We'll measure Latency statistics comparing local disk to the file share as well.
 
 D:\diskspd.exe -c1G -b64K -L -d60 D:test.dat  
 D:\diskspd.exe -c1G -b64K -L -d60 \citrixnas01ctx\_images\_testtest.dat
@@ -70,9 +70,9 @@ MB/s: 96%
 IO per s: 96%  
 AvgLat: 46%
 
-Based on these results, the local disk appears to be nearly identical to the SMB share with the average latency a little more than half on the local disk. Â Although it's half on average, we are still in the sub 1ms time range which is significantly faster than you could get with a physical server with a single local disk.
+Based on these results, the local disk appears to be nearly identical to the SMB share with the average latency a little more than half on the local disk.  Although it's half on average, we are still in the sub 1ms time range which is significantly faster than you could get with a physical server with a single local disk.
 
-The next test I have is launching an application and getting to the splash screen to see how long it takes to load. Â For this test I've written a AutoIt script that takes two parameters, the name of the program to launch and the window title to monitor for.
+The next test I have is launching an application and getting to the splash screen to see how long it takes to load.  For this test I've written a AutoIt script that takes two parameters, the name of the program to launch and the window title to monitor for.
 
 <pre class="lang:autoit decode:true ">#Region ;**** Directives created by AutoIt3Wrapper_GUI ****
 #AutoIt3Wrapper_Change2CUI=y
@@ -102,7 +102,7 @@ ConsoleWrite($Time & "," & $fDiff & "," & $windowToWaitFor & "," & $progToLaunch
 
 ;finished</pre>
 
-I setup a cmd file with my program (Epic) because it takes some parameters prior to launch. Â I then pointed my timer application at it.
+I setup a cmd file with my program (Epic) because it takes some parameters prior to launch.  I then pointed my timer application at it.
 
 <pre class="lang:batch decode:true ">C:\timer.exe D:\AppVPerfTest\epic.cmd "Connection Status"</pre>
 
@@ -116,7 +116,7 @@ The results (with SCS):
 
 The columns are Time Completed, Duration (in ms), Window to check for, Command executed.
 
-After doing a Net Stop AppvClient / Net Start Appclient and then executing our AppV application it takes **<u>196</u>** seconds to start the application. Â After that initial launch it takes 12-15 seconds to start. Â Something is really dragging our initial application launch time down. Â I've found if I stop/start the service I need to do a **<u>add/publish</u>** via Powershell for that application to reduce the 196 seconds. Â This then takes first launch down to <u style="font-weight: bold;">48</u>Â seconds.Â This is how long is takes to start the same application after a system restart:
+After doing a Net Stop AppvClient / Net Start Appclient and then executing our AppV application it takes **<u>196</u>** seconds to start the application.  After that initial launch it takes 12-15 seconds to start.  Something is really dragging our initial application launch time down.  I've found if I stop/start the service I need to do a **<u>add/publish</u>** via Powershell for that application to reduce the 196 seconds.  This then takes first launch down to <u style="font-weight: bold;">48</u> seconds. This is how long is takes to start the same application after a system restart:
 
 <pre class="lang:default decode:true ">3:25:41 PM,48195.8385074081,Connection Status,D:\AppVPerfTest\epic.cmd
 3:27:26 PM,12646.0290344164,Connection Status,D:\AppVPerfTest\epic.cmd
@@ -126,9 +126,9 @@ After doing a Net Stop AppvClient / Net Start Appclient and then executing our A
 <div>
 </div>
 
-First launch time after restart is 48 seconds then subsequent launches are essentially identical to just the stop/start appvclient service + add/publish. Â Which makes sense as our AppV5\_Data\_Precache script does a add/publish. Â Evidently, we're going to have to go further into AppV to understand what's causing it to take so long. Â To start, I'm going to detail our package a bit.
+First launch time after restart is 48 seconds then subsequent launches are essentially identical to just the stop/start appvclient service + add/publish.  Which makes sense as our AppV5\_Data\_Precache script does a add/publish.  Evidently, we're going to have to go further into AppV to understand what's causing it to take so long.  To start, I'm going to detail our package a bit.
 
-The application I'm testing this with is Epic. Â It's a huge application. Â AppXManifest is 72MB, FilesystemMetaData.xml is 1.7MB, Registry.Dat is 62MB.
+The application I'm testing this with is Epic.  It's a huge application.  AppXManifest is 72MB, FilesystemMetaData.xml is 1.7MB, Registry.Dat is 62MB.
 
 <div style="clear: both; text-align: center;">
   <a style="margin-left: 1em; margin-right: 1em;" href="http://3.bp.blogspot.com/-ovYMrk2DcNw/VEVcV2eYasI/AAAAAAAAAko/Hss3WqkZ3aI/s1600/Screen%2BShot%2B2014-10-20%2Bat%2B1.01.02%2BPM.png"><img src="http://3.bp.blogspot.com/-ovYMrk2DcNw/VEVcV2eYasI/AAAAAAAAAko/Hss3WqkZ3aI/s1600/Screen%2BShot%2B2014-10-20%2Bat%2B1.01.02%2BPM.png" width="320" height="100" border="0" /></a>
@@ -202,7 +202,7 @@ When AppV is "launching" the application for the first time it starts consuming 
   </tr>
 </table>
 
-The AppV Debug logs do not give a whole lot of info as to what AppVClient.exe is doing during this time. Â Most of the logs show the application "start" as they setup their components, and when the application has launched. Â Almost all the logs show the first second or two of application launch and the last second or two before the GUI.
+The AppV Debug logs do not give a whole lot of info as to what AppVClient.exe is doing during this time.  Most of the logs show the application "start" as they setup their components, and when the application has launched.  Almost all the logs show the first second or two of application launch and the last second or two before the GUI.
 
 <table style="margin-left: auto; margin-right: auto; text-align: center;" cellspacing="0" cellpadding="0" align="center">
   <tr>
@@ -218,7 +218,7 @@ The AppV Debug logs do not give a whole lot of info as to what AppVClient.exe is
   </tr>
 </table>
 
-The only log that shows data during the entire time is the SHARED PERFORMANCE log. Â Unfortunately, the log is undecipherable to me.
+The only log that shows data during the entire time is the SHARED PERFORMANCE log.  Unfortunately, the log is undecipherable to me.
 
 <div style="clear: both; text-align: center;">
   <a style="margin-left: 1em; margin-right: 1em;" href="http://3.bp.blogspot.com/-0xJVfQKtws4/VEVfKgxKyiI/AAAAAAAAAl8/Hd8WF0CEZWQ/s1600/Screen%2BShot%2B2014-10-20%2Bat%2B1.14.05%2BPM.png"><img src="http://3.bp.blogspot.com/-0xJVfQKtws4/VEVfKgxKyiI/AAAAAAAAAl8/Hd8WF0CEZWQ/s1600/Screen%2BShot%2B2014-10-20%2Bat%2B1.14.05%2BPM.png" width="640" height="312" border="0" /></a>
@@ -237,7 +237,7 @@ Perfmon.exe doesn't do a whole lot better with large gaps between file/process/n
   
   <tr>
     <td style="text-align: center;">
-      What is it doing between 1:17:41 and 1:18:29? Â CPU is pegged but no disk activity
+      What is it doing between 1:17:41 and 1:18:29?  CPU is pegged but no disk activity
     </td>
   </tr>
 </table>
@@ -261,7 +261,7 @@ Showing Registry accesses also shows huge gaps between the AppVClient.exe proces
 <div style="clear: both; text-align: center;">
 </div>
 
-So I'm not sure what the hold up is with regard to the delay for this application. Â None of the usual tools I use to monitor performance is giving me any hints or indications of why it's delaying launch.
+So I'm not sure what the hold up is with regard to the delay for this application.  None of the usual tools I use to monitor performance is giving me any hints or indications of why it's delaying launch.
 
 <div style="clear: both; text-align: center;">
   <a style="margin-left: 1em; margin-right: 1em;" href="http://3.bp.blogspot.com/-ACE6No9685o/VGqHhZGMYjI/AAAAAAAAAnY/p2CV5XAENTs/s1600/AppV_Net_Stop.gif"><img src="http://3.bp.blogspot.com/-ACE6No9685o/VGqHhZGMYjI/AAAAAAAAAnY/p2CV5XAENTs/s1600/AppV_Net_Stop.gif" width="320" height="218" border="0" /></a>

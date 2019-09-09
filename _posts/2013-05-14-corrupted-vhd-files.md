@@ -23,16 +23,16 @@ tags:
   - Provisioning Services
   - Target Device
 ---
-Corrupt VHD files... Â We utilize PVS and when we were attempting to update the target device software utilizing Hyper-V we got several error messages saying the VHD is corrupted. Â The actual root of the issue is that PVS makes 16MB block size VHD files (thanks SAMAN!) and Windows 2008 only reads VHD files that are 512KB or 2MB block sized files.
+Corrupt VHD files...  We utilize PVS and when we were attempting to update the target device software utilizing Hyper-V we got several error messages saying the VHD is corrupted.  The actual root of the issue is that PVS makes 16MB block size VHD files (thanks SAMAN!) and Windows 2008 only reads VHD files that are 512KB or 2MB block sized files.
 
-Attempting to mount the VHD file via disk management fails as well. Â The only utility that would mount the VHD file that was generating the error messages at the end of this post is the Citrix CVHDMount utility available via PVS (C:\Program Files\Citrix\Provisioning Services\CVHDMount.exe)
+Attempting to mount the VHD file via disk management fails as well.  The only utility that would mount the VHD file that was generating the error messages at the end of this post is the Citrix CVHDMount utility available via PVS (C:\Program Files\Citrix\Provisioning Services\CVHDMount.exe)
 
-Since our Hyper-V server was separateÂ from the PVS server, we needed to install the drivers to allow CVHDMount.exe to work. Â In order to do this you need to install the drivers in this folder:  
+Since our Hyper-V server was separate from the PVS server, we needed to install the drivers to allow CVHDMount.exe to work.  In order to do this you need to install the drivers in this folder:  
 C:\Program Files\Citrix\Provisioning Services\drivers
 
-You can right-click "Install" on theÂ cfsdep2.inf file.
+You can right-click "Install" on the cfsdep2.inf file.
 
-For the other driver you need to open Device Manager, go through "Add new hardware...", "Add legacy hardware" and then browse to the drivers folder and add theÂ cvhdbusp6.inf.
+For the other driver you need to open Device Manager, go through "Add new hardware...", "Add legacy hardware" and then browse to the drivers folder and add the cvhdbusp6.inf.
 
 Now we would mount the disk as a drive letter using this command line:
 
@@ -54,14 +54,14 @@ From here we can now add the disk as a physical disk to Hyper-V.
   <a style="margin-left: 1em; margin-right: 1em;" href="http://3.bp.blogspot.com/-z_wHukiSC74/UZKuNRcAivI/AAAAAAAAAOo/_wexwaeNEeA/s1600/Capture2.PNG"><img src="http://3.bp.blogspot.com/-z_wHukiSC74/UZKuNRcAivI/AAAAAAAAAOo/_wexwaeNEeA/s320/Capture2.PNG" width="320" height="299" border="0" /></a>
 </div>
 
-And we can now do the Target Device Update. Â Error messages seen during this troubleshooting:
+And we can now do the Target Device Update.  Error messages seen during this troubleshooting:
 
 <pre class="lang:default decode:true ">"---------------------------
 Virtual Disk Manager
 ---------------------------
-The file or directory is corrupted and unreadable.Â 
+The file or directory is corrupted and unreadable. 
 ---------------------------
-OK Â Â 
+OK   
 ---------------------------
 
 "
@@ -90,7 +90,7 @@ Cannot open attachment 'D:\&65Pn02.2.vhd'. Error: 'The file or directory is corr
 
 'NewMachine': Cannot open attachment 'D:\&65Pn02.2.vhd'. Error: 'The file or directory is corrupted and unreadable.' (0x80070570). (Virtual machine ID D8D73511-6D6B-4604-A09B-BA4F5CD35206)
 
-[V] See details Â [Close]"</pre>
+[V] See details  [Close]"</pre>
 
 &nbsp;
 

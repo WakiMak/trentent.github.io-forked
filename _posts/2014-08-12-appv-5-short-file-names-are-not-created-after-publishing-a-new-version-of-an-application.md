@@ -30,11 +30,11 @@ tags:
 <div style="-webkit-text-stroke-width: 0px; background-color: white; border: 0px; color: #333333; font-family: 'Segoe UI', 'Lucida Grande', Verdana, Arial, Helvetica, sans-serif; font-size: 14px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: 20.162017822265625px; margin: 0px; orphans: auto; outline: 0px; padding: 0px; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: auto; word-spacing: 0px;">
   <div style="border: 0px; clear: right; font-family: inherit; font-size: 1em; font-style: inherit; font-weight: inherit; margin: 0px 0px 2em; outline: 0px; overflow: auto; padding: 0px;">
     <div style="border: none; font-family: inherit; font-style: inherit; font-weight: inherit; list-style-type: none; margin: 0px 0px 1em; outline: 0px; padding: 0px; text-decoration: none;">
-      Our AppV packages are loaded on Citrix PVS servers. Â The PVS server is clean, and on each restart (restarts once a day) it will contact a AppV publishing server and pull down and mount the packages.
+      Our AppV packages are loaded on Citrix PVS servers.  The PVS server is clean, and on each restart (restarts once a day) it will contact a AppV publishing server and pull down and mount the packages.
     </div>
     
     <div style="border: none; font-family: inherit; font-style: inherit; font-weight: inherit; list-style-type: none; margin: 0px 0px 1em; outline: 0px; padding: 0px; text-decoration: none;">
-      We have an application that makes file system calls in the 8.3 space (awesome, I know). Â When launching the application I can see a trace of it hitting 8.3 name spaces (via Procmon) and the application works without issue. Â So, we required a tweak to the package, I added to the management server, published the application and refreshed on the AppV Client, saw the new package get loaded and ran the application. Â Only now when I trace via Procmon.exe I can see that it's using Long File Names instead of the 8.3 name space and the program errors out because it's trying to find a .exe with the short name. Â I can confirm the original published package has the 8.3 namespace via dir /x and the new version does NOT.
+      We have an application that makes file system calls in the 8.3 space (awesome, I know).  When launching the application I can see a trace of it hitting 8.3 name spaces (via Procmon) and the application works without issue.  So, we required a tweak to the package, I added to the management server, published the application and refreshed on the AppV Client, saw the new package get loaded and ran the application.  Only now when I trace via Procmon.exe I can see that it's using Long File Names instead of the 8.3 name space and the program errors out because it's trying to find a .exe with the short name.  I can confirm the original published package has the 8.3 namespace via dir /x and the new version does NOT.
     </div>
     
     <div style="border: none; font-family: inherit; font-style: inherit; font-weight: inherit; list-style-type: none; margin: 0px 0px 1em; outline: 0px; padding: 0px; text-decoration: none;">
@@ -54,7 +54,7 @@ tags:
     </div>
     
     <div style="border: none; list-style-type: none; margin-bottom: 1em; outline: 0px; padding: 0px;">
-      I have VFS folders in this package and 8.3 names are not created for the new package either. Â :/
+      I have VFS folders in this package and 8.3 names are not created for the new package either.  :/
     </div>
     
     <div style="border: none; list-style-type: none; margin-bottom: 1em; outline: 0px; padding: 0px;">

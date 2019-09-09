@@ -96,7 +96,7 @@ del /q "C:\Users\Public\Desktop\ScreenTest.lnk"</pre>
 </div>
 
 <div>
-  <span style="font-family: Helvetica Neue, Arial, Helvetica, sans-serif;">Â </span>
+  <span style="font-family: Helvetica Neue, Arial, Helvetica, sans-serif;"> </span>
 </div>
 
 <div>
@@ -104,11 +104,11 @@ del /q "C:\Users\Public\Desktop\ScreenTest.lnk"</pre>
 </div>
 
 <div>
-  <span style="font-family: 'Courier New', Courier, monospace; font-size: x-small;">Â </span>
+  <span style="font-family: 'Courier New', Courier, monospace; font-size: x-small;"> </span>
 </div>
 
 <div>
-  <span style="font-family: 'Courier New', Courier, monospace; font-size: x-small;">Â </span>
+  <span style="font-family: 'Courier New', Courier, monospace; font-size: x-small;"> </span>
 </div>
 
 <div>

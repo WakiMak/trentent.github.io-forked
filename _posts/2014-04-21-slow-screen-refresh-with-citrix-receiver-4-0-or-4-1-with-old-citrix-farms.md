@@ -22,7 +22,7 @@ tags:
   - Citrix Receiver
   - scripting
 ---
-I was having an issue with very slow screen redraws with Citrix Receiver 4.1 with a MetaFrame 4.5 farm (although I've read online it's applicable to Presentation Server 4.0). Â The fix is to enable the following registry key:
+I was having an issue with very slow screen redraws with Citrix Receiver 4.1 with a MetaFrame 4.5 farm (although I've read online it's applicable to Presentation Server 4.0).  The fix is to enable the following registry key:
 
 <pre class="lang:default decode:true ">:Fix for slow graphics performance on Legacy Farm
 IF '%PROCESSOR_ARCHITECTURE%'=='x86' (

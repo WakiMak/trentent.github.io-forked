@@ -30,7 +30,7 @@ Citrix HDX Engine has encountered a problem and needs to close we are sorry for 
   <a style="margin-left: 1em; margin-right: 1em;" href="http://4.bp.blogspot.com/-Io7fn5OW6bk/UTokx4eZygI/AAAAAAAAAME/7qEOR-X8AFk/s1600/1.png"><img src="http://4.bp.blogspot.com/-Io7fn5OW6bk/UTokx4eZygI/AAAAAAAAAME/7qEOR-X8AFk/s320/1.png" width="320" height="152" border="0" /></a>
 </div>
 
-Numerous forum posts that I've seen without a solution.Â I have encountered this across two companies and have encountered the same solution both times.
+Numerous forum posts that I've seen without a solution. I have encountered this across two companies and have encountered the same solution both times.
 
 **Symptoms**:
 
@@ -49,7 +49,7 @@ ModName: msvcr80.dll
   <a style="margin-left: 1em; margin-right: 1em;" href="http://2.bp.blogspot.com/-CLkAt1l4ViQ/UTolRaE9HxI/AAAAAAAAAMU/UPzEzQw94CE/s1600/3.png"><img src="http://2.bp.blogspot.com/-CLkAt1l4ViQ/UTolRaE9HxI/AAAAAAAAAMU/UPzEzQw94CE/s320/3.png" width="283" height="320" border="0" /></a>
 </div>
 
-3) The error dialog occurs after an application is launched (maybe between 10 seconds to 120 seconds afterwards).Â The user can move the dialog out of the way and continue working without issue, however clicking the "Close" button will terminate the application.Â Sometimes though, the error occurs before the application is fully launched.
+3) The error dialog occurs after an application is launched (maybe between 10 seconds to 120 seconds afterwards). The user can move the dialog out of the way and continue working without issue, however clicking the "Close" button will terminate the application. Sometimes though, the error occurs before the application is fully launched.
 
 **Background**:
 
@@ -64,13 +64,13 @@ If the client virtual driver has data to send to the server, the data is sent th
 4. When the server virtual channel application is finished, it closes the virtual channel and frees any allocated resources.
 
 **Issue:**  
-If your application starts and the dialog box appears afterwards; we can conclude one of the virtual channels has crashed.Â Usually, if this scenario appears it's because your application has "Don't wait for printers".Â If your application does not have this checkbox then sometimes the application will crash before the application is loaded.Â With this knowledge we have narrowed down our culprit.Â Printers.Â An example of a printer list with a client that was having this issue:
+If your application starts and the dialog box appears afterwards; we can conclude one of the virtual channels has crashed. Usually, if this scenario appears it's because your application has "Don't wait for printers". If your application does not have this checkbox then sometimes the application will crash before the application is loaded. With this knowledge we have narrowed down our culprit. Printers. An example of a printer list with a client that was having this issue:
 
 <div style="clear: both; text-align: center;">
   <a style="margin-left: 1em; margin-right: 1em;" href="http://3.bp.blogspot.com/-Xk5RK9S3fKU/UToodHayXYI/AAAAAAAAAMc/h1kqcUwi5EI/s1600/4.png"><img src="http://3.bp.blogspot.com/-Xk5RK9S3fKU/UToodHayXYI/AAAAAAAAAMc/h1kqcUwi5EI/s320/4.png" width="320" height="269" border="0" /></a>
 </div>
 
-We have a Citrix policy to only map the default printer, but during the virtual channel creation, all printers become connected to the server.Â I was able to verify this with procmon; watching as it iterated through the registry keys for each printer.
+We have a Citrix policy to only map the default printer, but during the virtual channel creation, all printers become connected to the server. I was able to verify this with procmon; watching as it iterated through the registry keys for each printer.
 
 A simple test to determine if a bad printer is causing your issue is to disable the Print Spooler service:
 
@@ -88,16 +88,16 @@ A simple test to determine if a bad printer is causing your issue is to disable 
   </tr>
 </table>
 
-After stopping the service and terminating any existing sessions, relaunch the application.Â If you no longer get an error (as in my case) then the issue is during the virtual channel creation of one of the faulty printers.Â I cleaned up the printers that the user had, removing all non-needed ones and they did not encounter the error message afterwards.Â There issue was resolved.Â I have seen that cleaning up a printer queue is sometimes not enough and the printers need to be deleted and recreated.Â I've yet to encounter a printer that I've recreated that has caused the issue to persist, but I guess it's possible.
+After stopping the service and terminating any existing sessions, relaunch the application. If you no longer get an error (as in my case) then the issue is during the virtual channel creation of one of the faulty printers. I cleaned up the printers that the user had, removing all non-needed ones and they did not encounter the error message afterwards. There issue was resolved. I have seen that cleaning up a printer queue is sometimes not enough and the printers need to be deleted and recreated. I've yet to encounter a printer that I've recreated that has caused the issue to persist, but I guess it's possible.
 
 <div style="clear: both; text-align: center;">
-  <a style="margin-left: 1em; margin-right: 1em;" href="http://3.bp.blogspot.com/-ERkuGG_7ZQM/UTop4BK1dZI/AAAAAAAAAMs/weqas-9WFgw/s1600/6.png">Â </a>
+  <a style="margin-left: 1em; margin-right: 1em;" href="http://3.bp.blogspot.com/-ERkuGG_7ZQM/UTop4BK1dZI/AAAAAAAAAMs/weqas-9WFgw/s1600/6.png"> </a>
 </div>
 
-In the example above after deleting the users printers and restarting the print spooler the printers came back.Â The user did not have permission to delete the printers from the HKLM so I needed to do so manually.
+In the example above after deleting the users printers and restarting the print spooler the printers came back. The user did not have permission to delete the printers from the HKLM so I needed to do so manually.
 
 <div style="text-align: center;">
-  <a style="margin-left: 1em; margin-right: 1em;" href="http://3.bp.blogspot.com/-ERkuGG_7ZQM/UTop4BK1dZI/AAAAAAAAAMs/weqas-9WFgw/s1600/6.png"><img src="http://3.bp.blogspot.com/-ERkuGG_7ZQM/UTop4BK1dZI/AAAAAAAAAMs/weqas-9WFgw/s320/6.png" width="320" height="261" border="0" />Â </a>
+  <a style="margin-left: 1em; margin-right: 1em;" href="http://3.bp.blogspot.com/-ERkuGG_7ZQM/UTop4BK1dZI/AAAAAAAAAMs/weqas-9WFgw/s1600/6.png"><img src="http://3.bp.blogspot.com/-ERkuGG_7ZQM/UTop4BK1dZI/AAAAAAAAAMs/weqas-9WFgw/s320/6.png" width="320" height="261" border="0" /> </a>
 </div>
 
 So ensure you test restarting the printer spooler and see if the printer comes back to the user to ensure the user has appropriate rights to remove the printer.

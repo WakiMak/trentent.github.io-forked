@@ -20,7 +20,7 @@ categories:
 tags:
   - scripting
 ---
-These are two scripts we use to remove nonpresent hardware from device manager. Â These devices are generated when we update the Target Device Hardware and VMWare Tools and sit unused so are removed. Â If there is ever modifications to the vDisk that generate additional hardware this script ensures the vDisk is as clean as possible. You'll need devcon.exe as well.
+These are two scripts we use to remove nonpresent hardware from device manager.  These devices are generated when we update the Target Device Hardware and VMWare Tools and sit unused so are removed.  If there is ever modifications to the vDisk that generate additional hardware this script ensures the vDisk is as clean as possible. You'll need devcon.exe as well.
 
 1\_pre-get\_partition\_and\_netinfo.cmd
 

@@ -21,7 +21,7 @@ tags:
   - AppV
   - scripting
 ---
-So we have an application that requires the "%CLIENTNAME%" variable to be passed to it in it's exe string. Â The string looks like so:
+So we have an application that requires the "%CLIENTNAME%" variable to be passed to it in it's exe string.  The string looks like so:
 
 <div>
   <pre class="lang:default decode:true ">prowin32.exe -p \\nas\cfgstart.p -param S,%CLIENTNAME%,120n,citrix,a92,10920 -wy</pre>
@@ -31,7 +31,7 @@ So we have an application that requires the "%CLIENTNAME%" variable to be passed
 </div>
 
 <div>
-  The issue we have is APPV does not seem to get that variable and pass it to the program. Â So when the program starts, it makes %clientname% folders in a temp directory and we can't have two %clientname% folders in the same directory so only one instance of the application can be launched *period* if we do it this way, as opposed to one per server.
+  The issue we have is APPV does not seem to get that variable and pass it to the program.  So when the program starts, it makes %clientname% folders in a temp directory and we can't have two %clientname% folders in the same directory so only one instance of the application can be launched *period* if we do it this way, as opposed to one per server.
 </div>
 
 <div>
@@ -59,7 +59,7 @@ prowin32.exe -p \\nas\cfgstart.p -param S,%CLIENTNAME%,120n,citrix,a92,10920 -wy
 
 <div>
   <p>
-    This worked for AppV 4.6 without issue. Â Now with AppV 5 I get an error, PATH NOT FOUND when trying to launch this script.
+    This worked for AppV 4.6 without issue.  Now with AppV 5 I get an error, PATH NOT FOUND when trying to launch this script.
   </p>
   
   <div style="clear: both; text-align: center;">
@@ -83,7 +83,7 @@ prowin32.exe -p \\nas\cfgstart.p -param S,%CLIENTNAME%,120n,citrix,a92,10920 -wy
   </div>
   
   <p>
-    The powershell commands put me in the AppV 5 bubble then opened a command prompt. Â From the command prompt I can see the directory that is missing. Â Going back to procmon I was curious to see what command it was launching. Â It was launching this:
+    The powershell commands put me in the AppV 5 bubble then opened a command prompt.  From the command prompt I can see the directory that is missing.  Going back to procmon I was curious to see what command it was launching.  It was launching this:
   </p>
 </div>
 
@@ -98,7 +98,7 @@ prowin32.exe -p \\nas\cfgstart.p -param S,%CLIENTNAME%,120n,citrix,a92,10920 -wy
 </div>
 
 <div>
-  This command was failing. Â It appears that when you are launching the .cmd file directly AppV 5 starts the cmd.exe *outside* the AppV bubble and it doesn't connect to the appvve. Â To correct this I tried this command line:
+  This command was failing.  It appears that when you are launching the .cmd file directly AppV 5 starts the cmd.exe *outside* the AppV bubble and it doesn't connect to the appvve.  To correct this I tried this command line:
 </div>
 
 <div>
@@ -113,7 +113,7 @@ prowin32.exe -p \\nas\cfgstart.p -param S,%CLIENTNAME%,120n,citrix,a92,10920 -wy
 
 <div>
   <p>
-    Success! Â It launched successfully and saw the directory and everything was good there after. Â So let that be a lesson to other AppV 5 package makers, if you need a pre-launch script you may need to modify your published icon to put another cmd.exe /c before the command file for it to start in the bubble.
+    Success!  It launched successfully and saw the directory and everything was good there after.  So let that be a lesson to other AppV 5 package makers, if you need a pre-launch script you may need to modify your published icon to put another cmd.exe /c before the command file for it to start in the bubble.
   </p>
   
   <p>

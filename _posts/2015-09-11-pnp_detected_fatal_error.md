@@ -43,7 +43,7 @@ I rebooted my computer to this lovely Blue Screen Of Death (BSOD) message:
 </div>
 
 <div>
-  Attempting to reboot into Safe Mode also resulted in the same message. Â I was able to boot into 'Recovery Mode' which is a 'Windows PE' mode that runs a stripped down version of Windows in RAM. Â From here I enabled the network 'Kernel Debugging' by <a href="https://msdn.microsoft.com/en-us/library/windows/hardware/hh439346(v=vs.85).aspx">configuring some parameters in the BCD file</a>.
+  Attempting to reboot into Safe Mode also resulted in the same message.  I was able to boot into 'Recovery Mode' which is a 'Windows PE' mode that runs a stripped down version of Windows in RAM.  From here I enabled the network 'Kernel Debugging' by <a href="https://msdn.microsoft.com/en-us/library/windows/hardware/hh439346(v=vs.85).aspx">configuring some parameters in the BCD file</a>.
 </div>
 
 <div>
@@ -68,13 +68,13 @@ I rebooted my computer to this lovely Blue Screen Of Death (BSOD) message:
 
 <div>
   <p>
-    <strong><i><br /> </i></strong>I needed to set the "/store" parameter to ensure I was manipulating my non-booting BCD file, and not the BCD file that Windows Recovery boots from. Â Write down the key or save it someplace, you'll need it on the 'host' computer (see in the above screenshot).</div> 
+    <strong><i><br /> </i></strong>I needed to set the "/store" parameter to ensure I was manipulating my non-booting BCD file, and not the BCD file that Windows Recovery boots from.  Write down the key or save it someplace, you'll need it on the 'host' computer (see in the above screenshot).</div> 
     
     <div>
     </div>
     
     <div>
-      Once here I downloaded and installed '<a href="https://msdn.microsoft.com/en-us/windows/hardware/hh852365.aspx">WinDBG.exe</a>'. Â Open windbg.exe and choose "<b>File > Kernel Debug</b>". Â On the 'NET' tab, enter your 'Port' number and 'Key' (everything to right of the equal sign) and click 'OK'.
+      Once here I downloaded and installed '<a href="https://msdn.microsoft.com/en-us/windows/hardware/hh852365.aspx">WinDBG.exe</a>'.  Open windbg.exe and choose "<b>File > Kernel Debug</b>".  On the 'NET' tab, enter your 'Port' number and 'Key' (everything to right of the equal sign) and click 'OK'.
     </div>
     
     <div>
@@ -88,7 +88,7 @@ I rebooted my computer to this lovely Blue Screen Of Death (BSOD) message:
     </div>
     
     <div>
-      Even though I 'enabled' debug in my BCD file, I found I still needed to tap the 'F8' key while booting and select 'Debugging Mode'. Â Once selected, my windbg.exe on my host computer sprang to life!
+      Even though I 'enabled' debug in my BCD file, I found I still needed to tap the 'F8' key while booting and select 'Debugging Mode'.  Once selected, my windbg.exe on my host computer sprang to life!
     </div>
     
     <div>
@@ -100,7 +100,7 @@ I rebooted my computer to this lovely Blue Screen Of Death (BSOD) message:
       </div>
       
       <p>
-        It turns out you need to enable symbols or else you get an incomplete picture. Â After enabling symbols and running !analyze -v I got the following:
+        It turns out you need to enable symbols or else you get an incomplete picture.  After enabling symbols and running !analyze -v I got the following:
       </p>
       
       <div style="clear: both; text-align: center;">
@@ -108,11 +108,11 @@ I rebooted my computer to this lovely Blue Screen Of Death (BSOD) message:
       </div>
       
       <p>
-        ctxusbm. Â This is a Citrix driver for their Receiver client that passes through USB to a Citrix session. I had updated Receiver to 14.3.0.5014 last month and I probably hadn't rebooted my computer until Windows Update made me. Â So that's probably why I'm experiencing this issue now. Â To fix this issue, I rebooted into the Windows Recovery mode and deleted all instances of 'ctxusbm' from the SYSTEM hive. Â Specifically, I deleted these locations:<br /> HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\Class\{CF2A3345-050B-41D0-BAF5-CD558EFAAE3B}<br /> HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Enum\Root\LEGACY_CTXUSBM<br /> HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\services\ctxusbm
+        ctxusbm.  This is a Citrix driver for their Receiver client that passes through USB to a Citrix session. I had updated Receiver to 14.3.0.5014 last month and I probably hadn't rebooted my computer until Windows Update made me.  So that's probably why I'm experiencing this issue now.  To fix this issue, I rebooted into the Windows Recovery mode and deleted all instances of 'ctxusbm' from the SYSTEM hive.  Specifically, I deleted these locations:<br /> HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\Class\{CF2A3345-050B-41D0-BAF5-CD558EFAAE3B}<br /> HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Enum\Root\LEGACY_CTXUSBM<br /> HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\services\ctxusbm
       </p>
       
       <p>
-        Upon the next reboot, my computer came back cleanly and operates without any issues. Â I am going to keep this module removed until the next version of Receiver is released, hopefully, I won't have any more issues. Â Issues with ctxusbm seem relatively prevalent with Citrix.
+        Upon the next reboot, my computer came back cleanly and operates without any issues.  I am going to keep this module removed until the next version of Receiver is released, hopefully, I won't have any more issues.  Issues with ctxusbm seem relatively prevalent with Citrix.
       </p>
       
       <div style="clear: both; text-align: center;">

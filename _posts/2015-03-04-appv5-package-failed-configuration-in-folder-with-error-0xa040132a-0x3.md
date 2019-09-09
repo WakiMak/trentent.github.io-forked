@@ -20,7 +20,7 @@ categories:
 tags:
   - AppV
 ---
-When publishing AppV5 applications on a PVS server we sometimes encounter an issue where packages do not load. Â There are usually events logged to event viewer with the following:
+When publishing AppV5 applications on a PVS server we sometimes encounter an issue where packages do not load.  There are usually events logged to event viewer with the following:
 
 <div style="clear: both; text-align: center;">
   <a style="margin-left: 1em; margin-right: 1em;" href="http://2.bp.blogspot.com/-gkwnyioz_v0/VPdKegmNHEI/AAAAAAAAAwA/1KJHWYUZ0-4/s1600/Screen%2BShot%2B2015-03-04%2Bat%2B11.09.49%2BAM.png"><img src="http://2.bp.blogspot.com/-gkwnyioz_v0/VPdKegmNHEI/AAAAAAAAAwA/1KJHWYUZ0-4/s1600/Screen%2BShot%2B2015-03-04%2Bat%2B11.09.49%2BAM.png" width="320" height="138" border="0" /></a>
@@ -39,8 +39,8 @@ published: 14
 failed: 10  
 Please check the error events of 'Configure/Publish Package' before this message for the details of the failure.
 
-This issue is typically caused by two factors: folders not existing in the "PackageInstallationRoot", in my example that is D:\AppVData\PackageInstallationRoot. Â You can find this value in the registry here:  
-HKEY\_LOCAL\_MACHINE\SOFTWARE\Microsoft\AppV\Client\Streaming /vÂ PackageInstallationRoot /dÂ D:\AppVData\PackageInstallationRoot
+This issue is typically caused by two factors: folders not existing in the "PackageInstallationRoot", in my example that is D:\AppVData\PackageInstallationRoot.  You can find this value in the registry here:  
+HKEY\_LOCAL\_MACHINE\SOFTWARE\Microsoft\AppV\Client\Streaming /v PackageInstallationRoot /d D:\AppVData\PackageInstallationRoot
 
 and registry entries existing here:  
 HKEY\_LOCAL\_MACHINE\SOFTWARE\Microsoft\AppV\Client\Streaming\Packages
@@ -65,7 +65,7 @@ HKEY\_LOCAL\_MACHINE\SOFTWARE\Microsoft\AppV\Client\Streaming\Packages
   </tr>
 </table>
 
-What you will find is a mismatch between the number of keys in Packages and the number of folders in your PackageInstallationRoot path. Â For us, our error was we had 14 folders existing in that path, but 10 of them were missing. Â But we had all 24 values existing in the registry.
+What you will find is a mismatch between the number of keys in Packages and the number of folders in your PackageInstallationRoot path.  For us, our error was we had 14 folders existing in that path, but 10 of them were missing.  But we had all 24 values existing in the registry.
 
 To fix this error I created a script to create the missing folders that were found in the registry and doing a get-appvpublishingserver | sync-appvpublishingserver
 

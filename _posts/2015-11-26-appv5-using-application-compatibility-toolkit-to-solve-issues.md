@@ -20,7 +20,7 @@ categories:
 ---
 C:
 
-We have several applications that install folders in the root of the C: drive. Â For most AppV5 implementations, this wouldn't be an issue but we modify our [PackageInstallationRoot](http://trentent.blogspot.ca/2014/08/appv-5-changing-packageinstallationroot.html) folder so the token {AppVPackageDrive} turns into the drive letter specified in the PackageInstallationRoot registry key. Â For us, that's the D: drive. Â This causes an issue because when you sequence an application to C: the application has an expectation for it to be there. Â Ideally, AppV takes care of that by the use of the tokens, but this breaks down when applications are hardcoded.
+We have several applications that install folders in the root of the C: drive.  For most AppV5 implementations, this wouldn't be an issue but we modify our [PackageInstallationRoot](http://trentent.blogspot.ca/2014/08/appv-5-changing-packageinstallationroot.html) folder so the token {AppVPackageDrive} turns into the drive letter specified in the PackageInstallationRoot registry key.  For us, that's the D: drive.  This causes an issue because when you sequence an application to C: the application has an expectation for it to be there.  Ideally, AppV takes care of that by the use of the tokens, but this breaks down when applications are hardcoded.
 
 <div>
 </div>
@@ -88,7 +88,7 @@ We have several applications that install folders in the root of the C: drive. Â
 </div>
 
 <div>
-  So this isn't going to work. Â How can we make it work?
+  So this isn't going to work.  How can we make it work?
 </div>
 
 <div>
@@ -269,7 +269,7 @@ We have several applications that install folders in the root of the C: drive. Â
 </div>
 
 <div>
-  At this stage you now need to put your SDB file somewhere accessible for when the package is published. Â We put it on a fileshare.
+  At this stage you now need to put your SDB file somewhere accessible for when the package is published.  We put it on a fileshare.
 </div>
 
 <div>

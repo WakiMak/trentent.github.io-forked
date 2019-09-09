@@ -22,9 +22,9 @@ tags:
   - Performance
 
 ---
-Previously, we encountered performance issues with the Citrix Web Interface due to our user load. Â I devised a test using the Microsoft WCAT to hammer the web interface servers. Â We found that after removing the ASPX processing limitation, logins were slow and we found that some XML brokers were taking a long time to respond.
+Previously, we encountered performance issues with the Citrix Web Interface due to our user load.  I devised a test using the Microsoft WCAT to hammer the web interface servers.  We found that after removing the ASPX processing limitation, logins were slow and we found that some XML brokers were taking a long time to respond.
 
-I've been tasked with finding out why. Â The Citrix XML server is a basic web server that takes an XML post, processes it and spits back a XML file in response. Â To test the performance of the XML server I created a PowerShell script to send the same XML request that occurs when you login through the web interface.
+I've been tasked with finding out why.  The Citrix XML server is a basic web server that takes an XML post, processes it and spits back a XML file in response.  To test the performance of the XML server I created a PowerShell script to send the same XML request that occurs when you login through the web interface.
 
 XML-Test.ps1:
 
@@ -85,7 +85,7 @@ $output | out-file -append "\\wsctxapp301t\d$\WI_Load_Testing\OutFile.txt"
 }</pre>
   
   <p>
-    <span style="background-color: white;">Â </span></div> 
+    <span style="background-color: white;"> </span></div> 
     
     <div>
     </div>
@@ -154,7 +154,7 @@ $output | out-file -append "\\wsctxapp301t\d$\WI_Load_Testing\OutFile.txt"
     </div>
     
     <div>
-      To do this, we go back to WCAT. Â I set my XML.ubr file like so:
+      To do this, we go back to WCAT.  I set my XML.ubr file like so:
     </div>
     
     <div>
@@ -214,7 +214,7 @@ $output | out-file -append "\\wsctxapp301t\d$\WI_Load_Testing\OutFile.txt"
     </div>
     
     <div>
-      And let it roll. Â When monitoring the server the process that takes up the most time is the IMASRV.EXE. Â I imagine that is because the XML service is really just a simple web server that accepts the traffic and hands it off to the IMASRV.exe to actually process and gets the response back and sends it back to the requestor.
+      And let it roll.  When monitoring the server the process that takes up the most time is the IMASRV.EXE.  I imagine that is because the XML service is really just a simple web server that accepts the traffic and hands it off to the IMASRV.exe to actually process and gets the response back and sends it back to the requestor.
     </div>
     
     <div>
@@ -229,13 +229,13 @@ $output | out-file -append "\\wsctxapp301t\d$\WI_Load_Testing\OutFile.txt"
       
       <tr>
         <td style="text-align: center;">
-          Started load testing at 11:49:00. Â After 40 concurrent connections XML service is responding to requests at 2000ms per request.
+          Started load testing at 11:49:00.  After 40 concurrent connections XML service is responding to requests at 2000ms per request.
         </td>
       </tr>
     </table>
     
     <div>
-      With this testing we can now try to improve the performance of the XML broker. Â We monitored one of our brokers and made some changes to it and reran the test to see the impact. Â The largest positive impact we saw was adding CPU's to the XML brokers. Â The following graphs illustrates the differences we saw:
+      With this testing we can now try to improve the performance of the XML broker.  We monitored one of our brokers and made some changes to it and reran the test to see the impact.  The largest positive impact we saw was adding CPU's to the XML brokers.  The following graphs illustrates the differences we saw:
     </div>
     
     <div>
@@ -260,18 +260,18 @@ $output | out-file -append "\\wsctxapp301t\d$\WI_Load_Testing\OutFile.txt"
     </div>
     
     <div>
-      I stopped the graph at around 20,000ms for responding to XML request for the top graph, and the maximum number of concurrent connections for the bottom graph at 3,000ms. Â 3,000ms would be very high for XML enumeration in my humble opinion, but still tolerable. Â On a single CPU system, XML enumeration can only sustain about 12-15 concurrent requests before it tops out, 2 CPU systems do slightly better at 24-28 concurrent requests and 4CPU at 60 concurrent requests. Â 8 CPU's and we exceed 3,000ms at 120 concurrent requests. Â Ideally, you would keep all requests under 1,000ms, which for 8 CPU is at 30 concurrent sessions, and 21 sessions for 4CPU. Â 1 CPU can only sustain about 2 concurrent requests to stay under 1,000ms while 2 CPU can sustain about 5 concurrent requests.
+      I stopped the graph at around 20,000ms for responding to XML request for the top graph, and the maximum number of concurrent connections for the bottom graph at 3,000ms.  3,000ms would be very high for XML enumeration in my humble opinion, but still tolerable.  On a single CPU system, XML enumeration can only sustain about 12-15 concurrent requests before it tops out, 2 CPU systems do slightly better at 24-28 concurrent requests and 4CPU at 60 concurrent requests.  8 CPU's and we exceed 3,000ms at 120 concurrent requests.  Ideally, you would keep all requests under 1,000ms, which for 8 CPU is at 30 concurrent sessions, and 21 sessions for 4CPU.  1 CPU can only sustain about 2 concurrent requests to stay under 1,000ms while 2 CPU can sustain about 5 concurrent requests.
     </div>
     
     <div>
     </div>
     
     <div>
-      Again, this is the same query that the web interface sends when you login to a farm. Â So if you have 10 farms and they all take 1,000ms to respond to an XML request you will sit at the login screen for 10 seconds. Â Storefront allows parallel requests which would reduce the time to 1 second (potentially) but for Web Interface (and even Store Front), having an optimized XML broker configuration is ideal and, apparently, is very dependent on the number of CPU's you can give it. Â Recommendation:
+      Again, this is the same query that the web interface sends when you login to a farm.  So if you have 10 farms and they all take 1,000ms to respond to an XML request you will sit at the login screen for 10 seconds.  Storefront allows parallel requests which would reduce the time to 1 second (potentially) but for Web Interface (and even Store Front), having an optimized XML broker configuration is ideal and, apparently, is very dependent on the number of CPU's you can give it.  Recommendation:
     </div>
     
     <div>
-      As many as possible. Â Unfortunately, I did not have the ability to test 16 or 32 core systems but for an Enterprise environment, I would try to keep it at 8 as a minimum.
+      As many as possible.  Unfortunately, I did not have the ability to test 16 or 32 core systems but for an Enterprise environment, I would try to keep it at 8 as a minimum.
     </div>
     
     <!-- AddThis Advanced Settings generic via filter on the_content -->

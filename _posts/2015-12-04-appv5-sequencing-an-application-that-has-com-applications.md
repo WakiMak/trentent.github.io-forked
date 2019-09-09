@@ -22,7 +22,7 @@ tags:
   - procmon
   - scripting
 ---
-AppV has a few weaknesses, one of them is Com+ Objects. Â It doesn't like Com+ Objects and sequencing an application with them generally results in this error message:
+AppV has a few weaknesses, one of them is Com+ Objects.  It doesn't like Com+ Objects and sequencing an application with them generally results in this error message:
 
 <div>
 </div>
@@ -167,7 +167,7 @@ AppV has a few weaknesses, one of them is Com+ Objects. Â It doesn't like Com+ O
 </div>
 
 <div>
-  Both *appeared* to have installed correctly. Â But this application requires the Com+ Application to run under a service account. Â Checking the original install:
+  Both *appeared* to have installed correctly.  But this application requires the Com+ Application to run under a service account.  Checking the original install:
 </div>
 
 <div>
@@ -191,7 +191,7 @@ AppV has a few weaknesses, one of them is Com+ Objects. Â It doesn't like Com+ O
 </div>
 
 <div style="clear: both; text-align: left;">
-  I can see under the 'Identity' tab that it is configured for 'This user:'. Â I then checked the MSI install on the & Test server and looked at the Identity tab:
+  I can see under the 'Identity' tab that it is configured for 'This user:'.  I then checked the MSI install on the & Test server and looked at the Identity tab:
 </div>
 
 <div style="clear: both; text-align: left;">
@@ -207,7 +207,7 @@ AppV has a few weaknesses, one of them is Com+ Objects. Â It doesn't like Com+ O
 </div>
 
 <div style="clear: both; text-align: left;">
-  It appears it defaults to 'System Account' even though I selected 'Export user identities with roles'. Â To change the user account silently, I used this script supplied by the vendor (as a encrypted vbe):
+  It appears it defaults to 'System Account' even though I selected 'Export user identities with roles'.  To change the user account silently, I used this script supplied by the vendor (as a encrypted vbe):
 </div>
 
 <pre class="lang:vb decode:true ">'Setup variables
@@ -242,7 +242,7 @@ Next</pre>
 </div>
 
 <div style="clear: both; text-align: left;">
-  This script changes the user account on the Com+ applications to use the proper account. Â When browsing the properties of the components of the SFSQL object I saw it referenced the dll to it:
+  This script changes the user account on the Com+ applications to use the proper account.  When browsing the properties of the components of the SFSQL object I saw it referenced the dll to it:
 </div>
 
 <div style="clear: both; text-align: left;">
@@ -274,7 +274,7 @@ Next</pre>
 </div>
 
 <div style="clear: both; text-align: left;">
-  To test everything now, I must now create my AppV package. Â Before doing the install I installed my prerequisites (the Com+ Applications) into the Sequencer so they are not captured by the package.
+  To test everything now, I must now create my AppV package.  Before doing the install I installed my prerequisites (the Com+ Applications) into the Sequencer so they are not captured by the package.
 </div>
 
 <div style="clear: both; text-align: left;">
@@ -451,7 +451,7 @@ exit</pre>
 </div>
 
 <div style="clear: both; text-align: left;">
-  For some reason my application was failing. Â I double checked the COM+ Applications are installed and appear to be working, so I opened Procmon.exe to see if I can find where it's going wrong:
+  For some reason my application was failing.  I double checked the COM+ Applications are installed and appear to be working, so I opened Procmon.exe to see if I can find where it's going wrong:
 </div>
 
 <div style="clear: both; text-align: left;">
@@ -468,7 +468,7 @@ exit</pre>
 </div>
 
 <div style="text-align: left;">
-  I've used procmon enough now to practically pull the old' Matrix, "<a href="https://www.youtube.com/watch?v=3vAnuBtyEYE">blonde, brunette, red head</a>". Â Working from bottom to top, the message box is generated from the 'Text' (LanguagePack) back to the KernelBase.dll. Â So we can exclude that has the cause, this is telling us *of* the issue. Â So if we look at the lines preceding it, one of them must be causing our message.
+  I've used procmon enough now to practically pull the old' Matrix, "<a href="https://www.youtube.com/watch?v=3vAnuBtyEYE">blonde, brunette, red head</a>".  Working from bottom to top, the message box is generated from the 'Text' (LanguagePack) back to the KernelBase.dll.  So we can exclude that has the cause, this is telling us *of* the issue.  So if we look at the lines preceding it, one of them must be causing our message.
 </div>
 
 <div style="text-align: left;">
@@ -525,7 +525,7 @@ exit</pre>
 </div>
 
 <div style="text-align: left;">
-  I am on a server called WSCTXAPP301T but the registry key for this value is pointing to the system I did my sequencing on. Â I changed the value to the actual server name and did a registry search for "WSAPVSEQ07" to see if it appeared anywhere else. Â It did in one other location so I modified the value there as well to point to the local server:
+  I am on a server called WSCTXAPP301T but the registry key for this value is pointing to the system I did my sequencing on.  I changed the value to the actual server name and did a registry search for "WSAPVSEQ07" to see if it appeared anywhere else.  It did in one other location so I modified the value there as well to point to the local server:
 </div>
 
 <div style="text-align: left;">
@@ -560,7 +560,7 @@ exit</pre>
 </div>
 
 <div style="text-align: left;">
-  Success! Â The login screen. Â This is as far as I can take this app until I get credentials or a user to login and try testing for me. Â So, for now, I can create a preflight-script to setup some prerequisites when the application is published. Â I modified my preflight script to include the two registry values being updated:
+  Success!  The login screen.  This is as far as I can take this app until I get credentials or a user to login and try testing for me.  So, for now, I can create a preflight-script to setup some prerequisites when the application is published.  I modified my preflight script to include the two registry values being updated:
 </div>
 
 <pre class="lang:batch decode:true ">:: ===========================================================================================================

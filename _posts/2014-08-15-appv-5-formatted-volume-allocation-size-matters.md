@@ -23,7 +23,7 @@ tags:
 ---
 After discovering that AppV 5 configures an allocation size independent of the file system beneath it, I explored the impact of different formatted allocation sizes on AppV packages; specifically mounting AppV packages.
 
-I took our AppV setup and set the PackageInstallationRoot to D:AppVDataPackageInstallationRoot and then formatted the D: to different allocation sizes and then mounted the AppV package. Â I timed how long it took to mount the package over 4 runs per allocation choice, took the AppV file size allocation, and the total, actual size of the package on the drive. Â Package Details:
+I took our AppV setup and set the PackageInstallationRoot to D:AppVDataPackageInstallationRoot and then formatted the D: to different allocation sizes and then mounted the AppV package.  I timed how long it took to mount the package over 4 runs per allocation choice, took the AppV file size allocation, and the total, actual size of the package on the drive.  Package Details:
 
 <pre class="lang:default decode:true ">Package size: 1838658907 (1.71GB)
 Files: 9106
@@ -93,7 +93,7 @@ The results:
   </tr>
 </table>
 
-I would propose using 64KB allocation sizes for the AppV volume if possible (note, this only applies to fully mounted packages). Â There does appear to be some benefit to using larger allocation sizes, one of the main ones is the properties of the PackageInstallationRoot now reflects more accurately the actual consumed filesystem on Windows 2008 / Windows 7. Â Another is there is a speed improvement around the 4KB allocation size then minor increases afterwards.
+I would propose using 64KB allocation sizes for the AppV volume if possible (note, this only applies to fully mounted packages).  There does appear to be some benefit to using larger allocation sizes, one of the main ones is the properties of the PackageInstallationRoot now reflects more accurately the actual consumed filesystem on Windows 2008 / Windows 7.  Another is there is a speed improvement around the 4KB allocation size then minor increases afterwards.
 
 <!-- AddThis Advanced Settings generic via filter on the_content -->
 

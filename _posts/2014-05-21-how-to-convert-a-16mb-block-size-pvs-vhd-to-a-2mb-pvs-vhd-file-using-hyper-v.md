@@ -21,7 +21,7 @@ tags:
   - Citrix
   - Provisioning Services
 ---
-If you've created a 16MB block size VHD file using Citrix PVS you've probably experienced that these disks are a touch more difficult to manage than the 2MB ones. Â With 16MB block size VHD's you cannot mount them in Windows natively, compact them, and manipulate them with regular VHD tools. Â The only tool that I've been able to manipulate them with is PVS, specifically CVHDMOUNT.EXE. Â This allows you to mount the VHD file as a hard disk, but even so you cannot manipulate the disk with lots of tools; the disk isn't recognized at all. Â This includes tools like Disk2VHD that you would think would make it easy to make it into a VHD. Â Not so.
+If you've created a 16MB block size VHD file using Citrix PVS you've probably experienced that these disks are a touch more difficult to manage than the 2MB ones.  With 16MB block size VHD's you cannot mount them in Windows natively, compact them, and manipulate them with regular VHD tools.  The only tool that I've been able to manipulate them with is PVS, specifically CVHDMOUNT.EXE.  This allows you to mount the VHD file as a hard disk, but even so you cannot manipulate the disk with lots of tools; the disk isn't recognized at all.  This includes tools like Disk2VHD that you would think would make it easy to make it into a VHD.  Not so.
 
 In order to convert from a 16MB block size PVS VHD you need to do the following steps:
 
@@ -59,7 +59,7 @@ In order to convert from a 16MB block size PVS VHD you need to do the following 
   <a style="margin-left: 1em; margin-right: 1em;" href="http://2.bp.blogspot.com/-9zP-rqA81SM/U3z2B1AVZQI/AAAAAAAAAcg/zE_nsIuph2s/s1600/FINISH.PNG"><img src="http://2.bp.blogspot.com/-9zP-rqA81SM/U3z2B1AVZQI/AAAAAAAAAcg/zE_nsIuph2s/s1600/FINISH.PNG" width="320" height="232" border="0" /></a>
 </div>
 
-6) Click Finish. Â And now you're done! Â ðŸ™‚
+6) Click Finish.  And now you're done!  ðŸ™‚
 
 <!-- AddThis Advanced Settings generic via filter on the_content -->
 

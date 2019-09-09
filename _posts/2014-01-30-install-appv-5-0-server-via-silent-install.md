@@ -21,7 +21,7 @@ tags:
   - AppV
   - scripting
 ---
-I made a script to automate the creation of our AppV 5.0 Management and Publishing servers. Â We are going to install them on the same system. Â To do this, we already have a database so we are just adding new servers to the infrastructure. Â This script also installs all prerequisites if required.
+I made a script to automate the creation of our AppV 5.0 Management and Publishing servers.  We are going to install them on the same system.  To do this, we already have a database so we are just adding new servers to the infrastructure.  This script also installs all prerequisites if required.
 
 <pre class="lang:batch decode:true ">::================================================================================
 ::

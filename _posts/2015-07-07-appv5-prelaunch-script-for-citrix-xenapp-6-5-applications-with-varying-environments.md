@@ -22,7 +22,7 @@ tags:
   - PowerShell
   - scripting
 ---
-We utilize a lot of pre-launch scripts for our AppV5 applications that we use in our Citrix & 6.5 environment. Â They become a necessity very quickly as AppV5 stores the executable down a very long path. Â Citrix & 6.5 has a maximum launch string of 160 characters and this maximum prevents a lot of applications from working if they require parameters to be passed to them. Â An example looks like this:
+We utilize a lot of pre-launch scripts for our AppV5 applications that we use in our Citrix & 6.5 environment.  They become a necessity very quickly as AppV5 stores the executable down a very long path.  Citrix & 6.5 has a maximum launch string of 160 characters and this maximum prevents a lot of applications from working if they require parameters to be passed to them.  An example looks like this:
 
 <div>
   <pre class="lang:batch decode:true ">"C:\ProgramData\Microsoft\AppV\Client\Integration\D8E3DB68-4E48-4409-8E95-4354CC6E664B\Root\VFS\ProgramFilesX64\dlc11.2\bin\prowin32.exe" -p \\wsfsc01pharm\CentricityPharmacy\rx\v92\cfg\cfgstart.p -param S,%CLIENTNAME%,crh1214%env%,CITRIX,rxpv91cal,10920 -wy</pre>
@@ -39,7 +39,7 @@ We utilize a lot of pre-launch scripts for our AppV5 applications that we use in
   </div>
   
   <div>
-    This launch path is too long for & 6.5. Â The string will be truncated and the program will fail to launch properly. Â We have several environments that work with the same package files so we set them as variables. Â To get this package to launch properly we create a prelaunch script that looks like so:
+    This launch path is too long for & 6.5.  The string will be truncated and the program will fail to launch properly.  We have several environments that work with the same package files so we set them as variables.  To get this package to launch properly we create a prelaunch script that looks like so:
   </div>
 </div>
 

@@ -23,7 +23,7 @@ tags:
   - Group Policy
 ---
 <div>
-  We had a couple issues with scheduled tasks not applying when submitted as a GPP (Group Policy Preference). Â We turned on tracing via local gpedit.msc (Administrative Templates > System > Group Policy > Logging and tracing). Â From here we turned on the Scheduled Task logging and events were then stored in the eventvwr.msc (we also turned on tracing which stored a computer.log file here: C:\ProgramData\Group Policy\Trace)
+  We had a couple issues with scheduled tasks not applying when submitted as a GPP (Group Policy Preference).  We turned on tracing via local gpedit.msc (Administrative Templates > System > Group Policy > Logging and tracing).  From here we turned on the Scheduled Task logging and events were then stored in the eventvwr.msc (we also turned on tracing which stored a computer.log file here: C:\ProgramData\Group Policy\Trace)
 </div>
 
 <div style="font-family: Helvetica; font-size: 12px;">
@@ -54,7 +54,7 @@ tags:
 </div>
 
 <div>
-  So it can't map between user ID's. Â It'd be nice if it told us which mapping failed, but it gives us a pretty good hint. Looking at the XML file the GPP creates (stored here: Â "C:\ProgramData\Microsoft\Group Policy\History\\Machine\Preferences\ScheduledTasks\ScheduledTasks.xml" )
+  So it can't map between user ID's.  It'd be nice if it told us which mapping failed, but it gives us a pretty good hint. Looking at the XML file the GPP creates (stored here:  "C:\ProgramData\Microsoft\Group Policy\History\\Machine\Preferences\ScheduledTasks\ScheduledTasks.xml" )
 </div>
 
 <div>
@@ -99,7 +99,7 @@ tags:
 
 <div>
   <div>
-    Everything validates. Â Googling for BUILTIN\SYSTEM brought up that several people were getting the same error when using BUILTIN\SYSTEM. Â Which makes some sense as "BUILTIN\SYSTEM" isn't a real account. Â We renamed it to NT AUTHORITY\SYSTEM. Â This time we got a new error message:
+    Everything validates.  Googling for BUILTIN\SYSTEM brought up that several people were getting the same error when using BUILTIN\SYSTEM.  Which makes some sense as "BUILTIN\SYSTEM" isn't a real account.  We renamed it to NT AUTHORITY\SYSTEM.  This time we got a new error message:
   </div>
   
   <div style="font-family: Helvetica; font-size: 12px;">
@@ -118,7 +118,7 @@ tags:
   </div>
   
   <div>
-    This doesn't tell us a whole lot of information. Â What is the unexpected node? Looking again at the XML file it looked like so:
+    This doesn't tell us a whole lot of information.  What is the unexpected node? Looking again at the XML file it looked like so:
   </div>
   
   <div>
@@ -176,14 +176,14 @@ tags:
     </div>
     
     <div>
-      The SYSTEM account is NOT a group. Â We changed how we selected the SYSTEM account by "Browsing" AD, going into the root of the domain, going into the Builtin OU, and selecting SYSTEM. Â This populated as "NT AUTHORITY\Well-Known-Security-Id-System". Â This will fail because there is no such user account called "Well-Known-Security-Id-System". Â At this point we renamed it to "NT AUTHORITY\SYSTEM".
+      The SYSTEM account is NOT a group.  We changed how we selected the SYSTEM account by "Browsing" AD, going into the root of the domain, going into the Builtin OU, and selecting SYSTEM.  This populated as "NT AUTHORITY\Well-Known-Security-Id-System".  This will fail because there is no such user account called "Well-Known-Security-Id-System".  At this point we renamed it to "NT AUTHORITY\SYSTEM".
     </div>
     
     <div>
     </div>
     
     <div>
-      Boom, GPP Scheduled task now worked without issue. Â Checking the XML the difference by manually selecting the SYSTEM account changed
+      Boom, GPP Scheduled task now worked without issue.  Checking the XML the difference by manually selecting the SYSTEM account changed
     </div>
     
     <div>
@@ -195,7 +195,7 @@ tags:
     </div>
     
     <div>
-      <<span style="text-decoration: underline;"><strong>UserId</strong></span>>NT AUTHORITY\SYSTEM</<span style="text-decoration: underline;"><strong>UserId</strong></span>Â >
+      <<span style="text-decoration: underline;"><strong>UserId</strong></span>>NT AUTHORITY\SYSTEM</<span style="text-decoration: underline;"><strong>UserId</strong></span> >
     </div>
     
     <div>
@@ -209,7 +209,7 @@ tags:
     </div>
     
     <div>
-      If you are having issues with your GPP Scheduled task item running as the SYSTEM account I would HIGHLY recommend you check your XML file and confirm it is set as "<span style="text-decoration: underline;"><strong>NT AUTHORITY\SYSTEM</strong></span>" and it is surrounded by UserIdÂ <span style="text-decoration: underline;"><strong>NOT</strong></span>Â Â GroupId.
+      If you are having issues with your GPP Scheduled task item running as the SYSTEM account I would HIGHLY recommend you check your XML file and confirm it is set as "<span style="text-decoration: underline;"><strong>NT AUTHORITY\SYSTEM</strong></span>" and it is surrounded by UserId <span style="text-decoration: underline;"><strong>NOT</strong></span>  GroupId.
     </div>
   </div>
 </div>

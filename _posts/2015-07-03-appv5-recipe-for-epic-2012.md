@@ -113,11 +113,11 @@ rmdir /s /q C:\CrashDumps</pre>
 </div>
 
 <div>
-  <span style="font-family: 'Courier New', Courier, monospace; font-size: x-small;">Â </span>
+  <span style="font-family: 'Courier New', Courier, monospace; font-size: x-small;"> </span>
 </div>
 
 <div>
-  <span style="font-family: 'Courier New', Courier, monospace; font-size: x-small;">Â </span>
+  <span style="font-family: 'Courier New', Courier, monospace; font-size: x-small;"> </span>
 </div>
 
 <div>
@@ -158,7 +158,7 @@ rmdir /s /q C:\CrashDumps</pre>
   </p>
   
   <p>
-    6) In order for Epic to launch in a reasonable amount of time, <a href="http://trentent.blogspot.ca/2014/12/appv5-and-measuring-registrystaging.html">registry staging</a> must be done. Â Without a pre-executed registry staging, <a href="https://social.technet.microsoft.com/Forums/en-US/44944302-d8f3-4df1-b104-9c63345f88e0/poor-first-launch-performance-with-appv-5?forum=mdopappv">first launch performance of Epic can take hundreds of seconds</a>.
+    6) In order for Epic to launch in a reasonable amount of time, <a href="http://trentent.blogspot.ca/2014/12/appv5-and-measuring-registrystaging.html">registry staging</a> must be done.  Without a pre-executed registry staging, <a href="https://social.technet.microsoft.com/Forums/en-US/44944302-d8f3-4df1-b104-9c63345f88e0/poor-first-launch-performance-with-appv-5?forum=mdopappv">first launch performance of Epic can take hundreds of seconds</a>.
   </p>
   
   <div style="clear: both; text-align: center;">

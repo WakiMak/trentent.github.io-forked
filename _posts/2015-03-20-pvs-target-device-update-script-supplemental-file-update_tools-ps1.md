@@ -21,7 +21,7 @@ tags:
   - PowerShell
   - procmon
 ---
-This script is used to keep ProcMon.exe, ProcExp.exe and Wireshark up to date and available as tools we can use to troubleshoot our vDisks. Â We store them within a folder on the C:Swinst.
+This script is used to keep ProcMon.exe, ProcExp.exe and Wireshark up to date and available as tools we can use to troubleshoot our vDisks.  We store them within a folder on the C:Swinst.
 
 <div>
 </div>
@@ -44,7 +44,7 @@ $SysInternals+=ls \\live.sysinternals.com\tools\procexp.exe
 foreach ($File in $SysInternals) {
     if (Test-Path $File.Name) {
         if ($File.LastWriteTime -ne (get-Item $File.Name).LastWriteTime) {
-            Write-Host $File.Name "is out of date. Downloading new versionâ€¦"   
+            Write-Host $File.Name "is out of date. Downloading new version€¦"   
             Copy-Item $file -Force
 } #end If LastWriteTime
             else {
@@ -52,7 +52,7 @@ foreach ($File in $SysInternals) {
 } #end If LastWriteTime
         } #end Test-Path
     else {
-        Write-Host $File.Name "is new. Downloadingâ€¦"
+        Write-Host $File.Name "is new. Downloading€¦"
         Copy-Item $file -Force
 } #end else Test-Path
 } #end foreach $file

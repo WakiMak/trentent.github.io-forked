@@ -30,13 +30,13 @@ One of the notes in the KB articles states:
 I suspect this note should say:  
 **Note:** If the SoftGrid Virtual Application Server is version 3.x or greater, the DNS host name must contain the NetBIOS name.
 
-As when we used the FQDN on our Management Server for the Default group we got this error message.Â When we changed it to the NetBIOS name the error was successfully resolved and did not reappear.
+As when we used the FQDN on our Management Server for the Default group we got this error message. When we changed it to the NetBIOS name the error was successfully resolved and did not reappear.
 
 I was able to confirm using procmon that when starting the AppV Server Management Service that it queried this registry key:
 
 <pre class="lang:reg decode:true ">HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\ComputerName\ActiveComputerName</pre>
 
-to set the computer name.Â This key contains the NetBIOS name.
+to set the computer name. This key contains the NetBIOS name.
 
 <!-- AddThis Advanced Settings generic via filter on the_content -->
 

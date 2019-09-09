@@ -35,9 +35,9 @@ tags:
 
 This has been an ongoing problem for us (Unable to connect to the CGP tunnel destination (127.0.0.1:1494)
 
-I may have found out why it was happening in our environment. Â We are using Provisioning Services and with it we are using two NIC's, one for the Provisioning Services and one for Standard networking.
+I may have found out why it was happening in our environment.  We are using Provisioning Services and with it we are using two NIC's, one for the Provisioning Services and one for Standard networking.
 
-It appears the XTE service became configured to use the Provisioning Services NIC. Â This was verified in the httpd.conf in the C:\Program Files (x86)\Citrix\XTE\conf folder.
+It appears the XTE service became configured to use the Provisioning Services NIC.  This was verified in the httpd.conf in the C:\Program Files (x86)\Citrix\XTE\conf folder.
 
 <table style="margin-left: auto; margin-right: auto; text-align: center;" cellspacing="0" cellpadding="0" align="center">
   <tr>
@@ -123,7 +123,7 @@ When I traced the XTE service using procmon.exe and wireshark with this non-func
     </div>
     
     <div style="clear: both; text-align: center;">
-      <span style="text-align: start;">Â </span>
+      <span style="text-align: start;"> </span>
     </div>
     
     <div>
@@ -158,7 +158,7 @@ When I traced the XTE service using procmon.exe and wireshark with this non-func
       </p>
       
       <p>
-        We have now found why we are getting this error, and why we are getting it intermittently. Â The issue is we are using PVS with multi-homed NIC's. Â One NIC (LanAdapter 1) is the "Provisioning" network, and the second NIC (LanAdapter 2) is the "Production" network. Â The Provisioning network is on a completely seperate vLan and sees no traffic outside of it's little network. Â The ICA Listener was attaching itself to the Provisioning network instead of the production network, so when we tried to connect to the server it would fail with the CGP tunnel error because the outside network cannot talk to the Provisioning network. Â To attempt to resolve this issue one of our techs (Saman) created a group policy preference registry key that set the following value (HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\Terminal Server\WinStations\ICA-TCP - LanAdapter):
+        We have now found why we are getting this error, and why we are getting it intermittently.  The issue is we are using PVS with multi-homed NIC's.  One NIC (LanAdapter 1) is the "Provisioning" network, and the second NIC (LanAdapter 2) is the "Production" network.  The Provisioning network is on a completely seperate vLan and sees no traffic outside of it's little network.  The ICA Listener was attaching itself to the Provisioning network instead of the production network, so when we tried to connect to the server it would fail with the CGP tunnel error because the outside network cannot talk to the Provisioning network.  To attempt to resolve this issue one of our techs (Saman) created a group policy preference registry key that set the following value (HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\Terminal Server\WinStations\ICA-TCP - LanAdapter):
       </p>
       
       <div style="clear: both; text-align: center;">
@@ -166,11 +166,11 @@ When I traced the XTE service using procmon.exe and wireshark with this non-func
       </div>
       
       <p>
-        By setting it to "2" we could ensure the ICA listener is always listening on LanAdapter 2, our production network. Â Unfortunately, a Windows Update appears to have caused either Group Policy Registry Preferences to execute (sometimes) *after* the IMAService service started, or allowed the IMAService service to start *before* Group Policy Registry Preferences. Â IMAService will recreate that file every second restart. Â To resolve this issue I created a startup script that executes after 65 seconds, deleting the httpd.conf file and restarting the appropriate services until the httpd.conf file is recreated.
+        By setting it to "2" we could ensure the ICA listener is always listening on LanAdapter 2, our production network.  Unfortunately, a Windows Update appears to have caused either Group Policy Registry Preferences to execute (sometimes) *after* the IMAService service started, or allowed the IMAService service to start *before* Group Policy Registry Preferences.  IMAService will recreate that file every second restart.  To resolve this issue I created a startup script that executes after 65 seconds, deleting the httpd.conf file and restarting the appropriate services until the httpd.conf file is recreated.
       </p>
       
       <p>
-        In my testing it appears you need to restart the "IMAService" service twice to get it to recreate the httpd.conf file. Â Because of this, I created the script to retry up to 3 times to try and regenerate the file.
+        In my testing it appears you need to restart the "IMAService" service twice to get it to recreate the httpd.conf file.  Because of this, I created the script to retry up to 3 times to try and regenerate the file.
       </p>
       
       <pre class="lang:batch decode:true ">:: ===========================================================================================================

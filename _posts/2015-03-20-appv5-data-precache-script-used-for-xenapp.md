@@ -24,7 +24,7 @@ tags:
   - scripting
   - Target Device
 ---
-This is the AppV5 Data Precache script we use to load our AppV5 packages on our Citrix & servers. Â Because we use PVS and store the AppV package installation root folder on a persistent disk, we sometimes encounter issues that require us to 'clean up' the package installation root folder before the AppV5 packages will load. Â What this script attempts to do is setup AppV5 as if it's a new install, grab any packages from the publishing server, then, if sharedcontentstore is disabled, fully mount/load the packages.
+This is the AppV5 Data Precache script we use to load our AppV5 packages on our Citrix & servers.  Because we use PVS and store the AppV package installation root folder on a persistent disk, we sometimes encounter issues that require us to 'clean up' the package installation root folder before the AppV5 packages will load.  What this script attempts to do is setup AppV5 as if it's a new install, grab any packages from the publishing server, then, if sharedcontentstore is disabled, fully mount/load the packages.
 
 AppV5DataPrecache.cmd
 

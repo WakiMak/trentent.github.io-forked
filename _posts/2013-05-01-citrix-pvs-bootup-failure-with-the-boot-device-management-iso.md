@@ -22,14 +22,14 @@ tags:
   - Performance
   - Provisioning Services
 ---
-We had an issue recently with some Citrix Provisioning Servers (PVS) that were not getting a DHCP address when booting off of the Boot Device Management ISO (BDM.ISO).Â What was happening is the server would just show this:
+We had an issue recently with some Citrix Provisioning Servers (PVS) that were not getting a DHCP address when booting off of the Boot Device Management ISO (BDM.ISO). What was happening is the server would just show this:
 
 <span style="font-size: x-small;"><span style="font-family: 'Courier New',Courier,monospace;">DHCP Discover ._._._._.</span></span>  
 <span style="font-size: x-small;"><span style="font-family: 'Courier New',Courier,monospace;"><br /> </span></span><span style="font-size: x-small;"><span style="font-family: 'Courier New',Courier,monospace;">DHCP maximum number of retries reached.</span></span>
 
 When booting off of PXE or a WinPE CD I was getting DHCP without issues.
 
-When I did a Wireshark of the line I saw the BDM.ISO boot send out DHCPDISCOVER packets but it never received a response.Â I then Wiresharked the WinPE and PXE boots and saw the DHCPDISCOVER packet, followed by a DHCPOFFER, and so on.Â When I examined the two packets I saw the BDM.ISO DHCPDISCOVER packet actually was a BOOTP **unicast** whereas the PXE and WinPE packets were BOOTP **broadcast**.Â Thinking we had a DHCP Relay issue we checked our DHCP server (an InfoBlox server) and checked the logs for the MAC Address and here is what we saw when we booted with the BDM.ISO:
+When I did a Wireshark of the line I saw the BDM.ISO boot send out DHCPDISCOVER packets but it never received a response. I then Wiresharked the WinPE and PXE boots and saw the DHCPDISCOVER packet, followed by a DHCPOFFER, and so on. When I examined the two packets I saw the BDM.ISO DHCPDISCOVER packet actually was a BOOTP **unicast** whereas the PXE and WinPE packets were BOOTP **broadcast**. Thinking we had a DHCP Relay issue we checked our DHCP server (an InfoBlox server) and checked the logs for the MAC Address and here is what we saw when we booted with the BDM.ISO:
 
 <table style="margin-left: auto; margin-right: auto; text-align: center;" cellspacing="0" cellpadding="0" align="center">
   <tr>
@@ -45,7 +45,7 @@ When I did a Wireshark of the line I saw the BDM.ISO boot send out DHCPDISCOVER 
   </tr>
 </table>
 
-The DHCP server was not responding to the DHCPDISCOVER.Â This only occurred with the unicast packet and for some reason was "load balance to peer".Â However it's setup, it appears UNICAST BOOTP packets are setup for load balancing but not sending a response.
+The DHCP server was not responding to the DHCPDISCOVER. This only occurred with the unicast packet and for some reason was "load balance to peer". However it's setup, it appears UNICAST BOOTP packets are setup for load balancing but not sending a response.
 
 <table style="margin-left: auto; margin-right: auto; text-align: center;" cellspacing="0" cellpadding="0" align="center">
   <tr>
@@ -61,9 +61,9 @@ The DHCP server was not responding to the DHCPDISCOVER.Â This only occurred with
   </tr>
 </table>
 
-The DHCP server is responding to a BROADCAST BOOTP packet in a very different way.Â There is no load balancing going on and the server responds to the DISCOVER packet.
+The DHCP server is responding to a BROADCAST BOOTP packet in a very different way. There is no load balancing going on and the server responds to the DISCOVER packet.
 
-Unfortunately, we did not resolve this issue when I wrote this.Â We got our farm to work by pointing the DHCP Relay to the previous DHCP server that is configured in such a way to resolve this DHCP request and present an DHCP OFFER.Â Hopefully our network guys will get the DHCP fixed on the proper server.Â If you are experiencing similar issues you may have a similar issue where the DHCP at your site is handling unicast DHCPDISCOVER packets differently then broadcast packets.
+Unfortunately, we did not resolve this issue when I wrote this. We got our farm to work by pointing the DHCP Relay to the previous DHCP server that is configured in such a way to resolve this DHCP request and present an DHCP OFFER. Hopefully our network guys will get the DHCP fixed on the proper server. If you are experiencing similar issues you may have a similar issue where the DHCP at your site is handling unicast DHCPDISCOVER packets differently then broadcast packets.
 
 <!-- AddThis Advanced Settings generic via filter on the_content -->
 

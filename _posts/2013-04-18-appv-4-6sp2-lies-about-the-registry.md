@@ -26,13 +26,13 @@ The values existed in the registry here:
 
 <pre class="lang:batch decode:true ">HKLM\SOFTWARE\Application /v ServerName /d OLDSERVER</pre>
 
-When I did the /exe cmd.exe trick for the application and opened the package I could see the registry keys resided in that location.Â I then deleted that registry key in the sequencer and set the registry value for Application to "Merge with local keys".Â After doing so we made a GPO at this location:
+When I did the /exe cmd.exe trick for the application and opened the package I could see the registry keys resided in that location. I then deleted that registry key in the sequencer and set the registry value for Application to "Merge with local keys". After doing so we made a GPO at this location:
 
 <pre class="lang:default decode:true ">HKLM\SOFTWARE\Application /v ServerName /d NEWSERVER</pre>
 
 And I happily launched the application expecting it to see the new server key and be off on its merry way.
 
-It didn't work.Â When I /exe cmd.exe and looked at the registry there was no ServerName key.Â Disappointed I resequenced the application on 2008 R2.Â Now, in the AppV sequencer I noticed that the keys were located in the HKLM\Software\Wow6432Node.Â I then installed the newly sequenced application and launched regedit in the bubble.Â Regedit showed me that the path was "HKLM\SOFTWARE\Application"
+It didn't work. When I /exe cmd.exe and looked at the registry there was no ServerName key. Disappointed I resequenced the application on 2008 R2. Now, in the AppV sequencer I noticed that the keys were located in the HKLM\Software\Wow6432Node. I then installed the newly sequenced application and launched regedit in the bubble. Regedit showed me that the path was "HKLM\SOFTWARE\Application"
 
 Adding Registry keys to HKLM\SOFTWARE\WOW6432Node\Application allowed them to be seen properly in the bubble.
 

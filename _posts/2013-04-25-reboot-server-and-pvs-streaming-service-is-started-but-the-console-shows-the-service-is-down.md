@@ -23,7 +23,7 @@ tags:
   - VMWare
   - VMWare tools
 ---
-Upon rebooting a server we found the Citrix PVS Console showed the server as down.Â When we investigated the server we found the service was started and their were no errors in the logs that we could see.Â Restarting the service brought the server as up in the console.Â We did see one particular error though, the date was suddenly incorrect in the event viewer.
+Upon rebooting a server we found the Citrix PVS Console showed the server as down. When we investigated the server we found the service was started and their were no errors in the logs that we could see. Restarting the service brought the server as up in the console. We did see one particular error though, the date was suddenly incorrect in the event viewer.
 
 <div style="clear: both; text-align: center;">
   <a style="margin-left: 1em; margin-right: 1em;" href="http://1.bp.blogspot.com/-w0Mp08326Nk/UXlozxiQ9qI/AAAAAAAAANk/YFMzDnuTUMI/s1600/1.jpg"><img src="http://1.bp.blogspot.com/-w0Mp08326Nk/UXlozxiQ9qI/AAAAAAAAANk/YFMzDnuTUMI/s320/1.jpg" width="296" height="320" border="0" /></a>
@@ -32,7 +32,7 @@ Upon rebooting a server we found the Citrix PVS Console showed the server as dow
 &nbsp;
 
 <div style="clear: both; text-align: center;">
-  <a style="margin-left: 1em; margin-right: 1em;" href="http://4.bp.blogspot.com/-jMwTGpq7UEk/UXlozmTQQVI/AAAAAAAAANc/MoHexK0T85A/s1600/2.jpg">Â </a>
+  <a style="margin-left: 1em; margin-right: 1em;" href="http://4.bp.blogspot.com/-jMwTGpq7UEk/UXlozmTQQVI/AAAAAAAAANc/MoHexK0T85A/s1600/2.jpg"> </a>
 </div>
 
 Further investigation showed EventID 52, the time service resync'ed a offset.
@@ -47,13 +47,13 @@ Since this was a virtual machine we checked the VMWare settings to confirm that 
   <a style="margin-left: 1em; margin-right: 1em;" href="http://2.bp.blogspot.com/-KbyRORCpIGg/UXlprFEwoaI/AAAAAAAAANw/EbgjE0qvmnY/s1600/3.jpg"><img src="http://2.bp.blogspot.com/-KbyRORCpIGg/UXlprFEwoaI/AAAAAAAAANw/EbgjE0qvmnY/s320/3.jpg" width="320" height="281" border="0" /></a>
 </div>
 
-But the time was still getting offset.Â Further investigation showed the VMWare hosts time was not set correctly and the server was having it's time set to the hosts time; even though the above check box was not set.
+But the time was still getting offset. Further investigation showed the VMWare hosts time was not set correctly and the server was having it's time set to the hosts time; even though the above check box was not set.
 
 It appears VMWare has additional time synchronization settings that are enabled by default and must be set to explicitly deny to not have the time synchronize from different scenarios.
 
 <http://kb.vmware.com/selfservice/microsites/search.do?language=en_US&cmd=displayKC&externalId=1189>
 
-Upon VMWare Tools starting on reboot, a "resume", or the tools being restarted or other scenarios.Â To prevent it from happening you must edit the VMX file and set the values as stated in the kb article above.
+Upon VMWare Tools starting on reboot, a "resume", or the tools being restarted or other scenarios. To prevent it from happening you must edit the VMX file and set the values as stated in the kb article above.
 
 <!-- AddThis Advanced Settings generic via filter on the_content -->
 

@@ -20,7 +20,7 @@ categories:
 tags:
   - AppV
 ---
-Use if you want, or not. Â This virtualization template is to be applied against the sequencer. Â I've found it removes a lot of useless captured information that can get caught in a sequence.
+Use if you want, or not.  This virtualization template is to be applied against the sequencer.  I've found it removes a lot of useless captured information that can get caught in a sequence.
 
 <pre class="lang:default decode:true "><?xml version="1.0" encoding="utf-8"?>
 <SequencerTemplate xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">

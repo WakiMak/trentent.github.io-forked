@@ -22,7 +22,7 @@ tags:
   - PowerShell
   - Provisioning Services
 ---
-Our PVS servers are multi-homed with the Provisioning NIC on a seperate VLAN. Â Because of how our network is structured, our Provision NIC could register its DNS, but client computers would not be able to connect to it as it is a segregated network. Â This script sets the Provision NIC to NOT register to DNS.
+Our PVS servers are multi-homed with the Provisioning NIC on a seperate VLAN.  Because of how our network is structured, our Provision NIC could register its DNS, but client computers would not be able to connect to it as it is a segregated network.  This script sets the Provision NIC to NOT register to DNS.
 
 <div>
   <pre class="lang:ps decode:true ">$provNic=Get-WmiObject Win32_NetworkAdapter -filter 'netconnectionid ="Provision"'

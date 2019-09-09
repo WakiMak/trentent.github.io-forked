@@ -22,9 +22,9 @@ tags:
   - Citrix Receiver
 
 ---
-I've been doing some EdgeSight Load Testing with & 6.5; which I haven't done in a few months. Â We have updated our Citrix servers since then with the newer HotFix RollUp (HFRU) pack and now I'm testing a new application. Â Our typical setup is to use a single generic account and connect it via multiple sessions to the same Citrix server and capture some metrics (CPU, Network, Memory, etc). Â In the past, this seemed to work pretty flawlessly but in the last week I was having issues. Â By the time the 3rd session was connecting to the Citrix server, instead of creating a new session it would 'steal' the 1st session. Â This prevented me from having more than 2 sessions connected to a server.
+I've been doing some EdgeSight Load Testing with & 6.5; which I haven't done in a few months.  We have updated our Citrix servers since then with the newer HotFix RollUp (HFRU) pack and now I'm testing a new application.  Our typical setup is to use a single generic account and connect it via multiple sessions to the same Citrix server and capture some metrics (CPU, Network, Memory, etc).  In the past, this seemed to work pretty flawlessly but in the last week I was having issues.  By the time the 3rd session was connecting to the Citrix server, instead of creating a new session it would 'steal' the 1st session.  This prevented me from having more than 2 sessions connected to a server.
 
-Well, it turns out Citrix modified their behaviour a bit but allowed a registry key to be set to change it back. Â The new value was introduced in HFRU 2 and is as follows:
+Well, it turns out Citrix modified their behaviour a bit but allowed a registry key to be set to change it back.  The new value was introduced in HFRU 2 and is as follows:
 
 http://support.citrix.com/article/CTX136248
 

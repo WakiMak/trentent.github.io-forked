@@ -20,7 +20,7 @@ categories:
 tags:
   - Citrix
 ---
-Continuing onÂ [my previous post](http://trentent.blogspot.ca/2015/07/citrix-universal-print-server.html)Â I was troubleshooting some issues with some Zebra label printers. Â I thought I had it working by switching the rendering path to XPS. Â This did allow the printers to print - or so I thought. Â It turns out that some of the older Zebra printers we had (LP-2824) were not printing the labels correctly, a newer LP-2824 PLUS was printing correctly. Â The LP-2824's were scaling the labels down to 20% for some reason.
+Continuing on [my previous post](http://trentent.blogspot.ca/2015/07/citrix-universal-print-server.html) I was troubleshooting some issues with some Zebra label printers.  I thought I had it working by switching the rendering path to XPS.  This did allow the printers to print - or so I thought.  It turns out that some of the older Zebra printers we had (LP-2824) were not printing the labels correctly, a newer LP-2824 PLUS was printing correctly.  The LP-2824's were scaling the labels down to 20% for some reason.
 
 In order to capture this so I wasn't wasting legions of paper, you need to turn on 'Keep printed documents' in the 'Advanced' tab of your printer.
 
@@ -31,7 +31,7 @@ In order to capture this so I wasn't wasting legions of paper, you need to turn 
 On your print server (not the client), this option will store the spooler files (SPL) here:  
 C:\windows\system32\spool\printers
 
-Generally, there are two types of formats encapsulated in a SPL file, RAW and EMF. Â Citrix provides a EMF reader in 'cpviewer.exe'. Â This utility is located in Program Files (x86) and is used like this:  
+Generally, there are two types of formats encapsulated in a SPL file, RAW and EMF.  Citrix provides a EMF reader in 'cpviewer.exe'.  This utility is located in Program Files (x86) and is used like this:  
 "C:\Program Files (x86)\Citrix\ICA Client\cpviewer.exe" C:\00167.SPL
 
 This will bring up a preview.
@@ -44,7 +44,7 @@ I setup two scenarios for printing.
 Scenario 1 - Printing directly to the print queue with the "ZDesigner LP 2824" driver  
 Scenario 2 - Printing through the Citrix Universal Print Driver via UPS.
 
-Trying both scenarios caused my cpviewer.exe to hang/freeze. Â This is where I learned the cpviewer utility ONLY works with EMF-type SPL files. Â Trying to read a RAW file will cause it to hang. Â I was able to verify it was RAW by looking at the preferences for the print driver:
+Trying both scenarios caused my cpviewer.exe to hang/freeze.  This is where I learned the cpviewer utility ONLY works with EMF-type SPL files.  Trying to read a RAW file will cause it to hang.  I was able to verify it was RAW by looking at the preferences for the print driver:
 
 <div style="clear: both; text-align: center;">
   <a style="margin-left: 1em; margin-right: 1em;" href="http://1.bp.blogspot.com/-t9k7jPqTgZY/VZ7jpxL5YOI/AAAAAAAAA9Q/YCDg_0KBO7k/s1600/Screen%2BShot%2B2015-07-09%2Bat%2B3.10.56%2BPM.png"><img src="http://1.bp.blogspot.com/-t9k7jPqTgZY/VZ7jpxL5YOI/AAAAAAAAA9Q/YCDg_0KBO7k/s320/Screen%2BShot%2B2015-07-09%2Bat%2B3.10.56%2BPM.png" width="280" height="320" border="0" /></a>
@@ -53,7 +53,7 @@ Trying both scenarios caused my cpviewer.exe to hang/freeze. Â This is where I l
 &nbsp;
 
 <div>
-  It turns out that 'Printer default' and 'Raw' are the same value. Â Selecting 'Enhanced metafile' and reprinting to that printer created the proper SPL file that I could open in cpviewer. Â With this I could now see the issue the users were reporting:
+  It turns out that 'Printer default' and 'Raw' are the same value.  Selecting 'Enhanced metafile' and reprinting to that printer created the proper SPL file that I could open in cpviewer.  With this I could now see the issue the users were reporting:
 </div>
 
 <div>
@@ -69,21 +69,21 @@ Trying both scenarios caused my cpviewer.exe to hang/freeze. Â This is where I l
     
     <tr>
       <td style="text-align: center;">
-        Left print is direct to the printer, on the right is through Citrix UPD. Â I'm missing the barcode on the right.
+        Left print is direct to the printer, on the right is through Citrix UPD.  I'm missing the barcode on the right.
       </td>
     </tr>
   </table>
 </div>
 
 <div>
-  With the ZDesigner driver, if I forced the 'Enhanced metafile' in the preferences, all the Citrix UPD prints lost their barcodes. Â If I set the Citrix UPD to XPS and the Zebra on RAW it printed with a barcode, but the scale was still horribly off (same as the picture above).
+  With the ZDesigner driver, if I forced the 'Enhanced metafile' in the preferences, all the Citrix UPD prints lost their barcodes.  If I set the Citrix UPD to XPS and the Zebra on RAW it printed with a barcode, but the scale was still horribly off (same as the picture above).
 </div>
 
 <div>
 </div>
 
 <div>
-  I tried adjusting almost every option available on the ZDesigner side, from the paper size, dpi, different stocks, etc. Â It consistently turned out scaled down. Â If I adjusted the margins it would move the graphic around but nothing would enable the graphic to be the correct size. Â I looked at the <a href="http://support.citrix.com/article/CTX119690">Citrix UPD advanced settings</a>Â and changed the paper height, width, dpi, scale, print quality, orientation, etc. Not a single affect was made except for orientation. Â At least I knew the settings were applying because of that. Â Orientation didn't make a difference in the scale, just made the tiny graphic vertical instead of horizontal. Â At this point I decided it had to be driver related. Â I downloaded two different sets of ZDesigner Zebra drivers for the LP-2824, the latest and the last major version release, installed both but the exact same issue still persisted.
+  I tried adjusting almost every option available on the ZDesigner side, from the paper size, dpi, different stocks, etc.  It consistently turned out scaled down.  If I adjusted the margins it would move the graphic around but nothing would enable the graphic to be the correct size.  I looked at the <a href="http://support.citrix.com/article/CTX119690">Citrix UPD advanced settings</a> and changed the paper height, width, dpi, scale, print quality, orientation, etc. Not a single affect was made except for orientation.  At least I knew the settings were applying because of that.  Orientation didn't make a difference in the scale, just made the tiny graphic vertical instead of horizontal.  At this point I decided it had to be driver related.  I downloaded two different sets of ZDesigner Zebra drivers for the LP-2824, the latest and the last major version release, installed both but the exact same issue still persisted.
 </div>
 
 <div>
@@ -97,7 +97,7 @@ Trying both scenarios caused my cpviewer.exe to hang/freeze. Â This is where I l
 </div>
 
 <div>
-  With nothing else to lose, I installed and configured those drivers per the original spec for media, etc. Â Then I printed and checked the SPL file:
+  With nothing else to lose, I installed and configured those drivers per the original spec for media, etc.  Then I printed and checked the SPL file:
 </div>
 
 <div>
@@ -114,14 +114,14 @@ Trying both scenarios caused my cpviewer.exe to hang/freeze. Â This is where I l
 </div>
 
 <div>
-  Success! Â Barcode is present! Â Scale is correct! Â Format is pure EMF from Citrix UPD to barcode printer, no XPS anywhere, no RAW anywhere!
+  Success!  Barcode is present!  Scale is correct!  Format is pure EMF from Citrix UPD to barcode printer, no XPS anywhere, no RAW anywhere!
 </div>
 
 <div>
 </div>
 
 <div>
-  All that said, this is a ringing endorsement for what Seagull Scientific has done with the Zebra Barcode printers. Â Their drivers *just work* as opposed to the ZDesigner drivers. Â If you need to print to older Zebra printers, heck, probably for all Zebra printers, use Seagull's drivers.
+  All that said, this is a ringing endorsement for what Seagull Scientific has done with the Zebra Barcode printers.  Their drivers *just work* as opposed to the ZDesigner drivers.  If you need to print to older Zebra printers, heck, probably for all Zebra printers, use Seagull's drivers.
 </div>
 
 <!-- AddThis Advanced Settings generic via filter on the_content -->

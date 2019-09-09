@@ -24,9 +24,9 @@ We recently encountered this issue with AppV 4.6 Management server when installi
 
 <img class="alignnone size-full wp-image-221" title="Untitled" src="http://dipanmpatel.files.wordpress.com/2012/08/untitled.png?w=595" alt="" /> 
 
-The issue appeared to us to be related to a permissions issue on the database.Â For some awful reason, to resolve this issue we had to add the SYSADMIN right to the account on the SQL database.Â Since we are running an enterprise solution here, adding the user to the Domain Admins as suggested all over the web would not work as we segregate those services.Â It also makes sense that adding the account to the Domain Admins would work on the smaller environments because SQL Express uses AD permissions and would add the Domain Admins to the highest privileges to the local install of SQL Express.
+The issue appeared to us to be related to a permissions issue on the database. For some awful reason, to resolve this issue we had to add the SYSADMIN right to the account on the SQL database. Since we are running an enterprise solution here, adding the user to the Domain Admins as suggested all over the web would not work as we segregate those services. It also makes sense that adding the account to the Domain Admins would work on the smaller environments because SQL Express uses AD permissions and would add the Domain Admins to the highest privileges to the local install of SQL Express.
 
-So, for enterprise accounts out there, Microsoft has a horrible setup for adding servers to AppV as the account that does the install needs the highest rights on the DB.Â I don't know why but it really screams to me that this is poor design.
+So, for enterprise accounts out there, Microsoft has a horrible setup for adding servers to AppV as the account that does the install needs the highest rights on the DB. I don't know why but it really screams to me that this is poor design.
 
 <!-- AddThis Advanced Settings generic via filter on the_content -->
 

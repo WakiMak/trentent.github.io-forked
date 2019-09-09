@@ -14,4 +14,4 @@ tags:
   - scripting
   - Storefront
 ---
-Citrix Storefront allows you to prepopulate the credentials for your Explicit Logon. Â The explicit logon screen is generally seen here:
+Citrix Storefront allows you to prepopulate the credentials for your Explicit Logon.  The explicit logon screen is generally seen here:

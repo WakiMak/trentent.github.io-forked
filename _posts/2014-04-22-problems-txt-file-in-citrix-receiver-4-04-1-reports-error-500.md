@@ -55,7 +55,7 @@ Tuesday, April 22, 2014/1:14:04 AM    at Dazzle.PNAgent.PNAgentClient.Dazzle.Mod
 Tuesday, April 22, 2014/1:14:04 AM    at Dazzle.Launcher.ICARunner.GetICAFileRetryLoop(IICAProvider icastore, String resourceId, LaunchProgressUI launchProgressUI, String& url, Boolean isRequestForPreLaunch)
 Tuesday, April 22, 2014/1:14:04 AM    at Dazzle.Launcher.ICARunner.Launch(IProvider store, IGlobalState state, String resourceId, String citrixId, String cmdline, ReconnectAction icaReconnectAction, Boolean isRequestForPreLaunch)</pre>
 
-Make sure you go to the PNA agent web folder on the designated server and setÂ <span style="background-color: white; color: #4d4f53; font-family: HelveticaNeueW01-55Roma, Helvetica, Arial, sans-serif; font-size: 13px;">RequireLaunchReference=OffÂ </span>and remove the # in the WebInterface.conf file.
+Make sure you go to the PNA agent web folder on the designated server and set <span style="background-color: white; color: #4d4f53; font-family: HelveticaNeueW01-55Roma, Helvetica, Arial, sans-serif; font-size: 13px;">RequireLaunchReference=Off </span>and remove the # in the WebInterface.conf file.
 
 http://support.citrix.com/article/CTX123003
 

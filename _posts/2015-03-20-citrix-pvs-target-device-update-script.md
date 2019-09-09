@@ -24,11 +24,11 @@ tags:
   - Target Device
 
 ---
-Saman and I have created a Citrix PVS update script we use and run each time we update a PVS target device. Â This script has been generated after finding numerous issues that needed to be fixed after updating a PVS image. Â It includes fixes to issues with AppV5, PVS, & 6.5, etc.
+Saman and I have created a Citrix PVS update script we use and run each time we update a PVS target device.  This script has been generated after finding numerous issues that needed to be fixed after updating a PVS image.  It includes fixes to issues with AppV5, PVS, & 6.5, etc.
 
 We also made the script to be able to be run automatically by accepting command-line parameters so that we can use it to do Windows Updates with PVS's automatic vDisk update feature.
 
-I've removed email addresses and some specific application fixes that would only be relevant to our environment. Â So I've tried to generalize this the best I can. Â We tried to make this script dynamic so if you have a vDisk without AppV it will skip the features that require AppV, skip 64bit only features, etc.
+I've removed email addresses and some specific application fixes that would only be relevant to our environment.  So I've tried to generalize this the best I can.  We tried to make this script dynamic so if you have a vDisk without AppV it will skip the features that require AppV, skip 64bit only features, etc.
 
 I will post the supplemental scripts in more posts.
 

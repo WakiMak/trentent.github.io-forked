@@ -21,7 +21,7 @@ tags:
   - AppV
 ---
 <div style="mso-layout-grid-align: none; mso-pagination: none; text-autospace: none;">
-  <span lang="EN-US" style="font-family: Arial; font-size: 13.0pt;">Crystal Reports 13 and AppV 5 have issues. Â Crystal Reports 13 (CR) installs to some long paths which fail when loaded AppV5 tries to 'integrate' them. Â A </span><span lang="EN-US"><a href="http://ryanwill.com/app-v-5-sp2-and-crystal-reports-runtime-13/">blog detailed shortening the installdir</a></span><span lang="EN-US" style="font-family: Arial; font-size: 13.0pt;"> path to something much shorter but CR still failed for me. Â My path without modifying the INSTALLDIR property was:</span>
+  <span lang="EN-US" style="font-family: Arial; font-size: 13.0pt;">Crystal Reports 13 and AppV 5 have issues.  Crystal Reports 13 (CR) installs to some long paths which fail when loaded AppV5 tries to 'integrate' them.  A </span><span lang="EN-US"><a href="http://ryanwill.com/app-v-5-sp2-and-crystal-reports-runtime-13/">blog detailed shortening the installdir</a></span><span lang="EN-US" style="font-family: Arial; font-size: 13.0pt;"> path to something much shorter but CR still failed for me.  My path without modifying the INSTALLDIR property was:</span>
 </div>
 
 <div style="mso-layout-grid-align: none; mso-pagination: none; text-autospace: none;">
@@ -157,7 +157,7 @@ tags:
 </div>
 
 <div style="mso-layout-grid-align: none; mso-pagination: none; text-autospace: none;">
-  <span lang="EN-US" style="font-family: Arial; font-size: 13.0pt;">You can actually replicate a similar error by trying to 'install' CR with a long path, so it's not AppV5 that's at fault, but apparently something within the CR DLL's. Â Trying to install to a path similar in length to the AppV5 path will fail:</span>
+  <span lang="EN-US" style="font-family: Arial; font-size: 13.0pt;">You can actually replicate a similar error by trying to 'install' CR with a long path, so it's not AppV5 that's at fault, but apparently something within the CR DLL's.  Trying to install to a path similar in length to the AppV5 path will fail:</span>
 </div>
 
 <div style="mso-layout-grid-align: none; mso-pagination: none; text-autospace: none;">
@@ -198,7 +198,7 @@ tags:
 &nbsp;
 
 <div style="mso-layout-grid-align: none; mso-pagination: none; text-autospace: none;">
-  <span lang="EN-US" style="font-family: Arial; font-size: 13.0pt;">259 total characters. Â At 260 characters or greater the installer fails with an error similar to the above. I'm not sure why the AppV5 path is significantly less, but it is for some reason.</span>
+  <span lang="EN-US" style="font-family: Arial; font-size: 13.0pt;">259 total characters.  At 260 characters or greater the installer fails with an error similar to the above. I'm not sure why the AppV5 path is significantly less, but it is for some reason.</span>
 </div>
 
 <div style="mso-layout-grid-align: none; mso-pagination: none; text-autospace: none;">
@@ -226,7 +226,7 @@ tags:
 </div>
 
 <div style="mso-layout-grid-align: none; mso-pagination: none; text-autospace: none;">
-  <span lang="EN-US" style="font-family: Arial; font-size: 13.0pt;">To do this I needed to modify the SAP Crystal Reports 13 file with a MST transform file. Â I did it by doing this:</span>
+  <span lang="EN-US" style="font-family: Arial; font-size: 13.0pt;">To do this I needed to modify the SAP Crystal Reports 13 file with a MST transform file.  I did it by doing this:</span>
 </div>
 
 <div style="mso-layout-grid-align: none; mso-pagination: none; text-autospace: none;">
@@ -236,7 +236,7 @@ tags:
   <tr style="mso-yfti-firstrow: yes; mso-yfti-irow: 0;">
     <td style="background: #16ADEE; border: solid #BFBFBF 1.0pt; mso-border-alt: solid #BFBFBF .5pt; padding: 0cm 5.4pt 0cm 5.4pt; width: 57.0pt;" valign="bottom" width="57">
       <div style="mso-layout-grid-align: none; mso-pagination: none; text-align: justify; text-autospace: none; text-justify: inter-ideograph;">
-        <b><span lang="EN-US" style="font-family: Arial; font-size: 10.0pt;">Step Â </span></b>
+        <b><span lang="EN-US" style="font-family: Arial; font-size: 10.0pt;">Step  </span></b>
       </div>
     </td>
     
@@ -252,7 +252,7 @@ tags:
       <div style="margin-left: 36.0pt; mso-layout-grid-align: none; mso-list: l0 level1 lfo1; mso-pagination: none; tab-stops: 11.0pt 36.0pt; text-autospace: none; text-indent: -36.0pt;">
         <!-- [if !supportLists]-->
         
-        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt; mso-fareast-font-family: Arial;"><span style="mso-list: Ignore;">1<span style="font: 7.0pt 'Times New Roman';">Â Â </span></span></span><!--[endif]-->
+        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt; mso-fareast-font-family: Arial;"><span style="mso-list: Ignore;">1<span style="font: 7.0pt 'Times New Roman';">  </span></span></span><!--[endif]-->
         
         <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt;">1. </span>
       </div>
@@ -276,7 +276,7 @@ tags:
       <div style="margin-left: 36.0pt; mso-layout-grid-align: none; mso-list: l1 level1 lfo2; mso-pagination: none; tab-stops: 11.0pt 36.0pt; text-autospace: none; text-indent: -36.0pt;">
         <!-- [if !supportLists]-->
         
-        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt; mso-fareast-font-family: Arial;"><span style="mso-list: Ignore;">1<span style="font: 7.0pt 'Times New Roman';">Â Â </span></span></span><!--[endif]-->
+        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt; mso-fareast-font-family: Arial;"><span style="mso-list: Ignore;">1<span style="font: 7.0pt 'Times New Roman';">  </span></span></span><!--[endif]-->
         
         <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt;">2. </span>
       </div>
@@ -294,7 +294,7 @@ tags:
       <div style="margin-left: 36.0pt; mso-layout-grid-align: none; mso-list: l2 level1 lfo3; mso-pagination: none; tab-stops: 11.0pt 36.0pt; text-autospace: none; text-indent: -36.0pt;">
         <!-- [if !supportLists]-->
         
-        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt; mso-fareast-font-family: Arial;"><span style="mso-list: Ignore;">1<span style="font: 7.0pt 'Times New Roman';">Â Â </span></span></span><!--[endif]-->
+        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt; mso-fareast-font-family: Arial;"><span style="mso-list: Ignore;">1<span style="font: 7.0pt 'Times New Roman';">  </span></span></span><!--[endif]-->
         
         <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt;">3. </span>
       </div>
@@ -305,7 +305,7 @@ tags:
       </div>
       
       <div style="mso-layout-grid-align: none; mso-pagination: none; text-autospace: none;">
-        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt;">Launch Orca and â€˜Openâ€™Â the Crystal Reports version</span>
+        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt;">Launch Orca and €˜Open€™ the Crystal Reports version</span>
       </div>
       
       <div style="mso-layout-grid-align: none; mso-pagination: none; text-autospace: none;">
@@ -318,7 +318,7 @@ tags:
       <div style="margin-left: 36.0pt; mso-layout-grid-align: none; mso-list: l3 level1 lfo4; mso-pagination: none; tab-stops: 11.0pt 36.0pt; text-autospace: none; text-indent: -36.0pt;">
         <!-- [if !supportLists]-->
         
-        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt; mso-fareast-font-family: Arial;"><span style="mso-list: Ignore;">1<span style="font: 7.0pt 'Times New Roman';">Â Â </span></span></span><!--[endif]-->
+        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt; mso-fareast-font-family: Arial;"><span style="mso-list: Ignore;">1<span style="font: 7.0pt 'Times New Roman';">  </span></span></span><!--[endif]-->
         
         <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt;">4. </span>
       </div>
@@ -326,7 +326,7 @@ tags:
     
     <td style="border-bottom: solid #BFBFBF 1.0pt; border-left: none; border-right: solid #BFBFBF 1.0pt; border-top: none; mso-border-alt: solid #BFBFBF .5pt; mso-border-left-alt: solid #BFBFBF .5pt; mso-border-top-alt: solid #BFBFBF .5pt; padding: 0cm 5.4pt 0cm 5.4pt; width: 434.0pt;" valign="top" width="434">
       <div style="mso-layout-grid-align: none; mso-pagination: none; text-autospace: none;">
-        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt;">Choose Transform from the menu > â€˜New Transformâ€™</span>
+        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt;">Choose Transform from the menu > €˜New Transform€™</span>
       </div>
     </td>
   </tr>
@@ -336,7 +336,7 @@ tags:
       <div style="margin-left: 36.0pt; mso-layout-grid-align: none; mso-list: l4 level1 lfo5; mso-pagination: none; tab-stops: 11.0pt 36.0pt; text-autospace: none; text-indent: -36.0pt;">
         <!-- [if !supportLists]-->
         
-        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt; mso-fareast-font-family: Arial;"><span style="mso-list: Ignore;">1<span style="font: 7.0pt 'Times New Roman';">Â Â </span></span></span><!--[endif]-->
+        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt; mso-fareast-font-family: Arial;"><span style="mso-list: Ignore;">1<span style="font: 7.0pt 'Times New Roman';">  </span></span></span><!--[endif]-->
         
         <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt;">5. </span>
       </div>
@@ -344,7 +344,7 @@ tags:
     
     <td style="border-bottom: solid #BFBFBF 1.0pt; border-left: none; border-right: solid #BFBFBF 1.0pt; border-top: none; mso-border-alt: solid #BFBFBF .5pt; mso-border-left-alt: solid #BFBFBF .5pt; mso-border-top-alt: solid #BFBFBF .5pt; padding: 0cm 5.4pt 0cm 5.4pt; width: 434.0pt;" valign="top" width="434">
       <div style="mso-layout-grid-align: none; mso-pagination: none; text-autospace: none;">
-        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt;">Select â€˜Directoryâ€™ and find the first instance of â€˜CrystalR|Crystal Reports for .NET Framework 4.0â€™</span>
+        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt;">Select €˜Directory€™ and find the first instance of €˜CrystalR|Crystal Reports for .NET Framework 4.0€™</span>
       </div>
       
       <div style="mso-layout-grid-align: none; mso-pagination: none; text-autospace: none;">
@@ -364,7 +364,7 @@ tags:
       <div style="margin-left: 36.0pt; mso-layout-grid-align: none; mso-list: l5 level1 lfo6; mso-pagination: none; tab-stops: 11.0pt 36.0pt; text-autospace: none; text-indent: -36.0pt;">
         <!-- [if !supportLists]-->
         
-        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt; mso-fareast-font-family: Arial;"><span style="mso-list: Ignore;">1<span style="font: 7.0pt 'Times New Roman';">Â Â </span></span></span><!--[endif]-->
+        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt; mso-fareast-font-family: Arial;"><span style="mso-list: Ignore;">1<span style="font: 7.0pt 'Times New Roman';">  </span></span></span><!--[endif]-->
         
         <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt;">6. </span>
       </div>
@@ -372,7 +372,7 @@ tags:
     
     <td style="border-bottom: solid #BFBFBF 1.0pt; border-left: none; border-right: solid #BFBFBF 1.0pt; border-top: none; mso-border-alt: solid #BFBFBF .5pt; mso-border-left-alt: solid #BFBFBF .5pt; mso-border-top-alt: solid #BFBFBF .5pt; padding: 0cm 5.4pt 0cm 5.4pt; width: 434.0pt;" valign="top" width="434">
       <div style="mso-layout-grid-align: none; mso-pagination: none; text-autospace: none;">
-        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt;">Double-click â€˜CrystalR|Crystal Reports for .NET Framework 4.0â€™ and copy the field.Â Select the menu â€˜Editâ€™ > â€˜Replaceâ€™ and set â€˜Find whatâ€™ as â€˜CrystalR|Crystal Reports for .NET Framework 4.0â€™ and â€˜Replace with:â€™ as â€˜CrystalR|Câ€™</span>
+        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt;">Double-click €˜CrystalR|Crystal Reports for .NET Framework 4.0€™ and copy the field. Select the menu €˜Edit€™ > €˜Replace€™ and set €˜Find what€™ as €˜CrystalR|Crystal Reports for .NET Framework 4.0€™ and €˜Replace with:€™ as €˜CrystalR|C€™</span>
       </div>
       
       <div style="mso-layout-grid-align: none; mso-pagination: none; text-autospace: none;">
@@ -386,7 +386,7 @@ tags:
       </div>
       
       <div style="mso-layout-grid-align: none; mso-pagination: none; text-autospace: none;">
-        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt;">And click on â€˜Replace Allâ€™.Â If you get prompted:</span>
+        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt;">And click on €˜Replace All€™. If you get prompted:</span>
       </div>
       
       <div style="mso-layout-grid-align: none; mso-pagination: none; text-autospace: none;">
@@ -397,7 +397,7 @@ tags:
       </div>
       
       <div style="mso-layout-grid-align: none; mso-pagination: none; text-autospace: none;">
-        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt;">Select â€˜Yesâ€™.</span>
+        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt;">Select €˜Yes€™.</span>
       </div>
     </td>
   </tr>
@@ -407,7 +407,7 @@ tags:
       <div style="margin-left: 36.0pt; mso-layout-grid-align: none; mso-list: l6 level1 lfo7; mso-pagination: none; tab-stops: 11.0pt 36.0pt; text-autospace: none; text-indent: -36.0pt;">
         <!-- [if !supportLists]-->
         
-        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt; mso-fareast-font-family: Arial;"><span style="mso-list: Ignore;">1<span style="font: 7.0pt 'Times New Roman';">Â Â </span></span></span><!--[endif]-->
+        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt; mso-fareast-font-family: Arial;"><span style="mso-list: Ignore;">1<span style="font: 7.0pt 'Times New Roman';">  </span></span></span><!--[endif]-->
         
         <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt;">7. </span>
       </div>
@@ -415,7 +415,7 @@ tags:
     
     <td style="border-bottom: solid #BFBFBF 1.0pt; border-left: none; border-right: solid #BFBFBF 1.0pt; border-top: none; mso-border-alt: solid #BFBFBF .5pt; mso-border-left-alt: solid #BFBFBF .5pt; mso-border-top-alt: solid #BFBFBF .5pt; padding: 0cm 5.4pt 0cm 5.4pt; width: 434.0pt;" valign="top" width="434">
       <div style="mso-layout-grid-align: none; mso-pagination: none; text-autospace: none;">
-        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt;">Repeat the process for â€˜SAPBusin|SAP BusinessObjects Enterprise XI 4.0â€™Â to â€˜SAPBusin|Xâ€™</span>
+        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt;">Repeat the process for €˜SAPBusin|SAP BusinessObjects Enterprise XI 4.0€™ to €˜SAPBusin|X€™</span>
       </div>
       
       <div style="mso-layout-grid-align: none; mso-pagination: none; text-autospace: none;">
@@ -428,7 +428,7 @@ tags:
       <div style="margin-left: 36.0pt; mso-layout-grid-align: none; mso-list: l7 level1 lfo8; mso-pagination: none; tab-stops: 11.0pt 36.0pt; text-autospace: none; text-indent: -36.0pt;">
         <!-- [if !supportLists]-->
         
-        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt; mso-fareast-font-family: Arial;"><span style="mso-list: Ignore;">1<span style="font: 7.0pt 'Times New Roman';">Â Â </span></span></span><!--[endif]-->
+        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt; mso-fareast-font-family: Arial;"><span style="mso-list: Ignore;">1<span style="font: 7.0pt 'Times New Roman';">  </span></span></span><!--[endif]-->
         
         <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt;">8. </span>
       </div>
@@ -436,7 +436,7 @@ tags:
     
     <td style="border-bottom: solid #BFBFBF 1.0pt; border-left: none; border-right: solid #BFBFBF 1.0pt; border-top: none; mso-border-alt: solid #BFBFBF .5pt; mso-border-left-alt: solid #BFBFBF .5pt; mso-border-top-alt: solid #BFBFBF .5pt; padding: 0cm 5.4pt 0cm 5.4pt; width: 434.0pt;" valign="top" width="434">
       <div style="mso-layout-grid-align: none; mso-pagination: none; text-autospace: none;">
-        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt;">Select â€˜Registryâ€™ and sort by â€˜Valueâ€™.Â Find the first instance of [INSTALLDIR]</span>
+        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt;">Select €˜Registry€™ and sort by €˜Value€™. Find the first instance of [INSTALLDIR]</span>
       </div>
       
       <div style="mso-layout-grid-align: none; mso-pagination: none; text-autospace: none;">
@@ -453,7 +453,7 @@ tags:
       <div style="margin-left: 36.0pt; mso-layout-grid-align: none; mso-list: l8 level1 lfo9; mso-pagination: none; tab-stops: 11.0pt 36.0pt; text-autospace: none; text-indent: -36.0pt;">
         <!-- [if !supportLists]-->
         
-        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt; mso-fareast-font-family: Arial;"><span style="mso-list: Ignore;">1<span style="font: 7.0pt 'Times New Roman';">Â Â </span></span></span><!--[endif]-->
+        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt; mso-fareast-font-family: Arial;"><span style="mso-list: Ignore;">1<span style="font: 7.0pt 'Times New Roman';">  </span></span></span><!--[endif]-->
         
         <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt;">9. </span>
       </div>
@@ -461,7 +461,7 @@ tags:
     
     <td style="border-bottom: solid #BFBFBF 1.0pt; border-left: none; border-right: solid #BFBFBF 1.0pt; border-top: none; mso-border-alt: solid #BFBFBF .5pt; mso-border-left-alt: solid #BFBFBF .5pt; mso-border-top-alt: solid #BFBFBF .5pt; padding: 0cm 5.4pt 0cm 5.4pt; width: 434.0pt;" valign="top" width="434">
       <div style="mso-layout-grid-align: none; mso-pagination: none; text-autospace: none;">
-        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt;">Do a â€˜Replaceâ€™ and enter â€˜[INSTALLDIR]Crystal Reports for .NET Framework 4.0CommonSAP BusinessObjects Enterprise XI 4.0â€™ for â€˜Find whatâ€™ and â€˜Replace withâ€™ as â€˜[INSTALLDIR]CCommonXâ€™</span>
+        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt;">Do a €˜Replace€™ and enter €˜[INSTALLDIR]Crystal Reports for .NET Framework 4.0CommonSAP BusinessObjects Enterprise XI 4.0€™ for €˜Find what€™ and €˜Replace with€™ as €˜[INSTALLDIR]CCommonX€™</span>
       </div>
       
       <div style="mso-layout-grid-align: none; mso-pagination: none; text-autospace: none;">
@@ -473,7 +473,7 @@ tags:
         </div>
         
         <p>
-          <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt;">And click on â€˜Replace Allâ€™</span>
+          <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt;">And click on €˜Replace All€™</span>
         </p>
       </div>
     </td>
@@ -484,7 +484,7 @@ tags:
       <div style="margin-left: 36.0pt; mso-layout-grid-align: none; mso-list: l9 level1 lfo10; mso-pagination: none; tab-stops: 11.0pt 36.0pt; text-autospace: none; text-indent: -36.0pt;">
         <!-- [if !supportLists]-->
         
-        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt; mso-fareast-font-family: Arial;"><span style="mso-list: Ignore;">1<span style="font: 7.0pt 'Times New Roman';">Â Â </span></span></span><!--[endif]-->
+        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt; mso-fareast-font-family: Arial;"><span style="mso-list: Ignore;">1<span style="font: 7.0pt 'Times New Roman';">  </span></span></span><!--[endif]-->
         
         <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt;">10. </span>
       </div>
@@ -509,7 +509,7 @@ tags:
       <div style="margin-left: 36.0pt; mso-layout-grid-align: none; mso-list: l10 level1 lfo11; mso-pagination: none; tab-stops: 11.0pt 36.0pt; text-autospace: none; text-indent: -36.0pt;">
         <!-- [if !supportLists]-->
         
-        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt; mso-fareast-font-family: Arial;"><span style="mso-list: Ignore;">1<span style="font: 7.0pt 'Times New Roman';">Â Â </span></span></span><!--[endif]-->
+        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt; mso-fareast-font-family: Arial;"><span style="mso-list: Ignore;">1<span style="font: 7.0pt 'Times New Roman';">  </span></span></span><!--[endif]-->
         
         <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt;">11. </span>
       </div>
@@ -517,7 +517,7 @@ tags:
     
     <td style="border-bottom: solid #BFBFBF 1.0pt; border-left: none; border-right: solid #BFBFBF 1.0pt; border-top: none; mso-border-alt: solid #BFBFBF .5pt; mso-border-left-alt: solid #BFBFBF .5pt; mso-border-top-alt: solid #BFBFBF .5pt; padding: 0cm 5.4pt 0cm 5.4pt; width: 434.0pt;" valign="top" width="434">
       <div style="mso-layout-grid-align: none; mso-pagination: none; text-autospace: none;">
-        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt;">Select the menu â€˜Transformâ€™ > â€˜Generate Transformâ€™ and save the file as something like:</span>
+        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt;">Select the menu €˜Transform€™ > €˜Generate Transform€™ and save the file as something like:</span>
       </div>
       
       <div style="mso-layout-grid-align: none; mso-pagination: none; text-autospace: none;">
@@ -534,7 +534,7 @@ tags:
       <div style="margin-left: 36.0pt; mso-layout-grid-align: none; mso-list: l11 level1 lfo12; mso-pagination: none; tab-stops: 11.0pt 36.0pt; text-autospace: none; text-indent: -36.0pt;">
         <!-- [if !supportLists]-->
         
-        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt; mso-fareast-font-family: Arial;"><span style="mso-list: Ignore;">1<span style="font: 7.0pt 'Times New Roman';">Â Â </span></span></span><!--[endif]-->
+        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt; mso-fareast-font-family: Arial;"><span style="mso-list: Ignore;">1<span style="font: 7.0pt 'Times New Roman';">  </span></span></span><!--[endif]-->
         
         <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt;">12. </span>
       </div>
@@ -542,7 +542,7 @@ tags:
     
     <td style="border-bottom: solid #BFBFBF 1.0pt; border-left: none; border-right: solid #BFBFBF 1.0pt; border-top: none; mso-border-alt: solid #BFBFBF .5pt; mso-border-left-alt: solid #BFBFBF .5pt; mso-border-top-alt: solid #BFBFBF .5pt; padding: 0cm 5.4pt 0cm 5.4pt; width: 434.0pt;" valign="top" width="434">
       <div style="mso-layout-grid-align: none; mso-pagination: none; text-autospace: none;">
-        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt;">Select the menu â€˜Transformâ€™ > â€˜Close Transformâ€™ and exit out of Orca.</span>
+        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt;">Select the menu €˜Transform€™ > €˜Close Transform€™ and exit out of Orca.</span>
       </div>
       
       <div style="mso-layout-grid-align: none; mso-pagination: none; text-autospace: none;">
@@ -552,7 +552,7 @@ tags:
 </table>
 
 <div style="mso-layout-grid-align: none; mso-pagination: none; text-align: justify; text-autospace: none; text-justify: inter-ideograph;">
-  <span lang="EN-US" style="font-family: Arial; font-size: 13.0pt;">You can now install SAP CR with a command lineÂ similar to this:</span>
+  <span lang="EN-US" style="font-family: Arial; font-size: 13.0pt;">You can now install SAP CR with a command line similar to this:</span>
 </div>
 
 <div style="mso-layout-grid-align: none; mso-pagination: none; text-align: justify; text-autospace: none; text-justify: inter-ideograph;">
