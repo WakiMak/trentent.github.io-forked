@@ -16,7 +16,7 @@ tags:
   - Registry
   - Workspace Environment Manager
 ---
-Citrix Workspace Environment Manager can be used as a replacement for Active Directory (AD) Group Policy Preferences (GPP). It does not deal with machine policies, however. Because of this AD Group Policy Objects (GPO) are still required to apply policies to machines. However, WEM"s goal isn"t to manipulate machine policies but to improve user logon times by replacing the user policy of an AD GPO. A GPO has two different engines to apply settings. A Registry Policy engine and the engine that drives Client Side Extensionsù (CSE). The biggest time consumer of a GPO is processing the logic of a CSE or the action of the CSE.  I'll look at each engine and what they mean for WEM.
+Citrix Workspace Environment Manager can be used as a replacement for Active Directory (AD) Group Policy Preferences (GPP). It does not deal with machine policies, however. Because of this AD Group Policy Objects (GPO) are still required to apply policies to machines. However, WEM"s goal isn"t to manipulate machine policies but to improve user logon times by replacing the user policy of an AD GPO. A GPO has two different engines to apply settings. A Registry Policy engine and the engine that drives Client Side Extensions(CSE). The biggest time consumer of a GPO is processing the logic of a CSE or the action of the CSE.  I'll look at each engine and what they mean for WEM.
 
 ## Registry Extension
 
