@@ -35,40 +35,40 @@ First, installing Citrix Director 7.7 for & 6.5:
 1) Launch the AutoRun (AutoSelect.exe) installation file
 
 2)[<img src="http://theorypc.ca/wp-content/uploads/2016/01/Picture1-1-300x219.png" border="0" />](http://theorypc.ca/wp-content/uploads/2016/01/Picture1-1.png)  
-Select ‘**Start**’ for &
+Select '**Start**' for &
 
 3)[<img src="http://theorypc.ca/wp-content/uploads/2016/01/Picture2-1-300x221.png" border="0" />](http://theorypc.ca/wp-content/uploads/2016/01/Picture2-1.png)  
-Select ‘**Citrix Director**’
+Select '**Citrix Director**'
 
 4)[<img src="http://theorypc.ca/wp-content/uploads/2016/01/Picture3-1-300x226.png" border="0" />](http://theorypc.ca/wp-content/uploads/2016/01/Picture3-1.png)  
-Agree to the licensing agreement and click ‘**Next**’
+Agree to the licensing agreement and click '**Next**'
 
 5)[<img src="http://theorypc.ca/wp-content/uploads/2016/01/Picture4-1-300x226.png" border="0" />](http://theorypc.ca/wp-content/uploads/2016/01/Picture4-1.png)  
-Select ‘**Next**’
+Select '**Next**'
 
 6)[<img src="http://theorypc.ca/wp-content/uploads/2016/01/Picture5-1-300x226.png" border="0" />](http://theorypc.ca/wp-content/uploads/2016/01/Picture5-1.png)  
-Without entering any information, select ‘**Next**’
+Without entering any information, select '**Next**'
 
 7)[<img src="http://theorypc.ca/wp-content/uploads/2016/01/Picture6-1-300x226.png" border="0" />](http://theorypc.ca/wp-content/uploads/2016/01/Picture6-1.png)  
-Select ‘**Next**’
+Select '**Next**'
 
 8)[<img src="http://theorypc.ca/wp-content/uploads/2016/01/Picture7-1-300x226.png" border="0" />](http://theorypc.ca/wp-content/uploads/2016/01/Picture7-1.png)  
-Select ‘**Next**’ for the firewall rules
+Select '**Next**' for the firewall rules
 
 9)[<img src="http://theorypc.ca/wp-content/uploads/2016/01/Picture8-1-300x225.png" border="0" />](http://theorypc.ca/wp-content/uploads/2016/01/Picture8-1.png)  
-Select ‘**Install**’
+Select '**Install**'
 
 10) [<img src="http://theorypc.ca/wp-content/uploads/2016/01/Picture9-1-300x227.png" border="0" />](http://theorypc.ca/wp-content/uploads/2016/01/Picture9-1.png)  
 Wait for the install to complete
 
 11) [<img src="http://theorypc.ca/wp-content/uploads/2016/01/Picture10-1-300x287.png" border="0" />](http://theorypc.ca/wp-content/uploads/2016/01/Picture10-1.png)  
-Open **IIS Manager** on the Director Server. Select the **Director** site under **Default Web Site** and double-click on ‘**Application Settings**’
+Open **IIS Manager** on the Director Server. Select the **Director** site under **Default Web Site** and double-click on '**Application Settings**'
 
 12)[<img src="http://theorypc.ca/wp-content/uploads/2016/01/Picture11-1-300x131.png" border="0" />](http://theorypc.ca/wp-content/uploads/2016/01/Picture11-1.png)  
-Under ‘**Actions**’ click ‘**Add**'
+Under '**Actions**' click '**Add**'
 
 13)[<img src="http://theorypc.ca/wp-content/uploads/2016/01/Picture12-1-300x171.png" border="0" />](http://theorypc.ca/wp-content/uploads/2016/01/Picture12-1.png)  
-For ‘**Name**’ enter ‘**Service.AutoDiscoveryAddressesXA**’ and for value put the IP of the local ZDC server
+For '**Name**' enter '**Service.AutoDiscoveryAddressesXA**' and for value put the IP of the local ZDC server
 
 14)[<img src="http://theorypc.ca/wp-content/uploads/2016/01/Picture13-1-300x196.png" border="0" />](http://theorypc.ca/wp-content/uploads/2016/01/Picture13-1.png)  
 If you are not setting up certificates on the server for SSL, you can disable the SSL verification by changing the UI.EnableSslCheck to false.
@@ -236,7 +236,7 @@ And the event log shows:
 The requested data could not be found in the data 'The virtual desktop via WinRM service reported an exception. See the event log for more information.' ('http://WSCTXZDC301T.healthy.bewell.ca:5985/wsman').
 
 <span style="font-family: Courier New, Courier, monospace; font-size: x-small;">User: 'HEALTHYadtest91'</span>  
-<span style="font-family: Courier New, Courier, monospace; font-size: x-small;"><br /> </span><span style="font-family: Courier New, Courier, monospace; font-size: x-small;">Console operation: 'Retrieving running application details for IMA Session…'</span>  
+<span style="font-family: Courier New, Courier, monospace; font-size: x-small;"><br /> </span><span style="font-family: Courier New, Courier, monospace; font-size: x-small;">Console operation: 'Retrieving running application details for IMA Session...'</span>  
 <span style="font-family: Courier New, Courier, monospace; font-size: x-small;"><br /> </span><span style="font-family: Courier New, Courier, monospace; font-size: x-small;">Additional information:</span>  
 <span style="font-family: Courier New, Courier, monospace; font-size: x-small;"><br /> </span><span style="font-family: Courier New, Courier, monospace; font-size: x-small;">'Exception of type 'Citrix.Dmc.Common.NotFoundException' was thrown.'</span>
 

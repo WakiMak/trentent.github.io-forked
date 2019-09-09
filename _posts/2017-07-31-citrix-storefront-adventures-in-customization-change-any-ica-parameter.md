@@ -24,7 +24,7 @@ But now that I have headers being passed properly, I thought I should revisit my
 
 Can we replace Sam's customization with one that can manipulate any ICA parameter we so choose?
 
-Yes.  Yes we can.  Storefront is very nice, flexible and powerful 🙂
+Yes.  Yes we can.  Storefront is very nice, flexible and powerful 
 
 I've designed this customization to look for an additional app setting tag.  This needs to be added to the web.config at the ""C:\inetpub\wwwroot\Citrix\Store\web.config"" level:
 

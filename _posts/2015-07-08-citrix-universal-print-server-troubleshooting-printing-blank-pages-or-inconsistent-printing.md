@@ -92,7 +92,7 @@ Setting this setting to either "Enabled" setting turns on the UPC feature. &nbsp
 
 Ok, so with UPS installed and working we should be good right?
 
-Right? &nbsp;🙂
+Right? &nbsp;
 
 Well... &nbsp;It turns out that our label printers were printing out blanks with Citrix UPS. &nbsp;To determine if it was truly the UPS causing my problem I enabled printer mapping, added the network printer locally complete with the native driver and launched my app. &nbsp;This mapped my local printer into my session with the Citrix UPD. &nbsp;I tried printing and... &nbsp; nothing. &nbsp;Just a blank label came out.
 

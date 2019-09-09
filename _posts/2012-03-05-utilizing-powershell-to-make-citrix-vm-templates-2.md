@@ -154,7 +154,7 @@ f) deletes the script from running on startup
 8) the PowerCLI will now wait till the machine turns itself off...  
 9) Then it will reconnect the NIC, remove any stale templates and then makes a new template and then removes the clone VM.
 
-Done! 🙂
+Done! 
 
 <!-- AddThis Advanced Settings generic via filter on the_content -->
 

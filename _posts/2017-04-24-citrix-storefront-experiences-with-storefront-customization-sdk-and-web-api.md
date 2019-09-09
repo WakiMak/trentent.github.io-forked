@@ -151,7 +151,7 @@ When we capture the ICA file as a variable the only way that I've found you can 
 
 Ok, this looks great!  I can create an ICA file than modify it all through WebAPI and return the ICA file to the browser for execution.  Does it work?
 
-Yes and no. üôÅ
+Yes and no.
 
 It works in Chrome and Firefox, but IE doesn't auto-launch.  It prompts to 'save' a file.  Why?  [IE doesn't support opening 'non-standard' blobs](https://connect.microsoft.com/IE/feedback/details/1021584/url-createobjecturl-blob-dontt-work-for-pdf).  MS offers a method called "msSaveOrOpenBlob" which you can use instead, and this method then prompts for opening the blob.  This will work for opening the ICA file but now the end user requires an extra step.  So this won't work.  It needs to be automatic like its supposed to be for a good experience.
 
@@ -160,7 +160,7 @@ So WebAPI appears to offer part of the solution.  We can capture the nFuse_AppCo
 At this point I decided to look at the [StoreFront Store Customization SDK](https://www.citrix.com/community/citrix-developer/storefront-receiver/store-customization-api.html).  It states it has this ability:
 
 <p style="padding-left: 30px;">
-  <b>Post-Launch ICA file</b>Äîuse this to modify the generated ICA file. For example, use this to change ICA virtual channel parameters and prevent users from accessing their clipboard.
+  <b>Post-Launch ICA file</b>use this to modify the generated ICA file. For example, use this to change ICA virtual channel parameters and prevent users from accessing their clipboard.
 </p>
 
 That sounds perfect!
@@ -260,7 +260,7 @@ Your debugger should pause at the breakpoint:
 
 And you can inspect the values.
 
-At this point I wasn't interested in trying to re-write the ApiExample.html to get this testing underway, I instead used PowerShell to submit my POST's and GET's.  Remember, I'm using an unauthenticated store so I could cut down on the requests sent to StoreFront to get my apps.  I found a script from [Ryan Butler](https://www.techdrabble.com/citrix/21-create-an-ica-file-from-storefront-using-powershell-or-javascript) and made some modifications to it.  I modified it to remove the parameters since I'm doing testing via hardcoding üôÇ
+At this point I wasn't interested in trying to re-write the ApiExample.html to get this testing underway, I instead used PowerShell to submit my POST's and GET's.  Remember, I'm using an unauthenticated store so I could cut down on the requests sent to StoreFront to get my apps.  I found a script from [Ryan Butler](https://www.techdrabble.com/citrix/21-create-an-ica-file-from-storefront-using-powershell-or-javascript) and made some modifications to it.  I modified it to remove the parameters since I'm doing testing via hardcoding 
 
 <pre class="lang:ps decode:true">$unauthurl = "http://bottheory.local/Citrix/SDKTestSiteWeb/"
 $appname = "Notepad 2016 - PLB"

@@ -665,7 +665,7 @@ if /I [%1] EQU [R] (
     
     <tr>
       <td style="text-align: center;">
-        "Exit Status: 0" -> Usually a good thing 🙂
+        "Exit Status: 0" -> Usually a good thing 
       </td>
     </tr>
   </table>
@@ -705,7 +705,7 @@ if /I [%1] EQU [R] (
     
     <tr>
       <td style="text-align: center;">
-        Com+ Application are removed cleanly 🙂
+        Com+ Application are removed cleanly 
       </td>
     </tr>
   </table>

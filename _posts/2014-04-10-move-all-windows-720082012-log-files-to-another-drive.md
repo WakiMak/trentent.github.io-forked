@@ -44,7 +44,7 @@ tags:
 $allLogs = Get-WinEvent -ListLog *
 foreach ($logs in $allLogs) {
  $filename = split-path $logs.LogFilePath -leaf
- $logs.LogFilePath = “D:\EventLogs\$filename”
+ $logs.LogFilePath = "D:\EventLogs\$filename"
  $logs.SaveChanges()
 }</pre>
 

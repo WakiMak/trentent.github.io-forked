@@ -96,7 +96,7 @@ You can run it with a command like so:
 
 > Get-VM MyVM | Clone-List
 
-I will need to modify this script to see if I can use VMWare Templates (I think that's the right terminology) and Citrix XA PowerShell to see if I can get this to work... We shall see 🙂
+I will need to modify this script to see if I can use VMWare Templates (I think that's the right terminology) and Citrix XA PowerShell to see if I can get this to work... We shall see 
 
 EDIT - It's not VMWare Templates... It's OSCustomizationSpec I think.
 

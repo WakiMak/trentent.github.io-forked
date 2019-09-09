@@ -45,7 +45,7 @@ Stored in the registry is the AppCompatFlags key that contains the applications 
 
 And now the application works almost wonderfully (ER is a painful application)
 
-🙂
+
 
 <!-- AddThis Advanced Settings generic via filter on the_content -->
 

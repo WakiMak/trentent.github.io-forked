@@ -454,7 +454,7 @@ Citrix Xml Service Communication(&65t.bottheory.local)\Network Traffic Average T
 </div>
 
 <div class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover">
-  The "Network Average Time" will give you the data on how long or how hard that particular broker is working.  The higher the number the more work it's doing or the more you should focus on optimizing it.  I don't have a guide for what these numbers should be, as different users will have different expectations.  But I have shown what the values we get and I would argue we get great performance so I would try to keep your numbers below mine 🙂
+  The "Network Average Time" will give you the data on how long or how hard that particular broker is working.  The higher the number the more work it's doing or the more you should focus on optimizing it.  I don't have a guide for what these numbers should be, as different users will have different expectations.  But I have shown what the values we get and I would argue we get great performance so I would try to keep your numbers below mine 
 </div>
 
 <!-- AddThis Advanced Settings generic via filter on the_content -->

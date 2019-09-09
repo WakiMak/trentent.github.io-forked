@@ -32,7 +32,7 @@ Filtering for EventID 5 shows all the attempts of booting to BSOD:
 
 &nbsp;
 
-I mean, it literally says the Registry was corrupted ðŸ™‚
+I mean, it literally says the Registry was corrupted 
 
 Where can you find this corruption? Â With PVS it's fairly simple but I believe the same process can exist for other systems including physical. Â The first step was to mount the vDisk to a VM.
 

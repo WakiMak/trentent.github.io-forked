@@ -65,7 +65,7 @@ The steps to set this up:
 	delete $.ajaxSettings.headers["TWIMode"]; //Remove header
 };</pre>
 
-  8. And enjoy the results!Â ðŸ™‚
+  8. And enjoy the results!Â 
 
 <img class="aligncenter size-full wp-image-2570" src="http://theorypc.ca/wp-content/uploads/2017/11/800x600Calculator.png" alt="" width="802" height="632" srcset="http://theorypc.ca/wp-content/uploads/2017/11/800x600Calculator.png 802w, http://theorypc.ca/wp-content/uploads/2017/11/800x600Calculator-300x236.png 300w, http://theorypc.ca/wp-content/uploads/2017/11/800x600Calculator-768x605.png 768w" sizes="(max-width: 802px) 100vw, 802px" /> 
 

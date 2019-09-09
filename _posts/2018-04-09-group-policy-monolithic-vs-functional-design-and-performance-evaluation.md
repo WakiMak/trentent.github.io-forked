@@ -88,7 +88,7 @@ panels_data:
                                         </div>
                                         
                                         <p>
-                                          In my previous post I was looking at utilizing a Logon Simulator to setup some proactive monitoring of a Citrix environment. Â I setup some goals for myself: Minimize the number of VM's to run the robots As little resource consumption as possible Still provide operational alerts Operate on-premise I want the footprint of these robots [&hellip;]<!-- AddThis Advanced Settings above via filter on wp_trim_excerpt -->
+                                          In my previous post I was looking at utilizing a Logon Simulator to setup some proactive monitoring of a Citrix environment.  I setup some goals for myself: Minimize the number of VM's to run the robots As little resource consumption as possible Still provide operational alerts Operate on-premise I want the footprint of these robots [&hellip;]<!-- AddThis Advanced Settings above via filter on wp_trim_excerpt -->
                                           
                                           <!-- AddThis Advanced Settings below via filter on wp_trim_excerpt -->
                                           
@@ -126,7 +126,7 @@ panels_data:
                                                 </div>
                                                 
                                                 <p>
-                                                  "Help!Â I can't launch my application!" "Is something wrong with Citrix?" "Hey man, I heard Citrix was down?" "Can you help? I need to get this work done!Â The deadline is today and I can't open my app!" Welcome to the world of a Citrix Administrator.Â If an application stops working then the calls flood [&hellip;]<!-- AddThis Advanced Settings above via filter on wp_trim_excerpt -->
+                                                  "Help! I can't launch my application!" "Is something wrong with Citrix?" "Hey man, I heard Citrix was down?" "Can you help? I need to get this work done! The deadline is today and I can't open my app!" Welcome to the world of a Citrix Administrator. If an application stops working then the calls flood [&hellip;]<!-- AddThis Advanced Settings above via filter on wp_trim_excerpt -->
                                                   
                                                   <!-- AddThis Advanced Settings below via filter on wp_trim_excerpt -->
                                                   
@@ -246,7 +246,7 @@ panels_data:
                                                                         </div>
                                                                         
                                                                         <p>
-                                                                          https://twitter.com/TrententTye/status/1011396648688185344 I've been exploring optimizing logon times and noticed "User Profile Service" always showed up for 1-3 seconds. Â I asked why and began my investigation. The first thing I needed to do is separate the "User Profile Service" into it's own process. Â It's originally configured to share the same process as other services which makes [&hellip;]<!-- AddThis Advanced Settings above via filter on wp_trim_excerpt -->
+                                                                          https://twitter.com/TrententTye/status/1011396648688185344 I've been exploring optimizing logon times and noticed "User Profile Service" always showed up for 1-3 seconds.  I asked why and began my investigation. The first thing I needed to do is separate the "User Profile Service" into it's own process.  It's originally configured to share the same process as other services which makes [&hellip;]<!-- AddThis Advanced Settings above via filter on wp_trim_excerpt -->
                                                                           
                                                                           <!-- AddThis Advanced Settings below via filter on wp_trim_excerpt -->
                                                                           
@@ -287,7 +287,7 @@ panels_data:
                                                                                 </div>
                                                                                 
                                                                                 <p>
-                                                                                  Citrix Provisioning Services has a feature within the "Provisioning Services Console" that allows you to stop/restart/start the streaming service on another server: &nbsp; This feature worked with Server 2008R2 but with 2012R2 and greater it stopped working.Â CitrixÂ partially identified the issue here: &nbsp; I was exploring starting and stopping the streaming service on other PVS [&hellip;]<!-- AddThis Advanced Settings above via filter on wp_trim_excerpt -->
+                                                                                  Citrix Provisioning Services has a feature within the "Provisioning Services Console" that allows you to stop/restart/start the streaming service on another server: &nbsp; This feature worked with Server 2008R2 but with 2012R2 and greater it stopped working. Citrix partially identified the issue here: &nbsp; I was exploring starting and stopping the streaming service on other PVS [&hellip;]<!-- AddThis Advanced Settings above via filter on wp_trim_excerpt -->
                                                                                   
                                                                                   <!-- AddThis Advanced Settings below via filter on wp_trim_excerpt -->
                                                                                   
@@ -328,7 +328,7 @@ panels_data:
                                                                                         </div>
                                                                                         
                                                                                         <p>
-                                                                                          Meltdown and Spectre (variant 2) are two vulnerabilities that came out at the same time, however they are vastly different. Â Patches for both were released extremely quickly for Microsoft OS's but because of a variety of issues with Spectre, only Meltdown was truly available to be mitigated. Â Spectre (variant 2) mitigation had a problematic release, [&hellip;]<!-- AddThis Advanced Settings above via filter on wp_trim_excerpt -->
+                                                                                          Meltdown and Spectre (variant 2) are two vulnerabilities that came out at the same time, however they are vastly different.  Patches for both were released extremely quickly for Microsoft OS's but because of a variety of issues with Spectre, only Meltdown was truly available to be mitigated.  Spectre (variant 2) mitigation had a problematic release, [&hellip;]<!-- AddThis Advanced Settings above via filter on wp_trim_excerpt -->
                                                                                           
                                                                                           <!-- AddThis Advanced Settings below via filter on wp_trim_excerpt -->
                                                                                           
@@ -369,7 +369,7 @@ panels_data:
                                                                                                 </div>
                                                                                                 
                                                                                                 <p>
-                                                                                                  In various discussions I've read about the drawbacks of Group Policy Preferences but is it really that bad? &nbsp; ...Or is it how you are using it? &nbsp; There are two methods of applying registry keys/values with Group Policy. Â The Group Policy Registry Extension is the "traditional" form of applying policies. Â Also known as ADM [&hellip;]<!-- AddThis Advanced Settings above via filter on wp_trim_excerpt -->
+                                                                                                  In various discussions I've read about the drawbacks of Group Policy Preferences but is it really that bad? &nbsp; ...Or is it how you are using it? &nbsp; There are two methods of applying registry keys/values with Group Policy.  The Group Policy Registry Extension is the "traditional" form of applying policies.  Also known as ADM [&hellip;]<!-- AddThis Advanced Settings above via filter on wp_trim_excerpt -->
                                                                                                   
                                                                                                   <!-- AddThis Advanced Settings below via filter on wp_trim_excerpt -->
                                                                                                   
@@ -410,7 +410,7 @@ panels_data:
                                                                                                         </div>
                                                                                                         
                                                                                                         <p>
-                                                                                                          Group Policy Design is a hotly discussed topic, with lots of different ideas and discussions. Â However, there is not a whole lot of actual metrics. Â ADM and ADMX templates apply registry keys in an 'enforced' manner. Â That is, if you or the machine has access to read the policies, the registry keys within are applied. [&hellip;]<!-- AddThis Advanced Settings above via filter on wp_trim_excerpt -->
+                                                                                                          Group Policy Design is a hotly discussed topic, with lots of different ideas and discussions.  However, there is not a whole lot of actual metrics.  ADM and ADMX templates apply registry keys in an 'enforced' manner.  That is, if you or the machine has access to read the policies, the registry keys within are applied. [&hellip;]<!-- AddThis Advanced Settings above via filter on wp_trim_excerpt -->
                                                                                                           
                                                                                                           <!-- AddThis Advanced Settings below via filter on wp_trim_excerpt -->
                                                                                                           
@@ -466,10 +466,10 @@ panels_data:
                                                                                                           <span class="comment-author-link">Aaron</span> on <a href="http://theorypc.ca/2019/03/05/printers-and-their-impact-on-logon-duration/#comment-10145">Printers and their impact on logon duration</a>
                                                                                                         </li>
                                                                                                         <li class="recentcomments">
-                                                                                                          <span class="comment-author-link">IstvÃ¡n Siroki</span> on <a href="http://theorypc.ca/2017/06/28/remove-ghost-devices-natively-with-powershell/#comment-10126">Remove Ghost devices natively with Powershell</a>
+                                                                                                          <span class="comment-author-link">Istvn Siroki</span> on <a href="http://theorypc.ca/2017/06/28/remove-ghost-devices-natively-with-powershell/#comment-10126">Remove Ghost devices natively with Powershell</a>
                                                                                                         </li>
                                                                                                         <li class="recentcomments">
-                                                                                                          <span class="comment-author-link">IstvÃ¡n Siroki</span> on <a href="http://theorypc.ca/2017/06/28/remove-ghost-devices-natively-with-powershell/#comment-10049">Remove Ghost devices natively with Powershell</a>
+                                                                                                          <span class="comment-author-link">Istvn Siroki</span> on <a href="http://theorypc.ca/2017/06/28/remove-ghost-devices-natively-with-powershell/#comment-10049">Remove Ghost devices natively with Powershell</a>
                                                                                                         </li>
                                                                                                         <li class="recentcomments">
                                                                                                           <span class="comment-author-link">Rui Paz</span> on <a href="http://theorypc.ca/2016/10/19/windows-update-errors/#comment-9867">Windows Update - Errors 80070057, 800736B3, 8024400E</a>
@@ -538,7 +538,7 @@ panels_data:
                                                                                                           <span class="comment-author-link">Herman</span> on <a href="http://theorypc.ca/2017/04/24/citrix-storefront-experiences-with-storefront-customization-sdk-and-web-api/#comment-4357">Citrix StoreFront - Experiences with Storefront Customization SDK and Web API</a>
                                                                                                         </li>
                                                                                                         <li class="recentcomments">
-                                                                                                          <span class="comment-author-link">SÃ©bastien</span> on <a href="http://theorypc.ca/2017/07/31/citrix-storefront-adventures-in-customization-change-any-ica-parameter/#comment-4338">Citrix Storefront - Adventures in customization - Change any ICA parameter</a>
+                                                                                                          <span class="comment-author-link">Sebastien</span> on <a href="http://theorypc.ca/2017/07/31/citrix-storefront-adventures-in-customization-change-any-ica-parameter/#comment-4338">Citrix Storefront - Adventures in customization - Change any ICA parameter</a>
                                                                                                         </li>
                                                                                                         <li class="recentcomments">
                                                                                                           <span class="comment-author-link">trententtye</span> on <a href="http://theorypc.ca/2017/10/31/citrix-storefront-adventures-in-customization-prepopulate-explicit-logon-credentials/#comment-4266">Citrix Storefront - Adventures in customization - Prepopulate Explicit Logon Credentials</a>

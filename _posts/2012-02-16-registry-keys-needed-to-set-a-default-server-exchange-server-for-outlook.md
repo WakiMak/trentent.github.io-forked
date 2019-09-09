@@ -87,7 +87,7 @@ Each "Key Path" requires your username substituted for the %LogonUser% variable 
 
 Set this GPO with a loopback processing setting and you're rolling. The negative that I've seen with this approach is that it will set the registry keys on a new login, but launching Outlook for the first time will overwrite them with the defaults set in the PRF. If you cancel out and relaunch the registry keys will apply again and the server you specified in them will work.
 
-Or you can setup a DNS Alias, but this was an interesting exercise anyways 🙂
+Or you can setup a DNS Alias, but this was an interesting exercise anyways 
 
 <!-- AddThis Advanced Settings generic via filter on the_content -->
 

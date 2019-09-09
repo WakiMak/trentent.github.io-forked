@@ -175,7 +175,7 @@ And you are correct.  So why aren't we seeing more gains?  The issue lies with h
 
 From everything I see with Procmon, first stage boot ends on that first Ntfs event.  So out of the original 8 seconds, 4 is spent on first stage boot where Jumbo Packets are not enabled.  Everything after there is impacted (positively).  So for our 4 seconds "standard MTU" boot, bringing that down by a second is a 25% improvement!  Not small potatoes.
 
-I intend to do more investigation into what I can do to improve boot performance for PVS target devices so stay tuned!  🙂
+I intend to do more investigation into what I can do to improve boot performance for PVS target devices so stay tuned!  
 
 <!-- AddThis Advanced Settings generic via filter on the_content -->
 

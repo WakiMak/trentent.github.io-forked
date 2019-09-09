@@ -26,17 +26,17 @@ The Citrix XML broker actually relies on many pieces to ensure fast and proper o
 
 The part that is relevant to the XML broker is steps 4-9.
 
-4. The user’s credentials are forwarded from XML to the IMA service in HTTP (or HTTPS) form.
+4. The user's credentials are forwarded from XML to the IMA service in HTTP (or HTTPS) form.
 
 5. The IMA then forwards them to the local Lsass.exe.
 
 6. The Lsass.exe encrypts the credentials and passes them to the domain controller.
 
-7. The domain controller returns the SIDs (user’s SID and the list of group SIDs) back to Lsass.exe and to IMA.
+7. The domain controller returns the SIDs (user's SID and the list of group SIDs) back to Lsass.exe and to IMA.
 
 8. IMA uses the SIDs to search the Local Host Cache (LHC) for a list of applications and the Worker Group Preference policy for that authenticated user.
 
-9. The list of the applications together with the user’s worker group preference policy are returned to the Web Interface.
+9. The list of the applications together with the user's worker group preference policy are returned to the Web Interface.
 
 So what does this look like (click to blow it up)?
 

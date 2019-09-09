@@ -23,7 +23,7 @@ tags:
 ---
 Saving and moving OU ACLs
 
-I’ve written a batch file that will move ACLs from one OU to another. It works by you outputting the results of a ACL from a OU to a text file, specifying the new OU in a batch file and inputting the text file you just created. I use three utilities to accomplish this: adfind.exe, sed.exe and dsacls.exe.  
+I've written a batch file that will move ACLs from one OU to another. It works by you outputting the results of a ACL from a OU to a text file, specifying the new OU in a batch file and inputting the text file you just created. I use three utilities to accomplish this: adfind.exe, sed.exe and dsacls.exe.  
 The command to save the text file is:
 
 > <pre class="lang:batch decode:true ">adfind -b "OU=Users,OU=LAB,DC=LAB,DC=CORP" -f (distinguishedName=OU=Users,OU=LAB,DC=LAB,DC=corp) -sddl++ -resolvesids -onlydacl ntsecuritydescriptor -sddlnotfilter ;inherited| sed.exe "s/;;/; ;/g" | sed.exe "s/;;/; ;/g" | sed.exe "s/;;/; ;/g" | sed.exe "s/;;/; ;/g" > %PATHTOFILE%.txt</pre>

@@ -29,7 +29,7 @@ install
 
 Without the lvmdriver the install would not see the storage (USB or HDD)
 
-I am now installing ESXi 5.1 onto my MacBook. &nbsp;Hopefully, I'll be able to run Mountain Lion from it 🙂
+I am now installing ESXi 5.1 onto my MacBook. &nbsp;Hopefully, I'll be able to run Mountain Lion from it 
 
 
 

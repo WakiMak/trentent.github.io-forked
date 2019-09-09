@@ -43,7 +43,7 @@ With this particular policy, we actually check to see if it's a 32bit or 64bit s
 
 We have a GPP Registry values that are set via some item-level-targetting that are dependent on whether PDF architect is installed or not.  You can literally see it check for PDF Architect and then set whatever values we determined need to be set by that result (ShowAssociationDialog,ShowPresentation, etc).
 
-However cool this is, this GPO is not the one I want 🙂
+However cool this is, this GPO is not the one I want 
 
 I want the next GPO ({E6775312-...}).  This GPO is the one that I have converted to WEM as it only dealt with group membership.  WEM can filter on conditions like a file/folder exist but since I didn't want to do another thousand or so registry entries I focused on the smaller GPO.
 
@@ -81,7 +81,7 @@ One of the ways that WEM 'helps' counting stats is by pushing the processing int
 
 &nbsp;
 
-Unfortunately, WEM's log isn't very granular.  Procmon will fix that again 🙂
+Unfortunately, WEM's log isn't very granular.  Procmon will fix that again 
 
 The entry I'm looking for in WEM is "MainController.ProcessRegistryValues()".  This tells us when it starts doing the registry work:
 

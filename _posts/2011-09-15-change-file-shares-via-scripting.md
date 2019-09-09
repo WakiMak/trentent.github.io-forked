@@ -45,7 +45,7 @@ What this script does is:
 4) Using reg.exe we overwrite the registry key with the new value  
 5) we then stop and restart the server service to get the new shares working.
 
-And we set that up as a scheduled task to run after-hours 🙂
+And we set that up as a scheduled task to run after-hours 
 
 <!-- AddThis Advanced Settings generic via filter on the_content -->
 

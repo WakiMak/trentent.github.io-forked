@@ -96,7 +96,7 @@ To enable or disable audio for published applications
   </p>
   
   <p>
-    Anyways, and now we have our applications with working audio and everything seems to be good again 🙂
+    Anyways, and now we have our applications with working audio and everything seems to be good again 
   </p>
   
   <p>

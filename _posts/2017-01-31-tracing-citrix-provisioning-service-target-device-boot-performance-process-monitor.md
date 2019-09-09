@@ -49,7 +49,7 @@ Then browse to your C:\Windows\System32\Drivers folder, and with "Show Hidden Fi
 
 <img class="aligncenter size-full wp-image-1989" src="http://theorypc.ca/wp-content/uploads/2017/01/Procmon23sys.png" alt="" width="817" height="472" srcset="http://theorypc.ca/wp-content/uploads/2017/01/Procmon23sys.png 817w, http://theorypc.ca/wp-content/uploads/2017/01/Procmon23sys-300x173.png 300w, http://theorypc.ca/wp-content/uploads/2017/01/Procmon23sys-768x444.png 768w" sizes="(max-width: 817px) 100vw, 817px" /> 
 
-It might be a good idea to disable boot logging if you did it on your personal system now 🙂
+It might be a good idea to disable boot logging if you did it on your personal system now 
 
 &nbsp;
 

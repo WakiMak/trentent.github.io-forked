@@ -18,14 +18,14 @@ tags:
 ---
 I've seen this happen a few times now where the "Citrix Independent Management Architecture" (aka IMAService) won't start, erroring with various errors:
 
-<pre class="">3616 - Configuration error: Failed to read the farm name out of the registry on a server configured  to access the Data Store directly.
-3609 - Failed to load plugin C:\Program Files (x86)\Citrix\System32\Citrix\IMA\SubSystems\ImaRuntimeSS.dll with error IMA_RESULT_CONFIGURATION_ERROR
-3601 - Failed to load initial plugins with error IMA_RESULT_CONFIGURATION_ERROR
-4005 - The Citrix Independent Management Architecture (IMA) service is exiting. The Neighborhood (farm name) could not be read from the Data Store or written to the registry.
-3609 - Failed to load plugin C:\Program Files (x86)\Citrix\System32\Citrix\IMA\SubSystems\ImaPsSs.dll with error IMA_RESULT_REGISTRY_ERROR
-3601 - Failed to load initial plugins with error IMA_RESULT_REGISTRY_ERROR
-3609 - Failed to load plugin C:\Program Files (x86)\Citrix\System32\Citrix\IMA\SubSystems\MfSrvSs.dll with error IMA_RESULT_FAILURE
-4003 - The Citrix Independent Management Architecture (IMA) service is exiting. The & Server Configuration tool has not been run on this server. Please run  & Server Configuration tool.</pre>
+<pre class="">3616 - Configuration error: Failed to read the farm name out of the registry on a server configured  to access the Data Store directly.
+3609 - Failed to load plugin C:\Program Files (x86)\Citrix\System32\Citrix\IMA\SubSystems\ImaRuntimeSS.dll with error IMA_RESULT_CONFIGURATION_ERROR
+3601 - Failed to load initial plugins with error IMA_RESULT_CONFIGURATION_ERROR
+4005 - The Citrix Independent Management Architecture (IMA) service is exiting. The Neighborhood (farm name) could not be read from the Data Store or written to the registry.
+3609 - Failed to load plugin C:\Program Files (x86)\Citrix\System32\Citrix\IMA\SubSystems\ImaPsSs.dll with error IMA_RESULT_REGISTRY_ERROR
+3601 - Failed to load initial plugins with error IMA_RESULT_REGISTRY_ERROR
+3609 - Failed to load plugin C:\Program Files (x86)\Citrix\System32\Citrix\IMA\SubSystems\MfSrvSs.dll with error IMA_RESULT_FAILURE
+4003 - The Citrix Independent Management Architecture (IMA) service is exiting. The & Server Configuration tool has not been run on this server. Please run  & Server Configuration tool.</pre>
 
 All of these errors appear to be a registry with incorrect permissions configured on the Citrix keys. � Why did these keys get their permissions reset? � I'm unsure. � I DID just install Citrix UPM 5.4 which may reset the keys?
 

@@ -78,7 +78,7 @@ tags:
       
       <td>
         <div dir="ltr">
-          ‘Windows Server Backup’ feature installed on the staging server
+          'Windows Server Backup' feature installed on the staging server
         </div>
         
         <div dir="ltr">
@@ -93,7 +93,7 @@ tags:
       
       <td>
         <div dir="ltr">
-          The Citrix utility ‘CVHDMOUNT.EXE’ is installed on the staging server
+          The Citrix utility 'CVHDMOUNT.EXE' is installed on the staging server
         </div>
       </td>
     </tr>
@@ -104,7 +104,7 @@ tags:
       
       <td>
         <div dir="ltr">
-          ‘Backup’ space (approx. 100GB)<br /> <img src="https://lh4.googleusercontent.com/89DQsgqu28OwJEy_q9-3LLoBJrQoxw147Y37F__DnbZmT3IqEkuhQQiU6tYZHfFdyrOpMj6VmlauHNrXY05l7b1OP9eL0SjI4-MRZePNboQQ6f-Btg7eU53wIqQ0fJtMeS-NzpsACwPZh31NNw" width="563" height="259" />
+          'Backup' space (approx. 100GB)<br /> <img src="https://lh4.googleusercontent.com/89DQsgqu28OwJEy_q9-3LLoBJrQoxw147Y37F__DnbZmT3IqEkuhQQiU6tYZHfFdyrOpMj6VmlauHNrXY05l7b1OP9eL0SjI4-MRZePNboQQ6f-Btg7eU53wIqQ0fJtMeS-NzpsACwPZh31NNw" width="563" height="259" />
         </div>
       </td>
     </tr>
@@ -200,7 +200,7 @@ tags:
               </div>
               
               <div dir="ltr">
-                Open the drivers folder, right-click on cfsdep2.inf and select “Install”
+                Open the drivers folder, right-click on cfsdep2.inf and select "Install"
               </div>
               
               <div dir="ltr">
@@ -216,7 +216,7 @@ tags:
                   
                   <td>
                     <div dir="ltr">
-                      Open Device Manager, right-click the computer name and choose “Add Legacy Hardware…”
+                      Open Device Manager, right-click the computer name and choose "Add Legacy Hardware..."
                     </div>
                     
                     <div dir="ltr">
@@ -231,7 +231,7 @@ tags:
                   
                   <td>
                     <div dir="ltr">
-                      Select “Next”
+                      Select "Next"
                     </div>
                     
                     <div dir="ltr">
@@ -246,7 +246,7 @@ tags:
                   
                   <td>
                     <div dir="ltr">
-                      Select “Install the hardware that I manually select from a list (Advanced)” and click “Next”
+                      Select "Install the hardware that I manually select from a list (Advanced)" and click "Next"
                     </div>
                     
                     <div dir="ltr">
@@ -261,7 +261,7 @@ tags:
                   
                   <td>
                     <div dir="ltr">
-                      Click “Next”
+                      Click "Next"
                     </div>
                     
                     <div dir="ltr">
@@ -276,7 +276,7 @@ tags:
                   
                   <td>
                     <div dir="ltr">
-                      Click “Have Disk…”
+                      Click "Have Disk..."
                     </div>
                     
                     <div dir="ltr">
@@ -291,7 +291,7 @@ tags:
                   
                   <td>
                     <div dir="ltr">
-                      Click “Browse” and go to the “drivers” folder and select “cvhdbusp6.inf” and click “Open”
+                      Click "Browse" and go to the "drivers" folder and select "cvhdbusp6.inf" and click "Open"
                     </div>
                     
                     <div dir="ltr">
@@ -306,7 +306,7 @@ tags:
                   
                   <td>
                     <div dir="ltr">
-                      Click “OK”
+                      Click "OK"
                     </div>
                     
                     <div dir="ltr">
@@ -321,7 +321,7 @@ tags:
                   
                   <td>
                     <div dir="ltr">
-                      Ensure “Citrix Virtual Hard Disk Enumerator PVS” is listed and click “Next”
+                      Ensure "Citrix Virtual Hard Disk Enumerator PVS" is listed and click "Next"
                     </div>
                     
                     <div dir="ltr">
@@ -336,7 +336,7 @@ tags:
                   
                   <td>
                     <div dir="ltr">
-                      Click “Finish”
+                      Click "Finish"
                     </div>
                     
                     <div dir="ltr">
@@ -375,7 +375,7 @@ tags:
                       
                       <td>
                         <div dir="ltr">
-                          Open the “VMWare vSphere Client”
+                          Open the "VMWare vSphere Client"
                         </div>
                         
                         <p>
@@ -387,7 +387,7 @@ tags:
                         </div>
                         
                         <div dir="ltr">
-                          Right-click on the server you want to do the cloning on and click ‘Edit Settings…’
+                          Right-click on the server you want to do the cloning on and click 'Edit Settings...'
                         </div>
                       </td>
                     </tr>
@@ -398,7 +398,7 @@ tags:
                       
                       <td>
                         <div dir="ltr">
-                          Under the ‘Hardware’ tab, click ‘Add…’
+                          Under the 'Hardware' tab, click 'Add...'
                         </div>
                         
                         <div dir="ltr">
@@ -413,7 +413,7 @@ tags:
                       
                       <td>
                         <div dir="ltr">
-                          Select ‘Hard Disk’ and click ‘Next’
+                          Select 'Hard Disk' and click 'Next'
                         </div>
                         
                         <div dir="ltr">
@@ -428,7 +428,7 @@ tags:
                       
                       <td>
                         <div dir="ltr">
-                          Select ‘Create a new virtual disk’ and click ‘Next’
+                          Select 'Create a new virtual disk' and click 'Next'
                         </div>
                         
                         <div dir="ltr">
@@ -444,7 +444,7 @@ tags:
                             
                             <td>
                               <div dir="ltr">
-                                Set the ‘Disk Size’ to be greater than the size of the VHD file, select the ‘Disk Provisioning’ options you require, select the ‘Location’ you want to store the disk and remember where it is stored. � You will need this location soon. � Click ‘Next’
+                                Set the 'Disk Size' to be greater than the size of the VHD file, select the 'Disk Provisioning' options you require, select the 'Location' you want to store the disk and remember where it is stored. � You will need this location soon. � Click 'Next'
                               </div>
                               
                               <div dir="ltr">
@@ -459,7 +459,7 @@ tags:
                             
                             <td>
                               <div dir="ltr">
-                                Click ‘Next’
+                                Click 'Next'
                               </div>
                               
                               <div dir="ltr">
@@ -474,7 +474,7 @@ tags:
                             
                             <td>
                               <div dir="ltr">
-                                Click ‘OK’
+                                Click 'OK'
                               </div>
                               
                               <div dir="ltr">
@@ -581,7 +581,7 @@ tags:
                                       
                                       <td>
                                         <div dir="ltr">
-                                          Open ‘Windows Server Backup’
+                                          Open 'Windows Server Backup'
                                         </div>
                                         
                                         <div dir="ltr">
@@ -599,7 +599,7 @@ tags:
                                       
                                       <td>
                                         <div dir="ltr">
-                                          Click ‘Backup Once…’
+                                          Click 'Backup Once...'
                                         </div>
                                         
                                         <div dir="ltr">
@@ -614,7 +614,7 @@ tags:
                                       
                                       <td>
                                         <div dir="ltr">
-                                          Select ‘Different options’ then ‘Next’
+                                          Select 'Different options' then 'Next'
                                         </div>
                                         
                                         <div dir="ltr">
@@ -629,7 +629,7 @@ tags:
                                       
                                       <td>
                                         <div dir="ltr">
-                                          Select ‘Custom’ than ‘Next’
+                                          Select 'Custom' than 'Next'
                                         </div>
                                         
                                         <div dir="ltr">
@@ -644,7 +644,7 @@ tags:
                                       
                                       <td>
                                         <div dir="ltr">
-                                          Select ‘Add Items’
+                                          Select 'Add Items'
                                         </div>
                                         
                                         <div dir="ltr">
@@ -659,7 +659,7 @@ tags:
                                       
                                       <td>
                                         <div dir="ltr">
-                                          Select the PVS disk and click ‘OK’
+                                          Select the PVS disk and click 'OK'
                                         </div>
                                         
                                         <div dir="ltr">
@@ -674,7 +674,7 @@ tags:
                                       
                                       <td>
                                         <div dir="ltr">
-                                          Click ‘Next’
+                                          Click 'Next'
                                         </div>
                                         
                                         <div dir="ltr">
@@ -689,7 +689,7 @@ tags:
                                       
                                       <td>
                                         <div dir="ltr">
-                                          Select ‘Local drives’ and click ‘Next’
+                                          Select 'Local drives' and click 'Next'
                                         </div>
                                         
                                         <div dir="ltr">
@@ -704,7 +704,7 @@ tags:
                                       
                                       <td>
                                         <div dir="ltr">
-                                          Select the ‘Backup Destination’ and click ‘Next’
+                                          Select the 'Backup Destination' and click 'Next'
                                         </div>
                                         
                                         <div dir="ltr">
@@ -719,7 +719,7 @@ tags:
                                       
                                       <td>
                                         <div dir="ltr">
-                                          Click ‘Backup’
+                                          Click 'Backup'
                                         </div>
                                         
                                         <div dir="ltr">
@@ -745,7 +745,7 @@ tags:
                                       
                                       <td>
                                         <div dir="ltr">
-                                          Click ‘Close’
+                                          Click 'Close'
                                         </div>
                                         
                                         <div dir="ltr">
@@ -792,7 +792,7 @@ tags:
                                           
                                           <td>
                                             <div dir="ltr">
-                                              Click ‘Recover’
+                                              Click 'Recover'
                                             </div>
                                             
                                             <div dir="ltr">
@@ -807,7 +807,7 @@ tags:
                                           
                                           <td>
                                             <div dir="ltr">
-                                              Select ‘This server’ and click ‘Next’
+                                              Select 'This server' and click 'Next'
                                             </div>
                                             
                                             <div dir="ltr">
@@ -822,7 +822,7 @@ tags:
                                           
                                           <td>
                                             <div dir="ltr">
-                                              Click ‘Next’
+                                              Click 'Next'
                                             </div>
                                             
                                             <div dir="ltr">
@@ -837,7 +837,7 @@ tags:
                                           
                                           <td>
                                             <div dir="ltr">
-                                              Select ‘’Volumes’ and click ‘Next’
+                                              Select ''Volumes' and click 'Next'
                                             </div>
                                             
                                             <div dir="ltr">
@@ -852,7 +852,7 @@ tags:
                                           
                                           <td>
                                             <div dir="ltr">
-                                              Select the checkbox beside the volume and choose the ‘VMDK’ for the destination volume and click ‘Next’
+                                              Select the checkbox beside the volume and choose the 'VMDK' for the destination volume and click 'Next'
                                             </div>
                                             
                                             <div dir="ltr">
@@ -867,7 +867,7 @@ tags:
                                           
                                           <td>
                                             <div dir="ltr">
-                                              Click ‘Yes’
+                                              Click 'Yes'
                                             </div>
                                             
                                             <div dir="ltr">
@@ -882,7 +882,7 @@ tags:
                                           
                                           <td>
                                             <div dir="ltr">
-                                              Click ‘Recover’
+                                              Click 'Recover'
                                             </div>
                                             
                                             <div dir="ltr">
@@ -912,7 +912,7 @@ tags:
                                           
                                           <td>
                                             <div dir="ltr">
-                                              Click ‘Close’
+                                              Click 'Close'
                                             </div>
                                             
                                             <div dir="ltr">
@@ -976,7 +976,7 @@ tags:
                                           
                                           <td>
                                             <div dir="ltr">
-                                              In the command prompt, switch to the ‘Destination’ drive and check the BCD file:
+                                              In the command prompt, switch to the 'Destination' drive and check the BCD file:
                                             </div>
                                             
                                             <div dir="ltr">
@@ -999,7 +999,7 @@ tags:
                                           
                                           <td>
                                             <div dir="ltr">
-                                              Execute the following commands, substituting the ‘E:’ for the proper drive letter:
+                                              Execute the following commands, substituting the 'E:' for the proper drive letter:
                                             </div>
                                             
                                             <p>
@@ -1083,7 +1083,7 @@ tags:
                                           
                                           <td>
                                             <div dir="ltr">
-                                              Open the vCenter console, select the staging server and ‘Right-click’ and select ‘Edit Settings…’
+                                              Open the vCenter console, select the staging server and 'Right-click' and select 'Edit Settings...'
                                             </div>
                                             
                                             <div dir="ltr">
@@ -1098,7 +1098,7 @@ tags:
                                           
                                           <td>
                                             <div dir="ltr">
-                                              Select the VMDK file, note the path of the Disk File and click ‘Remove’
+                                              Select the VMDK file, note the path of the Disk File and click 'Remove'
                                             </div>
                                             
                                             <div dir="ltr">
@@ -1113,7 +1113,7 @@ tags:
                                           
                                           <td>
                                             <div dir="ltr">
-                                              Under ‘Removal Options’ select ‘Remove form virtual machine’ and click ‘OK’
+                                              Under 'Removal Options' select 'Remove form virtual machine' and click 'OK'
                                             </div>
                                             
                                             <div dir="ltr">
@@ -1128,7 +1128,7 @@ tags:
                                           
                                           <td>
                                             <div dir="ltr">
-                                              Select the associated BLD server of this vDisk and right-click and select ‘Edit Settings…’ � In this example, the vDisk I am modifying is &65Tn01 which is associated with BLD server WSCTXBLD351T
+                                              Select the associated BLD server of this vDisk and right-click and select 'Edit Settings...' � In this example, the vDisk I am modifying is &65Tn01 which is associated with BLD server WSCTXBLD351T
                                             </div>
                                             
                                             <div dir="ltr">
@@ -1143,7 +1143,7 @@ tags:
                                           
                                           <td>
                                             <div dir="ltr">
-                                              Click ‘Add…’
+                                              Click 'Add...'
                                             </div>
                                             
                                             <div dir="ltr">
@@ -1158,7 +1158,7 @@ tags:
                                           
                                           <td>
                                             <div dir="ltr">
-                                              Select ‘Hard Disk’ and click ‘Next’
+                                              Select 'Hard Disk' and click 'Next'
                                             </div>
                                             
                                             <div dir="ltr">
@@ -1173,7 +1173,7 @@ tags:
                                           
                                           <td>
                                             <div dir="ltr">
-                                              Select ‘Use an existing virtual disk’ and click ‘Next’
+                                              Select 'Use an existing virtual disk' and click 'Next'
                                             </div>
                                             
                                             <div dir="ltr">
@@ -1188,7 +1188,7 @@ tags:
                                           
                                           <td>
                                             <div dir="ltr">
-                                              Select ‘Browse’
+                                              Select 'Browse'
                                             </div>
                                             
                                             <div dir="ltr">
@@ -1203,7 +1203,7 @@ tags:
                                           
                                           <td>
                                             <div dir="ltr">
-                                              Navigate to the path noted earlier, select the disk and click ‘Open’
+                                              Navigate to the path noted earlier, select the disk and click 'Open'
                                             </div>
                                             
                                             <div dir="ltr">
@@ -1218,7 +1218,7 @@ tags:
                                           
                                           <td>
                                             <div dir="ltr">
-                                              Click ‘Next’
+                                              Click 'Next'
                                             </div>
                                             
                                             <div dir="ltr">
@@ -1233,7 +1233,7 @@ tags:
                                           
                                           <td>
                                             <div dir="ltr">
-                                              Click ‘Next’
+                                              Click 'Next'
                                             </div>
                                             
                                             <div dir="ltr">
@@ -1248,7 +1248,7 @@ tags:
                                           
                                           <td>
                                             <div dir="ltr">
-                                              Click ‘Finish’
+                                              Click 'Finish'
                                             </div>
                                             
                                             <div dir="ltr">
@@ -1263,7 +1263,7 @@ tags:
                                           
                                           <td>
                                             <div dir="ltr">
-                                              Click ‘OK’
+                                              Click 'OK'
                                             </div>
                                             
                                             <div dir="ltr">
@@ -1308,7 +1308,7 @@ tags:
                                           
                                           <td>
                                             <div dir="ltr">
-                                              Select the associated BLD server of this vDisk and right-click and select ‘Edit Settings…’ � In this example, the vDisk I am modifying is &65Tn01 which is associated with BLD server WSCTXBLD351T
+                                              Select the associated BLD server of this vDisk and right-click and select 'Edit Settings...' � In this example, the vDisk I am modifying is &65Tn01 which is associated with BLD server WSCTXBLD351T
                                             </div>
                                             
                                             <div dir="ltr">
@@ -1323,7 +1323,7 @@ tags:
                                           
                                           <td>
                                             <div dir="ltr">
-                                              Select the ‘CD/DVD drive 1’ and ‘Uncheck’ the ‘Connect at power on’ and click OK
+                                              Select the 'CD/DVD drive 1' and 'Uncheck' the 'Connect at power on' and click OK
                                             </div>
                                             
                                             <div dir="ltr">
@@ -1364,7 +1364,7 @@ tags:
                                           
                                           <td>
                                             <div dir="ltr">
-                                              Right-click on the VM and select “Power > Power On”
+                                              Right-click on the VM and select "Power > Power On"
                                             </div>
                                             
                                             <div dir="ltr">
@@ -1379,7 +1379,7 @@ tags:
                                           
                                           <td>
                                             <div dir="ltr">
-                                              Right-click on the VM and select “Open Console”
+                                              Right-click on the VM and select "Open Console"
                                             </div>
                                             
                                             <div dir="ltr">
@@ -1409,7 +1409,7 @@ tags:
                                           
                                           <td>
                                             <div dir="ltr">
-                                              Click “Start”
+                                              Click "Start"
                                             </div>
                                             
                                             <div dir="ltr">
@@ -1424,7 +1424,7 @@ tags:
                                           
                                           <td>
                                             <div dir="ltr">
-                                              Click “Control Panel”
+                                              Click "Control Panel"
                                             </div>
                                             
                                             <div dir="ltr">
@@ -1439,7 +1439,7 @@ tags:
                                           
                                           <td>
                                             <div dir="ltr">
-                                              Click “Program and Features”
+                                              Click "Program and Features"
                                             </div>
                                             
                                             <div dir="ltr">
@@ -1454,7 +1454,7 @@ tags:
                                           
                                           <td>
                                             <div dir="ltr">
-                                              Click on the “Citrix Provisioning Services Target Device x64”
+                                              Click on the "Citrix Provisioning Services Target Device x64"
                                             </div>
                                             
                                             <div dir="ltr">
@@ -1469,7 +1469,7 @@ tags:
                                           
                                           <td>
                                             <div dir="ltr">
-                                              Right-click and choose “Uninstall”
+                                              Right-click and choose "Uninstall"
                                             </div>
                                             
                                             <div dir="ltr">
@@ -1484,7 +1484,7 @@ tags:
                                           
                                           <td>
                                             <div dir="ltr">
-                                              Click “Yes”
+                                              Click "Yes"
                                             </div>
                                             
                                             <div dir="ltr">
@@ -1499,7 +1499,7 @@ tags:
                                           
                                           <td>
                                             <div dir="ltr">
-                                              Click “OK”
+                                              Click "OK"
                                             </div>
                                             
                                             <div dir="ltr">
@@ -1570,7 +1570,7 @@ tags:
                                           
                                           <td>
                                             <div dir="ltr">
-                                              Browse to the VMWare Tools install and open ‘setup64.exe’
+                                              Browse to the VMWare Tools install and open 'setup64.exe'
                                             </div>
                                             
                                             <div dir="ltr">
@@ -1586,7 +1586,7 @@ tags:
                                                 
                                                 <td>
                                                   <div dir="ltr">
-                                                    Select ‘Next’
+                                                    Select 'Next'
                                                   </div>
                                                   
                                                   <div dir="ltr">
@@ -1601,7 +1601,7 @@ tags:
                                                 
                                                 <td>
                                                   <div dir="ltr">
-                                                    Select ‘Custom’ and click ‘Next’
+                                                    Select 'Custom' and click 'Next'
                                                   </div>
                                                   
                                                   <div dir="ltr">
@@ -1616,7 +1616,7 @@ tags:
                                                 
                                                 <td>
                                                   <div dir="ltr">
-                                                    Ensure the ‘NSX’ options are set to ‘Entire feature will be unavailable’ and click ‘Next’
+                                                    Ensure the 'NSX' options are set to 'Entire feature will be unavailable' and click 'Next'
                                                   </div>
                                                   
                                                   <div dir="ltr">
@@ -1631,7 +1631,7 @@ tags:
                                                 
                                                 <td>
                                                   <div dir="ltr">
-                                                    Select ‘Close the applications and attempt to restart them’ and click ‘OK’
+                                                    Select 'Close the applications and attempt to restart them' and click 'OK'
                                                   </div>
                                                   
                                                   <div dir="ltr">
@@ -1646,7 +1646,7 @@ tags:
                                                 
                                                 <td>
                                                   <div dir="ltr">
-                                                    Click ‘Finish’
+                                                    Click 'Finish'
                                                   </div>
                                                   
                                                   <div dir="ltr">
@@ -1661,7 +1661,7 @@ tags:
                                                 
                                                 <td>
                                                   <div dir="ltr">
-                                                    Click ‘Yes’ to restart
+                                                    Click 'Yes' to restart
                                                   </div>
                                                   
                                                   <div dir="ltr">
@@ -1719,7 +1719,7 @@ tags:
                                                     
                                                     <td>
                                                       <div dir="ltr">
-                                                        Browse to the share that holds the updated software and open ‘PVS_Device_x64.exe’
+                                                        Browse to the share that holds the updated software and open 'PVS_Device_x64.exe'
                                                       </div>
                                                       
                                                       <div dir="ltr">
@@ -1734,7 +1734,7 @@ tags:
                                                     
                                                     <td>
                                                       <div dir="ltr">
-                                                        Click ‘Install’
+                                                        Click 'Install'
                                                       </div>
                                                       
                                                       <div dir="ltr">
@@ -1749,7 +1749,7 @@ tags:
                                                     
                                                     <td>
                                                       <div dir="ltr">
-                                                        Click “Next”
+                                                        Click "Next"
                                                       </div>
                                                       
                                                       <div dir="ltr">
@@ -1764,7 +1764,7 @@ tags:
                                                     
                                                     <td>
                                                       <div dir="ltr">
-                                                        Select ‘Acknowledged’ and click ‘Next’
+                                                        Select 'Acknowledged' and click 'Next'
                                                       </div>
                                                       
                                                       <div dir="ltr">
@@ -1779,7 +1779,7 @@ tags:
                                                     
                                                     <td>
                                                       <div dir="ltr">
-                                                        Choose “I accept the terms in the license agreement” and click “Next”
+                                                        Choose "I accept the terms in the license agreement" and click "Next"
                                                       </div>
                                                       
                                                       <div dir="ltr">
@@ -1794,7 +1794,7 @@ tags:
                                                     
                                                     <td>
                                                       <div dir="ltr">
-                                                        Click “Next”
+                                                        Click "Next"
                                                       </div>
                                                       
                                                       <div dir="ltr">
@@ -1809,7 +1809,7 @@ tags:
                                                     
                                                     <td>
                                                       <div dir="ltr">
-                                                        Click “Next”
+                                                        Click "Next"
                                                       </div>
                                                       
                                                       <div dir="ltr">
@@ -1824,7 +1824,7 @@ tags:
                                                     
                                                     <td>
                                                       <div dir="ltr">
-                                                        Select ‘Complete’ and click ‘Next’
+                                                        Select 'Complete' and click 'Next'
                                                       </div>
                                                       
                                                       <div dir="ltr">
@@ -1839,7 +1839,7 @@ tags:
                                                     
                                                     <td>
                                                       <div dir="ltr">
-                                                        Click “Install”
+                                                        Click "Install"
                                                       </div>
                                                       
                                                       <div dir="ltr">
@@ -1854,7 +1854,7 @@ tags:
                                                     
                                                     <td>
                                                       <div dir="ltr">
-                                                        Uncheck “Launch Imaging Wizard” and click “Finish”
+                                                        Uncheck "Launch Imaging Wizard" and click "Finish"
                                                       </div>
                                                       
                                                       <div dir="ltr">
@@ -1869,7 +1869,7 @@ tags:
                                                     
                                                     <td>
                                                       <div dir="ltr">
-                                                        Click “Yes” To restart the computer.
+                                                        Click "Yes" To restart the computer.
                                                       </div>
                                                       
                                                       <div dir="ltr">
@@ -1914,7 +1914,7 @@ tags:
                                                     
                                                     <td>
                                                       <div dir="ltr">
-                                                        Right-click the VM and select ‘Edit Settings…’
+                                                        Right-click the VM and select 'Edit Settings...'
                                                       </div>
                                                       
                                                       <div dir="ltr">
@@ -1929,7 +1929,7 @@ tags:
                                                     
                                                     <td>
                                                       <div dir="ltr">
-                                                        Select the VMDK disk, note the ‘Disk File’ path and click ‘Remove’
+                                                        Select the VMDK disk, note the 'Disk File' path and click 'Remove'
                                                       </div>
                                                       
                                                       <div dir="ltr">
@@ -1944,7 +1944,7 @@ tags:
                                                     
                                                     <td>
                                                       <div dir="ltr">
-                                                        Ensure ‘Remove from virtual machine’ is selected and click ‘OK’
+                                                        Ensure 'Remove from virtual machine' is selected and click 'OK'
                                                       </div>
                                                       
                                                       <div dir="ltr">
@@ -1959,7 +1959,7 @@ tags:
                                                     
                                                     <td>
                                                       <div dir="ltr">
-                                                        Select the CD/DVD Drive and check the ‘Connect at power on’ box and click ‘OK’
+                                                        Select the CD/DVD Drive and check the 'Connect at power on' box and click 'OK'
                                                       </div>
                                                       
                                                       <div dir="ltr">
@@ -2014,7 +2014,7 @@ tags:
                                                     
                                                     <td>
                                                       <div dir="ltr">
-                                                        Right-click on the staging server and select ‘Edit Settings…’
+                                                        Right-click on the staging server and select 'Edit Settings...'
                                                       </div>
                                                       
                                                       <div dir="ltr">
@@ -2029,7 +2029,7 @@ tags:
                                                     
                                                     <td>
                                                       <div dir="ltr">
-                                                        Select ‘Add…’
+                                                        Select 'Add...'
                                                       </div>
                                                       
                                                       <div dir="ltr">
@@ -2044,7 +2044,7 @@ tags:
                                                     
                                                     <td>
                                                       <div dir="ltr">
-                                                        Select ‘Hard Disk’ and click ‘Next’
+                                                        Select 'Hard Disk' and click 'Next'
                                                       </div>
                                                       
                                                       <div dir="ltr">
@@ -2059,7 +2059,7 @@ tags:
                                                     
                                                     <td>
                                                       <div dir="ltr">
-                                                        Select ‘Use an existing virtual disk’ and click ‘Next’
+                                                        Select 'Use an existing virtual disk' and click 'Next'
                                                       </div>
                                                       
                                                       <div dir="ltr">
@@ -2074,7 +2074,7 @@ tags:
                                                     
                                                     <td>
                                                       <div dir="ltr">
-                                                        Click ‘Browse’ and select the disk you noted earlier
+                                                        Click 'Browse' and select the disk you noted earlier
                                                       </div>
                                                       
                                                       <div dir="ltr">
@@ -2104,7 +2104,7 @@ tags:
                                                     
                                                     <td>
                                                       <div dir="ltr">
-                                                        Click ‘Next’
+                                                        Click 'Next'
                                                       </div>
                                                       
                                                       <div dir="ltr">
@@ -2119,7 +2119,7 @@ tags:
                                                     
                                                     <td>
                                                       <div dir="ltr">
-                                                        Click ‘Next’
+                                                        Click 'Next'
                                                       </div>
                                                       
                                                       <div dir="ltr">
@@ -2134,7 +2134,7 @@ tags:
                                                     
                                                     <td>
                                                       <div dir="ltr">
-                                                        Click ‘Finish’
+                                                        Click 'Finish'
                                                       </div>
                                                       
                                                       <div dir="ltr">
@@ -2149,7 +2149,7 @@ tags:
                                                     
                                                     <td>
                                                       <div dir="ltr">
-                                                        Click ‘OK’
+                                                        Click 'OK'
                                                       </div>
                                                       
                                                       <div dir="ltr">
@@ -2164,7 +2164,7 @@ tags:
                                                     
                                                     <td>
                                                       <div dir="ltr">
-                                                        RDP into the staging server, browse the backup drive and delete the contents of ‘WindowsImageBackup’
+                                                        RDP into the staging server, browse the backup drive and delete the contents of 'WindowsImageBackup'
                                                       </div>
                                                       
                                                       <div dir="ltr">
@@ -2196,7 +2196,7 @@ tags:
                                                                 
                                                                 <td>
                                                                   <div dir="ltr">
-                                                                    Right-click on the VMDK and select ‘Shrink Volume…’
+                                                                    Right-click on the VMDK and select 'Shrink Volume...'
                                                                   </div>
                                                                   
                                                                   <div dir="ltr">
@@ -2249,7 +2249,7 @@ tags:
                                                                 
                                                                 <td>
                                                                   <div dir="ltr">
-                                                                    Open ‘Windows Server Backup’
+                                                                    Open 'Windows Server Backup'
                                                                   </div>
                                                                   
                                                                   <div dir="ltr">
@@ -2267,7 +2267,7 @@ tags:
                                                                 
                                                                 <td>
                                                                   <div dir="ltr">
-                                                                    Click ‘Backup Once…’
+                                                                    Click 'Backup Once...'
                                                                   </div>
                                                                   
                                                                   <div dir="ltr">
@@ -2282,7 +2282,7 @@ tags:
                                                                 
                                                                 <td>
                                                                   <div dir="ltr">
-                                                                    Select ‘Different options’ then ‘Next’
+                                                                    Select 'Different options' then 'Next'
                                                                   </div>
                                                                   
                                                                   <div dir="ltr">
@@ -2297,7 +2297,7 @@ tags:
                                                                 
                                                                 <td>
                                                                   <div dir="ltr">
-                                                                    Select ‘Custom’ than ‘Next’
+                                                                    Select 'Custom' than 'Next'
                                                                   </div>
                                                                   
                                                                   <div dir="ltr">
@@ -2312,7 +2312,7 @@ tags:
                                                                 
                                                                 <td>
                                                                   <div dir="ltr">
-                                                                    Select ‘Add Items’
+                                                                    Select 'Add Items'
                                                                   </div>
                                                                   
                                                                   <div dir="ltr">
@@ -2327,7 +2327,7 @@ tags:
                                                                 
                                                                 <td>
                                                                   <div dir="ltr">
-                                                                    Select the VMDK disk and click ‘OK’
+                                                                    Select the VMDK disk and click 'OK'
                                                                   </div>
                                                                   
                                                                   <div dir="ltr">
@@ -2342,7 +2342,7 @@ tags:
                                                                 
                                                                 <td>
                                                                   <div dir="ltr">
-                                                                    Click ‘Next’
+                                                                    Click 'Next'
                                                                   </div>
                                                                   
                                                                   <div dir="ltr">
@@ -2357,7 +2357,7 @@ tags:
                                                                 
                                                                 <td>
                                                                   <div dir="ltr">
-                                                                    Select ‘Local drives’ and click ‘Next’
+                                                                    Select 'Local drives' and click 'Next'
                                                                   </div>
                                                                   
                                                                   <div dir="ltr">
@@ -2372,7 +2372,7 @@ tags:
                                                                 
                                                                 <td>
                                                                   <div dir="ltr">
-                                                                    Select the ‘Backup Destination’ and click ‘Next’
+                                                                    Select the 'Backup Destination' and click 'Next'
                                                                   </div>
                                                                   
                                                                   <div dir="ltr">
@@ -2387,7 +2387,7 @@ tags:
                                                                 
                                                                 <td>
                                                                   <div dir="ltr">
-                                                                    Click ‘Backup’
+                                                                    Click 'Backup'
                                                                   </div>
                                                                   
                                                                   <div dir="ltr">
@@ -2413,7 +2413,7 @@ tags:
                                                                 
                                                                 <td>
                                                                   <div dir="ltr">
-                                                                    Click ‘Close’
+                                                                    Click 'Close'
                                                                   </div>
                                                                   
                                                                   <div dir="ltr">
@@ -2428,7 +2428,7 @@ tags:
                                                                 
                                                                 <td>
                                                                   <div dir="ltr">
-                                                                    Go to the vCenter console and Right-click on the staging server and select ‘Edit Settings…’
+                                                                    Go to the vCenter console and Right-click on the staging server and select 'Edit Settings...'
                                                                   </div>
                                                                   
                                                                   <div dir="ltr">
@@ -2443,7 +2443,7 @@ tags:
                                                                 
                                                                 <td>
                                                                   <div dir="ltr">
-                                                                    Select the VMDK used for updating VMWare Tools/Target Device software ‘’ and click ‘Remove’
+                                                                    Select the VMDK used for updating VMWare Tools/Target Device software '' and click 'Remove'
                                                                   </div>
                                                                   
                                                                   <div dir="ltr">
@@ -2458,7 +2458,7 @@ tags:
                                                                 
                                                                 <td>
                                                                   <div dir="ltr">
-                                                                    Select ‘Remove from virtual machine and delete files from disk’
+                                                                    Select 'Remove from virtual machine and delete files from disk'
                                                                   </div>
                                                                   
                                                                   <div dir="ltr">
@@ -2528,7 +2528,7 @@ tags:
                                                                     
                                                                     <td>
                                                                       <div dir="ltr">
-                                                                        Open ‘Windows Server Backup’
+                                                                        Open 'Windows Server Backup'
                                                                       </div>
                                                                       
                                                                       <div dir="ltr">
@@ -2543,7 +2543,7 @@ tags:
                                                                     
                                                                     <td>
                                                                       <div dir="ltr">
-                                                                        Click ‘Recover’
+                                                                        Click 'Recover'
                                                                       </div>
                                                                       
                                                                       <div dir="ltr">
@@ -2558,7 +2558,7 @@ tags:
                                                                     
                                                                     <td>
                                                                       <div dir="ltr">
-                                                                        Select ‘This server’ and click ‘Next’
+                                                                        Select 'This server' and click 'Next'
                                                                       </div>
                                                                       
                                                                       <div dir="ltr">
@@ -2573,7 +2573,7 @@ tags:
                                                                     
                                                                     <td>
                                                                       <div dir="ltr">
-                                                                        Click ‘Next’
+                                                                        Click 'Next'
                                                                       </div>
                                                                       
                                                                       <div dir="ltr">
@@ -2588,7 +2588,7 @@ tags:
                                                                     
                                                                     <td>
                                                                       <div dir="ltr">
-                                                                        Select ‘’Volumes’ and click ‘Next’
+                                                                        Select ''Volumes' and click 'Next'
                                                                       </div>
                                                                       
                                                                       <div dir="ltr">
@@ -2603,7 +2603,7 @@ tags:
                                                                     
                                                                     <td>
                                                                       <div dir="ltr">
-                                                                        Select the checkbox beside the volume and choose the ‘Citrix vDisk’ for the destination volume and click ‘Next’
+                                                                        Select the checkbox beside the volume and choose the 'Citrix vDisk' for the destination volume and click 'Next'
                                                                       </div>
                                                                       
                                                                       <div dir="ltr">
@@ -2618,7 +2618,7 @@ tags:
                                                                     
                                                                     <td>
                                                                       <div dir="ltr">
-                                                                        Click ‘Yes’
+                                                                        Click 'Yes'
                                                                       </div>
                                                                       
                                                                       <div dir="ltr">
@@ -2633,7 +2633,7 @@ tags:
                                                                     
                                                                     <td>
                                                                       <div dir="ltr">
-                                                                        Click ‘Recover’
+                                                                        Click 'Recover'
                                                                       </div>
                                                                       
                                                                       <div dir="ltr">
@@ -2663,7 +2663,7 @@ tags:
                                                                     
                                                                     <td>
                                                                       <div dir="ltr">
-                                                                        Click ‘Close’
+                                                                        Click 'Close'
                                                                       </div>
                                                                       
                                                                       <div dir="ltr">
@@ -2712,7 +2712,7 @@ tags:
                                                                     
                                                                     <td>
                                                                       <div dir="ltr">
-                                                                        In the command prompt, switch to the ‘Destination’ drive and check the BCD file:
+                                                                        In the command prompt, switch to the 'Destination' drive and check the BCD file:
                                                                       </div>
                                                                       
                                                                       <div dir="ltr">
@@ -2735,7 +2735,7 @@ tags:
                                                                     
                                                                     <td>
                                                                       <div dir="ltr">
-                                                                        Execute the following commands, substituting the ‘E:’ for the proper drive letter:
+                                                                        Execute the following commands, substituting the 'E:' for the proper drive letter:
                                                                       </div>
                                                                       
                                                                       <p>

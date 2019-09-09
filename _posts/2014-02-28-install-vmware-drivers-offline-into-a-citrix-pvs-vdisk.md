@@ -45,7 +45,7 @@ Logging into the ESXi host with SSH
 </div>
 
 Then we modified the VMWare virtual machines with these commands:  
-To do so through the vSphere Client, go to VM Settings ïƒ Options tab ïƒ Advanced General ïƒ Configuration  
+To do so through the vSphere Client, go to VM Settings > Options tab > Advanced General > Configuration  
 Parameters and add an entry for ethernetX.coalescingScheme with the value of "disabled"
 
 We have 2 NIC's assigned to each of our PVS VM's.  One NIC is dedicated for the provisioning traffic and one for access to the rest of the network.  So I had to add 2 lines to my configuration:

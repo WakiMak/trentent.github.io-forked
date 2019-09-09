@@ -16,10 +16,10 @@ We were encountering 'slowness' with our Citrix Web Interface that logging into 
 
 Only one of our XML brokers was being hit, the other was sitting idle. � Since we use a VIP that is supposed to have load balancing I brought our network team who support the Netscalers to help me take� a look.  
 I configured two loads:  
-1) Direct connections to the XML broker/VIP. This request simulates what the web interface sends to the XML broker on behalf of the user. The traffic POST’ed is an XML request for a list of all applications available to the user. This is the hardest request the web interface can send an XML broker because the XML broker needs to filter out applications the user does not have access to before it can send a response.  
+1) Direct connections to the XML broker/VIP. This request simulates what the web interface sends to the XML broker on behalf of the user. The traffic POST'ed is an XML request for a list of all applications available to the user. This is the hardest request the web interface can send an XML broker because the XML broker needs to filter out applications the user does not have access to before it can send a response.  
 2) Through the web interface. This request simulates going through the HTML pages to get your list of applications available on the web AND a PNA query for all applications available to the user.
 
-To establish a baseline I ‘loaded’ a XML server directly (WSCTXAPP301T)
+To establish a baseline I 'loaded' a XML server directly (WSCTXAPP301T)
 
 <img class="aligncenter size-full wp-image-1509" src="http://theorypc.ca/wp-content/uploads/2016/06/image003.png" alt="image003" width="625" height="520" srcset="http://theorypc.ca/wp-content/uploads/2016/06/image003.png 625w, http://theorypc.ca/wp-content/uploads/2016/06/image003-300x250.png 300w" sizes="(max-width: 625px) 100vw, 625px" /> 
 
@@ -29,7 +29,7 @@ I then loaded the VIP with 200 connections with the XML request.
 
 <img class="aligncenter size-full wp-image-1510" src="http://theorypc.ca/wp-content/uploads/2016/06/image004.png" alt="image004" width="625" height="381" srcset="http://theorypc.ca/wp-content/uploads/2016/06/image004.png 625w, http://theorypc.ca/wp-content/uploads/2016/06/image004-300x183.png 300w" sizes="(max-width: 625px) 100vw, 625px" /> 
 
-From this we can see the ‘load’ switch servers between the WSCTXZDC301T and WSCTXAPP301T. This is NOT load balancing, but the Netscaler failing over when \*it\* does not receive a reply from the XML monitor within 5000ms. The performance with PERSISTENCE set to SOURCEIP is no better than a single server for servicing requests.
+From this we can see the 'load' switch servers between the WSCTXZDC301T and WSCTXAPP301T. This is NOT load balancing, but the Netscaler failing over when \*it\* does not receive a reply from the XML monitor within 5000ms. The performance with PERSISTENCE set to SOURCEIP is no better than a single server for servicing requests.
 
 Loading the Webinterface with requests:
 
@@ -49,7 +49,7 @@ Load testing the Web Interface with PERSISTENCE set to NONE sees the same result
 
 <img class="aligncenter size-full wp-image-1513" src="http://theorypc.ca/wp-content/uploads/2016/06/image007.png" alt="image007" width="625" height="488" srcset="http://theorypc.ca/wp-content/uploads/2016/06/image007.png 625w, http://theorypc.ca/wp-content/uploads/2016/06/image007-300x234.png 300w" sizes="(max-width: 625px) 100vw, 625px" /> 
 
-What’s the impact on the end user by setting PERSISTENCE to NONE? There is no impact. During load testing I made several ‘real’ connections using Citrix Receiver via PNA and through the Web Interface and both continued to operate without issue enumerating applications. With this testing and information we need to change our PERSISTENCE value to NONE.
+What's the impact on the end user by setting PERSISTENCE to NONE? There is no impact. During load testing I made several 'real' connections using Citrix Receiver via PNA and through the Web Interface and both continued to operate without issue enumerating applications. With this testing and information we need to change our PERSISTENCE value to NONE.
 
 &nbsp;
 

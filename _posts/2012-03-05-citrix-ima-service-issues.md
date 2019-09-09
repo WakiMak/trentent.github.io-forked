@@ -33,7 +33,7 @@ The Independent Management Architecture service terminated with service-specific
 - Or -  
 The IMA service terminated with service-specific error: 2147483647  
 Cause  
-When looking into the services manager, the MFCOM Service is in status “starting”. MFCOM and IMA Service fail to start because of a corrupt radeoffline DB.  
+When looking into the services manager, the MFCOM Service is in status "starting". MFCOM and IMA Service fail to start because of a corrupt radeoffline DB.  
 Note: This issue also occurs after an incomplete or corrupted install of a Citrix Hotfix. Make sure you terminate the MFCOM32.exe as instructed below and re-install the hotfix properly. This can also ensure that the MFCOM Service will start successfully.  
 Resolution  
 **Stop the mfcom.exe service using Task Manager.  

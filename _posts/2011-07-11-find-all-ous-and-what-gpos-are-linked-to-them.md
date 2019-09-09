@@ -33,7 +33,7 @@ sed -r -i "s/..=.olicies,..=.ystem,DC=ccs,DC=corp\\;.\]//g" gplinks.txt
 for /f "tokens=1-2 delims=," %A IN ('type "gpnames.txt"') DO sed -i "s/%A/%B/g" "gplinks.txt"
 del sed* /q</pre>
 
-Love it 🙂
+Love it 
 
 To expand on the above, here is a batch file that will find all empty OU's and what GPO's are linked to them:
 

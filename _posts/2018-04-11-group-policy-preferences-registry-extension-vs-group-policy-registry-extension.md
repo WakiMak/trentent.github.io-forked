@@ -55,7 +55,7 @@ Each one of these operations took around 1-1.1ms, with the caveat that Process M
 
 <img class="aligncenter size-full wp-image-2729" src="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-09-at-11.24.19-PM.png" alt="" width="1312" height="172" srcset="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-09-at-11.24.19-PM.png 1312w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-09-at-11.24.19-PM-300x39.png 300w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-09-at-11.24.19-PM-768x101.png 768w" sizes="(max-width: 1312px) 100vw, 1312px" /> 
 
-We can see a new operation "RegQueryValue". Â As [described by William Stanek](https://blogs.msdn.microsoft.com/microsoft_press/2009/09/29/william-stanek-applying-group-policy-preferences-with-crud/), "The Create action creates a preference if it doesnâ€™t already exist. For example, you can use the Create action to create and set the value of a user environment variable called _CurrentOrg_ on computers where it does not yet exist. _<span style="text-decoration: underline;"><strong>If the variable already exists</strong></span>_, the value of the variable will not be changed."
+We can see a new operation "RegQueryValue". Â As [described by William Stanek](https://blogs.msdn.microsoft.com/microsoft_press/2009/09/29/william-stanek-applying-group-policy-preferences-with-crud/), "The Create action creates a preference if it doesn't already exist. For example, you can use the Create action to create and set the value of a user environment variable called _CurrentOrg_ on computers where it does not yet exist. _<span style="text-decoration: underline;"><strong>If the variable already exists</strong></span>_, the value of the variable will not be changed."
 
 The RegQueryValue is executing the check to see if a variable already exists. Â So what does GPP look like if the value is already present?
 
@@ -107,7 +107,7 @@ GPP also performs this work in just 3 operations.
 
 Group Policy Preferences has another operation to explore. Â "Replace".
 
-This operationÂ ..."creates preferences that donâ€™t yet exist, or deletes and then creates preferences that already exist."
+This operationÂ ..."creates preferences that don't yet exist, or deletes and then creates preferences that already exist."
 
 This sounds like it performs a few operations. Â Lets see what it looks like:
 

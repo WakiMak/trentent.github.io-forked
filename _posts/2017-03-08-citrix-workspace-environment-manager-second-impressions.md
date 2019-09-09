@@ -58,22 +58,22 @@ Now to create our conditions. I want this registry action to only apply if you a
 
 <img class="aligncenter size-full wp-image-2052" src="http://theorypc.ca/wp-content/uploads/2017/03/wem12.png" alt="" width="478" height="550" srcset="http://theorypc.ca/wp-content/uploads/2017/03/wem12.png 478w, http://theorypc.ca/wp-content/uploads/2017/03/wem12-261x300.png 261w" sizes="(max-width: 478px) 100vw, 478px" /> 
 
-The Active Directory filter conditions are only evaluated against the user and not the machine.Â However, there is an option for â€˜ComputerName Matchâ€™:
+The Active Directory filter conditions are only evaluated against the user and not the machine.Â However, there is an option for 'ComputerName Match':
 
 <img class="aligncenter size-full wp-image-2053" src="http://theorypc.ca/wp-content/uploads/2017/03/wem13.png" alt="" width="312" height="159" srcset="http://theorypc.ca/wp-content/uploads/2017/03/wem13.png 312w, http://theorypc.ca/wp-content/uploads/2017/03/wem13-300x153.png 300w" sizes="(max-width: 312px) 100vw, 312px" /> 
 
-Our server naming convention is CTX (for Citrix) APP or silo name (eg, EPIC) ### (3 digit numerical designation) and the letter â€œTâ€ at the end for a test server or no letter for a production server.Â So our naming scheme would look like so:
+Our server naming convention is CTX (for Citrix) APP or silo name (eg, EPIC) ### (3 digit numerical designation) and the letter "T" at the end for a test server or no letter for a production server.Â So our naming scheme would look like so:
 
 CTXAPP301 - for a prod server  
 CTXAPP301T - for a test server
 
-The guide for WEM does specify you can use a wild card â€œ*â€ to allow arbitrary matches.Â So I tested it and found it has limitations.
+The guide for WEM does specify you can use a wild card "*" to allow arbitrary matches.Â So I tested it and found it has limitations.
 
-The wild card appears to only be valid if itâ€™s at the beginning or end of the name.Â For instance, setting the match string to:
+The wild card appears to only be valid if it's at the beginning or end of the name.Â For instance, setting the match string to:
 
 CTXAPP3*
 
-Will match both the test and prod servers.Â However, setting CTXAPP3*T and the wildcard is â€˜droppedâ€™ from the search (according to the WEM logs).Â So the search result is actually CTXAPP3T.Â Which is utterly useless.Â So a proper naming scheme is very important.Â Unfortunately, this will not work for us unless we manually specify all of our computer names.Â For example, we would have to do the following for this to work:
+Will match both the test and prod servers.Â However, setting CTXAPP3*T and the wildcard is 'dropped' from the search (according to the WEM logs).Â So the search result is actually CTXAPP3T.Â Which is utterly useless.Â So a proper naming scheme is very important.Â Unfortunately, this will not work for us unless we manually specify all of our computer names.Â For example, we would have to do the following for this to work:
 
 CTXAPP301T, CTXAPP302T, CTXAPP303T, etc.
 
@@ -95,17 +95,17 @@ I modified my command as such:
 
 Executing this command does result in checking to see if the computer is a member of a specific group.Â The only caveat is the user account that logs on must have permissions within AD to check group memberships.Â Which is usually granted.Â And in my case, it is so this command works.
 
-Next on the Group Policy Preference is the â€˜AND - ORâ€™.Â We have the filter condition now that ensures these values will only be applied if the computer is in a certain group.Â Now we need the value to apply if the user is a member of a certain group.
+Next on the Group Policy Preference is the 'AND - OR'.Â We have the filter condition now that ensures these values will only be applied if the computer is in a certain group.Â Now we need the value to apply if the user is a member of a certain group.
 
 An easy solution might be to create a super-group "HungAppTimeout" or some such and add all the groups I want that value to apply to that group. Â Another alternative is we can 'configure' each user group with the 'server must belong to group' filter and that should satisfy the same requirements. Â I chose this route for our evaluation of WEM to avoid creating large swaths of groups simply for the purpose of applying a single registry entry.
 
-Instead of doing the â€˜ORâ€™, we select the individual groups that this check would be against and actually specify that we apply this settings to that group.
+Instead of doing the 'OR', we select the individual groups that this check would be against and actually specify that we apply this settings to that group.
 
-To do that we add each group to the â€˜Configured Usersâ€™:
+To do that we add each group to the 'Configured Users':
 
 <img class="aligncenter size-full wp-image-2056" src="http://theorypc.ca/wp-content/uploads/2017/03/wem16.png" alt="" width="1390" height="652" srcset="http://theorypc.ca/wp-content/uploads/2017/03/wem16.png 1390w, http://theorypc.ca/wp-content/uploads/2017/03/wem16-300x141.png 300w, http://theorypc.ca/wp-content/uploads/2017/03/wem16-768x360.png 768w" sizes="(max-width: 1390px) 100vw, 1390px" /> 
 
-And then for each group, under â€˜Assignmentâ€™ we apply our setting with the filter:
+And then for each group, under 'Assignment' we apply our setting with the filter:
 
 <img class="aligncenter size-full wp-image-2057" src="http://theorypc.ca/wp-content/uploads/2017/03/wem17.png" alt="" width="1390" height="710" srcset="http://theorypc.ca/wp-content/uploads/2017/03/wem17.png 1390w, http://theorypc.ca/wp-content/uploads/2017/03/wem17-300x153.png 300w, http://theorypc.ca/wp-content/uploads/2017/03/wem17-768x392.png 768w" sizes="(max-width: 1390px) 100vw, 1390px" /> 
 
@@ -117,7 +117,7 @@ Continuing, we have the following policy:
 
 So this filtering is applied to a collection, not the individual settings.Â The filtering checks to see if the computer is a member of a specific group of servers, and whether the user is a member of a specific group.
 
-In order to accomplish this same result I have no choice but to create a parent group for the machines.Â Instead of an â€˜ORâ€™ we create a new group and add both server groups within it.Â This should result in the same effective â€˜ORâ€™ statement for the machine check, at least.Â Then we apply all the settings to the specific groups so only they get the values applied.
+In order to accomplish this same result I have no choice but to create a parent group for the machines.Â Instead of an 'OR' we create a new group and add both server groups within it.Â This should result in the same effective 'OR' statement for the machine check, at least.Â Then we apply all the settings to the specific groups so only they get the values applied.
 
 In total we have 154 total individual registry entries we apply.
 
@@ -125,7 +125,7 @@ In total we have 154 total individual registry entries we apply.
 
 So how does it compare to Group Policy Preferences?
 
-Stay Tuned ğŸ™‚
+Stay Tuned 
 
 <!-- AddThis Advanced Settings generic via filter on the_content -->
 

@@ -475,7 +475,7 @@ Write-Host "Only synchronous scripts affect logon duration"
 $args_fix = ($args[0] -split '\\')
 Get-LogonDurationAnalysis -Username $args_fix[1] -UserDomain  $args_fix[0] -clientName $args[1] -CUDesktopLoadTime $args[2]</pre>
 
-I hope to dig into other startup components and further drill down into what our user launch process looks like.  We wait, and we see 🙂
+I hope to dig into other startup components and further drill down into what our user launch process looks like.  We wait, and we see 
 
 <!-- AddThis Advanced Settings generic via filter on the_content -->
 

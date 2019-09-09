@@ -59,7 +59,7 @@ In order to convert from a 16MB block size PVS VHD you need to do the following 
   <a style="margin-left: 1em; margin-right: 1em;" href="http://2.bp.blogspot.com/-9zP-rqA81SM/U3z2B1AVZQI/AAAAAAAAAcg/zE_nsIuph2s/s1600/FINISH.PNG"><img src="http://2.bp.blogspot.com/-9zP-rqA81SM/U3z2B1AVZQI/AAAAAAAAAcg/zE_nsIuph2s/s1600/FINISH.PNG" width="320" height="232" border="0" /></a>
 </div>
 
-6) Click Finish.  And now you're done!  🙂
+6) Click Finish.  And now you're done!  
 
 <!-- AddThis Advanced Settings generic via filter on the_content -->
 

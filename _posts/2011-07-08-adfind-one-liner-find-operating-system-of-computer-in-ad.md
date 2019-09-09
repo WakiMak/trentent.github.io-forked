@@ -21,7 +21,7 @@ tags:
   - Active Directory
   - scripting
 ---
-Nice 🙂
+Nice 
 
 > <pre class="lang:default decode:true  ">adfind -b "OU=Domain Controllers,DC=lab,DC=com" -f "&(objectcategory=computer)" operatingSystem -csv</pre>
 > 

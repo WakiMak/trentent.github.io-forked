@@ -52,7 +52,7 @@ So now this leads to a bit of a quandary. Â The delay seems to be in the millise
 
 I think we're going to go with option 2. Â The reason is we can apply this setting change via Group Policy Preferences. Â This ensures that if we any removal/upgrade of the PVS software this setting will get reapplied. Â And then we don't have to worry about upgrading the OS and losing the startup script either or maintaining a script.
 
-We've been affected by this a few times in the past, the fix has always been to restart the PVS server, but I managed to hit a window where the failure was happening consistently and managed to get this information. Â ðŸ™‚
+We've been affected by this a few times in the past, the fix has always been to restart the PVS server, but I managed to hit a window where the failure was happening consistently and managed to get this information. Â 
 
 &nbsp;
 
