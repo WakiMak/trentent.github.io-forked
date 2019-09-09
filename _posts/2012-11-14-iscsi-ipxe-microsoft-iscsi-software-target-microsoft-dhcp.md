@@ -59,7 +59,7 @@ I don't think 043 Vendor Specific Info is required.  I put it in when I was tryi
 
 When I was trying to get PXELinux working with iPXE I ran into numerous problems.  Before I get too far ahead here, this was my PXELinux default config file:
 
-# These default options can be changed in the geniso script
+[]# These default options can be changed in the geniso script
 
 SAY iPXE ISO boot image
 
