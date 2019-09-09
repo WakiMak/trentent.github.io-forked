@@ -22,7 +22,7 @@ tags:
 "Hey man, I heard Citrix was down?"  
 "Can you help? I need to get this work done! The deadline is today and I can't open my app!"
 
-<img class="aligncenter wp-image-2918 size-medium" src="http://theorypc.ca/wp-content/uploads/2019/01/sad-300x264.png" alt="" width="300" height="264" srcset="http://theorypc.ca/wp-content/uploads/2019/01/sad-300x264.png 300w, http://theorypc.ca/wp-content/uploads/2019/01/sad.png 750w" sizes="(max-width: 300px) 100vw, 300px" /> 
+<img class="aligncenter wp-image-2918 size-medium" src="./wp-content/uploads/2019/01/sad-300x264.png" alt="" width="300" height="264" srcset="./wp-content/uploads/2019/01/sad-300x264.png 300w, ./wp-content/uploads/2019/01/sad.png 750w" sizes="(max-width: 300px) 100vw, 300px" /> 
 
 Welcome to the world of a Citrix Administrator. If an application stops working then the calls flood in and you get pinged a million times. Is there a way to be proactive about when an application goes down so you maximize your time trying to fix the issue between the failure and first call?
 
