@@ -1,6 +1,6 @@
 ---
 id: 642
-title: (OS 10061)No connection could be made because the target machine actively refused it.  : Unable to connect to the CGP tunnel destination (127.0.0.1:1494)
+title: (OS 10061)No connection could be made because the target machine actively refused it.  Unable to connect to the CGP tunnel destination (127.0.0.1 1494)
 date: 2013-05-27T15:55:00-06:00
 author: trententtye
 layout: post
