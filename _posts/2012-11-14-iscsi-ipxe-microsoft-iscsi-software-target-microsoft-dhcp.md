@@ -37,8 +37,11 @@ We are now done on the server side.  To test the connection I launched iSCSI ini
 
 
 HKLM\Software\Microsoft\iSCSI Target
+
 Value Name: AllowLoopBack
+
 Type: REG_DWORD
+
 Value: 1 (Default is 0)
 
 This will enable you to connect to your iSCSI target.
@@ -50,7 +53,22 @@ Now to get the client side working.  My goal with this is to PXE boot some clien
 The first thing I did was configure PXE booting off the Microsoft DHCP server.  I was going to make it launch PXELinux prior to iPXE and may modify my DHCP to do so in the future, but below is a screenshot of my working settings:
 
 <img src="http://4.bp.blogspot.com/-I3LMxGztydg/UKO7nbAKhaI/AAAAAAAAAKc/cEgc52S9LtM/s640/2.png">
+
 I don't think 043 Vendor Specific Info is required.  I put it in when I was trying to get PXELinux working.  This is a working DHCP config.
 
 
 When I was trying to get PXELinux working with iPXE I ran into numerous problems.  Before I get too far ahead here, this was my PXELinux default config file:
+
+# These default options can be changed in the geniso script
+
+SAY iPXE ISO boot image
+
+TIMEOUT 30
+
+DEFAULT ipxe.lkrn
+
+LABEL ipxe.lkrn
+
+ KERNEL ipxe.krn
+
+ INITRD ipxe.ipxe
