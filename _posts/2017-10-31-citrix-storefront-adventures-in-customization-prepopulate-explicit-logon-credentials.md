@@ -49,9 +49,16 @@ The url to query is:
 
 And the result:
 
-<div style="width: 1128px;" class="wp-video">
+<iframe width="1128" height="706"
+src="http://theorypc.ca/wp-content/uploads/2017/10/Prepopulate.mp4">http://theorypc.ca/wp-content/uploads/2017/10/Prepopulate.mp4" 
+frameborder="0" 
+allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+allowfullscreen></iframe>
+
+<!-- <div style="width: 1128px;" class="wp-video">
   <video class="wp-video-shortcode" id="video-2552-33" width="1128" height="706" preload="metadata" controls="controls"><source type="video/mp4" src="http://theorypc.ca/wp-content/uploads/2017/10/Prepopulate.mp4?_=33" /><a href="http://theorypc.ca/wp-content/uploads/2017/10/Prepopulate.mp4">http://theorypc.ca/wp-content/uploads/2017/10/Prepopulate.mp4</a></video>
 </div>
+-->
 
 <!-- AddThis Advanced Settings generic via filter on the_content -->
 
