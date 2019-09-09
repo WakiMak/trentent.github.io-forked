@@ -59,9 +59,9 @@ And we can now do the Target Device Update.  Error messages seen during this tro
 <pre class="lang:default decode:true ">"---------------------------
 Virtual Disk Manager
 ---------------------------
-The file or directory is corrupted and unreadable. 
+The file or directory is corrupted and unreadable.Â 
 ---------------------------
-OK   
+OK Â Â 
 ---------------------------
 
 "
@@ -90,10 +90,5 @@ Cannot open attachment 'D:\&65Pn02.2.vhd'. Error: 'The file or directory is corr
 
 'NewMachine': Cannot open attachment 'D:\&65Pn02.2.vhd'. Error: 'The file or directory is corrupted and unreadable.' (0x80070570). (Virtual machine ID D8D73511-6D6B-4604-A09B-BA4F5CD35206)
 
-[V] See details  [Close]"</pre>
+[V] See details Â [Close]"</pre>
 
-&nbsp;
-
-<!-- AddThis Advanced Settings generic via filter on the_content -->
-
-<!-- AddThis Share Buttons generic via filter on the_content -->
