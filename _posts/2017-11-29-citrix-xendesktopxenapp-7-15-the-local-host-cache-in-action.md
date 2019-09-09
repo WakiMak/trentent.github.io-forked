@@ -21,7 +21,7 @@ The Citrix Local Host Cache feature, introduced in XenDesktop/& 7.12, has some n
 
 To view a video of this process, scroll to the very end, [or click here.](https://www.youtube.com/watchv=X9GH_NDUgrQ)
 
-To start, I've created a powershell scriptÂ that simulates a user querying the broker for a list of applicaitons.
+To start, I've created a powershell script that simulates a user querying the broker for a list of applicaitons.
 
 <img class="aligncenter size-full wp-image-2608" src="http://theorypc.ca/wp-content/uploads/2017/11/list.png" alt="" width="232" height="223" /> 
 

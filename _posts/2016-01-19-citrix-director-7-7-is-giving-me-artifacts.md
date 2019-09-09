@@ -22,7 +22,7 @@ tags:
   - Citrix Director
   - Internet Explorer
 ---
-We are still in a pilot-preupgrade phase of Citrix Director 7.7 and found an issue where we were getting artifacts with IE11. Â The artifacts manifested themselves like so:
+We are still in a pilot-preupgrade phase of Citrix Director 7.7 and found an issue where we were getting artifacts with IE11.  The artifacts manifested themselves like so:
 
 <div>
 </div>
@@ -99,7 +99,7 @@ We are still in a pilot-preupgrade phase of Citrix Director 7.7 and found an iss
 </div>
 
 <div>
-  Because we use a group policy to push this setting out, disabling it and re-enabling it on a site-per-site configuration isn't acceptable. Â There is an option to set the 'zone assignment' of our Citrix Director server to be on 'Trusted Sites' instead of 'Local Intranet' but this would be another policy that would have to be pushed out to the ~80,000 workstations we have. Â Instead, there is another option. Â We can edit the default.html file in the Citrix Director folder and add a line in thesection to tell IE to exclude this site from compatibility mode. Â To execute this:
+  Because we use a group policy to push this setting out, disabling it and re-enabling it on a site-per-site configuration isn't acceptable.  There is an option to set the 'zone assignment' of our Citrix Director server to be on 'Trusted Sites' instead of 'Local Intranet' but this would be another policy that would have to be pushed out to the ~80,000 workstations we have.  Instead, there is another option.  We can edit the default.html file in the Citrix Director folder and add a line in thesection to tell IE to exclude this site from compatibility mode.  To execute this:
 </div>
 
 <div>
@@ -113,7 +113,7 @@ We are still in a pilot-preupgrade phase of Citrix Director 7.7 and found an iss
   <pre class="lang:default decode:true "><meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=EDGE" /></pre>
 </div>
 
-To the 'head' section. Â Example:
+To the 'head' section.  Example:
 
 <div>
 </div>

@@ -16,16 +16,16 @@ tags:
 
   - XenDesktop
 ---
-Currently, Storefront does not grant the ability to define applications with specific resolutions.Â In order to configure the resolution, [Citrix recommends you modify the default.ica file](https://support.citrix.com/article/CTX116357).Â This is terrible!Â If you had specific applications that required specific resolutions, what are you to do?Â Direct users to a variety of stores depending on the resolution required?!
+Currently, Storefront does not grant the ability to define applications with specific resolutions. In order to configure the resolution, [Citrix recommends you modify the default.ica file](https://support.citrix.com/article/CTX116357). This is terrible! If you had specific applications that required specific resolutions, what are you to do? Direct users to a variety of stores depending on the resolution required?!
 
-Fortunately, again, we can extend StoreFront to make it so we can configure custom resolutions for different applications on the same store.Â The [solution is a Storefront extension](https://theorypc.ca/2017/07/31/citrix-storefront-adventures-in-customization-change-any-ica-parameter/) I've already written.
+Fortunately, again, we can extend StoreFront to make it so we can configure custom resolutions for different applications on the same store. The [solution is a Storefront extension](https://theorypc.ca/2017/07/31/citrix-storefront-adventures-in-customization-change-any-ica-parameter/) I've already written.
 
 The steps to set this up:
 
   1. Download the [Storefront_CustomizationLaunch.dll.](https://theorypc-my.sharepoint.com/personal/trententtye_theorypc_onmicrosoft_com/_layouts/15/guestaccess.aspx?docid=004f14ced27ca490cb0a405a05c20bd21&authkey=AbuSRo56HbF18BHjBi_Pyaw)
-  2. Copy the file toÂ C:\inetpub\wwwroot\Citrix\Store\bin  
+  2. Copy the file to C:\inetpub\wwwroot\Citrix\Store\bin  
 <img class="aligncenter size-full wp-image-2569" src="http://theorypc.ca/wp-content/uploads/2017/11/StoreCustomization_Launch.png" alt="" width="1112" height="489" srcset="http://theorypc.ca/wp-content/uploads/2017/11/StoreCustomization_Launch.png 1112w, http://theorypc.ca/wp-content/uploads/2017/11/StoreCustomization_Launch-300x132.png 300w, http://theorypc.ca/wp-content/uploads/2017/11/StoreCustomization_Launch-768x338.png 768w" sizes="(max-width: 1112px) 100vw, 1112px" /> 
-  3. Edit the web.config in theÂ **Store** directory and enable the extension
+  3. Edit the web.config in the **Store** directory and enable the extension
   4. <pre class="lang:xhtml decode:true"><appSettings>
   <add key="modifyICAProperties" value="true" />
   </appSettings>
@@ -65,7 +65,7 @@ The steps to set this up:
 	delete $.ajaxSettings.headers["TWIMode"]; //Remove header
 };</pre>
 
-  8. And enjoy the results!Â 
+  8. And enjoy the results! 
 
 <img class="aligncenter size-full wp-image-2570" src="http://theorypc.ca/wp-content/uploads/2017/11/800x600Calculator.png" alt="" width="802" height="632" srcset="http://theorypc.ca/wp-content/uploads/2017/11/800x600Calculator.png 802w, http://theorypc.ca/wp-content/uploads/2017/11/800x600Calculator-300x236.png 300w, http://theorypc.ca/wp-content/uploads/2017/11/800x600Calculator-768x605.png 768w" sizes="(max-width: 802px) 100vw, 802px" /> 
 

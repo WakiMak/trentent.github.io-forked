@@ -16,7 +16,7 @@ tags:
 ---
 <img class="aligncenter size-full wp-image-2642" src="http://theorypc.ca/wp-content/uploads/2017/12/Screen-Shot-2017-12-22-at-1.01.53-PM.png" alt="" width="864" height="393" srcset="http://theorypc.ca/wp-content/uploads/2017/12/Screen-Shot-2017-12-22-at-1.01.53-PM.png 864w, http://theorypc.ca/wp-content/uploads/2017/12/Screen-Shot-2017-12-22-at-1.01.53-PM-300x136.png 300w, http://theorypc.ca/wp-content/uploads/2017/12/Screen-Shot-2017-12-22-at-1.01.53-PM-768x349.png 768w" sizes="(max-width: 864px) 100vw, 864px" />
 
-This customization is pretty easy. Â Add the following to your custom.js file:
+This customization is pretty easy.  Add the following to your custom.js file:
 
 <pre class="lang:default decode:true ">CTXS.ExtensionAPI.addHelpButton(
 	function onClick() {

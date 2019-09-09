@@ -27,7 +27,7 @@ I've seen this happen a few times now where the "Citrix Independent Management A
 3609 - Failed to load plugin C:\Program Files (x86)\Citrix\System32\Citrix\IMA\SubSystems\MfSrvSs.dll with error IMA_RESULT_FAILURE
 4003 - The Citrix Independent Management Architecture (IMA) service is exiting. The & Server Configuration tool has not been run on this server. Please run  & Server Configuration tool.</pre>
 
-All of these errors appear to be a registry with incorrect permissions configured on the Citrix keys. Â Why did these keys get their permissions reset? Â I'm unsure. Â I DID just install Citrix UPM 5.4 which may reset the keys?
+All of these errors appear to be a registry with incorrect permissions configured on the Citrix keys.  Why did these keys get their permissions reset?  I'm unsure.  I DID just install Citrix UPM 5.4 which may reset the keys?
 
 Here is how you fix the permissions (at least, everything I could possibly find):  
 1) [Download SetACL.exe](https://helgeklein.com/download/)  
@@ -120,7 +120,7 @@ Here is how you fix the permissions (at least, everything I could possibly find)
 "machine\SOFTWARE\Wow6432Node\Citrix\RebootSchedule",4,"D:AI"
 "machine\SOFTWARE\Wow6432Node\Citrix\WMIService",4,"D:PAI(A;OICI;KA;;;BA)(A;OICI;KA;;;SY)(A;;KA;;;SY)(A;OICIIO;KA;;;CO)(A;OICI;KR;;;AU)(A;OICI;KA;;;LS)"</pre>
 
-You mayÂ need to identify the local SID for 'NETWORKSERVICE'. Â In my example the value is:
+You may need to identify the local SID for 'NETWORKSERVICE'.  In my example the value is:
 
 <pre class="lang:default decode:true">S-1-5-80-2037085886-1864634726-376116143-1108166061-1304636759</pre>
 

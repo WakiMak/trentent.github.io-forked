@@ -91,7 +91,7 @@ panels_data:
                                 </div>
                                 
                                 <p>
-                                  Pebble -Â We needed a Citrix solution for our graphics team and TheoryPC delivered us a Citrix environment that worked with our 3D applications! Â We were able to use our applications on the road, at home or in China!<!-- AddThis Advanced Settings above via filter on wp_trim_excerpt -->
+                                  Pebble - We needed a Citrix solution for our graphics team and TheoryPC delivered us a Citrix environment that worked with our 3D applications!  We were able to use our applications on the road, at home or in China!<!-- AddThis Advanced Settings above via filter on wp_trim_excerpt -->
                                   
                                   <!-- AddThis Advanced Settings below via filter on wp_trim_excerpt -->
                                   
@@ -127,7 +127,7 @@ panels_data:
                                         </div>
                                         
                                         <p>
-                                          Alberta Health Services -Â Trentent and Saman setup and configured a province-wide Citrix & environmentÂ for AHS. This included migrating thousands of users from old, unsupported farms and hundreds of applications. Â They also setup AppV5 to work with our & infrastructure to give us large flexibility in how we choose to deploy or configure our servers.<!-- AddThis Advanced Settings above via filter on wp_trim_excerpt -->
+                                          Alberta Health Services - Trentent and Saman setup and configured a province-wide Citrix & environment for AHS. This included migrating thousands of users from old, unsupported farms and hundreds of applications.  They also setup AppV5 to work with our & infrastructure to give us large flexibility in how we choose to deploy or configure our servers.<!-- AddThis Advanced Settings above via filter on wp_trim_excerpt -->
                                           
                                           <!-- AddThis Advanced Settings below via filter on wp_trim_excerpt -->
                                           
@@ -163,7 +163,7 @@ panels_data:
                                                 </div>
                                                 
                                                 <p>
-                                                  ElectraTek Ltd -Â As a small business owner in Edmonton, any downtime has significant impact on my bottom line. Â TheoryPC has provided me a robust setup that has survived three office moves and the initial setup was resilientÂ enough that I am now going on 8 years with the same configuration.<!-- AddThis Advanced Settings above via filter on wp_trim_excerpt -->
+                                                  ElectraTek Ltd - As a small business owner in Edmonton, any downtime has significant impact on my bottom line.  TheoryPC has provided me a robust setup that has survived three office moves and the initial setup was resilient enough that I am now going on 8 years with the same configuration.<!-- AddThis Advanced Settings above via filter on wp_trim_excerpt -->
                                                   
                                                   <!-- AddThis Advanced Settings below via filter on wp_trim_excerpt -->
                                                   
@@ -336,7 +336,7 @@ panels_data:
                                                                                     </div>
                                                                                     
                                                                                     <p>
-                                                                                      In my previous post I was looking at utilizing a Logon Simulator to setup some proactive monitoring of a Citrix environment. Â I setup some goals for myself: Minimize the number of VM's to run the robots As little resource consumption as possible Still provide operational alerts Operate on-premise I want the footprint of these robots [&hellip;]<!-- AddThis Advanced Settings above via filter on wp_trim_excerpt -->
+                                                                                      In my previous post I was looking at utilizing a Logon Simulator to setup some proactive monitoring of a Citrix environment.  I setup some goals for myself: Minimize the number of VM's to run the robots As little resource consumption as possible Still provide operational alerts Operate on-premise I want the footprint of these robots [&hellip;]<!-- AddThis Advanced Settings above via filter on wp_trim_excerpt -->
                                                                                       
                                                                                       <!-- AddThis Advanced Settings below via filter on wp_trim_excerpt -->
                                                                                       

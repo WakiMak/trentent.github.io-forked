@@ -444,7 +444,7 @@ tags:
                             
                             <td>
                               <div dir="ltr">
-                                Set the 'Disk Size' to be greater than the size of the VHD file, select the 'Disk Provisioning' options you require, select the 'Location' you want to store the disk and remember where it is stored. Â You will need this location soon. Â Click 'Next'
+                                Set the 'Disk Size' to be greater than the size of the VHD file, select the 'Disk Provisioning' options you require, select the 'Location' you want to store the disk and remember where it is stored.  You will need this location soon.  Click 'Next'
                               </div>
                               
                               <div dir="ltr">
@@ -961,7 +961,7 @@ tags:
                                           
                                           <td>
                                             <div dir="ltr">
-                                              Unmount the Citrix vDisk. Â Cvhdmount -U 0
+                                              Unmount the Citrix vDisk.  Cvhdmount -U 0
                                             </div>
                                             
                                             <div dir="ltr">
@@ -1128,7 +1128,7 @@ tags:
                                           
                                           <td>
                                             <div dir="ltr">
-                                              Select the associated BLD server of this vDisk and right-click and select 'Edit Settings...' Â In this example, the vDisk I am modifying is &65Tn01 which is associated with BLD server WSCTXBLD351T
+                                              Select the associated BLD server of this vDisk and right-click and select 'Edit Settings...'  In this example, the vDisk I am modifying is &65Tn01 which is associated with BLD server WSCTXBLD351T
                                             </div>
                                             
                                             <div dir="ltr">
@@ -1308,7 +1308,7 @@ tags:
                                           
                                           <td>
                                             <div dir="ltr">
-                                              Select the associated BLD server of this vDisk and right-click and select 'Edit Settings...' Â In this example, the vDisk I am modifying is &65Tn01 which is associated with BLD server WSCTXBLD351T
+                                              Select the associated BLD server of this vDisk and right-click and select 'Edit Settings...'  In this example, the vDisk I am modifying is &65Tn01 which is associated with BLD server WSCTXBLD351T
                                             </div>
                                             
                                             <div dir="ltr">

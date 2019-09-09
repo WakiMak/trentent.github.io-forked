@@ -255,12 +255,12 @@ To test WinRM the following command can be used:
   
   <tr>
     <td style="text-align: center;">
-      winrm get winrm/config -r:%server% Â Â Â - Non-administrator user gets access is denied making WinRM queries
+      winrm get winrm/config -r:%server%    - Non-administrator user gets access is denied making WinRM queries
     </td>
   </tr>
 </table>
 
-This error, though, is only if you set Connector.WinRM.Identity as 'User' and those users are not Administrators. Â The fix, is to put your users into a group and make them a local admin on the Director server.
+This error, though, is only if you set Connector.WinRM.Identity as 'User' and those users are not Administrators.  The fix, is to put your users into a group and make them a local admin on the Director server.
 
 <!-- AddThis Advanced Settings generic via filter on the_content -->
 

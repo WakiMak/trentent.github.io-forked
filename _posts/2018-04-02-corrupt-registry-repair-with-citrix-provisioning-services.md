@@ -14,15 +14,15 @@ tags:
   - Provisioning Services
   - Registry
 ---
-I encountered an interesting issue and worked through a solution with a corrupt registry. Â The issue seemed innocuously enough, we upgraded PowerShell to 5.1. Â Upon reboot I encountered a bluescreen with code 0xF4:
+I encountered an interesting issue and worked through a solution with a corrupt registry.  The issue seemed innocuously enough, we upgraded PowerShell to 5.1.  Upon reboot I encountered a bluescreen with code 0xF4:
 
 <img class="aligncenter size-full wp-image-2700" src="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-02-at-9.43.37-PM.png" alt="" width="646" height="483" srcset="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-02-at-9.43.37-PM.png 646w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-02-at-9.43.37-PM-300x224.png 300w" sizes="(max-width: 646px) 100vw, 646px" /> 
 
 I have encountered this issue before, but I haven't recorded my troubleshooting steps until now.
 
-Since this was a PVS target device, the easy method was deleting the version and trying to upgrade PowerShell to 5.1, which resulted in the same BSOD. Â So it was easily reproducible. Â So I tried it a few more times, because, why not?
+Since this was a PVS target device, the easy method was deleting the version and trying to upgrade PowerShell to 5.1, which resulted in the same BSOD.  So it was easily reproducible.  So I tried it a few more times, because, why not?
 
-I then deleted this version, and booted into the system and looked at Event Viewer for hints of what could be at fault. Â Going through it was pretty obvious that it was registry corruption:
+I then deleted this version, and booted into the system and looked at Event Viewer for hints of what could be at fault.  Going through it was pretty obvious that it was registry corruption:
 
 <img class="aligncenter size-full wp-image-2697" src="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-02-at-9.16.16-PM.png" alt="" width="1077" height="300" srcset="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-02-at-9.16.16-PM.png 1077w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-02-at-9.16.16-PM-300x84.png 300w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-02-at-9.16.16-PM-768x214.png 768w" sizes="(max-width: 1077px) 100vw, 1077px" /> 
 
@@ -34,7 +34,7 @@ Filtering for EventID 5 shows all the attempts of booting to BSOD:
 
 I mean, it literally says the Registry was corrupted 
 
-Where can you find this corruption? Â With PVS it's fairly simple but I believe the same process can exist for other systems including physical. Â The first step was to mount the vDisk to a VM.
+Where can you find this corruption?  With PVS it's fairly simple but I believe the same process can exist for other systems including physical.  The first step was to mount the vDisk to a VM.
 
 <img class="aligncenter size-large wp-image-2702" src="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-02-at-9.47.22-PM.png" alt="" width="923" height="747" srcset="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-02-at-9.47.22-PM.png 923w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-02-at-9.47.22-PM-300x243.png 300w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-02-at-9.47.22-PM-768x622.png 768w" sizes="(max-width: 923px) 100vw, 923px" /> 
 
@@ -52,7 +52,7 @@ Mount the registry hive you suspect with corruption.
 
 <img class="aligncenter size-full wp-image-2707" src="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-02-at-9.52.06-PM.png" alt="" width="216" height="241" /> 
 
-Next is to scan the registry for corruption. Â Thus far, I've only found corruption to be detectable if it's a key or value that cannot be read. Â If the data on a value can be read but contains garbage it's much harder to detect. Â In order to avoid permissions being a problem, I open a PowerShell prompt as SYSTEM using PSEXEC. Â If you don't elevate permissions, some keys maybe restricted from the Admins group and this will be detected as a failure.
+Next is to scan the registry for corruption.  Thus far, I've only found corruption to be detectable if it's a key or value that cannot be read.  If the data on a value can be read but contains garbage it's much harder to detect.  In order to avoid permissions being a problem, I open a PowerShell prompt as SYSTEM using PSEXEC.  If you don't elevate permissions, some keys maybe restricted from the Admins group and this will be detected as a failure.
 
 <img class="aligncenter size-full wp-image-2708" src="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-02-at-9.58.46-PM.png" alt="" width="556" height="288" srcset="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-02-at-9.58.46-PM.png 556w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-02-at-9.58.46-PM-300x155.png 300w" sizes="(max-width: 556px) 100vw, 556px" /> 
 
@@ -72,7 +72,7 @@ At this point you can examine the text file to see the last path it explored:
 
 &nbsp;
 
-At this point you can open regedit (as SYSTEM) and examine the keys within that path. Â Clicking through each one revealed the corrupted key:
+At this point you can open regedit (as SYSTEM) and examine the keys within that path.  Clicking through each one revealed the corrupted key:
 
 <img class="aligncenter size-full wp-image-2711" src="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-02-at-10.08.43-PM.png" alt="" width="742" height="359" srcset="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-02-at-10.08.43-PM.png 742w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-02-at-10.08.43-PM-300x145.png 300w" sizes="(max-width: 742px) 100vw, 742px" /> 
 
@@ -88,13 +88,13 @@ Deleting the key may fail as well:
 
 <img class="aligncenter size-full wp-image-2714" src="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-02-at-10.12.40-PM.png" alt="" width="365" height="125" srcset="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-02-at-10.12.40-PM.png 365w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-02-at-10.12.40-PM-300x103.png 300w" sizes="(max-width: 365px) 100vw, 365px" /> 
 
-At this point you need to evaluate how to manage the corruption. Â If you cannot delete the key, rename it, or in some way replace it you may have an option like I did... Â You can rename a higher up branch in the tree, go to a existing system with the same keys (with PVS I can go to the previous version and export that tree) and reimport.
+At this point you need to evaluate how to manage the corruption.  If you cannot delete the key, rename it, or in some way replace it you may have an option like I did...  You can rename a higher up branch in the tree, go to a existing system with the same keys (with PVS I can go to the previous version and export that tree) and reimport.
 
 <img class="aligncenter size-full wp-image-2715" src="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-02-at-10.18.37-PM.png" alt="" width="661" height="1220" srcset="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-02-at-10.18.37-PM.png 661w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-02-at-10.18.37-PM-163x300.png 163w" sizes="(max-width: 661px) 100vw, 661px" /> 
 
 Unload the hive and boot up the system -> and you may have a fully working system!
 
-I've used this trick here, and on a corrupt COMPONENTS hive in the past. Â With the COMPONENTS hive I got lucky I could replace the corrupted keys with ones from a branched vDisk. Â Other machines didn't have the same key in COMPONENTS so I got lucky.
+I've used this trick here, and on a corrupt COMPONENTS hive in the past.  With the COMPONENTS hive I got lucky I could replace the corrupted keys with ones from a branched vDisk.  Other machines didn't have the same key in COMPONENTS so I got lucky.
 
 &nbsp;
 

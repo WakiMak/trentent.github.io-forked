@@ -23,19 +23,19 @@ Citrix Provisioning Services has a feature within the "Provisioning Services Con
 
 &nbsp;
 
-This feature worked with Server 2008R2 but with 2012R2 and greater it stopped working.Â [CitrixÂ _partially_ identified the issue here](https://docs.citrix.com/en-us/provisioning/7-15/managing-servers/server-services-start-stop.html):
+This feature worked with Server 2008R2 but with 2012R2 and greater it stopped working. [Citrix _partially_ identified the issue here](https://docs.citrix.com/en-us/provisioning/7-15/managing-servers/server-services-start-stop.html):
 
 <img class="aligncenter size-full wp-image-2790" src="http://theorypc.ca/wp-content/uploads/2018/05/importantConsiderations.png" alt="" width="735" height="687" srcset="http://theorypc.ca/wp-content/uploads/2018/05/importantConsiderations.png 735w, http://theorypc.ca/wp-content/uploads/2018/05/importantConsiderations-300x280.png 300w" sizes="(max-width: 735px) 100vw, 735px" /> 
 
 &nbsp;
 
-I was exploring starting and stopping the streaming service on other PVS servers from the Console and I found this information was incorrect.Â Adding the NetworkService doesÂ **NOT** enable the streaming service to be stop/started/restarted from other machines.Â The reason is the NETWORKSERVICE is a LOCAL account on the machine itself.Â When it attempts to reach out and communicate with another system it is translated into a proper SID, which matches the machine account.Â Since that SID communicating across the wire does not have access to the service you get a failure.
+I was exploring starting and stopping the streaming service on other PVS servers from the Console and I found this information was incorrect. Adding the NetworkService does **NOT** enable the streaming service to be stop/started/restarted from other machines. The reason is the NETWORKSERVICE is a LOCAL account on the machine itself. When it attempts to reach out and communicate with another system it is translated into a proper SID, which matches the machine account. Since that SID communicating across the wire does not have access to the service you get a failure.
 
 <img class="aligncenter size-full wp-image-2792" src="http://theorypc.ca/wp-content/uploads/2018/05/Services_Failed.png" alt="" width="442" height="357" srcset="http://theorypc.ca/wp-content/uploads/2018/05/Services_Failed.png 442w, http://theorypc.ca/wp-content/uploads/2018/05/Services_Failed-300x242.png 300w" sizes="(max-width: 442px) 100vw, 442px" /> 
 
-In order to fix thisÂ _**properly**__Â_ we can add either the machine account permissions for each PVS Server on each service OR we can add all machine accounts into a security group and addÂ _**that**__Â_ as permissions to manipulate the service on each PVS Server.
+In order to fix this _**properly**___ we can add either the machine account permissions for each PVS Server on each service OR we can add all machine accounts into a security group and add _**that**___ as permissions to manipulate the service on each PVS Server.
 
-I created a PowerShell script to enable easily add a group, user or machine account to the Streaming Service.Â It will also list all the permissions:
+I created a PowerShell script to enable easily add a group, user or machine account to the Streaming Service. It will also list all the permissions:
 
 <img class="aligncenter size-full wp-image-2793" src="http://theorypc.ca/wp-content/uploads/2018/05/GetStreamServiceACL.png" alt="" width="841" height="726" srcset="http://theorypc.ca/wp-content/uploads/2018/05/GetStreamServiceACL.png 841w, http://theorypc.ca/wp-content/uploads/2018/05/GetStreamServiceACL-300x259.png 300w, http://theorypc.ca/wp-content/uploads/2018/05/GetStreamServiceACL-768x663.png 768w" sizes="(max-width: 841px) 100vw, 841px" /> 
 

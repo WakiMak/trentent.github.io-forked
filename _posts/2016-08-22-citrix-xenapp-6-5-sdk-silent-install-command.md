@@ -19,7 +19,7 @@ copy the Extract folder to somewhere else.
 
 Step 2) you can now run SDKSetup.exe -install:All -silent
 
-Done! Â 
+Done!  
 
 &nbsp;
 
