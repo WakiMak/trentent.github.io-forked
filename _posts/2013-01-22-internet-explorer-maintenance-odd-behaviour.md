@@ -21,16 +21,12 @@ tags:
   - 2008R2
   - Internet Explorer
 ---
-Recently, I was experiencing some odd behaviour on some of our Windows boxes.Â We were getting redirected to a proxy server but RSOP.MSC and group policy showed that we should have been good in the GUI.
+Recently, I was experiencing some odd behaviour on some of our Windows boxes. We were getting redirected to a proxy server but RSOP.MSC and group policy showed that we should have been good in the GUI.
 
-The issue is IE Maintenance will store it's settings in a INS file as opposed to the registry and for some reason IE Maintenance in GPEDIT.MSC doesn't display the values.Â This document details it more:
+The issue is IE Maintenance will store it's settings in a INS file as opposed to the registry and for some reason IE Maintenance in GPEDIT.MSC doesn't display the values. This document details it more:
 
 <http://blogs.technet.com/b/perfguru/archive/2008/04/26/how-to-troubleshoot-internet-explorer-s-maintenance-group-policy.aspx>
 
 The INS files created via GPO are placed in the following locations:  
 2003-"C:\Documents and Settings\trententtye\Local Settings\Application Data\Microsoft\Internet Explorer"  
 2008-"C:\Users\trententtye\AppData\Local\Microsoft\Internet Explorer"
-
-<!-- AddThis Advanced Settings generic via filter on the_content -->
-
-<!-- AddThis Share Buttons generic via filter on the_content -->
