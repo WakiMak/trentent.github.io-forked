@@ -1,6 +1,6 @@
 ---
 id: 625
-title: IMA Service Fails with the Following Events: 3989, 3634, 3614
+title: IMA Service Fails with the Following Events&#58; 3989, 3634, 3614
 date: 2013-09-25T15:44:00-06:00
 author: trententtye
 layout: post

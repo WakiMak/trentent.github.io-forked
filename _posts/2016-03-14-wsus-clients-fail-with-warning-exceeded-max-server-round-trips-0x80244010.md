@@ -1,6 +1,6 @@
 ---
 id: 526
-title: WSUS clients fail with WARNING: Exceeded max server round trips: 0x80244010
+title: WSUS clients fail with WARNING&#58; Exceeded max server round trips&#58; 0x80244010
 date: 2016-03-14T16:33:00-06:00
 author: trententtye
 layout: post
