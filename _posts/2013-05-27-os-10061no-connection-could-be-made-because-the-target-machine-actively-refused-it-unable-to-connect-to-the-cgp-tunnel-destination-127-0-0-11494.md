@@ -30,8 +30,6 @@ tags:
   <a style="margin-left: 1em; margin-right: 1em;" href="http://3.bp.blogspot.com/-uhibNRUz-Bw/UaPTxUnsQUI/AAAAAAAAARA/RyeXioTfan8/s1600/3.PNG"><img src="http://3.bp.blogspot.com/-uhibNRUz-Bw/UaPTxUnsQUI/AAAAAAAAARA/RyeXioTfan8/s320/3.PNG" width="320" height="214" border="0" /></a>
 </div>
 
-<div style="clear: both; text-align: center;">
-</div>
 
 This has been an ongoing problem for us (Unable to connect to the CGP tunnel destination (127.0.0.1:1494)
 
@@ -71,109 +69,71 @@ It appears the XTE service became configured to use the Provisioning Services NI
 
 When I traced the XTE service using procmon.exe and wireshark with this non-functional conf this is what I saw when I attempted to launch the application:
 
-<div>
-</div>
-
-<div>
-  <table style="margin-left: auto; margin-right: auto; text-align: center;" cellspacing="0" cellpadding="0" align="center">
-    <tr>
-      <td style="text-align: center;">
-        <a style="margin-left: auto; margin-right: auto;" href="http://3.bp.blogspot.com/-9P7PbI5Gm_c/UaPTxybccsI/AAAAAAAAARI/XXIhJ0Tk1eQ/s1600/broken-connection.PNG"><img src="http://3.bp.blogspot.com/-9P7PbI5Gm_c/UaPTxybccsI/AAAAAAAAARI/XXIhJ0Tk1eQ/s320/broken-connection.PNG" width="320" height="68" border="0" /></a>
+<table style="margin-left: auto; margin-right: auto; text-align: center;" cellspacing="0" cellpadding="0" align="center">
+  <tr>
+    <td style="text-align: center;">
+      <a style="margin-left: auto; margin-right: auto;" href="http://3.bp.blogspot.com/-9P7PbI5Gm_c/UaPTxybccsI/AAAAAAAAARI/XXIhJ0Tk1eQ/s1600/broken-connection.PNG"><img src="http://3.bp.blogspot.com/-9P7PbI5Gm_c/UaPTxybccsI/AAAAAAAAARI/XXIhJ0Tk1eQ/s320/broken-connection.PNG" width="320" height="68" border="0" /></a>
       </td>
     </tr>
-    
     <tr>
       <td style="text-align: center;">
         You can see it attempt to connect to itself via 1494 but then nothing else happens
       </td>
     </tr>
   </table>
-  
-  <div style="clear: both; text-align: center;">
-  </div>
-  
+
   <table style="margin-left: auto; margin-right: auto; text-align: center;" cellspacing="0" cellpadding="0" align="center">
     <tr>
       <td style="text-align: center;">
         <a style="margin-left: auto; margin-right: auto;" href="http://1.bp.blogspot.com/-IqAz9FYtugI/UaPTxwE66KI/AAAAAAAAARM/T5JB4aiZu9g/s1600/bad-wireshark.PNG"><img src="http://1.bp.blogspot.com/-IqAz9FYtugI/UaPTxwE66KI/AAAAAAAAARM/T5JB4aiZu9g/s320/bad-wireshark.PNG" width="320" height="74" border="0" /></a>
       </td>
     </tr>
-    
     <tr>
       <td style="text-align: center;">
         Wireshark shows virtually nothing on the network and nothing related to IMA
       </td>
     </tr>
-  </table>
+</table>
   
-  <div>
-  </div>
+
   
-  <div>
-  </div>
-  
-  <div>
-    When I edited the file to have the Production NIC...</p> 
+ When I edited the file to have the Production NIC...
+ 
+![](http://2.bp.blogspot.com/-zFFprXLYhLU/UaPTxyU25qI/AAAAAAAAARE/a8aQNFDX1gs/s320/6.PNG "")
+
+ 
+then restarted the XTE service and retraced via Procmon and Wireshark...
+
+
     
-    <div style="clear: both; text-align: center;">
-      <a style="margin-left: 1em; margin-right: 1em;" href="http://2.bp.blogspot.com/-zFFprXLYhLU/UaPTxyU25qI/AAAAAAAAARE/a8aQNFDX1gs/s1600/6.PNG"><img src="http://2.bp.blogspot.com/-zFFprXLYhLU/UaPTxyU25qI/AAAAAAAAARE/a8aQNFDX1gs/s320/6.PNG" width="320" height="213" border="0" /></a>
-    </div>
-    
-    <div style="clear: both; text-align: center;">
-    </div>
-    
-    <div style="clear: both; text-align: center;">
-      <span style="text-align: start;"> </span>
-    </div>
-    
-    <div>
-    </div>
-    
-    <div>
-      then restarted the XTE service and retraced via Procmon and Wireshark...
-    </div>
-    
-    <div style="clear: both; text-align: center;">
-    </div>
-    
-    <div style="clear: both; text-align: center;">
+<div style="clear: both; text-align: center;">
       <a style="margin-left: 1em; margin-right: 1em;" href="http://4.bp.blogspot.com/-Xa-mdGivUHk/UaPTyC3WpRI/AAAAAAAAARg/yUBa2ZzNq7g/s1600/working-connection.PNG"><img src="http://4.bp.blogspot.com/-Xa-mdGivUHk/UaPTyC3WpRI/AAAAAAAAARg/yUBa2ZzNq7g/s320/working-connection.PNG" width="320" height="185" border="0" /></a>
-    </div>
+</div>
     
-    <div style="clear: both; text-align: center;">
+<div style="clear: both; text-align: center;">
       <a style="margin-left: 1em; margin-right: 1em;" href="http://4.bp.blogspot.com/-_54KbcVmV4I/UaPTybMVHeI/AAAAAAAAARk/ElcLzqY-99s/s1600/working-wireshark.PNG"><img src="http://4.bp.blogspot.com/-_54KbcVmV4I/UaPTybMVHeI/AAAAAAAAARk/ElcLzqY-99s/s320/working-wireshark.PNG" width="320" height="92" border="0" /></a>
-    </div>
+</div>
     
-    <div style="clear: both; text-align: center;">
-    </div>
-    
-    <div style="clear: both; text-align: center;">
-    </div>
-    
-    <div>
-      We now see tons of activity and the application now launches without issues.</p> 
+   
+   
+ We now see tons of activity and the application now launches without issues.</p> 
       
-      <p>
-        ================EDIT===============
-      </p>
+
+================EDIT===============
+
+We have now found why we are getting this error, and why we are getting it intermittently.  The issue is we are using PVS with multi-homed NIC's.  One NIC (LanAdapter 1) is the "Provisioning" network, and the second NIC (LanAdapter 2) is the "Production" network.  The Provisioning network is on a completely seperate vLan and sees no traffic outside of it's little network.  The ICA Listener was attaching itself to the Provisioning network instead of the production network, so when we tried to connect to the server it would fail with the CGP tunnel error because the outside network cannot talk to the Provisioning network.  To attempt to resolve this issue one of our techs (Saman) created a group policy preference registry key that set the following value (HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\Terminal Server\WinStations\ICA-TCP - LanAdapter):
+ 
       
-      <p>
-        We have now found why we are getting this error, and why we are getting it intermittently.  The issue is we are using PVS with multi-homed NIC's.  One NIC (LanAdapter 1) is the "Provisioning" network, and the second NIC (LanAdapter 2) is the "Production" network.  The Provisioning network is on a completely seperate vLan and sees no traffic outside of it's little network.  The ICA Listener was attaching itself to the Provisioning network instead of the production network, so when we tried to connect to the server it would fail with the CGP tunnel error because the outside network cannot talk to the Provisioning network.  To attempt to resolve this issue one of our techs (Saman) created a group policy preference registry key that set the following value (HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\Terminal Server\WinStations\ICA-TCP - LanAdapter):
-      </p>
-      
-      <div style="clear: both; text-align: center;">
+<div style="clear: both; text-align: center;">
         <a style="margin-left: 1em; margin-right: 1em;" href="http://1.bp.blogspot.com/-fzfxPbP9xL4/UaUt4CSMiXI/AAAAAAAAASY/Mx77cMOe_pA/s1600/update3.PNG"><img src="http://1.bp.blogspot.com/-fzfxPbP9xL4/UaUt4CSMiXI/AAAAAAAAASY/Mx77cMOe_pA/s320/update3.PNG" width="320" height="159" border="0" /></a>
       </div>
       
-      <p>
-        By setting it to "2" we could ensure the ICA listener is always listening on LanAdapter 2, our production network.  Unfortunately, a Windows Update appears to have caused either Group Policy Registry Preferences to execute (sometimes) *after* the IMAService service started, or allowed the IMAService service to start *before* Group Policy Registry Preferences.  IMAService will recreate that file every second restart.  To resolve this issue I created a startup script that executes after 65 seconds, deleting the httpd.conf file and restarting the appropriate services until the httpd.conf file is recreated.
-      </p>
+By setting it to "2" we could ensure the ICA listener is always listening on LanAdapter 2, our production network.  Unfortunately, a Windows Update appears to have caused either Group Policy Registry Preferences to execute (sometimes) *after* the IMAService service started, or allowed the IMAService service to start *before* Group Policy Registry Preferences.  IMAService will recreate that file every second restart.  To resolve this issue I created a startup script that executes after 65 seconds, deleting the httpd.conf file and restarting the appropriate services until the httpd.conf file is recreated.
+
+In my testing it appears you need to restart the "IMAService" service twice to get it to recreate the httpd.conf file.  Because of this, I created the script to retry up to 3 times to try and regenerate the file.
+
       
-      <p>
-        In my testing it appears you need to restart the "IMAService" service twice to get it to recreate the httpd.conf file.  Because of this, I created the script to retry up to 3 times to try and regenerate the file.
-      </p>
-      
-      <pre class="lang:batch decode:true ">:: ===========================================================================================================
+<pre class="lang:batch decode:true ">:: ===========================================================================================================
 ::
 :: Created by:  Trentent Tye
 ::   
@@ -229,13 +189,3 @@ SET /A COUNT=%COUNT%+1
 
 IF NOT EXIST "C:\Program Files (x86)\Citrix\XTE\conf\httpd.conf" GOTO RetryCreate
 eventcreate /ID 1 /L APPLICATION /T INFORMATION /SO "Local GP Startup Script" /D "Completed Citrix_Restart_IMASrv_Delayed.cmd script"</pre>
-    </div>
-  </div>
-</div>
-
-<div>
-</div>
-
-<!-- AddThis Advanced Settings generic via filter on the_content -->
-
-<!-- AddThis Share Buttons generic via filter on the_content -->
