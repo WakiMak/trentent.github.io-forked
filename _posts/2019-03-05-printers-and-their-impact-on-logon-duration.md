@@ -57,8 +57,6 @@ With this policy enabled, it changes the behavior of how Citrix connects printer
 
 But I feel this is missing temporal information.&nbsp; I've created a video to highlight the steps.
 
-[Sample video](/wp-content/uploads/2018/12/DirectConnectionProcess.mp4)
-
 <figure class="wp-block-video"><video controls src="/wp-content/uploads/2018/12/DirectConnectionProcess.mp4"></video><figcaption>Direct Connection Process</figcaption></figure> 
 
 ## Why is this important?
