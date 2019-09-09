@@ -24,7 +24,7 @@ We experienced this error on a package on one of our Citrix servers in the AppVC
 
 Because this server was being used by other users the log generated a lot of noise.  I stopped the log as soon as I got the error message though, which meant the error should be at the end of the generated log.  Fortunately, you can search for the error message:
 
-<span style="font-family: 'courier new' , 'courier' , monospace; font-size: x-small;">[2]06B0.2DE4::€Ž2016€Ž-€Ž03€Ž-€Ž30 09:41:30.817 [Microsoft-AppV-Client]Package {499ed340-c809-47dc-a533-2cdeab537e93} version {3589c28b-edb7-41d6-865d-e01c4fdd4318} failed configuration in folder 'D:AppVDataPackageInstallationRoot' with error 0x4C40310C-0x12. </span>
+<span style="font-family: 'courier new' , 'courier' , monospace; font-size: x-small;">[2]06B0.2DE4::2016-03-30 09:41:30.817 [Microsoft-AppV-Client]Package {499ed340-c809-47dc-a533-2cdeab537e93} version {3589c28b-edb7-41d6-865d-e01c4fdd4318} failed configuration in folder 'D:AppVDataPackageInstallationRoot' with error 0x4C40310C-0x12. </span>
 
 I suspect the first bit of hexadecimal code (06B0.2DE4) are probably an identifier for a thread or some such so I suspect if I search for just this code I can be shown all events that lead up to this error:
 

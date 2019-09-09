@@ -305,7 +305,7 @@ tags:
       </div>
       
       <div style="mso-layout-grid-align: none; mso-pagination: none; text-autospace: none;">
-        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt;">Launch Orca and €˜Open€™ the Crystal Reports version</span>
+        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt;">Launch Orca and "Open" the Crystal Reports version</span>
       </div>
       
       <div style="mso-layout-grid-align: none; mso-pagination: none; text-autospace: none;">
@@ -326,7 +326,7 @@ tags:
     
     <td style="border-bottom: solid #BFBFBF 1.0pt; border-left: none; border-right: solid #BFBFBF 1.0pt; border-top: none; mso-border-alt: solid #BFBFBF .5pt; mso-border-left-alt: solid #BFBFBF .5pt; mso-border-top-alt: solid #BFBFBF .5pt; padding: 0cm 5.4pt 0cm 5.4pt; width: 434.0pt;" valign="top" width="434">
       <div style="mso-layout-grid-align: none; mso-pagination: none; text-autospace: none;">
-        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt;">Choose Transform from the menu > €˜New Transform€™</span>
+        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt;">Choose Transform from the menu > "New Transform"</span>
       </div>
     </td>
   </tr>
@@ -344,7 +344,7 @@ tags:
     
     <td style="border-bottom: solid #BFBFBF 1.0pt; border-left: none; border-right: solid #BFBFBF 1.0pt; border-top: none; mso-border-alt: solid #BFBFBF .5pt; mso-border-left-alt: solid #BFBFBF .5pt; mso-border-top-alt: solid #BFBFBF .5pt; padding: 0cm 5.4pt 0cm 5.4pt; width: 434.0pt;" valign="top" width="434">
       <div style="mso-layout-grid-align: none; mso-pagination: none; text-autospace: none;">
-        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt;">Select €˜Directory€™ and find the first instance of €˜CrystalR|Crystal Reports for .NET Framework 4.0€™</span>
+        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt;">Select "Directory" and find the first instance of "CrystalR|Crystal Reports for .NET Framework 4.0"</span>
       </div>
       
       <div style="mso-layout-grid-align: none; mso-pagination: none; text-autospace: none;">
@@ -372,7 +372,7 @@ tags:
     
     <td style="border-bottom: solid #BFBFBF 1.0pt; border-left: none; border-right: solid #BFBFBF 1.0pt; border-top: none; mso-border-alt: solid #BFBFBF .5pt; mso-border-left-alt: solid #BFBFBF .5pt; mso-border-top-alt: solid #BFBFBF .5pt; padding: 0cm 5.4pt 0cm 5.4pt; width: 434.0pt;" valign="top" width="434">
       <div style="mso-layout-grid-align: none; mso-pagination: none; text-autospace: none;">
-        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt;">Double-click €˜CrystalR|Crystal Reports for .NET Framework 4.0€™ and copy the field. Select the menu €˜Edit€™ > €˜Replace€™ and set €˜Find what€™ as €˜CrystalR|Crystal Reports for .NET Framework 4.0€™ and €˜Replace with:€™ as €˜CrystalR|C€™</span>
+        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt;">Double-click "CrystalR|Crystal Reports for .NET Framework 4.0" and copy the field. Select the menu "Edit" > "Replace" and set "Find what" as "CrystalR|Crystal Reports for .NET Framework 4.0" and "Replace with:" as "CrystalR|C"</span>
       </div>
       
       <div style="mso-layout-grid-align: none; mso-pagination: none; text-autospace: none;">
@@ -386,7 +386,7 @@ tags:
       </div>
       
       <div style="mso-layout-grid-align: none; mso-pagination: none; text-autospace: none;">
-        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt;">And click on €˜Replace All€™. If you get prompted:</span>
+        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt;">And click on "Replace All". If you get prompted:</span>
       </div>
       
       <div style="mso-layout-grid-align: none; mso-pagination: none; text-autospace: none;">
@@ -397,7 +397,7 @@ tags:
       </div>
       
       <div style="mso-layout-grid-align: none; mso-pagination: none; text-autospace: none;">
-        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt;">Select €˜Yes€™.</span>
+        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt;">Select "Yes".</span>
       </div>
     </td>
   </tr>
@@ -415,7 +415,7 @@ tags:
     
     <td style="border-bottom: solid #BFBFBF 1.0pt; border-left: none; border-right: solid #BFBFBF 1.0pt; border-top: none; mso-border-alt: solid #BFBFBF .5pt; mso-border-left-alt: solid #BFBFBF .5pt; mso-border-top-alt: solid #BFBFBF .5pt; padding: 0cm 5.4pt 0cm 5.4pt; width: 434.0pt;" valign="top" width="434">
       <div style="mso-layout-grid-align: none; mso-pagination: none; text-autospace: none;">
-        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt;">Repeat the process for €˜SAPBusin|SAP BusinessObjects Enterprise XI 4.0€™ to €˜SAPBusin|X€™</span>
+        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt;">Repeat the process for "SAPBusin|SAP BusinessObjects Enterprise XI 4.0" to "SAPBusin|X"</span>
       </div>
       
       <div style="mso-layout-grid-align: none; mso-pagination: none; text-autospace: none;">
@@ -436,7 +436,7 @@ tags:
     
     <td style="border-bottom: solid #BFBFBF 1.0pt; border-left: none; border-right: solid #BFBFBF 1.0pt; border-top: none; mso-border-alt: solid #BFBFBF .5pt; mso-border-left-alt: solid #BFBFBF .5pt; mso-border-top-alt: solid #BFBFBF .5pt; padding: 0cm 5.4pt 0cm 5.4pt; width: 434.0pt;" valign="top" width="434">
       <div style="mso-layout-grid-align: none; mso-pagination: none; text-autospace: none;">
-        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt;">Select €˜Registry€™ and sort by €˜Value€™. Find the first instance of [INSTALLDIR]</span>
+        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt;">Select "Registry" and sort by "Value". Find the first instance of [INSTALLDIR]</span>
       </div>
       
       <div style="mso-layout-grid-align: none; mso-pagination: none; text-autospace: none;">
@@ -461,7 +461,7 @@ tags:
     
     <td style="border-bottom: solid #BFBFBF 1.0pt; border-left: none; border-right: solid #BFBFBF 1.0pt; border-top: none; mso-border-alt: solid #BFBFBF .5pt; mso-border-left-alt: solid #BFBFBF .5pt; mso-border-top-alt: solid #BFBFBF .5pt; padding: 0cm 5.4pt 0cm 5.4pt; width: 434.0pt;" valign="top" width="434">
       <div style="mso-layout-grid-align: none; mso-pagination: none; text-autospace: none;">
-        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt;">Do a €˜Replace€™ and enter €˜[INSTALLDIR]Crystal Reports for .NET Framework 4.0CommonSAP BusinessObjects Enterprise XI 4.0€™ for €˜Find what€™ and €˜Replace with€™ as €˜[INSTALLDIR]CCommonX€™</span>
+        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt;">Do a "Replace" and enter "[INSTALLDIR]Crystal Reports for .NET Framework 4.0CommonSAP BusinessObjects Enterprise XI 4.0" for "Find what" and "Replace with" as "[INSTALLDIR]CCommonX"</span>
       </div>
       
       <div style="mso-layout-grid-align: none; mso-pagination: none; text-autospace: none;">
@@ -473,7 +473,7 @@ tags:
         </div>
         
         <p>
-          <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt;">And click on €˜Replace All€™</span>
+          <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt;">And click on "Replace All"</span>
         </p>
       </div>
     </td>
@@ -517,7 +517,7 @@ tags:
     
     <td style="border-bottom: solid #BFBFBF 1.0pt; border-left: none; border-right: solid #BFBFBF 1.0pt; border-top: none; mso-border-alt: solid #BFBFBF .5pt; mso-border-left-alt: solid #BFBFBF .5pt; mso-border-top-alt: solid #BFBFBF .5pt; padding: 0cm 5.4pt 0cm 5.4pt; width: 434.0pt;" valign="top" width="434">
       <div style="mso-layout-grid-align: none; mso-pagination: none; text-autospace: none;">
-        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt;">Select the menu €˜Transform€™ > €˜Generate Transform€™ and save the file as something like:</span>
+        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt;">Select the menu "Transform" > "Generate Transform" and save the file as something like:</span>
       </div>
       
       <div style="mso-layout-grid-align: none; mso-pagination: none; text-autospace: none;">
@@ -542,7 +542,7 @@ tags:
     
     <td style="border-bottom: solid #BFBFBF 1.0pt; border-left: none; border-right: solid #BFBFBF 1.0pt; border-top: none; mso-border-alt: solid #BFBFBF .5pt; mso-border-left-alt: solid #BFBFBF .5pt; mso-border-top-alt: solid #BFBFBF .5pt; padding: 0cm 5.4pt 0cm 5.4pt; width: 434.0pt;" valign="top" width="434">
       <div style="mso-layout-grid-align: none; mso-pagination: none; text-autospace: none;">
-        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt;">Select the menu €˜Transform€™ > €˜Close Transform€™ and exit out of Orca.</span>
+        <span lang="EN-US" style="font-family: Arial; font-size: 10.0pt;">Select the menu "Transform" > "Close Transform" and exit out of Orca.</span>
       </div>
       
       <div style="mso-layout-grid-align: none; mso-pagination: none; text-autospace: none;">

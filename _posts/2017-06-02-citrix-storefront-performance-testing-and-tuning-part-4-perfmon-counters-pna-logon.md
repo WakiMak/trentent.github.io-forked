@@ -16,9 +16,9 @@ tags:
   - scripting
   - Storefront
 ---
-In looking at the performance of the Citrix Storefront Server, one of the thing I want is to understand what Storefront is doing at each stage of a session life cycle.  There are two session-types that IÄôm curious about, a web browser based connection and a PNA connection.  IÄôm going to examine a PNA based connection in this post.  See this post for a browser based examination.
+In looking at the performance of the Citrix Storefront Server, one of the thing I want is to understand what Storefront is doing at each stage of a session life cycle.  There are two session-types that I"m curious about, a web browser based connection and a PNA connection.  I"m going to examine a PNA based connection in this post.  See this post for a browser based examination.
 
-Using my powershell script to simulate a user connection I put ÄòpausesÄô between each stage.  I then setup Perfmon to capture counters from the following objects:
+Using my powershell script to simulate a user connection I put "pauses" between each stage.  I then setup Perfmon to capture counters from the following objects:
 
 <div id="crayon-59307c29ba4eb079012780" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover">
   <pre class="lang:default decode:true">Citrix Dazzle Resources Controller\Image Response Whole Body  Calls / second
@@ -91,7 +91,7 @@ Citrix Xml Service Communication(&65t.bottheory.local)\Network Traffic  Calls / 
 Citrix Xml Service Communication(&65t.bottheory.local)\Network Traffic Average Time (Microseconds)</pre>
   
   <p>
-    IÄôve added 6 farms to the storefront server to examine the load Äúin a real worldÄù environment as Storefront does do some magic with concurrent enumeration.  What I love that Citrix has done, is actually time the transactions AND gives you the ÄòrateÄô the transactions are occurring at.  This will make it much easier to baseline what your load is vs how I had to do it to measure the ÄòratesÄô for Web Interface.
+    I"ve added 6 farms to the storefront server to examine the load in a real world environment as Storefront does do some magic with concurrent enumeration.  What I love that Citrix has done, is actually time the transactions AND gives you the "rate" the transactions are occurring at.  This will make it much easier to baseline what your load is vs how I had to do it to measure the "rates" for Web Interface.
   </p>
   
   <hr />
@@ -103,7 +103,7 @@ Citrix Xml Service Communication(&65t.bottheory.local)\Network Traffic Average T
   </p>
   
   <p>
-    So for a web browser based connection, I ÄòconnectedÄô to the site and saw nothing in the perf counters.  Storefront does very little work for the initial connection.
+    So for a web browser based connection, I "connected" to the site and saw nothing in the perf counters.  Storefront does very little work for the initial connection.
   </p>
   
   <hr />

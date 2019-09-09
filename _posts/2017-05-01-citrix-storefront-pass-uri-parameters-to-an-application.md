@@ -529,7 +529,7 @@ Fortunately, a [Citrix blog post came to rescue](https://www.citrix.com/blogs/20
 </p>
 
 <p style="padding-left: 30px;">
-  On each of these the customization might show a dialog, perform some checks (etc) but ultimately should call €˜action€™ if (and only if) they want the operation to proceed.
+  On each of these the customization might show a dialog, perform some checks (etc) but ultimately should call "action" if (and only if) they want the operation to proceed.
 </p>
 
 <div style="padding-left: 30px;">

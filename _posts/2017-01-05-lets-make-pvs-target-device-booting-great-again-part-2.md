@@ -54,7 +54,7 @@ And how does this look with Jumbo Frames?
 
 <img class="aligncenter size-full wp-image-1905" src="http://theorypc.ca/wp-content/uploads/2016/12/Jumbo_Overhead.png" alt="" width="1309" height="124" srcset="http://theorypc.ca/wp-content/uploads/2016/12/Jumbo_Overhead.png 1309w, http://theorypc.ca/wp-content/uploads/2016/12/Jumbo_Overhead-300x28.png 300w, http://theorypc.ca/wp-content/uploads/2016/12/Jumbo_Overhead-768x73.png 768w" sizes="(max-width: 1309px) 100vw, 1309px" /> 
 
-For a 32KB read we satisfied the request in 4 packets.  3 x 8972 bytes and 1 at 6076 bytes totalling 32,992 bytes of transmitted data.  Subtracting the transmitted data from what is really required 32,992-32,768 = 224 bytes of overhead or...  56 bytes per packet 🙂
+For a 32KB read we satisfied the request in 4 packets.  3 x 8972 bytes and 1 at 6076 bytes totalling 32,992 bytes of transmitted data.  Subtracting the transmitted data from what is really required 32,992-32,768 = 224 bytes of overhead or...  56 bytes per packet 
 
 This amounts to a measly 0.6% of overhead when using jumbo frames (an immediate 3% gain!).
 
@@ -151,7 +151,7 @@ What I did to compare the differences in performance between all the I/O Burst S
 
 Again, caveats are that I do not know what the impact of a retry is, but if reading from the disk and resending the packet takes ~1ms then I imagine the 'cost' of a retry is very low, even with the larger sizes.  However, if your environment has longer disk reads, high latency, and a poor network with dropped or lost packets then it's possible, I suppose, that higher I/O burst is not for you.
 
-But I hope most PVS environments are something better designed and you actually don't have to worry about it.  🙂
+But I hope most PVS environments are something better designed and you actually don't have to worry about it.  
 
 <!-- AddThis Advanced Settings generic via filter on the_content -->
 

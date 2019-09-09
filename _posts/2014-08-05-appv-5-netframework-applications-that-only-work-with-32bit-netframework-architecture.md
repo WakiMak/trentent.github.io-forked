@@ -94,7 +94,7 @@ So, my application was defaulting to the .NetFramework64 architecture and no lau
   Execute the application with the following:
 </div>
 
-Äúc:\Program Files\Microsoft SDKs\Windows\v6.0A\Bin\x64\CorFlags.exeÄù MyApplication.exe /32bit+
+c:\Program Files\Microsoft SDKs\Windows\v6.0A\Bin\x64\CorFlags.exe MyApplication.exe /32bit+
 
 <div>
   <div style="background-attachment: initial; background-clip: initial; background-image: initial; background-origin: initial; background-position: initial; background-repeat: initial; background-size: initial; border: 0px; clear: both; margin-bottom: 1em; padding: 0px; vertical-align: baseline;">

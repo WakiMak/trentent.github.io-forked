@@ -17,7 +17,7 @@ tags:
 ---
 We setup a Citrix Unified Gateway for a proof of concept and were having an issue getting the HTML5 Receiver to connect for external connections.  It was presenting an error message: "Citrix Receiver cannot connect to the server".  We [followed this documentation](https://www.citrix.com/blogs/2015/07/08/receiver-internals-how-receiver-for-html5-chrome-connections-work/).  It states, for our use case:
 
-> What would probably help is having a proxy that can parse out all websocket traffic and convert to ICA/CGP traffic without any need of changes to XA/XD. Netscaler Gateway does exactly this... ...NetScaler Gateway also doesn€™t need any special configuration for listening over websockets...
+> What would probably help is having a proxy that can parse out all websocket traffic and convert to ICA/CGP traffic without any need of changes to XA/XD. Netscaler Gateway does exactly this... ...NetScaler Gateway also doesn"t need any special configuration for listening over websockets...
 > 
 > **Connections via NetScaler Gateway:**
 > 
@@ -228,7 +228,7 @@ SESSION:|:ICA:|:TIMEZONE:|Windows OS EN returning timezone Mountain Standard Tim
 SESSION:|:ICA:|:TIMEZONE:|Windows OS EN returning timezone Mountain Standard Time
 SESSION:|:ICA:|:TIMEZONE:|:time zone name: Mountain Standard Time bias 420 dstOffset 60
 SESSION:|:ICA:|:TIMEZONE:|Windows OS EN returning timezone Mountain Standard Time
-€¦</pre>
+</pre>
 
 So there is a lot of differences but we focus on the point of failure in our enterprise netscaler we see it seems to retry or try different indexes (3 in total, 0, 1 and 2).
 

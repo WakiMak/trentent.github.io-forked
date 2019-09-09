@@ -49,7 +49,7 @@ var logonmethod = getCookie("logonmethod");
 if (logonmethod == "1FA") {
 	CTXS.Extensions.excludeApp = function(app) {
 		//do a javascript search for our text.  
-		//if the text is found then the value of €˜findme€™ will be > 1. If it€™s not found then it will be -1.
+		//if the text is found then the value of "findme" will be > 1. If it"s not found then it will be -1.
 		var findme = app.description.search(" 2FA");
 		if (findme != -1) {
 			CTXS.trace("hiding app from 1FA:" + app.description);
