@@ -22,7 +22,7 @@ tags:
   - Performance
   - Web Interface
 ---
-So I'm getting the dreaded ÄúAn error occurred while making the requested connectionÄù while trying to launch some applications from our Citrix Web Interface.  It started happening suddenly but I'm tasked with figuring out why.  First thing I did was go to the Web Interface and check the event logs.  I found the following:
+So I'm getting the dreaded An error occurred while making the requested connectionù while trying to launch some applications from our Citrix Web Interface.  It started happening suddenly but I'm tasked with figuring out why.  First thing I did was go to the Web Interface and check the event logs.  I found the following:
 
 <div style="clear: both; text-align: center;">
   <a style="margin-left: 1em; margin-right: 1em;" href="http://2.bp.blogspot.com/-gVBe3-2VOB8/Ue2suwbCs9I/AAAAAAAAAXU/C8OJsFChWWI/s1600/30102.png"><img src="http://2.bp.blogspot.com/-gVBe3-2VOB8/Ue2suwbCs9I/AAAAAAAAAXU/C8OJsFChWWI/s320/30102.png" width="320" height="108" border="0" /></a>
