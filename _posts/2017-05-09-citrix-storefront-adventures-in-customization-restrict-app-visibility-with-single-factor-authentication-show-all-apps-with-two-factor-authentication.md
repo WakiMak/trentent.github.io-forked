@@ -30,7 +30,7 @@ The two API calls that are relevant are:
 
 The architecture of this solution looks like this:
 
-<img class="aligncenter size-large wp-image-2241" src="http://theorypc.ca/wp-content/uploads/2017/05/Screen-Shot-2017-05-09-at-10.01.30-PM-1600x742.png" alt="" width="1140" height="529" srcset="http://theorypc.ca/wp-content/uploads/2017/05/Screen-Shot-2017-05-09-at-10.01.30-PM-1600x742.png 1600w, http://theorypc.ca/wp-content/uploads/2017/05/Screen-Shot-2017-05-09-at-10.01.30-PM-300x139.png 300w, http://theorypc.ca/wp-content/uploads/2017/05/Screen-Shot-2017-05-09-at-10.01.30-PM-768x356.png 768w" sizes="(max-width: 1140px) 100vw, 1140px" /> 
+<img class="aligncenter size-large wp-image-2241" src="/wp-content/uploads/2017/05/Screen-Shot-2017-05-09-at-10.01.30-PM-1600x742.png" alt="" width="1140" height="529" srcset="/wp-content/uploads/2017/05/Screen-Shot-2017-05-09-at-10.01.30-PM-1600x742.png 1600w, /wp-content/uploads/2017/05/Screen-Shot-2017-05-09-at-10.01.30-PM-300x139.png 300w, /wp-content/uploads/2017/05/Screen-Shot-2017-05-09-at-10.01.30-PM-768x356.png 768w" sizes="(max-width: 1140px) 100vw, 1140px" /> 
 
 &nbsp;
 

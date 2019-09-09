@@ -34,48 +34,48 @@ First, installing Citrix Director 7.7 for & 6.5:
 
 1) Launch the AutoRun (AutoSelect.exe) installation file
 
-2)[<img src="http://theorypc.ca/wp-content/uploads/2016/01/Picture1-1-300x219.png" border="0" />](http://theorypc.ca/wp-content/uploads/2016/01/Picture1-1.png)  
+2)[<img src="/wp-content/uploads/2016/01/Picture1-1-300x219.png" border="0" />](/wp-content/uploads/2016/01/Picture1-1.png)  
 Select '**Start**' for &
 
-3)[<img src="http://theorypc.ca/wp-content/uploads/2016/01/Picture2-1-300x221.png" border="0" />](http://theorypc.ca/wp-content/uploads/2016/01/Picture2-1.png)  
+3)[<img src="/wp-content/uploads/2016/01/Picture2-1-300x221.png" border="0" />](/wp-content/uploads/2016/01/Picture2-1.png)  
 Select '**Citrix Director**'
 
-4)[<img src="http://theorypc.ca/wp-content/uploads/2016/01/Picture3-1-300x226.png" border="0" />](http://theorypc.ca/wp-content/uploads/2016/01/Picture3-1.png)  
+4)[<img src="/wp-content/uploads/2016/01/Picture3-1-300x226.png" border="0" />](/wp-content/uploads/2016/01/Picture3-1.png)  
 Agree to the licensing agreement and click '**Next**'
 
-5)[<img src="http://theorypc.ca/wp-content/uploads/2016/01/Picture4-1-300x226.png" border="0" />](http://theorypc.ca/wp-content/uploads/2016/01/Picture4-1.png)  
+5)[<img src="/wp-content/uploads/2016/01/Picture4-1-300x226.png" border="0" />](/wp-content/uploads/2016/01/Picture4-1.png)  
 Select '**Next**'
 
-6)[<img src="http://theorypc.ca/wp-content/uploads/2016/01/Picture5-1-300x226.png" border="0" />](http://theorypc.ca/wp-content/uploads/2016/01/Picture5-1.png)  
+6)[<img src="/wp-content/uploads/2016/01/Picture5-1-300x226.png" border="0" />](/wp-content/uploads/2016/01/Picture5-1.png)  
 Without entering any information, select '**Next**'
 
-7)[<img src="http://theorypc.ca/wp-content/uploads/2016/01/Picture6-1-300x226.png" border="0" />](http://theorypc.ca/wp-content/uploads/2016/01/Picture6-1.png)  
+7)[<img src="/wp-content/uploads/2016/01/Picture6-1-300x226.png" border="0" />](/wp-content/uploads/2016/01/Picture6-1.png)  
 Select '**Next**'
 
-8)[<img src="http://theorypc.ca/wp-content/uploads/2016/01/Picture7-1-300x226.png" border="0" />](http://theorypc.ca/wp-content/uploads/2016/01/Picture7-1.png)  
+8)[<img src="/wp-content/uploads/2016/01/Picture7-1-300x226.png" border="0" />](/wp-content/uploads/2016/01/Picture7-1.png)  
 Select '**Next**' for the firewall rules
 
-9)[<img src="http://theorypc.ca/wp-content/uploads/2016/01/Picture8-1-300x225.png" border="0" />](http://theorypc.ca/wp-content/uploads/2016/01/Picture8-1.png)  
+9)[<img src="/wp-content/uploads/2016/01/Picture8-1-300x225.png" border="0" />](/wp-content/uploads/2016/01/Picture8-1.png)  
 Select '**Install**'
 
-10) [<img src="http://theorypc.ca/wp-content/uploads/2016/01/Picture9-1-300x227.png" border="0" />](http://theorypc.ca/wp-content/uploads/2016/01/Picture9-1.png)  
+10) [<img src="/wp-content/uploads/2016/01/Picture9-1-300x227.png" border="0" />](/wp-content/uploads/2016/01/Picture9-1.png)  
 Wait for the install to complete
 
-11) [<img src="http://theorypc.ca/wp-content/uploads/2016/01/Picture10-1-300x287.png" border="0" />](http://theorypc.ca/wp-content/uploads/2016/01/Picture10-1.png)  
+11) [<img src="/wp-content/uploads/2016/01/Picture10-1-300x287.png" border="0" />](/wp-content/uploads/2016/01/Picture10-1.png)  
 Open **IIS Manager** on the Director Server. Select the **Director** site under **Default Web Site** and double-click on '**Application Settings**'
 
-12)[<img src="http://theorypc.ca/wp-content/uploads/2016/01/Picture11-1-300x131.png" border="0" />](http://theorypc.ca/wp-content/uploads/2016/01/Picture11-1.png)  
+12)[<img src="/wp-content/uploads/2016/01/Picture11-1-300x131.png" border="0" />](/wp-content/uploads/2016/01/Picture11-1.png)  
 Under '**Actions**' click '**Add**'
 
-13)[<img src="http://theorypc.ca/wp-content/uploads/2016/01/Picture12-1-300x171.png" border="0" />](http://theorypc.ca/wp-content/uploads/2016/01/Picture12-1.png)  
+13)[<img src="/wp-content/uploads/2016/01/Picture12-1-300x171.png" border="0" />](/wp-content/uploads/2016/01/Picture12-1.png)  
 For '**Name**' enter '**Service.AutoDiscoveryAddressesXA**' and for value put the IP of the local ZDC server
 
-14)[<img src="http://theorypc.ca/wp-content/uploads/2016/01/Picture13-1-300x196.png" border="0" />](http://theorypc.ca/wp-content/uploads/2016/01/Picture13-1.png)  
+14)[<img src="/wp-content/uploads/2016/01/Picture13-1-300x196.png" border="0" />](/wp-content/uploads/2016/01/Picture13-1.png)  
 If you are not setting up certificates on the server for SSL, you can disable the SSL verification by changing the UI.EnableSslCheck to false.
 
 15) Reset IIS from the command line.
 
-16) [<img src="http://theorypc.ca/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B9.41.03-2BPM-1-300x186.png" border="0" />](http://theorypc.ca/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B9.41.03-2BPM-1.png)  
+16) [<img src="/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B9.41.03-2BPM-1-300x186.png" border="0" />](/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B9.41.03-2BPM-1.png)  
 On EACH & server, install the **Director WMI Provider** (DirectorWMIProvider\_x64.msi for 64bit OS's and DirectorWMIProvider\_x86.msi for 32bit OS's). No reboot is needed, it takes effect immediately.
 
 17) Enable WinRM on each & server. In a command prompt run:  
@@ -88,7 +88,7 @@ ConfigRemoteMgmt.exe /configwinrmuser HEALTHYDesktopDirector.TST /all
 
 Ensure you use the latest version you can find. For &/XenDesktop 7.7 the version that comes with it is:
 
-[<img src="http://theorypc.ca/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B9.49.58-2BPM-1-300x191.png" border="0" />](http://theorypc.ca/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B9.49.58-2BPM-1.png)
+[<img src="/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B9.49.58-2BPM-1-300x191.png" border="0" />](/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B9.49.58-2BPM-1.png)
 
 It has been [revised as time](http://support.citrix.com/article/CTX131165) has gone on and numerous bug fixes have been implemented. We implemented a script to update our WinRM so all of our & servers would have the user configured. We didn't include checking, we just assumed if a group was added it would not be added again. With an older version of ConfigRemoteMgmt.exe this was an incorrect assumption and our WinRM SDDL became so large that the command line that ConfigRemoteMgmt.exe generates for winrm.cmd breaks the command line. You see, ConfigRemoteMgmt.exe is also a front end to "**C:\Windows\system32\winrm.cmd**". Here is the command it generates:
 
@@ -100,7 +100,7 @@ The part I bolded is the GUID of the object you pass in the /configwinrmuser. Th
 
 And so on. Eventually, this causes WinRM to fail and it will just hang at this point:
 
-[<img src="http://theorypc.ca/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B10.03.42-2BPM-1-300x82.png" border="0" />](http://theorypc.ca/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B10.03.42-2BPM-1.png)
+[<img src="/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B10.03.42-2BPM-1-300x82.png" border="0" />](/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B10.03.42-2BPM-1.png)
 
 To check your WinRM Root SDDL, execute this command:
 
@@ -108,13 +108,13 @@ To check your WinRM Root SDDL, execute this command:
 
 If you have an output similar to this, then you have a problem:
 
-[<img src="http://theorypc.ca/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B10.06.22-2BPM-1-204x300.png" border="0" />](http://theorypc.ca/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B10.06.22-2BPM-1.png)
+[<img src="/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B10.06.22-2BPM-1-204x300.png" border="0" />](/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B10.06.22-2BPM-1.png)
 
 Fortunately, it's a super easy fix. If you run the command with a single GUID it all gets reset:
 
 <pre class="lang:batch decode:true">C:\Windows\system32\cmd.exe /c ""C:\Windows\system32\winrm.cmd" set winrm/config/service @{RootSDDL="O:NSG:BAD:P(A;;GA;;;BA)S:P(AU;FA;GA;;;WD)(AU;SA;GXGW;;;WD)"}"</pre>
 
-[<img src="http://theorypc.ca/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B10.07.59-2BPM-1-300x190.png" border="0" />](http://theorypc.ca/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B10.07.59-2BPM-1.png)
+[<img src="/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B10.07.59-2BPM-1-300x190.png" border="0" />](/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B10.07.59-2BPM-1.png)
 
 And now you can execute the ConfigRemoteMgmt.exe command again. The new version of ConfigRemoteMgmt.exe doesn't seem to just 'stack' the new version on top.
 
@@ -127,45 +127,45 @@ Now that you have WinRM configured, Director installed, you login and it works. 
 
 In order to trouble shoot this, we need to turn logging on for Director. To do so, go into IIS Manager Console, to the '**Director**' Site, and double click on **Application Settings**. Turn on the following "Log." settings:
 
-[<img src="http://theorypc.ca/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B10.22.55-2BPM-1-300x154.png" border="0" />](http://theorypc.ca/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B10.22.55-2BPM-1.png)
+[<img src="/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B10.22.55-2BPM-1-300x154.png" border="0" />](/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B10.22.55-2BPM-1.png)
 
 Now, create the folder you specified the log will be captured in and set the following permissions on it:
 
-[<img src="http://theorypc.ca/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B10.24.28-2BPM-1-231x300.png" border="0" />](http://theorypc.ca/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B10.24.28-2BPM-1.png)
+[<img src="/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B10.24.28-2BPM-1-231x300.png" border="0" />](/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B10.24.28-2BPM-1.png)
 
 Note: The permissions are %COMPUTERNAME%IIS_USERS
 
 Restart IIS and attempt to login again. You should get a log file generated with content. A failed login had this output:
 
-[<img src="http://theorypc.ca/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B10.28.18-2BPM-1-300x180.png" border="0" />](http://theorypc.ca/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B10.28.18-2BPM-1.png)
+[<img src="/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B10.28.18-2BPM-1-300x180.png" border="0" />](/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B10.28.18-2BPM-1.png)
 
 And a succesful login had this output:
 
-[<img src="http://theorypc.ca/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B10.28.05-2BPM-1-300x179.png" border="0" />](http://theorypc.ca/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B10.28.05-2BPM-1.png)
+[<img src="/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B10.28.05-2BPM-1-300x179.png" border="0" />](/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B10.28.05-2BPM-1.png)
 
 I highlighted the lines in the successful output that showed the command succeeding and the output from that. So why did this fail? The one account "adtest91" is setup as a 'help desk' style account and has 'custom permissions'; essentially 'View-only' but with some categories removed altogether. Could this be permissions based? The odd thing is DesktopDirector 2.1 works without issue with this exact same configuration.
 
 Fortunately, Citrix tries to make this easy to troubleshoot. I will login to the ZDC and start a Citrix PowerShell session with "adtest91" and run the command it supposedly fails on:
 
-[<img src="http://theorypc.ca/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B10.33.57-2BPM-1-300x165.png" border="0" />](http://theorypc.ca/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B10.33.57-2BPM-1.png)
+[<img src="/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B10.33.57-2BPM-1-300x165.png" border="0" />](/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B10.33.57-2BPM-1.png)
 
 Well, at least it appears consistent. So, apparently, we need to get this command working. My first try at troubleshooting was to login to the AppCenter console, go to Administrators and get properties on this account, and change it's 'Privileges' from **Custom** to **Full**:
 
-[<img src="http://theorypc.ca/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B10.36.17-2BPM-1-300x200.png" border="0" />](http://theorypc.ca/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B10.36.17-2BPM-1.png)
+[<img src="/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B10.36.17-2BPM-1-300x200.png" border="0" />](/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B10.36.17-2BPM-1.png)
 
 When I attempted to login it worked! So it's definitely a permission issue. I went back to Powershell and executed the same command:
 
-[<img src="http://theorypc.ca/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B10.42.10-2BPM-1-300x91.png" border="0" />](http://theorypc.ca/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B10.42.10-2BPM-1.png)
+[<img src="/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B10.42.10-2BPM-1-300x91.png" border="0" />](/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B10.42.10-2BPM-1.png)
 
 Success!
 
 So if the Powershell command specified in the log file works then 'Director' should work, and so far that is what it looks like. Now I wanted to narrow down \*which\* permission does this as we do not want our Help Desk to have full control over the farm. The, very obvious, first thing that stood out was:
 
-[<img src="http://theorypc.ca/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B10.45.05-2BPM-1-300x147.png" border="0" />](http://theorypc.ca/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B10.45.05-2BPM-1.png)
+[<img src="/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B10.45.05-2BPM-1-300x147.png" border="0" />](/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B10.45.05-2BPM-1.png)
 
 "**Edit Zone Settings**." We are having issues enumerating Zones, perhaps this setting enables you to \*read\* zones? I enabled this setting and retested:
 
-[<img src="http://theorypc.ca/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B10.46.58-2BPM-1-300x38.png" border="0" />](http://theorypc.ca/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B10.46.58-2BPM-1.png)
+[<img src="/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B10.46.58-2BPM-1-300x38.png" border="0" />](/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B10.46.58-2BPM-1.png)
 
 Success! And our 'Help Desk' account can now login to Director.
 
@@ -173,7 +173,7 @@ We don't really want Help Desk to have the ability to 'Edit' Zones but I don't s
 
 So now we've logged into Director and we enumerate an account but we get this message:
 
-[<img src="http://theorypc.ca/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B10.49.51-2BPM-1-300x103.png" border="0" />](http://theorypc.ca/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B10.49.51-2BPM-1.png)
+[<img src="/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B10.49.51-2BPM-1-300x103.png" border="0" />](/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B10.49.51-2BPM-1.png)
 
 Cannot retrieve the data. Cannot find the referenced object. View Director server event logs for further information.
 
@@ -231,7 +231,7 @@ Citrix.Dmc.Common.NotFoundException: Exception of type 'Citrix.Dmc.Common.NotFou
 
 And the event log shows:
 
-[<img src="http://theorypc.ca/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B10.52.17-2BPM-1-300x167.png" border="0" />](http://theorypc.ca/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B10.52.17-2BPM-1.png)
+[<img src="/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B10.52.17-2BPM-1-300x167.png" border="0" />](/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B10.52.17-2BPM-1.png)
 
 The requested data could not be found in the data 'The virtual desktop via WinRM service reported an exception. See the event log for more information.' ('http://WSCTXZDC301T.healthy.bewell.ca:5985/wsman').
 
@@ -249,7 +249,7 @@ To test WinRM the following command can be used:
 <table style="margin-left: auto; margin-right: auto; text-align: center;" cellspacing="0" cellpadding="0" align="center">
   <tr>
     <td style="text-align: center;">
-      <a style="margin-left: auto; margin-right: auto;" href="http://theorypc.ca/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-15-2Bat-2B2.46.51-2BPM-1.png"><img src="http://theorypc.ca/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-15-2Bat-2B2.46.51-2BPM-1-300x149.png" border="0" /></a>
+      <a style="margin-left: auto; margin-right: auto;" href="/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-15-2Bat-2B2.46.51-2BPM-1.png"><img src="/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-15-2Bat-2B2.46.51-2BPM-1-300x149.png" border="0" /></a>
     </td>
   </tr>
   

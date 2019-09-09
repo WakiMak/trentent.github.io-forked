@@ -36,7 +36,7 @@ _ 2- If we're unable to to find group membership -> proceed to ExplicitLogon pag
 
 This is the logical structure:
 
-<img class="aligncenter size-full wp-image-2253" src="http://theorypc.ca/wp-content/uploads/2017/05/ExplicitLogon_Flowchart.png" alt="" width="826" height="609" srcset="http://theorypc.ca/wp-content/uploads/2017/05/ExplicitLogon_Flowchart.png 826w, http://theorypc.ca/wp-content/uploads/2017/05/ExplicitLogon_Flowchart-300x221.png 300w, http://theorypc.ca/wp-content/uploads/2017/05/ExplicitLogon_Flowchart-768x566.png 768w" sizes="(max-width: 826px) 100vw, 826px" /> 
+<img class="aligncenter size-full wp-image-2253" src="/wp-content/uploads/2017/05/ExplicitLogon_Flowchart.png" alt="" width="826" height="609" srcset="/wp-content/uploads/2017/05/ExplicitLogon_Flowchart.png 826w, /wp-content/uploads/2017/05/ExplicitLogon_Flowchart-300x221.png 300w, /wp-content/uploads/2017/05/ExplicitLogon_Flowchart-768x566.png 768w" sizes="(max-width: 826px) 100vw, 826px" /> 
 
 &nbsp;
 
@@ -44,7 +44,7 @@ This is the logical structure:
 
 Can I make this happen?  To start I created a store with both ExplicitLogon (User name and password) and Domain pass-through authentication methods enabled.
 
-<img class="aligncenter size-full wp-image-2254" src="http://theorypc.ca/wp-content/uploads/2017/05/auth_methods.png" alt="" width="552" height="425" srcset="http://theorypc.ca/wp-content/uploads/2017/05/auth_methods.png 552w, http://theorypc.ca/wp-content/uploads/2017/05/auth_methods-300x231.png 300w" sizes="(max-width: 552px) 100vw, 552px" /> 
+<img class="aligncenter size-full wp-image-2254" src="/wp-content/uploads/2017/05/auth_methods.png" alt="" width="552" height="425" srcset="/wp-content/uploads/2017/05/auth_methods.png 552w, /wp-content/uploads/2017/05/auth_methods-300x231.png 300w" sizes="(max-width: 552px) 100vw, 552px" /> 
 
 The server side script to check group membership:
 
@@ -85,7 +85,7 @@ string UserDomainName = UserIdentityArr[0];
 
 And the technical flow:
 
-<img class="aligncenter size-full wp-image-2255" src="http://theorypc.ca/wp-content/uploads/2017/05/technical_flow_chart.png" alt="" width="814" height="1147" srcset="http://theorypc.ca/wp-content/uploads/2017/05/technical_flow_chart.png 814w, http://theorypc.ca/wp-content/uploads/2017/05/technical_flow_chart-213x300.png 213w, http://theorypc.ca/wp-content/uploads/2017/05/technical_flow_chart-768x1082.png 768w" sizes="(max-width: 814px) 100vw, 814px" /> 
+<img class="aligncenter size-full wp-image-2255" src="/wp-content/uploads/2017/05/technical_flow_chart.png" alt="" width="814" height="1147" srcset="/wp-content/uploads/2017/05/technical_flow_chart.png 814w, /wp-content/uploads/2017/05/technical_flow_chart-213x300.png 213w, /wp-content/uploads/2017/05/technical_flow_chart-768x1082.png 768w" sizes="(max-width: 814px) 100vw, 814px" /> 
 
 And this is what the **custom/script.js** looks like when we convert the flow to reality:
 
@@ -164,15 +164,15 @@ function ajaxWrapper(options) {
 
 The results?
 
-<img class="aligncenter size-full wp-image-2256" src="http://theorypc.ca/wp-content/uploads/2017/05/auth_results.png" alt="" width="393" height="61" srcset="http://theorypc.ca/wp-content/uploads/2017/05/auth_results.png 393w, http://theorypc.ca/wp-content/uploads/2017/05/auth_results-300x47.png 300w" sizes="(max-width: 393px) 100vw, 393px" /> 
+<img class="aligncenter size-full wp-image-2256" src="/wp-content/uploads/2017/05/auth_results.png" alt="" width="393" height="61" srcset="/wp-content/uploads/2017/05/auth_results.png 393w, /wp-content/uploads/2017/05/auth_results-300x47.png 300w" sizes="(max-width: 393px) 100vw, 393px" /> 
 
 User: TEST1
 
-<img class="aligncenter size-full wp-image-2258" src="http://theorypc.ca/wp-content/uploads/2017/05/ExplicitLogon.png" alt="" width="617" height="380" srcset="http://theorypc.ca/wp-content/uploads/2017/05/ExplicitLogon.png 617w, http://theorypc.ca/wp-content/uploads/2017/05/ExplicitLogon-300x185.png 300w" sizes="(max-width: 617px) 100vw, 617px" /> 
+<img class="aligncenter size-full wp-image-2258" src="/wp-content/uploads/2017/05/ExplicitLogon.png" alt="" width="617" height="380" srcset="/wp-content/uploads/2017/05/ExplicitLogon.png 617w, /wp-content/uploads/2017/05/ExplicitLogon-300x185.png 300w" sizes="(max-width: 617px) 100vw, 617px" /> 
 
 User: TEST2
 
-<img class="aligncenter size-full wp-image-2257" src="http://theorypc.ca/wp-content/uploads/2017/05/Passthrough.png" alt="" width="846" height="421" srcset="http://theorypc.ca/wp-content/uploads/2017/05/Passthrough.png 846w, http://theorypc.ca/wp-content/uploads/2017/05/Passthrough-300x149.png 300w, http://theorypc.ca/wp-content/uploads/2017/05/Passthrough-768x382.png 768w" sizes="(max-width: 846px) 100vw, 846px" /> 
+<img class="aligncenter size-full wp-image-2257" src="/wp-content/uploads/2017/05/Passthrough.png" alt="" width="846" height="421" srcset="/wp-content/uploads/2017/05/Passthrough.png 846w, /wp-content/uploads/2017/05/Passthrough-300x149.png 300w, /wp-content/uploads/2017/05/Passthrough-768x382.png 768w" sizes="(max-width: 846px) 100vw, 846px" /> 
 
 &nbsp;
 

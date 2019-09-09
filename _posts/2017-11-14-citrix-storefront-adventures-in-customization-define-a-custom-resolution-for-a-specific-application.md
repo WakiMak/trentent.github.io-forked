@@ -24,7 +24,7 @@ The steps to set this up:
 
   1. Download the [Storefront_CustomizationLaunch.dll.](https://theorypc-my.sharepoint.com/personal/trententtye_theorypc_onmicrosoft_com/_layouts/15/guestaccess.aspx?docid=004f14ced27ca490cb0a405a05c20bd21&authkey=AbuSRo56HbF18BHjBi_Pyaw)
   2. Copy the file to C:\inetpub\wwwroot\Citrix\Store\bin  
-<img class="aligncenter size-full wp-image-2569" src="http://theorypc.ca/wp-content/uploads/2017/11/StoreCustomization_Launch.png" alt="" width="1112" height="489" srcset="http://theorypc.ca/wp-content/uploads/2017/11/StoreCustomization_Launch.png 1112w, http://theorypc.ca/wp-content/uploads/2017/11/StoreCustomization_Launch-300x132.png 300w, http://theorypc.ca/wp-content/uploads/2017/11/StoreCustomization_Launch-768x338.png 768w" sizes="(max-width: 1112px) 100vw, 1112px" /> 
+<img class="aligncenter size-full wp-image-2569" src="/wp-content/uploads/2017/11/StoreCustomization_Launch.png" alt="" width="1112" height="489" srcset="/wp-content/uploads/2017/11/StoreCustomization_Launch.png 1112w, /wp-content/uploads/2017/11/StoreCustomization_Launch-300x132.png 300w, /wp-content/uploads/2017/11/StoreCustomization_Launch-768x338.png 768w" sizes="(max-width: 1112px) 100vw, 1112px" /> 
   3. Edit the web.config in the **Store** directory and enable the extension
   4. <pre class="lang:xhtml decode:true"><appSettings>
   <add key="modifyICAProperties" value="true" />
@@ -67,7 +67,7 @@ The steps to set this up:
 
   8. And enjoy the results! 
 
-<img class="aligncenter size-full wp-image-2570" src="http://theorypc.ca/wp-content/uploads/2017/11/800x600Calculator.png" alt="" width="802" height="632" srcset="http://theorypc.ca/wp-content/uploads/2017/11/800x600Calculator.png 802w, http://theorypc.ca/wp-content/uploads/2017/11/800x600Calculator-300x236.png 300w, http://theorypc.ca/wp-content/uploads/2017/11/800x600Calculator-768x605.png 768w" sizes="(max-width: 802px) 100vw, 802px" /> 
+<img class="aligncenter size-full wp-image-2570" src="/wp-content/uploads/2017/11/800x600Calculator.png" alt="" width="802" height="632" srcset="/wp-content/uploads/2017/11/800x600Calculator.png 802w, /wp-content/uploads/2017/11/800x600Calculator-300x236.png 300w, /wp-content/uploads/2017/11/800x600Calculator-768x605.png 768w" sizes="(max-width: 802px) 100vw, 802px" /> 
 
 <!-- AddThis Advanced Settings generic via filter on the_content -->
 

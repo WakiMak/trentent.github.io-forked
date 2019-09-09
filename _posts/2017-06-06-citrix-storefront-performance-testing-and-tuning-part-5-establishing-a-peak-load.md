@@ -27,13 +27,13 @@ I want to get these user counts sorted via time in order to determine our peak l
 
 To get these counts I decided to key into some unique web URL's or resources.  For #1, I decided to search the IIS logs for the "Logoff.png".
 
-<img class="aligncenter size-full wp-image-2327" src="http://theorypc.ca/wp-content/uploads/2017/05/LogOffPng.png" alt="" width="419" height="117" srcset="http://theorypc.ca/wp-content/uploads/2017/05/LogOffPng.png 419w, http://theorypc.ca/wp-content/uploads/2017/05/LogOffPng-300x84.png 300w" sizes="(max-width: 419px) 100vw, 419px" /> 
+<img class="aligncenter size-full wp-image-2327" src="/wp-content/uploads/2017/05/LogOffPng.png" alt="" width="419" height="117" srcset="/wp-content/uploads/2017/05/LogOffPng.png 419w, /wp-content/uploads/2017/05/LogOffPng-300x84.png 300w" sizes="(max-width: 419px) 100vw, 419px" /> 
 
 This icon will only be pulled down for a user who has logged into the Web Interface.
 
 For #2, I decided to look at the IIS logs and search for "launch.ica".  This will get us the application launches via the sites.
 
-<img class="aligncenter size-full wp-image-2328" src="http://theorypc.ca/wp-content/uploads/2017/05/Launchica_iislog.png" alt="" width="614" height="39" srcset="http://theorypc.ca/wp-content/uploads/2017/05/Launchica_iislog.png 614w, http://theorypc.ca/wp-content/uploads/2017/05/Launchica_iislog-300x19.png 300w" sizes="(max-width: 614px) 100vw, 614px" /> 
+<img class="aligncenter size-full wp-image-2328" src="/wp-content/uploads/2017/05/Launchica_iislog.png" alt="" width="614" height="39" srcset="/wp-content/uploads/2017/05/Launchica_iislog.png 614w, /wp-content/uploads/2017/05/Launchica_iislog-300x19.png 300w" sizes="(max-width: 614px) 100vw, 614px" /> 
 
 For #3, I decided to look at the IIS logs and search for "config.xml".  This file is pulled each time PNA is launched or a user logs onto the machine.
 
@@ -107,7 +107,7 @@ $obj| export-csv WebInterface.csv</pre>
 
 I then opened it in Excel and created time ranges per-hour and then counted how many of each item was found in that range.  For the Logoff.PNG it was accessed like this:
 
-<img class="aligncenter size-full wp-image-2355" src="http://theorypc.ca/wp-content/uploads/2017/05/Screen-Shot-2017-05-27-at-10.57.41-PM.png" alt="" width="1333" height="591" srcset="http://theorypc.ca/wp-content/uploads/2017/05/Screen-Shot-2017-05-27-at-10.57.41-PM.png 1333w, http://theorypc.ca/wp-content/uploads/2017/05/Screen-Shot-2017-05-27-at-10.57.41-PM-300x133.png 300w, http://theorypc.ca/wp-content/uploads/2017/05/Screen-Shot-2017-05-27-at-10.57.41-PM-768x341.png 768w" sizes="(max-width: 1333px) 100vw, 1333px" /> 
+<img class="aligncenter size-full wp-image-2355" src="/wp-content/uploads/2017/05/Screen-Shot-2017-05-27-at-10.57.41-PM.png" alt="" width="1333" height="591" srcset="/wp-content/uploads/2017/05/Screen-Shot-2017-05-27-at-10.57.41-PM.png 1333w, /wp-content/uploads/2017/05/Screen-Shot-2017-05-27-at-10.57.41-PM-300x133.png 300w, /wp-content/uploads/2017/05/Screen-Shot-2017-05-27-at-10.57.41-PM-768x341.png 768w" sizes="(max-width: 1333px) 100vw, 1333px" /> 
 
 The peak count was 2775 logons over a course of an hour.  This equals ~45 logons per minute or 1 logon every 1.29 seconds.
 
@@ -121,7 +121,7 @@ The peak rate over a 15 min span was:
 
 ## Users who have launched an application
 
-<img class="aligncenter size-full wp-image-2356" src="http://theorypc.ca/wp-content/uploads/2017/05/Screen-Shot-2017-05-27-at-10.59.08-PM.png" alt="" width="1330" height="590" srcset="http://theorypc.ca/wp-content/uploads/2017/05/Screen-Shot-2017-05-27-at-10.59.08-PM.png 1330w, http://theorypc.ca/wp-content/uploads/2017/05/Screen-Shot-2017-05-27-at-10.59.08-PM-300x133.png 300w, http://theorypc.ca/wp-content/uploads/2017/05/Screen-Shot-2017-05-27-at-10.59.08-PM-768x341.png 768w" sizes="(max-width: 1330px) 100vw, 1330px" /> 
+<img class="aligncenter size-full wp-image-2356" src="/wp-content/uploads/2017/05/Screen-Shot-2017-05-27-at-10.59.08-PM.png" alt="" width="1330" height="590" srcset="/wp-content/uploads/2017/05/Screen-Shot-2017-05-27-at-10.59.08-PM.png 1330w, /wp-content/uploads/2017/05/Screen-Shot-2017-05-27-at-10.59.08-PM-300x133.png 300w, /wp-content/uploads/2017/05/Screen-Shot-2017-05-27-at-10.59.08-PM-768x341.png 768w" sizes="(max-width: 1330px) 100vw, 1330px" /> 
 
 &nbsp;
 
@@ -143,7 +143,7 @@ So these numbers are _purely_ for logons through the web site.  But previous tes
 
 How am I going to determine our concurrent connection rate for PNA?  This is what a PNA connection looks like:
 
-<img class="aligncenter size-full wp-image-2340" src="http://theorypc.ca/wp-content/uploads/2017/05/4.7PNA_Storefront.png" alt="" width="638" height="103" srcset="http://theorypc.ca/wp-content/uploads/2017/05/4.7PNA_Storefront.png 638w, http://theorypc.ca/wp-content/uploads/2017/05/4.7PNA_Storefront-300x48.png 300w" sizes="(max-width: 638px) 100vw, 638px" /> 
+<img class="aligncenter size-full wp-image-2340" src="/wp-content/uploads/2017/05/4.7PNA_Storefront.png" alt="" width="638" height="103" srcset="/wp-content/uploads/2017/05/4.7PNA_Storefront.png 638w, /wp-content/uploads/2017/05/4.7PNA_Storefront-300x48.png 300w" sizes="(max-width: 638px) 100vw, 638px" /> 
 
 What I'm going to do is query the IIS logs for '<span style="text-decoration: underline;">config.xml</span>', as that file gets called only once when Receiver is launched or upon login.  Once I get that I can search for 'enum.aspx' command that has been called and divide by the number of config.xml's.  This should get me the number of icon requests per user.
 

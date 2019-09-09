@@ -19,19 +19,19 @@ tags:
 ---
 Continuing on from my [previous post](http://theorypc.ca/2016/08/31/controlup-dissecting-logon-times-a-step-further-printer-loading/), we were still having certain users with logons in the dozens of seconds to minutes.  I wanted to find out why and see if there is anything further that could be done.
 
-<img class="aligncenter size-full wp-image-1698" src="http://theorypc.ca/wp-content/uploads/2016/09/60second_Profile.png" alt="60second_profile" width="700" height="83" srcset="http://theorypc.ca/wp-content/uploads/2016/09/60second_Profile.png 700w, http://theorypc.ca/wp-content/uploads/2016/09/60second_Profile-300x36.png 300w" sizes="(max-width: 700px) 100vw, 700px" /> 
+<img class="aligncenter size-full wp-image-1698" src="/wp-content/uploads/2016/09/60second_Profile.png" alt="60second_profile" width="700" height="83" srcset="/wp-content/uploads/2016/09/60second_Profile.png 700w, /wp-content/uploads/2016/09/60second_Profile-300x36.png 300w" sizes="(max-width: 700px) 100vw, 700px" /> 
 
 &nbsp;
 
 After identifying a user with a long logon with ControlUp I ran the 'Analyze Logon Duration' script:
 
-<img class="aligncenter size-full wp-image-1695" src="http://theorypc.ca/wp-content/uploads/2016/09/51.1second_Profile.png" alt="51-1second_profile" width="547" height="356" srcset="http://theorypc.ca/wp-content/uploads/2016/09/51.1second_Profile.png 547w, http://theorypc.ca/wp-content/uploads/2016/09/51.1second_Profile-300x195.png 300w" sizes="(max-width: 547px) 100vw, 547px" /> 
+<img class="aligncenter size-full wp-image-1695" src="/wp-content/uploads/2016/09/51.1second_Profile.png" alt="51-1second_profile" width="547" height="356" srcset="/wp-content/uploads/2016/09/51.1second_Profile.png 547w, /wp-content/uploads/2016/09/51.1second_Profile-300x195.png 300w" sizes="(max-width: 547px) 100vw, 547px" /> 
 
 &nbsp;
 
 Jeez, 59.4 seconds to logon with 51.2 seconds of that spent on the User Profile portion.  What is going on?  I turned to process monitor to capture the logon process:
 
-<img class="aligncenter size-full wp-image-1697" src="http://theorypc.ca/wp-content/uploads/2016/09/Screen-Shot-2016-09-07-at-8.24.18-PM.png" alt="screen-shot-2016-09-07-at-8-24-18-pm" width="567" height="172" srcset="http://theorypc.ca/wp-content/uploads/2016/09/Screen-Shot-2016-09-07-at-8.24.18-PM.png 567w, http://theorypc.ca/wp-content/uploads/2016/09/Screen-Shot-2016-09-07-at-8.24.18-PM-300x91.png 300w" sizes="(max-width: 567px) 100vw, 567px" /> 
+<img class="aligncenter size-full wp-image-1697" src="/wp-content/uploads/2016/09/Screen-Shot-2016-09-07-at-8.24.18-PM.png" alt="screen-shot-2016-09-07-at-8-24-18-pm" width="567" height="172" srcset="/wp-content/uploads/2016/09/Screen-Shot-2016-09-07-at-8.24.18-PM.png 567w, /wp-content/uploads/2016/09/Screen-Shot-2016-09-07-at-8.24.18-PM-300x91.png 300w" sizes="(max-width: 567px) 100vw, 567px" /> 
 
 Well, there appears to be a 1 minute gap between the cmd.exe command from when WinLogon.exe starts it.  The stage it 'freezes' at is "Please wait for the user profile service".
 
@@ -39,13 +39,13 @@ Well, there appears to be a 1 minute gap between the cmd.exe command from when W
 
 Since there is no data recorded by Process Monitor I tested by deleting the users profile.  It made no difference, still 60 seconds.  But, since I now know it's not the user profile it must be something else.  Experience has taught me to blame the user object and look for network paths.  50 seconds or so just \*feels\* like a network timeout.  So I examined the users AD object:
 
-<img class="aligncenter size-full wp-image-1699" src="http://theorypc.ca/wp-content/uploads/2016/09/Screen-Shot-2016-09-07-at-8.46.19-PM.png" alt="screen-shot-2016-09-07-at-8-46-19-pm" width="400" height="396" srcset="http://theorypc.ca/wp-content/uploads/2016/09/Screen-Shot-2016-09-07-at-8.46.19-PM.png 400w, http://theorypc.ca/wp-content/uploads/2016/09/Screen-Shot-2016-09-07-at-8.46.19-PM-150x150.png 150w, http://theorypc.ca/wp-content/uploads/2016/09/Screen-Shot-2016-09-07-at-8.46.19-PM-300x297.png 300w, http://theorypc.ca/wp-content/uploads/2016/09/Screen-Shot-2016-09-07-at-8.46.19-PM-50x50.png 50w, http://theorypc.ca/wp-content/uploads/2016/09/Screen-Shot-2016-09-07-at-8.46.19-PM-100x100.png 100w" sizes="(max-width: 400px) 100vw, 400px" /> 
+<img class="aligncenter size-full wp-image-1699" src="/wp-content/uploads/2016/09/Screen-Shot-2016-09-07-at-8.46.19-PM.png" alt="screen-shot-2016-09-07-at-8-46-19-pm" width="400" height="396" srcset="/wp-content/uploads/2016/09/Screen-Shot-2016-09-07-at-8.46.19-PM.png 400w, /wp-content/uploads/2016/09/Screen-Shot-2016-09-07-at-8.46.19-PM-150x150.png 150w, /wp-content/uploads/2016/09/Screen-Shot-2016-09-07-at-8.46.19-PM-300x297.png 300w, /wp-content/uploads/2016/09/Screen-Shot-2016-09-07-at-8.46.19-PM-50x50.png 50w, /wp-content/uploads/2016/09/Screen-Shot-2016-09-07-at-8.46.19-PM-100x100.png 100w" sizes="(max-width: 400px) 100vw, 400px" /> 
 
 &nbsp;
 
 Well well well, we have a path.  Is it valid?
 
-<img class="aligncenter size-full wp-image-1700" src="http://theorypc.ca/wp-content/uploads/2016/09/Screen-Shot-2016-09-07-at-8.49.42-PM.png" alt="screen-shot-2016-09-07-at-8-49-42-pm" width="508" height="242" srcset="http://theorypc.ca/wp-content/uploads/2016/09/Screen-Shot-2016-09-07-at-8.49.42-PM.png 508w, http://theorypc.ca/wp-content/uploads/2016/09/Screen-Shot-2016-09-07-at-8.49.42-PM-300x143.png 300w" sizes="(max-width: 508px) 100vw, 508px" /> 
+<img class="aligncenter size-full wp-image-1700" src="/wp-content/uploads/2016/09/Screen-Shot-2016-09-07-at-8.49.42-PM.png" alt="screen-shot-2016-09-07-at-8-49-42-pm" width="508" height="242" srcset="/wp-content/uploads/2016/09/Screen-Shot-2016-09-07-at-8.49.42-PM.png 508w, /wp-content/uploads/2016/09/Screen-Shot-2016-09-07-at-8.49.42-PM-300x143.png 300w" sizes="(max-width: 508px) 100vw, 508px" /> 
 
 &nbsp;
 
@@ -53,13 +53,13 @@ Well well well, we have a path.  Is it valid?
 
 It is not valid.  So is my suspicion correct?  I removed the Home Directory path and relaunched:
 
-<img class="aligncenter size-full wp-image-1701" src="http://theorypc.ca/wp-content/uploads/2016/09/without_homedir_logon_time.png" alt="without_homedir_logon_time" width="706" height="82" srcset="http://theorypc.ca/wp-content/uploads/2016/09/without_homedir_logon_time.png 706w, http://theorypc.ca/wp-content/uploads/2016/09/without_homedir_logon_time-300x35.png 300w" sizes="(max-width: 706px) 100vw, 706px" /> 
+<img class="aligncenter size-full wp-image-1701" src="/wp-content/uploads/2016/09/without_homedir_logon_time.png" alt="without_homedir_logon_time" width="706" height="82" srcset="/wp-content/uploads/2016/09/without_homedir_logon_time.png 706w, /wp-content/uploads/2016/09/without_homedir_logon_time-300x35.png 300w" sizes="(max-width: 706px) 100vw, 706px" /> 
 
 Well that's much, much better!
 
 So now I want ControlUp to identify this potential issue.  Unfortunately, I don't really see any events I can key in on that says 'Attempting to map home drive'.  But what we can do is pull that AD attribute and test to see if it's valid and let us know if it's not.  This is the output I now generate:
 
-<img class="aligncenter size-full wp-image-1702" src="http://theorypc.ca/wp-content/uploads/2016/09/new_script.png" alt="new_script" width="741" height="432" srcset="http://theorypc.ca/wp-content/uploads/2016/09/new_script.png 741w, http://theorypc.ca/wp-content/uploads/2016/09/new_script-300x175.png 300w" sizes="(max-width: 741px) 100vw, 741px" /> 
+<img class="aligncenter size-full wp-image-1702" src="/wp-content/uploads/2016/09/new_script.png" alt="new_script" width="741" height="432" srcset="/wp-content/uploads/2016/09/new_script.png 741w, /wp-content/uploads/2016/09/new_script-300x175.png 300w" sizes="(max-width: 741px) 100vw, 741px" /> 
 
 &nbsp;
 

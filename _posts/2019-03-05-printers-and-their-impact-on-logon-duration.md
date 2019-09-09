@@ -9,7 +9,7 @@ guid: http://theorypc.ca/?p=2895
 permalink: /2019/03/05/printers-and-their-impact-on-logon-duration/
 enclosure:
   - |
-    http://theorypc.ca/wp-content/uploads/2018/12/DirectConnectionProcess.mp4
+    /wp-content/uploads/2018/12/DirectConnectionProcess.mp4
     197
     video/mp4
     
@@ -49,13 +49,13 @@ Citrix has two methods of printing.&nbsp; "Direct connection" and local printing
 
 To enable "Direct Connection", Citrix has a policy "Direct connection to print servers".&nbsp; **By default, this policy is <span style="text-decoration: underline;">enabled</span>**.<figure class="wp-block-image">
 
-<img src="http://theorypc.ca/wp-content/uploads/2018/12/DirectConnectionPolicy.png" alt="" class="wp-image-2886" srcset="http://theorypc.ca/wp-content/uploads/2018/12/DirectConnectionPolicy.png 1135w, http://theorypc.ca/wp-content/uploads/2018/12/DirectConnectionPolicy-300x19.png 300w, http://theorypc.ca/wp-content/uploads/2018/12/DirectConnectionPolicy-768x47.png 768w" sizes="(max-width: 1135px) 100vw, 1135px" /> </figure> 
+<img src="/wp-content/uploads/2018/12/DirectConnectionPolicy.png" alt="" class="wp-image-2886" srcset="/wp-content/uploads/2018/12/DirectConnectionPolicy.png 1135w, /wp-content/uploads/2018/12/DirectConnectionPolicy-300x19.png 300w, /wp-content/uploads/2018/12/DirectConnectionPolicy-768x47.png 768w" sizes="(max-width: 1135px) 100vw, 1135px" /> </figure> 
 
 With this policy enabled, it changes the behavior of how Citrix connects printers you have mapped locally as network printers.&nbsp; Citrix has a diagram here:<figure class="wp-block-image">
 
-<img src="http://theorypc.ca/wp-content/uploads/2018/12/cds-print-network-attached-1.png" alt="" class="wp-image-2890" srcset="http://theorypc.ca/wp-content/uploads/2018/12/cds-print-network-attached-1.png 496w, http://theorypc.ca/wp-content/uploads/2018/12/cds-print-network-attached-1-300x165.png 300w" sizes="(max-width: 496px) 100vw, 496px" /> </figure> 
+<img src="/wp-content/uploads/2018/12/cds-print-network-attached-1.png" alt="" class="wp-image-2890" srcset="/wp-content/uploads/2018/12/cds-print-network-attached-1.png 496w, /wp-content/uploads/2018/12/cds-print-network-attached-1-300x165.png 300w" sizes="(max-width: 496px) 100vw, 496px" /> </figure> 
 
-But I feel this is missing temporal information.&nbsp; I've created a video to highlight the steps.<figure class="wp-block-video"><video controls src="http://theorypc.ca/wp-content/uploads/2018/12/DirectConnectionProcess.mp4"></video><figcaption>Direct Connection Process</figcaption></figure> 
+But I feel this is missing temporal information.&nbsp; I've created a video to highlight the steps.<figure class="wp-block-video"><video controls src="/wp-content/uploads/2018/12/DirectConnectionProcess.mp4"></video><figcaption>Direct Connection Process</figcaption></figure> 
 
 ## Why is this important?
 
@@ -70,7 +70,7 @@ Focusing on Direct Connection being enabled, if "**Wait for printers to be creat
 
 Direct connection does something that can have a very adverse affect on logon time that is **enabled** by default.&nbsp; When it connects directly to the print server it will check and _**install**_ the print driver on the Citrix server.&nbsp; The installation activity is visible via process monitor.<figure class="wp-block-image">
 
-<img src="http://theorypc.ca/wp-content/uploads/2018/12/PrinterDriverLoading.png" alt="" class="wp-image-2893" srcset="http://theorypc.ca/wp-content/uploads/2018/12/PrinterDriverLoading.png 1655w, http://theorypc.ca/wp-content/uploads/2018/12/PrinterDriverLoading-300x47.png 300w, http://theorypc.ca/wp-content/uploads/2018/12/PrinterDriverLoading-768x120.png 768w, http://theorypc.ca/wp-content/uploads/2018/12/PrinterDriverLoading-1600x249.png 1600w" sizes="(max-width: 1655px) 100vw, 1655px" /> <figcaption>The DrvInst.exe process is the installation of printer drivers</figcaption></figure> 
+<img src="/wp-content/uploads/2018/12/PrinterDriverLoading.png" alt="" class="wp-image-2893" srcset="/wp-content/uploads/2018/12/PrinterDriverLoading.png 1655w, /wp-content/uploads/2018/12/PrinterDriverLoading-300x47.png 300w, /wp-content/uploads/2018/12/PrinterDriverLoading-768x120.png 768w, /wp-content/uploads/2018/12/PrinterDriverLoading-1600x249.png 1600w" sizes="(max-width: 1655px) 100vw, 1655px" /> <figcaption>The DrvInst.exe process is the installation of printer drivers</figcaption></figure> 
 
 The installation of printer driver, **by default**, will only occur if the driver is inbox or prestaged on the Citrix server.&nbsp; But the check to see if a print driver needs to be installed occurs every time a session is created.&nbsp; This behavior can be changed by policy.
 
@@ -78,7 +78,7 @@ Why does this impact logon times?&nbsp; Driver installation can take a while, es
 
 ### How can I tell what the impact of printers might be on Logon Duration?<figure class="wp-block-image">
 
-<img src="http://theorypc.ca/wp-content/uploads/2018/12/LogonDurationOther.png" alt="" class="wp-image-2899" srcset="http://theorypc.ca/wp-content/uploads/2018/12/LogonDurationOther.png 765w, http://theorypc.ca/wp-content/uploads/2018/12/LogonDurationOther-300x48.png 300w" sizes="(max-width: 765px) 100vw, 765px" /> </figure> 
+<img src="/wp-content/uploads/2018/12/LogonDurationOther.png" alt="" class="wp-image-2899" srcset="/wp-content/uploads/2018/12/LogonDurationOther.png 765w, /wp-content/uploads/2018/12/LogonDurationOther-300x48.png 300w" sizes="(max-width: 765px) 100vw, 765px" /> </figure> 
 
 I've been working on updating a Script-Based Action (SBA) originally posted by [Guy Leech](https://www.linkedin.com/in/guyrleech/) on the [Citrix blogs](https://www.citrix.com/blogs/2018/10/10/analyze-logon-duration-script-just-got-more-powerful/).&nbsp; This enhancement to the SBA will output more information breaking down what's consuming your logon times.&nbsp; Specifically, this tackles how long printers take in the [ControlUp](https://www.controlup.com/) column: "Logon Duration - Other"  
 
@@ -90,7 +90,7 @@ I've created a video showing how to enable the additional logging and how to run
 
 ### What's new in the output?<figure class="wp-block-image">
 
-<img src="http://theorypc.ca/wp-content/uploads/2018/12/PrinterLoadTimesOutput.png" alt="" class="wp-image-2898" srcset="http://theorypc.ca/wp-content/uploads/2018/12/PrinterLoadTimesOutput.png 1069w, http://theorypc.ca/wp-content/uploads/2018/12/PrinterLoadTimesOutput-300x24.png 300w, http://theorypc.ca/wp-content/uploads/2018/12/PrinterLoadTimesOutput-768x60.png 768w" sizes="(max-width: 1069px) 100vw, 1069px" /> </figure> 
+<img src="/wp-content/uploads/2018/12/PrinterLoadTimesOutput.png" alt="" class="wp-image-2898" srcset="/wp-content/uploads/2018/12/PrinterLoadTimesOutput.png 1069w, /wp-content/uploads/2018/12/PrinterLoadTimesOutput-300x24.png 300w, /wp-content/uploads/2018/12/PrinterLoadTimesOutput-768x60.png 768w" sizes="(max-width: 1069px) 100vw, 1069px" /> </figure> 
 
 For the individual printers, direct connection printers now show two lines, the&nbsp;**Driver&nbsp;**load time and **Printer**&nbsp;load/connection time.&nbsp; 
 
@@ -102,7 +102,7 @@ Citrix Universal Print Driver (UPD) mapped printers using the Citrix Universal P
 
 Here is an example of the full output:<figure class="wp-block-image">
 
-<img src="http://theorypc.ca/wp-content/uploads/2019/03/FullOutput.png" alt="" class="wp-image-2964" srcset="http://theorypc.ca/wp-content/uploads/2019/03/FullOutput.png 872w, http://theorypc.ca/wp-content/uploads/2019/03/FullOutput-300x139.png 300w, http://theorypc.ca/wp-content/uploads/2019/03/FullOutput-768x355.png 768w" sizes="(max-width: 872px) 100vw, 872px" /> </figure> 
+<img src="/wp-content/uploads/2019/03/FullOutput.png" alt="" class="wp-image-2964" srcset="/wp-content/uploads/2019/03/FullOutput.png 872w, /wp-content/uploads/2019/03/FullOutput-300x139.png 300w, /wp-content/uploads/2019/03/FullOutput-768x355.png 768w" sizes="(max-width: 872px) 100vw, 872px" /> </figure> 
 
 The "**Connect to Printers**" is a sub-phase under "**Pre-Shell (Userinit)**".&nbsp; Each "**Printer:**" and "**Driver:**" is a sub-phase under "**Connect to Printers**".&nbsp; In this example screenshot, "**Pre-Shell (Userinit)**" was consuming 117.6 seconds of a 133.2 second logon duration.&nbsp; Prior to this script that was all that was known.&nbsp; Now we can see that connecting to printers consumes 97.7 of those 117.6 seconds!
 
@@ -135,7 +135,7 @@ Easy!
 
 Good catch!&nbsp; Windows Server 2008R2 doesn't have command line auditing so it will miss the driver load information.&nbsp; There is no way around this using native tools, but modification could be done to use a 3rd party tool like sysmon.&nbsp; The output on a 2008R2 system would show the following (with all other features enabled).<figure class="wp-block-image">
 
-<img src="http://theorypc.ca/wp-content/uploads/2019/03/2008R2_output-1.png" alt="" class="wp-image-2963" srcset="http://theorypc.ca/wp-content/uploads/2019/03/2008R2_output-1.png 857w, http://theorypc.ca/wp-content/uploads/2019/03/2008R2_output-1-300x125.png 300w, http://theorypc.ca/wp-content/uploads/2019/03/2008R2_output-1-768x321.png 768w" sizes="(max-width: 857px) 100vw, 857px" /> </figure> 
+<img src="/wp-content/uploads/2019/03/2008R2_output-1.png" alt="" class="wp-image-2963" srcset="/wp-content/uploads/2019/03/2008R2_output-1.png 857w, /wp-content/uploads/2019/03/2008R2_output-1-300x125.png 300w, /wp-content/uploads/2019/03/2008R2_output-1-768x321.png 768w" sizes="(max-width: 857px) 100vw, 857px" /> </figure> 
 
 ## Awesome!&nbsp; Let me at this script!
 

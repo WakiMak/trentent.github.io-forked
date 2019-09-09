@@ -34,7 +34,7 @@ The operating system of all the VM's is Windows Server 2008 R2.  Applications ar
 
 &nbsp;
 
-<img class="aligncenter size-large wp-image-2745" src="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-21-at-9.33.27-PM-1600x290.png" alt="" width="1140" height="207" srcset="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-21-at-9.33.27-PM-1600x290.png 1600w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-21-at-9.33.27-PM-300x54.png 300w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-21-at-9.33.27-PM-768x139.png 768w" sizes="(max-width: 1140px) 100vw, 1140px" /> 
+<img class="aligncenter size-large wp-image-2745" src="/wp-content/uploads/2018/04/Screen-Shot-2018-04-21-at-9.33.27-PM-1600x290.png" alt="" width="1140" height="207" srcset="/wp-content/uploads/2018/04/Screen-Shot-2018-04-21-at-9.33.27-PM-1600x290.png 1600w, /wp-content/uploads/2018/04/Screen-Shot-2018-04-21-at-9.33.27-PM-300x54.png 300w, /wp-content/uploads/2018/04/Screen-Shot-2018-04-21-at-9.33.27-PM-768x139.png 768w" sizes="(max-width: 1140px) 100vw, 1140px" /> 
 
 &nbsp;
 
@@ -100,7 +100,7 @@ Performance needs to measured at two levels.  At the Windows/VM level, and at th
 
 I used ControlUp to measure and capture performance information.  ControlUp is able to capture various metrics including average logon duration.  This singular metric includes various system interactions, from using the network by querying Active Directory, pulling files from network shares, disk to store group policies in a cache, CPU processing which policies are applicable, and executables being launched in a sequence.  I believe that measuring logons is a good proxy for understanding the performance impact.  So lets see some numbers:
 
-<img class="aligncenter size-full wp-image-2748" src="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-11.04.19-AM.png" alt="" width="808" height="286" srcset="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-11.04.19-AM.png 808w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-11.04.19-AM-300x106.png 300w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-11.04.19-AM-768x272.png 768w" sizes="(max-width: 808px) 100vw, 808px" /> 
+<img class="aligncenter size-full wp-image-2748" src="/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-11.04.19-AM.png" alt="" width="808" height="286" srcset="/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-11.04.19-AM.png 808w, /wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-11.04.19-AM-300x106.png 300w, /wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-11.04.19-AM-768x272.png 768w" sizes="(max-width: 808px) 100vw, 808px" /> 
 
 &nbsp;
 
@@ -109,7 +109,7 @@ The top 3 results are Spectre enabled machines, the bottom 3 are without the pat
 With ControlUp we can drill down further into the impact:
 
 <div id="attachment_2749" style="width: 519px" class="wp-caption aligncenter">
-  <img aria-describedby="caption-attachment-2749" class="wp-image-2749 size-full" src="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-11.24.19-AM.png" alt="" width="509" height="84" srcset="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-11.24.19-AM.png 509w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-11.24.19-AM-300x50.png 300w" sizes="(max-width: 509px) 100vw, 509px" /></p> 
+  <img aria-describedby="caption-attachment-2749" class="wp-image-2749 size-full" src="/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-11.24.19-AM.png" alt="" width="509" height="84" srcset="/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-11.24.19-AM.png 509w, /wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-11.24.19-AM-300x50.png 300w" sizes="(max-width: 509px) 100vw, 509px" /></p> 
   
   <p id="caption-attachment-2749" class="wp-caption-text">
     Without Spectre Patch
@@ -119,7 +119,7 @@ With ControlUp we can drill down further into the impact:
 &nbsp;
 
 <div id="attachment_2750" style="width: 523px" class="wp-caption aligncenter">
-  <img aria-describedby="caption-attachment-2750" class="wp-image-2750 size-full" src="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-11.24.12-AM.png" alt="" width="513" height="95" srcset="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-11.24.12-AM.png 513w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-11.24.12-AM-300x56.png 300w" sizes="(max-width: 513px) 100vw, 513px" /></p> 
+  <img aria-describedby="caption-attachment-2750" class="wp-image-2750 size-full" src="/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-11.24.12-AM.png" alt="" width="513" height="95" srcset="/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-11.24.12-AM.png 513w, /wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-11.24.12-AM-300x56.png 300w" sizes="(max-width: 513px) 100vw, 513px" /></p> 
   
   <p id="caption-attachment-2750" class="wp-caption-text">
     With Spectre Patch
@@ -131,7 +131,7 @@ With ControlUp we can drill down further into the impact:
 The component that took the largest hit is Group Policy.  Again, ControlUp can drill down into this component.
 
 <div id="attachment_2754" style="width: 273px" class="wp-caption aligncenter">
-  <img aria-describedby="caption-attachment-2754" class="wp-image-2754 size-full" src="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-11.33.00-AM.png" alt="" width="263" height="177" /></p> 
+  <img aria-describedby="caption-attachment-2754" class="wp-image-2754 size-full" src="/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-11.33.00-AM.png" alt="" width="263" height="177" /></p> 
   
   <p id="caption-attachment-2754" class="wp-caption-text">
     Without Spectre
@@ -141,7 +141,7 @@ The component that took the largest hit is Group Policy.  Again, ControlUp can d
 &nbsp;
 
 <div id="attachment_2753" style="width: 276px" class="wp-caption aligncenter">
-  <img aria-describedby="caption-attachment-2753" class="wp-image-2753 size-full" src="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-11.33.07-AM.png" alt="" width="266" height="171" /></p> 
+  <img aria-describedby="caption-attachment-2753" class="wp-image-2753 size-full" src="/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-11.33.07-AM.png" alt="" width="266" height="171" /></p> 
   
   <p id="caption-attachment-2753" class="wp-caption-text">
     With Spectre
@@ -150,12 +150,12 @@ The component that took the largest hit is Group Policy.  Again, ControlUp can d
 
 All group policy preference components take a 200% hit.  The Group Policy Preferences functions operate by pulling down an XML file from the SYSVOL store, reading the XML file, than applying whatever resultant set of policies finds applicable.  In order to trace down further to find more differences, I logged into each type of machine, one with Spectre and one without, and started a Process Monitor trace.  Group Policy is applied via the Group Policy service, which a seperate instance of the svchost.exe.  The process can be found via Task Manager:
 
-<img class="aligncenter size-full wp-image-2755" src="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-11.44.02-AM.png" alt="" width="446" height="131" srcset="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-11.44.02-AM.png 446w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-11.44.02-AM-300x88.png 300w" sizes="(max-width: 446px) 100vw, 446px" /> 
+<img class="aligncenter size-full wp-image-2755" src="/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-11.44.02-AM.png" alt="" width="446" height="131" srcset="/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-11.44.02-AM.png 446w, /wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-11.44.02-AM-300x88.png 300w" sizes="(max-width: 446px) 100vw, 446px" /> 
 
 Setting ProcMon to filter only on that PID we can begin to evaluate the performance.  I relogged in with procmon capturing the logon.
 
 <div id="attachment_2756" style="width: 1150px" class="wp-caption aligncenter">
-  <a href="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-11.53.10-AM.png"><img aria-describedby="caption-attachment-2756" class="wp-image-2756 size-large" src="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-11.53.10-AM-1600x1239.png" alt="" width="1140" height="883" srcset="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-11.53.10-AM-1600x1239.png 1600w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-11.53.10-AM-300x232.png 300w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-11.53.10-AM-768x595.png 768w" sizes="(max-width: 1140px) 100vw, 1140px" /></a></p> 
+  <a href="/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-11.53.10-AM.png"><img aria-describedby="caption-attachment-2756" class="wp-image-2756 size-large" src="/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-11.53.10-AM-1600x1239.png" alt="" width="1140" height="883" srcset="/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-11.53.10-AM-1600x1239.png 1600w, /wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-11.53.10-AM-300x232.png 300w, /wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-11.53.10-AM-768x595.png 768w" sizes="(max-width: 1140px) 100vw, 1140px" /></a></p> 
   
   <p id="caption-attachment-2756" class="wp-caption-text">
     Spectre Patched system on left, no patch on right
@@ -164,10 +164,10 @@ Setting ProcMon to filter only on that PID we can begin to evaluate the performa
 
 Using ProcessMonitor, we can look at the various "Summaries" to see which particular component may be most affected:
 
-<img class="aligncenter size-full wp-image-2757" src="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-12.35.45-PM.png" alt="" width="1027" height="622" srcset="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-12.35.45-PM.png 1027w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-12.35.45-PM-300x182.png 300w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-12.35.45-PM-768x465.png 768w" sizes="(max-width: 1027px) 100vw, 1027px" /> 
+<img class="aligncenter size-full wp-image-2757" src="/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-12.35.45-PM.png" alt="" width="1027" height="622" srcset="/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-12.35.45-PM.png 1027w, /wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-12.35.45-PM-300x182.png 300w, /wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-12.35.45-PM-768x465.png 768w" sizes="(max-width: 1027px) 100vw, 1027px" /> 
 
-<img class="aligncenter size-large wp-image-2758" src="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-12.33.08-PM.png" alt="" width="559" height="351" srcset="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-12.33.08-PM.png 559w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-12.33.08-PM-300x188.png 300w" sizes="(max-width: 559px) 100vw, 559px" />  
-<img class="aligncenter size-large wp-image-2759" src="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-12.24.58-PM.png" alt="" width="874" height="494" srcset="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-12.24.58-PM.png 874w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-12.24.58-PM-300x170.png 300w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-12.24.58-PM-768x434.png 768w" sizes="(max-width: 874px) 100vw, 874px" /> 
+<img class="aligncenter size-large wp-image-2758" src="/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-12.33.08-PM.png" alt="" width="559" height="351" srcset="/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-12.33.08-PM.png 559w, /wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-12.33.08-PM-300x188.png 300w" sizes="(max-width: 559px) 100vw, 559px" />  
+<img class="aligncenter size-large wp-image-2759" src="/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-12.24.58-PM.png" alt="" width="874" height="494" srcset="/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-12.24.58-PM.png 874w, /wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-12.24.58-PM-300x170.png 300w, /wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-12.24.58-PM-768x434.png 768w" sizes="(max-width: 874px) 100vw, 874px" /> 
 
 We see that 8.45 seconds is spent on the registry, 0.40 seconds on file actions, 1.04 seconds on the ProcessGroupPolicyExRegistry instruction.
 
@@ -175,11 +175,11 @@ The big ticket item is the time spent with the registry.
 
 So how does it compare to a non-spectre system?
 
-<img class="aligncenter size-full wp-image-2761" src="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-12.49.17-PM.png" alt="" width="942" height="367" srcset="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-12.49.17-PM.png 942w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-12.49.17-PM-300x117.png 300w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-12.49.17-PM-768x299.png 768w" sizes="(max-width: 942px) 100vw, 942px" /> 
+<img class="aligncenter size-full wp-image-2761" src="/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-12.49.17-PM.png" alt="" width="942" height="367" srcset="/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-12.49.17-PM.png 942w, /wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-12.49.17-PM-300x117.png 300w, /wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-12.49.17-PM-768x299.png 768w" sizes="(max-width: 942px) 100vw, 942px" /> 
 
-<img class="aligncenter size-large wp-image-2762" src="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-12.47.27-PM.png" alt="" width="616" height="328" srcset="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-12.47.27-PM.png 616w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-12.47.27-PM-300x160.png 300w" sizes="(max-width: 616px) 100vw, 616px" /> 
+<img class="aligncenter size-large wp-image-2762" src="/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-12.47.27-PM.png" alt="" width="616" height="328" srcset="/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-12.47.27-PM.png 616w, /wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-12.47.27-PM-300x160.png 300w" sizes="(max-width: 616px) 100vw, 616px" /> 
 
-<img class="aligncenter size-large wp-image-2763" src="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-12.47.09-PM.png" alt="" width="705" height="322" srcset="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-12.47.09-PM.png 705w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-12.47.09-PM-300x137.png 300w" sizes="(max-width: 705px) 100vw, 705px" /> 
+<img class="aligncenter size-large wp-image-2763" src="/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-12.47.09-PM.png" alt="" width="705" height="322" srcset="/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-12.47.09-PM.png 705w, /wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-12.47.09-PM-300x137.png 300w" sizes="(max-width: 705px) 100vw, 705px" /> 
 
 &nbsp;
 
@@ -187,12 +187,12 @@ We see that 1.97 seconds is spent on the registry, 0.33 seconds on file actions,
 
 Here's a table showing the results:
 
-<img class="aligncenter size-full wp-image-2766" src="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-1.09.07-PM.png" alt="" width="281" height="68" /> 
+<img class="aligncenter size-full wp-image-2766" src="/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-1.09.07-PM.png" alt="" width="281" height="68" /> 
 
 So it definitely appears we need to look at the registry actions.  One of the cool things about Procmon is you can set a filter on your trace and open up the summaries and it will show you only the objects in the filter.  I set a filter for RegSetValue to see what the impact is for setting values in the registry:
 
 <div id="attachment_2764" style="width: 646px" class="wp-caption aligncenter">
-  <img aria-describedby="caption-attachment-2764" class="wp-image-2764 size-full" src="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-12.55.04-PM.png" alt="" width="636" height="277" srcset="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-12.55.04-PM.png 636w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-12.55.04-PM-300x131.png 300w" sizes="(max-width: 636px) 100vw, 636px" /></p> 
+  <img aria-describedby="caption-attachment-2764" class="wp-image-2764 size-full" src="/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-12.55.04-PM.png" alt="" width="636" height="277" srcset="/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-12.55.04-PM.png 636w, /wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-12.55.04-PM-300x131.png 300w" sizes="(max-width: 636px) 100vw, 636px" /></p> 
   
   <p id="caption-attachment-2764" class="wp-caption-text">
     RegSetValue - without spectre applied
@@ -202,7 +202,7 @@ So it definitely appears we need to look at the registry actions.  One of the co
 &nbsp;
 
 <div id="attachment_2765" style="width: 640px" class="wp-caption aligncenter">
-  <img aria-describedby="caption-attachment-2765" class="wp-image-2765 size-full" src="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-12.54.53-PM.png" alt="" width="630" height="261" srcset="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-12.54.53-PM.png 630w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-12.54.53-PM-300x124.png 300w" sizes="(max-width: 630px) 100vw, 630px" /></p> 
+  <img aria-describedby="caption-attachment-2765" class="wp-image-2765 size-full" src="/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-12.54.53-PM.png" alt="" width="630" height="261" srcset="/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-12.54.53-PM.png 630w, /wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-12.54.53-PM-300x124.png 300w" sizes="(max-width: 630px) 100vw, 630px" /></p> 
   
   <p id="caption-attachment-2765" class="wp-caption-text">
     RegSetValue - with spectre applied
@@ -214,7 +214,7 @@ So it definitely appears we need to look at the registry actions.  One of the co
 &nbsp;
 
 <div id="attachment_2767" style="width: 628px" class="wp-caption aligncenter">
-  <img aria-describedby="caption-attachment-2767" class="wp-image-2767 size-full" src="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-1.13.24-PM.png" alt="" width="618" height="299" srcset="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-1.13.24-PM.png 618w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-1.13.24-PM-300x145.png 300w" sizes="(max-width: 618px) 100vw, 618px" /></p> 
+  <img aria-describedby="caption-attachment-2767" class="wp-image-2767 size-full" src="/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-1.13.24-PM.png" alt="" width="618" height="299" srcset="/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-1.13.24-PM.png 618w, /wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-1.13.24-PM-300x145.png 300w" sizes="(max-width: 618px) 100vw, 618px" /></p> 
   
   <p id="caption-attachment-2767" class="wp-caption-text">
     Registry Reads - Spectre applied
@@ -224,7 +224,7 @@ So it definitely appears we need to look at the registry actions.  One of the co
 &nbsp;
 
 <div id="attachment_2768" style="width: 544px" class="wp-caption aligncenter">
-  <img aria-describedby="caption-attachment-2768" class="wp-image-2768 size-full" src="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-1.13.18-PM.png" alt="" width="534" height="278" srcset="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-1.13.18-PM.png 534w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-1.13.18-PM-300x156.png 300w" sizes="(max-width: 534px) 100vw, 534px" /></p> 
+  <img aria-describedby="caption-attachment-2768" class="wp-image-2768 size-full" src="/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-1.13.18-PM.png" alt="" width="534" height="278" srcset="/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-1.13.18-PM.png 534w, /wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-1.13.18-PM-300x156.png 300w" sizes="(max-width: 534px) 100vw, 534px" /></p> 
   
   <p id="caption-attachment-2768" class="wp-caption-text">
     Registry Reads - Spectre not applied
@@ -234,7 +234,7 @@ So it definitely appears we need to look at the registry actions.  One of the co
 We see roughly the same ratio of performance degradation, perhaps a little more so.  As a further test I created a PowerShell script that will just measure creating 1000 registry values and test it on each system:
 
 <div id="attachment_2769" style="width: 856px" class="wp-caption aligncenter">
-  <img aria-describedby="caption-attachment-2769" class="wp-image-2769 size-full" src="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-1.21.33-PM.png" alt="" width="846" height="495" srcset="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-1.21.33-PM.png 846w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-1.21.33-PM-300x176.png 300w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-1.21.33-PM-768x449.png 768w" sizes="(max-width: 846px) 100vw, 846px" /></p> 
+  <img aria-describedby="caption-attachment-2769" class="wp-image-2769 size-full" src="/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-1.21.33-PM.png" alt="" width="846" height="495" srcset="/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-1.21.33-PM.png 846w, /wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-1.21.33-PM-300x176.png 300w, /wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-1.21.33-PM-768x449.png 768w" sizes="(max-width: 846px) 100vw, 846px" /></p> 
   
   <p id="caption-attachment-2769" class="wp-caption-text">
     Spectre Applied
@@ -244,7 +244,7 @@ We see roughly the same ratio of performance degradation, perhaps a little more 
 &nbsp;
 
 <div id="attachment_2770" style="width: 877px" class="wp-caption aligncenter">
-  <img aria-describedby="caption-attachment-2770" class="wp-image-2770 size-full" src="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-1.20.27-PM.png" alt="" width="867" height="446" srcset="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-1.20.27-PM.png 867w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-1.20.27-PM-300x154.png 300w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-1.20.27-PM-768x395.png 768w" sizes="(max-width: 867px) 100vw, 867px" /></p> 
+  <img aria-describedby="caption-attachment-2770" class="wp-image-2770 size-full" src="/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-1.20.27-PM.png" alt="" width="867" height="446" srcset="/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-1.20.27-PM.png 867w, /wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-1.20.27-PM-300x154.png 300w, /wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-1.20.27-PM-768x395.png 768w" sizes="(max-width: 867px) 100vw, 867px" /></p> 
   
   <p id="caption-attachment-2770" class="wp-caption-text">
     Spectre Not Applied
@@ -256,7 +256,7 @@ We see roughly the same ratio of performance degradation, perhaps a little more 
 A 2.22x reduction in performance.  But this is writing to the HKCU...  which is a much smaller file.  What happens if I force a change on the much larger HKLM?
 
 <div id="attachment_2771" style="width: 807px" class="wp-caption aligncenter">
-  <img aria-describedby="caption-attachment-2771" class="wp-image-2771 size-full" src="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-1.24.46-PM.png" alt="" width="797" height="305" srcset="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-1.24.46-PM.png 797w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-1.24.46-PM-300x115.png 300w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-1.24.46-PM-768x294.png 768w" sizes="(max-width: 797px) 100vw, 797px" /></p> 
+  <img aria-describedby="caption-attachment-2771" class="wp-image-2771 size-full" src="/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-1.24.46-PM.png" alt="" width="797" height="305" srcset="/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-1.24.46-PM.png 797w, /wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-1.24.46-PM-300x115.png 300w, /wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-1.24.46-PM-768x294.png 768w" sizes="(max-width: 797px) 100vw, 797px" /></p> 
   
   <p id="caption-attachment-2771" class="wp-caption-text">
     Spectre Applied
@@ -266,7 +266,7 @@ A 2.22x reduction in performance.  But this is writing to the HKCU...  which is 
 &nbsp;
 
 <div id="attachment_2772" style="width: 845px" class="wp-caption aligncenter">
-  <img aria-describedby="caption-attachment-2772" class="wp-image-2772 size-full" src="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-1.24.36-PM.png" alt="" width="835" height="335" srcset="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-1.24.36-PM.png 835w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-1.24.36-PM-300x120.png 300w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-1.24.36-PM-768x308.png 768w" sizes="(max-width: 835px) 100vw, 835px" /></p> 
+  <img aria-describedby="caption-attachment-2772" class="wp-image-2772 size-full" src="/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-1.24.36-PM.png" alt="" width="835" height="335" srcset="/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-1.24.36-PM.png 835w, /wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-1.24.36-PM-300x120.png 300w, /wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-1.24.36-PM-768x308.png 768w" sizes="(max-width: 835px) 100vw, 835px" /></p> 
   
   <p id="caption-attachment-2772" class="wp-caption-text">
     Spectre Not Applied
@@ -291,7 +291,7 @@ Does Spectre affect the capacity of our Citrix servers?
 I recorded the CPU utilization of several VM's that mirror each other on hosts that mirror each other with a singular difference.  One set had the Spectre mitigation enabled.  I then took their CPU utilization results:
 
 <div id="attachment_2774" style="width: 1150px" class="wp-caption aligncenter">
-  <img aria-describedby="caption-attachment-2774" class="wp-image-2774 size-large" src="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-6.47.04-PM-1600x941.png" alt="" width="1140" height="670" srcset="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-6.47.04-PM-1600x941.png 1600w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-6.47.04-PM-300x176.png 300w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-6.47.04-PM-768x452.png 768w" sizes="(max-width: 1140px) 100vw, 1140px" /></p> 
+  <img aria-describedby="caption-attachment-2774" class="wp-image-2774 size-large" src="/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-6.47.04-PM-1600x941.png" alt="" width="1140" height="670" srcset="/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-6.47.04-PM-1600x941.png 1600w, /wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-6.47.04-PM-300x176.png 300w, /wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-6.47.04-PM-768x452.png 768w" sizes="(max-width: 1140px) 100vw, 1140px" /></p> 
   
   <p id="caption-attachment-2774" class="wp-caption-text">
     Red = VM with Spectre, Blue = VM without Spectre
@@ -301,7 +301,7 @@ I recorded the CPU utilization of several VM's that mirror each other on hosts t
 By just glancing at the data we can see that the Spectre VM's had higher peaks and they appear higher more consistently.  Since "spiky" data is difficult to read, I smoothed out the data using a moving average:
 
 <div id="attachment_2776" style="width: 1150px" class="wp-caption aligncenter">
-  <img aria-describedby="caption-attachment-2776" class="wp-image-2776 size-large" src="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-6.51.04-PM-1600x601.png" alt="" width="1140" height="428" srcset="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-6.51.04-PM-1600x601.png 1600w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-6.51.04-PM-300x113.png 300w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-6.51.04-PM-768x288.png 768w" sizes="(max-width: 1140px) 100vw, 1140px" /></p> 
+  <img aria-describedby="caption-attachment-2776" class="wp-image-2776 size-large" src="/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-6.51.04-PM-1600x601.png" alt="" width="1140" height="428" srcset="/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-6.51.04-PM-1600x601.png 1600w, /wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-6.51.04-PM-300x113.png 300w, /wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-6.51.04-PM-768x288.png 768w" sizes="(max-width: 1140px) 100vw, 1140px" /></p> 
   
   <p id="caption-attachment-2776" class="wp-caption-text">
     Red = VM with Spectre, Blue = VM without Spectre
@@ -312,7 +312,7 @@ We can get a better feel for the separation in CPU utilization between Spectre e
 
 Lastly, I took all of the results for each hour and produced a graph in an additive model:
 
-<img class="aligncenter size-large wp-image-2777" src="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-7.03.54-PM-1600x832.png" alt="" width="1140" height="593" srcset="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-7.03.54-PM-1600x832.png 1600w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-7.03.54-PM-300x156.png 300w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-7.03.54-PM-768x399.png 768w" sizes="(max-width: 1140px) 100vw, 1140px" /> 
+<img class="aligncenter size-large wp-image-2777" src="/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-7.03.54-PM-1600x832.png" alt="" width="1140" height="593" srcset="/wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-7.03.54-PM-1600x832.png 1600w, /wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-7.03.54-PM-300x156.png 300w, /wp-content/uploads/2018/04/Screen-Shot-2018-04-26-at-7.03.54-PM-768x399.png 768w" sizes="(max-width: 1140px) 100vw, 1140px" /> 
 
 This graph gives a feel for the impact during peak hours, and helps smooth out the data a bit further.  I believe what I'm seeing with each of these graphs is a performance hit measured by the VM at 25%-35%.
 
@@ -323,7 +323,7 @@ Measuring from the host level can give us a much more accurate picture of actual
 My apologies for swapping colors.  Raw data:
 
 <div id="attachment_2779" style="width: 1234px" class="wp-caption aligncenter">
-  <img aria-describedby="caption-attachment-2779" class="wp-image-2779 size-full" src="http://theorypc.ca/wp-content/uploads/2018/04/rawdata.png" alt="" width="1224" height="866" srcset="http://theorypc.ca/wp-content/uploads/2018/04/rawdata.png 1224w, http://theorypc.ca/wp-content/uploads/2018/04/rawdata-300x212.png 300w, http://theorypc.ca/wp-content/uploads/2018/04/rawdata-768x543.png 768w" sizes="(max-width: 1224px) 100vw, 1224px" /></p> 
+  <img aria-describedby="caption-attachment-2779" class="wp-image-2779 size-full" src="/wp-content/uploads/2018/04/rawdata.png" alt="" width="1224" height="866" srcset="/wp-content/uploads/2018/04/rawdata.png 1224w, /wp-content/uploads/2018/04/rawdata-300x212.png 300w, /wp-content/uploads/2018/04/rawdata-768x543.png 768w" sizes="(max-width: 1224px) 100vw, 1224px" /></p> 
   
   <p id="caption-attachment-2779" class="wp-caption-text">
     Blue = Spectre Applied, Red = No Spectre
@@ -332,13 +332,13 @@ My apologies for swapping colors.  Raw data:
 
 Very clearly we can see the hosts with Spectre applied consume more CPU resources, even coming close to consuming 100% of the CPU resources on the hosts.  Smoothing out the data using moving averages reveals the gap in performance with more clarity.
 
-<img class="aligncenter size-full wp-image-2780" src="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-27-at-12.25.48-AM.png" alt="" width="1128" height="1009" srcset="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-27-at-12.25.48-AM.png 1128w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-27-at-12.25.48-AM-300x268.png 300w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-27-at-12.25.48-AM-768x687.png 768w" sizes="(max-width: 1128px) 100vw, 1128px" /> 
+<img class="aligncenter size-full wp-image-2780" src="/wp-content/uploads/2018/04/Screen-Shot-2018-04-27-at-12.25.48-AM.png" alt="" width="1128" height="1009" srcset="/wp-content/uploads/2018/04/Screen-Shot-2018-04-27-at-12.25.48-AM.png 1128w, /wp-content/uploads/2018/04/Screen-Shot-2018-04-27-at-12.25.48-AM-300x268.png 300w, /wp-content/uploads/2018/04/Screen-Shot-2018-04-27-at-12.25.48-AM-768x687.png 768w" sizes="(max-width: 1128px) 100vw, 1128px" /> 
 
 &nbsp;
 
 Showing an hourly "Max CPU" per hour hit gives another visualization of the performance hit.
 
-<img class="aligncenter size-full wp-image-2781" src="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-27-at-12.27.13-AM.png" alt="" width="1236" height="1005" srcset="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-27-at-12.27.13-AM.png 1236w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-27-at-12.27.13-AM-300x244.png 300w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-27-at-12.27.13-AM-768x624.png 768w" sizes="(max-width: 1236px) 100vw, 1236px" /> 
+<img class="aligncenter size-full wp-image-2781" src="/wp-content/uploads/2018/04/Screen-Shot-2018-04-27-at-12.27.13-AM.png" alt="" width="1236" height="1005" srcset="/wp-content/uploads/2018/04/Screen-Shot-2018-04-27-at-12.27.13-AM.png 1236w, /wp-content/uploads/2018/04/Screen-Shot-2018-04-27-at-12.27.13-AM-300x244.png 300w, /wp-content/uploads/2018/04/Screen-Shot-2018-04-27-at-12.27.13-AM-768x624.png 768w" sizes="(max-width: 1236px) 100vw, 1236px" /> 
 
 &nbsp;
 

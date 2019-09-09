@@ -306,7 +306,7 @@ Start-HTTPListener -Port 80 -Url "Citrix/PLBWeb/ica_launcher" -Auth Anonymous</p
 
 Eventually, this will need to be converted to a scheduled task or a service.  When running the listener manually, it looks like this:
 
-<img class="aligncenter size-full wp-image-2184" src="http://theorypc.ca/wp-content/uploads/2017/05/RunningHTTPListener.png" alt="" width="979" height="178" srcset="http://theorypc.ca/wp-content/uploads/2017/05/RunningHTTPListener.png 979w, http://theorypc.ca/wp-content/uploads/2017/05/RunningHTTPListener-300x55.png 300w, http://theorypc.ca/wp-content/uploads/2017/05/RunningHTTPListener-768x140.png 768w" sizes="(max-width: 979px) 100vw, 979px" /> 
+<img class="aligncenter size-full wp-image-2184" src="/wp-content/uploads/2017/05/RunningHTTPListener.png" alt="" width="979" height="178" srcset="/wp-content/uploads/2017/05/RunningHTTPListener.png 979w, /wp-content/uploads/2017/05/RunningHTTPListener-300x55.png 300w, /wp-content/uploads/2017/05/RunningHTTPListener-768x140.png 768w" sizes="(max-width: 979px) 100vw, 979px" /> 
 
 &nbsp;
 
@@ -314,13 +314,13 @@ I originally planned to use the 'WebAPI' and create a custom StoreFront, but I r
 
 The Web Interface 5.4 version of this web launcher looked like this:
 
-<img class="aligncenter size-full wp-image-2185" src="http://theorypc.ca/wp-content/uploads/2017/05/WI_UnauthStore.png" alt="" width="951" height="308" srcset="http://theorypc.ca/wp-content/uploads/2017/05/WI_UnauthStore.png 951w, http://theorypc.ca/wp-content/uploads/2017/05/WI_UnauthStore-300x97.png 300w, http://theorypc.ca/wp-content/uploads/2017/05/WI_UnauthStore-768x249.png 768w" sizes="(max-width: 951px) 100vw, 951px" /> 
+<img class="aligncenter size-full wp-image-2185" src="/wp-content/uploads/2017/05/WI_UnauthStore.png" alt="" width="951" height="308" srcset="/wp-content/uploads/2017/05/WI_UnauthStore.png 951w, /wp-content/uploads/2017/05/WI_UnauthStore-300x97.png 300w, /wp-content/uploads/2017/05/WI_UnauthStore-768x249.png 768w" sizes="(max-width: 951px) 100vw, 951px" /> 
 
 When you browse to the URL in Web Interface 5.4 the application is automatically launched.  If it doesn't launch, "click to connect" will launch it for you manually.  This is the function and features I want.
 
 Storefront, without any modifications, looks like this with an authenticated store:
 
-<img class="aligncenter size-full wp-image-2186" src="http://theorypc.ca/wp-content/uploads/2017/05/unauth_Storefront.png" alt="" width="1136" height="333" srcset="http://theorypc.ca/wp-content/uploads/2017/05/unauth_Storefront.png 1136w, http://theorypc.ca/wp-content/uploads/2017/05/unauth_Storefront-300x88.png 300w, http://theorypc.ca/wp-content/uploads/2017/05/unauth_Storefront-768x225.png 768w" sizes="(max-width: 1136px) 100vw, 1136px" /> 
+<img class="aligncenter size-full wp-image-2186" src="/wp-content/uploads/2017/05/unauth_Storefront.png" alt="" width="1136" height="333" srcset="/wp-content/uploads/2017/05/unauth_Storefront.png 1136w, /wp-content/uploads/2017/05/unauth_Storefront-300x88.png 300w, /wp-content/uploads/2017/05/unauth_Storefront-768x225.png 768w" sizes="(max-width: 1136px) 100vw, 1136px" /> 
 
 So, I need to make a few modifications.
 
@@ -360,7 +360,7 @@ The beauty of Storefront, in its current incarnation, is most of this is CSS mod
 
 This resulted in a UI that looked like this:
 
-<img class="aligncenter size-full wp-image-2187" src="http://theorypc.ca/wp-content/uploads/2017/05/StoreFront_With_CSS.png" alt="" width="1135" height="578" srcset="http://theorypc.ca/wp-content/uploads/2017/05/StoreFront_With_CSS.png 1135w, http://theorypc.ca/wp-content/uploads/2017/05/StoreFront_With_CSS-300x153.png 300w, http://theorypc.ca/wp-content/uploads/2017/05/StoreFront_With_CSS-768x391.png 768w" sizes="(max-width: 1135px) 100vw, 1135px" /> 
+<img class="aligncenter size-full wp-image-2187" src="/wp-content/uploads/2017/05/StoreFront_With_CSS.png" alt="" width="1135" height="578" srcset="/wp-content/uploads/2017/05/StoreFront_With_CSS.png 1135w, /wp-content/uploads/2017/05/StoreFront_With_CSS-300x153.png 300w, /wp-content/uploads/2017/05/StoreFront_With_CSS-768x391.png 768w" sizes="(max-width: 1135px) 100vw, 1135px" /> 
 
 So now I want to remove all apps except my targeted application that should come in a query string.
 
@@ -393,7 +393,7 @@ console.log("CTX_Application " + CTX_Application);
 
 Going to my URL and checking the 'Console' in Chrome revealed:
 
-<img class="aligncenter size-full wp-image-2188" src="http://theorypc.ca/wp-content/uploads/2017/05/scriptjs_uri.png" alt="" width="892" height="607" srcset="http://theorypc.ca/wp-content/uploads/2017/05/scriptjs_uri.png 892w, http://theorypc.ca/wp-content/uploads/2017/05/scriptjs_uri-300x204.png 300w, http://theorypc.ca/wp-content/uploads/2017/05/scriptjs_uri-768x523.png 768w" sizes="(max-width: 892px) 100vw, 892px" /> 
+<img class="aligncenter size-full wp-image-2188" src="/wp-content/uploads/2017/05/scriptjs_uri.png" alt="" width="892" height="607" srcset="/wp-content/uploads/2017/05/scriptjs_uri.png 892w, /wp-content/uploads/2017/05/scriptjs_uri-300x204.png 300w, /wp-content/uploads/2017/05/scriptjs_uri-768x523.png 768w" sizes="(max-width: 892px) 100vw, 892px" /> 
 
 Yes, indeed, we are getting the URI parameters!
 
@@ -419,7 +419,7 @@ The function looks like this:
 
 Did it work?
 
-<img class="aligncenter size-full wp-image-2189" src="http://theorypc.ca/wp-content/uploads/2017/05/Exclude_App.png" alt="" width="595" height="498" srcset="http://theorypc.ca/wp-content/uploads/2017/05/Exclude_App.png 595w, http://theorypc.ca/wp-content/uploads/2017/05/Exclude_App-300x251.png 300w" sizes="(max-width: 595px) 100vw, 595px" /> 
+<img class="aligncenter size-full wp-image-2189" src="/wp-content/uploads/2017/05/Exclude_App.png" alt="" width="595" height="498" srcset="/wp-content/uploads/2017/05/Exclude_App.png 595w, /wp-content/uploads/2017/05/Exclude_App-300x251.png 300w" sizes="(max-width: 595px) 100vw, 595px" /> 
 
 Yes!  Perfectly!  Can we append a message to the application?  Looking at Citrix's extensions this one looks promising:
 
@@ -430,7 +430,7 @@ Ok.  That warning sucks.  My whole post is based on StoreFront 3.9 so I cannot g
 
 So what elements could we manipulate to add our text?
 
-<img class="aligncenter size-full wp-image-2190" src="http://theorypc.ca/wp-content/uploads/2017/05/storeapp-name.png" alt="" width="867" height="370" srcset="http://theorypc.ca/wp-content/uploads/2017/05/storeapp-name.png 867w, http://theorypc.ca/wp-content/uploads/2017/05/storeapp-name-300x128.png 300w, http://theorypc.ca/wp-content/uploads/2017/05/storeapp-name-768x328.png 768w, http://theorypc.ca/wp-content/uploads/2017/05/storeapp-name-750x320.png 750w" sizes="(max-width: 867px) 100vw, 867px" /> 
+<img class="aligncenter size-full wp-image-2190" src="/wp-content/uploads/2017/05/storeapp-name.png" alt="" width="867" height="370" srcset="/wp-content/uploads/2017/05/storeapp-name.png 867w, /wp-content/uploads/2017/05/storeapp-name-300x128.png 300w, /wp-content/uploads/2017/05/storeapp-name-768x328.png 768w, /wp-content/uploads/2017/05/storeapp-name-750x320.png 750w" sizes="(max-width: 867px) 100vw, 867px" /> 
 
 Could we add another "p class=storeapp-name" (this is just text) for our messaging?  The onAppHTMLGeneration function says it is returned when the HTML is generated for an app, so what does this look like?
 
@@ -444,7 +444,7 @@ I added the following to script.js:
 
 And this was the result in the Chrome Console:
 
-<img class="aligncenter size-full wp-image-2191" src="http://theorypc.ca/wp-content/uploads/2017/05/Chrome_Console.png" alt="" width="1128" height="447" srcset="http://theorypc.ca/wp-content/uploads/2017/05/Chrome_Console.png 1128w, http://theorypc.ca/wp-content/uploads/2017/05/Chrome_Console-300x119.png 300w, http://theorypc.ca/wp-content/uploads/2017/05/Chrome_Console-768x304.png 768w" sizes="(max-width: 1128px) 100vw, 1128px" /> 
+<img class="aligncenter size-full wp-image-2191" src="/wp-content/uploads/2017/05/Chrome_Console.png" alt="" width="1128" height="447" srcset="/wp-content/uploads/2017/05/Chrome_Console.png 1128w, /wp-content/uploads/2017/05/Chrome_Console-300x119.png 300w, /wp-content/uploads/2017/05/Chrome_Console-768x304.png 768w" sizes="(max-width: 1128px) 100vw, 1128px" /> 
 
 So this is returning an [DomHTMLElement](https://www.w3schools.com/jsref/dom_obj_all.asp).  DOMHTMLElements have numerous methods to add/create/append/modify data to them.  Perfect.  Doing some research (I'm not a web developer) I found that you can modify the content of an element by this style command:
 
@@ -457,7 +457,7 @@ So this is returning an [DomHTMLElement](https://www.w3schools.com/jsref/dom_obj
 
 This results in the following:
 
-<img class="aligncenter size-full wp-image-2192" src="http://theorypc.ca/wp-content/uploads/2017/05/whatevertext.png" alt="" width="413" height="306" srcset="http://theorypc.ca/wp-content/uploads/2017/05/whatevertext.png 413w, http://theorypc.ca/wp-content/uploads/2017/05/whatevertext-300x222.png 300w" sizes="(max-width: 413px) 100vw, 413px" /> 
+<img class="aligncenter size-full wp-image-2192" src="/wp-content/uploads/2017/05/whatevertext.png" alt="" width="413" height="306" srcset="/wp-content/uploads/2017/05/whatevertext.png 413w, /wp-content/uploads/2017/05/whatevertext-300x222.png 300w" sizes="(max-width: 413px) 100vw, 413px" /> 
 
 We have text!
 
@@ -474,7 +474,7 @@ My preference is to have the text match the application name's format.  I also w
 
 The result?
 
-<img class="aligncenter size-full wp-image-2193" src="http://theorypc.ca/wp-content/uploads/2017/05/Link_Working.png" alt="" width="568" height="339" srcset="http://theorypc.ca/wp-content/uploads/2017/05/Link_Working.png 568w, http://theorypc.ca/wp-content/uploads/2017/05/Link_Working-300x179.png 300w" sizes="(max-width: 568px) 100vw, 568px" /> 
+<img class="aligncenter size-full wp-image-2193" src="/wp-content/uploads/2017/05/Link_Working.png" alt="" width="568" height="339" srcset="/wp-content/uploads/2017/05/Link_Working.png 568w, /wp-content/uploads/2017/05/Link_Working-300x179.png 300w" sizes="(max-width: 568px) 100vw, 568px" /> 
 
 Oh man.  This is looking good.  My 'click to connect' link isn't working at this point, it just goes to google, but at least I know I can add a URL and have it work!  Now I just need to generate a URL and set that to replace 'click to connect'.
 
@@ -506,7 +506,7 @@ and then I can replace my 'click to connect' link with:
 
 The result?
 
-<img class="aligncenter size-full wp-image-2194" src="http://theorypc.ca/wp-content/uploads/2017/05/hover_link.png" alt="" width="802" height="461" srcset="http://theorypc.ca/wp-content/uploads/2017/05/hover_link.png 802w, http://theorypc.ca/wp-content/uploads/2017/05/hover_link-300x172.png 300w, http://theorypc.ca/wp-content/uploads/2017/05/hover_link-768x441.png 768w" sizes="(max-width: 802px) 100vw, 802px" /> 
+<img class="aligncenter size-full wp-image-2194" src="/wp-content/uploads/2017/05/hover_link.png" alt="" width="802" height="461" srcset="/wp-content/uploads/2017/05/hover_link.png 802w, /wp-content/uploads/2017/05/hover_link-300x172.png 300w, /wp-content/uploads/2017/05/hover_link-768x441.png 768w" sizes="(max-width: 802px) 100vw, 802px" /> 
 
 The url on the "click to connect" goes to my launcher!  And it works!  Excellent!
 
@@ -514,7 +514,7 @@ Now I have one last thing I need to get working.  If I click the 'Notepad 2016 -
 
 Citrix appears to offer one extension that may allow this:
 
-<img class="aligncenter size-full wp-image-2195" src="http://theorypc.ca/wp-content/uploads/2017/05/doLaunch.png" alt="" width="778" height="189" srcset="http://theorypc.ca/wp-content/uploads/2017/05/doLaunch.png 778w, http://theorypc.ca/wp-content/uploads/2017/05/doLaunch-300x73.png 300w, http://theorypc.ca/wp-content/uploads/2017/05/doLaunch-768x187.png 768w" sizes="(max-width: 778px) 100vw, 778px" /> 
+<img class="aligncenter size-full wp-image-2195" src="/wp-content/uploads/2017/05/doLaunch.png" alt="" width="778" height="189" srcset="/wp-content/uploads/2017/05/doLaunch.png 778w, /wp-content/uploads/2017/05/doLaunch-300x73.png 300w, /wp-content/uploads/2017/05/doLaunch-768x187.png 768w" sizes="(max-width: 778px) 100vw, 778px" /> 
 
 Huh.  Well.  That's not much documentation at all.
 
@@ -548,7 +548,7 @@ Fortunately, a [Citrix blog post came to rescue](https://www.citrix.com/blogs/20
 };</pre>
   
   <p>
-    <img class="aligncenter size-full wp-image-2196" src="http://theorypc.ca/wp-content/uploads/2017/05/app.launchurl.png" alt="" width="1052" height="651" srcset="http://theorypc.ca/wp-content/uploads/2017/05/app.launchurl.png 1052w, http://theorypc.ca/wp-content/uploads/2017/05/app.launchurl-300x186.png 300w, http://theorypc.ca/wp-content/uploads/2017/05/app.launchurl-768x475.png 768w" sizes="(max-width: 1052px) 100vw, 1052px" />
+    <img class="aligncenter size-full wp-image-2196" src="/wp-content/uploads/2017/05/app.launchurl.png" alt="" width="1052" height="651" srcset="/wp-content/uploads/2017/05/app.launchurl.png 1052w, /wp-content/uploads/2017/05/app.launchurl-300x186.png 300w, /wp-content/uploads/2017/05/app.launchurl-768x475.png 768w" sizes="(max-width: 1052px) 100vw, 1052px" />
   </p>
   
   <p>
@@ -572,7 +572,7 @@ Fortunately, a [Citrix blog post came to rescue](https://www.citrix.com/blogs/20
   </p>
   
   <p>
-    <img class="aligncenter size-full wp-image-2197" src="http://theorypc.ca/wp-content/uploads/2017/05/modified_launch_url.png" alt="" width="1053" height="648" srcset="http://theorypc.ca/wp-content/uploads/2017/05/modified_launch_url.png 1053w, http://theorypc.ca/wp-content/uploads/2017/05/modified_launch_url-300x185.png 300w, http://theorypc.ca/wp-content/uploads/2017/05/modified_launch_url-768x473.png 768w" sizes="(max-width: 1053px) 100vw, 1053px" />
+    <img class="aligncenter size-full wp-image-2197" src="/wp-content/uploads/2017/05/modified_launch_url.png" alt="" width="1053" height="648" srcset="/wp-content/uploads/2017/05/modified_launch_url.png 1053w, /wp-content/uploads/2017/05/modified_launch_url-300x185.png 300w, /wp-content/uploads/2017/05/modified_launch_url-768x473.png 768w" sizes="(max-width: 1053px) 100vw, 1053px" />
   </p>
   
   <p>

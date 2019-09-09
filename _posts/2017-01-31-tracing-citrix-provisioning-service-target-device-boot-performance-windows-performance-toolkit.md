@@ -8,12 +8,12 @@ guid: http://theorypc.ca/?p=1981
 permalink: /2017/01/31/tracing-citrix-provisioning-service-target-device-boot-performance-windows-performance-toolkit/
 enclosure:
   - |
-    http://theorypc.ca/wp-content/uploads/2017/01/Injecting_WPT-1.mp4
+    /wp-content/uploads/2017/01/Injecting_WPT-1.mp4
     189
     video/mp4
     
   - |
-    http://theorypc.ca/wp-content/uploads/2017/01/WPT_In_Action-1.mp4
+    /wp-content/uploads/2017/01/WPT_In_Action-1.mp4
     189
     video/mp4
     
@@ -46,7 +46,7 @@ For the Windows Performance Toolkit it must be installed on the image or you can
 To offline inject, simply mount your vDisk image and copy the files there:
 
 <div style="width: 1140px;" class="wp-video">
-  <video class="wp-video-shortcode" id="video-1981-16" width="1140" height="711" preload="metadata" controls="controls"><source type="video/mp4" src="http://theorypc.ca/wp-content/uploads/2017/01/Injecting_WPT-1.mp4?_=16" /><a href="http://theorypc.ca/wp-content/uploads/2017/01/Injecting_WPT-1.mp4">http://theorypc.ca/wp-content/uploads/2017/01/Injecting_WPT-1.mp4</a></video>
+  <video class="wp-video-shortcode" id="video-1981-16" width="1140" height="711" preload="metadata" controls="controls"><source type="video/mp4" src="/wp-content/uploads/2017/01/Injecting_WPT-1.mp4?_=16" /><a href="/wp-content/uploads/2017/01/Injecting_WPT-1.mp4">/wp-content/uploads/2017/01/Injecting_WPT-1.mp4</a></video>
 </div>
 
 &nbsp;
@@ -428,7 +428,7 @@ Seal/promote the image.
 On next boot you will have captured boot information:
 
 <div style="width: 1140px;" class="wp-video">
-  <video class="wp-video-shortcode" id="video-1981-17" width="1140" height="938" preload="metadata" controls="controls"><source type="video/mp4" src="http://theorypc.ca/wp-content/uploads/2017/01/WPT_In_Action-1.mp4?_=17" /><a href="http://theorypc.ca/wp-content/uploads/2017/01/WPT_In_Action-1.mp4">http://theorypc.ca/wp-content/uploads/2017/01/WPT_In_Action-1.mp4</a></video>
+  <video class="wp-video-shortcode" id="video-1981-17" width="1140" height="938" preload="metadata" controls="controls"><source type="video/mp4" src="/wp-content/uploads/2017/01/WPT_In_Action-1.mp4?_=17" /><a href="/wp-content/uploads/2017/01/WPT_In_Action-1.mp4">/wp-content/uploads/2017/01/WPT_In_Action-1.mp4</a></video>
 </div>
 
 To see how to use [Process Monitor for boot tracing Citrix PVS Target Device's click here](https://theorypc.ca/2017/01/31/tracing-citrix-provisioning-service-target-device-boot-performance-process-monitor/).

@@ -517,7 +517,7 @@ DriverNameWin32=pdc56n.dll
 </p>
 
 <p>
-  <img class="aligncenter size-full wp-image-2384" src="http://theorypc.ca/wp-content/uploads/2017/06/Storefront_operations.png" alt="" width="1210" height="567" srcset="http://theorypc.ca/wp-content/uploads/2017/06/Storefront_operations.png 1210w, http://theorypc.ca/wp-content/uploads/2017/06/Storefront_operations-300x141.png 300w, http://theorypc.ca/wp-content/uploads/2017/06/Storefront_operations-768x360.png 768w" sizes="(max-width: 1210px) 100vw, 1210px" />
+  <img class="aligncenter size-full wp-image-2384" src="/wp-content/uploads/2017/06/Storefront_operations.png" alt="" width="1210" height="567" srcset="/wp-content/uploads/2017/06/Storefront_operations.png 1210w, /wp-content/uploads/2017/06/Storefront_operations-300x141.png 300w, /wp-content/uploads/2017/06/Storefront_operations-768x360.png 768w" sizes="(max-width: 1210px) 100vw, 1210px" />
 </p>
 
 <p>
@@ -529,7 +529,7 @@ DriverNameWin32=pdc56n.dll
 </p>
 
 <p>
-  <img class="aligncenter size-full wp-image-2385" src="http://theorypc.ca/wp-content/uploads/2017/06/WithoutSortedCategories.png" alt="" width="1210" height="462" srcset="http://theorypc.ca/wp-content/uploads/2017/06/WithoutSortedCategories.png 1210w, http://theorypc.ca/wp-content/uploads/2017/06/WithoutSortedCategories-300x115.png 300w, http://theorypc.ca/wp-content/uploads/2017/06/WithoutSortedCategories-768x293.png 768w" sizes="(max-width: 1210px) 100vw, 1210px" />
+  <img class="aligncenter size-full wp-image-2385" src="/wp-content/uploads/2017/06/WithoutSortedCategories.png" alt="" width="1210" height="462" srcset="/wp-content/uploads/2017/06/WithoutSortedCategories.png 1210w, /wp-content/uploads/2017/06/WithoutSortedCategories-300x115.png 300w, /wp-content/uploads/2017/06/WithoutSortedCategories-768x293.png 768w" sizes="(max-width: 1210px) 100vw, 1210px" />
 </p>
 
 <p>

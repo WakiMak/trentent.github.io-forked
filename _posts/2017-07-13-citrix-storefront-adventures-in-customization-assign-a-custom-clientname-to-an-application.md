@@ -38,19 +38,19 @@ My instructions are:
   <add key="clientNameRewriteRule" value="$H'NewClientName' " />
 </appSettings></pre>
     
-<img class="aligncenter size-full wp-image-2509" src="http://theorypc.ca/wp-content/uploads/2017/07/Store_WebConfig.png" alt="" width="978" height="192" srcset="http://theorypc.ca/wp-content/uploads/2017/07/Store_WebConfig.png 978w, http://theorypc.ca/wp-content/uploads/2017/07/Store_WebConfig-300x59.png 300w, http://theorypc.ca/wp-content/uploads/2017/07/Store_WebConfig-768x151.png 768w" sizes="(max-width: 978px) 100vw, 978px" /> </li> 
+<img class="aligncenter size-full wp-image-2509" src="/wp-content/uploads/2017/07/Store_WebConfig.png" alt="" width="978" height="192" srcset="/wp-content/uploads/2017/07/Store_WebConfig.png 978w, /wp-content/uploads/2017/07/Store_WebConfig-300x59.png 300w, /wp-content/uploads/2017/07/Store_WebConfig-768x151.png 768w" sizes="(max-width: 978px) 100vw, 978px" /> </li> 
     
       * Find the "overrideIcaClientName" and ensure it's set to "on": <pre class="lang:xhtml decode:true "><launch setNoLoadBiasFlag="off" addressResolutionType="DNS-port" requestICAClientSecureChannel="Detect-AnyCiphers" ignoreClientProvidedClientAddress="off" overlayAutoLoginCredsWithTicket="off" overrideIcaClientName="on" requireLaunchReference="on" allowFontSmoothing="on" showDesktopViewer="off" allowSpecialFolderRedirection="off" vdaLogonDataProvider="">
 </pre>
         
-<img class="aligncenter size-large wp-image-2511" src="http://theorypc.ca/wp-content/uploads/2017/07/overrideIcaClientName-1600x136.png" alt="" width="1140" height="97" srcset="http://theorypc.ca/wp-content/uploads/2017/07/overrideIcaClientName-1600x136.png 1600w, http://theorypc.ca/wp-content/uploads/2017/07/overrideIcaClientName-300x25.png 300w, http://theorypc.ca/wp-content/uploads/2017/07/overrideIcaClientName-768x65.png 768w" sizes="(max-width: 1140px) 100vw, 1140px" /> </li> 
+<img class="aligncenter size-large wp-image-2511" src="/wp-content/uploads/2017/07/overrideIcaClientName-1600x136.png" alt="" width="1140" height="97" srcset="/wp-content/uploads/2017/07/overrideIcaClientName-1600x136.png 1600w, /wp-content/uploads/2017/07/overrideIcaClientName-300x25.png 300w, /wp-content/uploads/2017/07/overrideIcaClientName-768x65.png 768w" sizes="(max-width: 1140px) 100vw, 1140px" /> </li> 
         
           * Edit "C:\inetpub\wwwroot\Citrix\StoreWeb\web.config" (note: this is the "STOREWEB" web.config)  
             Add a 'forwardedHeaders' section under "communication"</p> <pre class="lang:xhtml decode:true "><forwardedHeaders>
    <header name="NewClientName" />
 </forwardedHeaders></pre>
             
-<img class="aligncenter size-full wp-image-2510" src="http://theorypc.ca/wp-content/uploads/2017/07/forwardedHeaders.png" alt="" width="732" height="120" srcset="http://theorypc.ca/wp-content/uploads/2017/07/forwardedHeaders.png 732w, http://theorypc.ca/wp-content/uploads/2017/07/forwardedHeaders-300x49.png 300w" sizes="(max-width: 732px) 100vw, 732px" /> </li> 
+<img class="aligncenter size-full wp-image-2510" src="/wp-content/uploads/2017/07/forwardedHeaders.png" alt="" width="732" height="120" srcset="/wp-content/uploads/2017/07/forwardedHeaders.png 732w, /wp-content/uploads/2017/07/forwardedHeaders-300x49.png 300w" sizes="(max-width: 732px) 100vw, 732px" /> </li> 
             
               * Edit the "C:\inetpub\wwwroot\Citrix\StoreWeb\custom\script.js" file and add the following: <pre class="lang:js decode:true">CTXS.Extensions.doLaunch =  function(app, action) {
 	//check for Notepad and configure clientname
@@ -80,7 +80,7 @@ My instructions are:
             
             And?  Did it work?!
             
-<img class="aligncenter size-full wp-image-2512" src="http://theorypc.ca/wp-content/uploads/2017/07/ClientNameHardCode.png" alt="" width="556" height="203" srcset="http://theorypc.ca/wp-content/uploads/2017/07/ClientNameHardCode.png 556w, http://theorypc.ca/wp-content/uploads/2017/07/ClientNameHardCode-300x110.png 300w" sizes="(max-width: 556px) 100vw, 556px" /> 
+<img class="aligncenter size-full wp-image-2512" src="/wp-content/uploads/2017/07/ClientNameHardCode.png" alt="" width="556" height="203" srcset="/wp-content/uploads/2017/07/ClientNameHardCode.png 556w, /wp-content/uploads/2017/07/ClientNameHardCode-300x110.png 300w" sizes="(max-width: 556px) 100vw, 556px" /> 
             
             Look at that!  It works!  Splendid!
             

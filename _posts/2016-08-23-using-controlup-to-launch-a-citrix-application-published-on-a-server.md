@@ -8,7 +8,7 @@ guid: http://theorypc.ca/?p=1626
 permalink: /2016/08/23/using-controlup-to-launch-a-citrix-application-published-on-a-server/
 enclosure:
   - |
-    http://theorypc.ca/wp-content/uploads/2016/08/ControlUp5_Launch_app.m4v
+    /wp-content/uploads/2016/08/ControlUp5_Launch_app.m4v
     195
     video/mp4
     
@@ -35,22 +35,22 @@ However, I tried to make the script dynamic so you could query the & servers fro
 Set-PSSessionConfiguration -Name Microsoft.PowerShell -showSecurityDescriptorUI -Confirm:$false
 Restart-service -Name "WinRM"</pre>
 
-<img class="aligncenter size-large wp-image-1628" src="http://theorypc.ca/wp-content/uploads/2016/08/powershell-perms.png" alt="powershell-perms" width="889" height="167" srcset="http://theorypc.ca/wp-content/uploads/2016/08/powershell-perms.png 889w, http://theorypc.ca/wp-content/uploads/2016/08/powershell-perms-300x56.png 300w, http://theorypc.ca/wp-content/uploads/2016/08/powershell-perms-768x144.png 768w" sizes="(max-width: 889px) 100vw, 889px" /> 
+<img class="aligncenter size-large wp-image-1628" src="/wp-content/uploads/2016/08/powershell-perms.png" alt="powershell-perms" width="889" height="167" srcset="/wp-content/uploads/2016/08/powershell-perms.png 889w, /wp-content/uploads/2016/08/powershell-perms-300x56.png 300w, /wp-content/uploads/2016/08/powershell-perms-768x144.png 768w" sizes="(max-width: 889px) 100vw, 889px" /> 
 
 And in the 'Set-PSSessionConfiguration' command you need to enable the 'Invoke' permissions on your support group:  
-<img class="aligncenter size-full wp-image-1629" src="http://theorypc.ca/wp-content/uploads/2016/08/permissions.png" alt="permissions" width="365" height="443" srcset="http://theorypc.ca/wp-content/uploads/2016/08/permissions.png 365w, http://theorypc.ca/wp-content/uploads/2016/08/permissions-247x300.png 247w" sizes="(max-width: 365px) 100vw, 365px" />  
+<img class="aligncenter size-full wp-image-1629" src="/wp-content/uploads/2016/08/permissions.png" alt="permissions" width="365" height="443" srcset="/wp-content/uploads/2016/08/permissions.png 365w, /wp-content/uploads/2016/08/permissions-247x300.png 247w" sizes="(max-width: 365px) 100vw, 365px" />  
 As well, you need to grant view properties on your Citrix farm since the group needs to query application properties, and workergroups (if you publish your applications to workergroups):
 
-<img class="aligncenter size-full wp-image-1631" src="http://theorypc.ca/wp-content/uploads/2016/08/IMA_Perms.png" alt="IMA_Perms" width="790" height="432" srcset="http://theorypc.ca/wp-content/uploads/2016/08/IMA_Perms.png 790w, http://theorypc.ca/wp-content/uploads/2016/08/IMA_Perms-300x164.png 300w, http://theorypc.ca/wp-content/uploads/2016/08/IMA_Perms-768x420.png 768w, http://theorypc.ca/wp-content/uploads/2016/08/IMA_Perms-550x300.png 550w, http://theorypc.ca/wp-content/uploads/2016/08/IMA_Perms-750x409.png 750w" sizes="(max-width: 790px) 100vw, 790px" /> 
+<img class="aligncenter size-full wp-image-1631" src="/wp-content/uploads/2016/08/IMA_Perms.png" alt="IMA_Perms" width="790" height="432" srcset="/wp-content/uploads/2016/08/IMA_Perms.png 790w, /wp-content/uploads/2016/08/IMA_Perms-300x164.png 300w, /wp-content/uploads/2016/08/IMA_Perms-768x420.png 768w, /wp-content/uploads/2016/08/IMA_Perms-550x300.png 550w, /wp-content/uploads/2016/08/IMA_Perms-750x409.png 750w" sizes="(max-width: 790px) 100vw, 790px" /> 
 
 Now that we have our permissions configured we can create our ControlUp Script-Based action:
 
-<img class="aligncenter size-full wp-image-1632" src="http://theorypc.ca/wp-content/uploads/2016/08/SBA_1.png" alt="SBA_1" width="600" height="450" srcset="http://theorypc.ca/wp-content/uploads/2016/08/SBA_1.png 600w, http://theorypc.ca/wp-content/uploads/2016/08/SBA_1-300x225.png 300w" sizes="(max-width: 600px) 100vw, 600px" /><img class="aligncenter size-large wp-image-1633" src="http://theorypc.ca/wp-content/uploads/2016/08/SBA_2.png" alt="SBA_2" width="601" height="451" srcset="http://theorypc.ca/wp-content/uploads/2016/08/SBA_2.png 601w, http://theorypc.ca/wp-content/uploads/2016/08/SBA_2-300x225.png 300w" sizes="(max-width: 601px) 100vw, 601px" /><img class="aligncenter size-large wp-image-1634" src="http://theorypc.ca/wp-content/uploads/2016/08/SBA_3.png" alt="SBA_3" width="599" height="449" srcset="http://theorypc.ca/wp-content/uploads/2016/08/SBA_3.png 599w, http://theorypc.ca/wp-content/uploads/2016/08/SBA_3-300x225.png 300w" sizes="(max-width: 599px) 100vw, 599px" /><img class="aligncenter size-large wp-image-1635" src="http://theorypc.ca/wp-content/uploads/2016/08/SBA_4.png" alt="SBA_4" width="598" height="448" srcset="http://theorypc.ca/wp-content/uploads/2016/08/SBA_4.png 598w, http://theorypc.ca/wp-content/uploads/2016/08/SBA_4-300x225.png 300w" sizes="(max-width: 598px) 100vw, 598px" /> 
+<img class="aligncenter size-full wp-image-1632" src="/wp-content/uploads/2016/08/SBA_1.png" alt="SBA_1" width="600" height="450" srcset="/wp-content/uploads/2016/08/SBA_1.png 600w, /wp-content/uploads/2016/08/SBA_1-300x225.png 300w" sizes="(max-width: 600px) 100vw, 600px" /><img class="aligncenter size-large wp-image-1633" src="/wp-content/uploads/2016/08/SBA_2.png" alt="SBA_2" width="601" height="451" srcset="/wp-content/uploads/2016/08/SBA_2.png 601w, /wp-content/uploads/2016/08/SBA_2-300x225.png 300w" sizes="(max-width: 601px) 100vw, 601px" /><img class="aligncenter size-large wp-image-1634" src="/wp-content/uploads/2016/08/SBA_3.png" alt="SBA_3" width="599" height="449" srcset="/wp-content/uploads/2016/08/SBA_3.png 599w, /wp-content/uploads/2016/08/SBA_3-300x225.png 300w" sizes="(max-width: 599px) 100vw, 599px" /><img class="aligncenter size-large wp-image-1635" src="/wp-content/uploads/2016/08/SBA_4.png" alt="SBA_4" width="598" height="448" srcset="/wp-content/uploads/2016/08/SBA_4.png 598w, /wp-content/uploads/2016/08/SBA_4-300x225.png 300w" sizes="(max-width: 598px) 100vw, 598px" /> 
 
 So what does this look like?
 
 <div style="width: 1140px;" class="wp-video">
-  <video class="wp-video-shortcode" id="video-1626-10" width="1140" height="611" preload="metadata" controls="controls"><source type="video/mp4" src="http://theorypc.ca/wp-content/uploads/2016/08/ControlUp5_Launch_app.m4v?_=10" /><a href="http://theorypc.ca/wp-content/uploads/2016/08/ControlUp5_Launch_app.m4v">http://theorypc.ca/wp-content/uploads/2016/08/ControlUp5_Launch_app.m4v</a></video>
+  <video class="wp-video-shortcode" id="video-1626-10" width="1140" height="611" preload="metadata" controls="controls"><source type="video/mp4" src="/wp-content/uploads/2016/08/ControlUp5_Launch_app.m4v?_=10" /><a href="/wp-content/uploads/2016/08/ControlUp5_Launch_app.m4v">/wp-content/uploads/2016/08/ControlUp5_Launch_app.m4v</a></video>
 </div>
 
 And the script:

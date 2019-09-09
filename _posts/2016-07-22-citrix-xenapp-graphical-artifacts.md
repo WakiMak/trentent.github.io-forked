@@ -8,17 +8,17 @@ guid: http://theorypc.ca/?p=1596
 permalink: /2016/07/22/citrix-&-graphical-artifacts/
 enclosure:
   - |
-    http://theorypc.ca/wp-content/uploads/2016/07/Artifacts_happening.mp4
+    /wp-content/uploads/2016/07/Artifacts_happening.mp4
     193
     video/mp4
     
   - |
-    http://theorypc.ca/wp-content/uploads/2016/07/20160722-160129.mp4
+    /wp-content/uploads/2016/07/20160722-160129.mp4
     189
     video/mp4
     
   - |
-    http://theorypc.ca/wp-content/uploads/2016/07/Artifacts_not_happening.mp4
+    /wp-content/uploads/2016/07/Artifacts_not_happening.mp4
     197
     video/mp4
     
@@ -34,18 +34,18 @@ tags:
 ---
 In our Citrix & 6.5 environment we started having a couple applications encounter an issue where they would experience some serious graphical artifacts.  What was supposed to look like this:
 
-<img class="aligncenter size-full wp-image-1597" src="http://theorypc.ca/wp-content/uploads/2016/07/1-1.png" alt="1" width="1915" height="1122" srcset="http://theorypc.ca/wp-content/uploads/2016/07/1-1.png 1915w, http://theorypc.ca/wp-content/uploads/2016/07/1-1-300x176.png 300w, http://theorypc.ca/wp-content/uploads/2016/07/1-1-768x450.png 768w, http://theorypc.ca/wp-content/uploads/2016/07/1-1-1024x600.png 1024w" sizes="(max-width: 1915px) 100vw, 1915px" /> 
+<img class="aligncenter size-full wp-image-1597" src="/wp-content/uploads/2016/07/1-1.png" alt="1" width="1915" height="1122" srcset="/wp-content/uploads/2016/07/1-1.png 1915w, /wp-content/uploads/2016/07/1-1-300x176.png 300w, /wp-content/uploads/2016/07/1-1-768x450.png 768w, /wp-content/uploads/2016/07/1-1-1024x600.png 1024w" sizes="(max-width: 1915px) 100vw, 1915px" /> 
 
 Would look like this:
 
-<img class="aligncenter size-full wp-image-1598" src="http://theorypc.ca/wp-content/uploads/2016/07/2-1.png" alt="2" width="1916" height="1120" srcset="http://theorypc.ca/wp-content/uploads/2016/07/2-1.png 1916w, http://theorypc.ca/wp-content/uploads/2016/07/2-1-300x175.png 300w, http://theorypc.ca/wp-content/uploads/2016/07/2-1-768x449.png 768w, http://theorypc.ca/wp-content/uploads/2016/07/2-1-1024x599.png 1024w" sizes="(max-width: 1916px) 100vw, 1916px" /> 
+<img class="aligncenter size-full wp-image-1598" src="/wp-content/uploads/2016/07/2-1.png" alt="2" width="1916" height="1120" srcset="/wp-content/uploads/2016/07/2-1.png 1916w, /wp-content/uploads/2016/07/2-1-300x175.png 300w, /wp-content/uploads/2016/07/2-1-768x449.png 768w, /wp-content/uploads/2016/07/2-1-1024x599.png 1024w" sizes="(max-width: 1916px) 100vw, 1916px" /> 
 
 &nbsp;
 
 Here's a short video demonstrating this issue:
 
 <div style="width: 1140px;" class="wp-video">
-  <video class="wp-video-shortcode" id="video-1596-6" width="1140" height="670" preload="metadata" controls="controls"><source type="video/mp4" src="http://theorypc.ca/wp-content/uploads/2016/07/Artifacts_happening.mp4?_=6" /><a href="http://theorypc.ca/wp-content/uploads/2016/07/Artifacts_happening.mp4">http://theorypc.ca/wp-content/uploads/2016/07/Artifacts_happening.mp4</a></video>
+  <video class="wp-video-shortcode" id="video-1596-6" width="1140" height="670" preload="metadata" controls="controls"><source type="video/mp4" src="/wp-content/uploads/2016/07/Artifacts_happening.mp4?_=6" /><a href="/wp-content/uploads/2016/07/Artifacts_happening.mp4">/wp-content/uploads/2016/07/Artifacts_happening.mp4</a></video>
 </div>
 
 Or sometimes it would show the windows \*behind\* the artifacted image.  That is, instead of the 'White' you see in my image, the application behind it shows through.
@@ -53,12 +53,12 @@ Or sometimes it would show the windows \*behind\* the artifacted image.  That is
 When investigating this we found there was a couple symptoms that we were going to experience these artifacts.
 
   1. The window would become 'frosted' or 'ghosted' (as seen in Spy++ or AutoIt Window Info)  
-<img class="aligncenter size-full wp-image-1600" src="http://theorypc.ca/wp-content/uploads/2016/07/4-1.png" alt="4" width="382" height="388" srcset="http://theorypc.ca/wp-content/uploads/2016/07/4-1.png 382w, http://theorypc.ca/wp-content/uploads/2016/07/4-1-295x300.png 295w, http://theorypc.ca/wp-content/uploads/2016/07/4-1-50x50.png 50w" sizes="(max-width: 382px) 100vw, 382px" /> 
+<img class="aligncenter size-full wp-image-1600" src="/wp-content/uploads/2016/07/4-1.png" alt="4" width="382" height="388" srcset="/wp-content/uploads/2016/07/4-1.png 382w, /wp-content/uploads/2016/07/4-1-295x300.png 295w, /wp-content/uploads/2016/07/4-1-50x50.png 50w" sizes="(max-width: 382px) 100vw, 382px" /> 
   2. The application would switch to 'Not Responding'  
-<img class="aligncenter size-full wp-image-1599" src="http://theorypc.ca/wp-content/uploads/2016/07/3.png" alt="3" width="427" height="137" srcset="http://theorypc.ca/wp-content/uploads/2016/07/3.png 427w, http://theorypc.ca/wp-content/uploads/2016/07/3-300x96.png 300w" sizes="(max-width: 427px) 100vw, 427px" /> 
+<img class="aligncenter size-full wp-image-1599" src="/wp-content/uploads/2016/07/3.png" alt="3" width="427" height="137" srcset="/wp-content/uploads/2016/07/3.png 427w, /wp-content/uploads/2016/07/3-300x96.png 300w" sizes="(max-width: 427px) 100vw, 427px" /> 
   3. If you completed the task 'Edit' quickly there would be no artifacting (time was important)
   4. When 'timing' the switch from 'normal' to frosted or ghosted window it would be around 5-7 seconds. <div style="width: 612px;" class="wp-video">
-      <video class="wp-video-shortcode" id="video-1596-7" width="612" height="548" preload="metadata" controls="controls"><source type="video/mp4" src="http://theorypc.ca/wp-content/uploads/2016/07/20160722-160129.mp4?_=7" /><a href="http://theorypc.ca/wp-content/uploads/2016/07/20160722-160129.mp4">http://theorypc.ca/wp-content/uploads/2016/07/20160722-160129.mp4</a></video>
+      <video class="wp-video-shortcode" id="video-1596-7" width="612" height="548" preload="metadata" controls="controls"><source type="video/mp4" src="/wp-content/uploads/2016/07/20160722-160129.mp4?_=7" /><a href="/wp-content/uploads/2016/07/20160722-160129.mp4">/wp-content/uploads/2016/07/20160722-160129.mp4</a></video>
     </div>
 
 So what's going on here?
@@ -78,7 +78,7 @@ So what do we have to do to 'resolve' this?
 This sets the timeout to 2 minutes as opposed to 5 seconds.  Now when our program is used we get this result:
 
 <div style="width: 1140px;" class="wp-video">
-  <video class="wp-video-shortcode" id="video-1596-8" width="1140" height="670" preload="metadata" controls="controls"><source type="video/mp4" src="http://theorypc.ca/wp-content/uploads/2016/07/Artifacts_not_happening.mp4?_=8" /><a href="http://theorypc.ca/wp-content/uploads/2016/07/Artifacts_not_happening.mp4">http://theorypc.ca/wp-content/uploads/2016/07/Artifacts_not_happening.mp4</a></video>
+  <video class="wp-video-shortcode" id="video-1596-8" width="1140" height="670" preload="metadata" controls="controls"><source type="video/mp4" src="/wp-content/uploads/2016/07/Artifacts_not_happening.mp4?_=8" /><a href="/wp-content/uploads/2016/07/Artifacts_not_happening.mp4">/wp-content/uploads/2016/07/Artifacts_not_happening.mp4</a></video>
 </div>
 
 No More Artifacts.
@@ -89,7 +89,7 @@ Fortunately, after implementing the HungAppTimeout registry key the artifacts fo
 
 Lastly, [contrary to this article](https://blogs.msdn.microsoft.com/meason/2010/02/04/hungapptimeout/) you do NOT need to restart for this value to take effect.  WinLogon.exe reads the HungAppTimeout value and then configures DWM accordingly when your profile loads.  So for this value to take effect you only need to log on with this value already residing in your user's registry hive.
 
-<img class="aligncenter size-full wp-image-1604" src="http://theorypc.ca/wp-content/uploads/2016/07/5-1.png" alt="5" width="1151" height="171" srcset="http://theorypc.ca/wp-content/uploads/2016/07/5-1.png 1151w, http://theorypc.ca/wp-content/uploads/2016/07/5-1-300x45.png 300w, http://theorypc.ca/wp-content/uploads/2016/07/5-1-768x114.png 768w, http://theorypc.ca/wp-content/uploads/2016/07/5-1-1024x152.png 1024w" sizes="(max-width: 1151px) 100vw, 1151px" /> 
+<img class="aligncenter size-full wp-image-1604" src="/wp-content/uploads/2016/07/5-1.png" alt="5" width="1151" height="171" srcset="/wp-content/uploads/2016/07/5-1.png 1151w, /wp-content/uploads/2016/07/5-1-300x45.png 300w, /wp-content/uploads/2016/07/5-1-768x114.png 768w, /wp-content/uploads/2016/07/5-1-1024x152.png 1024w" sizes="(max-width: 1151px) 100vw, 1151px" /> 
 
 <!-- AddThis Advanced Settings generic via filter on the_content -->
 

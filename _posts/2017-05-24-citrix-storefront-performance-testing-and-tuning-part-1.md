@@ -8,7 +8,7 @@ guid: http://theorypc.ca/?p=2294
 permalink: /2017/05/24/citrix-storefront-performance-testing-and-tuning-part-1/
 enclosure:
   - |
-    http://theorypc.ca/wp-content/uploads/2017/05/Storefront.mp4
+    /wp-content/uploads/2017/05/Storefront.mp4
     184
     video/mp4
     
@@ -24,14 +24,14 @@ tags:
 I've used the [Web Capacity Analysis Tool (WCAT)](https://www.iis.net/downloads/community/2007/05/wcat-63-x86) in the past to measure the [performance of Citrix Web Interface](https://theorypc.ca/2014/11/23/slow-citrix-web-interface-5-4-on-aspx-pages-or-how-to-load-test-your-wi/) with some success.  So I thought this tool would be perfect for load testing Storefront.  I loaded up Fiddler, [set up the WCAT extension](http://fiddler2wcat.codeplex.com/releases/view/35356), captured a web logon and then application launch.  The whole process looked like this:
 
 <div style="width: 1042px;" class="wp-video">
-  <video class="wp-video-shortcode" id="video-2294-20" width="1042" height="766" preload="metadata" controls="controls"><source type="video/mp4" src="http://theorypc.ca/wp-content/uploads/2017/05/Storefront.mp4?_=20" /><a href="http://theorypc.ca/wp-content/uploads/2017/05/Storefront.mp4">http://theorypc.ca/wp-content/uploads/2017/05/Storefront.mp4</a></video>
+  <video class="wp-video-shortcode" id="video-2294-20" width="1042" height="766" preload="metadata" controls="controls"><source type="video/mp4" src="/wp-content/uploads/2017/05/Storefront.mp4?_=20" /><a href="/wp-content/uploads/2017/05/Storefront.mp4">/wp-content/uploads/2017/05/Storefront.mp4</a></video>
 </div>
 
 Pretty simple right?
 
 I logged on with Domain Passthrough authentication, I clicked on an application and I was done.  I have [my customizations added in](https://theorypc.ca/2017/05/11/citrix-storefront-adventures-in-customization-dynamically-configure-features-based-on-group-membership/) as well.  But what is _actually_ happening?  How long does each step of the actual process take?  To determine this answer, [we go to Fiddler](http://www.telerik.com/fiddler) to capture our flow so we can examine each step.
 
-<img class="aligncenter size-full wp-image-2296" src="http://theorypc.ca/wp-content/uploads/2017/05/fiddler-1.png" alt="" width="1545" height="880" srcset="http://theorypc.ca/wp-content/uploads/2017/05/fiddler-1.png 1545w, http://theorypc.ca/wp-content/uploads/2017/05/fiddler-1-300x171.png 300w, http://theorypc.ca/wp-content/uploads/2017/05/fiddler-1-768x437.png 768w" sizes="(max-width: 1545px) 100vw, 1545px" /> 
+<img class="aligncenter size-full wp-image-2296" src="/wp-content/uploads/2017/05/fiddler-1.png" alt="" width="1545" height="880" srcset="/wp-content/uploads/2017/05/fiddler-1.png 1545w, /wp-content/uploads/2017/05/fiddler-1-300x171.png 300w, /wp-content/uploads/2017/05/fiddler-1-768x437.png 768w" sizes="(max-width: 1545px) 100vw, 1545px" /> 
 
 I truncated all the icon resource calling.  You can see it calls around 120 individual icon URLs.  I have my two custom 'helpers' (<span style="color: #0000ff;">ADInfo and LogonType</span>) that determine logon preference and whether we should get workspace control enabled or disabled (LogonType.aspx and GroupMembership.aspx).
 
@@ -61,7 +61,7 @@ With all this setup, I took my scenario file and executed it.  Nothing appeared 
 
 The part in bold and underlined, is troublesome with WCAT.  WCAT does not appear to have this ability (read the value of a cookie and set a header to send it back to the web proxy).  What Storefront does, is send back a set-cookie back to the client which WCAT has no problem with...  but the data Storefront sends back is multiple values within that set-cookie command.  And this is a problem.
 
-<img class="aligncenter size-full wp-image-2300" src="http://theorypc.ca/wp-content/uploads/2017/05/set-cookie.png" alt="" width="549" height="15" srcset="http://theorypc.ca/wp-content/uploads/2017/05/set-cookie.png 549w, http://theorypc.ca/wp-content/uploads/2017/05/set-cookie-300x8.png 300w" sizes="(max-width: 549px) 100vw, 549px" /> 
+<img class="aligncenter size-full wp-image-2300" src="/wp-content/uploads/2017/05/set-cookie.png" alt="" width="549" height="15" srcset="/wp-content/uploads/2017/05/set-cookie.png 549w, /wp-content/uploads/2017/05/set-cookie-300x8.png 300w" sizes="(max-width: 549px) 100vw, 549px" /> 
 
 This is supposed to take this 'Set-Cookie' command and set two different values:
 
@@ -549,7 +549,7 @@ while ($loop) {
 
 And this is the output:
 
-<img class="aligncenter size-full wp-image-2301" src="http://theorypc.ca/wp-content/uploads/2017/05/StoreFront_CSV.png" alt="" width="1218" height="300" srcset="http://theorypc.ca/wp-content/uploads/2017/05/StoreFront_CSV.png 1218w, http://theorypc.ca/wp-content/uploads/2017/05/StoreFront_CSV-300x74.png 300w, http://theorypc.ca/wp-content/uploads/2017/05/StoreFront_CSV-768x189.png 768w" sizes="(max-width: 1218px) 100vw, 1218px" /> 
+<img class="aligncenter size-full wp-image-2301" src="/wp-content/uploads/2017/05/StoreFront_CSV.png" alt="" width="1218" height="300" srcset="/wp-content/uploads/2017/05/StoreFront_CSV.png 1218w, /wp-content/uploads/2017/05/StoreFront_CSV-300x74.png 300w, /wp-content/uploads/2017/05/StoreFront_CSV-768x189.png 768w" sizes="(max-width: 1218px) 100vw, 1218px" /> 
 
 &nbsp;
 
@@ -560,7 +560,7 @@ We can now run this script concurrently to simulate multiple clients.  Or we cou
 To stress an individual component.  By stressing the individual component we can actually determine which process on the Storefront server deals with which service.  So which components equals which service?
 
 Get Auth Methods:  
-<img class="aligncenter size-full wp-image-2302" src="http://theorypc.ca/wp-content/uploads/2017/05/GetAuthMethods.png" alt="" width="689" height="132" srcset="http://theorypc.ca/wp-content/uploads/2017/05/GetAuthMethods.png 689w, http://theorypc.ca/wp-content/uploads/2017/05/GetAuthMethods-300x57.png 300w" sizes="(max-width: 689px) 100vw, 689px" /> 
+<img class="aligncenter size-full wp-image-2302" src="/wp-content/uploads/2017/05/GetAuthMethods.png" alt="" width="689" height="132" srcset="/wp-content/uploads/2017/05/GetAuthMethods.png 689w, /wp-content/uploads/2017/05/GetAuthMethods-300x57.png 300w" sizes="(max-width: 689px) 100vw, 689px" /> 
 
 This component stresses "Citrix Receiver for Web"
 
@@ -568,7 +568,7 @@ This component stresses "Citrix Receiver for Web"
 
 Domain Pass-Through and Smart Card Authentication:
 
-<img class="aligncenter size-full wp-image-2304" src="http://theorypc.ca/wp-content/uploads/2017/05/DomainPassThrough.png" alt="" width="671" height="130" srcset="http://theorypc.ca/wp-content/uploads/2017/05/DomainPassThrough.png 671w, http://theorypc.ca/wp-content/uploads/2017/05/DomainPassThrough-300x58.png 300w" sizes="(max-width: 671px) 100vw, 671px" /> 
+<img class="aligncenter size-full wp-image-2304" src="/wp-content/uploads/2017/05/DomainPassThrough.png" alt="" width="671" height="130" srcset="/wp-content/uploads/2017/05/DomainPassThrough.png 671w, /wp-content/uploads/2017/05/DomainPassThrough-300x58.png 300w" sizes="(max-width: 671px) 100vw, 671px" /> 
 
 This component stresses "Citrix Receiver for Web" <span style="text-decoration: underline;"><strong>and</strong></span> "Citrix Delivery Services Authentication"
 
@@ -576,7 +576,7 @@ This component stresses "Citrix Receiver for Web" <span style="text-decoration: 
 
 Resource Enumeration:
 
-<img class="aligncenter size-full wp-image-2305" src="http://theorypc.ca/wp-content/uploads/2017/05/ResourceEnumeration.png" alt="" width="678" height="131" srcset="http://theorypc.ca/wp-content/uploads/2017/05/ResourceEnumeration.png 678w, http://theorypc.ca/wp-content/uploads/2017/05/ResourceEnumeration-300x58.png 300w" sizes="(max-width: 678px) 100vw, 678px" /> 
+<img class="aligncenter size-full wp-image-2305" src="/wp-content/uploads/2017/05/ResourceEnumeration.png" alt="" width="678" height="131" srcset="/wp-content/uploads/2017/05/ResourceEnumeration.png 678w, /wp-content/uploads/2017/05/ResourceEnumeration-300x58.png 300w" sizes="(max-width: 678px) 100vw, 678px" /> 
 
 This component stresses "Citrix Receiver for Web" <span style="text-decoration: underline;"><strong>and</strong></span> "Citrix Delivery Services Resources"
 
@@ -584,7 +584,7 @@ This component stresses "Citrix Receiver for Web" <span style="text-decoration: 
 
 Get User Name:
 
-<img class="aligncenter size-full wp-image-2306" src="http://theorypc.ca/wp-content/uploads/2017/05/GetUserName.png" alt="" width="676" height="130" srcset="http://theorypc.ca/wp-content/uploads/2017/05/GetUserName.png 676w, http://theorypc.ca/wp-content/uploads/2017/05/GetUserName-300x58.png 300w" sizes="(max-width: 676px) 100vw, 676px" /> 
+<img class="aligncenter size-full wp-image-2306" src="/wp-content/uploads/2017/05/GetUserName.png" alt="" width="676" height="130" srcset="/wp-content/uploads/2017/05/GetUserName.png 676w, /wp-content/uploads/2017/05/GetUserName-300x58.png 300w" sizes="(max-width: 676px) 100vw, 676px" /> 
 
 This component stresses "Citrix Receiver for Web"
 
@@ -592,7 +592,7 @@ This component stresses "Citrix Receiver for Web"
 
 AllowSelfServiceAccountManagement:
 
-<img class="aligncenter size-full wp-image-2307" src="http://theorypc.ca/wp-content/uploads/2017/05/AllowSelfService.png" alt="" width="695" height="137" srcset="http://theorypc.ca/wp-content/uploads/2017/05/AllowSelfService.png 695w, http://theorypc.ca/wp-content/uploads/2017/05/AllowSelfService-300x59.png 300w" sizes="(max-width: 695px) 100vw, 695px" /> 
+<img class="aligncenter size-full wp-image-2307" src="/wp-content/uploads/2017/05/AllowSelfService.png" alt="" width="695" height="137" srcset="/wp-content/uploads/2017/05/AllowSelfService.png 695w, /wp-content/uploads/2017/05/AllowSelfService-300x59.png 300w" sizes="(max-width: 695px) 100vw, 695px" /> 
 
 This component stresses "Citrix Receiver for Web" <span style="text-decoration: underline;"><strong>and</strong></span> "Citrix Delivery Services Authentication"
 
@@ -600,7 +600,7 @@ This component stresses "Citrix Receiver for Web" <span style="text-decoration: 
 
 "GetLaunchStatus"
 
-<img class="aligncenter size-full wp-image-2308" src="http://theorypc.ca/wp-content/uploads/2017/05/GetLaunchStatus.png" alt="" width="674" height="133" srcset="http://theorypc.ca/wp-content/uploads/2017/05/GetLaunchStatus.png 674w, http://theorypc.ca/wp-content/uploads/2017/05/GetLaunchStatus-300x59.png 300w" sizes="(max-width: 674px) 100vw, 674px" /> 
+<img class="aligncenter size-full wp-image-2308" src="/wp-content/uploads/2017/05/GetLaunchStatus.png" alt="" width="674" height="133" srcset="/wp-content/uploads/2017/05/GetLaunchStatus.png 674w, /wp-content/uploads/2017/05/GetLaunchStatus-300x59.png 300w" sizes="(max-width: 674px) 100vw, 674px" /> 
 
 This component stresses "Citrix Delivery Services Resources"
 
@@ -608,7 +608,7 @@ This component stresses "Citrix Delivery Services Resources"
 
 LaunchIca
 
-<img class="aligncenter size-full wp-image-2309" src="http://theorypc.ca/wp-content/uploads/2017/05/LaunchICA.png" alt="" width="685" height="137" srcset="http://theorypc.ca/wp-content/uploads/2017/05/LaunchICA.png 685w, http://theorypc.ca/wp-content/uploads/2017/05/LaunchICA-300x60.png 300w" sizes="(max-width: 685px) 100vw, 685px" /> 
+<img class="aligncenter size-full wp-image-2309" src="/wp-content/uploads/2017/05/LaunchICA.png" alt="" width="685" height="137" srcset="/wp-content/uploads/2017/05/LaunchICA.png 685w, /wp-content/uploads/2017/05/LaunchICA-300x60.png 300w" sizes="(max-width: 685px) 100vw, 685px" /> 
 
 This component stresses "Citrix Delivery Services Resources"
 

@@ -8,7 +8,7 @@ guid: http://theorypc.ca/?p=1620
 permalink: /2016/08/13/using-vmware-remote-console-with-controlup/
 enclosure:
   - |
-    http://theorypc.ca/wp-content/uploads/2016/08/VMRC2.mov
+    /wp-content/uploads/2016/08/VMRC2.mov
     179
     video/quicktime
     
@@ -22,7 +22,7 @@ tags:
 ---
 I wanted to connect to the console session of some of our VM's but ControlUp doesn't have a native way of doing so.  Enter Script-Based-Actions and the ability to create those features!  Here is a video of it in action:
 
-[VMWare Remote Console on ControlUp](http://theorypc.ca/wp-content/uploads/2016/08/VMRC2.mov)
+[VMWare Remote Console on ControlUp](/wp-content/uploads/2016/08/VMRC2.mov)
 
 We use multiple individual vCenter servers so I have a list of them I need to connect to in order to find the VM and get the required data.  This takes a bit longer but is still faster than running 6 different vCenter consoles.  You will need to modify the vCenter list in my script and add your own:
 

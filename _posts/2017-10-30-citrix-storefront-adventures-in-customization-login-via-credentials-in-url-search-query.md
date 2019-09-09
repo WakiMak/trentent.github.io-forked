@@ -8,7 +8,7 @@ guid: http://theorypc.ca/?p=2544
 permalink: /2017/10/30/citrix-storefront-adventures-in-customization-login-via-credentials-in-url-search-query/
 enclosure:
   - |
-    http://theorypc.ca/wp-content/uploads/2017/10/StoreFrontURL.mp4
+    /wp-content/uploads/2017/10/StoreFrontURL.mp4
     187
     video/mp4
     
@@ -50,7 +50,7 @@ CTXS.Extensions.beforeLogon = function(callback) {
 
 You MUST have HTTP Basic enabled as an authentication method on your Citrix Storefront Store.
 
-<img class="aligncenter size-full wp-image-2545" src="http://theorypc.ca/wp-content/uploads/2017/10/Screen-Shot-2017-10-29-at-10.22.38-PM.png" alt="" width="1111" height="638" srcset="http://theorypc.ca/wp-content/uploads/2017/10/Screen-Shot-2017-10-29-at-10.22.38-PM.png 1111w, http://theorypc.ca/wp-content/uploads/2017/10/Screen-Shot-2017-10-29-at-10.22.38-PM-300x172.png 300w, http://theorypc.ca/wp-content/uploads/2017/10/Screen-Shot-2017-10-29-at-10.22.38-PM-768x441.png 768w" sizes="(max-width: 1111px) 100vw, 1111px" /> 
+<img class="aligncenter size-full wp-image-2545" src="/wp-content/uploads/2017/10/Screen-Shot-2017-10-29-at-10.22.38-PM.png" alt="" width="1111" height="638" srcset="/wp-content/uploads/2017/10/Screen-Shot-2017-10-29-at-10.22.38-PM.png 1111w, /wp-content/uploads/2017/10/Screen-Shot-2017-10-29-at-10.22.38-PM-300x172.png 300w, /wp-content/uploads/2017/10/Screen-Shot-2017-10-29-at-10.22.38-PM-768x441.png 768w" sizes="(max-width: 1111px) 100vw, 1111px" /> 
 
 The URL to login would look like this:
 
@@ -59,7 +59,7 @@ The URL to login would look like this:
 Put it all together:
 
 <div style="width: 1128px;" class="wp-video">
-  <video class="wp-video-shortcode" id="video-2544-32" width="1128" height="708" preload="metadata" controls="controls"><source type="video/mp4" src="http://theorypc.ca/wp-content/uploads/2017/10/StoreFrontURL.mp4?_=32" /><a href="http://theorypc.ca/wp-content/uploads/2017/10/StoreFrontURL.mp4">http://theorypc.ca/wp-content/uploads/2017/10/StoreFrontURL.mp4</a></video>
+  <video class="wp-video-shortcode" id="video-2544-32" width="1128" height="708" preload="metadata" controls="controls"><source type="video/mp4" src="/wp-content/uploads/2017/10/StoreFrontURL.mp4?_=32" /><a href="/wp-content/uploads/2017/10/StoreFrontURL.mp4">/wp-content/uploads/2017/10/StoreFrontURL.mp4</a></video>
 </div>
 
 <!-- AddThis Advanced Settings generic via filter on the_content -->

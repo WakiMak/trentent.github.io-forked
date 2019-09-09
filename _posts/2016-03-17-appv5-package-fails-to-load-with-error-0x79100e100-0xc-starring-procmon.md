@@ -32,7 +32,7 @@ This message is preceeded by this message:
 I started investigating.  The first thing I did was open a powershell window and tried to load the package via the command line:
 
 <div style="clear: both; text-align: center;">
-  <a style="margin-left: 1em; margin-right: 1em;" href="http://theorypc.ca/wp-content/uploads/2016/03/1-5.png"><img src="http://theorypc.ca/wp-content/uploads/2016/03/1-5-300x64.png" width="320" height="68" border="0" /></a>
+  <a style="margin-left: 1em; margin-right: 1em;" href="/wp-content/uploads/2016/03/1-5.png"><img src="/wp-content/uploads/2016/03/1-5-300x64.png" width="320" height="68" border="0" /></a>
 </div>
 
 I then looked at our DynamicDeployment XML file and examined the script it is trying to launch:
@@ -59,25 +59,25 @@ cmd.exe /c "C:\PublishedApplications\AHS-ATOP.cmd" INSTALL & "C:\PublishedApplic
 Since this is a Machine Script, I started a **process monitor capture**, <u>executed my command</u>, **stopped the capture** then used the "Process Tree"
 
 <div style="clear: both; text-align: center;">
-  <a style="margin-left: 1em; margin-right: 1em;" href="http://theorypc.ca/wp-content/uploads/2016/03/2-2.png"><img src="http://theorypc.ca/wp-content/uploads/2016/03/2-2-300x76.png" width="320" height="81" border="0" /></a>
+  <a style="margin-left: 1em; margin-right: 1em;" href="/wp-content/uploads/2016/03/2-2.png"><img src="/wp-content/uploads/2016/03/2-2-300x76.png" width="320" height="81" border="0" /></a>
 </div>
 
 and clicked on AppVClient.exe and clicked "Include Subtree".
 
 <div style="clear: both; text-align: center;">
-  <a style="margin-left: 1em; margin-right: 1em;" href="http://theorypc.ca/wp-content/uploads/2016/03/3-3.png"><img src="http://theorypc.ca/wp-content/uploads/2016/03/3-3-300x67.png" width="320" height="71" border="0" /></a>
+  <a style="margin-left: 1em; margin-right: 1em;" href="/wp-content/uploads/2016/03/3-3.png"><img src="/wp-content/uploads/2016/03/3-3-300x67.png" width="320" height="71" border="0" /></a>
 </div>
 
 and used the "show process and thread activity".  I filtered on 'Detail' 'Begins with' and set it for both Parent and Exit so I can look at the process path and exit codes:
 
 <div style="clear: both; text-align: center;">
-  <a style="margin-left: 1em; margin-right: 1em;" href="http://theorypc.ca/wp-content/uploads/2016/03/5-3.png"><img src="http://theorypc.ca/wp-content/uploads/2016/03/5-3-300x126.png" width="320" height="134" border="0" /></a>
+  <a style="margin-left: 1em; margin-right: 1em;" href="/wp-content/uploads/2016/03/5-3.png"><img src="/wp-content/uploads/2016/03/5-3-300x126.png" width="320" height="134" border="0" /></a>
 </div>
 
 &nbsp;
 
 <div style="clear: both; text-align: center;">
-  <a style="margin-left: 1em; margin-right: 1em;" href="http://theorypc.ca/wp-content/uploads/2016/03/6-1.png"><img src="http://theorypc.ca/wp-content/uploads/2016/03/6-1-300x40.png" width="320" height="42" border="0" /></a>
+  <a style="margin-left: 1em; margin-right: 1em;" href="/wp-content/uploads/2016/03/6-1.png"><img src="/wp-content/uploads/2016/03/6-1-300x40.png" width="320" height="42" border="0" /></a>
 </div>
 
 <div style="clear: both; text-align: center;">
@@ -106,7 +106,7 @@ IF /I [%1] EQU [REMOVE] (
 From looking at the script, it's trying to create a new 'mklink' path.  If I try and run this command manually, I get the following:
 
 <div style="clear: both; text-align: center;">
-  <a style="margin-left: 1em; margin-right: 1em;" href="http://theorypc.ca/wp-content/uploads/2016/03/7-1.png"><img src="http://theorypc.ca/wp-content/uploads/2016/03/7-1-300x67.png" width="320" height="71" border="0" /></a>
+  <a style="margin-left: 1em; margin-right: 1em;" href="/wp-content/uploads/2016/03/7-1.png"><img src="/wp-content/uploads/2016/03/7-1-300x67.png" width="320" height="71" border="0" /></a>
 </div>
 
 So this is where the errorlevel (also exit code) is being set.  The last error level is 1 which becomes the exit code once the script runs 'EXIT.
@@ -127,13 +127,13 @@ I chose to modify the script to exit if the path exists.  I changed it like so:
 I cleared procmon, set it to trace again and attempted to run the add-appvclientpackage command again.
 
 <div style="clear: both; text-align: center;">
-  <a style="margin-left: 1em; margin-right: 1em;" href="http://theorypc.ca/wp-content/uploads/2016/03/8-1.png"><img src="http://theorypc.ca/wp-content/uploads/2016/03/8-1-300x75.png" width="320" height="80" border="0" /></a>
+  <a style="margin-left: 1em; margin-right: 1em;" href="/wp-content/uploads/2016/03/8-1.png"><img src="/wp-content/uploads/2016/03/8-1-300x75.png" width="320" height="80" border="0" /></a>
 </div>
 
 I selected 'AppVClient.exe' and clicked 'Include Subtree'
 
 <div style="clear: both; text-align: center;">
-  <a style="margin-left: 1em; margin-right: 1em;" href="http://theorypc.ca/wp-content/uploads/2016/03/9-1.png"><img src="http://theorypc.ca/wp-content/uploads/2016/03/9-1-300x48.png" width="320" height="51" border="0" /></a>
+  <a style="margin-left: 1em; margin-right: 1em;" href="/wp-content/uploads/2016/03/9-1.png"><img src="/wp-content/uploads/2016/03/9-1-300x48.png" width="320" height="51" border="0" /></a>
 </div>
 
 This time we can see that the 'AHS-ATOP.cmd' script has an 'Exit Status: 0' which means it completed successfully.  But, the next script, 'AHS-SoftWorksGroup-ScreenTestIII.cmd' with the parameter 'INSTALL' fails with 'Exit Status: 1'.  Again, we look into the script...
@@ -148,7 +148,7 @@ We can see it has the same flaw.  I then modified the script to add the same IF 
 <table style="margin-left: auto; margin-right: auto; text-align: center;" cellspacing="0" cellpadding="0" align="center">
   <tr>
     <td style="text-align: center;">
-      <a style="margin-left: auto; margin-right: auto;" href="http://theorypc.ca/wp-content/uploads/2016/03/10-1.png"><img src="http://theorypc.ca/wp-content/uploads/2016/03/10-1-300x146.png" width="320" height="155" border="0" /></a>
+      <a style="margin-left: auto; margin-right: auto;" href="/wp-content/uploads/2016/03/10-1.png"><img src="/wp-content/uploads/2016/03/10-1-300x146.png" width="320" height="155" border="0" /></a>
     </td>
   </tr>
   

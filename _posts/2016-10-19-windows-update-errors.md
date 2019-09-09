@@ -15,7 +15,7 @@ tags:
 ---
 We started the new patching Microsoft has put forward (cumulative updates) and one of our Citrix vDisks had an issue with it. Windows Update would say that there were no updates available:
 
-<img class="aligncenter size-full wp-image-1765" src="http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug.png" alt="windowsupdatebug" width="837" height="317" srcset="http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug.png 837w, http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug-300x114.png 300w, http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug-768x291.png 768w" sizes="(max-width: 837px) 100vw, 837px" /> 
+<img class="aligncenter size-full wp-image-1765" src="/wp-content/uploads/2016/10/windowsupdatebug.png" alt="windowsupdatebug" width="837" height="317" srcset="/wp-content/uploads/2016/10/windowsupdatebug.png 837w, /wp-content/uploads/2016/10/windowsupdatebug-300x114.png 300w, /wp-content/uploads/2016/10/windowsupdatebug-768x291.png 768w" sizes="(max-width: 837px) 100vw, 837px" /> 
 
 But we very obviously have updates to deploy to it.
 
@@ -116,13 +116,13 @@ An error appeared to occur at this point (there were a few):
 
 The standard MS method of troubleshooting Windows Update is to run the 'CheckSUR' utility.  This was the result of running that tool:
 
-<img class="aligncenter size-full wp-image-1766" src="http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug2.png" alt="windowsupdatebug2" width="334" height="341" srcset="http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug2.png 334w, http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug2-294x300.png 294w, http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug2-50x50.png 50w" sizes="(max-width: 334px) 100vw, 334px" /> 
+<img class="aligncenter size-full wp-image-1766" src="/wp-content/uploads/2016/10/windowsupdatebug2.png" alt="windowsupdatebug2" width="334" height="341" srcset="/wp-content/uploads/2016/10/windowsupdatebug2.png 334w, /wp-content/uploads/2016/10/windowsupdatebug2-294x300.png 294w, /wp-content/uploads/2016/10/windowsupdatebug2-50x50.png 50w" sizes="(max-width: 334px) 100vw, 334px" /> 
 
 No errors detected.  Awesome.  So I have a problem but this tool reports everything is peachy.
 
 So when I looked at Windows Update I saw numerous 'failed' updates.
 
-<img class="aligncenter size-full wp-image-1767" src="http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug3.png" alt="windowsupdatebug3" width="985" height="652" srcset="http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug3.png 985w, http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug3-300x199.png 300w, http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug3-768x508.png 768w" sizes="(max-width: 985px) 100vw, 985px" /> 
+<img class="aligncenter size-full wp-image-1767" src="/wp-content/uploads/2016/10/windowsupdatebug3.png" alt="windowsupdatebug3" width="985" height="652" srcset="/wp-content/uploads/2016/10/windowsupdatebug3.png 985w, /wp-content/uploads/2016/10/windowsupdatebug3-300x199.png 300w, /wp-content/uploads/2016/10/windowsupdatebug3-768x508.png 768w" sizes="(max-width: 985px) 100vw, 985px" /> 
 
 I took one that was failed and downloaded it ([KB3177467](https://support.microsoft.com/en-ca/kb/3177467)) and attempted to manually install it.
 
@@ -177,11 +177,11 @@ Looking at the CBS.LOG showed me the following:
 
 Ok, so now we can see the error but it still doesn't give us much information.  If I run ProcMon I can find \*when\* the error occurs somewhat easily because Windows Error Reporting kicks in as soon as the error occurs:
 
-<img class="aligncenter size-large wp-image-1768" src="http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug4-1024x662.png" alt="windowsupdatebug4" width="1024" height="662" srcset="http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug4-1024x662.png 1024w, http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug4-300x194.png 300w, http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug4-768x497.png 768w, http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug4.png 1590w" sizes="(max-width: 1024px) 100vw, 1024px" /> 
+<img class="aligncenter size-large wp-image-1768" src="/wp-content/uploads/2016/10/windowsupdatebug4-1024x662.png" alt="windowsupdatebug4" width="1024" height="662" srcset="/wp-content/uploads/2016/10/windowsupdatebug4-1024x662.png 1024w, /wp-content/uploads/2016/10/windowsupdatebug4-300x194.png 300w, /wp-content/uploads/2016/10/windowsupdatebug4-768x497.png 768w, /wp-content/uploads/2016/10/windowsupdatebug4.png 1590w" sizes="(max-width: 1024px) 100vw, 1024px" /> 
 
 My apologies for such an ugly screenshot.  The 'Dark Blue' highlight is when Windows Error Reporting kicked in.  So the error must have occurred immediately preceding it.  The only line that had a 'NAME NOT FOUND' without being a subkey search is the line that ends in v!6.1.7601.18766.  If I browse to that location in the registry, here's what I find:
 
-<img class="aligncenter size-full wp-image-1769" src="http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug5.png" alt="windowsupdatebug5" width="644" height="699" srcset="http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug5.png 644w, http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug5-276x300.png 276w" sizes="(max-width: 644px) 100vw, 644px" /> 
+<img class="aligncenter size-full wp-image-1769" src="/wp-content/uploads/2016/10/windowsupdatebug5.png" alt="windowsupdatebug5" width="644" height="699" srcset="/wp-content/uploads/2016/10/windowsupdatebug5.png 644w, /wp-content/uploads/2016/10/windowsupdatebug5-276x300.png 276w" sizes="(max-width: 644px) 100vw, 644px" /> 
 
 &nbsp;
 
@@ -189,41 +189,41 @@ So we are definitely missing that key.  I have a bit of an advantage with the pa
 
 And I see a vastly different set of keys:
 
-<img class="aligncenter size-full wp-image-1770" src="http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug6.png" alt="windowsupdatebug6" width="519" height="129" srcset="http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug6.png 519w, http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug6-300x75.png 300w" sizes="(max-width: 519px) 100vw, 519px" /> 
+<img class="aligncenter size-full wp-image-1770" src="/wp-content/uploads/2016/10/windowsupdatebug6.png" alt="windowsupdatebug6" width="519" height="129" srcset="/wp-content/uploads/2016/10/windowsupdatebug6.png 519w, /wp-content/uploads/2016/10/windowsupdatebug6-300x75.png 300w" sizes="(max-width: 519px) 100vw, 519px" /> 
 
 So I import that key and try running the update again...
 
-<img class="aligncenter size-full wp-image-1771" src="http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug7.png" alt="windowsupdatebug7" width="550" height="386" srcset="http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug7.png 550w, http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug7-300x211.png 300w" sizes="(max-width: 550px) 100vw, 550px" /> 
+<img class="aligncenter size-full wp-image-1771" src="/wp-content/uploads/2016/10/windowsupdatebug7.png" alt="windowsupdatebug7" width="550" height="386" srcset="/wp-content/uploads/2016/10/windowsupdatebug7.png 550w, /wp-content/uploads/2016/10/windowsupdatebug7-300x211.png 300w" sizes="(max-width: 550px) 100vw, 550px" /> 
 
 &nbsp;
 
 Manually, it successfully updated.  So now I tried running Windows Update again:
 
-<img class="aligncenter size-full wp-image-1772" src="http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug8.png" alt="windowsupdatebug8" width="840" height="383" srcset="http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug8.png 840w, http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug8-300x137.png 300w, http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug8-768x350.png 768w" sizes="(max-width: 840px) 100vw, 840px" /> 
+<img class="aligncenter size-full wp-image-1772" src="/wp-content/uploads/2016/10/windowsupdatebug8.png" alt="windowsupdatebug8" width="840" height="383" srcset="/wp-content/uploads/2016/10/windowsupdatebug8.png 840w, /wp-content/uploads/2016/10/windowsupdatebug8-300x137.png 300w, /wp-content/uploads/2016/10/windowsupdatebug8-768x350.png 768w" sizes="(max-width: 840px) 100vw, 840px" /> 
 
 Code 8024400E.  Which means...  [I just need to rerun 'Try again' about 6 times](https://theorypc.ca/2016/03/14/wsus-clients-fail-with-warning-exceeded-max-server-round-trips-0x80244010/).  Once I do:
 
-<img class="aligncenter size-full wp-image-1773" src="http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug9.png" alt="windowsupdatebug9" width="829" height="353" srcset="http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug9.png 829w, http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug9-300x128.png 300w, http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug9-768x327.png 768w, http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug9-750x320.png 750w" sizes="(max-width: 829px) 100vw, 829px" /> 
+<img class="aligncenter size-full wp-image-1773" src="/wp-content/uploads/2016/10/windowsupdatebug9.png" alt="windowsupdatebug9" width="829" height="353" srcset="/wp-content/uploads/2016/10/windowsupdatebug9.png 829w, /wp-content/uploads/2016/10/windowsupdatebug9-300x128.png 300w, /wp-content/uploads/2016/10/windowsupdatebug9-768x327.png 768w, /wp-content/uploads/2016/10/windowsupdatebug9-750x320.png 750w" sizes="(max-width: 829px) 100vw, 829px" /> 
 
 Ok, we have updates.  As a test I'm going to do just one:
 
-<img class="aligncenter size-full wp-image-1774" src="http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug10.png" alt="windowsupdatebug10" width="728" height="274" srcset="http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug10.png 728w, http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug10-300x113.png 300w" sizes="(max-width: 728px) 100vw, 728px" /> 
+<img class="aligncenter size-full wp-image-1774" src="/wp-content/uploads/2016/10/windowsupdatebug10.png" alt="windowsupdatebug10" width="728" height="274" srcset="/wp-content/uploads/2016/10/windowsupdatebug10.png 728w, /wp-content/uploads/2016/10/windowsupdatebug10-300x113.png 300w" sizes="(max-width: 728px) 100vw, 728px" /> 
 
 &nbsp;
 
 Success!
 
-<img class="aligncenter size-full wp-image-1775" src="http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug11.png" alt="windowsupdatebug11" width="815" height="352" srcset="http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug11.png 815w, http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug11-300x130.png 300w, http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug11-768x332.png 768w" sizes="(max-width: 815px) 100vw, 815px" /> 
+<img class="aligncenter size-full wp-image-1775" src="/wp-content/uploads/2016/10/windowsupdatebug11.png" alt="windowsupdatebug11" width="815" height="352" srcset="/wp-content/uploads/2016/10/windowsupdatebug11.png 815w, /wp-content/uploads/2016/10/windowsupdatebug11-300x130.png 300w, /wp-content/uploads/2016/10/windowsupdatebug11-768x332.png 768w" sizes="(max-width: 815px) 100vw, 815px" /> 
 
 So I'll try the rest:
 
-<img class="aligncenter size-full wp-image-1776" src="http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug12.png" alt="windowsupdatebug12" width="838" height="394" srcset="http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug12.png 838w, http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug12-300x141.png 300w, http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug12-768x361.png 768w" sizes="(max-width: 838px) 100vw, 838px" /> 
+<img class="aligncenter size-full wp-image-1776" src="/wp-content/uploads/2016/10/windowsupdatebug12.png" alt="windowsupdatebug12" width="838" height="394" srcset="/wp-content/uploads/2016/10/windowsupdatebug12.png 838w, /wp-content/uploads/2016/10/windowsupdatebug12-300x141.png 300w, /wp-content/uploads/2016/10/windowsupdatebug12-768x361.png 768w" sizes="(max-width: 838px) 100vw, 838px" /> 
 
 &nbsp;
 
 Success!
 
-<img class="aligncenter size-full wp-image-1777" src="http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug13.png" alt="windowsupdatebug13" width="823" height="363" srcset="http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug13.png 823w, http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug13-300x132.png 300w, http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug13-768x339.png 768w" sizes="(max-width: 823px) 100vw, 823px" /> 
+<img class="aligncenter size-full wp-image-1777" src="/wp-content/uploads/2016/10/windowsupdatebug13.png" alt="windowsupdatebug13" width="823" height="363" srcset="/wp-content/uploads/2016/10/windowsupdatebug13.png 823w, /wp-content/uploads/2016/10/windowsupdatebug13-300x132.png 300w, /wp-content/uploads/2016/10/windowsupdatebug13-768x339.png 768w" sizes="(max-width: 823px) 100vw, 823px" /> 
 
 &nbsp;
 

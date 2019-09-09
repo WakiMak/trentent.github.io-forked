@@ -8,7 +8,7 @@ guid: http://theorypc.ca/?p=1964
 permalink: /2017/01/30/controlup-script-based-action-sba-action-auditing/
 enclosure:
   - |
-    http://theorypc.ca/wp-content/uploads/2017/01/ControlUpActionAuditing.mp4
+    /wp-content/uploads/2017/01/ControlUpActionAuditing.mp4
     197
     video/mp4
     
@@ -109,20 +109,20 @@ if ($args[1] -eq "TEXT") {
 And the steps to create the SBA:
 
   1. Create a new SBA and name it "ControlUp Action Auditing" and click 'Next'  
-<img class="aligncenter size-full wp-image-1966" src="http://theorypc.ca/wp-content/uploads/2017/01/SBA1.png" alt="" width="596" height="443" srcset="http://theorypc.ca/wp-content/uploads/2017/01/SBA1.png 596w, http://theorypc.ca/wp-content/uploads/2017/01/SBA1-300x223.png 300w" sizes="(max-width: 596px) 100vw, 596px" /> 
+<img class="aligncenter size-full wp-image-1966" src="/wp-content/uploads/2017/01/SBA1.png" alt="" width="596" height="443" srcset="/wp-content/uploads/2017/01/SBA1.png 596w, /wp-content/uploads/2017/01/SBA1-300x223.png 300w" sizes="(max-width: 596px) 100vw, 596px" /> 
   2. Set the 'Assigned to:' "Computer" and 'Execution Context:' as "ControlUp Console"  
-<img class="aligncenter size-full wp-image-1967" src="http://theorypc.ca/wp-content/uploads/2017/01/SBA2.png" alt="" width="596" height="445" srcset="http://theorypc.ca/wp-content/uploads/2017/01/SBA2.png 596w, http://theorypc.ca/wp-content/uploads/2017/01/SBA2-300x224.png 300w" sizes="(max-width: 596px) 100vw, 596px" /> 
+<img class="aligncenter size-full wp-image-1967" src="/wp-content/uploads/2017/01/SBA2.png" alt="" width="596" height="445" srcset="/wp-content/uploads/2017/01/SBA2.png 596w, /wp-content/uploads/2017/01/SBA2-300x224.png 300w" sizes="(max-width: 596px) 100vw, 596px" /> 
   3. Add the script and set the 'Execution Timeout (seconds)' to whatever will satisfy querying your remote systems (I set mine to 120).  
-<img class="aligncenter size-full wp-image-1968" src="http://theorypc.ca/wp-content/uploads/2017/01/SBA3.png" alt="" width="598" height="446" srcset="http://theorypc.ca/wp-content/uploads/2017/01/SBA3.png 598w, http://theorypc.ca/wp-content/uploads/2017/01/SBA3-300x224.png 300w" sizes="(max-width: 598px) 100vw, 598px" /> 
+<img class="aligncenter size-full wp-image-1968" src="/wp-content/uploads/2017/01/SBA3.png" alt="" width="598" height="446" srcset="/wp-content/uploads/2017/01/SBA3.png 598w, /wp-content/uploads/2017/01/SBA3-300x224.png 300w" sizes="(max-width: 598px) 100vw, 598px" /> 
   4. Setup the variables  
-<img class="aligncenter size-full wp-image-1969" src="http://theorypc.ca/wp-content/uploads/2017/01/SBA6.png" alt="" width="592" height="150" srcset="http://theorypc.ca/wp-content/uploads/2017/01/SBA6.png 592w, http://theorypc.ca/wp-content/uploads/2017/01/SBA6-300x76.png 300w" sizes="(max-width: 592px) 100vw, 592px" /> $args[0] = 'Name' property  
-    $args[1]:<img class="aligncenter size-full wp-image-1970" src="http://theorypc.ca/wp-content/uploads/2017/01/SBA4.png" alt="" width="437" height="417" srcset="http://theorypc.ca/wp-content/uploads/2017/01/SBA4.png 437w, http://theorypc.ca/wp-content/uploads/2017/01/SBA4-300x286.png 300w" sizes="(max-width: 437px) 100vw, 437px" />  
+<img class="aligncenter size-full wp-image-1969" src="/wp-content/uploads/2017/01/SBA6.png" alt="" width="592" height="150" srcset="/wp-content/uploads/2017/01/SBA6.png 592w, /wp-content/uploads/2017/01/SBA6-300x76.png 300w" sizes="(max-width: 592px) 100vw, 592px" /> $args[0] = 'Name' property  
+    $args[1]:<img class="aligncenter size-full wp-image-1970" src="/wp-content/uploads/2017/01/SBA4.png" alt="" width="437" height="417" srcset="/wp-content/uploads/2017/01/SBA4.png 437w, /wp-content/uploads/2017/01/SBA4-300x286.png 300w" sizes="(max-width: 437px) 100vw, 437px" />  
     (note the "pipe" symbol in the 'Input Validation string'  
-    $args[2]:<img class="aligncenter size-full wp-image-1971" src="http://theorypc.ca/wp-content/uploads/2017/01/SBA5.png" alt="" width="438" height="414" srcset="http://theorypc.ca/wp-content/uploads/2017/01/SBA5.png 438w, http://theorypc.ca/wp-content/uploads/2017/01/SBA5-300x284.png 300w" sizes="(max-width: 438px) 100vw, 438px" /> 
+    $args[2]:<img class="aligncenter size-full wp-image-1971" src="/wp-content/uploads/2017/01/SBA5.png" alt="" width="438" height="414" srcset="/wp-content/uploads/2017/01/SBA5.png 438w, /wp-content/uploads/2017/01/SBA5-300x284.png 300w" sizes="(max-width: 438px) 100vw, 438px" /> 
   5. Save and Finalize the SBA.  And now it in action:
 
 <div style="width: 1140px;" class="wp-video">
-  <video class="wp-video-shortcode" id="video-1964-15" width="1140" height="878" poster="http://theorypc.ca/wp-content/uploads/2017/01/ControlUpActionAuditing-mov-image.jpg" preload="metadata" controls="controls"><source type="video/mp4" src="http://theorypc.ca/wp-content/uploads/2017/01/ControlUpActionAuditing.mp4?_=15" /><a href="http://theorypc.ca/wp-content/uploads/2017/01/ControlUpActionAuditing.mp4">http://theorypc.ca/wp-content/uploads/2017/01/ControlUpActionAuditing.mp4</a></video>
+  <video class="wp-video-shortcode" id="video-1964-15" width="1140" height="878" poster="/wp-content/uploads/2017/01/ControlUpActionAuditing-mov-image.jpg" preload="metadata" controls="controls"><source type="video/mp4" src="/wp-content/uploads/2017/01/ControlUpActionAuditing.mp4?_=15" /><a href="/wp-content/uploads/2017/01/ControlUpActionAuditing.mp4">/wp-content/uploads/2017/01/ControlUpActionAuditing.mp4</a></video>
 </div>
 
 <!-- AddThis Advanced Settings generic via filter on the_content -->

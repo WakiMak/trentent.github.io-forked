@@ -34,13 +34,13 @@ Will crash.
 I'm going to address point 2) first because it's weird and interesting.
 
 <div style="clear: both; text-align: center;">
-  <a style="margin-left: 1em; margin-right: 1em;" href="http://theorypc.ca/wp-content/uploads/2016/03/1-7.png"><img src="http://theorypc.ca/wp-content/uploads/2016/03/1-7-300x118.png" width="320" height="125" border="0" /></a>
+  <a style="margin-left: 1em; margin-right: 1em;" href="/wp-content/uploads/2016/03/1-7.png"><img src="/wp-content/uploads/2016/03/1-7-300x118.png" width="320" height="125" border="0" /></a>
 </div>
 
 Why does it crash?  Because, somehow, it breaks out of the bubble.  The reason it crashes is it looking for some registry keys that don't exist outside the bubble and it explodes.  The keys it looks for are:
 
 <div style="clear: both; text-align: center;">
-  <a style="margin-left: 1em; margin-right: 1em;" href="http://theorypc.ca/wp-content/uploads/2016/03/3-5.png"><img src="http://theorypc.ca/wp-content/uploads/2016/03/3-5-300x64.png" width="320" height="67" border="0" /></a>
+  <a style="margin-left: 1em; margin-right: 1em;" href="/wp-content/uploads/2016/03/3-5.png"><img src="/wp-content/uploads/2016/03/3-5-300x64.png" width="320" height="67" border="0" /></a>
 </div>
 
 On a local install if I delete the environment keys that matchup to the folder we're launching eClinibase from, I get the same error.  Since those keys don't exist outside the bubble, we get the same error...  Which means it's trying to look outside the bubble for some reason.  Powershell, however, works correctly but only if the exe is called directly:
@@ -50,7 +50,7 @@ On a local install if I delete the environment keys that matchup to the folder w
 However, we CAN get it to stay 'in the bubble' if we launch the eClinibase.exe with the /appvve: switch.
 
 <div style="clear: both; text-align: center;">
-  <a style="margin-left: 1em; margin-right: 1em;" href="http://theorypc.ca/wp-content/uploads/2016/03/4-3.png"><img src="http://theorypc.ca/wp-content/uploads/2016/03/4-3-300x117.png" width="320" height="124" border="0" /></a>
+  <a style="margin-left: 1em; margin-right: 1em;" href="/wp-content/uploads/2016/03/4-3.png"><img src="/wp-content/uploads/2016/03/4-3-300x117.png" width="320" height="124" border="0" /></a>
 </div>
 
 This is the first time I've ever encountered this where launching the application from a command prompt inside the AppV bubble fails, but it will work if you launch the exe with the /appvve: switch.

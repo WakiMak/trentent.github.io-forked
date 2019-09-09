@@ -14,7 +14,7 @@ tags:
 ---
 I was informed an AppV5 application was getting the following error message:
 
-<img class="aligncenter size-full wp-image-1642" src="http://theorypc.ca/wp-content/uploads/2016/08/NoMicrosoftOutlookProfilesHaveBeenCreated.png" alt="NoMicrosoftOutlookProfilesHaveBeenCreated" width="413" height="152" srcset="http://theorypc.ca/wp-content/uploads/2016/08/NoMicrosoftOutlookProfilesHaveBeenCreated.png 413w, http://theorypc.ca/wp-content/uploads/2016/08/NoMicrosoftOutlookProfilesHaveBeenCreated-300x110.png 300w" sizes="(max-width: 413px) 100vw, 413px" /> 
+<img class="aligncenter size-full wp-image-1642" src="/wp-content/uploads/2016/08/NoMicrosoftOutlookProfilesHaveBeenCreated.png" alt="NoMicrosoftOutlookProfilesHaveBeenCreated" width="413" height="152" srcset="/wp-content/uploads/2016/08/NoMicrosoftOutlookProfilesHaveBeenCreated.png 413w, /wp-content/uploads/2016/08/NoMicrosoftOutlookProfilesHaveBeenCreated-300x110.png 300w" sizes="(max-width: 413px) 100vw, 413px" /> 
 
 <pre class="">Microsoft Outlook
 

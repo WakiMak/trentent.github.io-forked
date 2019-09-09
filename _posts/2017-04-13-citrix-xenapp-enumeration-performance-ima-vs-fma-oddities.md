@@ -18,13 +18,13 @@ During the course of [load testing FMA to see how it compares with IMA](https://
 
 During the load testing I captured some performance counters.  One of them, "Citrix XML Service - enumerate resources - Concurrent Transactions" seemed to line up almost perfectly with the load wcat was applying to the broker.  BUT...  It capped out.  It seemed to cap at 200-220 concurrent connections.
 
-<img class="aligncenter size-full wp-image-2130" src="http://theorypc.ca/wp-content/uploads/2017/04/FMA_Oddity.png" alt="" width="1353" height="884" srcset="http://theorypc.ca/wp-content/uploads/2017/04/FMA_Oddity.png 1353w, http://theorypc.ca/wp-content/uploads/2017/04/FMA_Oddity-300x196.png 300w, http://theorypc.ca/wp-content/uploads/2017/04/FMA_Oddity-768x502.png 768w" sizes="(max-width: 1353px) 100vw, 1353px" /> 
+<img class="aligncenter size-full wp-image-2130" src="/wp-content/uploads/2017/04/FMA_Oddity.png" alt="" width="1353" height="884" srcset="/wp-content/uploads/2017/04/FMA_Oddity.png 1353w, /wp-content/uploads/2017/04/FMA_Oddity-300x196.png 300w, /wp-content/uploads/2017/04/FMA_Oddity-768x502.png 768w" sizes="(max-width: 1353px) 100vw, 1353px" /> 
 
 &nbsp;
 
 The slope of the increase in the concurrent transactions should have continued but it stops.  I had set a maximum of 1000 concurrent connections via WCAT but it stops then does this weird 'stepping'.  When this limit appears to be reached, that appears to be when the "performance" of FMA succeeds IMA significantly.
 
-<img class="aligncenter size-full wp-image-2131" src="http://theorypc.ca/wp-content/uploads/2017/04/IMA_FMA_220.png" alt="" width="641" height="519" srcset="http://theorypc.ca/wp-content/uploads/2017/04/IMA_FMA_220.png 641w, http://theorypc.ca/wp-content/uploads/2017/04/IMA_FMA_220-300x243.png 300w" sizes="(max-width: 641px) 100vw, 641px" /> 
+<img class="aligncenter size-full wp-image-2131" src="/wp-content/uploads/2017/04/IMA_FMA_220.png" alt="" width="641" height="519" srcset="/wp-content/uploads/2017/04/IMA_FMA_220.png 641w, /wp-content/uploads/2017/04/IMA_FMA_220-300x243.png 300w" sizes="(max-width: 641px) 100vw, 641px" /> 
 
 (ORANGE is FMA, BLUE is IMA).
 
@@ -98,21 +98,21 @@ I found a [document from Citrix that details \*some\* of these registry keys](ht
 
 There is a registry value that determines the maximum number of concurrent requests the FMA broker will process:
 
-<img class="aligncenter size-full wp-image-2132" src="http://theorypc.ca/wp-content/uploads/2017/04/XMLListener.png" alt="" width="762" height="417" srcset="http://theorypc.ca/wp-content/uploads/2017/04/XMLListener.png 762w, http://theorypc.ca/wp-content/uploads/2017/04/XMLListener-300x164.png 300w" sizes="(max-width: 762px) 100vw, 762px" /> 
+<img class="aligncenter size-full wp-image-2132" src="/wp-content/uploads/2017/04/XMLListener.png" alt="" width="762" height="417" srcset="/wp-content/uploads/2017/04/XMLListener.png 762w, /wp-content/uploads/2017/04/XMLListener-300x164.png 300w" sizes="(max-width: 762px) 100vw, 762px" /> 
 
-<img class="aligncenter size-full wp-image-2133" src="http://theorypc.ca/wp-content/uploads/2017/04/XMLListenerRegKey.png" alt="" width="737" height="234" srcset="http://theorypc.ca/wp-content/uploads/2017/04/XMLListenerRegKey.png 737w, http://theorypc.ca/wp-content/uploads/2017/04/XMLListenerRegKey-300x95.png 300w" sizes="(max-width: 737px) 100vw, 737px" /> 
+<img class="aligncenter size-full wp-image-2133" src="/wp-content/uploads/2017/04/XMLListenerRegKey.png" alt="" width="737" height="234" srcset="/wp-content/uploads/2017/04/XMLListenerRegKey.png 737w, /wp-content/uploads/2017/04/XMLListenerRegKey-300x95.png 300w" sizes="(max-width: 737px) 100vw, 737px" /> 
 
 I added that key and restarted the service.  What was the impact?
 
 16vCPU
 
-<img class="aligncenter size-full wp-image-2137" src="http://theorypc.ca/wp-content/uploads/2017/04/FMA_1380_XMLListener.png" alt="" width="1104" height="723" srcset="http://theorypc.ca/wp-content/uploads/2017/04/FMA_1380_XMLListener.png 1104w, http://theorypc.ca/wp-content/uploads/2017/04/FMA_1380_XMLListener-300x196.png 300w, http://theorypc.ca/wp-content/uploads/2017/04/FMA_1380_XMLListener-768x503.png 768w" sizes="(max-width: 1104px) 100vw, 1104px" /> 
+<img class="aligncenter size-full wp-image-2137" src="/wp-content/uploads/2017/04/FMA_1380_XMLListener.png" alt="" width="1104" height="723" srcset="/wp-content/uploads/2017/04/FMA_1380_XMLListener.png 1104w, /wp-content/uploads/2017/04/FMA_1380_XMLListener-300x196.png 300w, /wp-content/uploads/2017/04/FMA_1380_XMLListener-768x503.png 768w" sizes="(max-width: 1104px) 100vw, 1104px" /> 
 
 Very positive.  The 800 concurrent limit was easily bypassed. Why is this limited to 500 by default?  Changing this value to 1000 had a massive improvement in terms of how many concurrent connections it could handle.  It pushed itself to 1350 concurrent connections before it broke.  If I had to push for a single tweak to FMA, this one might be it.  Mind you, the Performance Counter was still capping itself around 220 concurrent connections, so I'm not sure if that's a limit of the counter or something else but it is VERY accurate until that point.  If I start my WCAT test and go to 50 the perf counter goes to 50.  If I choose 80, it goes to 80.  If I choose 173 it goes to exactly 173.  So it is odd.
 
 During the course of my investigation I found a registry key that shows Citrix has decided any request over 20 seconds to the broker will fail.  This key is:
 
-<img class="aligncenter size-full wp-image-2140" src="http://theorypc.ca/wp-content/uploads/2017/04/xmlwpnbrrequesttimeoutms.png" alt="" width="758" height="91" srcset="http://theorypc.ca/wp-content/uploads/2017/04/xmlwpnbrrequesttimeoutms.png 758w, http://theorypc.ca/wp-content/uploads/2017/04/xmlwpnbrrequesttimeoutms-300x36.png 300w, http://theorypc.ca/wp-content/uploads/2017/04/xmlwpnbrrequesttimeoutms-750x91.png 750w" sizes="(max-width: 758px) 100vw, 758px" /> 
+<img class="aligncenter size-full wp-image-2140" src="/wp-content/uploads/2017/04/xmlwpnbrrequesttimeoutms.png" alt="" width="758" height="91" srcset="/wp-content/uploads/2017/04/xmlwpnbrrequesttimeoutms.png 758w, /wp-content/uploads/2017/04/xmlwpnbrrequesttimeoutms-300x36.png 300w, /wp-content/uploads/2017/04/xmlwpnbrrequesttimeoutms-750x91.png 750w" sizes="(max-width: 758px) 100vw, 758px" /> 
 
 I suspect this is my "unspecified" error.  20 seconds is a really long time for a broker to respond to a request though, if you were a user this would suck.  However, is it better to increase this value?  I have it on my todo list to try and increase it for my testing to see what happens, but values like the Storefront or Netscaler XML requests to see if the brokers are responding are handicapped to 20 seconds with this value.  So it's probably important to have them match to reduce any further timeout you may encounter.  For instance, it would not make sense to set a 60 second timeout in a Netscaler XML broker test if the broker is going to timeout at 20 seconds anyways.
 

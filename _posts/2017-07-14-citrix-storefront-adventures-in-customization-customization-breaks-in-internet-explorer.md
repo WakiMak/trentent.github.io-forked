@@ -8,17 +8,17 @@ guid: http://theorypc.ca/?p=2515
 permalink: /2017/07/14/citrix-storefront-adventures-in-customization-customization-breaks-in-internet-explorer/
 enclosure:
   - |
-    http://theorypc.ca/wp-content/uploads/2017/07/CorrectStoreFront.mp4
+    /wp-content/uploads/2017/07/CorrectStoreFront.mp4
     191
     video/mp4
     
   - |
-    http://theorypc.ca/wp-content/uploads/2017/07/IE_Broken.mp4
+    /wp-content/uploads/2017/07/IE_Broken.mp4
     183
     video/mp4
     
   - |
-    http://theorypc.ca/wp-content/uploads/2017/07/Chrome_WithIEUserAgent.mp4
+    /wp-content/uploads/2017/07/Chrome_WithIEUserAgent.mp4
     196
     video/mp4
     
@@ -40,7 +40,7 @@ I started to dig into what was happening.  Why wasn't the ClientName being set c
 It turns out that the code path for the "StoreFront Customization SDK" (at least the ICA file modification portion) operates when a request is made to ["GetLaunchStatus"](https://citrix.github.io/storefront-sdk/requests/#ica-launch).  A working application launch from StoreFront looks like this:
 
 <div style="width: 1140px;" class="wp-video">
-  <video class="wp-video-shortcode" id="video-2515-25" width="1140" height="351" preload="metadata" controls="controls"><source type="video/mp4" src="http://theorypc.ca/wp-content/uploads/2017/07/CorrectStoreFront.mp4?_=25" /><a href="http://theorypc.ca/wp-content/uploads/2017/07/CorrectStoreFront.mp4">http://theorypc.ca/wp-content/uploads/2017/07/CorrectStoreFront.mp4</a></video>
+  <video class="wp-video-shortcode" id="video-2515-25" width="1140" height="351" preload="metadata" controls="controls"><source type="video/mp4" src="/wp-content/uploads/2017/07/CorrectStoreFront.mp4?_=25" /><a href="/wp-content/uploads/2017/07/CorrectStoreFront.mp4">/wp-content/uploads/2017/07/CorrectStoreFront.mp4</a></video>
 </div>
 
 Notice when I click the application icon, TWO requests are made.  The first one, GetLaunchStatus contains the headers that is passed to the SDK customization plugin, the second is a hidden iFrame to pull the ICA file.
@@ -48,7 +48,7 @@ Notice when I click the application icon, TWO requests are made.  The first one,
 Now, if I login to a server or PC that I've never logged into before (so that I have a fresh profile) and launch IE and immediately go to Storefront, this is the result:
 
 <div style="width: 1140px;" class="wp-video">
-  <video class="wp-video-shortcode" id="video-2515-26" width="1140" height="351" preload="metadata" controls="controls"><source type="video/mp4" src="http://theorypc.ca/wp-content/uploads/2017/07/IE_Broken.mp4?_=26" /><a href="http://theorypc.ca/wp-content/uploads/2017/07/IE_Broken.mp4">http://theorypc.ca/wp-content/uploads/2017/07/IE_Broken.mp4</a></video>
+  <video class="wp-video-shortcode" id="video-2515-26" width="1140" height="351" preload="metadata" controls="controls"><source type="video/mp4" src="/wp-content/uploads/2017/07/IE_Broken.mp4?_=26" /><a href="/wp-content/uploads/2017/07/IE_Broken.mp4">/wp-content/uploads/2017/07/IE_Broken.mp4</a></video>
 </div>
 
 Notice it only goes to "LaunchIca".  Because of this my ClientName is not modified.
@@ -60,7 +60,7 @@ To validate the theory a bit further that something in Storefront maybe causing 
 And what happened?
 
 <div style="width: 1140px;" class="wp-video">
-  <video class="wp-video-shortcode" id="video-2515-27" width="1140" height="351" preload="metadata" controls="controls"><source type="video/mp4" src="http://theorypc.ca/wp-content/uploads/2017/07/Chrome_WithIEUserAgent.mp4?_=27" /><a href="http://theorypc.ca/wp-content/uploads/2017/07/Chrome_WithIEUserAgent.mp4">http://theorypc.ca/wp-content/uploads/2017/07/Chrome_WithIEUserAgent.mp4</a></video>
+  <video class="wp-video-shortcode" id="video-2515-27" width="1140" height="351" preload="metadata" controls="controls"><source type="video/mp4" src="/wp-content/uploads/2017/07/Chrome_WithIEUserAgent.mp4?_=27" /><a href="/wp-content/uploads/2017/07/Chrome_WithIEUserAgent.mp4">/wp-content/uploads/2017/07/Chrome_WithIEUserAgent.mp4</a></video>
 </div>
 
 Only LaunchIca is called.  We have a reproducible failure.

@@ -32,7 +32,7 @@ All connections from PNA to Storefront/Web Interface start with "config.xml" .  
 &nbsp;
 
 <div id="attachment_2360" style="width: 678px" class="wp-caption aligncenter">
-  <img aria-describedby="caption-attachment-2360" class="wp-image-2360 size-full" src="http://theorypc.ca/wp-content/uploads/2017/05/1stConnection.png" alt="" width="668" height="765" srcset="http://theorypc.ca/wp-content/uploads/2017/05/1stConnection.png 668w, http://theorypc.ca/wp-content/uploads/2017/05/1stConnection-262x300.png 262w" sizes="(max-width: 668px) 100vw, 668px" /></p> 
+  <img aria-describedby="caption-attachment-2360" class="wp-image-2360 size-full" src="/wp-content/uploads/2017/05/1stConnection.png" alt="" width="668" height="765" srcset="/wp-content/uploads/2017/05/1stConnection.png 668w, /wp-content/uploads/2017/05/1stConnection-262x300.png 262w" sizes="(max-width: 668px) 100vw, 668px" /></p> 
   
   <p id="caption-attachment-2360" class="wp-caption-text">
     The first time you connect via PNA
@@ -42,7 +42,7 @@ All connections from PNA to Storefront/Web Interface start with "config.xml" .  
 &nbsp;
 
 <div id="attachment_2361" style="width: 696px" class="wp-caption aligncenter">
-  <img aria-describedby="caption-attachment-2361" class="wp-image-2361 size-full" src="http://theorypc.ca/wp-content/uploads/2017/05/Sebsequent_Connection.png" alt="" width="686" height="100" srcset="http://theorypc.ca/wp-content/uploads/2017/05/Sebsequent_Connection.png 686w, http://theorypc.ca/wp-content/uploads/2017/05/Sebsequent_Connection-300x44.png 300w" sizes="(max-width: 686px) 100vw, 686px" /></p> 
+  <img aria-describedby="caption-attachment-2361" class="wp-image-2361 size-full" src="/wp-content/uploads/2017/05/Sebsequent_Connection.png" alt="" width="686" height="100" srcset="/wp-content/uploads/2017/05/Sebsequent_Connection.png 686w, /wp-content/uploads/2017/05/Sebsequent_Connection-300x44.png 300w" sizes="(max-width: 686px) 100vw, 686px" /></p> 
   
   <p id="caption-attachment-2361" class="wp-caption-text">
     Subsequent connections after icons have been cached.
@@ -52,7 +52,7 @@ All connections from PNA to Storefront/Web Interface start with "config.xml" .  
 &nbsp;
 
 <div id="attachment_2362" style="width: 694px" class="wp-caption aligncenter">
-  <img aria-describedby="caption-attachment-2362" class="size-full wp-image-2362" src="http://theorypc.ca/wp-content/uploads/2017/05/2NewApplications.png" alt="" width="684" height="163" srcset="http://theorypc.ca/wp-content/uploads/2017/05/2NewApplications.png 684w, http://theorypc.ca/wp-content/uploads/2017/05/2NewApplications-300x71.png 300w" sizes="(max-width: 684px) 100vw, 684px" /></p> 
+  <img aria-describedby="caption-attachment-2362" class="size-full wp-image-2362" src="/wp-content/uploads/2017/05/2NewApplications.png" alt="" width="684" height="163" srcset="/wp-content/uploads/2017/05/2NewApplications.png 684w, /wp-content/uploads/2017/05/2NewApplications-300x71.png 300w" sizes="(max-width: 684px) 100vw, 684px" /></p> 
   
   <p id="caption-attachment-2362" class="wp-caption-text">
     2 new applications published to the user
@@ -282,7 +282,7 @@ With the response being:
 
 Lastly, application launches over PNA are a POST request that look like this:
 
-<img class="aligncenter size-full wp-image-2363" src="http://theorypc.ca/wp-content/uploads/2017/05/PNA.png" alt="" width="676" height="18" srcset="http://theorypc.ca/wp-content/uploads/2017/05/PNA.png 676w, http://theorypc.ca/wp-content/uploads/2017/05/PNA-300x8.png 300w" sizes="(max-width: 676px) 100vw, 676px" /> 
+<img class="aligncenter size-full wp-image-2363" src="/wp-content/uploads/2017/05/PNA.png" alt="" width="676" height="18" srcset="/wp-content/uploads/2017/05/PNA.png 676w, /wp-content/uploads/2017/05/PNA-300x8.png 300w" sizes="(max-width: 676px) 100vw, 676px" /> 
 
 The content of that POST request looks like this:
 
@@ -313,39 +313,39 @@ With each of these requests we can see that PNA sends your username/password/dom
 
 Using the [wcat scenario creator](http://fiddler2wcat.codeplex.com/releases/view/35356), download the <a id="fileDownload0" class="FileNameLink" tabindex="9" href="http://fiddler2wcat.codeplex.com/downloads/get/90734">WCATScenarioGenerator.dll</a> and save it to: "C:\Program Files (x86)\Fiddler2\Scripts"
 
-<img class="aligncenter size-full wp-image-2364" src="http://theorypc.ca/wp-content/uploads/2017/05/Fiddler_WCAT.png" alt="" width="433" height="430" srcset="http://theorypc.ca/wp-content/uploads/2017/05/Fiddler_WCAT.png 433w, http://theorypc.ca/wp-content/uploads/2017/05/Fiddler_WCAT-150x150.png 150w, http://theorypc.ca/wp-content/uploads/2017/05/Fiddler_WCAT-300x298.png 300w, http://theorypc.ca/wp-content/uploads/2017/05/Fiddler_WCAT-50x50.png 50w, http://theorypc.ca/wp-content/uploads/2017/05/Fiddler_WCAT-100x100.png 100w" sizes="(max-width: 433px) 100vw, 433px" /> 
+<img class="aligncenter size-full wp-image-2364" src="/wp-content/uploads/2017/05/Fiddler_WCAT.png" alt="" width="433" height="430" srcset="/wp-content/uploads/2017/05/Fiddler_WCAT.png 433w, /wp-content/uploads/2017/05/Fiddler_WCAT-150x150.png 150w, /wp-content/uploads/2017/05/Fiddler_WCAT-300x298.png 300w, /wp-content/uploads/2017/05/Fiddler_WCAT-50x50.png 50w, /wp-content/uploads/2017/05/Fiddler_WCAT-100x100.png 100w" sizes="(max-width: 433px) 100vw, 433px" /> 
 
 &nbsp;
 
 **Open Fiddler**.  Capture PNA operation by closing Citrix Receiver and reopening it.  Logon (if necessary) and launch an application.  If you want a more intensive logon, ensure your icon cache is cleared so that it forces new icons to be downloaded.  This will be the 'scenario' that we will be executing against.  Clean up any requests that don't go to your web interface/storefront.  My Fiddler looks like this:
 
-<img class="aligncenter size-full wp-image-2365" src="http://theorypc.ca/wp-content/uploads/2017/05/Fiddler_WCAT_Scenario.png" alt="" width="686" height="243" srcset="http://theorypc.ca/wp-content/uploads/2017/05/Fiddler_WCAT_Scenario.png 686w, http://theorypc.ca/wp-content/uploads/2017/05/Fiddler_WCAT_Scenario-300x106.png 300w" sizes="(max-width: 686px) 100vw, 686px" /> 
+<img class="aligncenter size-full wp-image-2365" src="/wp-content/uploads/2017/05/Fiddler_WCAT_Scenario.png" alt="" width="686" height="243" srcset="/wp-content/uploads/2017/05/Fiddler_WCAT_Scenario.png 686w, /wp-content/uploads/2017/05/Fiddler_WCAT_Scenario-300x106.png 300w" sizes="(max-width: 686px) 100vw, 686px" /> 
 
 Select your items and in the black bar enter "wcat addtrans" and hit enter.
 
-<img class="aligncenter size-full wp-image-2366" src="http://theorypc.ca/wp-content/uploads/2017/05/wcat_addtrans.png" alt="" width="680" height="265" srcset="http://theorypc.ca/wp-content/uploads/2017/05/wcat_addtrans.png 680w, http://theorypc.ca/wp-content/uploads/2017/05/wcat_addtrans-300x117.png 300w" sizes="(max-width: 680px) 100vw, 680px" /> 
+<img class="aligncenter size-full wp-image-2366" src="/wp-content/uploads/2017/05/wcat_addtrans.png" alt="" width="680" height="265" srcset="/wp-content/uploads/2017/05/wcat_addtrans.png 680w, /wp-content/uploads/2017/05/wcat_addtrans-300x117.png 300w" sizes="(max-width: 680px) 100vw, 680px" /> 
 
 In the same bar enter "wcat save" and hit enter.
 
-<img class="aligncenter size-full wp-image-2367" src="http://theorypc.ca/wp-content/uploads/2017/05/wcat_save.png" alt="" width="356" height="198" srcset="http://theorypc.ca/wp-content/uploads/2017/05/wcat_save.png 356w, http://theorypc.ca/wp-content/uploads/2017/05/wcat_save-300x167.png 300w" sizes="(max-width: 356px) 100vw, 356px" /> 
+<img class="aligncenter size-full wp-image-2367" src="/wp-content/uploads/2017/05/wcat_save.png" alt="" width="356" height="198" srcset="/wp-content/uploads/2017/05/wcat_save.png 356w, /wp-content/uploads/2017/05/wcat_save-300x167.png 300w" sizes="(max-width: 356px) 100vw, 356px" /> 
 
 &nbsp;
 
 This will create a file called "fiddler.wcat" in your "C:\Program Files (x86)\Fiddler2" folder.
 
-<img class="aligncenter size-full wp-image-2368" src="http://theorypc.ca/wp-content/uploads/2017/05/fiddler.wcat_.png" alt="" width="760" height="507" srcset="http://theorypc.ca/wp-content/uploads/2017/05/fiddler.wcat_.png 760w, http://theorypc.ca/wp-content/uploads/2017/05/fiddler.wcat_-300x200.png 300w" sizes="(max-width: 760px) 100vw, 760px" /> 
+<img class="aligncenter size-full wp-image-2368" src="/wp-content/uploads/2017/05/fiddler.wcat_.png" alt="" width="760" height="507" srcset="/wp-content/uploads/2017/05/fiddler.wcat_.png 760w, /wp-content/uploads/2017/05/fiddler.wcat_-300x200.png 300w" sizes="(max-width: 760px) 100vw, 760px" /> 
 
 This file will actually require some cleanup as the WCAT scenario generator captures things literally and the scenario file requires escaping of double-quotes.
 
 So in the wcat file, lines like this:
 
-<img class="aligncenter size-full wp-image-2369" src="http://theorypc.ca/wp-content/uploads/2017/05/WCAT_File.png" alt="" width="1069" height="162" srcset="http://theorypc.ca/wp-content/uploads/2017/05/WCAT_File.png 1069w, http://theorypc.ca/wp-content/uploads/2017/05/WCAT_File-300x45.png 300w, http://theorypc.ca/wp-content/uploads/2017/05/WCAT_File-768x116.png 768w" sizes="(max-width: 1069px) 100vw, 1069px" /> 
+<img class="aligncenter size-full wp-image-2369" src="/wp-content/uploads/2017/05/WCAT_File.png" alt="" width="1069" height="162" srcset="/wp-content/uploads/2017/05/WCAT_File.png 1069w, /wp-content/uploads/2017/05/WCAT_File-300x45.png 300w, /wp-content/uploads/2017/05/WCAT_File-768x116.png 768w" sizes="(max-width: 1069px) 100vw, 1069px" /> 
 
 &nbsp;
 
 Need to be modified to look like this:
 
-<img class="aligncenter size-full wp-image-2370" src="http://theorypc.ca/wp-content/uploads/2017/05/WCAT_File_Mod.png" alt="" width="1140" height="167" srcset="http://theorypc.ca/wp-content/uploads/2017/05/WCAT_File_Mod.png 1140w, http://theorypc.ca/wp-content/uploads/2017/05/WCAT_File_Mod-300x44.png 300w, http://theorypc.ca/wp-content/uploads/2017/05/WCAT_File_Mod-768x113.png 768w" sizes="(max-width: 1140px) 100vw, 1140px" /> 
+<img class="aligncenter size-full wp-image-2370" src="/wp-content/uploads/2017/05/WCAT_File_Mod.png" alt="" width="1140" height="167" srcset="/wp-content/uploads/2017/05/WCAT_File_Mod.png 1140w, /wp-content/uploads/2017/05/WCAT_File_Mod-300x44.png 300w, /wp-content/uploads/2017/05/WCAT_File_Mod-768x113.png 768w" sizes="(max-width: 1140px) 100vw, 1140px" /> 
 
 &nbsp;
 
@@ -378,7 +378,7 @@ This command can be executed 10 times on the same box, even the same one as the 
 Lastly, here is a powershell script to measure the performance of each action of the PNA request.  You will need to modify it for your domain/(webinterface/storefront URL)/username/password.  This script will measure the amount of time each stage takes and the total, overall time and saves it as a CSV.
 
 Here's an example of the CSV output:  
-<img class="aligncenter size-full wp-image-2371" src="http://theorypc.ca/wp-content/uploads/2017/05/WebInterface_Storefront_CSV.png" alt="" width="1326" height="459" srcset="http://theorypc.ca/wp-content/uploads/2017/05/WebInterface_Storefront_CSV.png 1326w, http://theorypc.ca/wp-content/uploads/2017/05/WebInterface_Storefront_CSV-300x104.png 300w, http://theorypc.ca/wp-content/uploads/2017/05/WebInterface_Storefront_CSV-768x266.png 768w" sizes="(max-width: 1326px) 100vw, 1326px" /> 
+<img class="aligncenter size-full wp-image-2371" src="/wp-content/uploads/2017/05/WebInterface_Storefront_CSV.png" alt="" width="1326" height="459" srcset="/wp-content/uploads/2017/05/WebInterface_Storefront_CSV.png 1326w, /wp-content/uploads/2017/05/WebInterface_Storefront_CSV-300x104.png 300w, /wp-content/uploads/2017/05/WebInterface_Storefront_CSV-768x266.png 768w" sizes="(max-width: 1326px) 100vw, 1326px" /> 
 
 Some example commands:
 
@@ -389,7 +389,7 @@ Some example commands:
 .\Stress_StoreFrontPNA.ps1 -store https://webinterface.bottheory.local/Citrix/PNAgent/ -username trententtye -password c0mplexp@44 -domain BOTTHEORY.LOCAL</pre>
 
 Examples of "stress component" output:  
-<img class="aligncenter size-full wp-image-2372" src="http://theorypc.ca/wp-content/uploads/2017/05/stresscomponent.png" alt="" width="445" height="423" srcset="http://theorypc.ca/wp-content/uploads/2017/05/stresscomponent.png 445w, http://theorypc.ca/wp-content/uploads/2017/05/stresscomponent-300x285.png 300w" sizes="(max-width: 445px) 100vw, 445px" /> 
+<img class="aligncenter size-full wp-image-2372" src="/wp-content/uploads/2017/05/stresscomponent.png" alt="" width="445" height="423" srcset="/wp-content/uploads/2017/05/stresscomponent.png 445w, /wp-content/uploads/2017/05/stresscomponent-300x285.png 300w" sizes="(max-width: 445px) 100vw, 445px" /> 
 
 And the script:
 

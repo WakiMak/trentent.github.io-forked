@@ -19,33 +19,33 @@ tags:
 ---
 Citrix Provisioning Services has a feature within the "Provisioning Services Console" that allows you to stop/restart/start the streaming service on another server:
 
-<img class="aligncenter size-full wp-image-2789" src="http://theorypc.ca/wp-content/uploads/2018/05/Stop_Restart.png" alt="" width="387" height="352" srcset="http://theorypc.ca/wp-content/uploads/2018/05/Stop_Restart.png 387w, http://theorypc.ca/wp-content/uploads/2018/05/Stop_Restart-300x273.png 300w" sizes="(max-width: 387px) 100vw, 387px" /> 
+<img class="aligncenter size-full wp-image-2789" src="/wp-content/uploads/2018/05/Stop_Restart.png" alt="" width="387" height="352" srcset="/wp-content/uploads/2018/05/Stop_Restart.png 387w, /wp-content/uploads/2018/05/Stop_Restart-300x273.png 300w" sizes="(max-width: 387px) 100vw, 387px" /> 
 
 &nbsp;
 
 This feature worked with Server 2008R2 but with 2012R2 and greater it stopped working. [Citrix _partially_ identified the issue here](https://docs.citrix.com/en-us/provisioning/7-15/managing-servers/server-services-start-stop.html):
 
-<img class="aligncenter size-full wp-image-2790" src="http://theorypc.ca/wp-content/uploads/2018/05/importantConsiderations.png" alt="" width="735" height="687" srcset="http://theorypc.ca/wp-content/uploads/2018/05/importantConsiderations.png 735w, http://theorypc.ca/wp-content/uploads/2018/05/importantConsiderations-300x280.png 300w" sizes="(max-width: 735px) 100vw, 735px" /> 
+<img class="aligncenter size-full wp-image-2790" src="/wp-content/uploads/2018/05/importantConsiderations.png" alt="" width="735" height="687" srcset="/wp-content/uploads/2018/05/importantConsiderations.png 735w, /wp-content/uploads/2018/05/importantConsiderations-300x280.png 300w" sizes="(max-width: 735px) 100vw, 735px" /> 
 
 &nbsp;
 
 I was exploring starting and stopping the streaming service on other PVS servers from the Console and I found this information was incorrect. Adding the NetworkService does **NOT** enable the streaming service to be stop/started/restarted from other machines. The reason is the NETWORKSERVICE is a LOCAL account on the machine itself. When it attempts to reach out and communicate with another system it is translated into a proper SID, which matches the machine account. Since that SID communicating across the wire does not have access to the service you get a failure.
 
-<img class="aligncenter size-full wp-image-2792" src="http://theorypc.ca/wp-content/uploads/2018/05/Services_Failed.png" alt="" width="442" height="357" srcset="http://theorypc.ca/wp-content/uploads/2018/05/Services_Failed.png 442w, http://theorypc.ca/wp-content/uploads/2018/05/Services_Failed-300x242.png 300w" sizes="(max-width: 442px) 100vw, 442px" /> 
+<img class="aligncenter size-full wp-image-2792" src="/wp-content/uploads/2018/05/Services_Failed.png" alt="" width="442" height="357" srcset="/wp-content/uploads/2018/05/Services_Failed.png 442w, /wp-content/uploads/2018/05/Services_Failed-300x242.png 300w" sizes="(max-width: 442px) 100vw, 442px" /> 
 
 In order to fix this _**properly**___ we can add either the machine account permissions for each PVS Server on each service OR we can add all machine accounts into a security group and add _**that**___ as permissions to manipulate the service on each PVS Server.
 
 I created a PowerShell script to enable easily add a group, user or machine account to the Streaming Service. It will also list all the permissions:
 
-<img class="aligncenter size-full wp-image-2793" src="http://theorypc.ca/wp-content/uploads/2018/05/GetStreamServiceACL.png" alt="" width="841" height="726" srcset="http://theorypc.ca/wp-content/uploads/2018/05/GetStreamServiceACL.png 841w, http://theorypc.ca/wp-content/uploads/2018/05/GetStreamServiceACL-300x259.png 300w, http://theorypc.ca/wp-content/uploads/2018/05/GetStreamServiceACL-768x663.png 768w" sizes="(max-width: 841px) 100vw, 841px" /> 
+<img class="aligncenter size-full wp-image-2793" src="/wp-content/uploads/2018/05/GetStreamServiceACL.png" alt="" width="841" height="726" srcset="/wp-content/uploads/2018/05/GetStreamServiceACL.png 841w, /wp-content/uploads/2018/05/GetStreamServiceACL-300x259.png 300w, /wp-content/uploads/2018/05/GetStreamServiceACL-768x663.png 768w" sizes="(max-width: 841px) 100vw, 841px" /> 
 
 An example adding a Group to the permissions to the service:
 
-<img class="aligncenter size-full wp-image-2794" src="http://theorypc.ca/wp-content/uploads/2018/05/AddACEToService.png" alt="" width="1299" height="915" srcset="http://theorypc.ca/wp-content/uploads/2018/05/AddACEToService.png 1299w, http://theorypc.ca/wp-content/uploads/2018/05/AddACEToService-300x211.png 300w, http://theorypc.ca/wp-content/uploads/2018/05/AddACEToService-768x541.png 768w" sizes="(max-width: 1299px) 100vw, 1299px" /> 
+<img class="aligncenter size-full wp-image-2794" src="/wp-content/uploads/2018/05/AddACEToService.png" alt="" width="1299" height="915" srcset="/wp-content/uploads/2018/05/AddACEToService.png 1299w, /wp-content/uploads/2018/05/AddACEToService-300x211.png 300w, /wp-content/uploads/2018/05/AddACEToService-768x541.png 768w" sizes="(max-width: 1299px) 100vw, 1299px" /> 
 
 And now we can start the service remotely:
 
-<img class="aligncenter size-full wp-image-2795" src="http://theorypc.ca/wp-content/uploads/2018/05/Services_Started.png" alt="" width="441" height="357" srcset="http://theorypc.ca/wp-content/uploads/2018/05/Services_Started.png 441w, http://theorypc.ca/wp-content/uploads/2018/05/Services_Started-300x243.png 300w" sizes="(max-width: 441px) 100vw, 441px" /> 
+<img class="aligncenter size-full wp-image-2795" src="/wp-content/uploads/2018/05/Services_Started.png" alt="" width="441" height="357" srcset="/wp-content/uploads/2018/05/Services_Started.png 441w, /wp-content/uploads/2018/05/Services_Started-300x243.png 300w" sizes="(max-width: 441px) 100vw, 441px" /> 
 
 &nbsp;
 

@@ -96,7 +96,7 @@ One of the nice things about Windows Update is it kicks up Windows Error Reporti
 
 In this case I ran procmon while I tried installing this update, went to 11:25:10 and did a search for "Windows Error Reporting"
 
-<img class="aligncenter size-large wp-image-1790" src="http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug1-1024x483.png" alt="windowsupdatebug1" width="1024" height="483" srcset="http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug1-1024x483.png 1024w, http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug1-300x141.png 300w, http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug1-768x362.png 768w, http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug1.png 1267w" sizes="(max-width: 1024px) 100vw, 1024px" /> 
+<img class="aligncenter size-large wp-image-1790" src="/wp-content/uploads/2016/10/windowsupdatebug1-1024x483.png" alt="windowsupdatebug1" width="1024" height="483" srcset="/wp-content/uploads/2016/10/windowsupdatebug1-1024x483.png 1024w, /wp-content/uploads/2016/10/windowsupdatebug1-300x141.png 300w, /wp-content/uploads/2016/10/windowsupdatebug1-768x362.png 768w, /wp-content/uploads/2016/10/windowsupdatebug1.png 1267w" sizes="(max-width: 1024px) 100vw, 1024px" /> 
 
 The actual Windows Error Reporting kicked in at the check to see if it is disabled (DisableWerReporting).  The last key it read before it crashed was:
 
@@ -104,11 +104,11 @@ The actual Windows Error Reporting kicked in at the check to see if it is disabl
 
 If I open that key in Regedit here is what it looks like:
 
-<img class="aligncenter size-large wp-image-1791" src="http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug2-1-1024x147.png" alt="windowsupdatebug2" width="1024" height="147" srcset="http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug2-1-1024x147.png 1024w, http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug2-1-300x43.png 300w, http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug2-1-768x110.png 768w, http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug2-1.png 1280w" sizes="(max-width: 1024px) 100vw, 1024px" /> 
+<img class="aligncenter size-large wp-image-1791" src="/wp-content/uploads/2016/10/windowsupdatebug2-1-1024x147.png" alt="windowsupdatebug2" width="1024" height="147" srcset="/wp-content/uploads/2016/10/windowsupdatebug2-1-1024x147.png 1024w, /wp-content/uploads/2016/10/windowsupdatebug2-1-300x43.png 300w, /wp-content/uploads/2016/10/windowsupdatebug2-1-768x110.png 768w, /wp-content/uploads/2016/10/windowsupdatebug2-1.png 1280w" sizes="(max-width: 1024px) 100vw, 1024px" /> 
 
 And what another key in that same list looks like:
 
-<img class="aligncenter size-large wp-image-1792" src="http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug3-1-1024x176.png" alt="windowsupdatebug3" width="1024" height="176" srcset="http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug3-1-1024x176.png 1024w, http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug3-1-300x52.png 300w, http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug3-1-768x132.png 768w, http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug3-1.png 1278w" sizes="(max-width: 1024px) 100vw, 1024px" /> 
+<img class="aligncenter size-large wp-image-1792" src="/wp-content/uploads/2016/10/windowsupdatebug3-1-1024x176.png" alt="windowsupdatebug3" width="1024" height="176" srcset="/wp-content/uploads/2016/10/windowsupdatebug3-1-1024x176.png 1024w, /wp-content/uploads/2016/10/windowsupdatebug3-1-300x52.png 300w, /wp-content/uploads/2016/10/windowsupdatebug3-1-768x132.png 768w, /wp-content/uploads/2016/10/windowsupdatebug3-1.png 1278w" sizes="(max-width: 1024px) 100vw, 1024px" /> 
 
 &nbsp;
 
@@ -120,7 +120,7 @@ I went to another system and exported the values.  In order to find the proper k
 The key path was present in both systems because they were at the same patch level but the look of the key is different because of GUIDs are generated:
 
 <div id="attachment_1793" style="width: 1034px" class="wp-caption aligncenter">
-  <img aria-describedby="caption-attachment-1793" class="wp-image-1793 size-large" src="http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug10-1-1024x195.png" alt="windowsupdatebug10" width="1024" height="195" srcset="http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug10-1-1024x195.png 1024w, http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug10-1-300x57.png 300w, http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug10-1-768x146.png 768w, http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug10-1.png 1253w" sizes="(max-width: 1024px) 100vw, 1024px" /></p> 
+  <img aria-describedby="caption-attachment-1793" class="wp-image-1793 size-large" src="/wp-content/uploads/2016/10/windowsupdatebug10-1-1024x195.png" alt="windowsupdatebug10" width="1024" height="195" srcset="/wp-content/uploads/2016/10/windowsupdatebug10-1-1024x195.png 1024w, /wp-content/uploads/2016/10/windowsupdatebug10-1-300x57.png 300w, /wp-content/uploads/2016/10/windowsupdatebug10-1-768x146.png 768w, /wp-content/uploads/2016/10/windowsupdatebug10-1.png 1253w" sizes="(max-width: 1024px) 100vw, 1024px" /></p> 
   
   <p id="caption-attachment-1793" class="wp-caption-text">
     Working system - Notice the highlight is different
@@ -130,7 +130,7 @@ The key path was present in both systems because they were at the same patch lev
 By tracing back in the working system I exported the key that "c!" is referencing.
 
 <div id="attachment_1794" style="width: 1034px" class="wp-caption aligncenter">
-  <img aria-describedby="caption-attachment-1794" class="size-large wp-image-1794" src="http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug11-1-1024x194.png" alt="Working System has S256H, identity keys" width="1024" height="194" srcset="http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug11-1-1024x194.png 1024w, http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug11-1-300x57.png 300w, http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug11-1-768x145.png 768w, http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug11-1.png 1248w" sizes="(max-width: 1024px) 100vw, 1024px" /></p> 
+  <img aria-describedby="caption-attachment-1794" class="size-large wp-image-1794" src="/wp-content/uploads/2016/10/windowsupdatebug11-1-1024x194.png" alt="Working System has S256H, identity keys" width="1024" height="194" srcset="/wp-content/uploads/2016/10/windowsupdatebug11-1-1024x194.png 1024w, /wp-content/uploads/2016/10/windowsupdatebug11-1-300x57.png 300w, /wp-content/uploads/2016/10/windowsupdatebug11-1-768x145.png 768w, /wp-content/uploads/2016/10/windowsupdatebug11-1.png 1248w" sizes="(max-width: 1024px) 100vw, 1024px" /></p> 
   
   <p id="caption-attachment-1794" class="wp-caption-text">
     Working System has S256H, identity keys
@@ -212,7 +212,7 @@ And then added the last "c!" line by following these next steps:
     
     I then tried to install the patch:
     
-<img class="aligncenter size-full wp-image-1795" src="http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug9-1.png" alt="windowsupdatebug9" width="548" height="383" srcset="http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug9-1.png 548w, http://theorypc.ca/wp-content/uploads/2016/10/windowsupdatebug9-1-300x210.png 300w" sizes="(max-width: 548px) 100vw, 548px" /> </li> </ol> 
+<img class="aligncenter size-full wp-image-1795" src="/wp-content/uploads/2016/10/windowsupdatebug9-1.png" alt="windowsupdatebug9" width="548" height="383" srcset="/wp-content/uploads/2016/10/windowsupdatebug9-1.png 548w, /wp-content/uploads/2016/10/windowsupdatebug9-1-300x210.png 300w" sizes="(max-width: 548px) 100vw, 548px" /> </li> </ol> 
     
     And it worked!
     

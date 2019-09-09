@@ -41,7 +41,7 @@ Address Accelerator
 
 With our packages complete, we go onto the AppV Management Server and add the packages to the server:
 
-[<img src="http://theorypc.ca/wp-content/uploads/2015/12/Screen-2BShot-2B2015-12-09-2Bat-2B1.47.50-2BPM-1-300x64.png" width="320" height="68" border="0" />](http://theorypc.ca/wp-content/uploads/2015/12/Screen-2BShot-2B2015-12-09-2Bat-2B1.47.50-2BPM-1.png)
+[<img src="/wp-content/uploads/2015/12/Screen-2BShot-2B2015-12-09-2Bat-2B1.47.50-2BPM-1-300x64.png" width="320" height="68" border="0" />](/wp-content/uploads/2015/12/Screen-2BShot-2B2015-12-09-2Bat-2B1.47.50-2BPM-1.png)
 
 Then we go to the Connection Groups and 'ADD CONNECTION GROUP'
 

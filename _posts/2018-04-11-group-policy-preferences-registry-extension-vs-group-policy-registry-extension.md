@@ -41,11 +41,11 @@ In this scenario, the registry will be clean and a new value will be created.  I
 
 ### Traditional:
 
-<img class="aligncenter size-full wp-image-2728" src="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-09-at-11.14.41-PM.png" alt="" width="1316" height="172" srcset="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-09-at-11.14.41-PM.png 1316w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-09-at-11.14.41-PM-300x39.png 300w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-09-at-11.14.41-PM-768x100.png 768w" sizes="(max-width: 1316px) 100vw, 1316px" /> 
+<img class="aligncenter size-full wp-image-2728" src="/wp-content/uploads/2018/04/Screen-Shot-2018-04-09-at-11.14.41-PM.png" alt="" width="1316" height="172" srcset="/wp-content/uploads/2018/04/Screen-Shot-2018-04-09-at-11.14.41-PM.png 1316w, /wp-content/uploads/2018/04/Screen-Shot-2018-04-09-at-11.14.41-PM-300x39.png 300w, /wp-content/uploads/2018/04/Screen-Shot-2018-04-09-at-11.14.41-PM-768x100.png 768w" sizes="(max-width: 1316px) 100vw, 1316px" /> 
 
 After reading the Registry.Pol from the sysvol, the application of the registry key takes just 3 operations.  RegCreateKey, RegSetValue, and RegCloseKey.
 
-<img class="aligncenter size-full wp-image-2727" src="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-09-at-11.15.01-PM.png" alt="" width="366" height="44" srcset="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-09-at-11.15.01-PM.png 366w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-09-at-11.15.01-PM-300x36.png 300w" sizes="(max-width: 366px) 100vw, 366px" /> 
+<img class="aligncenter size-full wp-image-2727" src="/wp-content/uploads/2018/04/Screen-Shot-2018-04-09-at-11.15.01-PM.png" alt="" width="366" height="44" srcset="/wp-content/uploads/2018/04/Screen-Shot-2018-04-09-at-11.15.01-PM.png 366w, /wp-content/uploads/2018/04/Screen-Shot-2018-04-09-at-11.15.01-PM-300x36.png 300w" sizes="(max-width: 366px) 100vw, 366px" /> 
 
 Each one of these operations took around 1-1.1ms, with the caveat that Process Monitor (procmon) consumes some resources capturing this information, slowing it down slightly.
 
@@ -53,13 +53,13 @@ Each one of these operations took around 1-1.1ms, with the caveat that Process M
 
 ### GPP:
 
-<img class="aligncenter size-full wp-image-2729" src="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-09-at-11.24.19-PM.png" alt="" width="1312" height="172" srcset="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-09-at-11.24.19-PM.png 1312w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-09-at-11.24.19-PM-300x39.png 300w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-09-at-11.24.19-PM-768x101.png 768w" sizes="(max-width: 1312px) 100vw, 1312px" /> 
+<img class="aligncenter size-full wp-image-2729" src="/wp-content/uploads/2018/04/Screen-Shot-2018-04-09-at-11.24.19-PM.png" alt="" width="1312" height="172" srcset="/wp-content/uploads/2018/04/Screen-Shot-2018-04-09-at-11.24.19-PM.png 1312w, /wp-content/uploads/2018/04/Screen-Shot-2018-04-09-at-11.24.19-PM-300x39.png 300w, /wp-content/uploads/2018/04/Screen-Shot-2018-04-09-at-11.24.19-PM-768x101.png 768w" sizes="(max-width: 1312px) 100vw, 1312px" /> 
 
 We can see a new operation "RegQueryValue".  As [described by William Stanek](https://blogs.msdn.microsoft.com/microsoft_press/2009/09/29/william-stanek-applying-group-policy-preferences-with-crud/), "The Create action creates a preference if it doesn't already exist. For example, you can use the Create action to create and set the value of a user environment variable called _CurrentOrg_ on computers where it does not yet exist. _<span style="text-decoration: underline;"><strong>If the variable already exists</strong></span>_, the value of the variable will not be changed."
 
 The RegQueryValue is executing the check to see if a variable already exists.  So what does GPP look like if the value is already present?
 
-<img class="aligncenter size-full wp-image-2730" src="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-09-at-11.33.04-PM.png" alt="" width="1316" height="115" srcset="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-09-at-11.33.04-PM.png 1316w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-09-at-11.33.04-PM-300x26.png 300w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-09-at-11.33.04-PM-768x67.png 768w" sizes="(max-width: 1316px) 100vw, 1316px" /> 
+<img class="aligncenter size-full wp-image-2730" src="/wp-content/uploads/2018/04/Screen-Shot-2018-04-09-at-11.33.04-PM.png" alt="" width="1316" height="115" srcset="/wp-content/uploads/2018/04/Screen-Shot-2018-04-09-at-11.33.04-PM.png 1316w, /wp-content/uploads/2018/04/Screen-Shot-2018-04-09-at-11.33.04-PM-300x26.png 300w, /wp-content/uploads/2018/04/Screen-Shot-2018-04-09-at-11.33.04-PM-768x67.png 768w" sizes="(max-width: 1316px) 100vw, 1316px" /> 
 
 3 operations with the process exiting on a success on the value being present.
 
@@ -71,13 +71,13 @@ In this scenario, the registry will contain a value, and the policy will be upda
 
 ### Traditional:
 
-<img class="aligncenter size-full wp-image-2732" src="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-09-at-11.45.04-PM.png" alt="" width="1324" height="365" srcset="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-09-at-11.45.04-PM.png 1324w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-09-at-11.45.04-PM-300x83.png 300w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-09-at-11.45.04-PM-768x212.png 768w" sizes="(max-width: 1324px) 100vw, 1324px" /> 
+<img class="aligncenter size-full wp-image-2732" src="/wp-content/uploads/2018/04/Screen-Shot-2018-04-09-at-11.45.04-PM.png" alt="" width="1324" height="365" srcset="/wp-content/uploads/2018/04/Screen-Shot-2018-04-09-at-11.45.04-PM.png 1324w, /wp-content/uploads/2018/04/Screen-Shot-2018-04-09-at-11.45.04-PM-300x83.png 300w, /wp-content/uploads/2018/04/Screen-Shot-2018-04-09-at-11.45.04-PM-768x212.png 768w" sizes="(max-width: 1324px) 100vw, 1324px" /> 
 
 Traditional maintains a very simple "3 operation" action with updating a value having the same effect as if the value was never present to begin with.
 
 ### GPP:
 
-<img class="aligncenter size-full wp-image-2731" src="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-09-at-11.38.10-PM.png" alt="" width="1308" height="115" srcset="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-09-at-11.38.10-PM.png 1308w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-09-at-11.38.10-PM-300x26.png 300w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-09-at-11.38.10-PM-768x68.png 768w" sizes="(max-width: 1308px) 100vw, 1308px" /> 
+<img class="aligncenter size-full wp-image-2731" src="/wp-content/uploads/2018/04/Screen-Shot-2018-04-09-at-11.38.10-PM.png" alt="" width="1308" height="115" srcset="/wp-content/uploads/2018/04/Screen-Shot-2018-04-09-at-11.38.10-PM.png 1308w, /wp-content/uploads/2018/04/Screen-Shot-2018-04-09-at-11.38.10-PM-300x26.png 300w, /wp-content/uploads/2018/04/Screen-Shot-2018-04-09-at-11.38.10-PM-768x68.png 768w" sizes="(max-width: 1308px) 100vw, 1308px" /> 
 
 With the "Update" action, GPP now executes just 3 operations, same as the traditional.
 
@@ -89,7 +89,7 @@ In this scenario, I am going to remove a registry value.  Using the traditional 
 
 ### Traditional:
 
-<img class="aligncenter size-full wp-image-2733" src="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-10-at-12.02.24-AM.png" alt="" width="1109" height="106" srcset="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-10-at-12.02.24-AM.png 1109w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-10-at-12.02.24-AM-300x29.png 300w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-10-at-12.02.24-AM-768x73.png 768w" sizes="(max-width: 1109px) 100vw, 1109px" /> 
+<img class="aligncenter size-full wp-image-2733" src="/wp-content/uploads/2018/04/Screen-Shot-2018-04-10-at-12.02.24-AM.png" alt="" width="1109" height="106" srcset="/wp-content/uploads/2018/04/Screen-Shot-2018-04-10-at-12.02.24-AM.png 1109w, /wp-content/uploads/2018/04/Screen-Shot-2018-04-10-at-12.02.24-AM-300x29.png 300w, /wp-content/uploads/2018/04/Screen-Shot-2018-04-10-at-12.02.24-AM-768x73.png 768w" sizes="(max-width: 1109px) 100vw, 1109px" /> 
 
 Again, Traditional performs it's work in just 3 operations.
 
@@ -97,7 +97,7 @@ Again, Traditional performs it's work in just 3 operations.
 
 ### GPP:
 
-<img class="aligncenter size-full wp-image-2734" src="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-09-at-11.57.07-PM.png" alt="" width="1316" height="113" srcset="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-09-at-11.57.07-PM.png 1316w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-09-at-11.57.07-PM-300x26.png 300w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-09-at-11.57.07-PM-768x66.png 768w" sizes="(max-width: 1316px) 100vw, 1316px" /> 
+<img class="aligncenter size-full wp-image-2734" src="/wp-content/uploads/2018/04/Screen-Shot-2018-04-09-at-11.57.07-PM.png" alt="" width="1316" height="113" srcset="/wp-content/uploads/2018/04/Screen-Shot-2018-04-09-at-11.57.07-PM.png 1316w, /wp-content/uploads/2018/04/Screen-Shot-2018-04-09-at-11.57.07-PM-300x26.png 300w, /wp-content/uploads/2018/04/Screen-Shot-2018-04-09-at-11.57.07-PM-768x66.png 768w" sizes="(max-width: 1316px) 100vw, 1316px" /> 
 
 GPP also performs this work in just 3 operations.
 
@@ -111,7 +111,7 @@ This operation ..."creates preferences that don't yet exist, or deletes and then
 
 This sounds like it performs a few operations.  Lets see what it looks like:
 
-<img class="aligncenter size-full wp-image-2735" src="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-10-at-12.07.41-AM.png" alt="" width="1317" height="139" srcset="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-10-at-12.07.41-AM.png 1317w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-10-at-12.07.41-AM-300x32.png 300w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-10-at-12.07.41-AM-768x81.png 768w" sizes="(max-width: 1317px) 100vw, 1317px" /> 
+<img class="aligncenter size-full wp-image-2735" src="/wp-content/uploads/2018/04/Screen-Shot-2018-04-10-at-12.07.41-AM.png" alt="" width="1317" height="139" srcset="/wp-content/uploads/2018/04/Screen-Shot-2018-04-10-at-12.07.41-AM.png 1317w, /wp-content/uploads/2018/04/Screen-Shot-2018-04-10-at-12.07.41-AM-300x32.png 300w, /wp-content/uploads/2018/04/Screen-Shot-2018-04-10-at-12.07.41-AM-768x81.png 768w" sizes="(max-width: 1317px) 100vw, 1317px" /> 
 
 Replace executes "6" operations.  RegOpenKey, RegDeleteValue, RegCloseKey, RegCreateKey, RegSetValue, RegCloseKey.  I'm not entirely sure why you'd want a DeleteValue before SetValue but that's what this selection does.
 
@@ -121,7 +121,7 @@ Replace executes "6" operations.  RegOpenKey, RegDeleteValue, RegCloseKey, RegCr
 
 During the process of creating this post, I wondered if the 3 operation "Update" would work better for creating a key.  The GPP "Create" selection has 4 operations, but the "Update" selection only has 3 operations.  I deleted my "TrententTestPreferences" key and refreshed group policy:
 
-<img class="aligncenter size-full wp-image-2736" src="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-10-at-12.14.05-AM.png" alt="" width="1211" height="113" srcset="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-10-at-12.14.05-AM.png 1211w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-10-at-12.14.05-AM-300x28.png 300w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-10-at-12.14.05-AM-768x72.png 768w" sizes="(max-width: 1211px) 100vw, 1211px" /> 
+<img class="aligncenter size-full wp-image-2736" src="/wp-content/uploads/2018/04/Screen-Shot-2018-04-10-at-12.14.05-AM.png" alt="" width="1211" height="113" srcset="/wp-content/uploads/2018/04/Screen-Shot-2018-04-10-at-12.14.05-AM.png 1211w, /wp-content/uploads/2018/04/Screen-Shot-2018-04-10-at-12.14.05-AM-300x28.png 300w, /wp-content/uploads/2018/04/Screen-Shot-2018-04-10-at-12.14.05-AM-768x72.png 768w" sizes="(max-width: 1211px) 100vw, 1211px" /> 
 
 &nbsp;
 
@@ -129,7 +129,7 @@ During the process of creating this post, I wondered if the 3 operation "Update"
 
 The final tally:
 
-<img class="aligncenter size-full wp-image-2737" src="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-10-at-12.24.34-AM.png" alt="" width="536" height="240" srcset="http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-10-at-12.24.34-AM.png 536w, http://theorypc.ca/wp-content/uploads/2018/04/Screen-Shot-2018-04-10-at-12.24.34-AM-300x134.png 300w" sizes="(max-width: 536px) 100vw, 536px" /> 
+<img class="aligncenter size-full wp-image-2737" src="/wp-content/uploads/2018/04/Screen-Shot-2018-04-10-at-12.24.34-AM.png" alt="" width="536" height="240" srcset="/wp-content/uploads/2018/04/Screen-Shot-2018-04-10-at-12.24.34-AM.png 536w, /wp-content/uploads/2018/04/Screen-Shot-2018-04-10-at-12.24.34-AM-300x134.png 300w" sizes="(max-width: 536px) 100vw, 536px" /> 
 
 Stay tuned for part 2 - The Performance Comparison
 

@@ -19,7 +19,7 @@ We have applications that require printers be loaded before the application is s
 
 So we have this value 'unchecked' for some applications:
 
-<img class="aligncenter size-full wp-image-1684" src="http://theorypc.ca/wp-content/uploads/2016/08/Screen-Shot-2016-08-31-at-12.12.08-AM.png" alt="Screen Shot 2016-08-31 at 12.12.08 AM" width="483" height="61" srcset="http://theorypc.ca/wp-content/uploads/2016/08/Screen-Shot-2016-08-31-at-12.12.08-AM.png 483w, http://theorypc.ca/wp-content/uploads/2016/08/Screen-Shot-2016-08-31-at-12.12.08-AM-300x38.png 300w" sizes="(max-width: 483px) 100vw, 483px" /> 
+<img class="aligncenter size-full wp-image-1684" src="/wp-content/uploads/2016/08/Screen-Shot-2016-08-31-at-12.12.08-AM.png" alt="Screen Shot 2016-08-31 at 12.12.08 AM" width="483" height="61" srcset="/wp-content/uploads/2016/08/Screen-Shot-2016-08-31-at-12.12.08-AM.png 483w, /wp-content/uploads/2016/08/Screen-Shot-2016-08-31-at-12.12.08-AM-300x38.png 300w" sizes="(max-width: 483px) 100vw, 483px" /> 
 
 But how does this impact our logon times?
 
@@ -28,7 +28,7 @@ Well... Our organization just underwent a print server migration/upgrade where s
 What's the impact?
 
 <div id="attachment_1685" style="width: 528px" class="wp-caption aligncenter">
-  <img aria-describedby="caption-attachment-1685" class="wp-image-1685 size-full" src="http://theorypc.ca/wp-content/uploads/2016/08/Screen-Shot-2016-08-31-at-12.15.10-AM.png" alt="Screen Shot 2016-08-31 at 12.15.10 AM" width="518" height="85" srcset="http://theorypc.ca/wp-content/uploads/2016/08/Screen-Shot-2016-08-31-at-12.15.10-AM.png 518w, http://theorypc.ca/wp-content/uploads/2016/08/Screen-Shot-2016-08-31-at-12.15.10-AM-300x49.png 300w" sizes="(max-width: 518px) 100vw, 518px" /></p> 
+  <img aria-describedby="caption-attachment-1685" class="wp-image-1685 size-full" src="/wp-content/uploads/2016/08/Screen-Shot-2016-08-31-at-12.15.10-AM.png" alt="Screen Shot 2016-08-31 at 12.15.10 AM" width="518" height="85" srcset="/wp-content/uploads/2016/08/Screen-Shot-2016-08-31-at-12.15.10-AM.png 518w, /wp-content/uploads/2016/08/Screen-Shot-2016-08-31-at-12.15.10-AM-300x49.png 300w" sizes="(max-width: 518px) 100vw, 518px" /></p> 
   
   <p id="caption-attachment-1685" class="wp-caption-text">
     Waiting for printers before starting the application...
@@ -38,7 +38,7 @@ What's the impact?
 &nbsp;
 
 <div id="attachment_1688" style="width: 537px" class="wp-caption aligncenter">
-  <img aria-describedby="caption-attachment-1688" class="wp-image-1688 size-full" src="http://theorypc.ca/wp-content/uploads/2016/08/Screen-Shot-2016-08-31-at-12.26.50-AM.png" alt="Screen Shot 2016-08-31 at 12.26.50 AM" width="527" height="397" srcset="http://theorypc.ca/wp-content/uploads/2016/08/Screen-Shot-2016-08-31-at-12.26.50-AM.png 527w, http://theorypc.ca/wp-content/uploads/2016/08/Screen-Shot-2016-08-31-at-12.26.50-AM-300x226.png 300w" sizes="(max-width: 527px) 100vw, 527px" /></p> 
+  <img aria-describedby="caption-attachment-1688" class="wp-image-1688 size-full" src="/wp-content/uploads/2016/08/Screen-Shot-2016-08-31-at-12.26.50-AM.png" alt="Screen Shot 2016-08-31 at 12.26.50 AM" width="527" height="397" srcset="/wp-content/uploads/2016/08/Screen-Shot-2016-08-31-at-12.26.50-AM.png 527w, /wp-content/uploads/2016/08/Screen-Shot-2016-08-31-at-12.26.50-AM-300x226.png 300w" sizes="(max-width: 527px) 100vw, 527px" /></p> 
   
   <p id="caption-attachment-1688" class="wp-caption-text">
     Without waiting for printers
@@ -49,7 +49,7 @@ What's the impact?
 
 Well, it turns out waiting for printers and the subsystem components to support them add a fair amount of time, and then worse is network printers that don't go anywhere anymore.  I've seen these logons wait for connection before timing out, all the while the user sits there and waits.  The script that comes with ControlUp for analyzing logons is good, but I wanted to know more on why some systems had long logon times and the only clue was Pre-Shell (userinit) taking up all the time.  So I dug into the print logs and found a way to measure their impact.
 
-<img class="aligncenter size-full wp-image-1689" src="http://theorypc.ca/wp-content/uploads/2016/08/Screen-Shot-2016-08-31-at-12.32.05-AM.png" alt="Screen Shot 2016-08-31 at 12.32.05 AM" width="613" height="564" srcset="http://theorypc.ca/wp-content/uploads/2016/08/Screen-Shot-2016-08-31-at-12.32.05-AM.png 613w, http://theorypc.ca/wp-content/uploads/2016/08/Screen-Shot-2016-08-31-at-12.32.05-AM-300x276.png 300w" sizes="(max-width: 613px) 100vw, 613px" /> 
+<img class="aligncenter size-full wp-image-1689" src="/wp-content/uploads/2016/08/Screen-Shot-2016-08-31-at-12.32.05-AM.png" alt="Screen Shot 2016-08-31 at 12.32.05 AM" width="613" height="564" srcset="/wp-content/uploads/2016/08/Screen-Shot-2016-08-31-at-12.32.05-AM.png 613w, /wp-content/uploads/2016/08/Screen-Shot-2016-08-31-at-12.32.05-AM-300x276.png 300w" sizes="(max-width: 613px) 100vw, 613px" /> 
 
 With my modified script we can clearly see waiting for the printers takes ~15.4s with a few printers over a few seconds and the rest at 0.5 seconds or so.  One thing about this process is that mapping printers is synchronous.  So when or if 1 stalls, the whole process gets stuck.  All my printers were local except for the 'Generic / Text Only' which was a network printer where I powered off the server.  It hung the longest at 5.9 seconds, but I've seen 'non-existant' network mapped printers hang for 150 seconds or so...
 
@@ -65,7 +65,7 @@ WEVTUTIL SL Microsoft-Windows-PrintService/Operational /E:TRUE
 
 The ControlUp arguments need to look like this now:
 
-<img class="aligncenter size-full wp-image-1690" src="http://theorypc.ca/wp-content/uploads/2016/08/Screen-Shot-2016-08-31-at-12.40.36-AM.png" alt="Screen Shot 2016-08-31 at 12.40.36 AM" width="597" height="315" srcset="http://theorypc.ca/wp-content/uploads/2016/08/Screen-Shot-2016-08-31-at-12.40.36-AM.png 597w, http://theorypc.ca/wp-content/uploads/2016/08/Screen-Shot-2016-08-31-at-12.40.36-AM-300x158.png 300w" sizes="(max-width: 597px) 100vw, 597px" /> 
+<img class="aligncenter size-full wp-image-1690" src="/wp-content/uploads/2016/08/Screen-Shot-2016-08-31-at-12.40.36-AM.png" alt="Screen Shot 2016-08-31 at 12.40.36 AM" width="597" height="315" srcset="/wp-content/uploads/2016/08/Screen-Shot-2016-08-31-at-12.40.36-AM.png 597w, /wp-content/uploads/2016/08/Screen-Shot-2016-08-31-at-12.40.36-AM-300x158.png 300w" sizes="(max-width: 597px) 100vw, 597px" /> 
 
 Here is my updated script:
 

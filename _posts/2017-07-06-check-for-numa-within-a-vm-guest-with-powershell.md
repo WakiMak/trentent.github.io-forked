@@ -149,13 +149,13 @@ namespace Windows
 
 I was going to use this to detect NUMA and configure a network adapter RSS based upon NUMA configuration...  But I'm getting lazy and am going to ignore it.  But I don't want this code to go away.  So here it is.  A way to detect if you are on a NUMA system in a guest VM in Powershell.
 
-<img class="aligncenter size-full wp-image-2498" src="http://theorypc.ca/wp-content/uploads/2017/07/Powershell_results.png" alt="" width="1539" height="461" srcset="http://theorypc.ca/wp-content/uploads/2017/07/Powershell_results.png 1539w, http://theorypc.ca/wp-content/uploads/2017/07/Powershell_results-300x90.png 300w, http://theorypc.ca/wp-content/uploads/2017/07/Powershell_results-768x230.png 768w" sizes="(max-width: 1539px) 100vw, 1539px" /> 
+<img class="aligncenter size-full wp-image-2498" src="/wp-content/uploads/2017/07/Powershell_results.png" alt="" width="1539" height="461" srcset="/wp-content/uploads/2017/07/Powershell_results.png 1539w, /wp-content/uploads/2017/07/Powershell_results-300x90.png 300w, /wp-content/uploads/2017/07/Powershell_results-768x230.png 768w" sizes="(max-width: 1539px) 100vw, 1539px" /> 
 
 If you have greater than "1" for the NumaNode count then NUMA is present.
 
 CoreInfo.exe result on the same system:
 
-<img class="aligncenter size-full wp-image-2499" src="http://theorypc.ca/wp-content/uploads/2017/07/CoreInfoResultOnSameSystem.png" alt="" width="585" height="525" srcset="http://theorypc.ca/wp-content/uploads/2017/07/CoreInfoResultOnSameSystem.png 585w, http://theorypc.ca/wp-content/uploads/2017/07/CoreInfoResultOnSameSystem-300x269.png 300w" sizes="(max-width: 585px) 100vw, 585px" /> 
+<img class="aligncenter size-full wp-image-2499" src="/wp-content/uploads/2017/07/CoreInfoResultOnSameSystem.png" alt="" width="585" height="525" srcset="/wp-content/uploads/2017/07/CoreInfoResultOnSameSystem.png 585w, /wp-content/uploads/2017/07/CoreInfoResultOnSameSystem-300x269.png 300w" sizes="(max-width: 585px) 100vw, 585px" /> 
 
 &nbsp;
 

@@ -78,7 +78,7 @@ Just like my previous testing I'm going to test with 2, 4, 8 and now with 16 CPU
 
 2vCPU
 
-<img class="aligncenter wp-image-2120 size-full" src="http://theorypc.ca/wp-content/uploads/2017/04/2vCPU.png" alt="" width="815" height="544" srcset="http://theorypc.ca/wp-content/uploads/2017/04/2vCPU.png 815w, http://theorypc.ca/wp-content/uploads/2017/04/2vCPU-300x200.png 300w, http://theorypc.ca/wp-content/uploads/2017/04/2vCPU-768x513.png 768w" sizes="(max-width: 815px) 100vw, 815px" /> 
+<img class="aligncenter wp-image-2120 size-full" src="/wp-content/uploads/2017/04/2vCPU.png" alt="" width="815" height="544" srcset="/wp-content/uploads/2017/04/2vCPU.png 815w, /wp-content/uploads/2017/04/2vCPU-300x200.png 300w, /wp-content/uploads/2017/04/2vCPU-768x513.png 768w" sizes="(max-width: 815px) 100vw, 815px" /> 
 
 <p style="text-align: center;">
   <strong><span style="color: #0000ff;">IMA is in BLUE</span></strong> and <strong><span style="color: #ff6600;">FMA is in ORANGE</span></strong>.
@@ -89,19 +89,19 @@ Just like my previous testing I'm going to test with 2, 4, 8 and now with 16 CPU
 </p>
 
 4vCPU  
-<img class="aligncenter size-full wp-image-2121" src="http://theorypc.ca/wp-content/uploads/2017/04/4vCPU.png" alt="" width="747" height="527" srcset="http://theorypc.ca/wp-content/uploads/2017/04/4vCPU.png 747w, http://theorypc.ca/wp-content/uploads/2017/04/4vCPU-300x212.png 300w" sizes="(max-width: 747px) 100vw, 747px" /> 
+<img class="aligncenter size-full wp-image-2121" src="/wp-content/uploads/2017/04/4vCPU.png" alt="" width="747" height="527" srcset="/wp-content/uploads/2017/04/4vCPU.png 747w, /wp-content/uploads/2017/04/4vCPU-300x212.png 300w" sizes="(max-width: 747px) 100vw, 747px" /> 
 
 Again, FMA continues its dominance in enumeration performance.  The gap between them grows slightly to 26% at 400 concurrent connections.  At our target of under 5000ms, IMA breaks at 250 connections, FMA actually held until around 380 connections.
 
 8vCPU
 
-<img class="aligncenter size-full wp-image-2122" src="http://theorypc.ca/wp-content/uploads/2017/04/8vCPU.png" alt="" width="749" height="545" srcset="http://theorypc.ca/wp-content/uploads/2017/04/8vCPU.png 749w, http://theorypc.ca/wp-content/uploads/2017/04/8vCPU-300x218.png 300w" sizes="(max-width: 749px) 100vw, 749px" /> 
+<img class="aligncenter size-full wp-image-2122" src="/wp-content/uploads/2017/04/8vCPU.png" alt="" width="749" height="545" srcset="/wp-content/uploads/2017/04/8vCPU.png 749w, /wp-content/uploads/2017/04/8vCPU-300x218.png 300w" sizes="(max-width: 749px) 100vw, 749px" /> 
 
 Again, FMA handles the additional load with the additional CPU's without breaking a sweat.  It seemed to be unstoppable, keeping under 5000ms until about 655 connections.  IMA, on the other hand, exceeded 5000ms response time at 400 connections.  But I had something strange happen that I assumed to be my fault.  The FMA broker service suddenly spiked at 800 concurrent connections (this graph only shows up to 780) and its response time zoomed to 30-40 <span style="text-decoration: underline;"><strong>seconds</strong></span>.  I assumed this was a fault of mine and continued on, trying 16 CPU's.
 
 16vCPU
 
-<img class="aligncenter size-full wp-image-2123" src="http://theorypc.ca/wp-content/uploads/2017/04/16vCPU.png" alt="" width="644" height="523" srcset="http://theorypc.ca/wp-content/uploads/2017/04/16vCPU.png 644w, http://theorypc.ca/wp-content/uploads/2017/04/16vCPU-300x244.png 300w" sizes="(max-width: 644px) 100vw, 644px" /> 
+<img class="aligncenter size-full wp-image-2123" src="/wp-content/uploads/2017/04/16vCPU.png" alt="" width="644" height="523" srcset="/wp-content/uploads/2017/04/16vCPU.png 644w, /wp-content/uploads/2017/04/16vCPU-300x244.png 300w" sizes="(max-width: 644px) 100vw, 644px" /> 
 
 But this graph shows it pretty readily.  As soon as you cross 800 concurrent connections FMA pukes.  I didn't scale the graph to show that spike, but it goes up to 40 seconds.  So there appears to be a pretty hard limit of <800 concurrent connections (600 would probably be a pretty safe buffer...).  If you exceed that limit your performance is going to tank, HARD.  IMA, however, pushes on.  With 16vCPU IMA didn't break the 5000ms target until 570 concurrent connections.  FMA appeared to be handling it just fine until it exploded.
 

@@ -8,7 +8,7 @@ guid: http://theorypc.ca/?p=1587
 permalink: /2016/10/21/office-deployment-toolkit-taking-a-look/
 enclosure:
   - |
-    http://theorypc.ca/wp-content/uploads/2016/07/20160718-140558.mp4
+    /wp-content/uploads/2016/07/20160718-140558.mp4
     189
     video/mp4
     
@@ -19,7 +19,7 @@ tags:
 ---
 When I attempted to create a virtualized Office application using the Office Deployment Toolkit (ODT) I was happily surprised at how easy it was, and extremely disappointed that it contained a lot of 'baggage'. That is, the virtualized Office application installed options that I did not have a choice on whether they should be there or not. These included things like 'Proofing Tools', 'Office 2013 Upload Center', 'Telemetry Dashboard for Office 2013' etc.
 
-<img class="aligncenter size-full wp-image-1588" src="http://theorypc.ca/wp-content/uploads/2016/07/1.png" alt="1" width="264" height="192" /> 
+<img class="aligncenter size-full wp-image-1588" src="/wp-content/uploads/2016/07/1.png" alt="1" width="264" height="192" /> 
 
 I wanted to get rid of nearly all of this 'junk'.  Unfortunately, Microsoft only offers the [following apps to be excluded](https://technet.microsoft.com/library/jj219426(v=office.15).aspx#BKMK_ExcludeAppElement):
 
@@ -66,7 +66,7 @@ This I have not been able to figure out.  BUT what you can do is modify the mcxm
 </Configuration></pre>
 
   2. run the 'Packager' switch <div style="width: 1140px;" class="wp-video">
-      <video class="wp-video-shortcode" id="video-1587-13" width="1140" height="963" preload="metadata" controls="controls"><source type="video/mp4" src="http://theorypc.ca/wp-content/uploads/2016/07/20160718-140558.mp4?_=13" /><a href="http://theorypc.ca/wp-content/uploads/2016/07/20160718-140558.mp4">http://theorypc.ca/wp-content/uploads/2016/07/20160718-140558.mp4</a></video>
+      <video class="wp-video-shortcode" id="video-1587-13" width="1140" height="963" preload="metadata" controls="controls"><source type="video/mp4" src="/wp-content/uploads/2016/07/20160718-140558.mp4?_=13" /><a href="/wp-content/uploads/2016/07/20160718-140558.mp4">/wp-content/uploads/2016/07/20160718-140558.mp4</a></video>
     </div>
 
   3. This leaves you with a 'blank' package.  In reality, it leaves you with a package full of the extra stuff Microsoft crams in.  The package itself weighs in around 630MB for an AppV office package without office!  The extra 'configurations' we can now look at removing.
@@ -161,7 +161,7 @@ Rerun the packager command.  This will ensure your application's mcxml file is g
 
 Now we want to remove all the previously detected extra files from the %Temp%\Microsoft Office 15\root\mcxml directory.  This is what I was left with:
 
-<img class="aligncenter size-full wp-image-1593" src="http://theorypc.ca/wp-content/uploads/2016/07/6.png" alt="6" width="1085" height="708" srcset="http://theorypc.ca/wp-content/uploads/2016/07/6.png 1085w, http://theorypc.ca/wp-content/uploads/2016/07/6-300x196.png 300w, http://theorypc.ca/wp-content/uploads/2016/07/6-768x501.png 768w, http://theorypc.ca/wp-content/uploads/2016/07/6-1024x668.png 1024w" sizes="(max-width: 1085px) 100vw, 1085px" /> 
+<img class="aligncenter size-full wp-image-1593" src="/wp-content/uploads/2016/07/6.png" alt="6" width="1085" height="708" srcset="/wp-content/uploads/2016/07/6.png 1085w, /wp-content/uploads/2016/07/6-300x196.png 300w, /wp-content/uploads/2016/07/6-768x501.png 768w, /wp-content/uploads/2016/07/6-1024x668.png 1024w" sizes="(max-width: 1085px) 100vw, 1085px" /> 
 
 Now, we do <span style="text-decoration: underline;"><strong>NOT</strong> </span>want to run the setup.exe as that will re-add all the extra bits.  We just want to run the flattener.exe.  The command line to do so is:
 
@@ -169,7 +169,7 @@ Now, we do <span style="text-decoration: underline;"><strong>NOT</strong> </span
 
 Now we have a package that is only 62MB in size
 
-<img class="aligncenter size-full wp-image-1594" src="http://theorypc.ca/wp-content/uploads/2016/07/8.png" alt="8" width="808" height="366" srcset="http://theorypc.ca/wp-content/uploads/2016/07/8.png 808w, http://theorypc.ca/wp-content/uploads/2016/07/8-300x136.png 300w, http://theorypc.ca/wp-content/uploads/2016/07/8-768x348.png 768w" sizes="(max-width: 808px) 100vw, 808px" /> 
+<img class="aligncenter size-full wp-image-1594" src="/wp-content/uploads/2016/07/8.png" alt="8" width="808" height="366" srcset="/wp-content/uploads/2016/07/8.png 808w, /wp-content/uploads/2016/07/8-300x136.png 300w, /wp-content/uploads/2016/07/8-768x348.png 768w" sizes="(max-width: 808px) 100vw, 808px" /> 
 
 And if we open it in AppV we see only the components we are really interested in, just Skype For Business and we don't have any other junk.  At this stage, the package 'fails' because some of the dependencies are not in the package.  I hope to be exploring what the exact dependencies are in a future post to explore what the actual \*minimum\* package size we can get away with for some of these Office applications.
 

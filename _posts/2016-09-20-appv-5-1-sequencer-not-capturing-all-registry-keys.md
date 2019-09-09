@@ -19,7 +19,7 @@ Video of this issue:
 
 The issue is when sequencing an application (100% reproducable on Epic and the VMWare Hypervisor) and then you add a large 'update' (for Epic this is the client pack) then not all registry keys are captured.  At 8:20 seconds you can see keys that are present in the local registry are not present in the package.
 
-<img class="aligncenter size-full wp-image-1723" src="http://theorypc.ca/wp-content/uploads/2016/09/AppV_Bug.png" alt="appv_bug" width="586" height="826" srcset="http://theorypc.ca/wp-content/uploads/2016/09/AppV_Bug.png 586w, http://theorypc.ca/wp-content/uploads/2016/09/AppV_Bug-213x300.png 213w" sizes="(max-width: 586px) 100vw, 586px" /> 
+<img class="aligncenter size-full wp-image-1723" src="/wp-content/uploads/2016/09/AppV_Bug.png" alt="appv_bug" width="586" height="826" srcset="/wp-content/uploads/2016/09/AppV_Bug.png 586w, /wp-content/uploads/2016/09/AppV_Bug-213x300.png 213w" sizes="(max-width: 586px) 100vw, 586px" /> 
 
 &nbsp;
 

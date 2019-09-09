@@ -8,7 +8,7 @@ guid: http://theorypc.ca/?p=2488
 permalink: /2017/06/28/remove-ghost-devices-natively-with-powershell/
 enclosure:
   - |
-    http://theorypc.ca/wp-content/uploads/2017/06/Remove_Ghosts_Demo.mp4
+    /wp-content/uploads/2017/06/Remove_Ghosts_Demo.mp4
     192
     video/mp4
     
@@ -28,7 +28,7 @@ We've been looking at using [Base Image Scripting Framework](https://www.loginco
 
 One of the features I wanted to take a good hard look at was removing 'Ghost' devices - or devices that aren't present in your system.  Ghost devices look like this:
 
-<img class="aligncenter size-full wp-image-2489" src="http://theorypc.ca/wp-content/uploads/2017/06/ghostDevices.png" alt="" width="476" height="663" srcset="http://theorypc.ca/wp-content/uploads/2017/06/ghostDevices.png 476w, http://theorypc.ca/wp-content/uploads/2017/06/ghostDevices-215x300.png 215w" sizes="(max-width: 476px) 100vw, 476px" /> 
+<img class="aligncenter size-full wp-image-2489" src="/wp-content/uploads/2017/06/ghostDevices.png" alt="" width="476" height="663" srcset="/wp-content/uploads/2017/06/ghostDevices.png 476w, /wp-content/uploads/2017/06/ghostDevices-215x300.png 215w" sizes="(max-width: 476px) 100vw, 476px" /> 
 
 Our current world accomplishes this task by [using a script written by Simon Price and devcon.exe](https://www.getsurreal.com/vmware/vm-vmware/remove-nonpresent-devices?v=47e5dceea252).  There is nothing wrong with this method per se but BISF is native Powershell and I want to stick to that without having outside dependencies.  Can this requirement be achieved with nothing but PowerShell?  Fortunately, google came to [rescue and pointed me here](https://gist.github.com/aboersch/a027f8757348bdacbcbb5aa85612d045).  A script written by Alexander Boersch got me 80% of the way there (whoo hoo!).  He wrote the method and ability to access setupapi.dll which gives us the functions and methods necessary to query and manipulate devices in Device Manager.  PowerShell is supposed to have the ability to do C# code natively and his example was perfect for taking me where I needed to go.
 
@@ -36,7 +36,7 @@ Our current world accomplishes this task by [using a script written by Simon Pri
 
 <pre class="lang:ps decode:true">. "removeGhosts.ps1" -listDevicesOnly</pre>
 
-<img class="aligncenter size-full wp-image-2490" src="http://theorypc.ca/wp-content/uploads/2017/06/listdevicesonly.png" alt="" width="1101" height="478" srcset="http://theorypc.ca/wp-content/uploads/2017/06/listdevicesonly.png 1101w, http://theorypc.ca/wp-content/uploads/2017/06/listdevicesonly-300x130.png 300w, http://theorypc.ca/wp-content/uploads/2017/06/listdevicesonly-768x333.png 768w" sizes="(max-width: 1101px) 100vw, 1101px" /> 
+<img class="aligncenter size-full wp-image-2490" src="/wp-content/uploads/2017/06/listdevicesonly.png" alt="" width="1101" height="478" srcset="/wp-content/uploads/2017/06/listdevicesonly.png 1101w, /wp-content/uploads/2017/06/listdevicesonly-300x130.png 300w, /wp-content/uploads/2017/06/listdevicesonly-768x333.png 768w" sizes="(max-width: 1101px) 100vw, 1101px" /> 
 
 &nbsp;
 
@@ -47,7 +47,7 @@ Our current world accomplishes this task by [using a script written by Simon Pri
 <pre class="lang:ps decode:true ">. "removeGhosts.ps1" -FilterByFriendlyName @("Citrix","Intel")</pre>
 
 <div id="attachment_2491" style="width: 551px" class="wp-caption aligncenter">
-  <img aria-describedby="caption-attachment-2491" class="wp-image-2491 size-full" src="http://theorypc.ca/wp-content/uploads/2017/06/remove_class_friendlynamematch.png" alt="" width="541" height="876" srcset="http://theorypc.ca/wp-content/uploads/2017/06/remove_class_friendlynamematch.png 541w, http://theorypc.ca/wp-content/uploads/2017/06/remove_class_friendlynamematch-185x300.png 185w" sizes="(max-width: 541px) 100vw, 541px" /></p> 
+  <img aria-describedby="caption-attachment-2491" class="wp-image-2491 size-full" src="/wp-content/uploads/2017/06/remove_class_friendlynamematch.png" alt="" width="541" height="876" srcset="/wp-content/uploads/2017/06/remove_class_friendlynamematch.png 541w, /wp-content/uploads/2017/06/remove_class_friendlynamematch-185x300.png 185w" sizes="(max-width: 541px) 100vw, 541px" /></p> 
   
   <p id="caption-attachment-2491" class="wp-caption-text">
     notice the "filter match" text
@@ -63,7 +63,7 @@ Our current world accomplishes this task by [using a script written by Simon Pri
 And a brief video of it in action:
 
 <div style="width: 1140px;" class="wp-video">
-  <video class="wp-video-shortcode" id="video-2488-24" width="1140" height="484" preload="metadata" controls="controls"><source type="video/mp4" src="http://theorypc.ca/wp-content/uploads/2017/06/Remove_Ghosts_Demo.mp4?_=24" /><a href="http://theorypc.ca/wp-content/uploads/2017/06/Remove_Ghosts_Demo.mp4">http://theorypc.ca/wp-content/uploads/2017/06/Remove_Ghosts_Demo.mp4</a></video>
+  <video class="wp-video-shortcode" id="video-2488-24" width="1140" height="484" preload="metadata" controls="controls"><source type="video/mp4" src="/wp-content/uploads/2017/06/Remove_Ghosts_Demo.mp4?_=24" /><a href="/wp-content/uploads/2017/06/Remove_Ghosts_Demo.mp4">/wp-content/uploads/2017/06/Remove_Ghosts_Demo.mp4</a></video>
 </div>
 
 &nbsp;

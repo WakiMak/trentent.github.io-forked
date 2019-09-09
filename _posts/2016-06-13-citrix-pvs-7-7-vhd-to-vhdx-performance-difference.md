@@ -27,7 +27,7 @@ So I know VHDX is supposed to perform better but I was curious by how much.  App
 fsutil fsinfo ntfsinfo C: reports the following for the different vDisks:
 
 <div id="attachment_1489" style="width: 678px" class="wp-caption aligncenter">
-  <img aria-describedby="caption-attachment-1489" class="wp-image-1489 size-full" src="http://theorypc.ca/wp-content/uploads/2016/06/VHD_fsinfo.png" alt="VHD_fsinfo" width="668" height="334" srcset="http://theorypc.ca/wp-content/uploads/2016/06/VHD_fsinfo.png 668w, http://theorypc.ca/wp-content/uploads/2016/06/VHD_fsinfo-300x150.png 300w" sizes="(max-width: 668px) 100vw, 668px" /></p> 
+  <img aria-describedby="caption-attachment-1489" class="wp-image-1489 size-full" src="/wp-content/uploads/2016/06/VHD_fsinfo.png" alt="VHD_fsinfo" width="668" height="334" srcset="/wp-content/uploads/2016/06/VHD_fsinfo.png 668w, /wp-content/uploads/2016/06/VHD_fsinfo-300x150.png 300w" sizes="(max-width: 668px) 100vw, 668px" /></p> 
   
   <p id="caption-attachment-1489" class="wp-caption-text">
     16MB block size VHD file
@@ -35,7 +35,7 @@ fsutil fsinfo ntfsinfo C: reports the following for the different vDisks:
 </div>
 
 <div id="attachment_1490" style="width: 679px" class="wp-caption aligncenter">
-  <img aria-describedby="caption-attachment-1490" class="wp-image-1490 size-full" src="http://theorypc.ca/wp-content/uploads/2016/06/VHDX_fsinfo.png" alt="VHDX_fsinfo" width="669" height="330" srcset="http://theorypc.ca/wp-content/uploads/2016/06/VHDX_fsinfo.png 669w, http://theorypc.ca/wp-content/uploads/2016/06/VHDX_fsinfo-300x148.png 300w" sizes="(max-width: 669px) 100vw, 669px" /></p> 
+  <img aria-describedby="caption-attachment-1490" class="wp-image-1490 size-full" src="/wp-content/uploads/2016/06/VHDX_fsinfo.png" alt="VHDX_fsinfo" width="669" height="330" srcset="/wp-content/uploads/2016/06/VHDX_fsinfo.png 669w, /wp-content/uploads/2016/06/VHDX_fsinfo-300x148.png 300w" sizes="(max-width: 669px) 100vw, 669px" /></p> 
   
   <p id="caption-attachment-1490" class="wp-caption-text">
     32MB block size VHDX file
@@ -47,7 +47,7 @@ I set my target devices to the different vDisks and set the 'Cache to RAM' featu
 And what is the performance between the two?  I used the DiskSpd utility from Microsoft to measure the differences.
 
 <div id="attachment_1492" style="width: 660px" class="wp-caption aligncenter">
-  <img aria-describedby="caption-attachment-1492" class="size-full wp-image-1492" src="http://theorypc.ca/wp-content/uploads/2016/06/VHD_DiskSpeed.jpg" alt="VHD DiskSpd Test" width="650" height="431" srcset="http://theorypc.ca/wp-content/uploads/2016/06/VHD_DiskSpeed.jpg 650w, http://theorypc.ca/wp-content/uploads/2016/06/VHD_DiskSpeed-300x199.jpg 300w" sizes="(max-width: 650px) 100vw, 650px" /></p> 
+  <img aria-describedby="caption-attachment-1492" class="size-full wp-image-1492" src="/wp-content/uploads/2016/06/VHD_DiskSpeed.jpg" alt="VHD DiskSpd Test" width="650" height="431" srcset="/wp-content/uploads/2016/06/VHD_DiskSpeed.jpg 650w, /wp-content/uploads/2016/06/VHD_DiskSpeed-300x199.jpg 300w" sizes="(max-width: 650px) 100vw, 650px" /></p> 
   
   <p id="caption-attachment-1492" class="wp-caption-text">
     VHD DiskSpd Test
@@ -55,7 +55,7 @@ And what is the performance between the two?  I used the DiskSpd utility from Mi
 </div>
 
 <div id="attachment_1493" style="width: 664px" class="wp-caption aligncenter">
-  <img aria-describedby="caption-attachment-1493" class="size-full wp-image-1493" src="http://theorypc.ca/wp-content/uploads/2016/06/VHDX_DiskSpeed.jpg" alt="VHDX DiskSpd Test" width="654" height="432" srcset="http://theorypc.ca/wp-content/uploads/2016/06/VHDX_DiskSpeed.jpg 654w, http://theorypc.ca/wp-content/uploads/2016/06/VHDX_DiskSpeed-300x198.jpg 300w" sizes="(max-width: 654px) 100vw, 654px" /></p> 
+  <img aria-describedby="caption-attachment-1493" class="size-full wp-image-1493" src="/wp-content/uploads/2016/06/VHDX_DiskSpeed.jpg" alt="VHDX DiskSpd Test" width="654" height="432" srcset="/wp-content/uploads/2016/06/VHDX_DiskSpeed.jpg 654w, /wp-content/uploads/2016/06/VHDX_DiskSpeed-300x198.jpg 300w" sizes="(max-width: 654px) 100vw, 654px" /></p> 
   
   <p id="caption-attachment-1493" class="wp-caption-text">
     VHDX DiskSpd Test
@@ -63,7 +63,7 @@ And what is the performance between the two?  I used the DiskSpd utility from Mi
 </div>
 
 <div id="attachment_1491" style="width: 1020px" class="wp-caption aligncenter">
-  <img aria-describedby="caption-attachment-1491" class="size-full wp-image-1491" src="http://theorypc.ca/wp-content/uploads/2016/06/Summary.png" alt="Summary" width="1010" height="366" srcset="http://theorypc.ca/wp-content/uploads/2016/06/Summary.png 1010w, http://theorypc.ca/wp-content/uploads/2016/06/Summary-300x109.png 300w, http://theorypc.ca/wp-content/uploads/2016/06/Summary-768x278.png 768w" sizes="(max-width: 1010px) 100vw, 1010px" /></p> 
+  <img aria-describedby="caption-attachment-1491" class="size-full wp-image-1491" src="/wp-content/uploads/2016/06/Summary.png" alt="Summary" width="1010" height="366" srcset="/wp-content/uploads/2016/06/Summary.png 1010w, /wp-content/uploads/2016/06/Summary-300x109.png 300w, /wp-content/uploads/2016/06/Summary-768x278.png 768w" sizes="(max-width: 1010px) 100vw, 1010px" /></p> 
   
   <p id="caption-attachment-1491" class="wp-caption-text">
     Summary
@@ -75,7 +75,7 @@ The VHDX format appears to be around 7.5% faster in our setup.
 The boot speed (the amount of time it takes the vDisk to power up and start the 'Citrix PVS Device Service') is even more dramatic:
 
 <div id="attachment_1495" style="width: 465px" class="wp-caption aligncenter">
-  <img aria-describedby="caption-attachment-1495" class="size-full wp-image-1495" src="http://theorypc.ca/wp-content/uploads/2016/06/VHD_Boot_Speed.png" alt="VHD Boot Speed" width="455" height="469" srcset="http://theorypc.ca/wp-content/uploads/2016/06/VHD_Boot_Speed.png 455w, http://theorypc.ca/wp-content/uploads/2016/06/VHD_Boot_Speed-291x300.png 291w" sizes="(max-width: 455px) 100vw, 455px" /></p> 
+  <img aria-describedby="caption-attachment-1495" class="size-full wp-image-1495" src="/wp-content/uploads/2016/06/VHD_Boot_Speed.png" alt="VHD Boot Speed" width="455" height="469" srcset="/wp-content/uploads/2016/06/VHD_Boot_Speed.png 455w, /wp-content/uploads/2016/06/VHD_Boot_Speed-291x300.png 291w" sizes="(max-width: 455px) 100vw, 455px" /></p> 
   
   <p id="caption-attachment-1495" class="wp-caption-text">
     VHD Boot Speed
@@ -85,7 +85,7 @@ The boot speed (the amount of time it takes the vDisk to power up and start the 
 &nbsp;
 
 <div id="attachment_1496" style="width: 462px" class="wp-caption aligncenter">
-  <img aria-describedby="caption-attachment-1496" class="size-full wp-image-1496" src="http://theorypc.ca/wp-content/uploads/2016/06/VHDX_Boot_Speed.png" alt="VHDX Boot Speed" width="452" height="482" srcset="http://theorypc.ca/wp-content/uploads/2016/06/VHDX_Boot_Speed.png 452w, http://theorypc.ca/wp-content/uploads/2016/06/VHDX_Boot_Speed-281x300.png 281w" sizes="(max-width: 452px) 100vw, 452px" /></p> 
+  <img aria-describedby="caption-attachment-1496" class="size-full wp-image-1496" src="/wp-content/uploads/2016/06/VHDX_Boot_Speed.png" alt="VHDX Boot Speed" width="452" height="482" srcset="/wp-content/uploads/2016/06/VHDX_Boot_Speed.png 452w, /wp-content/uploads/2016/06/VHDX_Boot_Speed-281x300.png 281w" sizes="(max-width: 452px) 100vw, 452px" /></p> 
   
   <p id="caption-attachment-1496" class="wp-caption-text">
     VHDX Boot Speed

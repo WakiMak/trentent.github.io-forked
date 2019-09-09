@@ -32,7 +32,7 @@ We implement a multi-homed setup with Citrix Provisioning Services.  We have all
 <table style="margin-left: auto; margin-right: auto; text-align: center;" cellspacing="0" cellpadding="0" align="center">
   <tr>
     <td style="text-align: center;">
-      <a style="margin-left: auto; margin-right: auto;" href="http://theorypc.ca/wp-content/uploads/2016/04/1-1.png"><img src="http://theorypc.ca/wp-content/uploads/2016/04/1-1-300x185.png" width="320" height="197" border="0" /></a>
+      <a style="margin-left: auto; margin-right: auto;" href="/wp-content/uploads/2016/04/1-1.png"><img src="/wp-content/uploads/2016/04/1-1-300x185.png" width="320" height="197" border="0" /></a>
     </td>
   </tr>
   
@@ -46,7 +46,7 @@ We implement a multi-homed setup with Citrix Provisioning Services.  We have all
 I uninstalled the ghost devices but because this change is all 'in the registry' it wasn't immediately noticeable by myself that the LANATABLE and NIC ordering had changed.  I promoted my vDisk and then tried to RDP into it:
 
 <div style="clear: both; text-align: center;">
-  <a style="margin-left: 1em; margin-right: 1em;" href="http://theorypc.ca/wp-content/uploads/2016/04/2-1.png"><img src="http://theorypc.ca/wp-content/uploads/2016/04/2-1-300x119.png" width="320" height="127" border="0" /></a>
+  <a style="margin-left: 1em; margin-right: 1em;" href="/wp-content/uploads/2016/04/2-1.png"><img src="/wp-content/uploads/2016/04/2-1-300x119.png" width="320" height="127" border="0" /></a>
 </div>
 
 Well...  I knew this wasn't right.  So I logged onto the server and checked the LANATABLE values:
@@ -54,7 +54,7 @@ Well...  I knew this wasn't right.  So I logged onto the server and checked the 
 <table style="margin-left: auto; margin-right: auto; text-align: center;" cellspacing="0" cellpadding="0" align="center">
   <tr>
     <td style="text-align: center;">
-      <a style="margin-left: auto; margin-right: auto;" href="http://theorypc.ca/wp-content/uploads/2016/04/7-1.png"><img src="http://theorypc.ca/wp-content/uploads/2016/04/7-1-300x54.png" width="320" height="57" border="0" /></a>
+      <a style="margin-left: auto; margin-right: auto;" href="/wp-content/uploads/2016/04/7-1.png"><img src="/wp-content/uploads/2016/04/7-1-300x54.png" width="320" height="57" border="0" /></a>
     </td>
   </tr>
   
@@ -68,7 +68,7 @@ Well...  I knew this wasn't right.  So I logged onto the server and checked the 
 <table style="margin-left: auto; margin-right: auto; text-align: center;" cellspacing="0" cellpadding="0" align="center">
   <tr>
     <td style="text-align: center;">
-      <a style="margin-left: auto; margin-right: auto;" href="http://theorypc.ca/wp-content/uploads/2016/04/8-1.png"><img src="http://theorypc.ca/wp-content/uploads/2016/04/8-1-300x54.png" width="320" height="57" border="0" /></a>
+      <a style="margin-left: auto; margin-right: auto;" href="/wp-content/uploads/2016/04/8-1.png"><img src="/wp-content/uploads/2016/04/8-1-300x54.png" width="320" height="57" border="0" /></a>
     </td>
   </tr>
   
@@ -84,7 +84,7 @@ Well...  I knew this wasn't right.  So I logged onto the server and checked the 
 <table style="margin-left: auto; margin-right: auto; text-align: center;" cellspacing="0" cellpadding="0" align="center">
   <tr>
     <td style="text-align: center;">
-      <a style="margin-left: auto; margin-right: auto;" href="http://theorypc.ca/wp-content/uploads/2016/04/3-1.png"><img src="http://theorypc.ca/wp-content/uploads/2016/04/3-1-300x22.png" width="320" height="23" border="0" /></a>
+      <a style="margin-left: auto; margin-right: auto;" href="/wp-content/uploads/2016/04/3-1.png"><img src="/wp-content/uploads/2016/04/3-1-300x22.png" width="320" height="23" border="0" /></a>
     </td>
   </tr>
   
@@ -100,7 +100,7 @@ Well...  I knew this wasn't right.  So I logged onto the server and checked the 
 <table style="margin-left: auto; margin-right: auto; text-align: center;" cellspacing="0" cellpadding="0" align="center">
   <tr>
     <td style="text-align: center;">
-      <a style="margin-left: auto; margin-right: auto;" href="http://theorypc.ca/wp-content/uploads/2016/04/4-1.png"><img src="http://theorypc.ca/wp-content/uploads/2016/04/4-1-300x24.png" width="320" height="25" border="0" /></a>
+      <a style="margin-left: auto; margin-right: auto;" href="/wp-content/uploads/2016/04/4-1.png"><img src="/wp-content/uploads/2016/04/4-1-300x24.png" width="320" height="25" border="0" /></a>
     </td>
   </tr>
   
@@ -116,7 +116,7 @@ Well...  I knew this wasn't right.  So I logged onto the server and checked the 
 <table style="margin-left: auto; margin-right: auto; text-align: center;" cellspacing="0" cellpadding="0" align="center">
   <tr>
     <td style="text-align: center;">
-      <a style="margin-left: auto; margin-right: auto;" href="http://theorypc.ca/wp-content/uploads/2016/04/5-1.png"><img src="http://theorypc.ca/wp-content/uploads/2016/04/5-1-300x31.png" width="320" height="33" border="0" /></a>
+      <a style="margin-left: auto; margin-right: auto;" href="/wp-content/uploads/2016/04/5-1.png"><img src="/wp-content/uploads/2016/04/5-1-300x31.png" width="320" height="33" border="0" /></a>
     </td>
   </tr>
   
@@ -132,7 +132,7 @@ Well...  I knew this wasn't right.  So I logged onto the server and checked the 
 <table style="margin-left: auto; margin-right: auto; text-align: center;" cellspacing="0" cellpadding="0" align="center">
   <tr>
     <td style="text-align: center;">
-      <a style="margin-left: auto; margin-right: auto;" href="http://theorypc.ca/wp-content/uploads/2016/04/6-1.png"><img src="http://theorypc.ca/wp-content/uploads/2016/04/6-1-300x24.png" width="320" height="25" border="0" /></a>
+      <a style="margin-left: auto; margin-right: auto;" href="/wp-content/uploads/2016/04/6-1.png"><img src="/wp-content/uploads/2016/04/6-1-300x24.png" width="320" height="25" border="0" /></a>
     </td>
   </tr>
   
@@ -150,7 +150,7 @@ So I started on getting the issues resolved.  First, I was going to resolve RDP.
 <table style="margin-left: auto; margin-right: auto; text-align: center;" cellspacing="0" cellpadding="0" align="center">
   <tr>
     <td style="text-align: center;">
-      <a style="margin-left: auto; margin-right: auto;" href="http://theorypc.ca/wp-content/uploads/2016/04/9-1.png"><img src="http://theorypc.ca/wp-content/uploads/2016/04/9-1-239x300.png" width="254" height="320" border="0" /></a>
+      <a style="margin-left: auto; margin-right: auto;" href="/wp-content/uploads/2016/04/9-1.png"><img src="/wp-content/uploads/2016/04/9-1-239x300.png" width="254" height="320" border="0" /></a>
     </td>
   </tr>
   
@@ -170,7 +170,7 @@ It generated an event on the server:
 <table style="margin-left: auto; margin-right: auto; text-align: center;" cellspacing="0" cellpadding="0" align="center">
   <tr>
     <td style="text-align: center;">
-      <a style="margin-left: auto; margin-right: auto;" href="http://theorypc.ca/wp-content/uploads/2016/04/10-1.png"><img src="http://theorypc.ca/wp-content/uploads/2016/04/10-1-300x49.png" width="320" height="52" border="0" /></a>
+      <a style="margin-left: auto; margin-right: auto;" href="/wp-content/uploads/2016/04/10-1.png"><img src="/wp-content/uploads/2016/04/10-1-300x49.png" width="320" height="52" border="0" /></a>
     </td>
   </tr>
   
@@ -186,7 +186,7 @@ Looking at the ICA Listener configuration showed me the following:
 <table style="margin-left: auto; margin-right: auto; text-align: center;" cellspacing="0" cellpadding="0" align="center">
   <tr>
     <td style="text-align: center;">
-      <a style="margin-left: auto; margin-right: auto;" href="http://theorypc.ca/wp-content/uploads/2016/04/11-1.png"><img src="http://theorypc.ca/wp-content/uploads/2016/04/11-1-300x267.png" width="320" height="284" border="0" /></a>
+      <a style="margin-left: auto; margin-right: auto;" href="/wp-content/uploads/2016/04/11-1.png"><img src="/wp-content/uploads/2016/04/11-1-300x267.png" width="320" height="284" border="0" /></a>
     </td>
   </tr>
   
@@ -204,13 +204,13 @@ The results:
 <table style="margin-left: auto; margin-right: auto; text-align: center;" cellspacing="0" cellpadding="0" align="center">
   <tr>
     <td>
-      <a style="margin-left: auto; margin-right: auto;" href="http://theorypc.ca/wp-content/uploads/2016/04/11-1.png"><img src="http://theorypc.ca/wp-content/uploads/2016/04/11-1-300x267.png" width="320" height="284" border="0" /></a>
+      <a style="margin-left: auto; margin-right: auto;" href="/wp-content/uploads/2016/04/11-1.png"><img src="/wp-content/uploads/2016/04/11-1-300x267.png" width="320" height="284" border="0" /></a>
     </td>
   </tr>
   
   <tr>
     <td style="font-size: 12.8px;">
-      <a style="font-size: medium; margin-left: 1em; margin-right: 1em;" href="http://theorypc.ca/wp-content/uploads/2016/04/12-1.png"><img src="http://theorypc.ca/wp-content/uploads/2016/04/12-1-300x216.png" width="320" height="230" border="0" /></a>
+      <a style="font-size: medium; margin-left: 1em; margin-right: 1em;" href="/wp-content/uploads/2016/04/12-1.png"><img src="/wp-content/uploads/2016/04/12-1-300x216.png" width="320" height="230" border="0" /></a>
     </td>
   </tr>
 </table>
@@ -242,7 +242,7 @@ Now both are wrong!
 </div>
 
 <div style="clear: both; text-align: center;">
-  <a style="margin-left: 1em; margin-right: 1em;" href="http://theorypc.ca/wp-content/uploads/2016/04/13-1.png"><img src="http://theorypc.ca/wp-content/uploads/2016/04/13-1-300x125.png" width="320" height="133" border="0" /></a>
+  <a style="margin-left: 1em; margin-right: 1em;" href="/wp-content/uploads/2016/04/13-1.png"><img src="/wp-content/uploads/2016/04/13-1-300x125.png" width="320" height="133" border="0" /></a>
 </div>
 
 <div>
@@ -258,7 +258,7 @@ Now both are wrong!
 <table style="margin-left: auto; margin-right: auto; text-align: center;" cellspacing="0" cellpadding="0" align="center">
   <tr>
     <td style="text-align: center;">
-      <a style="margin-left: auto; margin-right: auto;" href="http://theorypc.ca/wp-content/uploads/2016/04/14-1.png"><img src="http://theorypc.ca/wp-content/uploads/2016/04/14-1-300x189.png" width="320" height="201" border="0" /></a>
+      <a style="margin-left: auto; margin-right: auto;" href="/wp-content/uploads/2016/04/14-1.png"><img src="/wp-content/uploads/2016/04/14-1-300x189.png" width="320" height="201" border="0" /></a>
     </td>
   </tr>
   
@@ -277,7 +277,7 @@ Now both are wrong!
 </div>
 
 <div style="clear: both; text-align: center;">
-  <a style="margin-left: 1em; margin-right: 1em;" href="http://theorypc.ca/wp-content/uploads/2016/04/15-1.png"><img src="http://theorypc.ca/wp-content/uploads/2016/04/15-1.png" border="0" /></a>
+  <a style="margin-left: 1em; margin-right: 1em;" href="/wp-content/uploads/2016/04/15-1.png"><img src="/wp-content/uploads/2016/04/15-1.png" border="0" /></a>
 </div>
 
 <div>
@@ -293,7 +293,7 @@ Now both are wrong!
 <table style="margin-left: auto; margin-right: auto; text-align: center;" cellspacing="0" cellpadding="0" align="center">
   <tr>
     <td style="text-align: center;">
-      <a style="margin-left: auto; margin-right: auto;" href="http://theorypc.ca/wp-content/uploads/2016/04/16-1.png"><img src="http://theorypc.ca/wp-content/uploads/2016/04/16-1-300x263.png" width="320" height="280" border="0" /></a>
+      <a style="margin-left: auto; margin-right: auto;" href="/wp-content/uploads/2016/04/16-1.png"><img src="/wp-content/uploads/2016/04/16-1-300x263.png" width="320" height="280" border="0" /></a>
     </td>
   </tr>
   
@@ -322,7 +322,7 @@ Now both are wrong!
   <table style="margin-left: auto; margin-right: auto; text-align: center;" cellspacing="0" cellpadding="0" align="center">
     <tr>
       <td>
-        <a style="margin-left: auto; margin-right: auto;" href="http://theorypc.ca/wp-content/uploads/2016/04/6-1.png"><img src="http://theorypc.ca/wp-content/uploads/2016/04/6-1-300x24.png" width="320" height="25" border="0" /></a>
+        <a style="margin-left: auto; margin-right: auto;" href="/wp-content/uploads/2016/04/6-1.png"><img src="/wp-content/uploads/2016/04/6-1-300x24.png" width="320" height="25" border="0" /></a>
       </td>
     </tr>
     
@@ -348,7 +348,7 @@ Now both are wrong!
   <table style="margin-left: auto; margin-right: auto; text-align: center;" cellspacing="0" cellpadding="0" align="center">
     <tr>
       <td>
-        <a style="margin-left: auto; margin-right: auto;" href="http://theorypc.ca/wp-content/uploads/2016/04/5-1.png"><img src="http://theorypc.ca/wp-content/uploads/2016/04/5-1-300x31.png" width="320" height="33" border="0" /></a>
+        <a style="margin-left: auto; margin-right: auto;" href="/wp-content/uploads/2016/04/5-1.png"><img src="/wp-content/uploads/2016/04/5-1-300x31.png" width="320" height="33" border="0" /></a>
       </td>
     </tr>
     

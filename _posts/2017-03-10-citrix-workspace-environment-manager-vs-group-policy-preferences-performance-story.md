@@ -23,23 +23,23 @@ But the meat of this post is HOW quickly can WEM process registry entries vs. GP
 
 In order to compare these two I've subscribed to an old standby - Procmon.  I logged into one of my Citrix servers with another account, and started procmon.  I then launched an application published on this server (notepad).  I used [ControlUp](http://www.controlup.com) to measure the performance of the actual logon and group policy extension processing.  The one we are particularly interested in is the Group Policy Registry entry.  This measures the performance of the Group Policy Registry portion:
 
-<img class="aligncenter size-full wp-image-2063" src="http://theorypc.ca/wp-content/uploads/2017/03/GP_Extension_Time.png" alt="" width="931" height="427" srcset="http://theorypc.ca/wp-content/uploads/2017/03/GP_Extension_Time.png 931w, http://theorypc.ca/wp-content/uploads/2017/03/GP_Extension_Time-300x138.png 300w, http://theorypc.ca/wp-content/uploads/2017/03/GP_Extension_Time-768x352.png 768w" sizes="(max-width: 931px) 100vw, 931px" /> 
+<img class="aligncenter size-full wp-image-2063" src="/wp-content/uploads/2017/03/GP_Extension_Time.png" alt="" width="931" height="427" srcset="/wp-content/uploads/2017/03/GP_Extension_Time.png 931w, /wp-content/uploads/2017/03/GP_Extension_Time-300x138.png 300w, /wp-content/uploads/2017/03/GP_Extension_Time-768x352.png 768w" sizes="(max-width: 931px) 100vw, 931px" /> 
 
 &nbsp;
 
 **Group Policy Registry executed in <span style="text-decoration: underline;">3494ms</span>.**  However, I have two GPO objects with values that were evaluated by this client side extension.  For WEM I only migrated a single GPO so I'll have to focus on that single one for the CSE.  To find the Group Policy engine, I used ControlUp to discover it via selecting svchost.exe's processes and discovering them.  The PID was 1872:
 
-<img class="aligncenter size-full wp-image-2064" src="http://theorypc.ca/wp-content/uploads/2017/03/PID.png" alt="" width="437" height="577" srcset="http://theorypc.ca/wp-content/uploads/2017/03/PID.png 437w, http://theorypc.ca/wp-content/uploads/2017/03/PID-227x300.png 227w" sizes="(max-width: 437px) 100vw, 437px" /> 
+<img class="aligncenter size-full wp-image-2064" src="/wp-content/uploads/2017/03/PID.png" alt="" width="437" height="577" srcset="/wp-content/uploads/2017/03/PID.png 437w, /wp-content/uploads/2017/03/PID-227x300.png 227w" sizes="(max-width: 437px) 100vw, 437px" /> 
 
 One of the cool things about procmon is being able to suss out time stamps exactly.
 
 For the Group Policy Registry CSE I can see it was activated at exactly 2:33:12.2056862.  From there it checks the group policy history for the XML file then compares it to the one in your sysvol:
 
-<img class="aligncenter size-full wp-image-2065" src="http://theorypc.ca/wp-content/uploads/2017/03/Procmon_CSE.png" alt="" width="1258" height="576" srcset="http://theorypc.ca/wp-content/uploads/2017/03/Procmon_CSE.png 1258w, http://theorypc.ca/wp-content/uploads/2017/03/Procmon_CSE-300x137.png 300w, http://theorypc.ca/wp-content/uploads/2017/03/Procmon_CSE-768x352.png 768w" sizes="(max-width: 1258px) 100vw, 1258px" /> 
+<img class="aligncenter size-full wp-image-2065" src="/wp-content/uploads/2017/03/Procmon_CSE.png" alt="" width="1258" height="576" srcset="/wp-content/uploads/2017/03/Procmon_CSE.png 1258w, /wp-content/uploads/2017/03/Procmon_CSE-300x137.png 300w, /wp-content/uploads/2017/03/Procmon_CSE-768x352.png 768w" sizes="(max-width: 1258px) 100vw, 1258px" /> 
 
 With this particular policy, we actually check to see if it's a 32bit or 64bit system, we check for various pieces of software to see if they're installed or not and we then apply registry keys based on those results.  For instance:
 
-<img class="aligncenter size-full wp-image-2066" src="http://theorypc.ca/wp-content/uploads/2017/03/Procmon_CSE_PDFArchitech.png" alt="" width="1261" height="211" srcset="http://theorypc.ca/wp-content/uploads/2017/03/Procmon_CSE_PDFArchitech.png 1261w, http://theorypc.ca/wp-content/uploads/2017/03/Procmon_CSE_PDFArchitech-300x50.png 300w, http://theorypc.ca/wp-content/uploads/2017/03/Procmon_CSE_PDFArchitech-768x129.png 768w" sizes="(max-width: 1261px) 100vw, 1261px" /> 
+<img class="aligncenter size-full wp-image-2066" src="/wp-content/uploads/2017/03/Procmon_CSE_PDFArchitech.png" alt="" width="1261" height="211" srcset="/wp-content/uploads/2017/03/Procmon_CSE_PDFArchitech.png 1261w, /wp-content/uploads/2017/03/Procmon_CSE_PDFArchitech-300x50.png 300w, /wp-content/uploads/2017/03/Procmon_CSE_PDFArchitech-768x129.png 768w" sizes="(max-width: 1261px) 100vw, 1261px" /> 
 
 We have a GPP Registry values that are set via some item-level-targetting that are dependent on whether PDF architect is installed or not.  You can literally see it check for PDF Architect and then set whatever values we determined need to be set by that result (ShowAssociationDialog,ShowPresentation, etc).
 
@@ -47,19 +47,19 @@ However cool this is, this GPO is not the one I want
 
 I want the next GPO ({E6775312-...}).  This GPO is the one that I have converted to WEM as it only dealt with group membership.  WEM can filter on conditions like a file/folder exist but since I didn't want to do another thousand or so registry entries I focused on the smaller GPO.
 
-<img class="aligncenter size-full wp-image-2067" src="http://theorypc.ca/wp-content/uploads/2017/03/the_real_meat.png" alt="" width="1245" height="745" srcset="http://theorypc.ca/wp-content/uploads/2017/03/the_real_meat.png 1245w, http://theorypc.ca/wp-content/uploads/2017/03/the_real_meat-300x180.png 300w, http://theorypc.ca/wp-content/uploads/2017/03/the_real_meat-768x460.png 768w, http://theorypc.ca/wp-content/uploads/2017/03/the_real_meat-550x330.png 550w" sizes="(max-width: 1245px) 100vw, 1245px" /> 
+<img class="aligncenter size-full wp-image-2067" src="/wp-content/uploads/2017/03/the_real_meat.png" alt="" width="1245" height="745" srcset="/wp-content/uploads/2017/03/the_real_meat.png 1245w, /wp-content/uploads/2017/03/the_real_meat-300x180.png 300w, /wp-content/uploads/2017/03/the_real_meat-768x460.png 768w, /wp-content/uploads/2017/03/the_real_meat-550x330.png 550w" sizes="(max-width: 1245px) 100vw, 1245px" /> 
 
 &nbsp;
 
 This is the real meat.  We can see the GPO I'm interested in started processing at 2:33:14:5252890.
 
-<img class="aligncenter size-full wp-image-2068" src="http://theorypc.ca/wp-content/uploads/2017/03/the_real_meat_is_cooked.png" alt="" width="1394" height="357" srcset="http://theorypc.ca/wp-content/uploads/2017/03/the_real_meat_is_cooked.png 1394w, http://theorypc.ca/wp-content/uploads/2017/03/the_real_meat_is_cooked-300x77.png 300w, http://theorypc.ca/wp-content/uploads/2017/03/the_real_meat_is_cooked-768x197.png 768w" sizes="(max-width: 1394px) 100vw, 1394px" /> 
+<img class="aligncenter size-full wp-image-2068" src="/wp-content/uploads/2017/03/the_real_meat_is_cooked.png" alt="" width="1394" height="357" srcset="/wp-content/uploads/2017/03/the_real_meat_is_cooked.png 1394w, /wp-content/uploads/2017/03/the_real_meat_is_cooked-300x77.png 300w, /wp-content/uploads/2017/03/the_real_meat_is_cooked-768x197.png 768w" sizes="(max-width: 1394px) 100vw, 1394px" /> 
 
 And then completed at 2:33:15.2480580.
 
 The CSE didn't actually finish though, until 2:33:15.706579 :
 
-<img class="aligncenter size-full wp-image-2069" src="http://theorypc.ca/wp-content/uploads/2017/03/cleanup_complete_activities.png" alt="" width="1377" height="161" srcset="http://theorypc.ca/wp-content/uploads/2017/03/cleanup_complete_activities.png 1377w, http://theorypc.ca/wp-content/uploads/2017/03/cleanup_complete_activities-300x35.png 300w, http://theorypc.ca/wp-content/uploads/2017/03/cleanup_complete_activities-768x90.png 768w" sizes="(max-width: 1377px) 100vw, 1377px" /> 
+<img class="aligncenter size-full wp-image-2069" src="/wp-content/uploads/2017/03/cleanup_complete_activities.png" alt="" width="1377" height="161" srcset="/wp-content/uploads/2017/03/cleanup_complete_activities.png 1377w, /wp-content/uploads/2017/03/cleanup_complete_activities-300x35.png 300w, /wp-content/uploads/2017/03/cleanup_complete_activities-768x90.png 768w" sizes="(max-width: 1377px) 100vw, 1377px" /> 
 
 &nbsp;
 
@@ -77,7 +77,7 @@ So how does WEM do?
 
 One of the ways that WEM 'helps' counting stats is by pushing the processing into the user session where it can be processed asynchronously.  WEM creates a log in your %userprofile% folder that you can examine to see when it starts:
 
-<img class="aligncenter size-full wp-image-2072" src="http://theorypc.ca/wp-content/uploads/2017/03/WEM_Yolo-1.png" alt="" width="904" height="400" srcset="http://theorypc.ca/wp-content/uploads/2017/03/WEM_Yolo-1.png 904w, http://theorypc.ca/wp-content/uploads/2017/03/WEM_Yolo-1-300x133.png 300w, http://theorypc.ca/wp-content/uploads/2017/03/WEM_Yolo-1-768x340.png 768w" sizes="(max-width: 904px) 100vw, 904px" /> 
+<img class="aligncenter size-full wp-image-2072" src="/wp-content/uploads/2017/03/WEM_Yolo-1.png" alt="" width="904" height="400" srcset="/wp-content/uploads/2017/03/WEM_Yolo-1.png 904w, /wp-content/uploads/2017/03/WEM_Yolo-1-300x133.png 300w, /wp-content/uploads/2017/03/WEM_Yolo-1-768x340.png 768w" sizes="(max-width: 904px) 100vw, 904px" /> 
 
 &nbsp;
 
@@ -85,19 +85,19 @@ Unfortunately, WEM's log isn't very granular.  Procmon will fix that again
 
 The entry I'm looking for in WEM is "MainController.ProcessRegistryValues()".  This tells us when it starts doing the registry work:
 
-<img class="aligncenter size-full wp-image-2073" src="http://theorypc.ca/wp-content/uploads/2017/03/WEM_Registry-1.png" alt="" width="822" height="408" srcset="http://theorypc.ca/wp-content/uploads/2017/03/WEM_Registry-1.png 822w, http://theorypc.ca/wp-content/uploads/2017/03/WEM_Registry-1-300x149.png 300w, http://theorypc.ca/wp-content/uploads/2017/03/WEM_Registry-1-768x381.png 768w" sizes="(max-width: 822px) 100vw, 822px" /> 
+<img class="aligncenter size-full wp-image-2073" src="/wp-content/uploads/2017/03/WEM_Registry-1.png" alt="" width="822" height="408" srcset="/wp-content/uploads/2017/03/WEM_Registry-1.png 822w, /wp-content/uploads/2017/03/WEM_Registry-1-300x149.png 300w, /wp-content/uploads/2017/03/WEM_Registry-1-768x381.png 768w" sizes="(max-width: 822px) 100vw, 822px" /> 
 
 The processing started after 3:34:39.  Procmon will help us zero in on that time:
 
-<img class="aligncenter size-full wp-image-2074" src="http://theorypc.ca/wp-content/uploads/2017/03/WEM_Registry_Processing.png" alt="" width="1382" height="395" srcset="http://theorypc.ca/wp-content/uploads/2017/03/WEM_Registry_Processing.png 1382w, http://theorypc.ca/wp-content/uploads/2017/03/WEM_Registry_Processing-300x86.png 300w, http://theorypc.ca/wp-content/uploads/2017/03/WEM_Registry_Processing-768x220.png 768w" sizes="(max-width: 1382px) 100vw, 1382px" /> 
+<img class="aligncenter size-full wp-image-2074" src="/wp-content/uploads/2017/03/WEM_Registry_Processing.png" alt="" width="1382" height="395" srcset="/wp-content/uploads/2017/03/WEM_Registry_Processing.png 1382w, /wp-content/uploads/2017/03/WEM_Registry_Processing-300x86.png 300w, /wp-content/uploads/2017/03/WEM_Registry_Processing-768x220.png 768w" sizes="(max-width: 1382px) 100vw, 1382px" /> 
 
 We can see pretty clearly that it starts applying registry values at 3:34:39.4995477.
 
 It completes at...
 
-<img class="aligncenter size-full wp-image-2075" src="http://theorypc.ca/wp-content/uploads/2017/03/last_registry_entry.png" alt="" width="1269" height="398" srcset="http://theorypc.ca/wp-content/uploads/2017/03/last_registry_entry.png 1269w, http://theorypc.ca/wp-content/uploads/2017/03/last_registry_entry-300x94.png 300w, http://theorypc.ca/wp-content/uploads/2017/03/last_registry_entry-768x241.png 768w" sizes="(max-width: 1269px) 100vw, 1269px" /> 
+<img class="aligncenter size-full wp-image-2075" src="/wp-content/uploads/2017/03/last_registry_entry.png" alt="" width="1269" height="398" srcset="/wp-content/uploads/2017/03/last_registry_entry.png 1269w, /wp-content/uploads/2017/03/last_registry_entry-300x94.png 300w, /wp-content/uploads/2017/03/last_registry_entry-768x241.png 768w" sizes="(max-width: 1269px) 100vw, 1269px" /> 
 
-<img class="aligncenter size-full wp-image-2076" src="http://theorypc.ca/wp-content/uploads/2017/03/procmon_WEM.png" alt="" width="1394" height="466" srcset="http://theorypc.ca/wp-content/uploads/2017/03/procmon_WEM.png 1394w, http://theorypc.ca/wp-content/uploads/2017/03/procmon_WEM-300x100.png 300w, http://theorypc.ca/wp-content/uploads/2017/03/procmon_WEM-768x257.png 768w" sizes="(max-width: 1394px) 100vw, 1394px" /> 
+<img class="aligncenter size-full wp-image-2076" src="/wp-content/uploads/2017/03/procmon_WEM.png" alt="" width="1394" height="466" srcset="/wp-content/uploads/2017/03/procmon_WEM.png 1394w, /wp-content/uploads/2017/03/procmon_WEM-300x100.png 300w, /wp-content/uploads/2017/03/procmon_WEM-768x257.png 768w" sizes="(max-width: 1394px) 100vw, 1394px" /> 
 
 3:34:46.5753350.
 
@@ -111,11 +111,11 @@ In order to determine if WEM will perform better without the WQL queries, I manu
 
 The results?
 
-<img class="aligncenter size-large wp-image-2079" src="http://theorypc.ca/wp-content/uploads/2017/03/Screen-Shot-2017-03-10-at-12.48.16-PM-1600x260.png" alt="" width="1140" height="185" srcset="http://theorypc.ca/wp-content/uploads/2017/03/Screen-Shot-2017-03-10-at-12.48.16-PM-1600x260.png 1600w, http://theorypc.ca/wp-content/uploads/2017/03/Screen-Shot-2017-03-10-at-12.48.16-PM-300x49.png 300w, http://theorypc.ca/wp-content/uploads/2017/03/Screen-Shot-2017-03-10-at-12.48.16-PM-768x125.png 768w" sizes="(max-width: 1140px) 100vw, 1140px" /> 
+<img class="aligncenter size-large wp-image-2079" src="/wp-content/uploads/2017/03/Screen-Shot-2017-03-10-at-12.48.16-PM-1600x260.png" alt="" width="1140" height="185" srcset="/wp-content/uploads/2017/03/Screen-Shot-2017-03-10-at-12.48.16-PM-1600x260.png 1600w, /wp-content/uploads/2017/03/Screen-Shot-2017-03-10-at-12.48.16-PM-300x49.png 300w, /wp-content/uploads/2017/03/Screen-Shot-2017-03-10-at-12.48.16-PM-768x125.png 768w" sizes="(max-width: 1140px) 100vw, 1140px" /> 
 
 Started processing: 12:37:56.029
 
-<img class="aligncenter size-large wp-image-2080" src="http://theorypc.ca/wp-content/uploads/2017/03/Screen-Shot-2017-03-10-at-12.49.46-PM-1600x279.png" alt="" width="1140" height="199" srcset="http://theorypc.ca/wp-content/uploads/2017/03/Screen-Shot-2017-03-10-at-12.49.46-PM-1600x279.png 1600w, http://theorypc.ca/wp-content/uploads/2017/03/Screen-Shot-2017-03-10-at-12.49.46-PM-300x52.png 300w, http://theorypc.ca/wp-content/uploads/2017/03/Screen-Shot-2017-03-10-at-12.49.46-PM-768x134.png 768w" sizes="(max-width: 1140px) 100vw, 1140px" /> 
+<img class="aligncenter size-large wp-image-2080" src="/wp-content/uploads/2017/03/Screen-Shot-2017-03-10-at-12.49.46-PM-1600x279.png" alt="" width="1140" height="199" srcset="/wp-content/uploads/2017/03/Screen-Shot-2017-03-10-at-12.49.46-PM-1600x279.png 1600w, /wp-content/uploads/2017/03/Screen-Shot-2017-03-10-at-12.49.46-PM-300x52.png 300w, /wp-content/uploads/2017/03/Screen-Shot-2017-03-10-at-12.49.46-PM-768x134.png 768w" sizes="(max-width: 1140px) 100vw, 1140px" /> 
 
 Finished at 12:37:59.634
 
@@ -129,7 +129,7 @@ So there is big savings without doing any WQL processing.
 
 # Final Results
 
-<img class="aligncenter size-full wp-image-2084" src="http://theorypc.ca/wp-content/uploads/2017/03/Screen-Shot-2017-03-10-at-1.18.36-PM.png" alt="" width="764" height="449" srcset="http://theorypc.ca/wp-content/uploads/2017/03/Screen-Shot-2017-03-10-at-1.18.36-PM.png 764w, http://theorypc.ca/wp-content/uploads/2017/03/Screen-Shot-2017-03-10-at-1.18.36-PM-300x176.png 300w" sizes="(max-width: 764px) 100vw, 764px" /> 
+<img class="aligncenter size-full wp-image-2084" src="/wp-content/uploads/2017/03/Screen-Shot-2017-03-10-at-1.18.36-PM.png" alt="" width="764" height="449" srcset="/wp-content/uploads/2017/03/Screen-Shot-2017-03-10-at-1.18.36-PM.png 764w, /wp-content/uploads/2017/03/Screen-Shot-2017-03-10-at-1.18.36-PM-300x176.png 300w" sizes="(max-width: 764px) 100vw, 764px" /> 
 
 &nbsp;
 

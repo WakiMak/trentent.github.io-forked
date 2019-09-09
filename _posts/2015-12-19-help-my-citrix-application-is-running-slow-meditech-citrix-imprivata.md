@@ -35,7 +35,7 @@ At this point I procmon'ed the benchmark and came up with the following:
 <table align="center" cellpadding="0" cellspacing="0" style="margin-left: auto; margin-right: auto; text-align: center;">
   <tr>
     <td style="text-align: center;">
-      <a href="http://theorypc.ca/wp-content/uploads/2015/12/Screen-2BShot-2B2015-12-18-2Bat-2B10.54.50-2BPM-1.png" style="margin-left: auto; margin-right: auto;"><img border="0" height="70" src="http://theorypc.ca/wp-content/uploads/2015/12/Screen-2BShot-2B2015-12-18-2Bat-2B10.54.50-2BPM-1-300x66.png" width="320" /></a>
+      <a href="/wp-content/uploads/2015/12/Screen-2BShot-2B2015-12-18-2Bat-2B10.54.50-2BPM-1.png" style="margin-left: auto; margin-right: auto;"><img border="0" height="70" src="/wp-content/uploads/2015/12/Screen-2BShot-2B2015-12-18-2Bat-2B10.54.50-2BPM-1-300x66.png" width="320" /></a>
     </td>
   </tr>
   
@@ -49,19 +49,19 @@ At this point I procmon'ed the benchmark and came up with the following:
 Very obviously, the pattern of each key stroke on the Citrix server is present with the initial pattern highlighted:
 
 <div style="clear: both; text-align: center;">
-  <a href="http://theorypc.ca/wp-content/uploads/2015/12/Screen-2BShot-2B2015-12-18-2Bat-2B10.58.44-2BPM-1.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="273" src="http://theorypc.ca/wp-content/uploads/2015/12/Screen-2BShot-2B2015-12-18-2Bat-2B10.58.44-2BPM-1-300x256.png" width="320" /></a>
+  <a href="/wp-content/uploads/2015/12/Screen-2BShot-2B2015-12-18-2Bat-2B10.58.44-2BPM-1.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="273" src="/wp-content/uploads/2015/12/Screen-2BShot-2B2015-12-18-2Bat-2B10.58.44-2BPM-1-300x256.png" width="320" /></a>
 </div>
 
 About 400ms from each key stroke to when the next one is registered. &nbsp;So what is delaying the 400ms? &nbsp;From my experience, unexplained delays are CPU related. &nbsp;I then looked at the process activity summary to see if I can find the bottleneck:
 
 <div style="clear: both; text-align: center;">
-  <a href="http://theorypc.ca/wp-content/uploads/2015/12/Screen-2BShot-2B2015-12-18-2Bat-2B11.02.17-2BPM-1.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="196" src="http://theorypc.ca/wp-content/uploads/2015/12/Screen-2BShot-2B2015-12-18-2Bat-2B11.02.17-2BPM-1-300x184.png" width="320" /></a>
+  <a href="/wp-content/uploads/2015/12/Screen-2BShot-2B2015-12-18-2Bat-2B11.02.17-2BPM-1.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="196" src="/wp-content/uploads/2015/12/Screen-2BShot-2B2015-12-18-2Bat-2B11.02.17-2BPM-1-300x184.png" width="320" /></a>
 </div>
 
 Again, very obviously we are seeing the CPU ramp up, and it can also explain the faster, initial iterations of the GUI as the CPU 'ramps' up and doesn't spike to the it's maximum. &nbsp;None of the other graphs show any activity at the time of the benchmark so the suspect is highly on the CPU. &nbsp;When hovering over the graph we see the CPU percentage.
 
 <div style="clear: both; text-align: center;">
-  <a href="http://theorypc.ca/wp-content/uploads/2015/12/Screen-2BShot-2B2015-12-18-2Bat-2B11.05.11-2BPM-1.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="136" src="http://theorypc.ca/wp-content/uploads/2015/12/Screen-2BShot-2B2015-12-18-2Bat-2B11.05.11-2BPM-1-300x128.png" width="320" /></a>
+  <a href="/wp-content/uploads/2015/12/Screen-2BShot-2B2015-12-18-2Bat-2B11.05.11-2BPM-1.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="136" src="/wp-content/uploads/2015/12/Screen-2BShot-2B2015-12-18-2Bat-2B11.05.11-2BPM-1-300x128.png" width="320" /></a>
 </div>
 
 This is a 4 core box, so ~25% equals one full core for a single threaded application. &nbsp;Again, this points to the application being bottlenecked by the processor, but again, the difference is too large to consider just the CPU at this point. &nbsp;We need to find what part of the process is consuming these resources. &nbsp;Fortunately, ProcExp (process explorer) can help us determine what is going on within a process.
@@ -69,19 +69,19 @@ This is a 4 core box, so ~25% equals one full core for a single threaded applica
 I started a new run and got properties of the process:
 
 <div style="clear: both; text-align: center;">
-  <a href="http://theorypc.ca/wp-content/uploads/2015/12/Screen-2BShot-2B2015-12-18-2Bat-2B11.09.16-2BPM-1.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="306" src="http://theorypc.ca/wp-content/uploads/2015/12/Screen-2BShot-2B2015-12-18-2Bat-2B11.09.16-2BPM-1-300x288.png" width="320" /></a>
+  <a href="/wp-content/uploads/2015/12/Screen-2BShot-2B2015-12-18-2Bat-2B11.09.16-2BPM-1.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="306" src="/wp-content/uploads/2015/12/Screen-2BShot-2B2015-12-18-2Bat-2B11.09.16-2BPM-1-300x288.png" width="320" /></a>
 </div>
 
 MGUI.DLL is consuming all of the CPU. &nbsp;That is a DLL utilized by the application, clicking on 'Stack' gives us the hierarchy of commands being utilized by that thread.
 
 <div style="clear: both; text-align: center;">
-  <a href="http://theorypc.ca/wp-content/uploads/2015/12/Screen-2BShot-2B2015-12-18-2Bat-2B11.12.28-2BPM-1.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="320" src="http://theorypc.ca/wp-content/uploads/2015/12/Screen-2BShot-2B2015-12-18-2Bat-2B11.12.28-2BPM-1-270x300.png" width="287" /></a>
+  <a href="/wp-content/uploads/2015/12/Screen-2BShot-2B2015-12-18-2Bat-2B11.12.28-2BPM-1.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="320" src="/wp-content/uploads/2015/12/Screen-2BShot-2B2015-12-18-2Bat-2B11.12.28-2BPM-1-270x300.png" width="287" /></a>
 </div>
 
 From this, I can understand that ntoskrnl.exe, ntdll.dll are native Microsoft Windows functions, MGUI.DLL is utilized by Meditech, but what is ISXHook.dll?
 
 <div style="clear: both; text-align: center;">
-  <a href="http://theorypc.ca/wp-content/uploads/2015/12/Screen-2BShot-2B2015-12-18-2Bat-2B11.14.33-2BPM-1.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="320" src="http://theorypc.ca/wp-content/uploads/2015/12/Screen-2BShot-2B2015-12-18-2Bat-2B11.14.33-2BPM-1-223x300.png" width="237" /></a>
+  <a href="/wp-content/uploads/2015/12/Screen-2BShot-2B2015-12-18-2Bat-2B11.14.33-2BPM-1.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="320" src="/wp-content/uploads/2015/12/Screen-2BShot-2B2015-12-18-2Bat-2B11.14.33-2BPM-1-223x300.png" width="237" /></a>
 </div>
 
 Doing a search within the process shows that it's utilized by Imprivata, a single sign-on solution we utilize to try and increase user efficiency. &nbsp;It works by 'screen scraping' to determine fields that it needs to populate with user credentials to try and speed up user logins. &nbsp;Logically, this sounds like it could be causing the delay by screen scraping every time a key is stroked or a change is registered. &nbsp;To confirm this, we need to remove Imprivata from the application. &nbsp;Fortunately, it's hooked in by services that can easily be terminated.
@@ -89,7 +89,7 @@ Doing a search within the process shows that it's utilized by Imprivata, a singl
 <table align="center" cellpadding="0" cellspacing="0" style="margin-left: auto; margin-right: auto; text-align: center;">
   <tr>
     <td style="text-align: center;">
-      <a href="http://theorypc.ca/wp-content/uploads/2015/12/Screen-2BShot-2B2015-12-18-2Bat-2B11.18.18-2BPM-1.png" style="margin-left: auto; margin-right: auto;"><img border="0" height="56" src="http://theorypc.ca/wp-content/uploads/2015/12/Screen-2BShot-2B2015-12-18-2Bat-2B11.18.18-2BPM-1-300x53.png" width="320" /></a>
+      <a href="/wp-content/uploads/2015/12/Screen-2BShot-2B2015-12-18-2Bat-2B11.18.18-2BPM-1.png" style="margin-left: auto; margin-right: auto;"><img border="0" height="56" src="/wp-content/uploads/2015/12/Screen-2BShot-2B2015-12-18-2Bat-2B11.18.18-2BPM-1-300x53.png" width="320" /></a>
     </td>
   </tr>
   
@@ -103,13 +103,13 @@ Doing a search within the process shows that it's utilized by Imprivata, a singl
 With the processes terminated I reran my test. &nbsp;Using Process Explorer and getting properties on the process, immediately CPU usage went from 25% down to 15% at a peak:
 
 <div style="clear: both; text-align: center;">
-  <a href="http://theorypc.ca/wp-content/uploads/2015/12/Screen-2BShot-2B2015-12-18-2Bat-2B11.21.36-2BPM-1.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="249" src="http://theorypc.ca/wp-content/uploads/2015/12/Screen-2BShot-2B2015-12-18-2Bat-2B11.21.36-2BPM-1-300x233.png" width="320" /></a>
+  <a href="/wp-content/uploads/2015/12/Screen-2BShot-2B2015-12-18-2Bat-2B11.21.36-2BPM-1.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="249" src="/wp-content/uploads/2015/12/Screen-2BShot-2B2015-12-18-2Bat-2B11.21.36-2BPM-1-300x233.png" width="320" /></a>
 </div>
 
 And getting Stack information showed a much cleaner stack:
 
 <div style="clear: both; text-align: center;">
-  <a href="http://theorypc.ca/wp-content/uploads/2015/12/Screen-2BShot-2B2015-12-18-2Bat-2B11.23.37-2BPM-1.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="320" src="http://theorypc.ca/wp-content/uploads/2015/12/Screen-2BShot-2B2015-12-18-2Bat-2B11.23.37-2BPM-1-203x300.png" width="216" /></a>
+  <a href="/wp-content/uploads/2015/12/Screen-2BShot-2B2015-12-18-2Bat-2B11.23.37-2BPM-1.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="320" src="/wp-content/uploads/2015/12/Screen-2BShot-2B2015-12-18-2Bat-2B11.23.37-2BPM-1-203x300.png" width="216" /></a>
 </div>
 
 In conclusion, I may need to investigate into Imprivata to determine if I can reduce its polling rate or find some way of allowing it to 'stop' polling the CSMagic process \*after\* the accelerated login. &nbsp;Its current settings (which I'm not familiar with, sadly) is not acceptable and causes a significant slow down. &nbsp;Fortunately, the root cause has been determined and we can work towards a full resolution.

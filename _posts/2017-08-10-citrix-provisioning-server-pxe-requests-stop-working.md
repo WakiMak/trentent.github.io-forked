@@ -19,13 +19,13 @@ We use a bootable ISO in our environment to boot our VM's to a specific set of P
 
 However, we have 1 region that does not leverage this capability and this region was designed to utilize the PXE services of the Citrix PVS server's.  Occasionally, we encountered VM's that will not boot and instead the console shows "PXE-E53: no boot filename received"
 
-<img class="aligncenter size-full wp-image-2530" src="http://theorypc.ca/wp-content/uploads/2017/08/PXE-E53.png" alt="" width="842" height="469" srcset="http://theorypc.ca/wp-content/uploads/2017/08/PXE-E53.png 842w, http://theorypc.ca/wp-content/uploads/2017/08/PXE-E53-300x167.png 300w, http://theorypc.ca/wp-content/uploads/2017/08/PXE-E53-768x428.png 768w" sizes="(max-width: 842px) 100vw, 842px" /> 
+<img class="aligncenter size-full wp-image-2530" src="/wp-content/uploads/2017/08/PXE-E53.png" alt="" width="842" height="469" srcset="/wp-content/uploads/2017/08/PXE-E53.png 842w, /wp-content/uploads/2017/08/PXE-E53-300x167.png 300w, /wp-content/uploads/2017/08/PXE-E53-768x428.png 768w" sizes="(max-width: 842px) 100vw, 842px" /> 
 
 &nbsp;
 
 When I logged onto the Citrix PVS servers, I checked their services.  Both services were reported as "Running":
 
-<img class="aligncenter size-full wp-image-2531" src="http://theorypc.ca/wp-content/uploads/2017/08/Services.png" alt="" width="808" height="228" srcset="http://theorypc.ca/wp-content/uploads/2017/08/Services.png 808w, http://theorypc.ca/wp-content/uploads/2017/08/Services-300x85.png 300w, http://theorypc.ca/wp-content/uploads/2017/08/Services-768x217.png 768w" sizes="(max-width: 808px) 100vw, 808px" /> 
+<img class="aligncenter size-full wp-image-2531" src="/wp-content/uploads/2017/08/Services.png" alt="" width="808" height="228" srcset="/wp-content/uploads/2017/08/Services.png 808w, /wp-content/uploads/2017/08/Services-300x85.png 300w, /wp-content/uploads/2017/08/Services-768x217.png 768w" sizes="(max-width: 808px) 100vw, 808px" /> 
 
 When I checked the event logs I did not see any errors in either the application log or the system log.  Administrative events showed nothing out the usual either.
 
@@ -33,11 +33,11 @@ In order to confirm that the PVS service was actually listening, I executed
 
 <pre class="lang:default decode:true ">netstat -ano</pre>
 
-this showed me all the open ports the server was listening for and the processes tied to those ports.  Since PXE is a UDP operation, I examined the UDP portion of the netstat output. <img class="aligncenter size-full wp-image-2532" src="http://theorypc.ca/wp-content/uploads/2017/08/port_69.png" alt="" width="789" height="317" srcset="http://theorypc.ca/wp-content/uploads/2017/08/port_69.png 789w, http://theorypc.ca/wp-content/uploads/2017/08/port_69-300x121.png 300w, http://theorypc.ca/wp-content/uploads/2017/08/port_69-768x309.png 768w" sizes="(max-width: 789px) 100vw, 789px" /> 
+this showed me all the open ports the server was listening for and the processes tied to those ports.  Since PXE is a UDP operation, I examined the UDP portion of the netstat output. <img class="aligncenter size-full wp-image-2532" src="/wp-content/uploads/2017/08/port_69.png" alt="" width="789" height="317" srcset="/wp-content/uploads/2017/08/port_69.png 789w, /wp-content/uploads/2017/08/port_69-300x121.png 300w, /wp-content/uploads/2017/08/port_69-768x309.png 768w" sizes="(max-width: 789px) 100vw, 789px" /> 
 
 Port 69 is used by TFTP to transfer files, and port 67 is used by PXE.  However, I only saw port 69, port 67 was no where to be found.  I restarted the "Citrix PVS PXE Service", reran netstat and confirmed that the PXE port was not listening and matched up the process ID to the proper services.
 
-<img class="aligncenter size-large wp-image-2533" src="http://theorypc.ca/wp-content/uploads/2017/08/a_match-1600x643.png" alt="" width="1140" height="458" srcset="http://theorypc.ca/wp-content/uploads/2017/08/a_match-1600x643.png 1600w, http://theorypc.ca/wp-content/uploads/2017/08/a_match-300x121.png 300w, http://theorypc.ca/wp-content/uploads/2017/08/a_match-768x309.png 768w" sizes="(max-width: 1140px) 100vw, 1140px" /> 
+<img class="aligncenter size-large wp-image-2533" src="/wp-content/uploads/2017/08/a_match-1600x643.png" alt="" width="1140" height="458" srcset="/wp-content/uploads/2017/08/a_match-1600x643.png 1600w, /wp-content/uploads/2017/08/a_match-300x121.png 300w, /wp-content/uploads/2017/08/a_match-768x309.png 768w" sizes="(max-width: 1140px) 100vw, 1140px" /> 
 
 Restarting the failed target devices and they began to boot properly.
 

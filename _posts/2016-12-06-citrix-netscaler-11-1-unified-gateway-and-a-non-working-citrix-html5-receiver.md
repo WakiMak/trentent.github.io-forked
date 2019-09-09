@@ -44,7 +44,7 @@ And [additional documentation here](https://docs.citrix.com/en-us/receiver/html5
 
 And then we tried launching our application:
 
-<img class="aligncenter size-full wp-image-1805" src="http://theorypc.ca/wp-content/uploads/2016/12/cannot_connect_to_server.jpg" alt="" width="471" height="262" srcset="http://theorypc.ca/wp-content/uploads/2016/12/cannot_connect_to_server.jpg 471w, http://theorypc.ca/wp-content/uploads/2016/12/cannot_connect_to_server-300x167.jpg 300w" sizes="(max-width: 471px) 100vw, 471px" /> 
+<img class="aligncenter size-full wp-image-1805" src="/wp-content/uploads/2016/12/cannot_connect_to_server.jpg" alt="" width="471" height="262" srcset="/wp-content/uploads/2016/12/cannot_connect_to_server.jpg 471w, /wp-content/uploads/2016/12/cannot_connect_to_server-300x167.jpg 300w" sizes="(max-width: 471px) 100vw, 471px" /> 
 
 We started our investigation.  The first thing we did was test to see if HTML5 Receiver works at all.  We configured and enabled websockets on our & servers and then logged into the Storefront server directly, and internally.  We were able to launch applications without issue.
 
@@ -128,7 +128,7 @@ SESSION:|:ICA:|:TRANSPORT:|:DRIVER:|:close with code=1006
 
 The "Close with code=1006" seemed to imply it was a "websocket" issue from google searches.
 
-<img class="aligncenter wp-image-1804" src="http://theorypc.ca/wp-content/uploads/2016/12/1006.png" width="400" height="700" srcset="http://theorypc.ca/wp-content/uploads/2016/12/1006.png 853w, http://theorypc.ca/wp-content/uploads/2016/12/1006-172x300.png 172w, http://theorypc.ca/wp-content/uploads/2016/12/1006-768x1343.png 768w" sizes="(max-width: 400px) 100vw, 400px" /> 
+<img class="aligncenter wp-image-1804" src="/wp-content/uploads/2016/12/1006.png" width="400" height="700" srcset="/wp-content/uploads/2016/12/1006.png 853w, /wp-content/uploads/2016/12/1006-172x300.png 172w, /wp-content/uploads/2016/12/1006-768x1343.png 768w" sizes="(max-width: 400px) 100vw, 400px" /> 
 
 &nbsp;
 
@@ -258,7 +258,7 @@ The browser may show a log?  I wish I would have thought of that earlier.  And I
 
 So I opened the Console in Chrome, launched my application and reviewed the results:
 
-<img class="aligncenter size-full wp-image-1807" src="http://theorypc.ca/wp-content/uploads/2016/12/chrome-troubleshooting.png" alt="" width="1435" height="954" srcset="http://theorypc.ca/wp-content/uploads/2016/12/chrome-troubleshooting.png 1435w, http://theorypc.ca/wp-content/uploads/2016/12/chrome-troubleshooting-300x199.png 300w, http://theorypc.ca/wp-content/uploads/2016/12/chrome-troubleshooting-768x511.png 768w" sizes="(max-width: 1435px) 100vw, 1435px" /> 
+<img class="aligncenter size-full wp-image-1807" src="/wp-content/uploads/2016/12/chrome-troubleshooting.png" alt="" width="1435" height="954" srcset="/wp-content/uploads/2016/12/chrome-troubleshooting.png 1435w, /wp-content/uploads/2016/12/chrome-troubleshooting-300x199.png 300w, /wp-content/uploads/2016/12/chrome-troubleshooting-768x511.png 768w" sizes="(max-width: 1435px) 100vw, 1435px" /> 
 
 We finally have some human readable information.
 
@@ -266,19 +266,19 @@ Websocket connections are failing during the handshake "Unexpected response code
 
 What heck does 302 mean?  I installed Fiddler and did another launch withe Fiddler tracing:
 
-<img class="aligncenter size-full wp-image-1808" src="http://theorypc.ca/wp-content/uploads/2016/12/broken_myapps_websocket_fiddler.png" alt="" width="1039" height="791" srcset="http://theorypc.ca/wp-content/uploads/2016/12/broken_myapps_websocket_fiddler.png 1039w, http://theorypc.ca/wp-content/uploads/2016/12/broken_myapps_websocket_fiddler-300x228.png 300w, http://theorypc.ca/wp-content/uploads/2016/12/broken_myapps_websocket_fiddler-768x585.png 768w" sizes="(max-width: 1039px) 100vw, 1039px" /> 
+<img class="aligncenter size-full wp-image-1808" src="/wp-content/uploads/2016/12/broken_myapps_websocket_fiddler.png" alt="" width="1039" height="791" srcset="/wp-content/uploads/2016/12/broken_myapps_websocket_fiddler.png 1039w, /wp-content/uploads/2016/12/broken_myapps_websocket_fiddler-300x228.png 300w, /wp-content/uploads/2016/12/broken_myapps_websocket_fiddler-768x585.png 768w" sizes="(max-width: 1039px) 100vw, 1039px" /> 
 
 &nbsp;
 
 I highlighted the area where it tells us it's attempting to connect with websockets.  We can see in the response packet we are getting redirected, that's what '302' means.  I then found a website that lets you test your server to ensure websockets are working.  I tried it on our 'bad' netscaler:
 
-<img class="aligncenter size-full wp-image-1812" src="http://theorypc.ca/wp-content/uploads/2016/12/WebSocket._failureorg.png" alt="" width="780" height="680" srcset="http://theorypc.ca/wp-content/uploads/2016/12/WebSocket._failureorg.png 780w, http://theorypc.ca/wp-content/uploads/2016/12/WebSocket._failureorg-300x262.png 300w, http://theorypc.ca/wp-content/uploads/2016/12/WebSocket._failureorg-768x670.png 768w" sizes="(max-width: 780px) 100vw, 780px" /> 
+<img class="aligncenter size-full wp-image-1812" src="/wp-content/uploads/2016/12/WebSocket._failureorg.png" alt="" width="780" height="680" srcset="/wp-content/uploads/2016/12/WebSocket._failureorg.png 780w, /wp-content/uploads/2016/12/WebSocket._failureorg-300x262.png 300w, /wp-content/uploads/2016/12/WebSocket._failureorg-768x670.png 768w" sizes="(max-width: 780px) 100vw, 780px" /> 
 
 &nbsp;
 
 Hitting 'Connect' left nothing in the log.  However, when I tried it with my 'good' netscaler...
 
-<img class="aligncenter size-full wp-image-1813" src="http://theorypc.ca/wp-content/uploads/2016/12/WebSocket_wokrk.org_.png" alt="" width="780" height="680" srcset="http://theorypc.ca/wp-content/uploads/2016/12/WebSocket_wokrk.org_.png 780w, http://theorypc.ca/wp-content/uploads/2016/12/WebSocket_wokrk.org_-300x262.png 300w, http://theorypc.ca/wp-content/uploads/2016/12/WebSocket_wokrk.org_-768x670.png 768w" sizes="(max-width: 780px) 100vw, 780px" /> 
+<img class="aligncenter size-full wp-image-1813" src="/wp-content/uploads/2016/12/WebSocket_wokrk.org_.png" alt="" width="780" height="680" srcset="/wp-content/uploads/2016/12/WebSocket_wokrk.org_.png 780w, /wp-content/uploads/2016/12/WebSocket_wokrk.org_-300x262.png 300w, /wp-content/uploads/2016/12/WebSocket_wokrk.org_-768x670.png 768w" sizes="(max-width: 780px) 100vw, 780px" /> 
 
 &nbsp;
 
@@ -288,19 +288,19 @@ It works!  So we can test websockets without having to launch and close the appl
 
 So we started to investigate the Netscaler.  We found numerous policies that did URL or content redirection that would be taking place with the packet formulated like so.  We then compared our Netscaler to the one in my homelab and did find one, subtle difference:
 
-<img class="aligncenter size-full wp-image-1811" src="http://theorypc.ca/wp-content/uploads/2016/12/broken_netscaler.png" alt="" width="1416" height="303" srcset="http://theorypc.ca/wp-content/uploads/2016/12/broken_netscaler.png 1416w, http://theorypc.ca/wp-content/uploads/2016/12/broken_netscaler-300x64.png 300w, http://theorypc.ca/wp-content/uploads/2016/12/broken_netscaler-768x164.png 768w" sizes="(max-width: 1416px) 100vw, 1416px" /> 
+<img class="aligncenter size-full wp-image-1811" src="/wp-content/uploads/2016/12/broken_netscaler.png" alt="" width="1416" height="303" srcset="/wp-content/uploads/2016/12/broken_netscaler.png 1416w, /wp-content/uploads/2016/12/broken_netscaler-300x64.png 300w, /wp-content/uploads/2016/12/broken_netscaler-768x164.png 768w" sizes="(max-width: 1416px) 100vw, 1416px" /> 
 
 The one on the left is showing a rule for HTTP.REQ.URL.CONTAINS\_ANY("aaa\_path") where the one on the right just shows "is\_vpn\_url".  Investigating further it was stated that our team was trying to get AAA authentication working and this was an option set during a troubleshooting stage.  Apparently, it was forgotten or overlooked when the issue was resolved (it was not applicable and can be removed).  So we set it back to having the "is\_vpn\_url" and retried...
 
 It worked!  I tried the 'websockets.org' test and it connected now!  Looking in the Chrome console showed:
 
-<img class="aligncenter size-full wp-image-1814" src="http://theorypc.ca/wp-content/uploads/2016/12/chrome_working_console.png" alt="" width="1434" height="950" srcset="http://theorypc.ca/wp-content/uploads/2016/12/chrome_working_console.png 1434w, http://theorypc.ca/wp-content/uploads/2016/12/chrome_working_console-300x199.png 300w, http://theorypc.ca/wp-content/uploads/2016/12/chrome_working_console-768x509.png 768w" sizes="(max-width: 1434px) 100vw, 1434px" /> 
+<img class="aligncenter size-full wp-image-1814" src="/wp-content/uploads/2016/12/chrome_working_console.png" alt="" width="1434" height="950" srcset="/wp-content/uploads/2016/12/chrome_working_console.png 1434w, /wp-content/uploads/2016/12/chrome_working_console-300x199.png 300w, /wp-content/uploads/2016/12/chrome_working_console-768x509.png 768w" sizes="(max-width: 1434px) 100vw, 1434px" /> 
 
 &nbsp;
 
 Success!  It doesn't pause on the websocket connection and the console logging shows some interesting information.  Fiddler, with the working connection, now displayed the following:
 
-<img class="aligncenter size-full wp-image-1815" src="http://theorypc.ca/wp-content/uploads/2016/12/fiddler_working_websockets-1.png" alt="" width="1114" height="788" srcset="http://theorypc.ca/wp-content/uploads/2016/12/fiddler_working_websockets-1.png 1114w, http://theorypc.ca/wp-content/uploads/2016/12/fiddler_working_websockets-1-300x212.png 300w, http://theorypc.ca/wp-content/uploads/2016/12/fiddler_working_websockets-1-768x543.png 768w" sizes="(max-width: 1114px) 100vw, 1114px" /> 
+<img class="aligncenter size-full wp-image-1815" src="/wp-content/uploads/2016/12/fiddler_working_websockets-1.png" alt="" width="1114" height="788" srcset="/wp-content/uploads/2016/12/fiddler_working_websockets-1.png 1114w, /wp-content/uploads/2016/12/fiddler_working_websockets-1-300x212.png 300w, /wp-content/uploads/2016/12/fiddler_working_websockets-1-768x543.png 768w" sizes="(max-width: 1114px) 100vw, 1114px" /> 
 
 Look!  A handshark response!
 

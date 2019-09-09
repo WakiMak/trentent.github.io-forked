@@ -33,7 +33,7 @@ tags:
   </p>
   
   <p>
-    <img class="aligncenter size-full wp-image-2050" src="http://theorypc.ca/wp-content/uploads/2017/03/wem10.png" alt="" width="1344" height="561" srcset="http://theorypc.ca/wp-content/uploads/2017/03/wem10.png 1344w, http://theorypc.ca/wp-content/uploads/2017/03/wem10-300x125.png 300w, http://theorypc.ca/wp-content/uploads/2017/03/wem10-768x321.png 768w" sizes="(max-width: 1344px) 100vw, 1344px" />
+    <img class="aligncenter size-full wp-image-2050" src="/wp-content/uploads/2017/03/wem10.png" alt="" width="1344" height="561" srcset="/wp-content/uploads/2017/03/wem10.png 1344w, /wp-content/uploads/2017/03/wem10-300x125.png 300w, /wp-content/uploads/2017/03/wem10-768x321.png 768w" sizes="(max-width: 1344px) 100vw, 1344px" />
   </p>
   
   <p>
@@ -52,15 +52,15 @@ So I started by attempting to get to the result we wanted.
 
 I exported the value as we wanted it from the registry and imported it into WEM:
 
-<img class="aligncenter size-full wp-image-2051" src="http://theorypc.ca/wp-content/uploads/2017/03/wem11.png" alt="" width="994" height="547" srcset="http://theorypc.ca/wp-content/uploads/2017/03/wem11.png 994w, http://theorypc.ca/wp-content/uploads/2017/03/wem11-300x165.png 300w, http://theorypc.ca/wp-content/uploads/2017/03/wem11-768x423.png 768w" sizes="(max-width: 994px) 100vw, 994px" /> 
+<img class="aligncenter size-full wp-image-2051" src="/wp-content/uploads/2017/03/wem11.png" alt="" width="994" height="547" srcset="/wp-content/uploads/2017/03/wem11.png 994w, /wp-content/uploads/2017/03/wem11-300x165.png 300w, /wp-content/uploads/2017/03/wem11-768x423.png 768w" sizes="(max-width: 994px) 100vw, 994px" /> 
 
 Now to create our conditions. I want this registry action to only apply if you are on a specific server.  We add our servers into logical groups. I attempted to set the filter condition to target the server with this specific AD group. It turns out this was not possible with the builtin filter conditions.
 
-<img class="aligncenter size-full wp-image-2052" src="http://theorypc.ca/wp-content/uploads/2017/03/wem12.png" alt="" width="478" height="550" srcset="http://theorypc.ca/wp-content/uploads/2017/03/wem12.png 478w, http://theorypc.ca/wp-content/uploads/2017/03/wem12-261x300.png 261w" sizes="(max-width: 478px) 100vw, 478px" /> 
+<img class="aligncenter size-full wp-image-2052" src="/wp-content/uploads/2017/03/wem12.png" alt="" width="478" height="550" srcset="/wp-content/uploads/2017/03/wem12.png 478w, /wp-content/uploads/2017/03/wem12-261x300.png 261w" sizes="(max-width: 478px) 100vw, 478px" /> 
 
 The Active Directory filter conditions are only evaluated against the user and not the machine. However, there is an option for 'ComputerName Match':
 
-<img class="aligncenter size-full wp-image-2053" src="http://theorypc.ca/wp-content/uploads/2017/03/wem13.png" alt="" width="312" height="159" srcset="http://theorypc.ca/wp-content/uploads/2017/03/wem13.png 312w, http://theorypc.ca/wp-content/uploads/2017/03/wem13-300x153.png 300w" sizes="(max-width: 312px) 100vw, 312px" /> 
+<img class="aligncenter size-full wp-image-2053" src="/wp-content/uploads/2017/03/wem13.png" alt="" width="312" height="159" srcset="/wp-content/uploads/2017/03/wem13.png 312w, /wp-content/uploads/2017/03/wem13-300x153.png 300w" sizes="(max-width: 312px) 100vw, 312px" /> 
 
 Our server naming convention is CTX (for Citrix) APP or silo name (eg, EPIC) ### (3 digit numerical designation) and the letter "T" at the end for a test server or no letter for a production server. So our naming scheme would look like so:
 
@@ -77,11 +77,11 @@ Will match both the test and prod servers. However, setting CTXAPP3*T and the wi
 
 CTXAPP301T, CTXAPP302T, CTXAPP303T, etc.
 
-<img class="aligncenter size-full wp-image-2054" src="http://theorypc.ca/wp-content/uploads/2017/03/wem14.png" alt="" width="481" height="542" srcset="http://theorypc.ca/wp-content/uploads/2017/03/wem14.png 481w, http://theorypc.ca/wp-content/uploads/2017/03/wem14-266x300.png 266w" sizes="(max-width: 481px) 100vw, 481px" /> 
+<img class="aligncenter size-full wp-image-2054" src="/wp-content/uploads/2017/03/wem14.png" alt="" width="481" height="542" srcset="/wp-content/uploads/2017/03/wem14.png 481w, /wp-content/uploads/2017/03/wem14-266x300.png 266w" sizes="(max-width: 481px) 100vw, 481px" /> 
 
 Although this works, this is not workable. Adding/removing servers would require us to keep this filter updated fairly constantly. Is there another option?
 
-<img class="aligncenter size-full wp-image-2055" src="http://theorypc.ca/wp-content/uploads/2017/03/wem15.png" alt="" width="304" height="159" srcset="http://theorypc.ca/wp-content/uploads/2017/03/wem15.png 304w, http://theorypc.ca/wp-content/uploads/2017/03/wem15-300x157.png 300w" sizes="(max-width: 304px) 100vw, 304px" /> 
+<img class="aligncenter size-full wp-image-2055" src="/wp-content/uploads/2017/03/wem15.png" alt="" width="304" height="159" srcset="/wp-content/uploads/2017/03/wem15.png 304w, /wp-content/uploads/2017/03/wem15-300x157.png 300w" sizes="(max-width: 304px) 100vw, 304px" /> 
 
 Apparently, you can execute a WMI Query.  We can use this to see if the computer is a member of a group. The command to do so is:
 
@@ -103,17 +103,17 @@ Instead of doing the 'OR', we select the individual groups that this check would
 
 To do that we add each group to the 'Configured Users':
 
-<img class="aligncenter size-full wp-image-2056" src="http://theorypc.ca/wp-content/uploads/2017/03/wem16.png" alt="" width="1390" height="652" srcset="http://theorypc.ca/wp-content/uploads/2017/03/wem16.png 1390w, http://theorypc.ca/wp-content/uploads/2017/03/wem16-300x141.png 300w, http://theorypc.ca/wp-content/uploads/2017/03/wem16-768x360.png 768w" sizes="(max-width: 1390px) 100vw, 1390px" /> 
+<img class="aligncenter size-full wp-image-2056" src="/wp-content/uploads/2017/03/wem16.png" alt="" width="1390" height="652" srcset="/wp-content/uploads/2017/03/wem16.png 1390w, /wp-content/uploads/2017/03/wem16-300x141.png 300w, /wp-content/uploads/2017/03/wem16-768x360.png 768w" sizes="(max-width: 1390px) 100vw, 1390px" /> 
 
 And then for each group, under 'Assignment' we apply our setting with the filter:
 
-<img class="aligncenter size-full wp-image-2057" src="http://theorypc.ca/wp-content/uploads/2017/03/wem17.png" alt="" width="1390" height="710" srcset="http://theorypc.ca/wp-content/uploads/2017/03/wem17.png 1390w, http://theorypc.ca/wp-content/uploads/2017/03/wem17-300x153.png 300w, http://theorypc.ca/wp-content/uploads/2017/03/wem17-768x392.png 768w" sizes="(max-width: 1390px) 100vw, 1390px" /> 
+<img class="aligncenter size-full wp-image-2057" src="/wp-content/uploads/2017/03/wem17.png" alt="" width="1390" height="710" srcset="/wp-content/uploads/2017/03/wem17.png 1390w, /wp-content/uploads/2017/03/wem17-300x153.png 300w, /wp-content/uploads/2017/03/wem17-768x392.png 768w" sizes="(max-width: 1390px) 100vw, 1390px" /> 
 
 And now each group has this value applied with the appropriate conditions.
 
 Continuing, we have the following policy:
 
-<img class="aligncenter size-full wp-image-2058" src="http://theorypc.ca/wp-content/uploads/2017/03/wem18.png" alt="" width="1228" height="579" srcset="http://theorypc.ca/wp-content/uploads/2017/03/wem18.png 1228w, http://theorypc.ca/wp-content/uploads/2017/03/wem18-300x141.png 300w, http://theorypc.ca/wp-content/uploads/2017/03/wem18-768x362.png 768w" sizes="(max-width: 1228px) 100vw, 1228px" /> 
+<img class="aligncenter size-full wp-image-2058" src="/wp-content/uploads/2017/03/wem18.png" alt="" width="1228" height="579" srcset="/wp-content/uploads/2017/03/wem18.png 1228w, /wp-content/uploads/2017/03/wem18-300x141.png 300w, /wp-content/uploads/2017/03/wem18-768x362.png 768w" sizes="(max-width: 1228px) 100vw, 1228px" /> 
 
 So this filtering is applied to a collection, not the individual settings. The filtering checks to see if the computer is a member of a specific group of servers, and whether the user is a member of a specific group.
 
@@ -121,7 +121,7 @@ In order to accomplish this same result I have no choice but to create a parent 
 
 In total we have 154 total individual registry entries we apply.
 
-<img class="aligncenter size-full wp-image-2059" src="http://theorypc.ca/wp-content/uploads/2017/03/wem19.png" alt="" width="1144" height="653" srcset="http://theorypc.ca/wp-content/uploads/2017/03/wem19.png 1144w, http://theorypc.ca/wp-content/uploads/2017/03/wem19-300x171.png 300w, http://theorypc.ca/wp-content/uploads/2017/03/wem19-768x438.png 768w" sizes="(max-width: 1144px) 100vw, 1144px" /> 
+<img class="aligncenter size-full wp-image-2059" src="/wp-content/uploads/2017/03/wem19.png" alt="" width="1144" height="653" srcset="/wp-content/uploads/2017/03/wem19.png 1144w, /wp-content/uploads/2017/03/wem19-300x171.png 300w, /wp-content/uploads/2017/03/wem19-768x438.png 768w" sizes="(max-width: 1144px) 100vw, 1144px" /> 
 
 So how does it compare to Group Policy Preferences?
 

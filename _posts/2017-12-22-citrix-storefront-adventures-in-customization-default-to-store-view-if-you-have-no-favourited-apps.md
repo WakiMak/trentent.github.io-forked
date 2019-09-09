@@ -17,7 +17,7 @@ tags:
 We are in the process of migrating users from Web Interface to Storefront.  We have identified a potential issue; new users are directed to the "Favourites" view which doesn't have any applications be default, instead it has instructions on how to add apps to the favourites view.
 
 <div id="attachment_2638" style="width: 729px" class="wp-caption aligncenter">
-  <img aria-describedby="caption-attachment-2638" class="wp-image-2638 size-full" src="http://theorypc.ca/wp-content/uploads/2017/12/Screen-Shot-2017-12-22-at-12.18.42-PM.png" alt="" width="719" height="401" srcset="http://theorypc.ca/wp-content/uploads/2017/12/Screen-Shot-2017-12-22-at-12.18.42-PM.png 719w, http://theorypc.ca/wp-content/uploads/2017/12/Screen-Shot-2017-12-22-at-12.18.42-PM-300x167.png 300w" sizes="(max-width: 719px) 100vw, 719px" /></p> 
+  <img aria-describedby="caption-attachment-2638" class="wp-image-2638 size-full" src="/wp-content/uploads/2017/12/Screen-Shot-2017-12-22-at-12.18.42-PM.png" alt="" width="719" height="401" srcset="/wp-content/uploads/2017/12/Screen-Shot-2017-12-22-at-12.18.42-PM.png 719w, /wp-content/uploads/2017/12/Screen-Shot-2017-12-22-at-12.18.42-PM-300x167.png 300w" sizes="(max-width: 719px) 100vw, 719px" /></p> 
   
   <p id="caption-attachment-2638" class="wp-caption-text">
     New users might say, "Where did my apps go?!"

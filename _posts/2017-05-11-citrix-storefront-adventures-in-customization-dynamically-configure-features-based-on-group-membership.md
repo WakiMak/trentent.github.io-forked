@@ -230,17 +230,17 @@ You'll need to refer to my previous two posts for the Powershell HTTP LDAP liste
 
 What does this look like for an end result?
 
-<img class="aligncenter size-full wp-image-2267" src="http://theorypc.ca/wp-content/uploads/2017/05/Detected.png" alt="" width="892" height="253" srcset="http://theorypc.ca/wp-content/uploads/2017/05/Detected.png 892w, http://theorypc.ca/wp-content/uploads/2017/05/Detected-300x85.png 300w, http://theorypc.ca/wp-content/uploads/2017/05/Detected-768x218.png 768w" sizes="(max-width: 892px) 100vw, 892px" /> 
+<img class="aligncenter size-full wp-image-2267" src="/wp-content/uploads/2017/05/Detected.png" alt="" width="892" height="253" srcset="/wp-content/uploads/2017/05/Detected.png 892w, /wp-content/uploads/2017/05/Detected-300x85.png 300w, /wp-content/uploads/2017/05/Detected-768x218.png 768w" sizes="(max-width: 892px) 100vw, 892px" /> 
 
 &nbsp;
 
 And if you are a member of the various combinations of groups?
 
-<img class="aligncenter size-full wp-image-2265" src="http://theorypc.ca/wp-content/uploads/2017/05/Detected1.png" alt="" width="295" height="154" /> 
+<img class="aligncenter size-full wp-image-2265" src="/wp-content/uploads/2017/05/Detected1.png" alt="" width="295" height="154" /> 
 
-<img class="aligncenter size-full wp-image-2266" src="http://theorypc.ca/wp-content/uploads/2017/05/Detected2.png" alt="" width="295" height="148" /> 
+<img class="aligncenter size-full wp-image-2266" src="/wp-content/uploads/2017/05/Detected2.png" alt="" width="295" height="148" /> 
 
-<img class="aligncenter size-full wp-image-2264" src="http://theorypc.ca/wp-content/uploads/2017/05/Detected0.png" alt="" width="287" height="132" /> 
+<img class="aligncenter size-full wp-image-2264" src="/wp-content/uploads/2017/05/Detected0.png" alt="" width="287" height="132" /> 
 
 &nbsp;
 

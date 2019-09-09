@@ -45,11 +45,11 @@ Seems like a pretty straightforward goal?
 
 So I thought I'd start with something pretty simple.  I have a store with Workspace Control Enabled, with show 'Connect and Disconnect' buttons selected:
 
-<img class="aligncenter size-full wp-image-2220" src="http://theorypc.ca/wp-content/uploads/2017/05/Screen-Shot-2017-05-07-at-1.15.34-PM.png" alt="" width="806" height="596" srcset="http://theorypc.ca/wp-content/uploads/2017/05/Screen-Shot-2017-05-07-at-1.15.34-PM.png 806w, http://theorypc.ca/wp-content/uploads/2017/05/Screen-Shot-2017-05-07-at-1.15.34-PM-300x222.png 300w, http://theorypc.ca/wp-content/uploads/2017/05/Screen-Shot-2017-05-07-at-1.15.34-PM-768x568.png 768w" sizes="(max-width: 806px) 100vw, 806px" /> 
+<img class="aligncenter size-full wp-image-2220" src="/wp-content/uploads/2017/05/Screen-Shot-2017-05-07-at-1.15.34-PM.png" alt="" width="806" height="596" srcset="/wp-content/uploads/2017/05/Screen-Shot-2017-05-07-at-1.15.34-PM.png 806w, /wp-content/uploads/2017/05/Screen-Shot-2017-05-07-at-1.15.34-PM-300x222.png 300w, /wp-content/uploads/2017/05/Screen-Shot-2017-05-07-at-1.15.34-PM-768x568.png 768w" sizes="(max-width: 806px) 100vw, 806px" /> 
 
 If I log into the site:
 
-<img class="aligncenter size-full wp-image-2221" src="http://theorypc.ca/wp-content/uploads/2017/05/Screen-Shot-2017-05-07-at-1.18.18-PM.png" alt="" width="212" height="313" srcset="http://theorypc.ca/wp-content/uploads/2017/05/Screen-Shot-2017-05-07-at-1.18.18-PM.png 212w, http://theorypc.ca/wp-content/uploads/2017/05/Screen-Shot-2017-05-07-at-1.18.18-PM-203x300.png 203w" sizes="(max-width: 212px) 100vw, 212px" /> 
+<img class="aligncenter size-full wp-image-2221" src="/wp-content/uploads/2017/05/Screen-Shot-2017-05-07-at-1.18.18-PM.png" alt="" width="212" height="313" srcset="/wp-content/uploads/2017/05/Screen-Shot-2017-05-07-at-1.18.18-PM.png 212w, /wp-content/uploads/2017/05/Screen-Shot-2017-05-07-at-1.18.18-PM-203x300.png 203w" sizes="(max-width: 212px) 100vw, 212px" /> 
 
 I see everything (as I should).
 
@@ -63,7 +63,7 @@ CTXS.Extensions.webLogoffIcaAction = function () {return "disconnect"};
 
 Now what does our menu look like?
 
-<img class="aligncenter size-full wp-image-2222" src="http://theorypc.ca/wp-content/uploads/2017/05/Screen-Shot-2017-05-07-at-1.22.05-PM.png" alt="" width="212" height="236" /> 
+<img class="aligncenter size-full wp-image-2222" src="/wp-content/uploads/2017/05/Screen-Shot-2017-05-07-at-1.22.05-PM.png" alt="" width="212" height="236" /> 
 
 Awesome!  Workspace Control was disabled by script!
 
@@ -131,11 +131,11 @@ function setWorkspaceControl (bool) {
 
 In order to trace the error, you simply enter "#-tr" to the end of your store URL:
 
-<img class="aligncenter size-full wp-image-2223" src="http://theorypc.ca/wp-content/uploads/2017/05/Screen-Shot-2017-05-07-at-1.44.15-PM.png" alt="" width="312" height="20" srcset="http://theorypc.ca/wp-content/uploads/2017/05/Screen-Shot-2017-05-07-at-1.44.15-PM.png 312w, http://theorypc.ca/wp-content/uploads/2017/05/Screen-Shot-2017-05-07-at-1.44.15-PM-300x19.png 300w" sizes="(max-width: 312px) 100vw, 312px" /> 
+<img class="aligncenter size-full wp-image-2223" src="/wp-content/uploads/2017/05/Screen-Shot-2017-05-07-at-1.44.15-PM.png" alt="" width="312" height="20" srcset="/wp-content/uploads/2017/05/Screen-Shot-2017-05-07-at-1.44.15-PM.png 312w, /wp-content/uploads/2017/05/Screen-Shot-2017-05-07-at-1.44.15-PM-300x19.png 300w" sizes="(max-width: 312px) 100vw, 312px" /> 
 
 and allow pop-ups.  A new tab will open allowing you to follow the 'flow' of Storefront as it executes its commands.  Mine crashed at:
 
-<img class="aligncenter size-full wp-image-2224" src="http://theorypc.ca/wp-content/uploads/2017/05/Screen-Shot-2017-05-07-at-1.49.01-PM.png" alt="" width="658" height="858" srcset="http://theorypc.ca/wp-content/uploads/2017/05/Screen-Shot-2017-05-07-at-1.49.01-PM.png 658w, http://theorypc.ca/wp-content/uploads/2017/05/Screen-Shot-2017-05-07-at-1.49.01-PM-230x300.png 230w" sizes="(max-width: 658px) 100vw, 658px" /> 
+<img class="aligncenter size-full wp-image-2224" src="/wp-content/uploads/2017/05/Screen-Shot-2017-05-07-at-1.49.01-PM.png" alt="" width="658" height="858" srcset="/wp-content/uploads/2017/05/Screen-Shot-2017-05-07-at-1.49.01-PM.png 658w, /wp-content/uploads/2017/05/Screen-Shot-2017-05-07-at-1.49.01-PM-230x300.png 230w" sizes="(max-width: 658px) 100vw, 658px" /> 
 
 "get username data:"
 
@@ -213,11 +213,11 @@ CTXS.Extensions.afterDisplayHomeScreen  = function () {
 
 This is where I stopped:
 
-<img class="aligncenter size-full wp-image-2225" src="http://theorypc.ca/wp-content/uploads/2017/05/Screen-Shot-2017-05-07-at-2.05.05-PM.png" alt="" width="916" height="296" srcset="http://theorypc.ca/wp-content/uploads/2017/05/Screen-Shot-2017-05-07-at-2.05.05-PM.png 916w, http://theorypc.ca/wp-content/uploads/2017/05/Screen-Shot-2017-05-07-at-2.05.05-PM-300x97.png 300w, http://theorypc.ca/wp-content/uploads/2017/05/Screen-Shot-2017-05-07-at-2.05.05-PM-768x248.png 768w" sizes="(max-width: 916px) 100vw, 916px" /> 
+<img class="aligncenter size-full wp-image-2225" src="/wp-content/uploads/2017/05/Screen-Shot-2017-05-07-at-2.05.05-PM.png" alt="" width="916" height="296" srcset="/wp-content/uploads/2017/05/Screen-Shot-2017-05-07-at-2.05.05-PM.png 916w, /wp-content/uploads/2017/05/Screen-Shot-2017-05-07-at-2.05.05-PM-300x97.png 300w, /wp-content/uploads/2017/05/Screen-Shot-2017-05-07-at-2.05.05-PM-768x248.png 768w" sizes="(max-width: 916px) 100vw, 916px" /> 
 
 And trace tab results:
 
-<img class="aligncenter size-full wp-image-2226" src="http://theorypc.ca/wp-content/uploads/2017/05/4stages.png" alt="" width="1092" height="506" srcset="http://theorypc.ca/wp-content/uploads/2017/05/4stages.png 1092w, http://theorypc.ca/wp-content/uploads/2017/05/4stages-300x139.png 300w, http://theorypc.ca/wp-content/uploads/2017/05/4stages-768x356.png 768w" sizes="(max-width: 1092px) 100vw, 1092px" /> 
+<img class="aligncenter size-full wp-image-2226" src="/wp-content/uploads/2017/05/4stages.png" alt="" width="1092" height="506" srcset="/wp-content/uploads/2017/05/4stages.png 1092w, /wp-content/uploads/2017/05/4stages-300x139.png 300w, /wp-content/uploads/2017/05/4stages-768x356.png 768w" sizes="(max-width: 1092px) 100vw, 1092px" /> 
 
 These 4 stages are called before the user logs on so they are of no use to me:
 
@@ -228,7 +228,7 @@ beforeLogon
 
 The order of the other 3 after logon:
 
-<img class="aligncenter size-large wp-image-2227" src="http://theorypc.ca/wp-content/uploads/2017/05/final3stages-1600x668.png" alt="" width="1140" height="476" srcset="http://theorypc.ca/wp-content/uploads/2017/05/final3stages-1600x668.png 1600w, http://theorypc.ca/wp-content/uploads/2017/05/final3stages-300x125.png 300w, http://theorypc.ca/wp-content/uploads/2017/05/final3stages-768x321.png 768w" sizes="(max-width: 1140px) 100vw, 1140px" /> 
+<img class="aligncenter size-large wp-image-2227" src="/wp-content/uploads/2017/05/final3stages-1600x668.png" alt="" width="1140" height="476" srcset="/wp-content/uploads/2017/05/final3stages-1600x668.png 1600w, /wp-content/uploads/2017/05/final3stages-300x125.png 300w, /wp-content/uploads/2017/05/final3stages-768x321.png 768w" sizes="(max-width: 1140px) 100vw, 1140px" /> 
 
 beforeDisplayHomeScreen  
 postAppListLoaded  
@@ -236,7 +236,7 @@ afterDisplayHomeScreenStage
 
 Before adding my code to the post-logon event functions I just added it back -plain jane- and rerun with a trace:
 
-<img class="aligncenter size-large wp-image-2229" src="http://theorypc.ca/wp-content/uploads/2017/05/WSC_Menu-1600x456.png" alt="" width="1140" height="325" srcset="http://theorypc.ca/wp-content/uploads/2017/05/WSC_Menu-1600x456.png 1600w, http://theorypc.ca/wp-content/uploads/2017/05/WSC_Menu-300x85.png 300w, http://theorypc.ca/wp-content/uploads/2017/05/WSC_Menu-768x219.png 768w" sizes="(max-width: 1140px) 100vw, 1140px" /> 
+<img class="aligncenter size-large wp-image-2229" src="/wp-content/uploads/2017/05/WSC_Menu-1600x456.png" alt="" width="1140" height="325" srcset="/wp-content/uploads/2017/05/WSC_Menu-1600x456.png 1600w, /wp-content/uploads/2017/05/WSC_Menu-300x85.png 300w, /wp-content/uploads/2017/05/WSC_Menu-768x219.png 768w" sizes="(max-width: 1140px) 100vw, 1140px" /> 
 
 What I found is these extensions appear to have a fixed entry order point.  The workspace control extensions <span style="text-decoration: underline;"><strong>cannot</strong></span> be called _after_ "beforeDisplayHomeScreen" stage.  If you do not call the workspace control extensions before the callback on the 'beforeDisplayHomeScreen' function you will be unable to control the setting.  The trace log in my screenshot for these extensions will always occur at this point in time regardless if you actually set it in 'preInitialize, postInitialize, postConfigurationLoaded, or beforeLogon'.  And if you attempt to set it in either of the two later functions it will not log anything and your code has no effect.  So the only point in time where I can take the username and set these values are in the event function beforeDisplayHomeScreen.
 
@@ -266,7 +266,7 @@ The result?  Nothing.  Nothing happened.
 
 Well, that's not _entirely_ true.
 
-<img class="aligncenter size-large wp-image-2230" src="http://theorypc.ca/wp-content/uploads/2017/05/Screen-Shot-2017-05-07-at-9.31.59-PM-1600x583.png" alt="" width="1140" height="415" srcset="http://theorypc.ca/wp-content/uploads/2017/05/Screen-Shot-2017-05-07-at-9.31.59-PM-1600x583.png 1600w, http://theorypc.ca/wp-content/uploads/2017/05/Screen-Shot-2017-05-07-at-9.31.59-PM-300x109.png 300w, http://theorypc.ca/wp-content/uploads/2017/05/Screen-Shot-2017-05-07-at-9.31.59-PM-768x280.png 768w" sizes="(max-width: 1140px) 100vw, 1140px" /> 
+<img class="aligncenter size-large wp-image-2230" src="/wp-content/uploads/2017/05/Screen-Shot-2017-05-07-at-9.31.59-PM-1600x583.png" alt="" width="1140" height="415" srcset="/wp-content/uploads/2017/05/Screen-Shot-2017-05-07-at-9.31.59-PM-1600x583.png 1600w, /wp-content/uploads/2017/05/Screen-Shot-2017-05-07-at-9.31.59-PM-300x109.png 300w, /wp-content/uploads/2017/05/Screen-Shot-2017-05-07-at-9.31.59-PM-768x280.png 768w" sizes="(max-width: 1140px) 100vw, 1140px" /> 
 
 I've highlighted in yellow/orange my "getUsername" function.  We can see on <span style="text-decoration: underline;"><strong>line 35</strong></span> we get into the function.  And on <span style="text-decoration: underline;"><strong>line 67</strong></span> it is successfully finding and returning my name.  But the problem is that it's getting that information _after_ the point in time that we can set the WSC features (highlighted in blue - <span style="text-decoration: underline;"><strong>line 60-62</strong></span>).
 

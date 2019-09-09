@@ -25,7 +25,7 @@ AppV5 introduced to us a slew of logs that made troubleshooting more difficult t
 For instance, say you get an error message:
 
 <div style="clear: both; text-align: center;">
-  <a style="margin-left: 1em; margin-right: 1em;" href="http://theorypc.ca/wp-content/uploads/2016/03/70.PNG-550x0-1.png"><img src="http://theorypc.ca/wp-content/uploads/2016/03/70.PNG-550x0-1-300x141.png" width="320" height="149" border="0" /></a>
+  <a style="margin-left: 1em; margin-right: 1em;" href="/wp-content/uploads/2016/03/70.PNG-550x0-1.png"><img src="/wp-content/uploads/2016/03/70.PNG-550x0-1-300x141.png" width="320" height="149" border="0" /></a>
 </div>
 
 How do you start debugging this?  Well, you could start by trying to decipher the error message AppV has [generated to a decimal value that you can then look at the first two digits to determine which 'part' of AppV generated](http://blogs.technet.com/b/gladiatormsft/archive/2013/11/13/app-v-on-operational-troubleshooting-of-the-v5-client.aspx) the error and you can examine that specific log.  Sounds kind of ridiculous when you spell it out.
@@ -35,7 +35,7 @@ Another thing you could do is you could [enable all logs just to be sure](http:/
 <table style="margin-left: auto; margin-right: auto; text-align: center;" cellspacing="0" cellpadding="0" align="center">
   <tr>
     <td style="text-align: center;">
-      <a style="margin-left: auto; margin-right: auto;" href="http://theorypc.ca/wp-content/uploads/2016/03/1-4.png"><img src="http://theorypc.ca/wp-content/uploads/2016/03/1-4-300x233.png" width="320" height="248" border="0" /></a>
+      <a style="margin-left: auto; margin-right: auto;" href="/wp-content/uploads/2016/03/1-4.png"><img src="/wp-content/uploads/2016/03/1-4-300x233.png" width="320" height="248" border="0" /></a>
     </td>
   </tr>
   
@@ -70,7 +70,7 @@ Logman Delete AppVKB3037955Debug</pre>
 What does the output look like?
 
 <div style="clear: both; text-align: center;">
-  <a style="margin-left: 1em; margin-right: 1em;" href="http://theorypc.ca/wp-content/uploads/2016/03/5-2.png"><img src="http://theorypc.ca/wp-content/uploads/2016/03/5-2-300x106.png" width="320" height="113" border="0" /></a>
+  <a style="margin-left: 1em; margin-right: 1em;" href="/wp-content/uploads/2016/03/5-2.png"><img src="/wp-content/uploads/2016/03/5-2-300x106.png" width="320" height="113" border="0" /></a>
 </div>
 
 First thing to notice is that it's sorted chronologically, so if you can get a narrow time range to examine the error occurring it should be easier to spot.  Second thing is all event logs are added, and events themselves are included as they are generated.  So it should be easier to finding that specific component that causes the error.

@@ -30,7 +30,7 @@ We are still in a pilot-preupgrade phase of Citrix Director 7.7 and found an iss
 <table style="margin-left: auto; margin-right: auto; text-align: center;" cellspacing="0" cellpadding="0" align="center">
   <tr>
     <td style="text-align: center;">
-      <a style="margin-left: auto; margin-right: auto;" href="http://theorypc.ca/wp-content/uploads/2016/01/desktop-director-bad-1.png"><img src="http://theorypc.ca/wp-content/uploads/2016/01/desktop-director-bad-1-300x125.png" width="320" height="133" border="0" /></a>
+      <a style="margin-left: auto; margin-right: auto;" href="/wp-content/uploads/2016/01/desktop-director-bad-1.png"><img src="/wp-content/uploads/2016/01/desktop-director-bad-1-300x125.png" width="320" height="133" border="0" /></a>
     </td>
   </tr>
   
@@ -57,7 +57,7 @@ We are still in a pilot-preupgrade phase of Citrix Director 7.7 and found an iss
 <table style="margin-left: auto; margin-right: auto; text-align: center;" cellspacing="0" cellpadding="0" align="center">
   <tr>
     <td style="text-align: center;">
-      <a style="margin-left: auto; margin-right: auto;" href="http://theorypc.ca/wp-content/uploads/2016/01/director-good-1.png"><img src="http://theorypc.ca/wp-content/uploads/2016/01/director-good-1-300x169.png" width="320" height="180" border="0" /></a>
+      <a style="margin-left: auto; margin-right: auto;" href="/wp-content/uploads/2016/01/director-good-1.png"><img src="/wp-content/uploads/2016/01/director-good-1-300x169.png" width="320" height="180" border="0" /></a>
     </td>
   </tr>
   
@@ -78,7 +78,7 @@ We are still in a pilot-preupgrade phase of Citrix Director 7.7 and found an iss
 <table style="margin-left: auto; margin-right: auto; text-align: center;" cellspacing="0" cellpadding="0" align="center">
   <tr>
     <td style="text-align: center;">
-      <a style="margin-left: auto; margin-right: auto;" href="http://theorypc.ca/wp-content/uploads/2016/01/compatib-1.png"><img src="http://theorypc.ca/wp-content/uploads/2016/01/compatib-1-254x300.png" width="270" height="320" border="0" /></a>
+      <a style="margin-left: auto; margin-right: auto;" href="/wp-content/uploads/2016/01/compatib-1.png"><img src="/wp-content/uploads/2016/01/compatib-1-254x300.png" width="270" height="320" border="0" /></a>
     </td>
   </tr>
   
@@ -121,7 +121,7 @@ To the 'head' section.  Example:
 <table style="margin-left: auto; margin-right: auto; text-align: center;" cellspacing="0" cellpadding="0" align="center">
   <tr>
     <td style="text-align: center;">
-      <a style="margin-left: auto; margin-right: auto;" href="http://theorypc.ca/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-19-2Bat-2B3.03.26-2BPM-1.png"><img src="http://theorypc.ca/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-19-2Bat-2B3.03.26-2BPM-1-300x135.png" width="320" height="143" border="0" /></a>
+      <a style="margin-left: auto; margin-right: auto;" href="/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-19-2Bat-2B3.03.26-2BPM-1.png"><img src="/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-19-2Bat-2B3.03.26-2BPM-1-300x135.png" width="320" height="143" border="0" /></a>
     </td>
   </tr>
   

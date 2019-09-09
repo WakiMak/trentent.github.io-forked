@@ -8,12 +8,12 @@ guid: http://theorypc.ca/?p=1986
 permalink: /2017/01/31/tracing-citrix-provisioning-service-target-device-boot-performance-process-monitor/
 enclosure:
   - |
-    http://theorypc.ca/wp-content/uploads/2017/01/Inject_Procmon-1.mp4
+    /wp-content/uploads/2017/01/Inject_Procmon-1.mp4
     190
     video/mp4
     
   - |
-    http://theorypc.ca/wp-content/uploads/2017/01/ProcMon_PVS_BootLogging-1.mp4
+    /wp-content/uploads/2017/01/ProcMon_PVS_BootLogging-1.mp4
     199
     video/mp4
     
@@ -43,11 +43,11 @@ For Process Monitor you must extract the boot driver and inject the process moni
 
 To extract the boot driver simple launch process monitor, under the Options menu, select 'Enable Boot Logging'
 
-<img class="aligncenter size-full wp-image-1988" src="http://theorypc.ca/wp-content/uploads/2017/01/ProcMon_BootLogging-1.png" alt="" width="590" height="326" srcset="http://theorypc.ca/wp-content/uploads/2017/01/ProcMon_BootLogging-1.png 590w, http://theorypc.ca/wp-content/uploads/2017/01/ProcMon_BootLogging-1-300x166.png 300w" sizes="(max-width: 590px) 100vw, 590px" /> 
+<img class="aligncenter size-full wp-image-1988" src="/wp-content/uploads/2017/01/ProcMon_BootLogging-1.png" alt="" width="590" height="326" srcset="/wp-content/uploads/2017/01/ProcMon_BootLogging-1.png 590w, /wp-content/uploads/2017/01/ProcMon_BootLogging-1-300x166.png 300w" sizes="(max-width: 590px) 100vw, 590px" /> 
 
 Then browse to your C:\Windows\System32\Drivers folder, and with "Show Hidden Files" enabled, copy out Procmon23.sys
 
-<img class="aligncenter size-full wp-image-1989" src="http://theorypc.ca/wp-content/uploads/2017/01/Procmon23sys.png" alt="" width="817" height="472" srcset="http://theorypc.ca/wp-content/uploads/2017/01/Procmon23sys.png 817w, http://theorypc.ca/wp-content/uploads/2017/01/Procmon23sys-300x173.png 300w, http://theorypc.ca/wp-content/uploads/2017/01/Procmon23sys-768x444.png 768w" sizes="(max-width: 817px) 100vw, 817px" /> 
+<img class="aligncenter size-full wp-image-1989" src="/wp-content/uploads/2017/01/Procmon23sys.png" alt="" width="817" height="472" srcset="/wp-content/uploads/2017/01/Procmon23sys.png 817w, /wp-content/uploads/2017/01/Procmon23sys-300x173.png 300w, /wp-content/uploads/2017/01/Procmon23sys-768x444.png 768w" sizes="(max-width: 817px) 100vw, 817px" /> 
 
 It might be a good idea to disable boot logging if you did it on your personal system now 
 
@@ -77,7 +77,7 @@ Now we need to inject the follow registry entry into our image:
 Here are the steps in action:
 
 <div style="width: 1140px;" class="wp-video">
-  <video class="wp-video-shortcode" id="video-1986-18" width="1140" height="712" preload="metadata" controls="controls"><source type="video/mp4" src="http://theorypc.ca/wp-content/uploads/2017/01/Inject_Procmon-1.mp4?_=18" /><a href="http://theorypc.ca/wp-content/uploads/2017/01/Inject_Procmon-1.mp4">http://theorypc.ca/wp-content/uploads/2017/01/Inject_Procmon-1.mp4</a></video>
+  <video class="wp-video-shortcode" id="video-1986-18" width="1140" height="712" preload="metadata" controls="controls"><source type="video/mp4" src="/wp-content/uploads/2017/01/Inject_Procmon-1.mp4?_=18" /><a href="/wp-content/uploads/2017/01/Inject_Procmon-1.mp4">/wp-content/uploads/2017/01/Inject_Procmon-1.mp4</a></video>
 </div>
 
 Seal/promote the image.
@@ -85,7 +85,7 @@ Seal/promote the image.
 On next boot you will have captured boot information:
 
 <div style="width: 1140px;" class="wp-video">
-  <video class="wp-video-shortcode" id="video-1986-19" width="1140" height="944" preload="metadata" controls="controls"><source type="video/mp4" src="http://theorypc.ca/wp-content/uploads/2017/01/ProcMon_PVS_BootLogging-1.mp4?_=19" /><a href="http://theorypc.ca/wp-content/uploads/2017/01/ProcMon_PVS_BootLogging-1.mp4">http://theorypc.ca/wp-content/uploads/2017/01/ProcMon_PVS_BootLogging-1.mp4</a></video>
+  <video class="wp-video-shortcode" id="video-1986-19" width="1140" height="944" preload="metadata" controls="controls"><source type="video/mp4" src="/wp-content/uploads/2017/01/ProcMon_PVS_BootLogging-1.mp4?_=19" /><a href="/wp-content/uploads/2017/01/ProcMon_PVS_BootLogging-1.mp4">/wp-content/uploads/2017/01/ProcMon_PVS_BootLogging-1.mp4</a></video>
 </div>
 
 To see how to use [Windows Performance Toolkit for boot tracing Citrix PVS Target Device's click here.](https://theorypc.ca/2017/01/31/tracing-citrix-provisioning-service-target-device-boot-performance-windows-performance-toolkit/)

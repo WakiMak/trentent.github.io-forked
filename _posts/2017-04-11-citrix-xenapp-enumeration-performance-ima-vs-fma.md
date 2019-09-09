@@ -63,7 +63,7 @@ And the IMA requests:
 
 In our environment, we have measured a 'peak' load of 600 concurrent connections per second to our & 6.5 IMA service.  We split this load over 7 servers and the load is load-balanced via Netscaler VIP's.  This lessens the peak load to 85 concurrent connections per server per second.  What's a "connection"?  A connection is a request to the IMA service and a response from it.  This would be considered a single connection in my definition:
 
-<img class="aligncenter size-full wp-image-2102" src="http://theorypc.ca/wp-content/uploads/2017/04/Connection.png" alt="" width="542" height="595" srcset="http://theorypc.ca/wp-content/uploads/2017/04/Connection.png 542w, http://theorypc.ca/wp-content/uploads/2017/04/Connection-273x300.png 273w" sizes="(max-width: 542px) 100vw, 542px" /> 
+<img class="aligncenter size-full wp-image-2102" src="/wp-content/uploads/2017/04/Connection.png" alt="" width="542" height="595" srcset="/wp-content/uploads/2017/04/Connection.png 542w, /wp-content/uploads/2017/04/Connection-273x300.png 273w" sizes="(max-width: 542px) 100vw, 542px" /> 
 
 &nbsp;
 
@@ -152,35 +152,35 @@ Date: Tue, 11 Apr 2017 15:38:37 GMT
 
 The total time between when the FMA broker receives a single request to beginning the response is:
 
-<img class="aligncenter size-full wp-image-2103" src="http://theorypc.ca/wp-content/uploads/2017/04/Receipt_to_start_of_response.png" alt="" width="946" height="66" srcset="http://theorypc.ca/wp-content/uploads/2017/04/Receipt_to_start_of_response.png 946w, http://theorypc.ca/wp-content/uploads/2017/04/Receipt_to_start_of_response-300x21.png 300w, http://theorypc.ca/wp-content/uploads/2017/04/Receipt_to_start_of_response-768x54.png 768w" sizes="(max-width: 946px) 100vw, 946px" /> 
+<img class="aligncenter size-full wp-image-2103" src="/wp-content/uploads/2017/04/Receipt_to_start_of_response.png" alt="" width="946" height="66" srcset="/wp-content/uploads/2017/04/Receipt_to_start_of_response.png 946w, /wp-content/uploads/2017/04/Receipt_to_start_of_response-300x21.png 300w, /wp-content/uploads/2017/04/Receipt_to_start_of_response-768x54.png 768w" sizes="(max-width: 946px) 100vw, 946px" /> 
 
 Initial receipt of traffic at 37.567664-37.567827.  
 Response starts at 37.633986
 
-<img class="aligncenter size-full wp-image-2104" src="http://theorypc.ca/wp-content/uploads/2017/04/end_of_response.png" alt="" width="954" height="51" srcset="http://theorypc.ca/wp-content/uploads/2017/04/end_of_response.png 954w, http://theorypc.ca/wp-content/uploads/2017/04/end_of_response-300x16.png 300w, http://theorypc.ca/wp-content/uploads/2017/04/end_of_response-768x41.png 768w" sizes="(max-width: 954px) 100vw, 954px" /> 
+<img class="aligncenter size-full wp-image-2104" src="/wp-content/uploads/2017/04/end_of_response.png" alt="" width="954" height="51" srcset="/wp-content/uploads/2017/04/end_of_response.png 954w, /wp-content/uploads/2017/04/end_of_response-300x16.png 300w, /wp-content/uploads/2017/04/end_of_response-768x41.png 768w" sizes="(max-width: 954px) 100vw, 954px" /> 
 
 Response ends at 37.634432.
 
 Total time for FMA request for list of applications and the response for that list:
 
-<img class="aligncenter size-full wp-image-2105" src="http://theorypc.ca/wp-content/uploads/2017/04/FMA_details.png" alt="" width="256" height="160" /> 
+<img class="aligncenter size-full wp-image-2105" src="/wp-content/uploads/2017/04/FMA_details.png" alt="" width="256" height="160" /> 
 
 For IMA the total time between when the IMA service receives a single request to beginning response is:
 
-<img class="aligncenter size-full wp-image-2111" src="http://theorypc.ca/wp-content/uploads/2017/04/IMA_Request_from_client-3.png" alt="" width="954" height="81" srcset="http://theorypc.ca/wp-content/uploads/2017/04/IMA_Request_from_client-3.png 954w, http://theorypc.ca/wp-content/uploads/2017/04/IMA_Request_from_client-3-300x25.png 300w, http://theorypc.ca/wp-content/uploads/2017/04/IMA_Request_from_client-3-768x65.png 768w" sizes="(max-width: 954px) 100vw, 954px" /> 
+<img class="aligncenter size-full wp-image-2111" src="/wp-content/uploads/2017/04/IMA_Request_from_client-3.png" alt="" width="954" height="81" srcset="/wp-content/uploads/2017/04/IMA_Request_from_client-3.png 954w, /wp-content/uploads/2017/04/IMA_Request_from_client-3-300x25.png 300w, /wp-content/uploads/2017/04/IMA_Request_from_client-3-768x65.png 768w" sizes="(max-width: 954px) 100vw, 954px" /> 
 
 Initial receipt of traffic at 38.359944-38.360198.  
 Response starts at 38.440197
 
-<img class="aligncenter size-full wp-image-2112" src="http://theorypc.ca/wp-content/uploads/2017/04/IMA_Receipt_to_start_of_response.png" alt="" width="1025" height="62" srcset="http://theorypc.ca/wp-content/uploads/2017/04/IMA_Receipt_to_start_of_response.png 1025w, http://theorypc.ca/wp-content/uploads/2017/04/IMA_Receipt_to_start_of_response-300x18.png 300w, http://theorypc.ca/wp-content/uploads/2017/04/IMA_Receipt_to_start_of_response-768x46.png 768w" sizes="(max-width: 1025px) 100vw, 1025px" /> 
+<img class="aligncenter size-full wp-image-2112" src="/wp-content/uploads/2017/04/IMA_Receipt_to_start_of_response.png" alt="" width="1025" height="62" srcset="/wp-content/uploads/2017/04/IMA_Receipt_to_start_of_response.png 1025w, /wp-content/uploads/2017/04/IMA_Receipt_to_start_of_response-300x18.png 300w, /wp-content/uploads/2017/04/IMA_Receipt_to_start_of_response-768x46.png 768w" sizes="(max-width: 1025px) 100vw, 1025px" /> 
 
-<img class="aligncenter size-full wp-image-2113" src="http://theorypc.ca/wp-content/uploads/2017/04/IMA_Response_End-1.png" alt="" width="984" height="65" srcset="http://theorypc.ca/wp-content/uploads/2017/04/IMA_Response_End-1.png 984w, http://theorypc.ca/wp-content/uploads/2017/04/IMA_Response_End-1-300x20.png 300w, http://theorypc.ca/wp-content/uploads/2017/04/IMA_Response_End-1-768x51.png 768w" sizes="(max-width: 984px) 100vw, 984px" /> 
+<img class="aligncenter size-full wp-image-2113" src="/wp-content/uploads/2017/04/IMA_Response_End-1.png" alt="" width="984" height="65" srcset="/wp-content/uploads/2017/04/IMA_Response_End-1.png 984w, /wp-content/uploads/2017/04/IMA_Response_End-1-300x20.png 300w, /wp-content/uploads/2017/04/IMA_Response_End-1-768x51.png 768w" sizes="(max-width: 984px) 100vw, 984px" /> 
 
 Response ends at 38.450032.
 
 Total time for IMA request for list of applications and the response for that list:
 
-<img class="aligncenter size-full wp-image-2114" src="http://theorypc.ca/wp-content/uploads/2017/04/IMA_traffic_stats-1.png" alt="" width="255" height="161" /> 
+<img class="aligncenter size-full wp-image-2114" src="/wp-content/uploads/2017/04/IMA_traffic_stats-1.png" alt="" width="255" height="161" /> 
 
 Why the size difference (18KB vs 24KB)?
 
@@ -197,7 +197,7 @@ In order to get a better feel I ran the requests continuously in a loop, sending
 
 &nbsp;
 
-<img class="aligncenter size-full wp-image-2115" src="http://theorypc.ca/wp-content/uploads/2017/04/FMA_vs_IMA.png" alt="" width="343" height="57" srcset="http://theorypc.ca/wp-content/uploads/2017/04/FMA_vs_IMA.png 343w, http://theorypc.ca/wp-content/uploads/2017/04/FMA_vs_IMA-300x50.png 300w" sizes="(max-width: 343px) 100vw, 343px" /> 
+<img class="aligncenter size-full wp-image-2115" src="/wp-content/uploads/2017/04/FMA_vs_IMA.png" alt="" width="343" height="57" srcset="/wp-content/uploads/2017/04/FMA_vs_IMA.png 343w, /wp-content/uploads/2017/04/FMA_vs_IMA-300x50.png 300w" sizes="(max-width: 343px) 100vw, 343px" /> 
 
 IMA is faster by approx 30ms per request.
 

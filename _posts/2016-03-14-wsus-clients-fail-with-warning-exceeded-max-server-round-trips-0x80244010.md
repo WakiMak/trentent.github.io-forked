@@ -67,7 +67,7 @@ In that post he touches on what's actually happening:
 </div>
 
 <div style="clear: both; text-align: center;">
-  <a style="margin-left: 1em; margin-right: 1em;" href="http://theorypc.ca/wp-content/uploads/2016/03/1-6.png"><img src="http://theorypc.ca/wp-content/uploads/2016/03/1-6-300x163.png" width="320" height="173" border="0" /></a>
+  <a style="margin-left: 1em; margin-right: 1em;" href="/wp-content/uploads/2016/03/1-6.png"><img src="/wp-content/uploads/2016/03/1-6-300x163.png" width="320" height="173" border="0" /></a>
 </div>
 
 <div>
@@ -88,7 +88,7 @@ In that post he touches on what's actually happening:
   </div>
   
   <div style="clear: both; text-align: center;">
-    <a style="margin-left: 1em; margin-right: 1em;" href="http://theorypc.ca/wp-content/uploads/2016/03/1-6.png"><img src="http://theorypc.ca/wp-content/uploads/2016/03/1-6-300x163.png" width="320" height="173" border="0" /></a>
+    <a style="margin-left: 1em; margin-right: 1em;" href="/wp-content/uploads/2016/03/1-6.png"><img src="/wp-content/uploads/2016/03/1-6-300x163.png" width="320" height="173" border="0" /></a>
   </div>
   
   <div>
@@ -110,7 +110,7 @@ In that post he touches on what's actually happening:
   </div>
   
   <div style="clear: both; text-align: center;">
-    <a style="margin-left: 1em; margin-right: 1em;" href="http://theorypc.ca/wp-content/uploads/2016/03/1-6.png"><img src="http://theorypc.ca/wp-content/uploads/2016/03/1-6-300x163.png" width="320" height="173" border="0" /></a>
+    <a style="margin-left: 1em; margin-right: 1em;" href="/wp-content/uploads/2016/03/1-6.png"><img src="/wp-content/uploads/2016/03/1-6-300x163.png" width="320" height="173" border="0" /></a>
   </div>
   
   <div>
@@ -132,7 +132,7 @@ In that post he touches on what's actually happening:
   </div>
   
   <div style="clear: both; text-align: center;">
-    <a style="margin-left: 1em; margin-right: 1em;" href="http://theorypc.ca/wp-content/uploads/2016/03/1-6.png"><img src="http://theorypc.ca/wp-content/uploads/2016/03/1-6-300x163.png" width="320" height="173" border="0" /></a>
+    <a style="margin-left: 1em; margin-right: 1em;" href="/wp-content/uploads/2016/03/1-6.png"><img src="/wp-content/uploads/2016/03/1-6-300x163.png" width="320" height="173" border="0" /></a>
   </div>
   
   <div>
@@ -178,7 +178,7 @@ In that post he touches on what's actually happening:
 <table style="margin-left: auto; margin-right: auto; text-align: center;" cellspacing="0" cellpadding="0" align="center">
   <tr>
     <td style="text-align: center;">
-      <a style="margin-left: auto; margin-right: auto;" href="http://theorypc.ca/wp-content/uploads/2016/03/2-3.png"><img src="http://theorypc.ca/wp-content/uploads/2016/03/2-3-254x300.png" width="270" height="320" border="0" /></a>
+      <a style="margin-left: auto; margin-right: auto;" href="/wp-content/uploads/2016/03/2-3.png"><img src="/wp-content/uploads/2016/03/2-3-254x300.png" width="270" height="320" border="0" /></a>
     </td>
   </tr>
   
@@ -195,7 +195,7 @@ In that post he touches on what's actually happening:
 <table style="margin-left: auto; margin-right: auto; text-align: center;" cellspacing="0" cellpadding="0" align="center">
   <tr>
     <td style="text-align: center;">
-      <a style="margin-left: auto; margin-right: auto;" href="http://theorypc.ca/wp-content/uploads/2016/03/3-4.png"><img src="http://theorypc.ca/wp-content/uploads/2016/03/3-4-300x221.png" width="320" height="235" border="0" /></a>
+      <a style="margin-left: auto; margin-right: auto;" href="/wp-content/uploads/2016/03/3-4.png"><img src="/wp-content/uploads/2016/03/3-4-300x221.png" width="320" height="235" border="0" /></a>
     </td>
   </tr>
   
@@ -221,7 +221,7 @@ In that post he touches on what's actually happening:
 </div>
 
 <div style="clear: both; text-align: center;">
-  <a style="margin-left: 1em; margin-right: 1em;" href="http://theorypc.ca/wp-content/uploads/2016/03/4-2.png"><img src="http://theorypc.ca/wp-content/uploads/2016/03/4-2-300x205.png" width="320" height="219" border="0" /></a>
+  <a style="margin-left: 1em; margin-right: 1em;" href="/wp-content/uploads/2016/03/4-2.png"><img src="/wp-content/uploads/2016/03/4-2-300x205.png" width="320" height="219" border="0" /></a>
 </div>
 
 <div>

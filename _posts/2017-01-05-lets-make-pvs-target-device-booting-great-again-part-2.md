@@ -27,7 +27,7 @@ In this part we are going to examine the option "I/O burst size (KB)"  This poli
 What are these ACK's and can we see them?  We can.  They are UDP packets sent back from the target device to the PVS server.  If you open Procmon on the PVS server and startup a target device an ACK looks like so:
 
 <div id="attachment_1902" style="width: 1327px" class="wp-caption aligncenter">
-  <img aria-describedby="caption-attachment-1902" class="wp-image-1902 size-full" src="http://theorypc.ca/wp-content/uploads/2016/12/48ByteUDPReceieve.png" width="1317" height="920" srcset="http://theorypc.ca/wp-content/uploads/2016/12/48ByteUDPReceieve.png 1317w, http://theorypc.ca/wp-content/uploads/2016/12/48ByteUDPReceieve-300x210.png 300w, http://theorypc.ca/wp-content/uploads/2016/12/48ByteUDPReceieve-768x536.png 768w" sizes="(max-width: 1317px) 100vw, 1317px" /></p> 
+  <img aria-describedby="caption-attachment-1902" class="wp-image-1902 size-full" src="/wp-content/uploads/2016/12/48ByteUDPReceieve.png" width="1317" height="920" srcset="/wp-content/uploads/2016/12/48ByteUDPReceieve.png 1317w, /wp-content/uploads/2016/12/48ByteUDPReceieve-300x210.png 300w, /wp-content/uploads/2016/12/48ByteUDPReceieve-768x536.png 768w" sizes="(max-width: 1317px) 100vw, 1317px" /></p> 
   
   <p id="caption-attachment-1902" class="wp-caption-text">
     These highlighted 48byte UDP Receive packets? They are the ACKS
@@ -36,13 +36,13 @@ What are these ACK's and can we see them?  We can.  They are UDP packets sent ba
 
 And if we enable the disk view with the network view:
 
-<img class="aligncenter size-full wp-image-1903" src="http://theorypc.ca/wp-content/uploads/2016/12/32KB_HDD_READ.png" alt="" width="1308" height="921" srcset="http://theorypc.ca/wp-content/uploads/2016/12/32KB_HDD_READ.png 1308w, http://theorypc.ca/wp-content/uploads/2016/12/32KB_HDD_READ-300x211.png 300w, http://theorypc.ca/wp-content/uploads/2016/12/32KB_HDD_READ-768x541.png 768w" sizes="(max-width: 1308px) 100vw, 1308px" /> 
+<img class="aligncenter size-full wp-image-1903" src="/wp-content/uploads/2016/12/32KB_HDD_READ.png" alt="" width="1308" height="921" srcset="/wp-content/uploads/2016/12/32KB_HDD_READ.png 1308w, /wp-content/uploads/2016/12/32KB_HDD_READ-300x211.png 300w, /wp-content/uploads/2016/12/32KB_HDD_READ-768x541.png 768w" sizes="(max-width: 1308px) 100vw, 1308px" /> 
 
 &nbsp;
 
 With each 32KB read of the hard disk we send out 24 packets, 23 at 1464 bytes and 1 at 440 bytes.  Add them all together and we get 34,112 Bytes of data.  This implies an overall overhead of 1344 bytes per sequence of reads or 56 bytes per packet.  I confirmed it's a per-packet overhead by looking at a different read event at a different size:
 
-<img class="aligncenter size-full wp-image-1904" src="http://theorypc.ca/wp-content/uploads/2016/12/DifferentSizedReads.png" alt="" width="1309" height="334" srcset="http://theorypc.ca/wp-content/uploads/2016/12/DifferentSizedReads.png 1309w, http://theorypc.ca/wp-content/uploads/2016/12/DifferentSizedReads-300x77.png 300w, http://theorypc.ca/wp-content/uploads/2016/12/DifferentSizedReads-768x196.png 768w" sizes="(max-width: 1309px) 100vw, 1309px" /> 
+<img class="aligncenter size-full wp-image-1904" src="/wp-content/uploads/2016/12/DifferentSizedReads.png" alt="" width="1309" height="334" srcset="/wp-content/uploads/2016/12/DifferentSizedReads.png 1309w, /wp-content/uploads/2016/12/DifferentSizedReads-300x77.png 300w, /wp-content/uploads/2016/12/DifferentSizedReads-768x196.png 768w" sizes="(max-width: 1309px) 100vw, 1309px" /> 
 
 If we look at the first read event (8,192) we can see there is 6 packets, 5 at 1464 and one at 1208, totaling 8528 bytes of traffic.  8528 - 8192 = 336 bytes of overhead / 6 packets = 56 bytes.
 
@@ -52,7 +52,7 @@ So it's consistent.  For every packet at the standard 1506 MTU you are losing 3.
 
 And how does this look with Jumbo Frames?
 
-<img class="aligncenter size-full wp-image-1905" src="http://theorypc.ca/wp-content/uploads/2016/12/Jumbo_Overhead.png" alt="" width="1309" height="124" srcset="http://theorypc.ca/wp-content/uploads/2016/12/Jumbo_Overhead.png 1309w, http://theorypc.ca/wp-content/uploads/2016/12/Jumbo_Overhead-300x28.png 300w, http://theorypc.ca/wp-content/uploads/2016/12/Jumbo_Overhead-768x73.png 768w" sizes="(max-width: 1309px) 100vw, 1309px" /> 
+<img class="aligncenter size-full wp-image-1905" src="/wp-content/uploads/2016/12/Jumbo_Overhead.png" alt="" width="1309" height="124" srcset="/wp-content/uploads/2016/12/Jumbo_Overhead.png 1309w, /wp-content/uploads/2016/12/Jumbo_Overhead-300x28.png 300w, /wp-content/uploads/2016/12/Jumbo_Overhead-768x73.png 768w" sizes="(max-width: 1309px) 100vw, 1309px" /> 
 
 For a 32KB read we satisfied the request in 4 packets.  3 x 8972 bytes and 1 at 6076 bytes totalling 32,992 bytes of transmitted data.  Subtracting the transmitted data from what is really required 32,992-32,768 = 224 bytes of overhead or...  56 bytes per packet 
 
@@ -68,11 +68,11 @@ _Because Jumbo Frames don't occur until after the BNIStack kicks in, we are limi
 
 The caveat of this is the size isn't actually the MTU size of 1506.  The math is based on the data that fits within, which is 1464 bytes.  Doing the math in reverse gives us 1464 x 32 = 45056 bytes.  This equals a clear 44K (45056 /1024) maximum size.  Setting IO/Burst to 44K and the target device still boots.  Counting the packets, there are 32 packets.
 
-<img class="aligncenter size-full wp-image-1913" src="http://theorypc.ca/wp-content/uploads/2017/01/45K.png" alt="" width="1196" height="481" srcset="http://theorypc.ca/wp-content/uploads/2017/01/45K.png 1196w, http://theorypc.ca/wp-content/uploads/2017/01/45K-300x121.png 300w, http://theorypc.ca/wp-content/uploads/2017/01/45K-768x309.png 768w" sizes="(max-width: 1196px) 100vw, 1196px" /> 
+<img class="aligncenter size-full wp-image-1913" src="/wp-content/uploads/2017/01/45K.png" alt="" width="1196" height="481" srcset="/wp-content/uploads/2017/01/45K.png 1196w, /wp-content/uploads/2017/01/45K-300x121.png 300w, /wp-content/uploads/2017/01/45K-768x309.png 768w" sizes="(max-width: 1196px) 100vw, 1196px" /> 
 
 So if we up the IO/Burst by 1K to 45K (45*1024 = 46,080 bytes) will it still boot?
 
-[<img class="aligncenter wp-image-1914 size-large" src="http://theorypc.ca/wp-content/uploads/2017/01/No_Boot-1600x774.png" width="1140" height="551" srcset="http://theorypc.ca/wp-content/uploads/2017/01/No_Boot-1600x774.png 1600w, http://theorypc.ca/wp-content/uploads/2017/01/No_Boot-300x145.png 300w, http://theorypc.ca/wp-content/uploads/2017/01/No_Boot-768x372.png 768w" sizes="(max-width: 1140px) 100vw, 1140px" />](http://theorypc.ca/wp-content/uploads/2017/01/No_Boot.png)
+[<img class="aligncenter wp-image-1914 size-large" src="/wp-content/uploads/2017/01/No_Boot-1600x774.png" width="1140" height="551" srcset="/wp-content/uploads/2017/01/No_Boot-1600x774.png 1600w, /wp-content/uploads/2017/01/No_Boot-300x145.png 300w, /wp-content/uploads/2017/01/No_Boot-768x372.png 768w" sizes="(max-width: 1140px) 100vw, 1140px" />](/wp-content/uploads/2017/01/No_Boot.png)
 
 It does <span style="text-decoration: underline;"><strong>not</strong> </span>boot.  This enforces a <span style="text-decoration: underline;"><strong>hard limit of 44K</strong> </span>for I/O Burst until the 1st stage supports a larger MTU size.  I have only explored EFI booting, so I suppose it's possible another boot method allows for larger MTU?
 
@@ -114,7 +114,7 @@ Citrix has a utility that gives you some information on what kind of gain you mi
 &nbsp;
 
 <div id="attachment_1916" style="width: 559px" class="wp-caption aligncenter">
-  <img aria-describedby="caption-attachment-1916" class="size-full wp-image-1916" src="http://theorypc.ca/wp-content/uploads/2017/01/StreamConsole.png" alt="" width="549" height="531" srcset="http://theorypc.ca/wp-content/uploads/2017/01/StreamConsole.png 549w, http://theorypc.ca/wp-content/uploads/2017/01/StreamConsole-300x290.png 300w" sizes="(max-width: 549px) 100vw, 549px" /></p> 
+  <img aria-describedby="caption-attachment-1916" class="size-full wp-image-1916" src="/wp-content/uploads/2017/01/StreamConsole.png" alt="" width="549" height="531" srcset="/wp-content/uploads/2017/01/StreamConsole.png 549w, /wp-content/uploads/2017/01/StreamConsole-300x290.png 300w" sizes="(max-width: 549px) 100vw, 549px" /></p> 
   
   <p id="caption-attachment-1916" class="wp-caption-text">
     With 4K I/O burst it does not display any packets sent larger because they are limited to that size
@@ -124,7 +124,7 @@ Citrix has a utility that gives you some information on what kind of gain you mi
 &nbsp;
 
 <div id="attachment_1917" style="width: 556px" class="wp-caption aligncenter">
-  <img aria-describedby="caption-attachment-1917" class="wp-image-1917 size-full" src="http://theorypc.ca/wp-content/uploads/2017/01/8K_IO.png" width="546" height="529" srcset="http://theorypc.ca/wp-content/uploads/2017/01/8K_IO.png 546w, http://theorypc.ca/wp-content/uploads/2017/01/8K_IO-300x291.png 300w" sizes="(max-width: 546px) 100vw, 546px" /></p> 
+  <img aria-describedby="caption-attachment-1917" class="wp-image-1917 size-full" src="/wp-content/uploads/2017/01/8K_IO.png" width="546" height="529" srcset="/wp-content/uploads/2017/01/8K_IO.png 546w, /wp-content/uploads/2017/01/8K_IO-300x291.png 300w" sizes="(max-width: 546px) 100vw, 546px" /></p> 
   
   <p id="caption-attachment-1917" class="wp-caption-text">
     8K I/O Burst Size. Notice how many 8K sectors are read over 4K?
@@ -134,7 +134,7 @@ Citrix has a utility that gives you some information on what kind of gain you mi
 &nbsp;
 
 <div id="attachment_1918" style="width: 557px" class="wp-caption aligncenter">
-  <img aria-describedby="caption-attachment-1918" class="size-full wp-image-1918" src="http://theorypc.ca/wp-content/uploads/2017/01/16K.png" alt="" width="547" height="531" srcset="http://theorypc.ca/wp-content/uploads/2017/01/16K.png 547w, http://theorypc.ca/wp-content/uploads/2017/01/16K-300x291.png 300w, http://theorypc.ca/wp-content/uploads/2017/01/16K-50x50.png 50w" sizes="(max-width: 547px) 100vw, 547px" /></p> 
+  <img aria-describedby="caption-attachment-1918" class="size-full wp-image-1918" src="/wp-content/uploads/2017/01/16K.png" alt="" width="547" height="531" srcset="/wp-content/uploads/2017/01/16K.png 547w, /wp-content/uploads/2017/01/16K-300x291.png 300w, /wp-content/uploads/2017/01/16K-50x50.png 50w" sizes="(max-width: 547px) 100vw, 547px" /></p> 
   
   <p id="caption-attachment-1918" class="wp-caption-text">
     16K I/O Burst Size
@@ -145,7 +145,7 @@ Citrix has a utility that gives you some information on what kind of gain you mi
 
 What I did to compare the differences in performance between all the I/O Burst Size options is I simply tried each size 3 times and took the results as posted by the StatusTray utility for boot time.  The unfortunate thing about the Status Tray is that it's time/throughput calculations are rounded to the second.  This means that the Throughput isn't entirely accurate as a second is a LARGE value when your talking about the difference between 8 to 9 seconds.  If you are just under or over whatever the rounding threshold is it'll change your results when we start getting to these numbers.  But I'll present my results anyways:
 
-<img class="aligncenter size-full wp-image-1919" src="http://theorypc.ca/wp-content/uploads/2017/01/Results.png" alt="" width="492" height="324" srcset="http://theorypc.ca/wp-content/uploads/2017/01/Results.png 492w, http://theorypc.ca/wp-content/uploads/2017/01/Results-300x198.png 300w" sizes="(max-width: 492px) 100vw, 492px" /> 
+<img class="aligncenter size-full wp-image-1919" src="/wp-content/uploads/2017/01/Results.png" alt="" width="492" height="324" srcset="/wp-content/uploads/2017/01/Results.png 492w, /wp-content/uploads/2017/01/Results-300x198.png 300w" sizes="(max-width: 492px) 100vw, 492px" /> 
 
 <span style="text-decoration: underline;">To me, the higher value of I/O Burst Size the better the performance.  </span>
 

@@ -8,7 +8,7 @@ guid: http://theorypc.ca/?p=1607
 permalink: /2016/07/29/new-microsoft-patch-kb3170455-breaks-printbrm-importing-printers-with-drivers/
 enclosure:
   - |
-    http://theorypc.ca/wp-content/uploads/2016/07/BadPrintBRM_master.mp4
+    /wp-content/uploads/2016/07/BadPrintBRM_master.mp4
     192
     video/mp4
     
@@ -204,15 +204,15 @@ Write-EventLog -LogName APPLICATION -Source "Local GP Startup Script - ""$comman
 
 So, what does this have to do with KB3170455?  Well, since installing KB3170455 it prevents importing printer files with print drivers embedded.  This is what it looks like with KB3170455 installed:
 
-<img class="aligncenter wp-image-1608 size-large" src="http://theorypc.ca/wp-content/uploads/2016/07/Screen-Shot-2016-07-29-at-9.04.48-AM-1024x167.png" alt="Screen Shot 2016-07-29 at 9.04.48 AM" width="1024" height="167" srcset="http://theorypc.ca/wp-content/uploads/2016/07/Screen-Shot-2016-07-29-at-9.04.48-AM-1024x167.png 1024w, http://theorypc.ca/wp-content/uploads/2016/07/Screen-Shot-2016-07-29-at-9.04.48-AM-300x49.png 300w, http://theorypc.ca/wp-content/uploads/2016/07/Screen-Shot-2016-07-29-at-9.04.48-AM-768x125.png 768w, http://theorypc.ca/wp-content/uploads/2016/07/Screen-Shot-2016-07-29-at-9.04.48-AM.png 1164w" sizes="(max-width: 1024px) 100vw, 1024px" /> 
+<img class="aligncenter wp-image-1608 size-large" src="/wp-content/uploads/2016/07/Screen-Shot-2016-07-29-at-9.04.48-AM-1024x167.png" alt="Screen Shot 2016-07-29 at 9.04.48 AM" width="1024" height="167" srcset="/wp-content/uploads/2016/07/Screen-Shot-2016-07-29-at-9.04.48-AM-1024x167.png 1024w, /wp-content/uploads/2016/07/Screen-Shot-2016-07-29-at-9.04.48-AM-300x49.png 300w, /wp-content/uploads/2016/07/Screen-Shot-2016-07-29-at-9.04.48-AM-768x125.png 768w, /wp-content/uploads/2016/07/Screen-Shot-2016-07-29-at-9.04.48-AM.png 1164w" sizes="(max-width: 1024px) 100vw, 1024px" /> 
 
 Without:  
-<img class="aligncenter size-full wp-image-1610" src="http://theorypc.ca/wp-content/uploads/2016/07/Screen-Shot-2016-07-29-at-9.07.35-AM.png" alt="Screen Shot 2016-07-29 at 9.07.35 AM" width="1166" height="186" srcset="http://theorypc.ca/wp-content/uploads/2016/07/Screen-Shot-2016-07-29-at-9.07.35-AM.png 1166w, http://theorypc.ca/wp-content/uploads/2016/07/Screen-Shot-2016-07-29-at-9.07.35-AM-300x48.png 300w, http://theorypc.ca/wp-content/uploads/2016/07/Screen-Shot-2016-07-29-at-9.07.35-AM-768x123.png 768w, http://theorypc.ca/wp-content/uploads/2016/07/Screen-Shot-2016-07-29-at-9.07.35-AM-1024x163.png 1024w" sizes="(max-width: 1166px) 100vw, 1166px" /> 
+<img class="aligncenter size-full wp-image-1610" src="/wp-content/uploads/2016/07/Screen-Shot-2016-07-29-at-9.07.35-AM.png" alt="Screen Shot 2016-07-29 at 9.07.35 AM" width="1166" height="186" srcset="/wp-content/uploads/2016/07/Screen-Shot-2016-07-29-at-9.07.35-AM.png 1166w, /wp-content/uploads/2016/07/Screen-Shot-2016-07-29-at-9.07.35-AM-300x48.png 300w, /wp-content/uploads/2016/07/Screen-Shot-2016-07-29-at-9.07.35-AM-768x123.png 768w, /wp-content/uploads/2016/07/Screen-Shot-2016-07-29-at-9.07.35-AM-1024x163.png 1024w" sizes="(max-width: 1166px) 100vw, 1166px" /> 
 
 And the failure import with 3170455 installed:
 
 <div style="width: 1140px;" class="wp-video">
-  <video class="wp-video-shortcode" id="video-1607-9" width="1140" height="705" preload="metadata" controls="controls"><source type="video/mp4" src="http://theorypc.ca/wp-content/uploads/2016/07/BadPrintBRM_master.mp4?_=9" /><a href="http://theorypc.ca/wp-content/uploads/2016/07/BadPrintBRM_master.mp4">http://theorypc.ca/wp-content/uploads/2016/07/BadPrintBRM_master.mp4</a></video>
+  <video class="wp-video-shortcode" id="video-1607-9" width="1140" height="705" preload="metadata" controls="controls"><source type="video/mp4" src="/wp-content/uploads/2016/07/BadPrintBRM_master.mp4?_=9" /><a href="/wp-content/uploads/2016/07/BadPrintBRM_master.mp4">/wp-content/uploads/2016/07/BadPrintBRM_master.mp4</a></video>
 </div>
 
 Remove KB3170455 and the import works without issue.

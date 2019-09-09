@@ -35,18 +35,18 @@ NOTE: this was run on a Server 2016 box.  If your System.DirectoryServices assem
 
 This script does the following: "Create application pool"
 
-<img class="aligncenter size-full wp-image-2276" src="http://theorypc.ca/wp-content/uploads/2017/05/App_Pools.png" alt="" width="809" height="377" srcset="http://theorypc.ca/wp-content/uploads/2017/05/App_Pools.png 809w, http://theorypc.ca/wp-content/uploads/2017/05/App_Pools-300x140.png 300w, http://theorypc.ca/wp-content/uploads/2017/05/App_Pools-768x358.png 768w" sizes="(max-width: 809px) 100vw, 809px" />  
-<img class="aligncenter size-full wp-image-2277" src="http://theorypc.ca/wp-content/uploads/2017/05/AppPool_AdvancedSettings.png" alt="" width="439" height="545" srcset="http://theorypc.ca/wp-content/uploads/2017/05/AppPool_AdvancedSettings.png 439w, http://theorypc.ca/wp-content/uploads/2017/05/AppPool_AdvancedSettings-242x300.png 242w" sizes="(max-width: 439px) 100vw, 439px" /> 
+<img class="aligncenter size-full wp-image-2276" src="/wp-content/uploads/2017/05/App_Pools.png" alt="" width="809" height="377" srcset="/wp-content/uploads/2017/05/App_Pools.png 809w, /wp-content/uploads/2017/05/App_Pools-300x140.png 300w, /wp-content/uploads/2017/05/App_Pools-768x358.png 768w" sizes="(max-width: 809px) 100vw, 809px" />  
+<img class="aligncenter size-full wp-image-2277" src="/wp-content/uploads/2017/05/AppPool_AdvancedSettings.png" alt="" width="439" height="545" srcset="/wp-content/uploads/2017/05/AppPool_AdvancedSettings.png 439w, /wp-content/uploads/2017/05/AppPool_AdvancedSettings-242x300.png 242w" sizes="(max-width: 439px) 100vw, 439px" /> 
 
 &nbsp;
 
 "Add Web App"
 
-<img class="aligncenter size-full wp-image-2279" src="http://theorypc.ca/wp-content/uploads/2017/05/WebApp.png" alt="" width="603" height="247" srcset="http://theorypc.ca/wp-content/uploads/2017/05/WebApp.png 603w, http://theorypc.ca/wp-content/uploads/2017/05/WebApp-300x123.png 300w" sizes="(max-width: 603px) 100vw, 603px" /> 
+<img class="aligncenter size-full wp-image-2279" src="/wp-content/uploads/2017/05/WebApp.png" alt="" width="603" height="247" srcset="/wp-content/uploads/2017/05/WebApp.png 603w, /wp-content/uploads/2017/05/WebApp-300x123.png 300w" sizes="(max-width: 603px) 100vw, 603px" /> 
 
 And the "appcmd set config" creates our web.config file:
 
-<img class="aligncenter size-full wp-image-2280" src="http://theorypc.ca/wp-content/uploads/2017/05/Screen-Shot-2017-05-13-at-2.32.48-PM.png" alt="" width="1126" height="634" srcset="http://theorypc.ca/wp-content/uploads/2017/05/Screen-Shot-2017-05-13-at-2.32.48-PM.png 1126w, http://theorypc.ca/wp-content/uploads/2017/05/Screen-Shot-2017-05-13-at-2.32.48-PM-300x169.png 300w, http://theorypc.ca/wp-content/uploads/2017/05/Screen-Shot-2017-05-13-at-2.32.48-PM-768x432.png 768w" sizes="(max-width: 1126px) 100vw, 1126px" /> 
+<img class="aligncenter size-full wp-image-2280" src="/wp-content/uploads/2017/05/Screen-Shot-2017-05-13-at-2.32.48-PM.png" alt="" width="1126" height="634" srcset="/wp-content/uploads/2017/05/Screen-Shot-2017-05-13-at-2.32.48-PM.png 1126w, /wp-content/uploads/2017/05/Screen-Shot-2017-05-13-at-2.32.48-PM-300x169.png 300w, /wp-content/uploads/2017/05/Screen-Shot-2017-05-13-at-2.32.48-PM-768x432.png 768w" sizes="(max-width: 1126px) 100vw, 1126px" /> 
 
 And the GroupMembership.aspx file:
 
@@ -102,7 +102,7 @@ To call the file, it's the %hostname%\ADInfo\GroupMembership.aspx?DisplayName=%u
 
 For example:
 
-<img class="aligncenter size-full wp-image-2281" src="http://theorypc.ca/wp-content/uploads/2017/05/Screen-Shot-2017-05-13-at-2.36.38-PM.png" alt="" width="607" height="67" srcset="http://theorypc.ca/wp-content/uploads/2017/05/Screen-Shot-2017-05-13-at-2.36.38-PM.png 607w, http://theorypc.ca/wp-content/uploads/2017/05/Screen-Shot-2017-05-13-at-2.36.38-PM-300x33.png 300w" sizes="(max-width: 607px) 100vw, 607px" /> 
+<img class="aligncenter size-full wp-image-2281" src="/wp-content/uploads/2017/05/Screen-Shot-2017-05-13-at-2.36.38-PM.png" alt="" width="607" height="67" srcset="/wp-content/uploads/2017/05/Screen-Shot-2017-05-13-at-2.36.38-PM.png 607w, /wp-content/uploads/2017/05/Screen-Shot-2017-05-13-at-2.36.38-PM-300x33.png 300w" sizes="(max-width: 607px) 100vw, 607px" /> 
 
 &nbsp;
 

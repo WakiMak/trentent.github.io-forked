@@ -8,7 +8,7 @@ guid: http://theorypc.ca/?p=2145
 permalink: /2017/04/13/controlup-realtime-troubleshooting-example/
 enclosure:
   - |
-    https://theorypc.ca/wp-content/uploads/2017/04/ControlUp_5min_Issue_Resolution.mp4
+    /wp-content/uploads/2017/04/ControlUp_5min_Issue_Resolution.mp4
     289504419
     video/mp4
     
@@ -28,7 +28,7 @@ The root of the issue is we had some servers reboot during the daylight savings 
 
 Without ControlUp, trying to search all the servers was a manual task or a scripted task that was executed serially.  These tasks, in the past, would take tons of time.  Generally, an issue like this would have taken an hour or so to resolve.  With ControlUp this was resolved in less than 5 minutes.
 
-[Higher Quality Version here.](https://theorypc.ca/wp-content/uploads/2017/04/ControlUp_5min_Issue_Resolution.mp4)
+[Higher Quality Version here.](/wp-content/uploads/2017/04/ControlUp_5min_Issue_Resolution.mp4)
 
 <!-- AddThis Advanced Settings generic via filter on the_content -->
 

@@ -21,19 +21,19 @@ I configured two loads:
 
 To establish a baseline I 'loaded' a XML server directly (WSCTXAPP301T)
 
-<img class="aligncenter size-full wp-image-1509" src="http://theorypc.ca/wp-content/uploads/2016/06/image003.png" alt="image003" width="625" height="520" srcset="http://theorypc.ca/wp-content/uploads/2016/06/image003.png 625w, http://theorypc.ca/wp-content/uploads/2016/06/image003-300x250.png 300w" sizes="(max-width: 625px) 100vw, 625px" /> 
+<img class="aligncenter size-full wp-image-1509" src="/wp-content/uploads/2016/06/image003.png" alt="image003" width="625" height="520" srcset="/wp-content/uploads/2016/06/image003.png 625w, /wp-content/uploads/2016/06/image003-300x250.png 300w" sizes="(max-width: 625px) 100vw, 625px" /> 
 
 The burgundy line is 200 connections to the server posting a XML request for the list of all applications. When loading a single server the response time goes up to 5000ms.
 
 I then loaded the VIP with 200 connections with the XML request.
 
-<img class="aligncenter size-full wp-image-1510" src="http://theorypc.ca/wp-content/uploads/2016/06/image004.png" alt="image004" width="625" height="381" srcset="http://theorypc.ca/wp-content/uploads/2016/06/image004.png 625w, http://theorypc.ca/wp-content/uploads/2016/06/image004-300x183.png 300w" sizes="(max-width: 625px) 100vw, 625px" /> 
+<img class="aligncenter size-full wp-image-1510" src="/wp-content/uploads/2016/06/image004.png" alt="image004" width="625" height="381" srcset="/wp-content/uploads/2016/06/image004.png 625w, /wp-content/uploads/2016/06/image004-300x183.png 300w" sizes="(max-width: 625px) 100vw, 625px" /> 
 
 From this we can see the 'load' switch servers between the WSCTXZDC301T and WSCTXAPP301T. This is NOT load balancing, but the Netscaler failing over when \*it\* does not receive a reply from the XML monitor within 5000ms. The performance with PERSISTENCE set to SOURCEIP is no better than a single server for servicing requests.
 
 Loading the Webinterface with requests:
 
-<img class="aligncenter size-full wp-image-1511" src="http://theorypc.ca/wp-content/uploads/2016/06/image005.png" alt="image005" width="625" height="450" srcset="http://theorypc.ca/wp-content/uploads/2016/06/image005.png 625w, http://theorypc.ca/wp-content/uploads/2016/06/image005-300x216.png 300w" sizes="(max-width: 625px) 100vw, 625px" /> 
+<img class="aligncenter size-full wp-image-1511" src="/wp-content/uploads/2016/06/image005.png" alt="image005" width="625" height="450" srcset="/wp-content/uploads/2016/06/image005.png 625w, /wp-content/uploads/2016/06/image005-300x216.png 300w" sizes="(max-width: 625px) 100vw, 625px" /> 
 
 We see the exact same situation when going through the web interface.
 
@@ -41,13 +41,13 @@ PERSISTENCE: NONE
 
 After setting the PERSISTENCE to NONE I directed traffic directly to the VIP:
 
-<img class="aligncenter size-full wp-image-1512" src="http://theorypc.ca/wp-content/uploads/2016/06/image006.png" alt="image006" width="625" height="453" srcset="http://theorypc.ca/wp-content/uploads/2016/06/image006.png 625w, http://theorypc.ca/wp-content/uploads/2016/06/image006-300x217.png 300w" sizes="(max-width: 625px) 100vw, 625px" /> 
+<img class="aligncenter size-full wp-image-1512" src="/wp-content/uploads/2016/06/image006.png" alt="image006" width="625" height="453" srcset="/wp-content/uploads/2016/06/image006.png 625w, /wp-content/uploads/2016/06/image006-300x217.png 300w" sizes="(max-width: 625px) 100vw, 625px" /> 
 
 What we are seeing is for the exact same load (200 connections) our response time is 50% better with PERSISTENCE set to NONE. We are getting responses back in ~2300-3000ms.
 
 Load testing the Web Interface with PERSISTENCE set to NONE sees the same results:
 
-<img class="aligncenter size-full wp-image-1513" src="http://theorypc.ca/wp-content/uploads/2016/06/image007.png" alt="image007" width="625" height="488" srcset="http://theorypc.ca/wp-content/uploads/2016/06/image007.png 625w, http://theorypc.ca/wp-content/uploads/2016/06/image007-300x234.png 300w" sizes="(max-width: 625px) 100vw, 625px" /> 
+<img class="aligncenter size-full wp-image-1513" src="/wp-content/uploads/2016/06/image007.png" alt="image007" width="625" height="488" srcset="/wp-content/uploads/2016/06/image007.png 625w, /wp-content/uploads/2016/06/image007-300x234.png 300w" sizes="(max-width: 625px) 100vw, 625px" /> 
 
 What's the impact on the end user by setting PERSISTENCE to NONE? There is no impact. During load testing I made several 'real' connections using Citrix Receiver via PNA and through the Web Interface and both continued to operate without issue enumerating applications. With this testing and information we need to change our PERSISTENCE value to NONE.
 

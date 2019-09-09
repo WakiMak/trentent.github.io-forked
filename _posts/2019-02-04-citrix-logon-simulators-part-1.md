@@ -22,7 +22,7 @@ tags:
 "Hey man, I heard Citrix was down?"  
 "Can you help? I need to get this work done! The deadline is today and I can't open my app!"
 
-<img class="aligncenter wp-image-2918 size-medium" src="http://theorypc.ca/wp-content/uploads/2019/01/sad-300x264.png" alt="" width="300" height="264" srcset="http://theorypc.ca/wp-content/uploads/2019/01/sad-300x264.png 300w, http://theorypc.ca/wp-content/uploads/2019/01/sad.png 750w" sizes="(max-width: 300px) 100vw, 300px" /> 
+<img class="aligncenter wp-image-2918 size-medium" src="/wp-content/uploads/2019/01/sad-300x264.png" alt="" width="300" height="264" srcset="/wp-content/uploads/2019/01/sad-300x264.png 300w, /wp-content/uploads/2019/01/sad.png 750w" sizes="(max-width: 300px) 100vw, 300px" /> 
 
 Welcome to the world of a Citrix Administrator. If an application stops working then the calls flood in and you get pinged a million times. Is there a way to be proactive about when an application goes down so you maximize your time trying to fix the issue between the failure and first call?
 
@@ -33,7 +33,7 @@ There are a few different logon simulators out there including two powershell sc
 The "Web" service is the user-facing front end for Storefront. When you open a browser and go to your Storefront URL you are using the web service.
 
 <div id="attachment_2920" style="width: 700px" class="wp-caption aligncenter">
-  <img aria-describedby="caption-attachment-2920" class="wp-image-2920 size-full" src="http://theorypc.ca/wp-content/uploads/2019/01/LogonStorefRont.png" alt="" width="690" height="388" srcset="http://theorypc.ca/wp-content/uploads/2019/01/LogonStorefRont.png 690w, http://theorypc.ca/wp-content/uploads/2019/01/LogonStorefRont-300x169.png 300w" sizes="(max-width: 690px) 100vw, 690px" /></p> 
+  <img aria-describedby="caption-attachment-2920" class="wp-image-2920 size-full" src="/wp-content/uploads/2019/01/LogonStorefRont.png" alt="" width="690" height="388" srcset="/wp-content/uploads/2019/01/LogonStorefRont.png 690w, /wp-content/uploads/2019/01/LogonStorefRont-300x169.png 300w" sizes="(max-width: 690px) 100vw, 690px" /></p> 
   
   <p id="caption-attachment-2920" class="wp-caption-text">
     "Web" service. User logs into Storefront and launches an app using a web browser
@@ -43,7 +43,7 @@ The "Web" service is the user-facing front end for Storefront. When you open a b
 Each "Web" service has a corresponding "Store" service. However, the "Store" service **_does not require_** a "Web" service and you can create Store services without a Web Service. Store services are used when you configure Citrix Reciever/Workspace App to connect to Storefront. When you launch apps via Citrix Receiver/Workspace App you are using the Store service. In addition, when thin clients are configured to use Storefront they, typically, use the Store service.
 
 <div id="attachment_2921" style="width: 1081px" class="wp-caption aligncenter">
-  <img aria-describedby="caption-attachment-2921" class="wp-image-2921 size-full" src="http://theorypc.ca/wp-content/uploads/2019/01/StoreService.png" alt="" width="1071" height="788" srcset="http://theorypc.ca/wp-content/uploads/2019/01/StoreService.png 1071w, http://theorypc.ca/wp-content/uploads/2019/01/StoreService-300x221.png 300w, http://theorypc.ca/wp-content/uploads/2019/01/StoreService-768x565.png 768w" sizes="(max-width: 1071px) 100vw, 1071px" /></p> 
+  <img aria-describedby="caption-attachment-2921" class="wp-image-2921 size-full" src="/wp-content/uploads/2019/01/StoreService.png" alt="" width="1071" height="788" srcset="/wp-content/uploads/2019/01/StoreService.png 1071w, /wp-content/uploads/2019/01/StoreService-300x221.png 300w, /wp-content/uploads/2019/01/StoreService-768x565.png 768w" sizes="(max-width: 1071px) 100vw, 1071px" /></p> 
   
   <p id="caption-attachment-2921" class="wp-caption-text">
     Using the "Store" service. Not the program is "Citrix Workspace" and not a web browser.

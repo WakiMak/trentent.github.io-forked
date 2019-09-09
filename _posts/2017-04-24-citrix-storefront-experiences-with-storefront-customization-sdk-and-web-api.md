@@ -35,7 +35,7 @@ We can't let this feature break when we move to StoreFront.  We track the number
 So how does this work in Web Interface and what actually happens?
 
 <div id="attachment_2152" style="width: 1150px" class="wp-caption aligncenter">
-  <img aria-describedby="caption-attachment-2152" class="wp-image-2152 size-large" src="http://theorypc.ca/wp-content/uploads/2017/04/Screen-Shot-2017-04-22-at-1.30.40-PM-1600x1209.png" alt="" width="1140" height="861" srcset="http://theorypc.ca/wp-content/uploads/2017/04/Screen-Shot-2017-04-22-at-1.30.40-PM-1600x1209.png 1600w, http://theorypc.ca/wp-content/uploads/2017/04/Screen-Shot-2017-04-22-at-1.30.40-PM-300x227.png 300w, http://theorypc.ca/wp-content/uploads/2017/04/Screen-Shot-2017-04-22-at-1.30.40-PM-768x580.png 768w" sizes="(max-width: 1140px) 100vw, 1140px" /></p> 
+  <img aria-describedby="caption-attachment-2152" class="wp-image-2152 size-large" src="/wp-content/uploads/2017/04/Screen-Shot-2017-04-22-at-1.30.40-PM-1600x1209.png" alt="" width="1140" height="861" srcset="/wp-content/uploads/2017/04/Screen-Shot-2017-04-22-at-1.30.40-PM-1600x1209.png 1600w, /wp-content/uploads/2017/04/Screen-Shot-2017-04-22-at-1.30.40-PM-300x227.png 300w, /wp-content/uploads/2017/04/Screen-Shot-2017-04-22-at-1.30.40-PM-768x580.png 768w" sizes="(max-width: 1140px) 100vw, 1140px" /></p> 
   
   <p id="caption-attachment-2152" class="wp-caption-text">
     URI substitution and launch process
@@ -48,18 +48,18 @@ The ICA file, when launched, will pass the parameter to a special string "%\*\*"
 
 Can we do this with Storefront?  Well, first things first, is this even possible with &/XenDesktop 7.X?  In order to test this I created an application and specified the special token.
 
-<img class="aligncenter size-full wp-image-2153" src="http://theorypc.ca/wp-content/uploads/2017/04/Screen-Shot-2017-04-22-at-1.39.21-PM.png" alt="" width="795" height="580" srcset="http://theorypc.ca/wp-content/uploads/2017/04/Screen-Shot-2017-04-22-at-1.39.21-PM.png 795w, http://theorypc.ca/wp-content/uploads/2017/04/Screen-Shot-2017-04-22-at-1.39.21-PM-300x219.png 300w, http://theorypc.ca/wp-content/uploads/2017/04/Screen-Shot-2017-04-22-at-1.39.21-PM-768x560.png 768w" sizes="(max-width: 795px) 100vw, 795px" /> 
+<img class="aligncenter size-full wp-image-2153" src="/wp-content/uploads/2017/04/Screen-Shot-2017-04-22-at-1.39.21-PM.png" alt="" width="795" height="580" srcset="/wp-content/uploads/2017/04/Screen-Shot-2017-04-22-at-1.39.21-PM.png 795w, /wp-content/uploads/2017/04/Screen-Shot-2017-04-22-at-1.39.21-PM-300x219.png 300w, /wp-content/uploads/2017/04/Screen-Shot-2017-04-22-at-1.39.21-PM-768x560.png 768w" sizes="(max-width: 795px) 100vw, 795px" /> 
 
 I then generated an ICA file and manually modified the LongCommandLine to add my parameter.  I then launched it:
 
-<img class="aligncenter size-full wp-image-2154" src="http://theorypc.ca/wp-content/uploads/2017/04/Screen-Shot-2017-04-22-at-1.53.21-PM.png" alt="" width="567" height="943" srcset="http://theorypc.ca/wp-content/uploads/2017/04/Screen-Shot-2017-04-22-at-1.53.21-PM.png 567w, http://theorypc.ca/wp-content/uploads/2017/04/Screen-Shot-2017-04-22-at-1.53.21-PM-180x300.png 180w" sizes="(max-width: 567px) 100vw, 567px" /> 
+<img class="aligncenter size-full wp-image-2154" src="/wp-content/uploads/2017/04/Screen-Shot-2017-04-22-at-1.53.21-PM.png" alt="" width="567" height="943" srcset="/wp-content/uploads/2017/04/Screen-Shot-2017-04-22-at-1.53.21-PM.png 567w, /wp-content/uploads/2017/04/Screen-Shot-2017-04-22-at-1.53.21-PM-180x300.png 180w" sizes="(max-width: 567px) 100vw, 567px" /> 
 
 &nbsp;
 
 Did it work?
 
 <div id="attachment_2155" style="width: 888px" class="wp-caption aligncenter">
-  <img aria-describedby="caption-attachment-2155" class="wp-image-2155 size-full" src="http://theorypc.ca/wp-content/uploads/2017/04/Screen-Shot-2017-04-22-at-1.54.46-PM.png" alt="" width="878" height="626" srcset="http://theorypc.ca/wp-content/uploads/2017/04/Screen-Shot-2017-04-22-at-1.54.46-PM.png 878w, http://theorypc.ca/wp-content/uploads/2017/04/Screen-Shot-2017-04-22-at-1.54.46-PM-300x214.png 300w, http://theorypc.ca/wp-content/uploads/2017/04/Screen-Shot-2017-04-22-at-1.54.46-PM-768x548.png 768w" sizes="(max-width: 878px) 100vw, 878px" /></p> 
+  <img aria-describedby="caption-attachment-2155" class="wp-image-2155 size-full" src="/wp-content/uploads/2017/04/Screen-Shot-2017-04-22-at-1.54.46-PM.png" alt="" width="878" height="626" srcset="/wp-content/uploads/2017/04/Screen-Shot-2017-04-22-at-1.54.46-PM.png 878w, /wp-content/uploads/2017/04/Screen-Shot-2017-04-22-at-1.54.46-PM-300x214.png 300w, /wp-content/uploads/2017/04/Screen-Shot-2017-04-22-at-1.54.46-PM-768x548.png 768w" sizes="(max-width: 878px) 100vw, 878px" /></p> 
   
   <p id="caption-attachment-2155" class="wp-caption-text">
     Yes, it worked.
@@ -186,41 +186,41 @@ With this, you need to set your POST/GET Header on your request to Storefront to
 
 Install the "[Microsoft Visual Studio Community Edition](https://www.visualstudio.com/downloads/)" on a test StoreFront server.
 
-<img class="aligncenter size-full wp-image-2156" src="http://theorypc.ca/wp-content/uploads/2017/04/VS_Install.png" alt="" width="1250" height="634" srcset="http://theorypc.ca/wp-content/uploads/2017/04/VS_Install.png 1250w, http://theorypc.ca/wp-content/uploads/2017/04/VS_Install-300x152.png 300w, http://theorypc.ca/wp-content/uploads/2017/04/VS_Install-768x390.png 768w" sizes="(max-width: 1250px) 100vw, 1250px" /> 
+<img class="aligncenter size-full wp-image-2156" src="/wp-content/uploads/2017/04/VS_Install.png" alt="" width="1250" height="634" srcset="/wp-content/uploads/2017/04/VS_Install.png 1250w, /wp-content/uploads/2017/04/VS_Install-300x152.png 300w, /wp-content/uploads/2017/04/VS_Install-768x390.png 768w" sizes="(max-width: 1250px) 100vw, 1250px" /> 
 
 &nbsp;
 
 Download the StoreCustomizationSDK and open the 'Customization_Launch' project file:
 
-<img class="aligncenter size-full wp-image-2157" src="http://theorypc.ca/wp-content/uploads/2017/04/customization_launch.png" alt="" width="792" height="266" srcset="http://theorypc.ca/wp-content/uploads/2017/04/customization_launch.png 792w, http://theorypc.ca/wp-content/uploads/2017/04/customization_launch-300x101.png 300w, http://theorypc.ca/wp-content/uploads/2017/04/customization_launch-768x258.png 768w" sizes="(max-width: 792px) 100vw, 792px" /> 
+<img class="aligncenter size-full wp-image-2157" src="/wp-content/uploads/2017/04/customization_launch.png" alt="" width="792" height="266" srcset="/wp-content/uploads/2017/04/customization_launch.png 792w, /wp-content/uploads/2017/04/customization_launch-300x101.png 300w, /wp-content/uploads/2017/04/customization_launch-768x258.png 768w" sizes="(max-width: 792px) 100vw, 792px" /> 
 
 &nbsp;
 
-Right-click 'Customization_Launch' and select 'Properties'.<img class="aligncenter size-full wp-image-2159" src="http://theorypc.ca/wp-content/uploads/2017/04/Customzation_Launch_Properties.png" alt="" width="341" height="638" srcset="http://theorypc.ca/wp-content/uploads/2017/04/Customzation_Launch_Properties.png 341w, http://theorypc.ca/wp-content/uploads/2017/04/Customzation_Launch_Properties-160x300.png 160w" sizes="(max-width: 341px) 100vw, 341px" />
+Right-click 'Customization_Launch' and select 'Properties'.<img class="aligncenter size-full wp-image-2159" src="/wp-content/uploads/2017/04/Customzation_Launch_Properties.png" alt="" width="341" height="638" srcset="/wp-content/uploads/2017/04/Customzation_Launch_Properties.png 341w, /wp-content/uploads/2017/04/Customzation_Launch_Properties-160x300.png 160w" sizes="(max-width: 341px) 100vw, 341px" />
 
 &nbsp;
 
 Modify the Outpath in Build to the "%site%\bin" location.  This is NOT the %site%<span style="text-decoration: underline;">Web</span>, but just the %site%.
 
-<img class="aligncenter size-full wp-image-2160" src="http://theorypc.ca/wp-content/uploads/2017/04/SDK_CustomizationLaunch.png" alt="" width="1006" height="778" srcset="http://theorypc.ca/wp-content/uploads/2017/04/SDK_CustomizationLaunch.png 1006w, http://theorypc.ca/wp-content/uploads/2017/04/SDK_CustomizationLaunch-300x232.png 300w, http://theorypc.ca/wp-content/uploads/2017/04/SDK_CustomizationLaunch-768x594.png 768w" sizes="(max-width: 1006px) 100vw, 1006px" /> 
+<img class="aligncenter size-full wp-image-2160" src="/wp-content/uploads/2017/04/SDK_CustomizationLaunch.png" alt="" width="1006" height="778" srcset="/wp-content/uploads/2017/04/SDK_CustomizationLaunch.png 1006w, /wp-content/uploads/2017/04/SDK_CustomizationLaunch-300x232.png 300w, /wp-content/uploads/2017/04/SDK_CustomizationLaunch-768x594.png 768w" sizes="(max-width: 1006px) 100vw, 1006px" /> 
 
 Open the LaunchResultModifer.cs
 
 &nbsp;
 
-<img class="aligncenter size-full wp-image-2161" src="http://theorypc.ca/wp-content/uploads/2017/04/LaunchResultModifer.cs_.png" alt="" width="1281" height="342" srcset="http://theorypc.ca/wp-content/uploads/2017/04/LaunchResultModifer.cs_.png 1281w, http://theorypc.ca/wp-content/uploads/2017/04/LaunchResultModifer.cs_-300x80.png 300w, http://theorypc.ca/wp-content/uploads/2017/04/LaunchResultModifer.cs_-768x205.png 768w" sizes="(max-width: 1281px) 100vw, 1281px" /> 
+<img class="aligncenter size-full wp-image-2161" src="/wp-content/uploads/2017/04/LaunchResultModifer.cs_.png" alt="" width="1281" height="342" srcset="/wp-content/uploads/2017/04/LaunchResultModifer.cs_.png 1281w, /wp-content/uploads/2017/04/LaunchResultModifer.cs_-300x80.png 300w, /wp-content/uploads/2017/04/LaunchResultModifer.cs_-768x205.png 768w" sizes="(max-width: 1281px) 100vw, 1281px" /> 
 
 Set a breakpoint somewhere in the file.
 
-<img class="aligncenter size-full wp-image-2162" src="http://theorypc.ca/wp-content/uploads/2017/04/BreakPoint.png" alt="" width="706" height="175" srcset="http://theorypc.ca/wp-content/uploads/2017/04/BreakPoint.png 706w, http://theorypc.ca/wp-content/uploads/2017/04/BreakPoint-300x74.png 300w" sizes="(max-width: 706px) 100vw, 706px" /> 
+<img class="aligncenter size-full wp-image-2162" src="/wp-content/uploads/2017/04/BreakPoint.png" alt="" width="706" height="175" srcset="/wp-content/uploads/2017/04/BreakPoint.png 706w, /wp-content/uploads/2017/04/BreakPoint-300x74.png 300w" sizes="(max-width: 706px) 100vw, 706px" /> 
 
 Build > Build 'Customization_Launch'
 
-<img class="aligncenter size-full wp-image-2163" src="http://theorypc.ca/wp-content/uploads/2017/04/Build_CustomizationLaunch.png" alt="" width="397" height="135" srcset="http://theorypc.ca/wp-content/uploads/2017/04/Build_CustomizationLaunch.png 397w, http://theorypc.ca/wp-content/uploads/2017/04/Build_CustomizationLaunch-300x102.png 300w" sizes="(max-width: 397px) 100vw, 397px" /> 
+<img class="aligncenter size-full wp-image-2163" src="/wp-content/uploads/2017/04/Build_CustomizationLaunch.png" alt="" width="397" height="135" srcset="/wp-content/uploads/2017/04/Build_CustomizationLaunch.png 397w, /wp-content/uploads/2017/04/Build_CustomizationLaunch-300x102.png 300w" sizes="(max-width: 397px) 100vw, 397px" /> 
 
 Ensure the build was successful:
 
-<img class="aligncenter size-full wp-image-2164" src="http://theorypc.ca/wp-content/uploads/2017/04/Output.png" alt="" width="731" height="124" srcset="http://theorypc.ca/wp-content/uploads/2017/04/Output.png 731w, http://theorypc.ca/wp-content/uploads/2017/04/Output-300x51.png 300w" sizes="(max-width: 731px) 100vw, 731px" /> 
+<img class="aligncenter size-full wp-image-2164" src="/wp-content/uploads/2017/04/Output.png" alt="" width="731" height="124" srcset="/wp-content/uploads/2017/04/Output.png 731w, /wp-content/uploads/2017/04/Output-300x51.png 300w" sizes="(max-width: 731px) 100vw, 731px" /> 
 
 If you get an error message:
 
@@ -234,29 +234,29 @@ In order to debug this project, add an executable project to this solution which
 OK 
 ---------------------------</pre>
 
-<img class="aligncenter size-full wp-image-2165" src="http://theorypc.ca/wp-content/uploads/2017/04/Error_Message.png" alt="" width="481" height="222" srcset="http://theorypc.ca/wp-content/uploads/2017/04/Error_Message.png 481w, http://theorypc.ca/wp-content/uploads/2017/04/Error_Message-300x138.png 300w" sizes="(max-width: 481px) 100vw, 481px" /> 
+<img class="aligncenter size-full wp-image-2165" src="/wp-content/uploads/2017/04/Error_Message.png" alt="" width="481" height="222" srcset="/wp-content/uploads/2017/04/Error_Message.png 481w, /wp-content/uploads/2017/04/Error_Message-300x138.png 300w" sizes="(max-width: 481px) 100vw, 481px" /> 
 
 Just ignore it.  We're compiling a library and not an executable and that's why you get this message.
 
 Now we connect to the debugger to the 'Citrix Delivery Services Resources'.  Select 'Attach to Process...'
 
-<img class="aligncenter size-full wp-image-2166" src="http://theorypc.ca/wp-content/uploads/2017/04/Attach_To_Process.png" alt="" width="388" height="138" srcset="http://theorypc.ca/wp-content/uploads/2017/04/Attach_To_Process.png 388w, http://theorypc.ca/wp-content/uploads/2017/04/Attach_To_Process-300x107.png 300w" sizes="(max-width: 388px) 100vw, 388px" /> 
+<img class="aligncenter size-full wp-image-2166" src="/wp-content/uploads/2017/04/Attach_To_Process.png" alt="" width="388" height="138" srcset="/wp-content/uploads/2017/04/Attach_To_Process.png 388w, /wp-content/uploads/2017/04/Attach_To_Process-300x107.png 300w" sizes="(max-width: 388px) 100vw, 388px" /> 
 
 Select the w3wp.exe process whose user name is 'Citrix Delivery Services Resources'.  You may need to select 'Show processes from all users' and click ' Attach.
 
-<img class="aligncenter size-full wp-image-2168" src="http://theorypc.ca/wp-content/uploads/2017/04/SDK_Debugger-1.png" alt="" width="857" height="609" srcset="http://theorypc.ca/wp-content/uploads/2017/04/SDK_Debugger-1.png 857w, http://theorypc.ca/wp-content/uploads/2017/04/SDK_Debugger-1-300x213.png 300w, http://theorypc.ca/wp-content/uploads/2017/04/SDK_Debugger-1-768x546.png 768w" sizes="(max-width: 857px) 100vw, 857px" /> 
+<img class="aligncenter size-full wp-image-2168" src="/wp-content/uploads/2017/04/SDK_Debugger-1.png" alt="" width="857" height="609" srcset="/wp-content/uploads/2017/04/SDK_Debugger-1.png 857w, /wp-content/uploads/2017/04/SDK_Debugger-1-300x213.png 300w, /wp-content/uploads/2017/04/SDK_Debugger-1-768x546.png 768w" sizes="(max-width: 857px) 100vw, 857px" /> 
 
 Click 'Attach'.
 
-<img class="aligncenter size-full wp-image-2169" src="http://theorypc.ca/wp-content/uploads/2017/04/attach.png" alt="" width="415" height="238" srcset="http://theorypc.ca/wp-content/uploads/2017/04/attach.png 415w, http://theorypc.ca/wp-content/uploads/2017/04/attach-300x172.png 300w" sizes="(max-width: 415px) 100vw, 415px" /> 
+<img class="aligncenter size-full wp-image-2169" src="/wp-content/uploads/2017/04/attach.png" alt="" width="415" height="238" srcset="/wp-content/uploads/2017/04/attach.png 415w, /wp-content/uploads/2017/04/attach-300x172.png 300w" sizes="(max-width: 415px) 100vw, 415px" /> 
 
 Browse to your website and click to launch an icon:
 
-<img class="aligncenter size-full wp-image-2170" src="http://theorypc.ca/wp-content/uploads/2017/04/Launch_Icon.png" alt="" width="796" height="333" srcset="http://theorypc.ca/wp-content/uploads/2017/04/Launch_Icon.png 796w, http://theorypc.ca/wp-content/uploads/2017/04/Launch_Icon-300x126.png 300w, http://theorypc.ca/wp-content/uploads/2017/04/Launch_Icon-768x321.png 768w" sizes="(max-width: 796px) 100vw, 796px" /> 
+<img class="aligncenter size-full wp-image-2170" src="/wp-content/uploads/2017/04/Launch_Icon.png" alt="" width="796" height="333" srcset="/wp-content/uploads/2017/04/Launch_Icon.png 796w, /wp-content/uploads/2017/04/Launch_Icon-300x126.png 300w, /wp-content/uploads/2017/04/Launch_Icon-768x321.png 768w" sizes="(max-width: 796px) 100vw, 796px" /> 
 
 Your debugger should pause at the breakpoint:
 
-<img class="aligncenter size-full wp-image-2171" src="http://theorypc.ca/wp-content/uploads/2017/04/Debugger_Trap.png" alt="" width="1391" height="886" srcset="http://theorypc.ca/wp-content/uploads/2017/04/Debugger_Trap.png 1391w, http://theorypc.ca/wp-content/uploads/2017/04/Debugger_Trap-300x191.png 300w, http://theorypc.ca/wp-content/uploads/2017/04/Debugger_Trap-768x489.png 768w" sizes="(max-width: 1391px) 100vw, 1391px" /> 
+<img class="aligncenter size-full wp-image-2171" src="/wp-content/uploads/2017/04/Debugger_Trap.png" alt="" width="1391" height="886" srcset="/wp-content/uploads/2017/04/Debugger_Trap.png 1391w, /wp-content/uploads/2017/04/Debugger_Trap-300x191.png 300w, /wp-content/uploads/2017/04/Debugger_Trap-768x489.png 768w" sizes="(max-width: 1391px) 100vw, 1391px" /> 
 
 And you can inspect the values.
 
@@ -306,23 +306,23 @@ $ICA.RawContent
 
 Executing the powershell script and examining a custom variable with breakpoint shows us that our header was successfully passed into the file:
 
-<img class="aligncenter size-full wp-image-2172" src="http://theorypc.ca/wp-content/uploads/2017/04/ExecutionWithVariableProperties.png" alt="" width="1054" height="789" srcset="http://theorypc.ca/wp-content/uploads/2017/04/ExecutionWithVariableProperties.png 1054w, http://theorypc.ca/wp-content/uploads/2017/04/ExecutionWithVariableProperties-300x225.png 300w, http://theorypc.ca/wp-content/uploads/2017/04/ExecutionWithVariableProperties-768x575.png 768w" sizes="(max-width: 1054px) 100vw, 1054px" /> 
+<img class="aligncenter size-full wp-image-2172" src="/wp-content/uploads/2017/04/ExecutionWithVariableProperties.png" alt="" width="1054" height="789" srcset="/wp-content/uploads/2017/04/ExecutionWithVariableProperties.png 1054w, /wp-content/uploads/2017/04/ExecutionWithVariableProperties-300x225.png 300w, /wp-content/uploads/2017/04/ExecutionWithVariableProperties-768x575.png 768w" sizes="(max-width: 1054px) 100vw, 1054px" /> 
 
 Awesome!  So can we do something with this?  Citrix has provided a function that does a find/replace of the value you want to modify.  To enable it, we need to add it the ICAFile.cs:
 
-<img class="aligncenter size-full wp-image-2175" src="http://theorypc.ca/wp-content/uploads/2017/04/Add_ExistingItem.png" alt="" width="581" height="259" srcset="http://theorypc.ca/wp-content/uploads/2017/04/Add_ExistingItem.png 581w, http://theorypc.ca/wp-content/uploads/2017/04/Add_ExistingItem-300x134.png 300w" sizes="(max-width: 581px) 100vw, 581px" /> 
+<img class="aligncenter size-full wp-image-2175" src="/wp-content/uploads/2017/04/Add_ExistingItem.png" alt="" width="581" height="259" srcset="/wp-content/uploads/2017/04/Add_ExistingItem.png 581w, /wp-content/uploads/2017/04/Add_ExistingItem-300x134.png 300w" sizes="(max-width: 581px) 100vw, 581px" /> 
 
 Browse to ICAFile.cs
 
-<img class="aligncenter size-full wp-image-2176" src="http://theorypc.ca/wp-content/uploads/2017/04/helper_icafile.png" alt="" width="935" height="346" srcset="http://theorypc.ca/wp-content/uploads/2017/04/helper_icafile.png 935w, http://theorypc.ca/wp-content/uploads/2017/04/helper_icafile-300x111.png 300w, http://theorypc.ca/wp-content/uploads/2017/04/helper_icafile-768x284.png 768w" sizes="(max-width: 935px) 100vw, 935px" /> 
+<img class="aligncenter size-full wp-image-2176" src="/wp-content/uploads/2017/04/helper_icafile.png" alt="" width="935" height="346" srcset="/wp-content/uploads/2017/04/helper_icafile.png 935w, /wp-content/uploads/2017/04/helper_icafile-300x111.png 300w, /wp-content/uploads/2017/04/helper_icafile-768x284.png 768w" sizes="(max-width: 935px) 100vw, 935px" /> 
 
-<img class="aligncenter size-full wp-image-2177" src="http://theorypc.ca/wp-content/uploads/2017/04/ica_file_in_project.png" alt="" width="456" height="205" srcset="http://theorypc.ca/wp-content/uploads/2017/04/ica_file_in_project.png 456w, http://theorypc.ca/wp-content/uploads/2017/04/ica_file_in_project-300x135.png 300w" sizes="(max-width: 456px) 100vw, 456px" /> 
+<img class="aligncenter size-full wp-image-2177" src="/wp-content/uploads/2017/04/ica_file_in_project.png" alt="" width="456" height="205" srcset="/wp-content/uploads/2017/04/ica_file_in_project.png 456w, /wp-content/uploads/2017/04/ica_file_in_project-300x135.png 300w" sizes="(max-width: 456px) 100vw, 456px" /> 
 
 &nbsp;
 
 At this point we can use the helper methods within the IcaFile.cs.  To do so, just add "using Examples.Helpers;" to the top of the file:
 
-<img class="aligncenter size-full wp-image-2178" src="http://theorypc.ca/wp-content/uploads/2017/04/Using_Examples.png" alt="" width="640" height="237" srcset="http://theorypc.ca/wp-content/uploads/2017/04/Using_Examples.png 640w, http://theorypc.ca/wp-content/uploads/2017/04/Using_Examples-300x111.png 300w" sizes="(max-width: 640px) 100vw, 640px" /> 
+<img class="aligncenter size-full wp-image-2178" src="/wp-content/uploads/2017/04/Using_Examples.png" alt="" width="640" height="237" srcset="/wp-content/uploads/2017/04/Using_Examples.png 640w, /wp-content/uploads/2017/04/Using_Examples-300x111.png 300w" sizes="(max-width: 640px) 100vw, 640px" /> 
 
 I cleaned out the HDXRouting out of the file, grabbed the nFuseAppCMDLine header, and then returned the result:
 
@@ -377,7 +377,7 @@ namespace StoreCustomization_Launch
 
 The result?
 
-<img class="aligncenter size-full wp-image-2179" src="http://theorypc.ca/wp-content/uploads/2017/04/ICAResult.png" alt="" width="1220" height="665" srcset="http://theorypc.ca/wp-content/uploads/2017/04/ICAResult.png 1220w, http://theorypc.ca/wp-content/uploads/2017/04/ICAResult-300x164.png 300w, http://theorypc.ca/wp-content/uploads/2017/04/ICAResult-768x419.png 768w" sizes="(max-width: 1220px) 100vw, 1220px" /> 
+<img class="aligncenter size-full wp-image-2179" src="/wp-content/uploads/2017/04/ICAResult.png" alt="" width="1220" height="665" srcset="/wp-content/uploads/2017/04/ICAResult.png 1220w, /wp-content/uploads/2017/04/ICAResult-300x164.png 300w, /wp-content/uploads/2017/04/ICAResult-768x419.png 768w" sizes="(max-width: 1220px) 100vw, 1220px" /> 
 
 Success!  We've used the WebAPI and the StoreFront Customization SDK to supply a header, modify the ICA file, and return it with the value needed!  The ICA file returned works perfectly!  Ok, so I'm thinking this looks pretty good right?!  We just need to get the iframe to supply a custom header when the src gets updated.
 
