@@ -55,7 +55,11 @@ With this policy enabled, it changes the behavior of how Citrix connects printer
 
 <img src="/wp-content/uploads/2018/12/cds-print-network-attached-1.png" alt="" class="wp-image-2890" srcset="/wp-content/uploads/2018/12/cds-print-network-attached-1.png 496w, /wp-content/uploads/2018/12/cds-print-network-attached-1-300x165.png 300w" sizes="(max-width: 496px) 100vw, 496px" /> </figure> 
 
-But I feel this is missing temporal information.&nbsp; I've created a video to highlight the steps.<figure class="wp-block-video"><video controls src="/wp-content/uploads/2018/12/DirectConnectionProcess.mp4"></video><figcaption>Direct Connection Process</figcaption></figure> 
+But I feel this is missing temporal information.&nbsp; I've created a video to highlight the steps.
+
+[Sample video](/wp-content/uploads/2018/12/DirectConnectionProcess.mp4)
+
+<figure class="wp-block-video"><video controls src="/wp-content/uploads/2018/12/DirectConnectionProcess.mp4"></video><figcaption>Direct Connection Process</figcaption></figure> 
 
 ## Why is this important?
 
