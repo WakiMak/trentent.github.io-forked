@@ -1,6 +1,6 @@
 ---
 id: 640
-title: SCVMM: Install VM components Failed
+title: SCVMM Install VM components Failed
 date: 2013-05-31T14:37:00-06:00
 author: trententtye
 layout: post
@@ -273,7 +273,7 @@ DebugView gave me more information to narrow down what was happening.  It appear
 <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;"><br /> </span>Doing some googling on this took me to a Korean Microsoft page where the following was stated:  
 <http://social.technet.microsoft.com/Forums/ko-KR/momsmsmofko/thread/fedbc514-1fc0-4b55-979b-7d07babb074b/>
 
-<pre class="lang:default decode:true ">When creating a new VM from template, and that template contains a blank VHD or a non-Windows OS or a Windows OS that has not been generalized (i.e. the OS is not sysprepped), then the job will fail because VMM expects a VM from template to go through the sysprep customization process (hence why we ask for an OS profile). VMM will crack open the VHD and check of the OS is in a sysprep state. If not, then the job will fail. To create a proper template, you can use an existing Vm with a running Windows OS (right click on it and select New Template€¦ this will kick off sysprep in the OS and then store the VM to Library as template€¦ this removes the original VM). Or€¦ if you already have VHDs that have been sysprepped, simply import them to the Library and then when you create a new template€¦ attach that VHD instead of the blank one. Last€¦ you can create a new template that does not require a sysprepped OS by selecting €˜Customization Not Required€™ from the Guest OS profile dropdown:</pre>
+<pre class="lang:default decode:true ">When creating a new VM from template, and that template contains a blank VHD or a non-Windows OS or a Windows OS that has not been generalized (i.e. the OS is not sysprepped), then the job will fail because VMM expects a VM from template to go through the sysprep customization process (hence why we ask for an OS profile). VMM will crack open the VHD and check of the OS is in a sysprep state. If not, then the job will fail. To create a proper template, you can use an existing Vm with a running Windows OS (right click on it and select New TemplateÂ€Â¦ this will kick off sysprep in the OS and then store the VM to Library as templateÂ€Â¦ this removes the original VM). OrÂ€Â¦ if you already have VHDs that have been sysprepped, simply import them to the Library and then when you create a new templateÂ€Â¦ attach that VHD instead of the blank one. LastÂ€Â¦ you can create a new template that does not require a sysprepped OS by selecting Â€Â˜Customization Not RequiredÂ€Â™ from the Guest OS profile dropdown:</pre>
 
 <http://blogs.technet.com/b/hectorl/archive/2008/08/21/digging-deeper-into-error-13206-virtual-machine-manager-cannot-locate-the-boot-or-system-volume-on-virtual-machine.aspx>
 
@@ -288,93 +288,93 @@ Thinking about it, I do not think my VHD was SysPrep'ed.  I find it interesting 
 C:\Users\amttye\Desktop>fc before-sysprep.txt after-sysprep.txt
 Comparing files before-sysprep.txt and AFTER-SYSPREP.TXT
 ***** before-sysprep.txt
-identifier              {bootmgr}
-device                  partition=K:
-description             Windows Boot Manager
+identifier Â  Â  Â  Â  Â  Â  Â {bootmgr}
+device Â  Â  Â  Â  Â  Â  Â  Â  Â partition=K:
+description Â  Â  Â  Â  Â  Â  Windows Boot Manager
 ***** AFTER-SYSPREP.TXT
-identifier              {bootmgr}
-<b><u><i>device                  locate=unknown</i></u></b>
-description             Windows Boot Manager
+identifier Â  Â  Â  Â  Â  Â  Â {bootmgr}
+<b><u><i>device Â  Â  Â  Â  Â  Â  Â  Â  Â locate=unknown</i></u></b>
+description Â  Â  Â  Â  Â  Â  Windows Boot Manager
 *****
 
 ***** before-sysprep.txt
-toolsdisplayorder       {memdiag}
-timeout                 3
+toolsdisplayorder Â  Â  Â  {memdiag}
+timeout Â  Â  Â  Â  Â  Â  Â  Â  3
 
 ***** AFTER-SYSPREP.TXT
-toolsdisplayorder       {memdiag}
-<b><u><i>timeout                 30</i></u></b>
+toolsdisplayorder Â  Â  Â  {memdiag}
+<b><u><i>timeout Â  Â  Â  Â  Â  Â  Â  Â  30</i></u></b>
 
 *****
 
 ***** before-sysprep.txt
-identifier              {default}
-device                  partition=K:
-path                    \Windows\system32\winload.exe
+identifier Â  Â  Â  Â  Â  Â  Â {default}
+device Â  Â  Â  Â  Â  Â  Â  Â  Â partition=K:
+path Â  Â  Â  Â  Â  Â  Â  Â  Â  Â \Windows\system32\winload.exe
 ***** AFTER-SYSPREP.TXT
-identifier              {default}
-<b><u><i>device                  locate=\Windows\system32\winload.exe</i></u></b>
-path                    \Windows\system32\winload.exe
+identifier Â  Â  Â  Â  Â  Â  Â {default}
+<b><u><i>device Â  Â  Â  Â  Â  Â  Â  Â  Â locate=\Windows\system32\winload.exe</i></u></b>
+path Â  Â  Â  Â  Â  Â  Â  Â  Â  Â \Windows\system32\winload.exe
 *****
 
 ***** before-sysprep.txt
-inherit                 {bootloadersettings}
+inherit Â  Â  Â  Â  Â  Â  Â  Â  {bootloadersettings}
 allowedinmemorysettings 0x15000075
-osdevice                partition=K:
-systemroot              \Windows
+osdevice Â  Â  Â  Â  Â  Â  Â  Â partition=K:
+systemroot Â  Â  Â  Â  Â  Â  Â \Windows
 ***** AFTER-SYSPREP.TXT
-inherit                 {bootloadersettings}
-<b><u><i>recoveryenabled         No</i></u></b>
+inherit Â  Â  Â  Â  Â  Â  Â  Â  {bootloadersettings}
+<b><u><i>recoveryenabled Â  Â  Â  Â  No</i></u></b>
 allowedinmemorysettings 0x15000075
-<b><u><i>osdevice                locate=\Windows</i></u></b>
-systemroot              \Windows
+<b><u><i>osdevice Â  Â  Â  Â  Â  Â  Â  Â locate=\Windows</i></u></b>
+systemroot Â  Â  Â  Â  Â  Â  Â \Windows
 *****
 
 ***** before-sysprep.txt
-nx                      OptOut
-detecthal               Yes
+nx Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â OptOut
+detecthal Â  Â  Â  Â  Â  Â  Â  Yes
 
 ***** AFTER-SYSPREP.TXT
-nx                      OptOut
+nx Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  Â OptOut
 
 *****
 
 ***** before-sysprep.txt
-identifier              {b520e13c-48da-11e2-9a8b-00155d011700}
-device                  partition=K:
-path                    \Windows\system32\winresume.exe
+identifier Â  Â  Â  Â  Â  Â  Â {b520e13c-48da-11e2-9a8b-00155d011700}
+device Â  Â  Â  Â  Â  Â  Â  Â  Â partition=K:
+path Â  Â  Â  Â  Â  Â  Â  Â  Â  Â \Windows\system32\winresume.exe
 ***** AFTER-SYSPREP.TXT
-identifier              {b520e13c-48da-11e2-9a8b-00155d011700}
-<b><u><i>device                  locate=\Windows\system32\winresume.exe</i></u></b>
-path                    \Windows\system32\winresume.exe
+identifier Â  Â  Â  Â  Â  Â  Â {b520e13c-48da-11e2-9a8b-00155d011700}
+<b><u><i>device Â  Â  Â  Â  Â  Â  Â  Â  Â locate=\Windows\system32\winresume.exe</i></u></b>
+path Â  Â  Â  Â  Â  Â  Â  Â  Â  Â \Windows\system32\winresume.exe
 *****
 
 ***** before-sysprep.txt
-inherit                 {resumeloadersettings}
+inherit Â  Â  Â  Â  Â  Â  Â  Â  {resumeloadersettings}
 allowedinmemorysettings 0x15000075
-filepath                \hiberfil.sys
+filepath Â  Â  Â  Â  Â  Â  Â  Â \hiberfil.sys
 
 ***** AFTER-SYSPREP.TXT
-inherit                 {resumeloadersettings}
-<b><u><i>recoveryenabled         No</i></u></b>
+inherit Â  Â  Â  Â  Â  Â  Â  Â  {resumeloadersettings}
+<b><u><i>recoveryenabled Â  Â  Â  Â  No</i></u></b>
 allowedinmemorysettings 0x15000075
-filedevice              locate=\hiberfil.sys
-filepath                \hiberfil.sys
-<b><u><i>debugoptionenabled      No</i></u></b>
+filedevice Â  Â  Â  Â  Â  Â  Â locate=\hiberfil.sys
+filepath Â  Â  Â  Â  Â  Â  Â  Â \hiberfil.sys
+<b><u><i>debugoptionenabled Â  Â  Â No</i></u></b>
 
 *****
 
 ***** before-sysprep.txt
-identifier              {memdiag}
-device                  unknown
-path                    \boot\memtest.exe
+identifier Â  Â  Â  Â  Â  Â  Â {memdiag}
+device Â  Â  Â  Â  Â  Â  Â  Â  Â unknown
+path Â  Â  Â  Â  Â  Â  Â  Â  Â  Â \boot\memtest.exe
 ***** AFTER-SYSPREP.TXT
-identifier              {memdiag}
-<b><u><i>device                  locate=\boot\memtest.exe</i></u></b>
-path                    \boot\memtest.exe
+identifier Â  Â  Â  Â  Â  Â  Â {memdiag}
+<b><u><i>device Â  Â  Â  Â  Â  Â  Â  Â  Â locate=\boot\memtest.exe</i></u></b>
+path Â  Â  Â  Â  Â  Â  Â  Â  Â  Â \boot\memtest.exe
 *****
 
-Interestinginly the differences appear to be mostly "locate=%%".  I guess this would make sense as the assumption is the BCD is being moved to a new disk with a new disk signature and so it can't lock on to the existing signature.  Some other oddities is the removal of "detecthal" and explicit declarations of debugoptionenabled and recoveryenabled.  I suspect that a generalized BCD file is portable, so I'm going to extract it from this image and inject it into my previously "failing" image.  I then edited the template and removed the old VHD and added the new one.
+Interestinginly the differences appear to be mostly "locate=%%". Â I guess this would make sense as the assumption is the BCD is being moved to a new disk with a new disk signature and so it can't lock on to the existing signature. Â Some other oddities is the removal of "detecthal" and explicit declarations of debugoptionenabled and recoveryenabled. Â I suspect that a generalized BCD file is portable, so I'm going to extract it from this image and inject it into my previously "failing" image. Â I then edited the template and removed the old VHD and added the new one.
 
 </pre>
 
