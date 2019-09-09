@@ -33,12 +33,12 @@ tags:
   
   <tr>
     <td style="text-align: center;">
-      We got this error on a & 6.5 provisioning server
+      We got this error on a XenApp 6.5 provisioning server
     </td>
   </tr>
 </table>
 
-We utilize Citrix PVS for our & servers. After updating our & vDisk using our usual method and rebooting the server we got the above error. Since we versioned it we had our usual servers working without issue, and a couple of "test" versions failing. I started troubleshooting this using the google method of shotgun trying the first 5 error/solutions. This included, disabling re-enabling ICA listener, setting the listener on only one NIC interface (which it was, I toggled it for all then just one), deleting the ICA listener and recreating it. None of them worked so I started troubleshooting.
+We utilize Citrix PVS for our XenApp servers. After updating our XenApp vDisk using our usual method and rebooting the server we got the above error. Since we versioned it we had our usual servers working without issue, and a couple of "test" versions failing. I started troubleshooting this using the google method of shotgun trying the first 5 error/solutions. This included, disabling re-enabling ICA listener, setting the listener on only one NIC interface (which it was, I toggled it for all then just one), deleting the ICA listener and recreating it. None of them worked so I started troubleshooting.
 
 I encountered this error today and started troubleshooting. The first step I did was trace the path to the error using Procmon.exe. This, unfortunately, did not reveal anything of substance. What I found with this error is the network process is almost exactly the same for both. I can see XTE.exe communicating via 2598, I can see, what appears to be it handing it off to IMASrv.exe. At this point is when it causes that error message to be displayed on the bad machine, but IMASrv.exe continues on the good machine.
 
@@ -88,7 +88,3 @@ I think that contains the local IMA policy that may have been corrupted and caus
 =======================EDIT===================
 
 [I believe I have fixed the issue here.  It appears it may be a NIC binding issue.](http://trentent.blogspot.ca/2013/05/os-10061no-connection-could-be-made.html)
-
-<!-- AddThis Advanced Settings generic via filter on the_content -->
-
-<!-- AddThis Share Buttons generic via filter on the_content -->
