@@ -47,13 +47,13 @@ What I sought to do was create something to make identifying this root cause eas
 
 Citrix has two methods of printing.&nbsp; "Direct connection" and local printing.&nbsp; Direct connection has the potential for larger impact on logon duration as it executes additional steps and actions on the Citrix server.
 
-To enable "Direct Connection", Citrix has a policy "Direct connection to print servers".&nbsp; **By default, this policy is <span style="text-decoration: underline;">enabled</span>**.<figure class="wp-block-image">
+To enable "Direct Connection", Citrix has a policy "Direct connection to print servers".&nbsp; **By default, this policy is <span style="text-decoration: underline;">enabled</span>**.
 
-<img src="/wp-content/uploads/2018/12/DirectConnectionPolicy.png" alt="" class="wp-image-2886" srcset="/wp-content/uploads/2018/12/DirectConnectionPolicy.png 1135w, /wp-content/uploads/2018/12/DirectConnectionPolicy-300x19.png 300w, /wp-content/uploads/2018/12/DirectConnectionPolicy-768x47.png 768w" sizes="(max-width: 1135px) 100vw, 1135px" /> </figure> 
+<figure class="wp-block-image"><img src="/wp-content/uploads/2018/12/DirectConnectionPolicy.png" alt="" class="wp-image-2886" srcset="/wp-content/uploads/2018/12/DirectConnectionPolicy.png 1135w, /wp-content/uploads/2018/12/DirectConnectionPolicy-300x19.png 300w, /wp-content/uploads/2018/12/DirectConnectionPolicy-768x47.png 768w" sizes="(max-width: 1135px) 100vw, 1135px" /></figure> 
 
-With this policy enabled, it changes the behavior of how Citrix connects printers you have mapped locally as network printers.&nbsp; Citrix has a diagram here:<figure class="wp-block-image">
+With this policy enabled, it changes the behavior of how Citrix connects printers you have mapped locally as network printers.&nbsp; Citrix has a diagram here:
 
-<img src="/wp-content/uploads/2018/12/cds-print-network-attached-1.png" alt="" class="wp-image-2890" srcset="/wp-content/uploads/2018/12/cds-print-network-attached-1.png 496w, /wp-content/uploads/2018/12/cds-print-network-attached-1-300x165.png 300w" sizes="(max-width: 496px) 100vw, 496px" /> </figure> 
+<figure class="wp-block-image"><img src="/wp-content/uploads/2018/12/cds-print-network-attached-1.png" alt="" class="wp-image-2890" srcset="/wp-content/uploads/2018/12/cds-print-network-attached-1.png 496w, /wp-content/uploads/2018/12/cds-print-network-attached-1-300x165.png 300w" sizes="(max-width: 496px) 100vw, 496px" /></figure> 
 
 But I feel this is missing temporal information.&nbsp; I've created a video to highlight the steps.
 
@@ -72,15 +72,15 @@ Focusing on Direct Connection being enabled, if "**Wait for printers to be creat
 
 Direct connection does something that can have a very adverse affect on logon time that is **enabled** by default.&nbsp; When it connects directly to the print server it will check and _**install**_ the print driver on the Citrix server.&nbsp; The installation activity is visible via process monitor.
 
-<figure class="wp-block-image"><img src="/wp-content/uploads/2018/12/PrinterDriverLoading.png" alt="" class="wp-image-2893" srcset="/wp-content/uploads/2018/12/PrinterDriverLoading.png 1655w, /wp-content/uploads/2018/12/PrinterDriverLoading-300x47.png 300w, /wp-content/uploads/2018/12/PrinterDriverLoading-768x120.png 768w, /wp-content/uploads/2018/12/PrinterDriverLoading-1600x249.png 1600w" sizes="(max-width: 1655px) 100vw, 1655px" /> <figcaption>The DrvInst.exe process is the installation of printer drivers</figcaption></figure> 
+<figure class="wp-block-image"><img src="/wp-content/uploads/2018/12/PrinterDriverLoading.png" alt="" class="wp-image-2893" srcset="/wp-content/uploads/2018/12/PrinterDriverLoading.png 1655w, /wp-content/uploads/2018/12/PrinterDriverLoading-300x47.png 300w, /wp-content/uploads/2018/12/PrinterDriverLoading-768x120.png 768w, /wp-content/uploads/2018/12/PrinterDriverLoading-1600x249.png 1600w" sizes="(max-width: 1655px) 100vw, 1655px" /><figcaption>The DrvInst.exe process is the installation of printer drivers</figcaption></figure> 
 
 The installation of printer driver, **by default**, will only occur if the driver is inbox or prestaged on the Citrix server.&nbsp; But the check to see if a print driver needs to be installed occurs every time a session is created.&nbsp; This behavior can be changed by policy.
 
 Why does this impact logon times?&nbsp; Driver installation can take a while, especially if there is communication issues between the Citrix server and print server.&nbsp; Or if the print server is under stress and just simply slow to respond.&nbsp; Or if the driver package that needs to be loaded is especially large, has lots of forms or page formats, multiple trays, etc.&nbsp; This all adds up.
 
-### How can I tell what the impact of printers might be on Logon Duration?<figure class="wp-block-image">
+### How can I tell what the impact of printers might be on Logon Duration?
 
-<img src="/wp-content/uploads/2018/12/LogonDurationOther.png" alt="" class="wp-image-2899" srcset="/wp-content/uploads/2018/12/LogonDurationOther.png 765w, /wp-content/uploads/2018/12/LogonDurationOther-300x48.png 300w" sizes="(max-width: 765px) 100vw, 765px" /></figure> 
+<figure class="wp-block-image"><img src="/wp-content/uploads/2018/12/LogonDurationOther.png" alt="" class="wp-image-2899" srcset="/wp-content/uploads/2018/12/LogonDurationOther.png 765w, /wp-content/uploads/2018/12/LogonDurationOther-300x48.png 300w" sizes="(max-width: 765px) 100vw, 765px" /></figure> 
 
 I've been working on updating a Script-Based Action (SBA) originally posted by [Guy Leech](https://www.linkedin.com/in/guyrleech/) on the [Citrix blogs](https://www.citrix.com/blogs/2018/10/10/analyze-logon-duration-script-just-got-more-powerful/).&nbsp; This enhancement to the SBA will output more information breaking down what's consuming your logon times.&nbsp; Specifically, this tackles how long printers take in the [ControlUp](https://www.controlup.com/) column: "Logon Duration - Other"  
 
