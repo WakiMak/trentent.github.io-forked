@@ -132,9 +132,9 @@ Easy!
 
 ### Wait a minute!&nbsp; Windows Server 2008R2 doesn't have Command Line Auditing!
 
-Good catch!&nbsp; Windows Server 2008R2 doesn't have command line auditing so it will miss the driver load information.&nbsp; There is no way around this using native tools, but modification could be done to use a 3rd party tool like sysmon.&nbsp; The output on a 2008R2 system would show the following (with all other features enabled).<figure class="wp-block-image">
+Good catch!&nbsp; Windows Server 2008R2 doesn't have command line auditing so it will miss the driver load information.&nbsp; There is no way around this using native tools, but modification could be done to use a 3rd party tool like sysmon.&nbsp; The output on a 2008R2 system would show the following (with all other features enabled).
 
-<img src="/wp-content/uploads/2019/03/2008R2_output-1.png" alt="" class="wp-image-2963" srcset="/wp-content/uploads/2019/03/2008R2_output-1.png 857w, /wp-content/uploads/2019/03/2008R2_output-1-300x125.png 300w, /wp-content/uploads/2019/03/2008R2_output-1-768x321.png 768w" sizes="(max-width: 857px) 100vw, 857px" /></figure> 
+<figure class="wp-block-image"><img src="/wp-content/uploads/2019/03/2008R2_output-1.png" alt="" class="wp-image-2963" srcset="/wp-content/uploads/2019/03/2008R2_output-1.png 857w, /wp-content/uploads/2019/03/2008R2_output-1-300x125.png 300w, /wp-content/uploads/2019/03/2008R2_output-1-768x321.png 768w" sizes="(max-width: 857px) 100vw, 857px" /></figure> 
 
 ## Awesome!&nbsp; Let me at this script!
 
