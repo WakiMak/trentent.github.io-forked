@@ -25,7 +25,7 @@ tags:
 ---
 <img class="aligncenter size-full wp-image-2821" src="/wp-content/uploads/2018/06/Screen-Shot-2018-06-30-at-3.45.09-PM.png" alt="" width="454" height="48" srcset="/wp-content/uploads/2018/06/Screen-Shot-2018-06-30-at-3.45.09-PM.png 454w, /wp-content/uploads/2018/06/Screen-Shot-2018-06-30-at-3.45.09-PM-300x32.png 300w" sizes="(max-width: 454px) 100vw, 454px" />
 
-https://twitter.com/TrententTye/status/1011396648688185344
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Found something annoying. Fresh 2016 install, all new users logins have the User Profile Service take a *minimum* of 1 second.<a href="https://twitter.com/hashtag/procmon?src=hash&amp;ref_src=twsrc%5Etfw">#procmon</a> it and find Default File Associations is the cause. This is done synchronously! The more file ext’s the slower the login!</p>&mdash; Trentent Tye (@TrententTye) <a href="https://twitter.com/TrententTye/status/1011396648688185344?ref_src=twsrc%5Etfw">June 25, 2018</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 I've been exploring optimizing logon times and noticed "User Profile Service" always showed up for 1-3 seconds.  I asked why and began my investigation.
 
