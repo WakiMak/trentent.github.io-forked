@@ -52,7 +52,7 @@ One of the challenges we have faced was the testing of applications or component
 
 The challenges in this process occurs if the development of fixes/upgrade/enhancements spans multiple image "baking" sessions over a time period of weeks or months. It seems no matter how good you think your documentation is, if the development spans 10's to 100's of tweaks over sufficient time, something important will be lost in the chain. The process of enabling the change into production followed this process:
 
-<figure class="wp-block-image"><img src="/wp-content/uploads/2018/08/ReleaseToProductionFlow-1.png" alt="" class="wp-image-2833" srcset="/wp-content/uploads/2018/08/ReleaseToProductionFlow-1.png 1615w, /wp-content/uploads/2018/08/ReleaseToProductionFlow-1-273x300.png 273w, /wp-content/uploads/2018/08/ReleaseToProductionFlow-1-768x844.png 768w, /wp-content/uploads/2018/08/ReleaseToProductionFlow-1-1456x1600.png 1456w" sizes="(max-width: 1615px) 100vw, 1615px" />(/wp-content/uploads/2018/08/ReleaseToProductionFlow-1.png)</figure> 
+<figure class="wp-block-image"><img src="/wp-content/uploads/2018/08/ReleaseToProductionFlow-1.png" alt="" class="wp-image-2833" srcset="/wp-content/uploads/2018/08/ReleaseToProductionFlow-1.png 1615w, /wp-content/uploads/2018/08/ReleaseToProductionFlow-1-273x300.png 273w, /wp-content/uploads/2018/08/ReleaseToProductionFlow-1-768x844.png 768w, /wp-content/uploads/2018/08/ReleaseToProductionFlow-1-1456x1600.png 1456w" sizes="(max-width: 1615px) 100vw, 1615px" /></figure> 
 
 ### Couldn't you just copy test into production?
 
