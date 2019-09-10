@@ -25,7 +25,7 @@ This analysis takes into consideration the differences of operating systems and 
 
 ### Test Setup
 
-This test was setup on 4 hosts. &nbsp;2 of the hosts had VM's where all the mitigations were enabled and 2 hosts had all of the mitigation features disabled. &nbsp;I tested live production workloads and simulated user loads from LoginVSI. &nbsp;The live production workloads were run on & 6.5 on 2008R2 and the simulated workloads were on & 7.15CU2 with 2008R2, 2012R2 and 2016.
+This test was setup on 4 hosts. &nbsp;2 of the hosts had VM's where all the mitigations were enabled and 2 hosts had all of the mitigation features disabled. &nbsp;I tested live production workloads and simulated user loads from LoginVSI. &nbsp;The live production workloads were run on XenApp 6.5 on 2008R2 and the simulated workloads were on XenApp 7.15CU2 with 2008R2, 2012R2 and 2016.
 
 Odd host numbers had the mitigation disabled, even host number had the mitigation enabled.
 
@@ -37,7 +37,7 @@ I sorted my testing logically in ControlUp by folder.
 
 # Real World Production results
 
-The ControlUp Insights cloud product produced graphs and results that were easy and quick to interpret.&nbsp; These results are for & 6.5, Server 2008R2.
+The ControlUp Insights cloud product produced graphs and results that were easy and quick to interpret.&nbsp; These results are for XenApp 6.5, Server 2008R2.
 
 ### Hosts View
 
