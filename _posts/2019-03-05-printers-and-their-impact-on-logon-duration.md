@@ -62,7 +62,7 @@ But I feel this is missing temporal information.&nbsp; I've created a video to h
 ## Why is this important?
 
 Citrix has an option that is an absolute requirement for some applications.&nbsp;&nbsp;  
-**"Wait for printers to be created (server desktop)**" (_Virtual Apps and Desktops 7.x_) or "**Start this application without waiting for printers to be created. (Unchecked)**" (_Citrix & 6.5_).
+**"Wait for printers to be created (server desktop)**" (_Virtual Apps and Desktops 7.x_) or "**Start this application without waiting for printers to be created. (Unchecked)**" (_Citrix XenApp 6.5_).
 
 This policy needs to be enabled for numerous applications that require a specific printer is present before the application starts.&nbsp; This is usually due to applications that have pre-defined printers like label printers and do a check on app launch.&nbsp; If you have an application like that you probably&nbsp; have this feature enabled.
 
@@ -70,9 +70,9 @@ This policy needs to be enabled for numerous applications that require a specifi
 
 Focusing on Direct Connection being enabled, if "**Wait for printers to be created (server desktop)**" policy is also <span style="text-decoration: underline;"><strong>enabled</strong></span>, care MUST be taken to minimize logon times.
 
-Direct connection does something that can have a very adverse affect on logon time that is **enabled** by default.&nbsp; When it connects directly to the print server it will check and _**install**_ the print driver on the Citrix server.&nbsp; The installation activity is visible via process monitor.<figure class="wp-block-image">
+Direct connection does something that can have a very adverse affect on logon time that is **enabled** by default.&nbsp; When it connects directly to the print server it will check and _**install**_ the print driver on the Citrix server.&nbsp; The installation activity is visible via process monitor.
 
-<img src="/wp-content/uploads/2018/12/PrinterDriverLoading.png" alt="" class="wp-image-2893" srcset="/wp-content/uploads/2018/12/PrinterDriverLoading.png 1655w, /wp-content/uploads/2018/12/PrinterDriverLoading-300x47.png 300w, /wp-content/uploads/2018/12/PrinterDriverLoading-768x120.png 768w, /wp-content/uploads/2018/12/PrinterDriverLoading-1600x249.png 1600w" sizes="(max-width: 1655px) 100vw, 1655px" /> <figcaption>The DrvInst.exe process is the installation of printer drivers</figcaption></figure> 
+<figure class="wp-block-image"><img src="/wp-content/uploads/2018/12/PrinterDriverLoading.png" alt="" class="wp-image-2893" srcset="/wp-content/uploads/2018/12/PrinterDriverLoading.png 1655w, /wp-content/uploads/2018/12/PrinterDriverLoading-300x47.png 300w, /wp-content/uploads/2018/12/PrinterDriverLoading-768x120.png 768w, /wp-content/uploads/2018/12/PrinterDriverLoading-1600x249.png 1600w" sizes="(max-width: 1655px) 100vw, 1655px" /> <figcaption>The DrvInst.exe process is the installation of printer drivers</figcaption></figure> 
 
 The installation of printer driver, **by default**, will only occur if the driver is inbox or prestaged on the Citrix server.&nbsp; But the check to see if a print driver needs to be installed occurs every time a session is created.&nbsp; This behavior can be changed by policy.
 
@@ -80,19 +80,17 @@ Why does this impact logon times?&nbsp; Driver installation can take a while, es
 
 ### How can I tell what the impact of printers might be on Logon Duration?<figure class="wp-block-image">
 
-<img src="/wp-content/uploads/2018/12/LogonDurationOther.png" alt="" class="wp-image-2899" srcset="/wp-content/uploads/2018/12/LogonDurationOther.png 765w, /wp-content/uploads/2018/12/LogonDurationOther-300x48.png 300w" sizes="(max-width: 765px) 100vw, 765px" /> </figure> 
+<img src="/wp-content/uploads/2018/12/LogonDurationOther.png" alt="" class="wp-image-2899" srcset="/wp-content/uploads/2018/12/LogonDurationOther.png 765w, /wp-content/uploads/2018/12/LogonDurationOther-300x48.png 300w" sizes="(max-width: 765px) 100vw, 765px" /></figure> 
 
 I've been working on updating a Script-Based Action (SBA) originally posted by [Guy Leech](https://www.linkedin.com/in/guyrleech/) on the [Citrix blogs](https://www.citrix.com/blogs/2018/10/10/analyze-logon-duration-script-just-got-more-powerful/).&nbsp; This enhancement to the SBA will output more information breaking down what's consuming your logon times.&nbsp; Specifically, this tackles how long printers take in the [ControlUp](https://www.controlup.com/) column: "Logon Duration - Other"  
 
 
-I've created a video showing how to enable the additional logging and how to run the new Script Based Action and what the output looks like:<figure class="wp-block-embed-youtube wp-block-embed is-type-video is-provider-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio">
+I've created a video showing how to enable the additional logging and how to run the new Script Based Action and what the output looks like:
 
-<div class="wp-block-embed__wrapper">
-</div></figure> 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/uUzJoFWTfzA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-### What's new in the output?<figure class="wp-block-image">
-
-<img src="/wp-content/uploads/2018/12/PrinterLoadTimesOutput.png" alt="" class="wp-image-2898" srcset="/wp-content/uploads/2018/12/PrinterLoadTimesOutput.png 1069w, /wp-content/uploads/2018/12/PrinterLoadTimesOutput-300x24.png 300w, /wp-content/uploads/2018/12/PrinterLoadTimesOutput-768x60.png 768w" sizes="(max-width: 1069px) 100vw, 1069px" /> </figure> 
+### What's new in the output?
+<figure class="wp-block-image"><img src="/wp-content/uploads/2018/12/PrinterLoadTimesOutput.png" alt="" class="wp-image-2898" srcset="/wp-content/uploads/2018/12/PrinterLoadTimesOutput.png 1069w, /wp-content/uploads/2018/12/PrinterLoadTimesOutput-300x24.png 300w, /wp-content/uploads/2018/12/PrinterLoadTimesOutput-768x60.png 768w" sizes="(max-width: 1069px) 100vw, 1069px" /></figure> 
 
 For the individual printers, direct connection printers now show two lines, the&nbsp;**Driver&nbsp;**load time and **Printer**&nbsp;load/connection time.&nbsp; 
 
@@ -102,9 +100,8 @@ The&nbsp;**Printer** and UNC path shows&nbsp;the the actual connection, printer 
 
 Citrix Universal Print Driver (UPD) mapped printers using the Citrix Universal Print Driver (print jobs that get sent back to the client for processing) are shown with their "Friendly Name" and do not have a matching "Driver" component as no driver loading is required.&nbsp; In the example output above, **"\\printsrv\HP Color LaserJet 5550"** is a direct connection printer and **"Zebra R110Xi HF (300 dpi)"** is a Citrix UPD printer.
 
-Here is an example of the full output:<figure class="wp-block-image">
-
-<img src="/wp-content/uploads/2019/03/FullOutput.png" alt="" class="wp-image-2964" srcset="/wp-content/uploads/2019/03/FullOutput.png 872w, /wp-content/uploads/2019/03/FullOutput-300x139.png 300w, /wp-content/uploads/2019/03/FullOutput-768x355.png 768w" sizes="(max-width: 872px) 100vw, 872px" /> </figure> 
+Here is an example of the full output:
+<figure class="wp-block-image"><img src="/wp-content/uploads/2019/03/FullOutput.png" alt="" class="wp-image-2964" srcset="/wp-content/uploads/2019/03/FullOutput.png 872w, /wp-content/uploads/2019/03/FullOutput-300x139.png 300w, /wp-content/uploads/2019/03/FullOutput-768x355.png 768w" sizes="(max-width: 872px) 100vw, 872px" /></figure> 
 
 The "**Connect to Printers**" is a sub-phase under "**Pre-Shell (Userinit)**".&nbsp; Each "**Printer:**" and "**Driver:**" is a sub-phase under "**Connect to Printers**".&nbsp; In this example screenshot, "**Pre-Shell (Userinit)**" was consuming 117.6 seconds of a 133.2 second logon duration.&nbsp; Prior to this script that was all that was known.&nbsp; Now we can see that connecting to printers consumes 97.7 of those 117.6 seconds!
 
@@ -137,7 +134,7 @@ Easy!
 
 Good catch!&nbsp; Windows Server 2008R2 doesn't have command line auditing so it will miss the driver load information.&nbsp; There is no way around this using native tools, but modification could be done to use a 3rd party tool like sysmon.&nbsp; The output on a 2008R2 system would show the following (with all other features enabled).<figure class="wp-block-image">
 
-<img src="/wp-content/uploads/2019/03/2008R2_output-1.png" alt="" class="wp-image-2963" srcset="/wp-content/uploads/2019/03/2008R2_output-1.png 857w, /wp-content/uploads/2019/03/2008R2_output-1-300x125.png 300w, /wp-content/uploads/2019/03/2008R2_output-1-768x321.png 768w" sizes="(max-width: 857px) 100vw, 857px" /> </figure> 
+<img src="/wp-content/uploads/2019/03/2008R2_output-1.png" alt="" class="wp-image-2963" srcset="/wp-content/uploads/2019/03/2008R2_output-1.png 857w, /wp-content/uploads/2019/03/2008R2_output-1-300x125.png 300w, /wp-content/uploads/2019/03/2008R2_output-1-768x321.png 768w" sizes="(max-width: 857px) 100vw, 857px" /></figure> 
 
 ## Awesome!&nbsp; Let me at this script!
 
@@ -152,7 +149,3 @@ In some instances the "Connect to Printers phase" may start before "Pre-Shell". 
 
 
 Hope this helps you reduce your long logon durations!
-
-<!-- AddThis Advanced Settings generic via filter on the_content -->
-
-<!-- AddThis Share Buttons generic via filter on the_content -->
