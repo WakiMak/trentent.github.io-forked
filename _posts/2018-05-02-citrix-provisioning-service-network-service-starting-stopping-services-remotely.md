@@ -64,7 +64,7 @@ In order to get this working entirely I recommend the following steps:
 
 And now the script:
 
-```ruby
+```powershell
 <#
     .SYNOPSIS
       Adds a user or group to the permission set on the Citrix Streaming Service to enable remote service manipulation
