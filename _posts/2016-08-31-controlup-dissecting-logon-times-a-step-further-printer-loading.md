@@ -57,11 +57,12 @@ To facilitate finding the printers we need to pass the clientName to the server 
 
 You can enable the print service logs on server 2008R2 by executing the following:
 
-<pre class="lang:batch decode:true ">REG ADD "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WINEVT\Channels\Microsoft-Windows-PrintService/Operational" /V "Enabled" /T REG_DWORD /D 1 /F >NUL
+```shell
+REG ADD "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WINEVT\Channels\Microsoft-Windows-PrintService/Operational" /V "Enabled" /T REG_DWORD /D 1 /F >NUL
 REG ADD "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WINEVT\Channels\Microsoft-Windows-PrintService/Operational" /V "MaxSize" /T REG_DWORD /D 20971520 /F >NUL
 REG ADD "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WINEVT\Channels\Microsoft-Windows-PrintService/Operational" /V "MaxSizeUpper" /T REG_DWORD /D 0 /F >NUL
 WEVTUTIL SL Microsoft-Windows-PrintService/Operational /E:TRUE
-</pre>
+```
 
 The ControlUp arguments need to look like this now:
 
@@ -69,7 +70,9 @@ The ControlUp arguments need to look like this now:
 
 Here is my updated script:
 
-<pre class="lang:ps decode:true ">function Get-PsEvent {
+
+```powershell
+function Get-PsEvent {
     
     param (
         [String]$PhaseName,
@@ -473,7 +476,9 @@ Write-Host "Only synchronous scripts affect logon duration"
 }
 
 $args_fix = ($args[0] -split '\\')
-Get-LogonDurationAnalysis -Username $args_fix[1] -UserDomain  $args_fix[0] -clientName $args[1] -CUDesktopLoadTime $args[2]</pre>
+Get-LogonDurationAnalysis -Username $args_fix[1] -UserDomain  $args_fix[0] -clientName $args[1] -CUDesktopLoadTime $args[2
+```
+
 
 I hope to dig into other startup components and further drill down into what our user launch process looks like.  We wait, and we see 
 

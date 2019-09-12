@@ -21,7 +21,9 @@ But we very obviously have updates to deploy to it.
 
 When I checked the 'WindowsUpdate.log' I saw the following:
 
-<pre class="lang:default decode:true ">2016-10-19	11:23:47:375	1532	2150	AU	#############
+
+```plaintext
+2016-10-19	11:23:47:375	1532	2150	AU	#############
 2016-10-19	11:23:47:375	1532	2150	AU	## START ##  AU: Search for updates
 2016-10-19	11:23:47:375	1532	2150	AU	#########
 2016-10-19	11:23:47:375	1532	2150	AU	<<## SUBMITTED ## AU: Search for updates [CallId = {7BA17D86-EF4B-470B-AF35-2A0271736B9E}]
@@ -69,7 +71,9 @@ When I checked the 'WindowsUpdate.log' I saw the following:
 2016-10-19	11:24:30:813	1532	1f40	Handler	FATAL: UH: 0x80070057: EvaluateApplicability failed in CCbs::EvaluateApplicability
 2016-10-19	11:24:30:844	1532	1f40	Agent	WARNING: Failed to evaluate Installable rule, updateId = {697B6E33-B11F-4BDC-8756-1B84513DE656}.203, hr = 80070057
 2016-10-19	11:24:32:547	1532	1f40	Handler	FATAL: UH: 0x80070057: EvaluateApplicability failed in CCbs::EvaluateApplicability
-2016-10-19	11:24:32:625	1532	1f40	PT	+++++++++++  PT: Synchronizing extended update info  +++++++++++</pre>
+2016-10-19	11:24:32:625	1532	1f40	PT	+++++++++++  PT: Synchronizing extended update info  ++++++++++
+```
+
 
 0x80070057 = E_INVALIDARG
 
@@ -77,7 +81,9 @@ The 'CBS' (Component Based Servicing) is reporting an Invalid Argument.  Microso
 
 This log reported the following:
 
-<pre class="lang:default decode:true">2016-10-19 11:28:37, Info                  CBS    Appl: Selfupdate, Component: x86_microsoft-windows-c..ityclient.resources_31bf3856ad364e35_0.0.0.0_cs-cz_4543013c0104990b (6.1.7601.22843), elevation:2, lower version revision holder: 0.0.0.0
+
+```plaintext
+2016-10-19 11:28:37, Info                  CBS    Appl: Selfupdate, Component: x86_microsoft-windows-c..ityclient.resources_31bf3856ad364e35_0.0.0.0_cs-cz_4543013c0104990b (6.1.7601.22843), elevation:2, lower version revision holder: 0.0.0.0
 2016-10-19 11:28:37, Info                  CBS    Applicability(ComponentAnalyzerEvaluateSelfUpdate): Component: x86_microsoft-windows-c..ityclient.resources_31bf3856ad364e35_6.1.7601.22843_cs-cz_23d88f3b30536415, elevate: 2, applicable(true/false): 0
 2016-10-19 11:28:37, Info                  CSI    00000097@2016/10/19:17:28:37.798 CSI Transaction @0x7a64040 initialized for deployment engine {d16d444c-56d8-11d5-882d-0080c847b195} with flags 00000002 and client id [25]"TI5.30550574_957084783:1/"
 
@@ -104,7 +110,9 @@ This log reported the following:
 2016-10-19 11:28:37, Info                  CBS    Session: 30550574_974429865 initialized by client WindowsUpdateAgent.
 2016-10-19 11:28:37, Info                  CBS    Read out cached package applicability for package: Package_for_KB3084135~31bf3856ad364e35~amd64~~6.1.1.0, ApplicableState: 112, CurrentState:112
 2016-10-19 11:28:37, Info                  CBS    Session: 30550574_974429866 initialized by client WindowsUpdateAgent.
-2016-10-19 11:28:37, Info                  CBS    Read out cached package applicability for package: Package_for_KB2884256~31bf3856ad364e35~amd64~~6.1.1.1, ApplicableState: 112, CurrentState:112</pre>
+2016-10-19 11:28:37, Info                  CBS    Read out cached package applicability for package: Package_for_KB2884256~31bf3856ad364e35~amd64~~6.1.1.1, ApplicableState: 112, CurrentState:11
+```
+
 
 An error appeared to occur at this point (there were a few):
 
@@ -128,7 +136,9 @@ I took one that was failed and downloaded it ([KB3177467](https://support.micros
 
 This time I got a different error:
 
-<pre class="lang:default decode:true">2016-10-19	14:23:56:231	8904	1834	Handler	:: START ::  Handler: CBS Install
+
+```plaintext
+2016-10-19	14:23:56:231	8904	1834	Handler	:: START ::  Handler: CBS Install
 2016-10-19	14:23:56:231	8904	1834	Handler	:::::::::
 2016-10-19	14:23:56:231	8904	1834	Handler	Starting install of CBS update 9F6C41F5-6D0F-454F-9380-CBF75E6A1CBF
 2016-10-19	14:23:56:231	8904	1834	Handler	CBS package identity: Package_for_KB3177467~31bf3856ad364e35~amd64~~6.1.1.1
@@ -138,13 +148,15 @@ This time I got a different error:
 2016-10-19	14:24:02:653	8904	1834	Handler	FATAL: Completed install of CBS update with type=0, requiresReboot=0, installerError=1, hr=0x800736b3
 2016-10-19	14:24:02:668	8904	1834	Handler	:::::::::
 2016-10-19	14:24:02:668	8904	1834	Handler	::  END  ::  Handler: CBS Install
-</pre>
+```
 
 0x800736B3 - ERROR\_SXS\_ASSEMBLY\_NOT\_FOUND
 
 Looking at the CBS.LOG showed me the following:
 
-<pre class="lang:default decode:true">2016-10-19 14:24:01, Info                  CBS    Setting ExecuteState key to: CbsExecuteStateInitiateRollback | CbsExecuteStateFlagAdvancedInstallersFailed
+
+```plaintext
+2016-10-19 14:24:01, Info                  CBS    Setting ExecuteState key to: CbsExecuteStateInitiateRollback | CbsExecuteStateFlagAdvancedInstallersFailed
 2016-10-19 14:24:01, Info                  CSI    0000008a Performing 2 operations; 2 are not lock/unlock and follow:
   Install (5): flags: 0 tlc: [83df49984213f0fecd0a31e01bc60f57, Version = 6.1.7601.23505, pA = PROCESSOR_ARCHITECTURE_AMD64 (9), Culture neutral, VersionScope = 1 nonSxS, PublicKeyToken = {l:8 b:31bf3856ad364e35}, Type neutral, TypeName neutral, PublicKey neutral]) ref: ( flgs: 00000000 guid: {d16d444c-56d8-11d5-882d-0080c847b195} name: [l:154{77}]"Package_2_for_KB3177467~31bf3856ad364e35~amd64~~6.1.1.1.3177467-3_neutral_LDR" ncdata: [l:4{2}]"16") thumbprint: (null)
   Install (5): flags: 0 tlc: [466e94be62b208e51d86c55eba4b950e, Version = 6.1.7601.23505, pA = PROCESSOR_ARCHITECTURE_AMD64 (9), Culture neutral, VersionScope = 1 nonSxS, PublicKeyToken = {l:8 b:31bf3856ad364e35}, Type neutral, TypeName neutral, PublicKey neutral]) ref: ( flgs: 00000000 guid: {d16d444c-56d8-11d5-882d-0080c847b195} name: [l:154{77}]"Package_2_for_KB3177467~31bf3856ad364e35~amd64~~6.1.1.1.3177467-4_neutral_LDR" ncdata: [l:4{2}]"16") thumbprint: (null)
@@ -173,7 +185,9 @@ Looking at the CBS.LOG showed me the following:
 2016-10-19 14:24:01, Info                  CBS    Perf: InstallUninstallChain complete.
 2016-10-19 14:24:01, Info                  CBS    Failed to execute execution chain. [HRESULT = 0x800736b3 - ERROR_SXS_ASSEMBLY_NOT_FOUND]
 2016-10-19 14:24:01, Error                 CBS    Failed to process single phase execution. [HRESULT = 0x800736b3 - ERROR_SXS_ASSEMBLY_NOT_FOUND]
-2016-10-19 14:24:01, Info                  CBS    WER: Generating failure report for package: Package_for_KB3177467~31bf3856ad364e35~amd64~~6.1.1.1, status: 0x800736b3, failure source: Execute, start state: Staged, target state: Installed, client id: WindowsUpdateAgent</pre>
+2016-10-19 14:24:01, Info                  CBS    WER: Generating failure report for package: Package_for_KB3177467~31bf3856ad364e35~amd64~~6.1.1.1, status: 0x800736b3, failure source: Execute, start state: Staged, target state: Installed, client id: WindowsUpdateAgen
+```
+
 
 Ok, so now we can see the error but it still doesn't give us much information.  If I run ProcMon I can find \*when\* the error occurs somewhat easily because Windows Error Reporting kicks in as soon as the error occurs:
 

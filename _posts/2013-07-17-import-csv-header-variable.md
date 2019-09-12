@@ -25,18 +25,24 @@ I ran into an issue with Import-CSV where I was trying to pass a variable to the
 
 I created a script to generate a CSV from Citrix WebInterface .conf files to compare the various web interfaces we have so that when we migrate users from the older interface to the newer interfaces we can properly communicate to them the changes they will experience.  In the course of developing this script I wanted to do a "dir *.conf" command and use that output as the header in the CSV.  Here is what I did originally:
 
-<pre class="lang:ps decode:true ">$dirlist = Get-ChildItem -filter *.conf | Select-Object -ExpandProperty Name
+
+```powershell
+$dirlist = Get-ChildItem -filter *.conf | Select-Object -ExpandProperty Name
 #header value in powershell "Import-CSV" must be an array, a text variable parses as one header item
 $header = "Value" 
 foreach ($item in $dirlist) {
 $header += $item 
 }
 #import csv with our header
-$values = import-csv Values.txt  -Header $header</pre>
+$values = import-csv Values.txt  -Header $heade
+```
+
 
 This failed.  Our $header variable became a single header in the CSV.  The help for "Import-CSV" says the -header should have a string value.  I tried $header.ToString() but it didn't work either.  I found you need to do the following:
 
-<pre class="lang:default decode:true ">$dirlist = Get-ChildItem -filter *.conf | Select-Object -ExpandProperty Name
+
+```powershell
+$dirlist = Get-ChildItem -filter *.conf | Select-Object -ExpandProperty Name
 #header value in powershell "Import-CSV" must be an array, a text variable parses as one header item
 $header = @()
 $header += "Value" 
@@ -44,7 +50,9 @@ foreach ($item in $dirlist) {
 $header += $item 
 }
 #import csv with our header
-$values = import-csv Values.txt  -Header $header</pre>
+$values = import-csv Values.txt  -Header $heade
+```
+
 
 This makes an array then adds the appropriate values to the $header variable and the import-csv now has multiple columns.
 

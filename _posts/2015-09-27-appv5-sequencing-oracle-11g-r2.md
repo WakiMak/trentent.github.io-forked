@@ -1390,7 +1390,9 @@ I'll list them here:
 </div>
 
 <div>
-  <pre class="lang:default decode:true ">###############################################################################
+  
+```config
+###############################################################################
 ## Copyright(c) Oracle Corporation 1998,2008. All rights reserved.           ##
 ##                                                                           ##
 ## Specify values for the variables listed below to customize                ##
@@ -1533,7 +1535,9 @@ oracle.install.client.schedulerAgentHostName=
 #
 # Example: oracle.install.client.schedulerAgentPortNumber = 1500
 #------------------------------------------------------------------------------
-oracle.install.client.schedulerAgentPortNumber=</pre>
+oracle.install.client.schedulerAgentPortNumber
+```
+
 </div>
 
 <div>
@@ -1547,9 +1551,11 @@ oracle.install.client.schedulerAgentPortNumber=</pre>
 </div>
 
 <div>
-  <pre class="lang:batch decode:true ">setup.exe -nowait -nowelcome -silent -responseFile "%~dp0\silent.rsp"
+```shell
+setup.exe -nowait -nowelcome -silent -responseFile "%~dp0\silent.rsp"
 ping 127.0.0.1 -n 60 >NUL
-copy /y *.ora "C:\ProgramData\Oracle\product\11.2.0\client_1\network\admin"</pre>
+copy /y *.ora "C:\ProgramData\Oracle\product\11.2.0\client_1\network\admin"
+```
   
   <p>
     And that's it!

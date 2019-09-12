@@ -24,7 +24,8 @@ tags:
 
 The Script Based Action (SBA):
 
-<pre class="lang:ps decode:true"><#
+```powershell
+<#
     .SYNOPSIS
     This script will return logging information about any ControlUp actions.
 
@@ -104,7 +105,7 @@ if ($args[1] -eq "GUI") {
 if ($args[1] -eq "TEXT") {
     $Events | select TimeCreated,Message |fl
 }
-</pre>
+```
 
 And the steps to create the SBA:
 

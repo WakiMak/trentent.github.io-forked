@@ -189,7 +189,11 @@ To test out what the maximum number of connections our web interface servers can
 </div>
 
 <div>
-  <pre class="lang:ps decode:true ">value = "WIUser="CTX_ForcedClient#Off~CTX_LaunchMethod#Ica-Local~CTX_AuthMethod#Explicit~CTX_CurrentFolder#%7bAllResources%3d%5c%7d~CTX_ViewStyle#%7bAllResources%3dIcons%7d"; WINGDevice="CTX_DeviceId#WI_YxJYRT6LZxvCnDWTF"";</pre>
+  
+```powershell
+value = "WIUser="CTX_ForcedClient#Off~CTX_LaunchMethod#Ica-Local~CTX_AuthMethod#Explicit~CTX_CurrentFolder#%7bAllResources%3d%5c%7d~CTX_ViewStyle#%7bAllResources%3dIcons%7d"; WINGDevice="CTX_DeviceId#WI_YxJYRT6LZxvCnDWTF""
+```
+
 </div>
 
 <div>
@@ -203,7 +207,11 @@ To test out what the maximum number of connections our web interface servers can
 </div>
 
 <div>
-  <pre class="lang:ps decode:true ">value = "WIUser=\"CTX_ForcedClient#Off~CTX_LaunchMethod#Ica-Local~CTX_AuthMethod#Explicit~CTX_CurrentFolder#%7bAllResources%3d%5c%7d~CTX_ViewStyle#%7bAllResources%3dIcons%7d\"; WINGDevice=\"CTX_DeviceId#WI_YxJYRT6LZxvCnDWTF\"";</pre>
+  
+```powershell
+value = "WIUser=\"CTX_ForcedClient#Off~CTX_LaunchMethod#Ica-Local~CTX_AuthMethod#Explicit~CTX_CurrentFolder#%7bAllResources%3d%5c%7d~CTX_ViewStyle#%7bAllResources%3dIcons%7d\"; WINGDevice=\"CTX_DeviceId#WI_YxJYRT6LZxvCnDWTF\""
+```
+
 </div>
 
 <div>

@@ -51,7 +51,9 @@ If you correct the name here you will get an error where you can close Outlook t
 
 Here are the keys:
 
-> <pre class="lang:reg decode:true ">Windows Registry Editor Version 5.00
+> 
+```plaintext
+Windows Registry Editor Version 5.00
 
 [HKEY_CURRENT_USER\Software\Microsoft\Windows NT\CurrentVersion\Windows Messaging Subsystem\Profiles\ttye\8fa3465791d2b746a2c7d11ca063b282]
 "001e660c"="outlook.company.corp"
@@ -67,7 +69,9 @@ Here are the keys:
 
 [HKEY_CURRENT_USER\Software\Microsoft\Windows NT\CurrentVersion\Windows Messaging Subsystem\Profiles\ttye\dca740c8c042101ab4b908002b2fe182]
 "001f662a"=hex:6f,00,75,00,74,00,6c,00,6f,00,6f,00,6b,00,2e,00,63,00,63,00,73,\
-00,2e,00,63,00,6f,00,72,00,70,00,00,00</pre>
+00,2e,00,63,00,6f,00,72,00,70,00,00,0
+```
+
 
 The last key is a REG_BINARY of the server name (outlook.company.corp). If we make this into a GPO object then these keys can be placed in and users can connect to Exchange without the messages above.
 

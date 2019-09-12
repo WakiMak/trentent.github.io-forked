@@ -1,17 +1,17 @@
 ---
 id: 551
-title: Citrix &, OpenGL pass-through and Nvidia GRID cards on Amazon EC2 (G2 Instances)
+title: Citrix XenApp. OpenGL pass-through and Nvidia GRID cards on Amazon EC2 (G2 Instances)
 date: 2015-09-01T15:55:00-06:00
 author: trententtye
 layout: post
-guid: http://theorypc.ca/blog/2015/09/01/citrix-&-opengl-pass-through-and-nvidia-grid-cards-on-amazon-ec2-g2-instances/
-permalink: /2015/09/01/citrix-&-opengl-pass-through-and-nvidia-grid-cards-on-amazon-ec2-g2-instances/
+guid: http://theorypc.ca/blog/2015/09/01/citrix-xenapp-opengl-pass-through-and-nvidia-grid-cards-on-amazon-ec2-g2-instances/
+permalink: /2015/09/01/citrix-xenapp-opengl-pass-through-and-nvidia-grid-cards-on-amazon-ec2-g2-instances/
 blogger_blog:
   - trentent.blogspot.com
 blogger_author:
   - Trentent
 blogger_permalink:
-  - /2015/09/citrix-&-opengl-pass-through-and.html
+  - /2015/09/citrix-xenapp-opengl-pass-through-and.html
 blogger_internal:
   - /feeds/7977773/posts/default/267529103177304288
 categories:
@@ -25,7 +25,7 @@ tags:
 ---
 I'm attempting to do a Proof of Concept (POC) for a client and one of the ideas was to utilize the Amazon EC2 cloud to provide GPU instances to the users for their applications (Maya, SolidWorks, etc.).  In order to understand how GPU sharing works, I setup my home lab to take advantage of these features first, in order to understand how it operates.
 
-[Citrix provides documentation on setting up the GPU sharing](http://support.citrix.com/proddocs/topic/&-xendesktop-76/xad-hdx3dpro-gpu-accel-server.html).  For my test, I'm doing this on a bare metal Citrix server.  Essentially, the notes state that OpenGL is automatically shared and enabled and special steps must be taken for DirectX, OpenCL, CUDA and Windows Server 2012.  To enable GPU sharing for & for these features, the following registry file will enable these:
+[Citrix provides documentation on setting up the GPU sharing](http://support.citrix.com/proddocs/topic/&-xendesktop-76/xad-hdx3dpro-gpu-accel-server.html).  For my test, I'm doing this on a bare metal Citrix server.  Essentially, the notes state that OpenGL is automatically shared and enabled and special steps must be taken for DirectX, OpenCL, CUDA and Windows Server 2012.  To enable GPU sharing for XenApp for these features, the following registry file will enable these:
 
 > <span style="font-family: Courier New, Courier, monospace; font-size: x-small;">Windows Registry Editor Version 5.00<br /> Windows Registry Editor Version 5.00<br /> [HKEY_LOCAL_MACHINE\SOFTWARE\Citrix\CtxHook\AppInit_Dlls\Graphics Helper]<br /> "DirectX"=dword:00000001<br /> [HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Citrix\CtxHook\AppInit_Dlls\Graphics Helper]<br /> "DirectX"=dword:00000001<br /> [HKEY_LOCAL_MACHINE\SOFTWARE\Citrix\CtxHook\AppInit_Dlls\Multiple Monitor Hook]<br /> "EnableWPFHook"=dword:00000001<br /> [HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Citrix\CtxHook\AppInit_Dlls\Multiple Monitor Hook]<br /> "EnableWPFHook"=dword:00000001<br /> [HKEY_LOCAL_MACHINE\SOFTWARE\Citrix\CtxHook\AppInit_Dlls\Graphics Helper]<br /> "CUDA"=dword:00000001<br /> [HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Citrix\CtxHook\AppInit_Dlls\Graphics Helper]<br /> "CUDA"=dword:00000001<br /> [HKEY_LOCAL_MACHINE\SOFTWARE\Citrix\CtxHook\AppInit_Dlls\Graphics Helper]<br /> "OpenCL"=dword:00000001<br /> [HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Citrix\CtxHook\AppInit_Dlls\Graphics Helper]<br /> "OpenCL"=dword:00000001 </span>
 
@@ -37,9 +37,9 @@ In addition to this registry file, for Server 2012, the following Group Policy o
   </li>
 </ul>
 
-My initial setup is a Q87M-E system with a Intel 4771 and onboard graphics.  My system is setup with Windows 2012 R2 with Citrix & 7.6.
+My initial setup is a Q87M-E system with a Intel 4771 and onboard graphics.  My system is setup with Windows 2012 R2 with Citrix XenApp 7.6.
 
-Launching an ICA session to the & 7.6 server results in:
+Launching an ICA session to the XenApp 7.6 server results in:
 
 <div style="clear: both; text-align: center;">
 </div>
@@ -62,7 +62,7 @@ Launching an ICA session to the & 7.6 server results in:
 <div style="clear: both; text-align: center;">
 </div>
 
-We have OpenGL working, DirectX 11, and OpenCL (the onboard Intel GPU's do not support CUDA).  So we have a full, working implementation of GPU sharing in a ICA session on a & server.
+We have OpenGL working, DirectX 11, and OpenCL (the onboard Intel GPU's do not support CUDA).  So we have a full, working implementation of GPU sharing in a ICA session on a XenApp server.
 
 But the onboard Intel graphics card will not get the me the performance I want.  I had a Nvidia GTX 670 video card on hand to see if I can get better 3D performance.  I installed that card in the system, installed the video drivers and checked the results.
 
@@ -106,7 +106,7 @@ Suspecting Nvidia is doing some form of detection that is disabling OpenGL (it's
 
 OpenGL is now working!!
 
-Ok, so, at this point I know how to enable GPU sharing for Citrix &, I know how to check and verify it's functionality, and I know that different Nvidia cards can have OpenGL enabled or disabled but am not sure if it's the driver that matters or the hardware.  If it's the hardware I'm a bit surprised Intel would incorporate hardware accelerated OpenGL into ICA sessions for their consumer pieces but Nvidia would not for their discrete cards.  To \*attempt\* to test this I went and got the oldest driver I could find that would support a FX5800:
+Ok, so, at this point I know how to enable GPU sharing for Citrix XenApp. I know how to check and verify it's functionality, and I know that different Nvidia cards can have OpenGL enabled or disabled but am not sure if it's the driver that matters or the hardware.  If it's the hardware I'm a bit surprised Intel would incorporate hardware accelerated OpenGL into ICA sessions for their consumer pieces but Nvidia would not for their discrete cards.  To \*attempt\* to test this I went and got the oldest driver I could find that would support a FX5800:
 
 <div style="clear: both; text-align: center;">
   <a style="margin-left: 1em; margin-right: 1em;" href="http://1.bp.blogspot.com/-Sd7BNnSId7M/VeTNci95HlI/AAAAAAAABDg/MruHqOpoCQU/s1600/working_old_fx5800.PNG"><img src="http://1.bp.blogspot.com/-Sd7BNnSId7M/VeTNci95HlI/AAAAAAAABDg/MruHqOpoCQU/s640/working_old_fx5800.PNG" width="640" height="238" border="0" /></a>
@@ -150,7 +150,7 @@ Well now...  OpenGL is working.  This is interesting.  And leads evidence that O
   <a style="margin-left: 1em; margin-right: 1em;" href="http://1.bp.blogspot.com/-JGcsTKTLNOY/VeYVGjopkmI/AAAAAAAABEg/StMab4luh1Y/s1600/GTX670_ICA_NotWorking340.52.PNG"><img src="http://1.bp.blogspot.com/-JGcsTKTLNOY/VeYVGjopkmI/AAAAAAAABEg/StMab4luh1Y/s640/GTX670_ICA_NotWorking340.52.PNG" width="640" height="298" border="0" /></a>
 </div>
 
-At the same time I was testing my Nvidia gaming GPU on my home lab, I was testing Amazon.  The GPU instance that Amazon provides utilize the Nvidia GRID K520 card as a vGPU.  This card is marketed as a '[GRID Gaming](http://www.nvidia.ca/object/cloud-gaming-gpu-boards.html)' card.  I setup this instance with Citrix & and, at the time, used the latest driver ([347.70](http://www.nvidia.com/download/driverResults.aspx/87194/en-us)).  At the time of this testing, this was my 3rd rebuild of this instance so I went with Server 2008 because my previous 2 builds were 2012 and I was convinced I was doing something wrong.  The OS shouldn't matter, but I'm noting it here.
+At the same time I was testing my Nvidia gaming GPU on my home lab, I was testing Amazon.  The GPU instance that Amazon provides utilize the Nvidia GRID K520 card as a vGPU.  This card is marketed as a '[GRID Gaming](http://www.nvidia.ca/object/cloud-gaming-gpu-boards.html)' card.  I setup this instance with Citrix XenApp and, at the time, used the latest driver ([347.70](http://www.nvidia.com/download/driverResults.aspx/87194/en-us)).  At the time of this testing, this was my 3rd rebuild of this instance so I went with Server 2008 because my previous 2 builds were 2012 and I was convinced I was doing something wrong.  The OS shouldn't matter, but I'm noting it here.
 
 [347.70](http://www.nvidia.com/download/driverResults.aspx/87194/en-us) -> No OpenGL (just like the gaming card):
 

@@ -37,13 +37,17 @@ I truncated all the icon resource calling.  You can see it calls around 120 indi
 
 So the actual calls to Storefront revolve around 7 unique queries to the Storefront server.  They are:
 
-<pre class="lang:default decode:true ">/Home/Configuration
+
+```plaintext
+/Home/Configuration
 /Resources/List
 /Authentication/GetUserName
 /ExplicitAuth/AllowSelfServiceAccountManagement
 /Authentication/GetUserName
 /Resources/GetLaunchStatus/<string>
-/Resources/LaunchIca/<string></pre>
+/Resources/LaunchIca/<string
+```
+
 
 Fortunately, Citrix [has documented how these need to be configured to successfully call these services](https://citrix.github.io/storefront-sdk/requests/).
 
@@ -129,7 +133,9 @@ However, we can use Powershell to accomplish this job.  [Ryan Butler has created
 
 My Storefront Logon/Stress testing script:
 
-<pre class="lang:ps decode:true"><#
+
+```powershell
+<#
 .SYNOPSIS
    This script is a modification from Ryan Butler's get-ICAFile_v3_auth.ps1 file from here:
    https://github.com/ryancbutler/StorefrontICACreator/blob/master/get-ICAfile_v3_auth.ps1
@@ -543,7 +549,9 @@ while ($loop) {
     $prop  | Add-Member -type NoteProperty -name "Total Runtime" -value $($EndMs - $StartMs)
     $prop  | export-csv StressStorefront.csv -NoTypeInformation -Append
 
-}</pre>
+
+```
+
 
 &nbsp;
 
@@ -555,7 +563,11 @@ And this is the output:
 
 We can now run this script concurrently to simulate multiple clients.  Or we could run it with a command like so:
 
-<pre class="lang:batch decode:true">powershell.exe -executionpolicy bypass -file "Stress_StoreFront.ps1" -stressComponent "Get Auth Methods"</pre>
+
+```plaintext
+powershell.exe -executionpolicy bypass -file "Stress_StoreFront.ps1" -stressComponent "Get Auth Methods
+```
+
 
 To stress an individual component.  By stressing the individual component we can actually determine which process on the Storefront server deals with which service.  So which components equals which service?
 

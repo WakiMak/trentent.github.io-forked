@@ -21,13 +21,13 @@ tags:
   - 2008R2
 ---
 <div>
-  We have two Citrix farms, a & 5 farm and a & 6 farm. &nbsp;& 6 only supports 64bit OS's.
+  We have two Citrix farms, a XenApp 5 farm and a XenApp 6 farm. &nbsp;& 6 only supports 64bit OS's.
 </div>
 
 <div>
 </div>
 
-We have some applications that will not operate on a 64bit OS (Microsoft FRx). &nbsp;Since we want to decommission our old Citrix & 5 farm because we're moving to & 6/6.5 we need a solution. &nbsp;The solution I have come up with is to use Microsoft RemoteApp functionality to publish this application through & 6. &nbsp;I've come [across this blog post that details how to do it](http://geekswithblogs.net/twickers/archive/2009/12/18/137048.aspx), but I'm going to summarize the technical changes here:
+We have some applications that will not operate on a 64bit OS (Microsoft FRx). &nbsp;Since we want to decommission our old Citrix XenApp 5 farm because we're moving to XenApp 6/6.5 we need a solution. &nbsp;The solution I have come up with is to use Microsoft RemoteApp functionality to publish this application through XenApp 6. &nbsp;I've come [across this blog post that details how to do it](http://geekswithblogs.net/twickers/archive/2009/12/18/137048.aspx), but I'm going to summarize the technical changes here:
 
 <div>
 </div>

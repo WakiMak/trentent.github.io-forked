@@ -23,7 +23,8 @@ tags:
 ---
 This script will go through and clear all AppV 5 packages then resync with a Streaming/Publishing server and then download the package locally to the server.
 
-<pre class="lang:batch decode:true ">:: =========================================================================================================== 
+```shell
+:: =========================================================================================================== 
 :: 
 :: Created by:        Saman Salehian 
 ::            Intel Server Team 
@@ -34,7 +35,7 @@ This script will go through and clear all AppV 5 packages then resync with a Str
 :: 
 :: File Name:        AppV_Data_PreCache.cmd 
 :: 
-:: Description:        Pre-Cache App-V Applications/Packages on & Server 
+:: Description:        Pre-Cache App-V Applications/Packages on XenApp Server 
 :: 
 :: =========================================================================================================== 
 
@@ -53,7 +54,8 @@ IF EXIST %SYSTEMROOT%\SysWOW64\notepad.exe (
     "%SystemRoot%\system32\WindowsPowerShell\v1.0\powershell.exe" .\Appv5ClientRefresh-01.ps1 
     "%SystemRoot%\system32\WindowsPowerShell\v1.0\powershell.exe" Set-ExecutionPolicy Restricted 
     DEL /F /Q Appv5ClientRefresh-01.ps1 >NUL 
-)</pre>
+)
+```
 
 &nbsp;
 

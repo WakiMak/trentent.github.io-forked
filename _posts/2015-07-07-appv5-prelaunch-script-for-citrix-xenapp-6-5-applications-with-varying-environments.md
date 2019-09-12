@@ -1,11 +1,11 @@
 ---
 id: 556
-title: AppV5 - Prelaunch Script for Citrix & 6.5 applications with varying environments
+title: AppV5 - Prelaunch Script for Citrix XenApp 6.5 applications with varying environments
 date: 2015-07-07T22:44:00-06:00
 author: trententtye
 layout: post
-guid: http://theorypc.ca/blog/2015/07/07/appv5-prelaunch-script-for-citrix-&-6-5-applications-with-varying-environments/
-permalink: /2015/07/07/appv5-prelaunch-script-for-citrix-&-6-5-applications-with-varying-environments/
+guid: http://theorypc.ca/blog/2015/07/07/appv5-prelaunch-script-for-citrix-xenapp-6-5-applications-with-varying-environments/
+permalink: /2015/07/07/appv5-prelaunch-script-for-citrix-xenapp-6-5-applications-with-varying-environments/
 blogger_blog:
   - trentent.blogspot.com
 blogger_author:
@@ -22,10 +22,16 @@ tags:
   - PowerShell
   - scripting
 ---
-We utilize a lot of pre-launch scripts for our AppV5 applications that we use in our Citrix & 6.5 environment.  They become a necessity very quickly as AppV5 stores the executable down a very long path.  Citrix & 6.5 has a maximum launch string of 160 characters and this maximum prevents a lot of applications from working if they require parameters to be passed to them.  An example looks like this:
+We utilize a lot of pre-launch scripts for our AppV5 applications that we use in our Citrix XenApp 6.5 environment.  They become a necessity very quickly as AppV5 stores the executable down a very long path.  Citrix XenApp 6.5 has a maximum launch string of 160 characters and this maximum prevents a lot of applications from working if they require parameters to be passed to them.  An example looks like this:
 
 <div>
-  <pre class="lang:batch decode:true ">"C:\ProgramData\Microsoft\AppV\Client\Integration\D8E3DB68-4E48-4409-8E95-4354CC6E664B\Root\VFS\ProgramFilesX64\dlc11.2\bin\prowin32.exe" -p \\wsfsc01pharm\CentricityPharmacy\rx\v92\cfg\cfgstart.p -param S,%CLIENTNAME%,crh1214%env%,CITRIX,rxpv91cal,10920 -wy</pre>
+ 
+```
+shell
+  "C:\ProgramData\Microsoft\AppV\Client\Integration\D8E3DB68-4E48-4409-8E95-4354CC6E664B\Root\VFS\ProgramFilesX64\dlc11.2\bin\prowin32.exe" -p \\wsfsc01pharm\CentricityPharmacy\rx\v92\cfg\cfgstart.p -param S,%CLIENTNAME%,crh1214%env%,CITRIX,rxpv91cal,10920 -wy
+ 
+```
+
 </div>
 
 <div>
@@ -39,7 +45,7 @@ We utilize a lot of pre-launch scripts for our AppV5 applications that we use in
   </div>
   
   <div>
-    This launch path is too long for & 6.5.  The string will be truncated and the program will fail to launch properly.  We have several environments that work with the same package files so we set them as variables.  To get this package to launch properly we create a prelaunch script that looks like so:
+    This launch path is too long for XenApp 6.5.  The string will be truncated and the program will fail to launch properly.  We have several environments that work with the same package files so we set them as variables.  To get this package to launch properly we create a prelaunch script that looks like so:
   </div>
 </div>
 
@@ -47,7 +53,8 @@ We utilize a lot of pre-launch scripts for our AppV5 applications that we use in
 </div>
 
 <div>
-  <pre class="lang:batch decode:true ">:============================================================================
+```shell
+:============================================================================
 :            AHS BDM Pharmacy prelaunch script
 :            By Trentent Tye
 :            2015-05-08
@@ -84,7 +91,8 @@ IF /I [%1] == [ACB] (
 :RELAUNCH
  
  
-cmd.exe /c "%TEMP%\%FILE%.CMD" /appvve:d8e3db68-4e48-4409-8e95-4354cc6e664b_c2342321-21e9-4e1f-ac2e-adf679020d55</pre>
+cmd.exe /c "%TEMP%\%FILE%.CMD" /appvve:d8e3db68-4e48-4409-8e95-4354cc6e664b_c2342321-21e9-4e1f-ac2e-adf679020d55
+```
 </div>
 
 <div>

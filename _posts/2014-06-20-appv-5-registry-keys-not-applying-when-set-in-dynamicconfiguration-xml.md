@@ -28,7 +28,11 @@ We even had a PFE on site who was unable to determine the cause. Eventually, I d
 I then took the registry values from our non-working system and compared them to the working system. Adding in keys from the non-working system to the working system until it failed I came across the following culprit:  
 <span style="color: #e06666;"><br /> </span>
 
-<pre class="lang:reg decode:true ">NoBackgroundRegistryStaging REG_DWORD 0x1</pre>
+
+```plaintext
+NoBackgroundRegistryStaging REG_DWORD 0x
+```
+
 
 <span style="font-family: Arial, Helvetica, sans-serif; font-size: x-small;"><br /> </span>When that value was set to 0x1 the registry keys from the dynamic xml file would not apply. If it was deleted or set to 0x0 then the keys applied without issue. I had originally added this key from this article:
 

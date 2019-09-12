@@ -10,7 +10,7 @@ blogger_blog:
 blogger_author:
   - Trentent
 blogger_permalink:
-  - /2016/01/citrix-director-77-&-65.html
+  - /2016/01/citrix-director-77-xenapp-65.html
 blogger_internal:
   - /feeds/7977773/posts/default/3852527102026683867
 image: /wp-content/uploads/2016/01/Picture1-1.png
@@ -24,13 +24,13 @@ tags:
 ---
 Citrix has 'replaced' Edgesight with a new tool called Citrix <span style="text-decoration: line-through;">Desktop</span>Director. It's a monitoring tool that provides help desk or other type of technicians with data on what's going on in user sessions (when referring to &). Although vastly inferior to [ControlUp](http://controlup.com/), it is free.
 
-But it's not without poor documentation and its own tales of woe. We have Citrix DesktopDirector 2.1 currently live in our environment. Our environment is purely & 6.5 (at the moment).
+But it's not without poor documentation and its own tales of woe. We have Citrix DesktopDirector 2.1 currently live in our environment. Our environment is purely XenApp 6.5 (at the moment).
 
 For version 2.1, logins are incredibly slow. Enumerating any sort of information on DesktopDirector is horribly slow. It's just incredi-bad.
 
 Enter Citrix Director <span style="text-decoration: line-through;">7.6 </span>7.7; lots of promises to overcome the failings of the previous version.
 
-First, installing Citrix Director 7.7 for & 6.5:
+First, installing Citrix Director 7.7 for XenApp 6.5:
 
 1) Launch the AutoRun (AutoSelect.exe) installation file
 
@@ -76,9 +76,9 @@ If you are not setting up certificates on the server for SSL, you can disable th
 15) Reset IIS from the command line.
 
 16) [<img src="/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B9.41.03-2BPM-1-300x186.png" border="0" />](/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B9.41.03-2BPM-1.png)  
-On EACH & server, install the **Director WMI Provider** (DirectorWMIProvider\_x64.msi for 64bit OS's and DirectorWMIProvider\_x86.msi for 32bit OS's). No reboot is needed, it takes effect immediately.
+On EACH XenApp server, install the **Director WMI Provider** (DirectorWMIProvider\_x64.msi for 64bit OS's and DirectorWMIProvider\_x86.msi for 32bit OS's). No reboot is needed, it takes effect immediately.
 
-17) Enable WinRM on each & server. In a command prompt run:  
+17) Enable WinRM on EACH XenApp server. In a command prompt run:  
 'winrm qc'
 
 18) Configure WinRM with the appropriate permissions:  
@@ -86,17 +86,21 @@ ConfigRemoteMgmt.exe /configwinrmuser HEALTHYDesktopDirector.TST /all
 
 **\*\*A NOTE ABOUT CONFIGREMOTEMGMT.EXE\*\***
 
-Ensure you use the latest version you can find. For &/XenDesktop 7.7 the version that comes with it is:
+Ensure you use the latest version you can find. For XenApp/XenDesktop 7.7 the version that comes with it is:
 
 [<img src="/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B9.49.58-2BPM-1-300x191.png" border="0" />](/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B9.49.58-2BPM-1.png)
 
-It has been [revised as time](http://support.citrix.com/article/CTX131165) has gone on and numerous bug fixes have been implemented. We implemented a script to update our WinRM so all of our & servers would have the user configured. We didn't include checking, we just assumed if a group was added it would not be added again. With an older version of ConfigRemoteMgmt.exe this was an incorrect assumption and our WinRM SDDL became so large that the command line that ConfigRemoteMgmt.exe generates for winrm.cmd breaks the command line. You see, ConfigRemoteMgmt.exe is also a front end to "**C:\Windows\system32\winrm.cmd**". Here is the command it generates:
+It has been [revised as time](http://support.citrix.com/article/CTX131165) has gone on and numerous bug fixes have been implemented. We implemented a script to update our WinRM so all of our XenApp servers would have the user configured. We didn't include checking, we just assumed if a group was added it would not be added again. With an older version of ConfigRemoteMgmt.exe this was an incorrect assumption and our WinRM SDDL became so large that the command line that ConfigRemoteMgmt.exe generates for winrm.cmd breaks the command line. You see, ConfigRemoteMgmt.exe is also a front end to "**C:\Windows\system32\winrm.cmd**". Here is the command it generates:
 
 <span style="font-family: Courier New, Courier, monospace;">C:\Windows\system32\cmd.exe /c ""C:\Windows\system32\winrm.cmd" set winrm/config/service @{RootSDDL="O:NSG:BAD:P(A;;GA;;;<b>S-1-5-21-38857442-2693285798-3636612711-99999999</b>)(A;;GA;;;BA)S:P(AU;FA;GA;;;WD)(AU;SA;GXGW;;;WD)"}"</span>
 
 The part I bolded is the GUID of the object you pass in the /configwinrmuser. The ConfigRemoteMgmt.exe takes your object and converts it to a GUID and then sets the SDDL using the native Windows tools. The bug in a pervious version of this tool is that it would add another GUID, even if one already existed. So in the buggy version the next command would be this:
 
-<pre class="lang:default decode:true">C:\Windows\system32\cmd.exe /c ""C:\Windows\system32\winrm.cmd" set winrm/config/service @{RootSDDL="O:NSG:BAD:P(A;;GA;;;S-1-5-21-38857442-2693285798-3636612711-99999999)(A;;GA;;;S-1-5-21-38857442-2693285798-3636612711-99999999)(A;;GA;;;BA)S:P(AU;FA;GA;;;WD)(AU;SA;GXGW;;;WD)"}"</pre>
+
+```plaintext
+C:\Windows\system32\cmd.exe /c ""C:\Windows\system32\winrm.cmd" set winrm/config/service @{RootSDDL="O:NSG:BAD:P(A;;GA;;;S-1-5-21-38857442-2693285798-3636612711-99999999)(A;;GA;;;S-1-5-21-38857442-2693285798-3636612711-99999999)(A;;GA;;;BA)S:P(AU;FA;GA;;;WD)(AU;SA;GXGW;;;WD)"}
+```
+
 
 And so on. Eventually, this causes WinRM to fail and it will just hang at this point:
 
@@ -104,7 +108,11 @@ And so on. Eventually, this causes WinRM to fail and it will just hang at this p
 
 To check your WinRM Root SDDL, execute this command:
 
-<pre class="lang:batch decode:true">"C:\Windows\system32\winrm.cmd" get winrm/config/service</pre>
+
+```plaintext
+"C:\Windows\system32\winrm.cmd" get winrm/config/servic
+```
+
 
 If you have an output similar to this, then you have a problem:
 
@@ -112,7 +120,11 @@ If you have an output similar to this, then you have a problem:
 
 Fortunately, it's a super easy fix. If you run the command with a single GUID it all gets reset:
 
-<pre class="lang:batch decode:true">C:\Windows\system32\cmd.exe /c ""C:\Windows\system32\winrm.cmd" set winrm/config/service @{RootSDDL="O:NSG:BAD:P(A;;GA;;;BA)S:P(AU;FA;GA;;;WD)(AU;SA;GXGW;;;WD)"}"</pre>
+
+```plaintext
+C:\Windows\system32\cmd.exe /c ""C:\Windows\system32\winrm.cmd" set winrm/config/service @{RootSDDL="O:NSG:BAD:P(A;;GA;;;BA)S:P(AU;FA;GA;;;WD)(AU;SA;GXGW;;;WD)"}
+```
+
 
 [<img src="/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B10.07.59-2BPM-1-300x190.png" border="0" />](/wp-content/uploads/2016/01/Screen-2BShot-2B2016-01-13-2Bat-2B10.07.59-2BPM-1.png)
 
@@ -179,7 +191,9 @@ Cannot retrieve the data. Cannot find the referenced object. View Director serve
 
 The IIS logging shows:
 
-<pre class="lang:default decode:true ">01/14/2016 08:42:30.5003 : [t:9, s:tnccy45w1lfhxwkzaq0m0geh] <<<<<<<< WMI SELECT Query will be routed through WinRM Connector >>>>>>>>>
+
+```plaintext
+01/14/2016 08:42:30.5003 : [t:9, s:tnccy45w1lfhxwkzaq0m0geh] <<<<<<<< WMI SELECT Query will be routed through WinRM Connector >>>>>>>>>
 01/14/2016 08:42:30.5159 : [t:9, s:tnccy45w1lfhxwkzaq0m0geh] GetConnector called. connectionAddress = '(http://wsctxapp303t.healthy.bewell.ca:5985/wsman,6.1.7601)'
 01/14/2016 08:42:30.5159 : [t:9, s:tnccy45w1lfhxwkzaq0m0geh] Setting 'Connector.WinRM.Timeout' has value '6000'
 01/14/2016 08:42:30.5159 : [t:9, s:tnccy45w1lfhxwkzaq0m0geh] Setting 'Connector.WinRM.Ports' has value '5985'
@@ -227,7 +241,9 @@ The IIS logging shows:
 01/14/2016 08:42:30.5628 : [t:9, s:tnccy45w1lfhxwkzaq0m0geh] Fault mapper Convert method returning
 01/14/2016 08:42:30.5784 : [t:9, s:tnccy45w1lfhxwkzaq0m0geh] DmcWebErrorHandler channel level error 
  System.ServiceModel.FaultException`1[Citrix.Dmc.WebService.DmcServiceFault]: The creator of this fault did not specify a Reason. (Fault Detail is equal to Citrix.Dmc.WebService.DmcServiceFault).
-Citrix.Dmc.Common.NotFoundException: Exception of type 'Citrix.Dmc.Common.NotFoundException' was thrown. at Citrix.Dmc.Connector.WinRMConnector.WinRMWqlQueryExecute(String query, String wqlUri) at Citrix.Dmc.Connector.WinRMQueryThrottle.ExecuteQuery(String query, String wqlUri, Int32 timeout, Nullable`1 refreshTimeoutInSec, WinRMQueryInvoker invoker) at Citrix.Dmc.Connector.WinRMConnector.WinRMWqlQuery(String query, String wqlUri, Nullable`1 refreshIntervalInSec) at Citrix.Dmc.Connector.WinRMConnector.WinRMWqlQuery(String query, String wqlUri) at Citrix.Dmc.Common.ConnectorWrapper`1.Invoke[TReturn](Func`2 method) --- End of inner exception stack trace --- at Citrix.Dmc.Common.ConnectorWrapper`1.Invoke[TReturn](Func`2 method) at Citrix.Dmc.WebService.Wmi.WinRMConnectorQuery.ExecuteSelectQuery(String resourceUri, String className, String[] attributes, String whereClause, Nullable`1 timeoutInSec) at Citrix.Dmc.WebService.Wmi.VDAMachineDao.ExecuteSelectQuery(String resourceUri, String className, String[] attributes, String whereClause, Nullable`1 timeoutInSec) at Citrix.Dmc.WebService.Wmi.VDAMachineDao.GetRunningApplicationsData(String sessionId) at Citrix.Dmc.WebService.XAConsoleDao.GetRunningApplicationsData(String farmId, String machineId, String sessionId, Boolean detailed) at Citrix.Dmc.WebService.ConsoleService.GetRunningIMAApplicationsData(String farmId, String machineId, String sessionId, Boolean detailed) 01/14/2016 08:42:30.5628 : [t:9, s:tnccy45w1lfhxwkzaq0m0geh] Fault mapper Convert method called 01/14/2016 08:42:30.5628 : [t:9, s:tnccy45w1lfhxwkzaq0m0geh] Service exception is mapped to fault error code 104 01/14/2016 08:42:30.5628 : [t:9, s:tnccy45w1lfhxwkzaq0m0geh] Fault mapper Convert method returning 01/14/2016 08:42:30.5784 : [t:9, s:tnccy45w1lfhxwkzaq0m0geh] DmcWebErrorHandler channel level error System.ServiceModel.FaultException`1[Citrix.Dmc.WebService.DmcServiceFault]: The creator of this fault did not specify a Reason. (Fault Detail is equal to Citrix.Dmc.WebService.DmcServiceFault). ]]></pre>
+Citrix.Dmc.Common.NotFoundException: Exception of type 'Citrix.Dmc.Common.NotFoundException' was thrown. at Citrix.Dmc.Connector.WinRMConnector.WinRMWqlQueryExecute(String query, String wqlUri) at Citrix.Dmc.Connector.WinRMQueryThrottle.ExecuteQuery(String query, String wqlUri, Int32 timeout, Nullable`1 refreshTimeoutInSec, WinRMQueryInvoker invoker) at Citrix.Dmc.Connector.WinRMConnector.WinRMWqlQuery(String query, String wqlUri, Nullable`1 refreshIntervalInSec) at Citrix.Dmc.Connector.WinRMConnector.WinRMWqlQuery(String query, String wqlUri) at Citrix.Dmc.Common.ConnectorWrapper`1.Invoke[TReturn](Func`2 method) --- End of inner exception stack trace --- at Citrix.Dmc.Common.ConnectorWrapper`1.Invoke[TReturn](Func`2 method) at Citrix.Dmc.WebService.Wmi.WinRMConnectorQuery.ExecuteSelectQuery(String resourceUri, String className, String[] attributes, String whereClause, Nullable`1 timeoutInSec) at Citrix.Dmc.WebService.Wmi.VDAMachineDao.ExecuteSelectQuery(String resourceUri, String className, String[] attributes, String whereClause, Nullable`1 timeoutInSec) at Citrix.Dmc.WebService.Wmi.VDAMachineDao.GetRunningApplicationsData(String sessionId) at Citrix.Dmc.WebService.XAConsoleDao.GetRunningApplicationsData(String farmId, String machineId, String sessionId, Boolean detailed) at Citrix.Dmc.WebService.ConsoleService.GetRunningIMAApplicationsData(String farmId, String machineId, String sessionId, Boolean detailed) 01/14/2016 08:42:30.5628 : [t:9, s:tnccy45w1lfhxwkzaq0m0geh] Fault mapper Convert method called 01/14/2016 08:42:30.5628 : [t:9, s:tnccy45w1lfhxwkzaq0m0geh] Service exception is mapped to fault error code 104 01/14/2016 08:42:30.5628 : [t:9, s:tnccy45w1lfhxwkzaq0m0geh] Fault mapper Convert method returning 01/14/2016 08:42:30.5784 : [t:9, s:tnccy45w1lfhxwkzaq0m0geh] DmcWebErrorHandler channel level error System.ServiceModel.FaultException`1[Citrix.Dmc.WebService.DmcServiceFault]: The creator of this fault did not specify a Reason. (Fault Detail is equal to Citrix.Dmc.WebService.DmcServiceFault). ]]
+```
+
 
 And the event log shows:
 

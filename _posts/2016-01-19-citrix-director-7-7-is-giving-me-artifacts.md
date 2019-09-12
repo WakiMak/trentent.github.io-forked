@@ -109,9 +109,11 @@ We are still in a pilot-preupgrade phase of Citrix Director 7.7 and found an iss
   Edit the Default.html file ("C:inetpubwwwrootDirectordefault.html") and add this line:
 </div>
 
-<div>
-  <pre class="lang:default decode:true "><meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=EDGE" /></pre>
-</div>
+  
+```xml
+<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=EDGE" />
+```
+
 
 To the 'head' section.  Example:
 

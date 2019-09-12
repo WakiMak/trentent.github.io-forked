@@ -546,7 +546,7 @@ tags:
                                   </div>
                                   
                                   <div dir="ltr">
-                                    Cvhdmount.exe -p 1 \serversharevDisks-&&65Tn01.13.avhd
+                                    Cvhdmount.exe -p 1 \serversharevDisks-&XenApp65tn01.13.avhd
                                   </div>
                                   
                                   <p>
@@ -1128,7 +1128,7 @@ tags:
                                           
                                           <td>
                                             <div dir="ltr">
-                                              Select the associated BLD server of this vDisk and right-click and select 'Edit Settings...'  In this example, the vDisk I am modifying is &65Tn01 which is associated with BLD server WSCTXBLD351T
+                                              Select the associated BLD server of this vDisk and right-click and select 'Edit Settings...'  In this example, the vDisk I am modifying is XenApp65tn01 which is associated with BLD server WSCTXBLD351T
                                             </div>
                                             
                                             <div dir="ltr">
@@ -1308,7 +1308,7 @@ tags:
                                           
                                           <td>
                                             <div dir="ltr">
-                                              Select the associated BLD server of this vDisk and right-click and select 'Edit Settings...'  In this example, the vDisk I am modifying is &65Tn01 which is associated with BLD server WSCTXBLD351T
+                                              Select the associated BLD server of this vDisk and right-click and select 'Edit Settings...'  In this example, the vDisk I am modifying is XenApp65tn01 which is associated with BLD server WSCTXBLD351T
                                             </div>
                                             
                                             <div dir="ltr">
@@ -2509,7 +2509,7 @@ tags:
                                                                       </div>
                                                                       
                                                                       <div dir="ltr">
-                                                                        Cvhdmount.exe -p 1 \serversharevDisks-&&65Tn01.13.avhd
+                                                                        Cvhdmount.exe -p 1 \serversharevDisks-&XenApp65tn01.13.avhd
                                                                       </div>
                                                                       
                                                                       <p>

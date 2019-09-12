@@ -25,9 +25,13 @@ After discovering that AppV 5 configures an allocation size independent of the f
 
 I took our AppV setup and set the PackageInstallationRoot to D:AppVDataPackageInstallationRoot and then formatted the D: to different allocation sizes and then mounted the AppV package.  I timed how long it took to mount the package over 4 runs per allocation choice, took the AppV file size allocation, and the total, actual size of the package on the drive.  Package Details:
 
-<pre class="lang:default decode:true ">Package size: 1838658907 (1.71GB)
+
+```plaintext
+Package size: 1838658907 (1.71GB)
 Files: 9106
-Folders: 357</pre>
+Folders: 35
+```
+
 
 The results:
 

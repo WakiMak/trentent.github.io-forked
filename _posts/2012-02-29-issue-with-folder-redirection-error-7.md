@@ -24,14 +24,18 @@ So we were having an issue with Folder Redirection today with a user. We were mo
 
 This was the error in fdeploy.log (enabled here).
 
-> <pre class="lang:default decode:true ">16:32:10:116 Homedir redirection path %HOMESHARE%%HOMEPATH% expanded to \newserveruserdirs$user1.
+> 
+```plaintext
+16:32:10:116 Homedir redirection path %HOMESHARE%%HOMEPATH% expanded to \newserveruserdirs$user1.
 16:32:10:116 Redirecting folder My Documents to \%HOMESHARE%%HOMEPATH%.
 16:32:10:116 Previous folder path \oldserveruser1$ expanded to \oldserveruser1$.
 16:32:10:116 New folder path \%HOMESHARE%%HOMEPATH% expanded to \newserveruserdirs$user1.
 16:32:11:007 Failed to perform redirection of folder My Documents.
 The folder is configured to be redirected from <\oldserveruser1$> to <\newserveruserdirs$user1>.
 The following error occurred:
-%%267</pre>
+%%26
+```
+
 
 %%267. After some brief investigation it was found this users had a huge My Docs and it was copied to the new server. The old directory was then renamed (user1.old) and a new directory was created called user1 and reshared as user1$ on the old server. Then this issue occurred. The reason this issue occurred was because the user wasn't assigned any permissions on the old directory so it was erroring out. I don't know if %%267 is a permission code or not but that's what we found. By adding the user to the folder \oldserveruser1$ as full control did it then proceed and migrate his My Docs correctly.
 

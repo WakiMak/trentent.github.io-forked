@@ -21,7 +21,9 @@ tags:
   - PowerShell
   - scripting
 ---
-<pre class="lang:ps decode:true ">#Update_Tools.ps1
+
+```powershell
+#Update_Tools.ps1
 # by Trentent Tye
 # Updates processor monitor and processor explorer and wireshark
 
@@ -57,7 +59,9 @@ $wiresharkver = $link.links.innerText | select-string "Wire*" | select -last 1
 $Source = "https://2.na.dl.wireshark.org/win32/" + $wiresharkver
 $Destination = "c:\swinst\" + $wiresharkver
 Invoke-WebRequest -uri $Source -OutFile $Destination
-Unblock-File $Destination</pre>
+Unblock-File $Destinatio
+```
+
 
 &nbsp;
 

@@ -30,12 +30,13 @@ I create install.cmd files for all of my applications so that, if required in th
 
 <span style="font-family: Helvetica Neue, Arial, Helvetica, sans-serif;">install.cmd</span>
 
-<pre class="lang:batch decode:true ">:: EPIC Install Script
+```shell
+:: EPIC Install Script
 ::
 :: By Trentent Tye
 ::
-:: Assumptions: Adobe Reader is on the & server
-:: Java Runtime Environment (JRE) is installed on the & Server
+:: Assumptions: Adobe Reader is on The XenApp Server
+:: Java Runtime Environment (JRE) is installed on The XenApp Server
  
 :: Must set Package Name to: Epic_Hyperspace_2012_7.9_RA1463_x86
 :: Must modify C:\ProgramData\Epic\EPIC.CLI to point to path other than C:\Epic ("C:\Program Files (x86)\Epic\v7.9\Epic")
@@ -96,7 +97,8 @@ rmdir /s /q "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Epic 2012"
 copy /y "%~dp0\WorkFlowTracer.cmd" "C:\Program Files (x86)\Epic\v7.9\Shared Files"
  
 :: Package must make a junction to a file share for the crashdumps to be saved to in deploymentconfig.xml
-rmdir /s /q C:\CrashDumps</pre>
+rmdir /s /q C:\CrashDumps
+```
 
 <div>
 </div>

@@ -26,13 +26,18 @@ The steps to set this up:
   2. Copy the file to C:\inetpub\wwwroot\Citrix\Store\bin  
 <img class="aligncenter size-full wp-image-2569" src="/wp-content/uploads/2017/11/StoreCustomization_Launch.png" alt="" width="1112" height="489" srcset="/wp-content/uploads/2017/11/StoreCustomization_Launch.png 1112w, /wp-content/uploads/2017/11/StoreCustomization_Launch-300x132.png 300w, /wp-content/uploads/2017/11/StoreCustomization_Launch-768x338.png 768w" sizes="(max-width: 1112px) 100vw, 1112px" /> 
   3. Edit the web.config in the **Store** directory and enable the extension
-  4. <pre class="lang:xhtml decode:true"><appSettings>
+ 
+```
+xml
+  <appSettings>
   <add key="modifyICAProperties" value="true" />
   </appSettings>
-</pre>
+```
 
-  5. We need to enable Header pass-through for DesiredHRES, DesiredVRES, and TWIMode in the "C:\inetpub\wwwroot\Citrix\StoreWeb\web.config" file:
-  6. <pre class="lang:xhtml decode:true"><communication attempts="1" timeout="00:03:00" loopback="Off"
+  * We need to enable Header pass-through for DesiredHRES, DesiredVRES, and TWIMode in the "C:\inetpub\wwwroot\Citrix\StoreWeb\web.config" file:
+  
+```xml
+<communication attempts="1" timeout="00:03:00" loopback="Off"
           loopbackPortUsingHttp="80">
           <proxy enabled="true" processName="Fiddler" port="8888" />
           <forwardedHeaders>
@@ -40,9 +45,13 @@ The steps to set this up:
 			<header name="DesiredVRES" />
 			<header name="TWIMode" />
           </forwardedHeaders>
-        </communication></pre>
+        </communication>
+```
 
-  7. Lastly, add the following to the custom.js file in your StoreWeb/custom folder: <pre class="lang:js decode:true ">CTXS.Extensions.doLaunch =  function(app, action) {
+  * Lastly, add the following to the custom.js file in your StoreWeb/custom folder: 
+  
+```js
+  CTXS.Extensions.doLaunch =  function(app, action) {
 	//check for Calculator and configure custom resolution
 	if (app.name == "Calculator - Mandatory") {
 		$.ajaxSetup({
@@ -63,9 +72,10 @@ The steps to set this up:
 	delete $.ajaxSettings.headers["DesiredHRES"]; //Remove header
 	delete $.ajaxSettings.headers["DesiredVRES"]; //Remove header
 	delete $.ajaxSettings.headers["TWIMode"]; //Remove header
-};</pre>
+};
+```
 
-  8. And enjoy the results! 
+  * And enjoy the results! 
 
 <img class="aligncenter size-full wp-image-2570" src="/wp-content/uploads/2017/11/800x600Calculator.png" alt="" width="802" height="632" srcset="/wp-content/uploads/2017/11/800x600Calculator.png 802w, /wp-content/uploads/2017/11/800x600Calculator-300x236.png 300w, /wp-content/uploads/2017/11/800x600Calculator-768x605.png 768w" sizes="(max-width: 802px) 100vw, 802px" /> 
 

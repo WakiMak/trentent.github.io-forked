@@ -25,21 +25,25 @@ How to set Java settings on a machine/system/global level:
 1) Create a new text file at "C:\Windows\Sun\Java\Deployment\deployment.config"  
 2) populate it with two values:
 
-<pre class="lang:default decode:true ">#deployment.config
+```console
+#deployment.config
 #May 15 2014
 # The First line below specifies if this config is mandatory which is simple enough
 # The second line just tells Java where to the properties of your Java Configuration
 # NOTE: These java settings will be applied to each user file and will overwrite existing ones
 deployment.system.config.mandatory=True
-deployment.system.config=file\:C\:/WINDOWS/Sun/Java/Deployment/deployment.properties</pre>
+deployment.system.config=file\:C\:/WINDOWS/Sun/Java/Deployment/deployment.properties
+```
 
 Create or copy deployment.properties at  
 (You can copy the one created for your user profile @ %userprofile%\LocalLow\Sun\Java\Deployment\deployment.properties<span style="font-family: Courier New, Courier, monospace; font-size: x-small;"> </span>as a template).
 
 Modify the values as needed (example):
 
-<pre class="lang:default decode:true ">#deployment.properties
-deployment.security.level=MEDIUM</pre>
+```console
+#deployment.properties
+deployment.security.level=MEDIUM
+```
 
 <div>
 </div>

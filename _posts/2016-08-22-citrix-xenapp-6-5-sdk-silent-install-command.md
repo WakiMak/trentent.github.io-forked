@@ -1,11 +1,11 @@
 ---
 id: 1623
-title: Citrix & 6.5 SDK silent install command
+title: Citrix XenApp 6.5 SDK silent install command
 date: 2016-08-22T09:04:22-06:00
 author: trententtye
 layout: post
 guid: http://theorypc.ca/?p=1623
-permalink: /2016/08/22/citrix-&-6-5-sdk-silent-install-command/
+permalink: /2016/08/22/citrix-xenapp-6-5-sdk-silent-install-command/
 categories:
   - Blog
 tags:

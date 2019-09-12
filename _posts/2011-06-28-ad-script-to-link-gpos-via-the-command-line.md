@@ -24,7 +24,9 @@ tags:
 I've modified a script I found online to allow standard batch file passthrough for linking a GPO to a OU.
 Usage: cscript.exe linkGPO.vbs "Test GPO" "lab.com" "OU=AD Project,DC=lab,DC=com"
 
-<pre class="lang:vb decode:true ">If WScript.Arguments.Count = 3 Then
+
+```vb
+If WScript.Arguments.Count = 3 Then
 strGPO = WScript.Arguments.Item(0)
 strDomain = WScript.Arguments.Item(1)
 strOU = WScript.Arguments.Item(2)
@@ -88,4 +90,4 @@ WScript.Echo "Error: " & Err.Description
 else
 WScript.Echo "Sucessfully linked GPO to OU"
 end if
-</pre>
+```

@@ -36,9 +36,11 @@ The architecture of this solution looks like this:
 
 It's pretty damn simple.  Look that a specific cookie has a specific value and if it does <span style="text-decoration: underline;"><strong>NOT</strong></span> have that value, exclude the app(s) from being shown.
 
-So the role of the Netscaler here is when the user logs on, it will write a cookie based on the authentication.  Our Storefront script will check for the value of that cookie.  If the cookie contains our known value then we iterate through all applications and look for some unique text we've set in the application description field (this works with both & 6.5 and 7.X) and hide those applications.  For my example, I've added " 2FA" to the application description field for the applications I want excluded from single-factor authentication. Note: I've required a 'space' before the characters 2FA.
+So the role of the Netscaler here is when the user logs on, it will write a cookie based on the authentication.  Our Storefront script will check for the value of that cookie.  If the cookie contains our known value then we iterate through all applications and look for some unique text we've set in the application description field (this works with both XenApp 6.5 and 7.X) and hide those applications.  For my example, I've added " 2FA" to the application description field for the applications I want excluded from single-factor authentication. Note: I've required a 'space' before the characters 2FA.
 
-<pre class="lang:js decode:true ">//get cookies function
+
+```javascript
+//get cookies function
 function getCookie(name) {
     var results = document.cookie.match('(^|;) ?' + name + '=([^;]*)');
     return results ? unescape(results[2]) : null;
@@ -57,7 +59,7 @@ if (logonmethod == "1FA") {
 		}
 	};
 }
-</pre>
+```
 
 And that's it!  A deliciously simple addition to **\custom\script.js**.
 

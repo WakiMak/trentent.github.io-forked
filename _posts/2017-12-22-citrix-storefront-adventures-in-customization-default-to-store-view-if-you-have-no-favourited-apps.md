@@ -16,9 +16,8 @@ tags:
 ---
 We are in the process of migrating users from Web Interface to Storefront.  We have identified a potential issue; new users are directed to the "Favourites" view which doesn't have any applications be default, instead it has instructions on how to add apps to the favourites view.
 
-<div id="attachment_2638" style="width: 729px" class="wp-caption aligncenter">
-  <img aria-describedby="caption-attachment-2638" class="wp-image-2638 size-full" src="/wp-content/uploads/2017/12/Screen-Shot-2017-12-22-at-12.18.42-PM.png" alt="" width="719" height="401" srcset="/wp-content/uploads/2017/12/Screen-Shot-2017-12-22-at-12.18.42-PM.png 719w, /wp-content/uploads/2017/12/Screen-Shot-2017-12-22-at-12.18.42-PM-300x167.png 300w" sizes="(max-width: 719px) 100vw, 719px" /></p> 
-  
+![](/wp-content/uploads/2017/12/Screen-Shot-2017-12-22-at-12.18.42-PM.png)
+<div>
   <p id="caption-attachment-2638" class="wp-caption-text">
     New users might say, "Where did my apps go?!"
   </p>
@@ -32,12 +31,16 @@ We can do this.
 
 &nbsp;
 
-<pre class="lang:js decode:true ">CTXS.Extensions.afterDisplayHomeScreen = function (callback) {
+
+```javascript
+CTXS.Extensions.afterDisplayHomeScreen = function (callback) {
 	/* If the user has no favorited apps, set the view to the category view */
 	if (CTXS.Store.getMyApps().length == 0) {
        	        CTXS.ExtensionAPI.changeView("store")
 	}
-};</pre>
+}
+```
+
 
 Just add the code above to your custom.js file and the default view will be changed to the store if you have no favorited apps.  Done!
 

@@ -55,7 +55,9 @@ It might be a good idea to disable boot logging if you did it on your personal s
 
 Now we need to inject the follow registry entry into our image:
 
-<pre class="lang:reg decode:true">Windows Registry Editor Version 5.00
+
+```plaintext
+Windows Registry Editor Version 5.00
 
 [HKEY_LOCAL_MACHINE\PE_SYSTEM\ControlSet001\services\PROCMON23]
 "SupportedFeatures"=dword:00000003
@@ -72,7 +74,7 @@ Now we need to inject the follow registry entry into our image:
 [HKEY_LOCAL_MACHINE\PE_SYSTEM\ControlSet001\services\PROCMON23\Instances\Process Monitor 23 Instance]
 "Altitude"="385200"
 "Flags"=dword:00000000
-</pre>
+```
 
 Here are the steps in action:
 

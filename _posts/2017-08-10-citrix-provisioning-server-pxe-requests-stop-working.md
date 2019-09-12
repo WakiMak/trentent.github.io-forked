@@ -31,7 +31,11 @@ When I checked the event logs I did not see any errors in either the application
 
 In order to confirm that the PVS service was actually listening, I executed
 
-<pre class="lang:default decode:true ">netstat -ano</pre>
+
+```plaintext
+netstat -an
+```
+
 
 this showed me all the open ports the server was listening for and the processes tied to those ports.  Since PXE is a UDP operation, I examined the UDP portion of the netstat output. <img class="aligncenter size-full wp-image-2532" src="/wp-content/uploads/2017/08/port_69.png" alt="" width="789" height="317" srcset="/wp-content/uploads/2017/08/port_69.png 789w, /wp-content/uploads/2017/08/port_69-300x121.png 300w, /wp-content/uploads/2017/08/port_69-768x309.png 768w" sizes="(max-width: 789px) 100vw, 789px" /> 
 

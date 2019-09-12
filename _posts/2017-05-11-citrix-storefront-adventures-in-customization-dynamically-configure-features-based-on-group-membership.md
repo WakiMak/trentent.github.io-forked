@@ -24,18 +24,22 @@ Ok, so let's get to my finished product.
 
 I edited the **custom\style.css** file and added the following:
 
-<pre class="lang:css decode:true ">#customTop {
+
+```css
+#customTop {
 background:grey;
 color: ghostwhite;
 text-align: right;
 font-size: 12px;
 background-color: #968989;
 }
-</pre>
+```
 
 And my completed '**custom\script.js**' file:
 
-<pre class="lang:js decode:true ">// Edit this file to add your customized JavaScript or load additional JavaScript files.
+
+```javascript
+// Edit this file to add your customized JavaScript or load additional JavaScript files.
 
 function getCookie(name) {
 	var results = document.cookie.match('(^|;) ?' + name + '=([^;]*)');
@@ -224,7 +228,7 @@ CTXS.Extensions.afterDisplayHomeScreen  = function () {
 }
 
 /* End of customization */
-</pre>
+```
 
 You'll need to refer to my previous two posts for the Powershell HTTP LDAP listener and the Group-Membership.aspx file.
 

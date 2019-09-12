@@ -22,7 +22,11 @@ tags:
 ---
 I upgraded our test environment for AppV 5.0 SP2 to HF4  and came across an issue where our packages won't load.  The error specifically was:
 
-<pre class="lang:default decode:true ">"Package {248b49bd-39f9-471c-b655-7483c11a6f69} version {868b72ed-ac56-4b8e-ae42-60a049401330} failed configuration in folder 'D:\AppVData\PackageInstallationRoot\' with error 0x4C40330C-0x12."</pre>
+
+```plaintext
+"Package {248b49bd-39f9-471c-b655-7483c11a6f69} version {868b72ed-ac56-4b8e-ae42-60a049401330} failed configuration in folder 'D:\AppVData\PackageInstallationRoot\' with error 0x4C40330C-0x12.
+```
+
 
 <div>
 </div>

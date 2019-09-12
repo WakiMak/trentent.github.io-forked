@@ -115,7 +115,8 @@ Audit Process Creation/Termination
 
 I've written a batch script to enable these features:
 
-<pre class="wp-block-preformatted">REM Enable Command Line Auditing
+```plaintext
+REM Enable Command Line Auditing
 reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Audit" /v ProcessCreationIncludeCmdLine_Enabled /d 0x1
 
 REM Enable Print Service logging, no retention, size 500MB
@@ -126,7 +127,7 @@ Auditpol /set /subcategory:"Process Termination" /success:enable
 
 REM Enable Process Creation
 Auditpol /set /subcategory:"Process Creation" /success:enable
-</pre>
+```
 
 Easy!
 

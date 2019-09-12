@@ -17,7 +17,9 @@ I have only tested this in VMWare, but it seems to work.  I have [shamelessly st
 
 &nbsp;
 
-<pre class="lang:ps decode:true">#Are we on a NUMA-aware system?  If we are, we will assign NIC's to NUMA specific CPU's.  If not then it's just to the one pool.
+
+```powershell
+#Are we on a NUMA-aware system?  If we are, we will assign NIC's to NUMA specific CPU's.  If not then it's just to the one pool.
     $procInfo = @"
 using System;
 using System.Diagnostics;
@@ -145,7 +147,9 @@ namespace Windows
         if ($numberOfNumaNodes -ge 2) {
             #NUMA detected
             $NUMA = $true
-        }</pre>
+        
+```
+
 
 I was going to use this to detect NUMA and configure a network adapter RSS based upon NUMA configuration...  But I'm getting lazy and am going to ignore it.  But I don't want this code to go away.  So here it is.  A way to detect if you are on a NUMA system in a guest VM in Powershell.
 

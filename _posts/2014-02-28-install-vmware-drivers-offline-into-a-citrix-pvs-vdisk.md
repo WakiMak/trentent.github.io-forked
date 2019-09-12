@@ -31,15 +31,27 @@ The latency settings I have done are here:
 Essentially, we turned off interrupt coalescing on the physical NIC by doing the following:  
 Logging into the ESXi host with SSH
 
-<pre class="lang:default decode:true "># esxcli network nic list</pre>
+
+```shell
+# esxcli network nic lis
+```
+
 
 (e1000e found as our NIC driver)
 
-<pre class="lang:default decode:true "># esxcli system module parameters list -m e1000e</pre>
+
+```shell
+# esxcli system module parameters list -m e1000
+```
+
 
 (we see InterruptThrottleRate as a parameter)
 
-<pre class="lang:default decode:true "># esxcli system module parameters set -m e1000e -p "InterruptThrottleRate=0"</pre>
+
+```shell
+# esxcli system module parameters set -m e1000e -p "InterruptThrottleRate=0
+```
+
 
 <div>
 </div>
@@ -50,12 +62,20 @@ Parameters and add an entry for ethernetX.coalescingScheme with the value of "di
 
 We have 2 NIC's assigned to each of our PVS VM's.  One NIC is dedicated for the provisioning traffic and one for access to the rest of the network.  So I had to add 2 lines to my configuration:
 
-<pre class="lang:default decode:true ">ethernet0.coalescingScheme = disabled
-ethernet1.coalescingScheme = disabled</pre>
+
+```shell
+ethernet0.coalescingScheme = disabled
+ethernet1.coalescingScheme = disable
+```
+
 
 For the VMWare virtual machines we just had the one line:
 
-<pre class="lang:default decode:true ">ethernet0.coalescingScheme = disabled</pre>
+
+```shell
+ethernet0.coalescingScheme = disable
+```
+
 
 Upon powering up the VMWare virtual machines, the per packet latency dropped signficantly and our application was much more responsive.
 
@@ -63,13 +83,21 @@ Unfortunately, even with the settings being identical on the VMWare virtual mach
 
 To test if a newer driver would help, I did not want to reverse image the vDisk image as that is such a pain in the ass.  So I tried something else.  I made a new maintenance version of the vDisk and then mounted it on the PVS server:
 
-<pre class="lang:default decode:true ">C:\Users\svc_ctxinstall>"C:\Program Files\Citrix\Provisioning Services\CVhdMount.exe" -p 1 X:\vDisks-&\&65Tn01.14.avhd</pre>
+
+```shell
+C:\Users\svc_ctxinstall>"C:\Program Files\Citrix\Provisioning Services\CVhdMount.exe" -p 1 X:\vDisks-&\XenApp65tn01.14.avh
+```
+
 
 This mounted the vDisk as drive "D:"
 
 I then took the newer driver from the VMWare virtual machine and injected it into the vDisk:
 
-<pre class="lang:default decode:true ">C:\Users\svc_ctxinstall>dism /image:D:\ /add-driver /driver:"C:\Program Files\VMware\VMware Tools\Drivers\vmxnet3"</pre>
+
+```shell
+C:\Users\svc_ctxinstall>dism /image:D:\ /add-driver /driver:"C:\Program Files\VMware\VMware Tools\Drivers\vmxnet3
+```
+
 
 I could see my newer driver installed alongside the existing driver:  
 <span style="font-family: Courier New, Courier, monospace;"><b>Published Name : oem57.inf</b></span>  
@@ -103,7 +131,11 @@ I could see my newer driver installed alongside the existing driver:
 
 Then unmount the vDisk:
 
-<pre class="lang:default decode:true ">C:\Users\svc_ctxinstall>"C:\Program Files\Citrix\Provisioning Services\CVhdMount.exe" -u 1</pre>
+
+```shell
+C:\Users\svc_ctxinstall>"C:\Program Files\Citrix\Provisioning Services\CVhdMount.exe" -u 
+```
+
 
 I then set the vDisk to maintenance mode, set my PVS target device as maintenance and booted it up.  When I checked device manager I saw that the driver version was still 1.2.24.0
 

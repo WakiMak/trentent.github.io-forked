@@ -24,7 +24,8 @@ These are two scripts we use to remove nonpresent hardware from device manager. 
 
 1\_pre-get\_partition\_and\_netinfo.cmd
 
-<pre class="lang:batch decode:true ">@echo off
+```shell
+@echo off
 CLS
 set _base=%~dp0
 set _scriptname=%~n0@echo off
@@ -39,11 +40,14 @@ if not exist "%adminfold%" (
     )
 @echo list volume | diskpart > "%partinfo%"
 netsh interface ip dump > "%netinfo%"
-ipconfig /all > "%netinfo%"</pre>
+ipconfig /all > "%netinfo%
+```
+
 
 2\_post-remove\_nonpresent\_hardware\_v33.cmd
 
-<pre class="lang:batch decode:true ">@echo off
+```shell
+@echo off
 CLS
 set _ver=Version 3.3 (April 2011)
 REM Remove non present hardware in machines
@@ -190,7 +194,9 @@ sleep 5
 goto :END
  
  
-:END</pre>
+:EN
+```
+
 
 &nbsp;
 

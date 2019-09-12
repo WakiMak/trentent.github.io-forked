@@ -27,13 +27,17 @@ Occasionally, we have Citrix servers that 'die' in a peculiar way.  What happens
 
 This is frustrating because the services appear to be operating so the Citrix server will say, "hey, I'm working!  I can take sessions!"  And usually these servers won't have any sessions because logons actually fail so their "& Server Load" is low, so its priority for sessions to be directed to it is higher!  So how do we detect these servers with these issues?  Unfortunately, I haven't seen any events in the Event Viewer or anything that stands out to search and find these troublesome servers.  Using ControlUp, sometimes it's obvious because that troublesome server will have a much lower session count than other servers or something else is at fault and triggers the 'Stress Level' to go critical.  But these flags don't usually exist if the problem has just occurred, they usually are more visible after time has passed.
 
-Our helpdesk asked if there was a way they could test servers to help pinpoint a troublesome one.  I came up with a "Script-based Action" that targets a specific Citrix server and lists all published applications on that server.  You then select the application and it generates a ICA file and tries to launch it.  You need to have permission to the application on Citrix and Powershell remoting enabled on the & servers/ZDC's .  So if your a Citrix admin and PS Remoting is enabled this script will work out of the box.
+Our helpdesk asked if there was a way they could test servers to help pinpoint a troublesome one.  I came up with a "Script-based Action" that targets a specific Citrix server and lists all published applications on that server.  You then select the application and it generates a ICA file and tries to launch it.  You need to have permission to the application on Citrix and Powershell remoting enabled on The XenApp Servers/ZDC's .  So if your a Citrix admin and PS Remoting is enabled this script will work out of the box.
 
-However, I tried to make the script dynamic so you could query the & servers from a standalone server without installing Citrix Powershell SDK locally.  To do this I use PowerShell remoting so you need to have [PowerShell remoting enabled](https://technet.microsoft.com/en-us/library/hh849694.aspx) on your Citrix servers in your environment.  Secondly, if you have 'lower' privilege users you need to grant them the ability to connect to the servers via PowerShell remoting (by default only Administrators have access).  [To grant them access you need to do the following](https://blogs.msdn.microsoft.com/powershell/2009/11/22/you-dont-have-to-be-an-administrator-to-run-remote-powershell-commands/):
+However, I tried to make the script dynamic so you could query The XenApp Servers from a standalone server without installing Citrix Powershell SDK locally.  To do this I use PowerShell remoting so you need to have [PowerShell remoting enabled](https://technet.microsoft.com/en-us/library/hh849694.aspx) on your Citrix servers in your environment.  Secondly, if you have 'lower' privilege users you need to grant them the ability to connect to the servers via PowerShell remoting (by default only Administrators have access).  [To grant them access you need to do the following](https://blogs.msdn.microsoft.com/powershell/2009/11/22/you-dont-have-to-be-an-administrator-to-run-remote-powershell-commands/):
 
-<pre class="lang:ps decode:true">Set-PSSessionConfiguration -Name Microsoft.PowerShell32 -showSecurityDescriptorUI -Confirm:$false
+
+```powershell
+Set-PSSessionConfiguration -Name Microsoft.PowerShell32 -showSecurityDescriptorUI -Confirm:$false
 Set-PSSessionConfiguration -Name Microsoft.PowerShell -showSecurityDescriptorUI -Confirm:$false
-Restart-service -Name "WinRM"</pre>
+Restart-service -Name "WinRM
+```
+
 
 <img class="aligncenter size-large wp-image-1628" src="/wp-content/uploads/2016/08/powershell-perms.png" alt="powershell-perms" width="889" height="167" srcset="/wp-content/uploads/2016/08/powershell-perms.png 889w, /wp-content/uploads/2016/08/powershell-perms-300x56.png 300w, /wp-content/uploads/2016/08/powershell-perms-768x144.png 768w" sizes="(max-width: 889px) 100vw, 889px" /> 
 
@@ -55,16 +59,18 @@ So what does this look like?
 
 And the script:
 
-<pre class="lang:ps decode:true"><# 
+
+```powershell
+<# 
 .SYNOPSIS
- Connects to Citrix & 6.5 server and finds all applications published for that server.
+ Connects to Citrix XenApp 6.5 server and finds all applications published for that server.
  The script then displays a GUI with the list and presents you a choice to launch your application.
- Requires you to have rights to query & for the published applications list, zones and
+ Requires you to have rights to query XenApp for the published applications list, zones and
  you must have rights to launch the application.
 .PARAMETER serverNameToFind
  The name of the server you selected.
 .UPDATED 2016-08-27 - Allowed for caching of multiple different farms
-                    - Tested with & 5.0 successfully with & Commands CTP4 and PSRemoting enabled on 2003.
+                    - Tested with XenApp 5.0 successfully with XenApp Commands CTP4 and PSRemoting enabled on 2003.
 #>
 
 #grab the server we are looking for from the powershell arguments
@@ -406,7 +412,7 @@ try {
  Write-Error "Unable to launch ICA file."
  Exit 1
 }
-</pre>
+```
 
 &nbsp;
 

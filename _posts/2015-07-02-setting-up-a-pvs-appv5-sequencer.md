@@ -82,7 +82,7 @@ This turns the VM to a 'persistent' state for this duration. &nbsp;Once the sequ
 
 As per my previous topic, I believe you should try and minimize the visual C++ runtimes that are different from your sequencer to your VDI/& server boxes. &nbsp;If possible, make them identical. &nbsp;This prevents AppV5 from usurping installed versions of this runtimes when pushed to your VDI/& servers. &nbsp;They may still get usurped if an application has a different version installed then what you have on your box, but I strongly believe in minimizing it if possible. &nbsp;There may also be a (small) benefit by speeding up your application first launch experience by removing some minor registry staging.
 
-Here is what I have on my sequencer and a clipping of some of the software we run on our & servers:
+Here is what I have on my sequencer and a clipping of some of the software we run on our XenApp servers:
 
 <table align="center" cellpadding="0" cellspacing="0" style="margin-left: auto; margin-right: auto; text-align: center;">
   <tr>
@@ -109,7 +109,7 @@ Here is what I have on my sequencer and a clipping of some of the software we ru
   
   <tr>
     <td style="text-align: center;">
-      A small clipping of software on the & servers
+      A small clipping of software on The XenApp Servers
     </td>
   </tr>
 </table>

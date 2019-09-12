@@ -23,14 +23,22 @@ tags:
 ---
 We are looking to utilize AppV 5's shared content store and one of the things I was interested in was knowing what kind of overhead network performance may vs. local disk.  What I have is a physical server with 3x300GB 10,000 RPM SAS drives in a RAID-5 vs. a CIFS share on SSD.  The catch about the CIFS share is it is 300 kilometers (200 miles) away in another city.  I used this share as I don't have another share local to the physical box and this brings the performance of the share down, but it's still faster than the disk.  The IOMETER readings for the Shared Content Store and the local disk hosting the PackageInstallationRoot are:
 
-<pre class="lang:default decode:true ">Local Disk (D:)
+
+```plaintext
+Local Disk (D:)
 IOPS     MB/s  Avg IO/s  Max IO latency  %CPU
-1324.44  5.43  24.123    451.5146        0.50%</pre>
+1324.44  5.43  24.123    451.5146        0.50
+```
+
 
 &nbsp;
 
-<pre class="lang:default decode:true ">CIFS Share
-2803.2  11.48  11.41     4878.02         3.96%</pre>
+
+```plaintext
+CIFS Share
+2803.2  11.48  11.41     4878.02         3.96
+```
+
 
 IOMeter settings was 100% read with 4k transfer sizes
 
@@ -58,7 +66,9 @@ Again, the SCS has a bigger range but again pulls ahead of the local disk numero
 
 A curious thing I found was that after the 14th run in the loop the times improved greatly:
 
-<pre class="lang:default decode:true ">Disk Start Finish Delta
+
+```plaintext
+Disk Start Finish Delta
 Local D 15:58.0 16:10.7 00:12.7
 Local D 16:10.9 16:17.1 00:06.2
 Local D 16:17.2 16:23.4 00:06.3
@@ -88,6 +98,8 @@ Local D 18:14.7 18:18.2 00:03.5
 Local D 18:18.3 18:22.1 00:03.8
 Local D 18:22.1 18:25.7 00:03.6
 Local D 18:25.7 18:29.3 00:03.6
-Local D 18:29.4 18:33.0 00:03.7</pre>
+Local D 18:29.4 18:33.0 00:03.
+```
+
 
 I'm not sure if that's the application or AppV has a caching structure but I'm leading towards AppV/Windows doing something with the file cache.  I'm unsure how to prove this out.

@@ -30,12 +30,14 @@ I'm not sure why MS doesn't allow this to work with their reg.exe program. On mo
   </div>
   
   <div>
-    <pre class="lang:batch decode:true ">for /f %%A IN ('type domain-list.txt') DO (
+```shell
+for /f %%A IN ('type domain-list.txt') DO (
 ECHO %%A >> list1.txt
 reg query "\\%%A\HKU" > ".\temp.txt"
 findstr /R /C:"HKEY_USERS\\S-1-5-21.*[0-9]$" ".\temp.txt" > ".\temp2.txt"
 FOR /F %%Z IN ('TYPE .\temp2.txt') DO reg query "\\%%A\%%Z\Software\Unicus Medical Systems" /s /v ReportPrinterName | findstr /R /C:"ReportPrinterName" >> list1.txt
-)</pre>
+)
+```
   </div>
 </div>
 

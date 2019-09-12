@@ -22,7 +22,8 @@ tags:
 ---
 I have an issue where I need to ensure I don't exceed a certain number of characters in a script. Specifically, I cannot exceed 64 characters while making a group through script in AD. To do this I came up with the following:
 
-<pre class="lang:batch decode:true">ECHO OFF
+```shell
+ECHO OFF
 :Set some variables, the string variable, a second string variable and our starting count.
 set str=\\fileservertestserver\accounting\Budgets\Budgets 2012\2012 Budget GA Loads
 set str2=%str%
@@ -51,7 +52,8 @@ goto :loop
 :exceedcharacterquota
 set string-part-one=!str2:~0,25!
 set string-part-two=!str2:~-25!
-echo !string-part-one!...!string-part-two!</pre>
+echo !string-part-one!...!string-part-two!
+```
 
 &nbsp;
 

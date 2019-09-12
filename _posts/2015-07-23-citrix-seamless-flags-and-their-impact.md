@@ -209,7 +209,7 @@ Examining what was utilizing the CPU we found the process 'winlogon.exe' was con
           </div>
           
           <div style="min-height: 14px;">
-            So this poses a question of what *should* the values be? &nbsp;Citrix Adaptive Display technology has a maximum frame rate of 30 for & 6.5 and a maximum of 60 for & 7+. &nbsp;Potentially, I think to achieve these frame rates a value of 16 for XA7 or 33 for XA65 could be set. &nbsp;If the FPS is set to a lower maximum, it would probably make more sense to do the math for that maximum FPS?
+            So this poses a question of what *should* the values be? &nbsp;Citrix Adaptive Display technology has a maximum frame rate of 30 for XenApp 6.5 and a maximum of 60 for XenApp 7+. &nbsp;Potentially, I think to achieve these frame rates a value of 16 for XA7 or 33 for XA65 could be set. &nbsp;If the FPS is set to a lower maximum, it would probably make more sense to do the math for that maximum FPS?
           </div>
           
           <div style="min-height: 14px;">

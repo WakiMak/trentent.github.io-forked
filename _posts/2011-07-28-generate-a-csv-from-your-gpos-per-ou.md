@@ -34,7 +34,8 @@ If you look closely, you can see that some sites are missing some GPO's, some ha
 
 Since the structure has a nice, predictable "end" OU (eg, Laptops, Desktops, Users) I could script for that keyword:
 
-> <pre class="lang:batch decode:true ">:Lets grab all the OU's
+```powershell
+:Lets grab all the OU's
 cscript "%programfiles%\gpmc\scripts\dumpsominfo.wsf" "Desktops" /showinheritedlinks > desktop-gpo-links.txt
 
 :now we're going to parse out all the GPO's
@@ -82,11 +83,12 @@ sed.exe -i "s/,DC/;OU/g" desktop-gpos.csv
 sed -i -r "s/Path.+Desktops/Desktops/g" desktop-gpos.csv
 
 del sed* /q
-</pre>
+```
 
 This generates the following file:
 
-<pre class="lang:default decode:true ">Site ,Windows Update Policy - Workstations,Fabrikcom Workstation Policy,Local Administrator Account - Workstations,Fabrikcom Workstation Policy V2,Fabrikcom IE 7,Windows - Configure Kerberos to use TCP instead of UDP,Default Domain Policy,DisableAutoArchiveOutlook,Fabrikcom Internal Wireless,General Desktop Policy,[Unknown],PowerSchemeOptions,Fabrikcom IT User Policy,GPO_ORG_Outlook Cache Mode Settings
+```shell
+Site ,Windows Update Policy - Workstations,Fabrikcom Workstation Policy,Local Administrator Account - Workstations,Fabrikcom Workstation Policy V2,Fabrikcom IE 7,Windows - Configure Kerberos to use TCP instead of UDP,Default Domain Policy,DisableAutoArchiveOutlook,Fabrikcom Internal Wireless,General Desktop Policy,[Unknown],PowerSchemeOptions,Fabrikcom IT User Policy,GPO_ORG_Outlook Cache Mode Settings
 Desktops;OU=New Town;OU=BigCompanyA;OU=fabrikcom;OU=com,x,x,x,x,,x,x,x,x,,x,,,
 Desktops;OU=SanFrancisco;OU=fabrikcom;OU=com,x,x,x,x,,x,x,x,x,,x,,,
 Desktops;OU=BigCompanyC;OU=fabrikcom;OU=com,x,x,x,x,,x,x,x,x,,x,,,
@@ -109,7 +111,8 @@ Desktops;OU=BigCompanyB-Richmond;OU=BigCompanyB;OU=fabrikcom;OU=com,x,x,x,x,,x,x
 Desktops;OU=BigCompanyB-Kelowna;OU=BigCompanyB;OU=fabrikcom;OU=com,x,x,x,x,,x,x,x,x,,x,,,
 Desktops;OU=BigCompanyB-Edmonton;OU=BigCompanyB;OU=fabrikcom;OU=com,x,x,x,x,,x,x,x,x,,x,,,
 Desktops;OU=BigCompanyB-Hamilton;OU=BigCompanyB;OU=fabrikcom;OU=com,x,x,x,x,,x,x,x,x,,x,,,
-Desktops;OU=ITGroup;OU=fabrikcom;OU=com,x,x,x,x,,x,x,x,x,,x,,,</pre>
+Desktops;OU=ITGroup;OU=fabrikcom;OU=com,x,x,x,x,,x,x,x,x,,x,,,
+```
 
 Which looks like this when you put it in Excel:  
 [<img id="BLOGGER_PHOTO_ID_5634426101122710546" style="display: block; margin: 0px auto 10px; text-align: center; cursor: hand; width: 400px; height: 152px;" src="http://2.bp.blogspot.com/-Q9lN76kofAY/TjGAr76bvBI/AAAAAAAAAHE/hRovkGJ-M7U/s400/finalresult.GIF" alt="" border="0" />](http://2.bp.blogspot.com/-Q9lN76kofAY/TjGAr76bvBI/AAAAAAAAAHE/hRovkGJ-M7U/s1600/finalresult.GIF)

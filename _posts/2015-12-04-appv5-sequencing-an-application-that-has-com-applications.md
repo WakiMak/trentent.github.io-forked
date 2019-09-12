@@ -150,7 +150,7 @@ AppV has a few weaknesses, one of them is Com+ Objects.  It doesn't like Com+ Ob
 </div>
 
 <div>
-  To ensure they work, I took them to our & Test server and installed them.
+  To ensure they work, I took them to our XenApp Test server and installed them.
 </div>
 
 <div>
@@ -191,7 +191,7 @@ AppV has a few weaknesses, one of them is Com+ Objects.  It doesn't like Com+ Ob
 </div>
 
 <div style="clear: both; text-align: left;">
-  I can see under the 'Identity' tab that it is configured for 'This user:'.  I then checked the MSI install on the & Test server and looked at the Identity tab:
+  I can see under the 'Identity' tab that it is configured for 'This user:'.  I then checked the MSI install on the XenApp Test server and looked at the Identity tab:
 </div>
 
 <div style="clear: both; text-align: left;">
@@ -210,7 +210,9 @@ AppV has a few weaknesses, one of them is Com+ Objects.  It doesn't like Com+ Ob
   It appears it defaults to 'System Account' even though I selected 'Export user identities with roles'.  To change the user account silently, I used this script supplied by the vendor (as a encrypted vbe):
 </div>
 
-<pre class="lang:vb decode:true ">'Setup variables
+
+```vb
+'Setup variables
 Const ApplicationName = "SFSQL"
 Const AccountName = "HEALTHY\SVC_SharpFocus"
  
@@ -236,7 +238,9 @@ For each app in apps
     ' Escape the If statment
     End If
 ' Progress the application loop
-Next</pre>
+Nex
+```
+
 
 <div style="clear: both; text-align: left;">
 </div>
@@ -287,7 +291,8 @@ Next</pre>
 <div style="clear: both; text-align: left;">
 </div>
 
-<pre class="lang:batch decode:true ">:: ===========================================================================================================
+```shell
+:: ===========================================================================================================
 ::
 :: Created by:  Trentent Tye
 ::   Intel Server Team
@@ -331,7 +336,8 @@ if /I  [%1] EQU [A] (
 if /I [%1] EQU [R] (
   MsiExec.exe /X{61790351-7E04-4A76-88EC-AE93BE6D944D} /qb
   MsiExec.exe /X{66F3529A-9D0A-4187-A479-4791448CFE48} /qb
-)</pre>
+)
+```
 
 <div style="clear: both; text-align: left;">
 </div>
@@ -347,7 +353,8 @@ if /I [%1] EQU [R] (
   I selected a batch file I created for the install (per the vendor's initial instructions):
 </div>
 
-<pre class="lang:batch decode:true ">:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+```shell
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 ::  
 ::  SharpFocus Install Sequence by Trentent Tye
 ::  Dec 4, 2015
@@ -407,7 +414,8 @@ rmdir /s /q "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Healthline Sys
 rmdir /s /q "%userprofile%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Healthline Systems"
  
 pause
-exit</pre>
+exit
+```
 
 <div>
 </div>
@@ -424,7 +432,7 @@ exit</pre>
 </div>
 
 <div style="clear: both; text-align: left;">
-  Once the install completed I saved my package and took it to my & Test server and published the application and ran it.
+  Once the install completed I saved my package and took it to my XenApp Test server and published the application and ran it.
 </div>
 
 <div style="clear: both; text-align: left;">
@@ -563,7 +571,8 @@ exit</pre>
   Success!  The login screen.  This is as far as I can take this app until I get credentials or a user to login and try testing for me.  So, for now, I can create a preflight-script to setup some prerequisites when the application is published.  I modified my preflight script to include the two registry values being updated:
 </div>
 
-<pre class="lang:batch decode:true ">:: ===========================================================================================================
+```shell
+:: ===========================================================================================================
 ::
 :: Created by:  Trentent Tye
 ::   Intel Server Team
@@ -613,7 +622,8 @@ if /I  [%1] EQU [A] (
 if /I [%1] EQU [R] (
   MsiExec.exe /X{61790351-7E04-4A76-88EC-AE93BE6D944D} /qb
   MsiExec.exe /X{66F3529A-9D0A-4187-A479-4791448CFE48} /qb
-)</pre>
+)
+```
 
 <div style="text-align: left;">
 </div>
@@ -623,7 +633,9 @@ if /I [%1] EQU [R] (
     Then I updated the Deployment_Config.xml file for this application:
   </p>
   
-  <pre class="lang:default decode:true "><machinescripts>
+  
+```xml
+<machinescripts>
   <addpackage>
     <path>"\\healthy.bewell.ca\apps\AppV\PortableApps\SharpFocus_Prerequisites\Install_SF_Prerequites.cmd"</Path>
     <arguments>A</Arguments>
@@ -634,7 +646,9 @@ if /I [%1] EQU [R] (
     <arguments>R</Arguments>
     <wait RollbackOnError="false" Timeout="60"/>
   </RemovePackage>
-</MachineScripts></pre>
+</MachineScripts
+```
+
   
   <p>
     Lastly, I logged onto a new, fresh, system and manually tested my XML file by publishing from the command line:

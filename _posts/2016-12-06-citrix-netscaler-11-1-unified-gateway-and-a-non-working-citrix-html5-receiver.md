@@ -21,9 +21,9 @@ We setup a Citrix Unified Gateway for a proof of concept and were having an issu
 > 
 > **Connections via NetScaler Gateway:**
 > 
-> ...When a gateway is involved, the connections are similar in all Receivers. Here, Gateway acts as <span style="text-decoration: underline;"><strong>WebSocket proxy</strong></span> and in-turn **opens ICA/CGP/SSL _<span style="text-decoration: underline;">native</span>_ socket connections** to backend & and XenDesktop. ...
+> ...When a gateway is involved, the connections are similar in all Receivers. Here, Gateway acts as <span style="text-decoration: underline;"><strong>WebSocket proxy</strong></span> and in-turn **opens ICA/CGP/SSL _<span style="text-decoration: underline;">native</span>_ socket connections** to backend XenApp and XenDesktop. ...
 > 
-> ...So using a NetScaler Gateway would help here for ease of deployment. <span style="text-decoration: underline;"><strong>Connection to gateway is SSL/TLS</strong></span> and **gateway to &/XenDesktop is <span style="text-decoration: underline;">ICA/CGP</span>**....
+> ...So using a NetScaler Gateway would help here for ease of deployment. <span style="text-decoration: underline;"><strong>Connection to gateway is SSL/TLS</strong></span> and **gateway to XenApp/XenDesktop is <span style="text-decoration: underline;">ICA/CGP</span>**....
 
 And [additional documentation here](https://docs.citrix.com/en-us/receiver/html5/2-2/configuring.html).
 
@@ -46,7 +46,7 @@ And then we tried launching our application:
 
 <img class="aligncenter size-full wp-image-1805" src="/wp-content/uploads/2016/12/cannot_connect_to_server.jpg" alt="" width="471" height="262" srcset="/wp-content/uploads/2016/12/cannot_connect_to_server.jpg 471w, /wp-content/uploads/2016/12/cannot_connect_to_server-300x167.jpg 300w" sizes="(max-width: 471px) 100vw, 471px" /> 
 
-We started our investigation.  The first thing we did was test to see if HTML5 Receiver works at all.  We configured and enabled websockets on our & servers and then logged into the Storefront server directly, and internally.  We were able to launch applications without issue.
+We started our investigation.  The first thing we did was test to see if HTML5 Receiver works at all.  We configured and enabled websockets on our XenApp servers and then logged into the Storefront server directly, and internally.  We were able to launch applications without issue.
 
 The second thing we did was [enable logging for HTML5 receiver](https://docs.citrix.com/en-us/receiver/html5/2-0/user-experience.html):
 
@@ -87,7 +87,9 @@ The second thing we did was [enable logging for HTML5 receiver](https://docs.cit
 
 This was the log file it generated:
 
-<pre class="lang:default decode:true">start Session
+
+```plaintext
+start Session
 SESSION:|:BROWSERINFO:|:navigator =Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.87 Safari/537.36
 SESSION:|:BROWSERINFO:|:os =WINDOWS
 SESSION:|:BROWSERINFO:|:browser =CHROME;version=54
@@ -124,7 +126,7 @@ INIT :|: CONNECTION :|: WEB SOCKET :|: INFO :|: Current Protocol Index is : 1
 INIT :|: CONNECTION :|: WEB SOCKET :|: INFO :|: websocket-url=wss://netscalergateway.testurl.com:443
 INIT :|: CONNECTION :|: WEB SOCKET :|: INFO :|: Current Protocol Index is : 2
 SESSION:|:ICA:|:TRANSPORT:|:DRIVER:|:close with code=1006
-</pre>
+```
 
 The "Close with code=1006" seemed to imply it was a "websocket" issue from google searches.
 
@@ -134,9 +136,11 @@ The "Close with code=1006" seemed to imply it was a "websocket" issue from googl
 
 The last few events prior to the error are "websocket" doing...  something.
 
-I proceeded to spin up a home lab with & and a Netscaler configured for HTML5 Receiver and tried connecting.  It worked flawlessly via the Netscaler.  I enabled logging and took another look:
+I proceeded to spin up a home lab with XenApp and a Netscaler configured for HTML5 Receiver and tried connecting.  It worked flawlessly via the Netscaler.  I enabled logging and took another look:
 
-<pre class="lang:default decode:true ">start Session
+
+```plaintext
+start Session
 SESSION:|:BROWSERINFO:|:navigator =Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; .NET4.0C; .NET4.0E; InfoPath.3; rv:11.0) like Gecko
 SESSION:|:BROWSERINFO:|:os =WINDOWS
 SESSION:|:BROWSERINFO:|:browser =MSIE;version=11
@@ -228,7 +232,7 @@ SESSION:|:ICA:|:TIMEZONE:|Windows OS EN returning timezone Mountain Standard Tim
 SESSION:|:ICA:|:TIMEZONE:|Windows OS EN returning timezone Mountain Standard Time
 SESSION:|:ICA:|:TIMEZONE:|:time zone name: Mountain Standard Time bias 420 dstOffset 60
 SESSION:|:ICA:|:TIMEZONE:|Windows OS EN returning timezone Mountain Standard Time
-</pre>
+```
 
 So there is a lot of differences but we focus on the point of failure in our enterprise netscaler we see it seems to retry or try different indexes (3 in total, 0, 1 and 2).
 
@@ -236,7 +240,7 @@ So there is a lot of evidence that websockets seem to be culprit.  We have tried
 
 I opened up a call to Citrix.
 
-It was a fairly frustrating experience.  I had tech's ask me to go to "Program Files\Citrix\Reciever" and get the receiver version (hint, hint, this does not exist with HTML5).  I captured packets of the failure "in motion" and they told me, "it's not connecting to your & server".  - Yup.  That's the Problem.
+It was a fairly frustrating experience.  I had tech's ask me to go to "Program Files\Citrix\Reciever" and get the receiver version (hint, hint, this does not exist with HTML5).  I captured packets of the failure "in motion" and they told me, "it's not connecting to your XenApp server".  - Yup.  That's the Problem.
 
 It seems that HTML5 is either so new (it's not now), so simple (it's not really), or tech's are just poorly trained.  I reiterated to them "why does it make 3 websocket connections on the 'bad' netscaler? Why does the 'good' netscaler appear to connect the first time without issue?"  I felt the tech's ignore and beat around the bush regarding websockets and more focus put on the "Storefront console".  Storefront itself was NOT logging ANYTHING to the event logs.  Apparently this is weird for a storefront failure.  I suspected Storefront was operating correctly and I was getting frustrated we weren't focusing on what I suspected was the problem (websockets).  So I put the case on hold so I could focus on doing the troubleshooting myself instead of going around in circles on setting HTML5 to "always use" or "use only when native reciever is not detected".
 
@@ -308,8 +312,8 @@ Look!  A handshark response!
 
 So, to review what we learned:
 
-  1. Connections via Netscaler to HTML5 reciever do NOT <span style="text-decoration: underline;">require</span> (but is possible) a SSL connection on each target & device
-  2. Connection via Netscaler work over standard port (2598/1494) and do not require any special configuration on your & server.
+  1. Connections via Netscaler to HTML5 reciever do NOT <span style="text-decoration: underline;">require</span> (but is possible) a SSL connection on each target XenApp device
+  2. Connection via Netscaler work over standard port (2598/1494) and do not require any special configuration on your XenApp server.
   3. You can use 'http://www.websocket.org/echo.html' to test your Netscaler to ensure websockets are open and working.
   4. Fiddler can tell you verbose information on your websocket connection and their contents.
   5. The web browser's Javascript console is perfect to look at verbose messages in HTML5.

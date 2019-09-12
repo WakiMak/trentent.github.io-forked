@@ -24,8 +24,12 @@ tags:
 ---
 The following command will time how long a WMI filter call will take to execute on your server/PC.
 
-<pre class="lang:ps decode:true ">$query = "Select * from Win32_Processor where AddressWidth = '32'"
-Measure-Command { Get-WmiObject -Query $query }</pre>
+
+```powershell
+$query = "Select * from Win32_Processor where AddressWidth = '32'"
+Measure-Command { Get-WmiObject -Query $query 
+```
+
 
 &nbsp;
 

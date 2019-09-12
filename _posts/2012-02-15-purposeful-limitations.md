@@ -29,18 +29,25 @@ While I was working on this I ran into some some weird issues while working with
 
 It turns out if you burn your 3 activations VMWare cannot customize the OS anymore from VMWare. BUT(!) there is a dirty little trick that works for Server 2008 R2 (only one I've tested anyhow) that can allow you to work around the issue. The issue is VMWare's OS Customizations does a Generalize pass using Sysprep. If you exceed the 3 activations, sysprep will fail because it will notice this at the Generalize pass. The solution that I've read is to add this line to the sysprep.xml file:
 
-<pre class="lang:default decode:true "><settings pass="generalize">
+
+```xml
+<settings pass="generalize">
         <component name="Microsoft-Windows-Security-Licensing-SLC" processorArchitecture="x86" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
             <SkipRearm>1</SkipRearm>
         </component>
-    </settings></pre>
+    </settings
+```
+
 
 http://support.microsoft.com/kb/929828
 
 Unfortunately, VMWare does not appear to have a way to allow you to add the SkipRearm to the XML that it generates through the OS Customization GUI. But you can add a couple of registry keys that appear to have the same effect. They are:
 
-> <pre class="lang:batch decode:true ">REG ADD "HKEY_LOCAL_MACHINE\SYSTEM\Setup\Status\SysprepStatus" /v "GeneralizationState" /t REG_DWORD /d 0x7 /f"
-REG ADD "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\SoftwareProtectionPlatform" /v "SkipRearm" /t REG_DWORD /d 0x1 /f"</pre>
+```shell
+REG ADD "HKEY_LOCAL_MACHINE\SYSTEM\Setup\Status\SysprepStatus" /v "GeneralizationState" /t REG_DWORD /d 0x7 /f"
+REG ADD "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\SoftwareProtectionPlatform" /v "SkipRearm" /t REG_DWORD /d 0x1 /f
+```
+
 
 These two keys will signal to sysprep that this image can be generalized even though it has exceeded its activation count.
 
@@ -54,7 +61,8 @@ We do NOT have a golden image template of our Citrix environment. This is becaus
 
 The issues we encounter is some of our application installs are huge, multi-step non-automated processes with large configuration tweaks post install. Once we get a solid install on one of the production servers our perferred method of redployment (because I've automated this process thus eliminating possible failure points) will be to template and redeploy with VMWare. This is the script I've written to accomplish this:
 
-> <pre class="lang:ps decode:true  ">function Clone-List{
+```powershell
+function Clone-List{
 
 Param(
 [CmdletBinding()]
@@ -120,7 +128,7 @@ REG ADD "\\$name\HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" /v 
 REG ADD "\\$name\HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" /v "AutoAdminLogon" /t REG_DWORD /d 0x5 /F
 REG ADD "\\$name\HKLM\Software\Microsoft\Windows NT\CurrentVersion\Winlogon" /v "AutoLogonCount" /t REG_DWORD /d 0x1 /F
 
-Write-Host "Preparing & for Cloning..."
+Write-Host "Preparing XenApp for Cloning..."
 psexec \\$name "C:\Program Files (x86)\Citrix\&\ServerConfig\&ConfigConsole.exe" /ExecutionMode:ImagePrep /PrepMsmq:True
 
 Write-Host "Cloning"
@@ -166,11 +174,15 @@ get-VM CDCVXAP03P | get-networkadapter | set-networkadapter -startconnected:$tru
 }
 }
 }
-</pre>
+```
 
 I've shamelessly stolen and modified this script from elsewhere. To execute this script, copy and paste it in a PowerGUI prompt then run:
 
-> <pre class="lang:ps decode:true ">get-vm CDCVXAP02P | Clone-List</pre>
+> 
+```powershell
+get-vm CDCVXAP02P | Clone-Lis
+```
+
 
 It will execute the following:  
 1) Pull the following parameters from the target VM to reclone:  

@@ -46,7 +46,9 @@ So what does this look like (click to blow it up)?
 
 Starting with packet #32 we see the initial POST request for a list of applications.
 
-<pre class="lang:default decode:true "><?xml version="1.0" encoding="UTF-8"?>
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE NFuseProtocol SYSTEM "NFuse.dtd">
 	<NFuseProtocol version="5.4">
 		<RequestAppData>
@@ -63,13 +65,16 @@ Starting with packet #32 we see the initial POST request for a list of applicati
 			<ClientName>WSCTXAPP301T</ClientName>
 			<ClientAddress addresstype="dot">10.132.169.130</ClientAddress>
 		</RequestAppData>
-	</NFuseProtocol></pre>
+	</NFuseProtocol>
+```
+
 
 Steps 5, 6 and 7 are packets 36-86.  LSASS goes back to AD to grab the SID's.
 
 Step 7.5: It appears that the first time you enumerate applications on a broker that information is queried to the SQL database and stored in the local host cache.  This would be packets 87-94.  Additional queries done do not show this traffic.
 
-<pre class="lang:default decode:true">R JoinIndexSearch2 & & & 4 0 & imalock 8nodeid & uidhost & uidtype & uidid & contextid rdn " KEYTABLE data 
+```sql
+R JoinIndexSearch2 & & & 4 0 & imalock 8nodeid & uidhost & uidtype & uidid & contextid rdn " KEYTABLE data 
  | 
  &7cb1-0192-00000a90 dummy textptr dummyTS 
  1 PolicyObjectClass 9 ATTRIBUTE-uid uidvalue 
@@ -84,7 +89,9 @@ AllowAllClientIps uint8 =
 FilterByClientName uint8 ? 
 AllowAllClientNames uint8 G 
 FilterByAccessCondition uint8 ? 
-AccessConditionFlag uint8 [ WorkerGroupPreferenceAndFailover uint32 A StreamedAppDelivery uint32 _ StreamedAppDelivery!DeliveryOption uint32 { WorkerGroupPreferenceAndFailover!WorkerGroupUidList css  * 1=7CB1-0350-00000A8C * 2=7CB1-0350-00000A8E C AccessSessionConditions css 1 DeniedNameList css 3 AllowedNameList css - DeniedIpList css / AllowedIpList css ) DeniedList css + AllowedList css 0X2/NT/HEALTHY/S-1-5-21-38857442-2693285798-3636612711-15112741 0X2/NT/HEALTHY/S-1-5-21-38857442-2693285798-3636612711-15112748 0X2/NT/HEALTHY/S-1-5-21-38857442-2693285798-3636612711-15112746 0X2/NT/HEALTHY/S-1-5-21-38857442-2693285798-3636612711-15112752 y</pre>
+AccessConditionFlag uint8 [ WorkerGroupPreferenceAndFailover uint32 A StreamedAppDelivery uint32 _ StreamedAppDelivery!DeliveryOption uint32 { WorkerGroupPreferenceAndFailover!WorkerGroupUidList css  * 1=7CB1-0350-00000A8C * 2=7CB1-0350-00000A8E C AccessSessionConditions css 1 DeniedNameList css 3 AllowedNameList css - DeniedIpList css / AllowedIpList css ) DeniedList css + AllowedList css 0X2/NT/HEALTHY/S-1-5-21-38857442-2693285798-3636612711-15112741 0X2/NT/HEALTHY/S-1-5-21-38857442-2693285798-3636612711-15112748 0X2/NT/HEALTHY/S-1-5-21-38857442-2693285798-3636612711-15112746 0X2/NT/HEALTHY/S-1-5-21-38857442-2693285798-3636612711-15112752 
+```
+
 
 Lastly, step 9 is all the traffic we see after packet 95 in red; the return of the XML data.  For our setup, our XML brokers responded with the following timings:
 

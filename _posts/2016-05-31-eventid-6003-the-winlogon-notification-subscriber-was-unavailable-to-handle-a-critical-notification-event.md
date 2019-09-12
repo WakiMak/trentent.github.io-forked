@@ -13,7 +13,7 @@ tags:
   - Internet Explorer
   - Performance
 ---
-We updated one of our Citrix & servers and this message started flooding our Application event log:  
+We updated one of our Citrix XenApp servers and this message started flooding our Application event log:  
 "The winlogon notification subscriber <TrustedInstaller> was unavailable to handle a critical notification event."
 
 So what's going on here?

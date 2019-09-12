@@ -48,7 +48,8 @@ Can I make this happen?  To start I created a store with both ExplicitLogon (Use
 
 The server side script to check group membership:
 
-<pre class="lang:asp decode:true"><%
+```jsp
+<%
 // Created by:		Saman Salehian
 // Creation Date:	Dec 02, 2013
 // Modified Date:	Apr 18, 2014
@@ -81,7 +82,7 @@ string UserDomainName = UserIdentityArr[0];
 	}
 }
 %>
-</pre>
+```
 
 And the technical flow:
 
@@ -89,7 +90,9 @@ And the technical flow:
 
 And this is what the **custom/script.js** looks like when we convert the flow to reality:
 
-<pre class="lang:js decode:true">function getCookie(name) {
+
+```javascript
+function getCookie(name) {
 	var results = document.cookie.match('(^|;) ?' + name + '=([^;]*)');
 	return results ? unescape(results[2]) : null;
 }
@@ -158,7 +161,9 @@ function ajaxWrapper(options) {
 
 	options = $.extend({}, defaultOptions, options);
 	$.ajax(options);
-}</pre>
+
+```
+
 
 &nbsp;
 

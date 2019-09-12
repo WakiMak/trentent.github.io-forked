@@ -22,7 +22,7 @@ tags:
   - Group Policy
 
 ---
-We recently ran across an issue with & 6.5 where we were publishing an application that required the "Beep" but it wasn't working.  The following is the troubleshooting steps I did to enable audio to work on that application.
+We recently ran across an issue with XenApp 6.5 where we were publishing an application that required the "Beep" but it wasn't working.  The following is the troubleshooting steps I did to enable audio to work on that application.
 
 First we created a Citrix policy to enable audio.  This policy looked like so:
 
@@ -100,7 +100,7 @@ To enable or disable audio for published applications
   </p>
   
   <p>
-    To summarize the enable audio for a & application you must:<br /> 1) Enable "legacy" audio<br /> 2) Enable a Citrix policy to configure audio redirection<br /> 3) Done.
+    To summarize the enable audio for a XenApp application you must:<br /> 1) Enable "legacy" audio<br /> 2) Enable a Citrix policy to configure audio redirection<br /> 3) Done.
   </p>
 </div>
 

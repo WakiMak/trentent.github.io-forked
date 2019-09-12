@@ -20,7 +20,7 @@ categories:
 tags:
   - AppV
 ---
-AppV5 allows you to virtualize Services that run under the LocalService account.  The issue I've seen with this approach is AppV5 will load the service for a user upon <u>environment</u> launch (which is good for VDI / desktop deployments) and the service will terminate upon that AppV environment exiting.  For remote desktop / Citrix & deployments, this can be a big bother.  If the service is required for running the application the standard answer is to extract it and install it using DeploymentConfig.xml or some other on application publish.
+AppV5 allows you to virtualize Services that run under the LocalService account.  The issue I've seen with this approach is AppV5 will load the service for a user upon <u>environment</u> launch (which is good for VDI / desktop deployments) and the service will terminate upon that AppV environment exiting.  For remote desktop / Citrix XenApp deployments, this can be a big bother.  If the service is required for running the application the standard answer is to extract it and install it using DeploymentConfig.xml or some other on application publish.
 
 But what if you have a service that is NOT required to run an application, just needs to run in the background, AND can run as the LocalService?  This service would be prime for being virtualized!
 
@@ -124,7 +124,9 @@ And it worked!  It opened my appvve environment, the services started, and every
 
 So I created a exe with AutoIt, 'RunAsWait.exe'.
 
-<pre class="lang:autoit decode:true ">;~ This file is used by PVS for the auto-update feature to enable it to run under a context that is not the MACHINE context
+
+```plaintext
+;~ This file is used by PVS for the auto-update feature to enable it to run under a context that is not the MACHINE context
 ;~ By Trentent Tye May 02 2013
 ;~ The password in this plain text file has been obfuscated.  Please change it to the correct password
  
@@ -132,7 +134,9 @@ So I created a exe with AutoIt, 'RunAsWait.exe'.
  MsgBox(0x40000, 'Help', "Please execute this command with the path to a cmd or bat file." & @CRLF & "The file will execute with elevated credentials" & @CRLF & @CRLF & "eg, RunWait.exe C:\test.cmd")
   EndIf
    
-RunAsWait ( "USERNAME", "DOMAIN", "PASSWORD", 1, "cmd.exe /c " & '"'&$CmdLine[1]&'"' ,"","","")</pre>
+RunAsWait ( "USERNAME", "DOMAIN", "PASSWORD", 1, "cmd.exe /c " & '"'&$CmdLine[1]&'"' ,"","",""
+```
+
 
 <div>
 </div>
@@ -160,7 +164,8 @@ RunAsWait ( "USERNAME", "DOMAIN", "PASSWORD", 1, "cmd.exe /c " & '"'&$CmdLine[1]
 
 The CMD file looked like so:
 
-<pre class="lang:batch decode:true ">:: ===========================================================================================================
+```shell
+:: ===========================================================================================================
 ::
 :: Created by:  Trentent Tye
 ::   Intel Server Team
@@ -204,7 +209,9 @@ REM need the second check as we can't escape the brackets in the first check
 tasklist  /fi "IMAGENAME eq SystemPulseConfigEditor.exe" | findstr /i /c:"SystemPulse"
 if '%ERRORLEVEL%' EQU '1' GOTO LOOP
  
-EXIT /b 0</pre>
+EXIT /b 
+```
+
 
 With this, my service will start upon application publish.
 

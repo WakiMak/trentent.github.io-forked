@@ -32,7 +32,9 @@ To:
 
 The command to watch it is now:
 
-<pre class="lang:batch decode:true ">tail -f \\gkwngq1\c$\WINDOWS\Debug\UserMode\fdeploy.log | sed "s/\x00//g"</pre>
+```shell
+tail -f \\gkwngq1\c$\WINDOWS\Debug\UserMode\fdeploy.log | sed "s/\x00//g"
+```
 
 Cool.
 

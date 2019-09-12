@@ -23,7 +23,9 @@ We have an application (ARIA MO) that has some special requirements.  The applic
 
 Our design goals for our Citrix environment are to minimize the various PVS images we use so we use various 'layers' to allow a single master image to be able to host various unique and difficult configurations.  For this application we use AppV as our layering technology to put the application on the server, but for the printers we use a script to load them onto the server.  What we have is a print server that hosts all the printers needed by this application and we can export the printers into a file using Print Management.  Then we save that file on a network share somewhere.  When the Citrix server boots, I can take that file and manipulate its contents to change the queues to 'local' queues then import that modified file to the Citrix server.  I configured the script to take two parameters, a print file name and a server name.  I call the script with a command line like this:
 
-<pre class="lang:batch decode:true">::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+```plaintext
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 ::  
 ::  Title: Install_Print_Queues.cmd
 ::  
@@ -47,11 +49,13 @@ EVENTCREATE /ID 1 /L APPLICATION /T INFORMATION /SO "Local GP Startup Script - \
 powershell.exe -executionPolicy byPass -file "C:\PublishedApplications\AHS-PrintExportFile-Import.ps1" -serverName printServer01 -printFile "\\fileserver\ctx_apps\ARIAMO\PrintServer01.printerExport"
 EVENTCREATE /ID 1 /L APPLICATION /T INFORMATION /SO "Local GP Startup Script - \"%~nx0"\" /D "Completed importing printers from printServer01" >NUL
 EVENTCREATE /ID 1 /L APPLICATION /T INFORMATION /SO "Local GP Startup Script - \"%~nx0"\" /D "Completed Adding Printers" >NUL
-</pre>
+```
 
 The powershell command it calls is here:
 
-<pre class="lang:ps decode:true">################################################################################################
+
+```powershell
+################################################################################################
 #
 #
 # Created by:		Trentent Tye
@@ -200,7 +204,9 @@ net start cpsvc
 Write-EventLog -LogName APPLICATION -Source "Local GP Startup Script - ""$commandName'""" -EntryType Information -EventID 1 -Message ("Finished restarting print services to alphabeticalize printer list")
 
 sleep 2
-Write-EventLog -LogName APPLICATION -Source "Local GP Startup Script - ""$commandName'""" -EntryType Information -EventID 1 -Message ("Completed PrinterExport-Import script")</pre>
+Write-EventLog -LogName APPLICATION -Source "Local GP Startup Script - ""$commandName'""" -EntryType Information -EventID 1 -Message ("Completed PrinterExport-Import script"
+```
+
 
 So, what does this have to do with KB3170455?  Well, since installing KB3170455 it prevents importing printer files with print drivers embedded.  This is what it looks like with KB3170455 installed:
 

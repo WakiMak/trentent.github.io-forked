@@ -36,13 +36,14 @@ I'm attempting to deploy a virtual machine from a template but I get this error:
 
 &nbsp;
 
-<pre class="lang:default decode:true ">Error (2940)
+```shell
+Error (2940)
 VMM is unable to complete the requested file transfer. The connection to the HTTP server 2012-SCVMM.bottheory.local could not be established.
 Unknown error (0x80072ee2)
 
 Recommended Action
 Ensure that the HTTP service and/or the agent on the machine 2012-SCVMM.bottheory.local are installed and running and that a firewall is not blocking HTTP/HTTPS traffic on the configured port.
-</pre>
+```
 
 <div style="clear: both; text-align: center;">
   <span style="font-family: Courier New, Courier, monospace; font-size: x-small;"> </span>
@@ -132,11 +133,14 @@ Looking back at the SCVMM server we see that was executing some WinRM commands. 
 
 If I mount the vhd file and check out the BCD file I can see that it appears to be corrupted in that it doesn't know what the proper boot device should be.
 
-<pre class="lang:batch decode:true ">C:\Windows\system32>bcdedit /store "K:\boot\bcd" /enum all</pre>
+```shell
+C:\Windows\system32>bcdedit /store "K:\boot\bcd" /enum all
+```
 
 &nbsp;
 
-<pre class="lang:default decode:true ">Windows Boot Manager
+```shell
+Windows Boot Manager
 --------------------
 identifier              {bootmgr}
 device                  unknown
@@ -248,7 +252,8 @@ Device options
 --------------
 identifier              {7619dcc8-fafe-11d9-b411-000476eba25f}
 ramdisksdidevice        boot
-ramdisksdipath          \boot\boot.sdi</pre>
+ramdisksdipath          \boot\boot.sdi
+```
 
 It's not actually corrupted though; the reason why the devices are unknown is because bcdedit isn't finding the disk signature of the volume I mounted.  But it has the disk signature because I can boot with it without issue.
 
@@ -265,15 +270,17 @@ I then reproduced the error by rerunning the Create Virtual Machine job.
 
 DebugView gave me more information to narrow down what was happening.  It appears that the process is failing with:
 
-<pre class="lang:default decode:true ">[4276] 10B4.000C::05/31-12:52:00.894#16BcdUtil.cs(1987): bootDevice UnknownDevice
+```shell
+[4276] 10B4.000C::05/31-12:52:00.894#16BcdUtil.cs(1987): bootDevice UnknownDevice
 [4276] 10B4.000C::05/31-12:52:01.334#16MountedVhd.cs(91): MountedVhd windows volume not found
 [4276] 10B4.000C::05/31-12:52:01.342#16VMAdditions.cs(874): VMAdditions install failed at OS detection phase for vm AirVid
-[4276] 10B4.000C::05/31-12:52:01.388#16VMAdditions.cs(874): Microsoft.VirtualManager.Engine.VmOperations.MountedSystem+BootOrSystemVolumeNotFoundException: Virtual Machine Manager cannot locate the boot or system volume on virtual machine NO_PARAM. The resulting virtual machine might not start or operate properly.</pre>
+[4276] 10B4.000C::05/31-12:52:01.388#16VMAdditions.cs(874): Microsoft.VirtualManager.Engine.VmOperations.MountedSystem+BootOrSystemVolumeNotFoundException: Virtual Machine Manager cannot locate the boot or system volume on virtual machine NO_PARAM. The resulting virtual machine might not start or operate properly.
+```
 
 <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;"><br /> </span>Doing some googling on this took me to a Korean Microsoft page where the following was stated:  
 <http://social.technet.microsoft.com/Forums/ko-KR/momsmsmofko/thread/fedbc514-1fc0-4b55-979b-7d07babb074b/>
 
-<pre class="lang:default decode:true ">When creating a new VM from template, and that template contains a blank VHD or a non-Windows OS or a Windows OS that has not been generalized (i.e. the OS is not sysprepped), then the job will fail because VMM expects a VM from template to go through the sysprep customization process (hence why we ask for an OS profile). VMM will crack open the VHD and check of the OS is in a sysprep state. If not, then the job will fail. To create a proper template, you can use an existing Vm with a running Windows OS (right click on it and select New Template this will kick off sysprep in the OS and then store the VM to Library as template this removes the original VM). Or if you already have VHDs that have been sysprepped, simply import them to the Library and then when you create a new template attach that VHD instead of the blank one. Last you can create a new template that does not require a sysprepped OS by selecting Customization Not Required from the Guest OS profile dropdown:</pre>
+When creating a new VM from template, and that template contains a blank VHD or a non-Windows OS or a Windows OS that has not been generalized (i.e. the OS is not sysprepped), then the job will fail because VMM expects a VM from template to go through the sysprep customization process (hence why we ask for an OS profile). VMM will crack open the VHD and check of the OS is in a sysprep state. If not, then the job will fail. To create a proper template, you can use an existing Vm with a running Windows OS (right click on it and select New Template this will kick off sysprep in the OS and then store the VM to Library as template this removes the original VM). Or if you already have VHDs that have been sysprepped, simply import them to the Library and then when you create a new template attach that VHD instead of the blank one. Last you can create a new template that does not require a sysprepped OS by selecting Customization Not Required from the Guest OS profile dropdown:
 
 <http://blogs.technet.com/b/hectorl/archive/2008/08/21/digging-deeper-into-error-13206-virtual-machine-manager-cannot-locate-the-boot-or-system-volume-on-virtual-machine.aspx>
 
@@ -283,7 +290,8 @@ Thinking about it, I do not think my VHD was SysPrep'ed.  I find it interesting 
   <a style="margin-left: 1em; margin-right: 1em;" href="http://4.bp.blogspot.com/-j93lsMv6bJg/UakFc18B3cI/AAAAAAAAATw/KslHskWaEd8/s1600/15.png"><img src="http://4.bp.blogspot.com/-j93lsMv6bJg/UakFc18B3cI/AAAAAAAAATw/KslHskWaEd8/s320/15.png" width="320" height="243" border="0" /></a>
 </div>
 
-<pre class="">With the VM now generalized I can crack open the VHD and see what's added to the BCD to make it so special...
+```plaintext
+With the VM now generalized I can crack open the VHD and see what's added to the BCD to make it so special...
 
 C:\Users\amttye\Desktop>fc before-sysprep.txt after-sysprep.txt
 Comparing files before-sysprep.txt and AFTER-SYSPREP.TXT
@@ -376,7 +384,7 @@ path                    \boot\memtest.exe
 
 Interestinginly the differences appear to be mostly "locate=%%".  I guess this would make sense as the assumption is the BCD is being moved to a new disk with a new disk signature and so it can't lock on to the existing signature.  Some other oddities is the removal of "detecthal" and explicit declarations of debugoptionenabled and recoveryenabled.  I suspect that a generalized BCD file is portable, so I'm going to extract it from this image and inject it into my previously "failing" image.  I then edited the template and removed the old VHD and added the new one.
 
-</pre>
+```
 
 <div style="clear: both; text-align: center;">
   <a style="margin-left: 1em; margin-right: 1em;" href="http://2.bp.blogspot.com/-gJXfmbfLAIo/UakFczvKz0I/AAAAAAAAAT4/B9UHmfrKdak/s1600/16.png"><img src="http://2.bp.blogspot.com/-gJXfmbfLAIo/UakFczvKz0I/AAAAAAAAAT4/B9UHmfrKdak/s1600/16.png" border="0" /></a>
@@ -384,7 +392,8 @@ Interestinginly the differences appear to be mostly "locate=%%".  I guess this w
 
 And..........?  Lets go to DebugView:
 
-<pre class="lang:default decode:true ">[4276] 10B4.000C::05/31-13:57:40.193#16SystemInformation.cs(192): SYSTEM: :\ Version=0.0 HALType=  Memory=2MB, Procs=1 Is64s=False . OSLanguage=0
+```shell
+[4276] 10B4.000C::05/31-13:57:40.193#16SystemInformation.cs(192): SYSTEM: :\ Version=0.0 HALType=  Memory=2MB, Procs=1 Is64s=False . OSLanguage=0
 [4276] 10B4.000C::05/31-13:57:40.193#16SystemInformation.cs(970): Lookup for '\??\Volume{b42a3001-c871-11e2-93f4-0015172fc019}' in MountedDevices
 [4276] 10B4.000C::05/31-13:57:40.193#16SystemInformation.cs(764): DISK: 10, signature=a9083c0a #partitions 1
 [4276] 10B4.000C::05/31-13:57:40.194#16SystemInformation.cs(768):  PARTITION: 10.0 Bootable=True, #LDs 1
@@ -393,7 +402,8 @@ And..........?  Lets go to DebugView:
 [4276] 10B4.000C::05/31-13:57:40.194#16MountedVhd.cs(308): Bootmgr boot loader
 [4276] 10B4.000C::05/31-13:57:40.194#16MountedVhd.cs(1053): Trying to get the mounted point for volume \\?\Volume{b42a3001-c871-11e2-93f4-0015172fc019}\.
 [4276] 10B4.000C::05/31-13:57:40.196#16CommonUtils.cs(171): Fixup & Copy 'C:\Windows\TEMP\tmp2E1.tmp\boot\bcd' to C:\Users\svc_scvmm\AppData\Local\Temp\tmpA2F4.tmp
-[4276] 10B4.000C::05/31-13:57:40.196#04BitsDeployer.cs(1392): Deploy file C:\Windows\TEMP\tmp2E1.tmp\boot\bcd from s5000vxn-server.bottheory.local to C:\Users\svc_scvmm\AppData\Local\Temp\tmpA2F4.tmp on 2012-SCVMM.bottheory.local</pre>
+[4276] 10B4.000C::05/31-13:57:40.196#04BitsDeployer.cs(1392): Deploy file C:\Windows\TEMP\tmp2E1.tmp\boot\bcd from s5000vxn-server.bottheory.local to C:\Users\svc_scvmm\AppData\Local\Temp\tmpA2F4.tmp on 2012-SCVMM.bottheory.local
+```
 
 <span style="font-family: Courier New, Courier, monospace; font-size: xx-small;"><br /> </span>
 

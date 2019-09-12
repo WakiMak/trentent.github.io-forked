@@ -1,11 +1,11 @@
 ---
 id: 2647
-title: Meltdown - Performance Impact Evaluation (Citrix & 6.5)
+title: Meltdown - Performance Impact Evaluation (Citrix XenApp 6.5)
 date: 2018-01-15T15:49:41-06:00
 author: trententtye
 layout: post
 guid: http://theorypc.ca/?p=2647
-permalink: /2018/01/15/meltdown-performance-impact-evaluation-citrix-&-6-5/
+permalink: /2018/01/15/meltdown-performance-impact-evaluation-citrix-xenapp-6-5/
 image: /wp-content/uploads/2018/01/F6BF1FFB-9948-434F-8C2B-9392F496D102.png
 categories:
   - Blog
@@ -24,9 +24,9 @@ c) If your application utilizes lots of context switches
 
 Unfortunately, the environment we are operating hits all of these nails on the head.  We are using, I believe, the oldest OS that Microsoft is patching this for.  We are using older processors from 2011-2013 which do not have the PCID optimization (as reported by the [SpeculationControl](https://gallery.technet.microsoft.com/scriptcenter/Speculation-Control-e36f0050) test script) which means performance is impacted even more.
 
-I'm in a large environment where we have the ability to shuffle VM's around hosts and put VM's on specific hosts.  This will allow us to measure the impact of Meltdown in its entirety.  Our clusters are dedicated to Citrix & 6.5 servers.
+I'm in a large environment where we have the ability to shuffle VM's around hosts and put VM's on specific hosts.  This will allow us to measure the impact of Meltdown in its entirety.  Our clusters are dedicated to Citrix XenApp 6.5 servers.
 
-Looking at our cluster and all of the Citrix & VM's, we have some VM's that are 'application siloed' - that is they only host a single application and some VM's that are 'generic'.
+Looking at our cluster and all of the Citrix XenApp VM's, we have some VM's that are 'application siloed' - that is they only host a single application and some VM's that are 'generic'.
 
 In order to determine the impact I looked at our cluster, summed up the total of each type of VM and then just divided by the number of hosts.  We have 3 different geographical areas that have different VM types and user loads.  I am going to examine each of these workload types across the different geographical areas and see what are the outcomes.
 
@@ -88,15 +88,14 @@ Examining this view and the historical data presented I encountered oddities - n
 
 I believe this is also the API that ControlUp is using with these servers to report on usage.  When I was examining a single server with process explorer I noticed a \*minimum\* CPU utilization of 6%, but task manager and ControlUp would report 0% utilization at various points.  The issue is an accuracy, adding and rounding issue.  The more users on a server with more processes and those processes consuming ever so slightly CPU, the more the inaccuracy.  Example:
 
-<div id="attachment_2657" style="width: 593px" class="wp-caption aligncenter">
-  <a href="/wp-content/uploads/2018/01/Screen-Shot-2018-01-14-at-2.32.42-PM.png"><img aria-describedby="caption-attachment-2657" class="wp-image-2657 size-full" src="/wp-content/uploads/2018/01/Screen-Shot-2018-01-14-at-2.32.42-PM.png" alt="" width="583" height="1074" srcset="/wp-content/uploads/2018/01/Screen-Shot-2018-01-14-at-2.32.42-PM.png 583w, /wp-content/uploads/2018/01/Screen-Shot-2018-01-14-at-2.32.42-PM-163x300.png 163w" sizes="(max-width: 583px) 100vw, 583px" /></a></p> 
-  
+![](wp-content/uploads/2018/01/Screen-Shot-2018-01-14-at-2.32.42-PM.png)
+<div>
   <p id="caption-attachment-2657" class="wp-caption-text">
     Left, Task Manager. Right, Process Explorer
   </p>
 </div>
 
-We have servers with hundreds of users utilizing a workflow like this where they are using just a fraction of a percent of CPU resources.  Taskmanager and the like will not catch these values and round <span style="text-decoration: underline;"><strong>*down*</strong></span>.  If you have 100 users using a process that consumes 0.4% CPU then our inaccuracy is in the 40% scale!  So relying on the VM metrics of ControlUp or Windows itself is not helpful.  Unfortunately, this destroys my ability to capture information within the VM, requiring us to solely rely on the information within VMWare.  To be clear, I do _**NOT**_ believe Windows 2012 R2 and greater OS's have this discrepancy (although I have not tested) so this issue manifests itself pretty viciously in the & 6.5 -era servers.  Essentially, if Meltdown is increasing CPU times on processes by a fraction of a percent then Windows will report as if everything is ok and you will probably not actually notice or think there is an issue!
+We have servers with hundreds of users utilizing a workflow like this where they are using just a fraction of a percent of CPU resources.  Taskmanager and the like will not catch these values and round <span style="text-decoration: underline;"><strong>*down*</strong></span>.  If you have 100 users using a process that consumes 0.4% CPU then our inaccuracy is in the 40% scale!  So relying on the VM metrics of ControlUp or Windows itself is not helpful.  Unfortunately, this destroys my ability to capture information within the VM, requiring us to solely rely on the information within VMWare.  To be clear, I do _**NOT**_ believe Windows 2012 R2 and greater OS's have this discrepancy (although I have not tested) so this issue manifests itself pretty viciously in the XenApp 6.5 -era servers.  Essentially, if Meltdown is increasing CPU times on processes by a fraction of a percent then Windows will report as if everything is ok and you will probably not actually notice or think there is an issue!
 
 In order to try and determine if this impact is detectable I have two servers with the same base image, with one having the mitigation installed and other did not.  I used process explorer and "saved" the process list over the course of a few hours.  I ensured the servers had a similar amount of users using a specific application that only presented a specific workload so everything was as similar as possible.  In addition, I looked at processes that aren't configurable (or since the servers have the same base image they are configured identically).  Here were my results:
 
@@ -198,13 +197,12 @@ In each of the metrics recorded we experience a worsening experience for our use
 
 # What does this all mean?
 
-In the end, <span style="text-decoration: underline;"><strong>Meltdown</strong> </span>has a significant impact on our Citrix & 6.5 environment. The perfect storm of older CPU's, an older OS and applications that have workflows that are impacted by the patch means our environment is grossly impacted. Location A has a maximum hit (as of today) of **21%**. Location B having a spread of **12%**. I had originally predicted that Location B would have the largest impact, however the newer V2 processors may be playing a roll and the performance of the V2 processors maybe more efficient than the older 2680.
+In the end, <span style="text-decoration: underline;"><strong>Meltdown</strong> </span>has a significant impact on our Citrix XenApp 6.5 environment. The perfect storm of older CPU's, an older OS and applications that have workflows that are impacted by the patch means our environment is grossly impacted. Location A has a maximum hit (as of today) of **21%**. Location B having a spread of **12%**. I had originally predicted that Location B would have the largest impact, however the newer V2 processors may be playing a roll and the performance of the V2 processors maybe more efficient than the older 2680.
 
 In the end, the performance hit is not insignificant and reduces our capacity significantly once these patches are deployed. I plan on adding new articles once I have more data on Meltdown and then further again once we start adding the mitigation's against Spectre.
 
-<div id="attachment_2676" style="width: 744px" class="wp-caption aligncenter">
-  <a href="/wp-content/uploads/2018/01/Host_CPUUtilization_LocationAB.png"><img aria-describedby="caption-attachment-2676" class="wp-image-2676 size-full" src="/wp-content/uploads/2018/01/Host_CPUUtilization_LocationAB.png" alt="" width="734" height="879" srcset="/wp-content/uploads/2018/01/Host_CPUUtilization_LocationAB.png 734w, /wp-content/uploads/2018/01/Host_CPUUtilization_LocationAB-251x300.png 251w" sizes="(max-width: 734px) 100vw, 734px" /></a></p> 
-  
+![](/wp-content/uploads/2018/01/Host_CPUUtilization_LocationAB.png)
+<div>
   <p id="caption-attachment-2676" class="wp-caption-text">
     CPU Utilization on the hosts. Orange is a host with VM's without the Meltdown patches, blue is with the patches.
   </p>

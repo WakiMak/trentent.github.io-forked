@@ -26,13 +26,17 @@ Installing the Citrix PVS Target Device software via a [silent](http://discussio
 
 The logging, when we are 'stuck' is at this point:
 
-<pre class="lang:default decode:true ">MSI (s) (60:14) [23:05:16:559]: Executing op: CustomActionSchedule(Action=CVHDMP_Install.41CF0FCA_F296_4F7C_BA95_BE7EC6CD2F01,ActionType=3073,Source=BinaryData,Target=fnCVhdMp_Install,)
+
+```plaintext
+MSI (s) (60:14) [23:05:16:559]: Executing op: CustomActionSchedule(Action=CVHDMP_Install.41CF0FCA_F296_4F7C_BA95_BE7EC6CD2F01,ActionType=3073,Source=BinaryData,Target=fnCVhdMp_Install,)
 MSI (s) (60:14) [23:05:16:559]: Creating MSIHANDLE (787) of type 790536 for thread 4628
 MSI (s) (60:64) [23:05:16:559]: Invoking remote custom action. DLL: C:\Windows\Installer\MSID755.tmp, Entrypoint: fnCVhdMp_Install
 MSI (s) (60:2C) [23:05:16:559]: Generating random cookie.
 MSI (s) (60:2C) [23:05:16:575]: Created Custom Action Server with PID 2980 (0xBA4).
 MSI (s) (60:74) [23:05:16:606]: Running as a service.
-MSI (s) (60:74) [23:05:16:606]: Hello, I'm your 64bit Elevated Non-remapped custom action server.</pre>
+MSI (s) (60:74) [23:05:16:606]: Hello, I'm your 64bit Elevated Non-remapped custom action server
+```
+
 
 Logging into the server and we get the notification that a something requires an action 'Interactive Services Detection'
 
@@ -108,27 +112,38 @@ Examining the cfsdep2.sys file in the C:Windowssystem32drivers reveals that the 
 It turns out that file system filter drivers can be installed and uninstalled using the command line.  
 [Uninstall](https://msdn.microsoft.com/en-us/library/windows/hardware/ff557255(v=vs.85).aspx):
 
-<pre class="lang:batch decode:true ">C:\Windows\System32\RUNDLL32.EXE SETUPAPI.DLL,InstallHinfSection DefaultUninstall 132 C:\Program Files\Citrix\Provisioning Services\drivers\cfsdep2.inf</pre>
+```shell
+C:\Windows\System32\RUNDLL32.EXE SETUPAPI.DLL,InstallHinfSection DefaultUninstall 132 C:\Program Files\Citrix\Provisioning Services\drivers\cfsdep2.inf
+```
 
 [Install](https://msdn.microsoft.com/en-us/library/windows/hardware/ff557251(v=vs.85).aspx):
 
-<pre class="lang:batch decode:true ">C:\Windows\System32\RUNDLL32.EXE SETUPAPI.DLL,InstallHinfSection DefaultInstall 132 C:\Program Files\Citrix\Provisioning Services\drivers\cfsdep2.inf
-</pre>
+```shell
+C:\Windows\System32\RUNDLL32.EXE SETUPAPI.DLL,InstallHinfSection DefaultInstall 132 C:\Program Files\Citrix\Provisioning Services\drivers\cfsdep2.inf
+```
 
 So, we should just be able to add a 'Invoke-command' and execute it, right?  
 I tried installing and uninstalling with both WMI and Invoke-Command:
 
-<pre class="lang:ps decode:true ">Invoke-Command -ComputerName $VMReverseImaging -credential $PVScred -ScriptBlock {
+
+```powershell
+Invoke-Command -ComputerName $VMReverseImaging -credential $PVScred -ScriptBlock {
    & 'cmd.exe' /c RUNDLL32.EXE SETUPAPI.DLL,InstallHinfSection DefaultUninstall 132 C:\Program Files\Citrix\Provisioning Services\drivers\cfsdep2.inf
    }
-([WMICLASS]"\\$VMReverseImaging\ROOT\CIMV2:Win32_Process").Create("C:\Windows\system32\rundll32.exe SETUPAPI.DLL,InstallHinfSection DefaultInstall 131 C:\Program Files\Citrix\Provisioning Services\drivers\cfsdep2.inf")</pre>
+([WMICLASS]"\\$VMReverseImaging\ROOT\CIMV2:Win32_Process").Create("C:\Windows\system32\rundll32.exe SETUPAPI.DLL,InstallHinfSection DefaultInstall 131 C:\Program Files\Citrix\Provisioning Services\drivers\cfsdep2.inf"
+```
+
 
 Neither command worked remotely.  I could see rundll32.exe executing and exiting with status "0" which implies success.  But the commands themselves didn't \*actually\* work.  When I executed the uninstall remotely neither the CFSDEP2.SYS file was deleted nor was the service uninstalled.  Doing a procmon.exe I could see that the supplemental 'runonce.exe' and 'grpconv.exe' were not run.  The reverse was true for the install as well, the CFSDEP2.SYS was not present and the service was not installed, but the exit code was "0".  So we can't trust the exit code, we need to manually check to see if the files and service are present.
 
 So what's happening?  It turns out, for some reason, that the file system filter driver install/uninstall \*requires\* an interactive session to complete successfully.  What is an interactive session you could use?  The SYSTEM account.  I was hoping to create a purely native script with no outside dependencies but PSEXEC will be required.  Elevating permissions in a remote powershell session is very difficult and maybe one day I'll spend some time figuring it out and documenting it, but at this point I cheaped out and decided to use psexec.exe.  To get the install/uninstall to execute remotely, you can use psexec.exe with the following lines:
 
-<pre class="lang:ps decode:true ">$ScriptDir = Split-Path $script:MyInvocation.MyCommand.Path
-& $scriptDir"\psexec.exe" \\$vmreverseimaging -i -s RUNDLL32.EXE SETUPAPI.DLL,InstallHinfSection DefaultInstall 132 C:\Program Files\Citrix\Provisioning Services\drivers\cfsdep2.inf</pre>
+
+```powershell
+$ScriptDir = Split-Path $script:MyInvocation.MyCommand.Path
+& $scriptDir"\psexec.exe" \\$vmreverseimaging -i -s RUNDLL32.EXE SETUPAPI.DLL,InstallHinfSection DefaultInstall 132 C:\Program Files\Citrix\Provisioning Services\drivers\cfsdep2.in
+```
+
 
 <div>
 </div>
@@ -136,10 +151,14 @@ So what's happening?  It turns out, for some reason, that the file system filter
 Or, since we are now running under the interactive SYSTEM context, we can just use the uninstall command:
 
 <div>
-  <pre class="lang:ps decode:true ">Write-Host "Uninstalling Citrix Provisioning Services Target Device x64" -ForegroundColor Yellow
+  
+```powershell
+Write-Host "Uninstalling Citrix Provisioning Services Target Device x64" -ForegroundColor Yellow
 $ProgramList = Get-WMIObject -Class win32_product -ComputerName $VMReverseImaging -Credential $pvsCred | ? {$_.Name -contains "Citrix Provisioning Services Target Device x64"}
 $ProgID = ($ProgramList | where {$_.Name -contains "Citrix Provisioning Services Target Device x64"}).IdentifyingNumber
-& $scriptDir"\psexec.exe" \\$vmreverseimaging -i -s msiexec.exe /x$ProgID /qn REBOOT=ReallySuppress</pre>
+& $scriptDir"\psexec.exe" \\$vmreverseimaging -i -s msiexec.exe /x$ProgID /qn REBOOT=ReallySuppres
+```
+
 </div>
 
 <div>
@@ -150,10 +169,14 @@ $ProgID = ($ProgramList | where {$_.Name -contains "Citrix Provisioning Services
 </div>
 
 <div>
-  <pre class="lang:ps decode:true ">Write-Host "Upgrading Citrix PVS Tools..." -ForegroundColor Yellow
+  
+```powershell
+Write-Host "Upgrading Citrix PVS Tools..." -ForegroundColor Yellow
 mkdir "\\$VMReverseImaging\c$\swinst\PVSDevice" | out-null
 xcopy /i /s /e /y "\\citrixnas01.healthy.bewell.ca\ctx_images_bdc\_ISO\PVS7.7\ProvisioningServices\Device" "\\$VMReverseImaging\c$\swinst\PVSDevice"
-& $scriptDir"\psexec.exe" \\$vmreverseimaging -i -s c:\swinst\PVSDevice\PVS_Device_x64.exe /s /v/qn</pre>
+& $scriptDir"\psexec.exe" \\$vmreverseimaging -i -s c:\swinst\PVSDevice\PVS_Device_x64.exe /s /v/q
+```
+
   
   <p>
     &nbsp;

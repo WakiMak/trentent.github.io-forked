@@ -23,7 +23,7 @@ tags:
   - Citrix Desktop Service
   - XenDesktop
 ---
-I'm troubleshooting an issue with the Citrix Desktop Service on my home lab.  I have a Citrix &/XenDesktop 7.6 installation and I have setup a Server 2012 R2 box with the "/servervdi".  Upon reboot, I see the Registration State as Unregistered.
+I'm troubleshooting an issue with the Citrix Desktop Service on my home lab.  I have a Citrix XenApp/XenDesktop 7.6 installation and I have setup a Server 2012 R2 box with the "/servervdi".  Upon reboot, I see the Registration State as Unregistered.
 
 <div style="clear: both; text-align: center;">
   <a style="margin-left: 1em; margin-right: 1em;" href="http://2.bp.blogspot.com/-GafPMHiCaiA/VgBsjdy9PQI/AAAAAAAABH0/12XC6hpWQJ4/s1600/1.PNG"><img src="http://2.bp.blogspot.com/-GafPMHiCaiA/VgBsjdy9PQI/AAAAAAAABH0/12XC6hpWQJ4/s320/1.PNG" width="320" height="39" border="0" /></a>
@@ -47,7 +47,9 @@ From the EventID 1003 we can see the Citrix Desktop Service is trying to referen
 
 Citrix offers a tool called XDPing to try and diagnose issues, I ran it and had it return the following:
 
-<pre class="lang:default decode:true ">WCF Endpoints: BrokerAgent::
+
+```plaintext
+WCF Endpoints: BrokerAgent::
 C:\Program Files\Citrix\Virtual Desktop Agent\BrokerAgent.exe
 Version Number :7.6.0.5026
  
@@ -167,7 +169,9 @@ Summary::
     It is not possible to enurmerate DDC list from VDA [ERROR]
     Connect = Unable to open connection to ctxzdc01.bottheory.local:0 [ERROR]
  
-Number of messages reported = 9</pre>
+Number of messages reported = 
+```
+
 
 Googling the WCF errors with HTTP/1.1 and Error 503 results in lots of information on reconfiguring your IIS.  I'm not convinced this is the issue so I soldiered on...
 
@@ -199,7 +203,9 @@ Logging Enabled
 
 Stopping the 'Citrix Desktop Service', editing the .config file, creating the C:\cdslogs folder and starting the service yielded additional information.
 
-<pre class="lang:default decode:true ">21/09/15 15:04:35.913 3796 2676: BrokerAgent:AgentService() - entry.
+
+```plaintext
+21/09/15 15:04:35.913 3796 2676: BrokerAgent:AgentService() - entry.
 21/09/15 15:04:35.913 3796 2676: BrokerAgent:AgentService.InitializeComponent entry
 21/09/15 15:04:35.913 3796 2676: BrokerAgent:AgentService.InitializeComponent exit
 21/09/15 15:04:35.913 3796 2676: BrokerAgent:AgentService() - exit
@@ -272,7 +278,9 @@ Stopping the 'Citrix Desktop Service', editing the .config file, creating the C:
 21/09/15 15:04:36.335 3796 7336: BrokerAgent:AgentToStack.ConnectToStackControlCOMServer: Enter
 21/09/15 15:04:36.351 3796 7336: BrokerAgent:StackManager.ConnectToStackControlComServerAndVerify: COM exception System.InvalidCastException: Unable to cast COM object of type 'System.__ComObject' to interface type 'Citrix.StackControlService.StackControl'. This operation failed because the QueryInterface call on the COM component for the interface with IID '{BEE5F9CD-A777-47C7-BA5A-CDD82FFEC4D8}' failed due to the following error: Error loading type library/DLL. (Exception from HRESULT: 0x80029C4A (TYPE_E_CANTLOADLIBRARY)).
    at Citrix.Cds.BrokerAgent.AgentToStack.ConnectToStackControlCOMServer()
-   at Citrix.Cds.BrokerAgent.StackManager.ConnectToStackControlComServer(StackCapabilities& actualStackCapabilities, Int32 retryCount)</pre>
+   at Citrix.Cds.BrokerAgent.StackManager.ConnectToStackControlComServer(StackCapabilities& actualStackCapabilities, Int32 retryCount
+```
+
 
 We have a 'COM exception'.  The nice thing about this log file is we can compare the time stamps to the procmon logs and determine what was happening when this failed.
 
@@ -313,7 +321,9 @@ And what about our log file?
 
 Previously it died around 'Setting up ALL LaunchManager WCF service'; this time we see:
 
-<pre class="lang:default decode:true ">21/09/15 15:48:44.282 3728 6880: BrokerAgent:DoAgentStartWcfServices: Setting up WCF services
+
+```plaintext
+21/09/15 15:48:44.282 3728 6880: BrokerAgent:DoAgentStartWcfServices: Setting up WCF services
 21/09/15 15:48:44.282 3728 6880: BrokerAgent:Setting up ALL LaunchManager WCF service
 21/09/15 15:48:44.298 3728 6880: BrokerAgentLaunchStore:LaunchStore:InitializeLaunchStore: Entry, Initializing CbpVersion = CBPv1_5, SessionMode = SingleSession
 21/09/15 15:48:44.298 3728 6880: BrokerAgentLaunchStore:LaunchStore:InitializeLaunchStore: Exit
@@ -331,7 +341,9 @@ Previously it died around 'Setting up ALL LaunchManager WCF service'; this time 
 21/09/15 15:48:44.360 3728 6880: BrokerAgent:DoAgentStartWcfServices: WCF services started
 21/09/15 15:48:44.376 3728 6880: BrokerAgent:EventLogManager decided to log event WorkerAgentGoodWcf of type Information with arguments:.This is based on event log groups Wcf
 21/09/15 15:48:44.376 3728 6880: BrokerAgent:DoAgentStartWcfServices: Stack Controller WCF services started
-21/09/15 15:48:44.376 3728 6880: BrokerAgent:AgentService.DoAgentStartVdaParentOuDetection - entry; operation mode Brokered</pre>
+21/09/15 15:48:44.376 3728 6880: BrokerAgent:AgentService.DoAgentStartVdaParentOuDetection - entry; operation mode Brokere
+```
+
 
 Hurray!  It continues and operates without issue.
 

@@ -23,7 +23,9 @@ tags:
   - PowerShell
   - scripting
 ---
-<pre class="lang:ps decode:true "># ===========================================================================================================
+
+```powershell
+# ===========================================================================================================
 #
 # Created by:  Trentent Tye
 #           Intel Server Team
@@ -46,7 +48,9 @@ foreach ($logs in $allLogs) {
  $filename = split-path $logs.LogFilePath -leaf
  $logs.LogFilePath = "D:\EventLogs\$filename"
  $logs.SaveChanges()
-}</pre>
+
+```
+
 
 &nbsp;
 

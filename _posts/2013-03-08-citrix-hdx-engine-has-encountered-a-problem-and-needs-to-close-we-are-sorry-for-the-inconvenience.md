@@ -56,7 +56,7 @@ ModName: msvcr80.dll
 The [Citrix client opens virtual channels](http://support.citrix.com/article/CTX116890) as it connects to the server.
 
 **Overview of client-server data exchange using a virtual channel.**  
-1. The client connects to the & Server. The client passes information about the virtual channels it supports to the server.  
+1. The client connects to The XenApp Server. The client passes information about the virtual channels it supports to the server.  
 2. The server-side application starts, obtains a handle to the virtual channel, and optionally queries for additional information about the channel.  
 3. The client virtual driver and server-side application pass data using the following two methods:  
 If the server application has data to send to the client, the data is sent to the client immediately. When the data is received by the client, the WinStation driver de-multiplexes the virtual channel data from the ICA stream and immediately passes it to the client virtual driver.  

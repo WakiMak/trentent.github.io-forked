@@ -23,21 +23,25 @@ tags:
   - scripting
 ---
 I made a script using SED and ADFIND to find all OU's and what GPO's were linked to them:
-
-> <pre class="lang:batch decode:true ">adfind -b DC=ccs,DC=corp -f "(&(objectCategory=organizationalUnit)(gPLink=*))" cn gplink -csv -csvdelim : > gplinks.txt
+ 
+```shell
+adfind -b DC=ccs,DC=corp -f "(&(objectCategory=organizationalUnit)(gPLink=*))" cn gplink -csv -csvdelim : > gplinks.txt
 adfind -b DC=ccs,DC=corp -f "(&(objectCategory=groupPolicyContainer)(cn=*))" cn displayName -nodn -csv > gpnames.txt
 sed -i "s/\"//g" gpnames.txt
 sed -i "s/\[LDAP:\/\/..=//g" gplinks.txt
 sed -r -i "s/..=.olicies,..=.ystem,DC=ccs,DC=corp\\;.\]//g" gplinks.txt
 
 for /f "tokens=1-2 delims=," %A IN ('type "gpnames.txt"') DO sed -i "s/%A/%B/g" "gplinks.txt"
-del sed* /q</pre>
+del sed* /
+```
+
 
 Love it 
 
 To expand on the above, here is a batch file that will find all empty OU's and what GPO's are linked to them:
 
-> <pre class="lang:batch decode:true ">:This script requires SED.txt and ADFIND.exe
+```shell
+:This script requires SED.txt and ADFIND.exe
 
 :Goes through every OU and finds every GPO linked to it
 adfind -b DC=ccs,DC=corp -f "(&(objectCategory=organizationalUnit)(gPLink=*))" cn gplink -csv -csvdelim : > gplinks.txt
@@ -79,7 +83,9 @@ for /f "tokens=*" %%a IN ('type EmptyOUs.txt') DO (
 if /I %%A equ %%a sed -i "s/%%A/EMPTY:%%A/g" gplinks.txt
 )
 )
-del sed* /q</pre>
+del sed* /
+```
+
 > 
 > &nbsp;
 

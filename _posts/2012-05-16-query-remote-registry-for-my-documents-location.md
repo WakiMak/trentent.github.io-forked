@@ -30,7 +30,8 @@ Eventually, I'll get asked, "we want to shut down the old server, can we verify 
 
 In order to accomplish this effectively, I wrote a script that runs through a list of computers you give it and it checks the registry and presents you a list of all the network "My Documents" it finds.  This is the script:
 
-<pre class="lang:batch decode:true ">:Find-redir.cmd
+```console
+:Find-redir.cmd
 
 :This next bit will query the registry to see if they are redirecting already...
 del /q "%temp%\redir.txt"
@@ -46,7 +47,8 @@ FOR /F "tokens=*" %%a IN ('type %1') DO (
   for /f "tokens=*" %%A IN ('type "%temp%\reg-user.txt"') DO reg query "\\%%a\%%A\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders" | findstr \\\\ >> "%temp%\redir.txt"
   echo =============================================== >> "%temp%\redir.txt"
 )
-notepad "%temp%\redir.txt"</pre>
+notepad "%temp%\redir.txt"
+```
 
 
 To use the script; get a list of computers or IP addresses and then run the script as:  

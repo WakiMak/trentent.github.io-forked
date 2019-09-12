@@ -23,9 +23,9 @@ tags:
 ---
 So we have an application that requires the "%CLIENTNAME%" variable to be passed to it in it's exe string.  The string looks like so:
 
-<div>
-  <pre class="lang:default decode:true ">prowin32.exe -p \\nas\cfgstart.p -param S,%CLIENTNAME%,120n,citrix,a92,10920 -wy</pre>
-</div>
+```powershell
+prowin32.exe -p \\nas\cfgstart.p -param S,%CLIENTNAME%,120n,citrix,a92,10920 -wy
+```
 
 <div>
 </div>
@@ -44,15 +44,15 @@ So we have an application that requires the "%CLIENTNAME%" variable to be passed
 <div>
 </div>
 
-<div>
-  <pre class="lang:batch decode:true ">=======================================================
+```powershell
+=======================================================
 ECHO Launching Centricity...
 
 for /f "tokens=1-3" %%A IN ('reg query "HKCU\volatile environment" /s ^| findstr /i /c:"CLIENTNAME"') DO SET CLIENTNAME=%%C
 
 prowin32.exe -p \\nas\cfgstart.p -param S,%CLIENTNAME%,120n,citrix,a92,10920 -wy
-=======================================================</pre>
-</div>
+=======================================================
+```
 
 <div>
 </div>
@@ -90,9 +90,11 @@ prowin32.exe -p \\nas\cfgstart.p -param S,%CLIENTNAME%,120n,citrix,a92,10920 -wy
 <div>
 </div>
 
-<div>
-  <pre class="lang:default decode:true ">cmd /c ""C:\ProgramData\Microsoft\AppV\Client\Integration\3230251A-5B8E-47EF-8378-986B2A492D05\Root\VFS\Common Desktop\MyApps\BDM Pharmacy v9.2\Centricity Pharmacy Test on rxpv91cal.cmd" /appvve:3230251A-5B8E-47EF-8378-986B2A492D05_03CA3F94-F318-4693-A7E3-038DB30E6C70"</pre>
-</div>
+
+```powershell
+cmd /c ""C:\ProgramData\Microsoft\AppV\Client\Integration\3230251A-5B8E-47EF-8378-986B2A492D05\Root\VFS\Common Desktop\MyApps\BDM Pharmacy v9.2\Centricity Pharmacy Test on rxpv91cal.cmd" /appvve:3230251A-5B8E-47EF-8378-986B2A492D05_03CA3F94-F318-4693-A7E3-038DB30E6C70"
+```
+
 
 <div>
 </div>
@@ -104,9 +106,9 @@ prowin32.exe -p \\nas\cfgstart.p -param S,%CLIENTNAME%,120n,citrix,a92,10920 -wy
 <div>
 </div>
 
-<div>
-  <pre class="lang:default decode:true ">cmd /c "cmd.exe /c "C:\ProgramData\Microsoft\AppV\Client\Integration\3230251A-5B8E-47EF-8378-986B2A492D05\Root\VFS\Common Desktop\MyApps\BDM Pharmacy v9.2\Centricity Pharmacy Test on rxpv91cal.cmd" /appvve:3230251A-5B8E-47EF-8378-986B2A492D05_03CA3F94-F318-4693-A7E3-038DB30E6C70"</pre>
-</div>
+```powershell
+cmd /c "cmd.exe /c "C:\ProgramData\Microsoft\AppV\Client\Integration\3230251A-5B8E-47EF-8378-986B2A492D05\Root\VFS\Common Desktop\MyApps\BDM Pharmacy v9.2\Centricity Pharmacy Test on rxpv91cal.cmd" /appvve:3230251A-5B8E-47EF-8378-986B2A492D05_03CA3F94-F318-4693-A7E3-038DB30E6C70"
+```
 
 <div>
 </div>

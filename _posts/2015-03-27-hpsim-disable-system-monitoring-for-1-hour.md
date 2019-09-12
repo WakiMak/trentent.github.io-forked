@@ -23,7 +23,9 @@ tags:
 ---
 This script will disable monitoring in HPSIM for 1 hour.
 
-<pre class="lang:ps decode:true ">#replace "-argumentlist $args[0]" with the system you want to disable monitoring
+
+```powershell
+#replace "-argumentlist $args[0]" with the system you want to disable monitoring
 #replace WSHPSIM21 with your HPSIM server
 #may need to replace path to mxnode.exe with whichever drive it's installed on for your system
  
@@ -43,7 +45,9 @@ $serverXML.Save("$env:temp\server.xml") | out-null
  
 #set monitoring.
 ."D:\Program Files\HP\Systems Insight Manager\bin\mxnode.exe" -m -f "$env:temp\server.xml" -w -v
-}</pre>
+
+```
+
 
 &nbsp;
 

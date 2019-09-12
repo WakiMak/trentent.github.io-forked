@@ -26,12 +26,16 @@ Saving and moving OU ACLs
 I've written a batch file that will move ACLs from one OU to another. It works by you outputting the results of a ACL from a OU to a text file, specifying the new OU in a batch file and inputting the text file you just created. I use three utilities to accomplish this: adfind.exe, sed.exe and dsacls.exe.  
 The command to save the text file is:
 
-> <pre class="lang:batch decode:true ">adfind -b "OU=Users,OU=LAB,DC=LAB,DC=CORP" -f (distinguishedName=OU=Users,OU=LAB,DC=LAB,DC=corp) -sddl++ -resolvesids -onlydacl ntsecuritydescriptor -sddlnotfilter ;inherited| sed.exe "s/;;/; ;/g" | sed.exe "s/;;/; ;/g" | sed.exe "s/;;/; ;/g" | sed.exe "s/;;/; ;/g" > %PATHTOFILE%.txt</pre>
+```shell
+adfind -b "OU=Users,OU=LAB,DC=LAB,DC=CORP" -f (distinguishedName=OU=Users,OU=LAB,DC=LAB,DC=corp) -sddl++ -resolvesids -onlydacl ntsecuritydescriptor -sddlnotfilter ;inherited| sed.exe "s/;;/; ;/g" | sed.exe "s/;;/; ;/g" | sed.exe "s/;;/; ;/g" | sed.exe "s/;;/; ;/g" > %PATHTOFILE%.txt
+```
 
 From here, you need to delete the header in the text file and the footer.  
 Once that is done, run this script, changing the two variables at the top:
 
-> <pre class="lang:batch decode:true  ">:RESTORE-OU-ACL.CMD
+> 
+```plaintext
+:RESTORE-OU-ACL.CMD
 :Restore OU Properties
 SET TARGETOU=OU=Users Accounts,OU=AD Project 3,DC=LAB,DC=CORP
 SET TARGETFILE="New Text Document (5).txt"
@@ -106,7 +110,9 @@ GOTO:EOF
 :/I:T = This object and all child objects [CONT INERIT]
 :Blank inheritance = /I:P
 :When "Properties" are set, it should be /I:S
-:When there are no properties listed at all ACL should be GA</pre>
+:When there are no properties listed at all ACL should be G
+```
+
 
 <!-- AddThis Advanced Settings generic via filter on the_content -->
 

@@ -23,7 +23,8 @@ tags:
 ---
 The final script:
 
-<pre class="lang:batch decode:true ">:This script will create the proper domain local group and global groups
+```shell
+:This script will create the proper domain local group and global groups
 :The only input this script needs is the UNC path to the folder. At the end
 :of this script the only thing you'll need to do is add the users from the actual
 :folder to the global group.
@@ -87,7 +88,8 @@ SET OUG=OU=Global,OU=Security Groups,OU=AD Project 3,DC=CCS,DC=CORP
 dsadd group "CN=gg.%GROUPNAME%.%PERMISSIONS%,%OUG%" -desc %1 -secgrp yes -scope g
 
 :adds the global group to the domain local group
-dsmod group "CN=F.lg.%GROUPNAME%.%PERMISSIONS%,%OUL%" -addmbr "CN=gg.%GROUPNAME%.%PERMISSIONS%,%OUG%"</pre>
+dsmod group "CN=F.lg.%GROUPNAME%.%PERMISSIONS%,%OUL%" -addmbr "CN=gg.%GROUPNAME%.%PERMISSIONS%,%OUG%"
+```
 
 &nbsp;
 

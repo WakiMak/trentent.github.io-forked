@@ -65,7 +65,9 @@ Visual Effects
 
 These settings have no filters and are applied to all users. To migrate them to WEM I"ve exported these values and set them into a registry file:
 
-<pre class="lang:reg decode:true ">Windows Registry Editor Version 5.00
+
+```plaintext
+Windows Registry Editor Version 5.00
 
 [HKEY_CURRENT_USER\Control Panel\Desktop]
 "FontSmoothing"=dword:00000000
@@ -82,7 +84,7 @@ These settings have no filters and are applied to all users. To migrate them to 
 
 [HKEY_CURRENT_USER\Control Panel\Desktop\WindowMetrics]
 "MinAnimate"=dword:00000000
-</pre>
+```
 
 Switching to WEM I select "Actions" then "Registry Entries" and then I imported the registry file.
 

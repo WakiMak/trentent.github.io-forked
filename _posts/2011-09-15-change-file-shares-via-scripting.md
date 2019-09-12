@@ -22,7 +22,9 @@ tags:
 ---
 I've come across a problem where users are filling up their hard disks and we need to move the highest utilization users to a new disk. In order to accomplish this I've setup a robocopy to move their files to a new disk and have it constantly mirrored until after-hours; where we run this script to move the file shares:
 
-> <pre class="lang:batch decode:true  ">:backup original shares:
+> 
+```plaintext
+:backup original shares:
 reg export "HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\lanmanserver\Shares" C:\shares-backup.reg /y
 
 setlocal enabledelayedexpansion
@@ -36,7 +38,9 @@ echo reg add HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\lanmanserver\Share
 )
 
 net stop server /y
-net start server</pre>
+net start serve
+```
+
 
 What this script does is:  
 1) Backs up the existing share structure  

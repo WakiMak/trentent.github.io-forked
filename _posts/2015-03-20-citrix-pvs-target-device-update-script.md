@@ -24,7 +24,7 @@ tags:
   - Target Device
 
 ---
-Saman and I have created a Citrix PVS update script we use and run each time we update a PVS target device.  This script has been generated after finding numerous issues that needed to be fixed after updating a PVS image.  It includes fixes to issues with AppV5, PVS, & 6.5, etc.
+Saman and I have created a Citrix PVS update script we use and run each time we update a PVS target device.  This script has been generated after finding numerous issues that needed to be fixed after updating a PVS image.  It includes fixes to issues with AppV5, PVS, XenApp 6.5, etc.
 
 We also made the script to be able to be run automatically by accepting command-line parameters so that we can use it to do Windows Updates with PVS's automatic vDisk update feature.
 
@@ -32,7 +32,8 @@ I've removed email addresses and some specific application fixes that would only
 
 I will post the supplemental scripts in more posts.
 
-<pre class="lang:batch decode:true ">::================================================================================
+```shell
+::================================================================================
 ::
 :: Created by:  Saman Salehian
 ::   Intel Server Team
@@ -139,7 +140,7 @@ FOR /f "tokens=1-2 delims==" %%A IN ('TYPE "%TEMP%\variables.txt"') DO (
  
  
 :: ===========================================================================================================
-:: Prompt for values - Reboot/Shutdown & Citrix Environment (Test or Prod)
+:: Prompt for values - Reboot/Shutdown XenApp Citrix Environment (Test or Prod)
 :: ===========================================================================================================
  
 SET M=%SHUTDOWN%
@@ -488,12 +489,12 @@ PING LOCALHOST -n 5 >NUL
  
  
 :: ================================================================================
-:: Run &Prep for & 5 or Role Manager for & 6.5
+:: Run &Prep for XenApp 5 or Role Manager for XenApp 6.5
 :: ================================================================================
 net START imaservice
 FOR /F "TOKENS=2,*" %%a IN ('REG QUERY HKLM\SYSTEM\CurrentControlSet\Control\Citrix /v NewProductVersion') DO SET &Version=%%b
 IF %&Version% EQU 4.6 (
- ECHO & 5 - Running &Prep
+ ECHO XenApp 5 - Running &Prep
  ECHO.
  ECHO ================================================================
  IF EXIST %SYSTEMROOT%\SysWOW64\notepad.exe (
@@ -505,7 +506,7 @@ IF %&Version% EQU 4.6 (
 )
  
 IF %&Version% EQU 6.5.0 (
- ECHO & 6.5 - Running Role Manager
+ ECHO XenApp 6.5 - Running Role Manager
  ECHO.
  ECHO ================================================================
  "%ProgramFiles(x86)%\Citrix\&\ServerConfig\&ConfigConsole.exe" /ExecutionMode:ImagePrep /RemoveCurrentServer:True /ClearLocalDatabaseInformation:True
@@ -515,7 +516,7 @@ PING LOCALHOST -n 5 >NUL
  
  
 :: ================================================================================
-:: Check registry after & Prep and fix IMA issues
+:: Check registry after XenApp Prep and fix IMA issues
 :: ================================================================================
 PING LOCALHOST -n 10 >NUL
  >FixIMA.ps1 ECHO.
@@ -640,7 +641,7 @@ IF EXIST %SYSTEMROOT%\SysWOW64\notepad.exe (
 )
  
 :: ================================================================================
-:: CTX134961 - & Policies not Applying Correctly
+:: CTX134961 - XenApp Policies not Applying Correctly
 :: ================================================================================
 ECHO Deleting Citrix Group Policy History
 IF EXIST "C:\ProgramData\Citrix\GroupPolicy" (
@@ -687,7 +688,8 @@ SCHTASKS /RUN /TN Disable_Logons
 :: ================================================================================
 ECHO Disconnect Mapped Drives
 NET USE * /D /Y
-PING LOCALHOST -n 5 >NUL</pre>
+PING LOCALHOST -n 5 >NUL
+```
 
 &nbsp;
 

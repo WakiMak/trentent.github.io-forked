@@ -1,11 +1,11 @@
 ---
 id: 2119
-title: Citrix & Enumeration Performance - IMA vs FMA load testing
+title: Citrix XenApp Enumeration Performance - IMA vs FMA load testing
 date: 2017-04-12T09:17:12-06:00
 author: trententtye
 layout: post
 guid: http://theorypc.ca/?p=2119
-permalink: /2017/04/12/citrix-&-enumeration-performance-ima-vs-fma-load-testing/
+permalink: /2017/04/12/citrix-xenapp-enumeration-performance-ima-vs-fma-load-testing/
 image: /wp-content/uploads/2017/04/graph.png
 categories:
   - Blog
@@ -14,29 +14,39 @@ tags:
   - Performance
 
 ---
-In the [previous post we found IMA outperformed FMA in terms of an individual request for resources](https://theorypc.ca/2017/04/11/citrix-&-enumeration-performance-ima-vs-fma/).  However, the 30ms difference would be imperceptible for a end user.  This post will focus on maximum load for an individual broker.  In the past we discovered that the IMA service is heavily dependent on the number of CPU's.  The more [CPU's allocated to the machine hosting the IMA service](https://theorypc.ca/2014/11/27/load-testing-citrix-xml-broker/), the more requests could be handled (supposedly to a max of 16 - the maxmium number for threads for IMA).
+In the [previous post we found IMA outperformed FMA in terms of an individual request for resources](https://theorypc.ca/2017/04/11/citrix-xenapp-enumeration-performance-ima-vs-fma/).  However, the 30ms difference would be imperceptible for a end user.  This post will focus on maximum load for an individual broker.  In the past we discovered that the IMA service is heavily dependent on the number of CPU's.  The more [CPU's allocated to the machine hosting the IMA service](https://theorypc.ca/2014/11/27/load-testing-citrix-xml-broker/), the more requests could be handled (supposedly to a max of 16 - the maxmium number for threads for IMA).
 
-What I have configured for my testing is a & 6.5 machine with 2 sockets and 1 vCPU's for a total of 2 cores.  I have an identical machine configured for & 7.13.
+What I have configured for my testing is a XenApp 6.5 machine with 2 sockets and 1 vCPU's for a total of 2 cores.  I have an identical machine configured for XenApp 7.13.
 
 Doing my query directly to the 7.13 broker, I've discovered my request appears to be tied to the performance counter "Citrix XML Service - Transactions/sec - enumerate resources".  I can visibly see how many requests are hitting the broker through my testing, although the numbers vs what I'm sending don't necessarily line up.
 
-For & 6.5 the performance counter that appears to tie directly to my requests is the "Citrix MetaFrame Presentation Server - Filtered Application Enumerations/sec".
+For XenApp 6.5 the performance counter that appears to tie directly to my requests is the "Citrix MetaFrame Presentation Server - Filtered Application Enumerations/sec".
 
-Using WCAT to apply a load to & 6.5 and 7.13 and measuring the per second results I should be able to see which is more efficient over a larger load.
+Using WCAT to apply a load to XenApp 6.5 and 7.13 and measuring the per second results I should be able to see which is more efficient over a larger load.
 
 My WCAT options for the FMA server will be:
 
-<pre class="lang:default decode:true">wcctl -t XML-Direct.ubr -f settings.ubr -s FMAServer -p 80 -c 10 -v 20 -w 300 -u 300 -n 300</pre>
+
+```plaintext
+wcctl -t XML-Direct.ubr -f settings.ubr -s FMAServer -p 80 -c 10 -v 20 -w 300 -u 300 -n 30
+```
+
 
 and for IMA:
 
-<pre class="lang:default decode:true">wcctl -t XML-Direct.ubr -f settings.ubr -s IMAServer -p 28001 -c 10 -v 20 -w 300 -u 300 -n 300</pre>
+
+```plaintext
+wcctl -t XML-Direct.ubr -f settings.ubr -s IMAServer -p 28001 -c 10 -v 20 -w 300 -u 300 -n 30
+```
+
 
 &nbsp;
 
 My "scenario" file (XML-Direct.ubr) looks like so:
 
-<pre class="lang:default decode:true">scenario {
+
+```plaintext
+scenario {
 	warmup	= 300;
 	duration	= 300;
 	cooldown	= 30;
@@ -70,7 +80,7 @@ My "scenario" file (XML-Direct.ubr) looks like so:
 		}
 	}
 }
-</pre>
+```
 
 The new FMA service has an additional counter called "Citrix XML Service - enumerate resources - Avg. Transaction Time" which actually reports back how long it took to execute the enumeration.
 
@@ -109,11 +119,11 @@ For this testing the FMA broker is set in 'connection leasing' mode.  Perhaps th
 
 Summary:
 
-The FMA broker, when acting in a purely & fashion works pretty well.  It handles loads faster than IMA, but apparently this is only true to an extreme rate.  You should not have more than <span style="text-decoration: underline;"><strong>800</strong></span> concurrent connections per broker.  <period>.  You should probably keep a target maximum of 600 to be safe.  And assign at least 4, but preferably <span style="text-decoration: underline;"><strong>8 CPU's</strong></span> if you can to your broker servers.  This appears to be the sweet spot.
+The FMA broker, when acting in a purely XenApp fashion works pretty well.  It handles loads faster than IMA, but apparently this is only true to an extreme rate.  You should not have more than <span style="text-decoration: underline;"><strong>800</strong></span> concurrent connections per broker.  <period>.  You should probably keep a target maximum of 600 to be safe.  And assign at least 4, but preferably <span style="text-decoration: underline;"><strong>8 CPU's</strong></span> if you can to your broker servers.  This appears to be the sweet spot.
 
-The highest rate our organization sees is 600 concurrent connections but we spread this lead across 9 IMA brokers, and divide that geographically.  The highest consecutive load we've measured with this on any single broker is ~150 concurrent connections during a peak load period.  We target a response time of less than 5 seconds for any broker enumeration and it does appear we could handle this quite easily with FMA.  However, this does not take into account XenDesktop traffic which is 'heavier' than & for the FMA.  When we get to a point that I can test XenDesktop load I will do so.  Until then, I am impressed with FMA's & enumeration performance (until breakage anyways).
+The highest rate our organization sees is 600 concurrent connections but we spread this lead across 9 IMA brokers, and divide that geographically.  The highest consecutive load we've measured with this on any single broker is ~150 concurrent connections during a peak load period.  We target a response time of less than 5 seconds for any broker enumeration and it does appear we could handle this quite easily with FMA.  However, this does not take into account XenDesktop traffic which is 'heavier' than XenApp for the FMA.  When we get to a point that I can test XenDesktop load I will do so.  Until then, I am impressed with FMA's XenApp enumeration performance (until breakage anyways).
 
-[Next up...  Oddities encountered in testing](https://theorypc.ca/2017/04/13/citrix-&-enumeration-performance-ima-vs-fma-oddities/)
+[Next up...  Oddities encountered in testing](https://theorypc.ca/2017/04/13/citrix-xenapp-enumeration-performance-ima-vs-fma-oddities/)
 
 <!-- AddThis Advanced Settings generic via filter on the_content -->
 

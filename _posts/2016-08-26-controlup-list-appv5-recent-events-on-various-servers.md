@@ -44,7 +44,8 @@ Here is the recipe for it:
 
 And the script:
 
-<pre class="lang:ps decode:true  "><#
+```powershell
+<#
     .SYNOPSIS
     This script will return logging information amalgamating the AppV Admin, Operational and Virtual Applications logs.
 
@@ -124,7 +125,7 @@ $GWE_All = $GWE_All | sort TimeCreated -Descending
 #################
 
 $GWE_All | select TimeCreated,Id,LogName,TaskDisplayName,LevelDisplayName,Message | Out-GridView -Title $args[0] -Wait
-</pre>
+```
 
 &nbsp;
 

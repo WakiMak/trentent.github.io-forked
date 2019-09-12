@@ -69,9 +69,11 @@ What you will find is a mismatch between the number of keys in Packages and the 
 
 To fix this error I created a script to create the missing folders that were found in the registry and doing a get-appvpublishingserver | sync-appvpublishingserver
 
-<pre class="lang:batch decode:true ">D:
+```shell
+D:
 cd D:\AppVData\PackageInstallationRoot
-for /f "tokens=1-6" %%a IN ('reg query HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\AppV\Client\Streaming\Packages /s ^| findstr /i /c:"PackageRoot"') DO mkdir %%c</pre>
+for /f "tokens=1-6" %%a IN ('reg query HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\AppV\Client\Streaming\Packages /s ^| findstr /i /c:"PackageRoot"') DO mkdir %%c
+```
 
 And then all applications were able to be published without issue.
 

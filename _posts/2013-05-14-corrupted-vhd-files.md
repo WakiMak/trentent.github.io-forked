@@ -36,11 +36,15 @@ For the other driver you need to open Device Manager, go through "Add new hardwa
 
 Now we would mount the disk as a drive letter using this command line:
 
-<pre class="lang:default decode:true ">C:\Users\trententtye>"C:\Program Files\Citrix\Provisioning Services\CVhdMount.exe" -p 1 "\\wsctxapp824\d$\&65Pn02.2.vhd"
+
+```plaintext
+C:\Users\trententtye>"C:\Program Files\Citrix\Provisioning Services\CVhdMount.exe" -p 1 "\\wsctxapp824\d$\&65Pn02.2.vhd"
 Opening \\?\root#scsiadapter#0000#{c97efdbd-972c-4fe8-8279-9ce6c19fa260}
 Bus interface opened.
 Plugin device with SerialNumber: 1
-filename: \Global??\UNC\wsctxapp824\d$\&65Pn02.2.vhd</pre>
+filename: \Global??\UNC\wsctxapp824\d$\&65Pn02.2.vh
+```
+
 
 At this point you need to set the disk to "Offline" in Disk Management.
 
@@ -56,7 +60,9 @@ From here we can now add the disk as a physical disk to Hyper-V.
 
 And we can now do the Target Device Update.  Error messages seen during this troubleshooting:
 
-<pre class="lang:default decode:true ">"---------------------------
+
+```plaintext
+"---------------------------
 Virtual Disk Manager
 ---------------------------
 The file or directory is corrupted and unreadable. 
@@ -90,5 +96,7 @@ Cannot open attachment 'D:\&65Pn02.2.vhd'. Error: 'The file or directory is corr
 
 'NewMachine': Cannot open attachment 'D:\&65Pn02.2.vhd'. Error: 'The file or directory is corrupted and unreadable.' (0x80070570). (Virtual machine ID D8D73511-6D6B-4604-A09B-BA4F5CD35206)
 
-[V] See details  [Close]"</pre>
+[V] See details  [Close]
+```
+
 

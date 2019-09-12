@@ -85,13 +85,17 @@ Although this works, this is not workable. Adding/removing servers would require
 
 Apparently, you can execute a WMI Query.  We can use this to see if the computer is a member of a group. The command to do so is:
 
-<pre class="lang:default decode:true ">SELECT * FROM Win32_GroupUser Where GroupComponent="Win32_Group.Domain='HEALTHY',Name='AHS.CTX.Servers.Generic.TST.AHI'" AND PartComponent="Win32_UserAccount.Domain='HEALTHY',Name='CTXAPP301T$'"</pre>
+```sql
+SELECT * FROM Win32_GroupUser Where GroupComponent="Win32_Group.Domain='HEALTHY',Name='AHS.CTX.Servers.Generic.TST.AHI'" AND PartComponent="Win32_UserAccount.Domain='HEALTHY',Name='CTXAPP301T$'"
+```
 
 WEM supports variable replacement through a list of [HASHTAGS](https://docs.citrix.com/en-us/workspace-environment-management/4-2/dynamic-tokens.html)
 
 I modified my command as such:
 
-<pre class="lang:default decode:true ">SELECT * FROM Win32_GroupUser Where GroupComponent="Win32_Group.Domain='HEALTHY',Name='AHS.CTX.Servers.Generic.TST.AHI'" AND PartComponent="Win32_UserAccount.Domain='HEALTHY',Name='##ComputerName##$'"</pre>
+```sql
+SELECT * FROM Win32_GroupUser Where GroupComponent="Win32_Group.Domain='HEALTHY',Name='AHS.CTX.Servers.Generic.TST.AHI'" AND PartComponent="Win32_UserAccount.Domain='HEALTHY',Name='##ComputerName##$'"
+```
 
 Executing this command does result in checking to see if the computer is a member of a specific group. The only caveat is the user account that logs on must have permissions within AD to check group memberships. Which is usually granted. And in my case, it is so this command works.
 

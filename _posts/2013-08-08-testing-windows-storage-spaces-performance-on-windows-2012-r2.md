@@ -37,7 +37,9 @@ The Samsung SSD volume has a small sequential write advantage, it should have a 
 
 First thing I did was create my storage pool with my 6 volumes that reside on the RAID-10.  I used this powershell script to create them:
 
-<pre class="lang:ps decode:true ">Get-PhysicalDisk
+
+```powershell
+Get-PhysicalDisk
 $disks = Get-PhysicalDisk |? {$_.CanPool -eq $true}
 New-StoragePool -StorageSubSystemFriendlyName *Spaces* -FriendlyName TieredPool -PhysicalDisks $disks
 Get-StoragePool -FriendlyName TieredPool | Get-PhysicalDisk | Select FriendlyName, MediaType
@@ -46,7 +48,9 @@ Set-PhysicalDisk -FriendlyName PhysicalDisk2 -MediaType HDD
 Set-PhysicalDisk -FriendlyName PhysicalDisk3 -MediaType HDD
 Set-PhysicalDisk -FriendlyName PhysicalDisk4 -MediaType HDD
 Set-PhysicalDisk -FriendlyName PhysicalDisk5 -MediaType HDD
-Set-PhysicalDisk -FriendlyName PhysicalDisk6 -MediaType HDD</pre>
+Set-PhysicalDisk -FriendlyName PhysicalDisk6 -MediaType HD
+```
+
 
 The first thing I did was create a stripe disk to determine my maximum performance amoung my 6 volumes.  I mapped to my DataRAM Disk drive and copied a 1.5GB file from it using xcopy /j
 
@@ -75,9 +79,13 @@ With the RAMDisk as the SSD tier I achieved 3.2Gb/s (400MB/s).  My 1.5GB file ma
 
 I wanted to try the write-back cache with the parity to see if that helps.  I found [this page](http://www.miru.ch/2013/07/creating-tiered-storage-spaces-in-server-2012-r2/) that tells me it can only be enabled through PowerShell at this time.
 
-<pre class="lang:ps decode:true ">$ssd_tier = New-StorageTier -StoragePoolFriendlyName TieredPool -FriendlyName SSD_Tier -MediaType SSD
+
+```powershell
+$ssd_tier = New-StorageTier -StoragePoolFriendlyName TieredPool -FriendlyName SSD_Tier -MediaType SSD
 $hdd_tier = New-StorageTier -StoragePoolFriendlyName TieredPool -FriendlyName HDD_Tier -MediaType HDD
-$vd2 = New-VirtualDisk -StoragePoolFriendlyName TieredPool -FriendlyName HD -Size 24GB -ResiliencySettingName Parity -ProvisioningType Fixed -WriteCacheSize 8GB</pre>
+$vd2 = New-VirtualDisk -StoragePoolFriendlyName TieredPool -FriendlyName HD -Size 24GB -ResiliencySettingName Parity -ProvisioningType Fixed -WriteCacheSize 8G
+```
+
 
 I enabled the writecache with both my SSD and RAMDisk as being a part of the pool and the performance I got for copying the 1.5GB file was 1.8Gb/s (225MB/s)
 
@@ -113,7 +121,11 @@ Removing the RAMDisk SSD and leaving the stock SSD I hit about 800Mb/s (100MB/s)
 
 This is very good!  I reduced the writecache size to see what would happen if the copy exceeded the cache...  I recreated the volume with the writecachesize at 100MB
 
-<pre class="lang:ps decode:true ">$vd2 = New-VirtualDisk -StoragePoolFriendlyName TieredPool -FriendlyName HD -Size 24GB -ResiliencySettingName Parity -ProvisioningType Fixed -WriteCacheSize 8GB</pre>
+
+```powershell
+$vd2 = New-VirtualDisk -StoragePoolFriendlyName TieredPool -FriendlyName HD -Size 24GB -ResiliencySettingName Parity -ProvisioningType Fixed -WriteCacheSize 8G
+```
+
 
 As soon as the writecache filled up it was actually a little slower then before, 209Mb/s (26.1MB/s).  100MB just isn't enough to help.
 

@@ -27,7 +27,9 @@ To simplify this process, I found this vbs script that trys to utilize the Scrip
 
 &nbsp;
 
-<pre class="lang:vb decode:true ">cscript Version.vbs 
+
+```vb
+cscript Version.vbs 
 
 The VBScript program follows: 
 Option Explicit 
@@ -47,7 +49,9 @@ Call MsgBox("Folder " & strFolder & " exists" _
 Else 
 Call MsgBox("Folder " & strFolder & " does NOT exists" _ 
 & vbCrLf & "but the FileSystemObject works fine") 
-End If</pre>
+End I
+```
+
 
 I ran that script on the affected server and, after clicking OK on the WSH Version dialog, I got this message:
 
@@ -67,7 +71,9 @@ I ended up adding the following registry keys:
 
 &nbsp;
 
-<pre class="lang:reg decode:true ">Windows Registry Editor Version 5.00 
+
+```plaintext
+Windows Registry Editor Version 5.00 
 
 [HKEY_CLASSES_ROOT\Scripting.FileSystemObject] 
 @="FileSystem Object" 
@@ -108,7 +114,9 @@ I ended up adding the following registry keys:
 @="0" 
 
 [HKEY_CLASSES_ROOT\Wow6432Node\TypeLib\{420B2830-E718-11CF-893D-00A0C9054228}\1.0\HELPDIR] 
-@="C:\\Windows\\system32"</pre>
+@="C:\\Windows\\system32
+```
+
 
 For some reason, it is launching the Wscript.exe in a 32bit process (as evidenced by WOW6432Node key). On the working 64bit server I have it is running as a 64bit process.
 

@@ -133,7 +133,8 @@ By setting it to "2" we could ensure the ICA listener is always listening on Lan
 In my testing it appears you need to restart the "IMAService" service twice to get it to recreate the httpd.conf file.  Because of this, I created the script to retry up to 3 times to try and regenerate the file.
 
       
-<pre class="lang:batch decode:true ">:: ===========================================================================================================
+```shell
+:: ===========================================================================================================
 ::
 :: Created by:  Trentent Tye
 ::   
@@ -188,4 +189,5 @@ IF %COUNT% GEQ 3 EXIT
 SET /A COUNT=%COUNT%+1
 
 IF NOT EXIST "C:\Program Files (x86)\Citrix\XTE\conf\httpd.conf" GOTO RetryCreate
-eventcreate /ID 1 /L APPLICATION /T INFORMATION /SO "Local GP Startup Script" /D "Completed Citrix_Restart_IMASrv_Delayed.cmd script"</pre>
+eventcreate /ID 1 /L APPLICATION /T INFORMATION /SO "Local GP Startup Script" /D "Completed Citrix_Restart_IMASrv_Delayed.cmd script"
+```

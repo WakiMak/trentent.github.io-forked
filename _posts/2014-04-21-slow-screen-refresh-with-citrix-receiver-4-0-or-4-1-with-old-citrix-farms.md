@@ -24,13 +24,15 @@ tags:
 ---
 I was having an issue with very slow screen redraws with Citrix Receiver 4.1 with a MetaFrame 4.5 farm (although I've read online it's applicable to Presentation Server 4.0).  The fix is to enable the following registry key:
 
-<pre class="lang:default decode:true ">:Fix for slow graphics performance on Legacy Farm
+
+```shell
+:Fix for slow graphics performance on Legacy Farm
 IF '%PROCESSOR_ARCHITECTURE%'=='x86' (
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Citrix\ICA Client\Engine\Lockdown Profiles\All Regions\Lockdown\Virtual Channels\Seamless Windows" /v DeferredUpdateMode /d False /f
 ) ELSE (
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Citrix\ICA Client\Engine\Lockdown Profiles\All Regions\Lockdown\Virtual Channels\Seamless Windows" /v DeferredUpdateMode /d False /f
 )
-</pre>
+```
 
 <div>
 </div>

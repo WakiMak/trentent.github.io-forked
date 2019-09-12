@@ -69,7 +69,9 @@ I revised the messaging slightly as I've found the 'Group Policy' phase can be a
 
 So I [took my previous script](http://theorypc.ca/2016/08/31/controlup-dissecting-logon-times-a-step-further-printer-loading/) and updated it further.  This time with a check for valid home directories.  I also added some window sizing information to give greater width for the response as 'Interim Delay' was getting truncated when there were long printer names.  Here is the further updated script:
 
-<pre class="lang:ps decode:true ">#expand output window so it looks better in ControlUp
+
+```powershell
+#expand output window so it looks better in ControlUp
 $pshost = get-host
 $pswindow = $pshost.ui.rawui
 $newsize = $pswindow.buffersize
@@ -502,7 +504,9 @@ Write-Host "Only synchronous scripts affect logon duration"
 }
 
 $args_fix = ($args[0] -split '\\')
-Get-LogonDurationAnalysis -Username $args_fix[1] -UserDomain $args_fix[0] -clientName $args[1] -CUDesktopLoadTime $args[2]</pre>
+Get-LogonDurationAnalysis -Username $args_fix[1] -UserDomain $args_fix[0] -clientName $args[1] -CUDesktopLoadTime $args[2
+```
+
 
 <!-- AddThis Advanced Settings generic via filter on the_content -->
 

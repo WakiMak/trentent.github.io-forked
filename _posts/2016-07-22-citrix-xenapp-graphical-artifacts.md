@@ -1,11 +1,11 @@
 ---
 id: 1596
-title: Citrix & - Graphical Artifacts
+title: Citrix XenApp - Graphical Artifacts
 date: 2016-07-22T16:54:58-06:00
 author: trententtye
 layout: post
 guid: http://theorypc.ca/?p=1596
-permalink: /2016/07/22/citrix-&-graphical-artifacts/
+permalink: /2016/07/22/citrix-xenapp-graphical-artifacts/
 enclosure:
   - |
     /wp-content/uploads/2016/07/Artifacts_happening.mp4
@@ -32,7 +32,7 @@ tags:
   - Registry
 
 ---
-In our Citrix & 6.5 environment we started having a couple applications encounter an issue where they would experience some serious graphical artifacts.  What was supposed to look like this:
+In our Citrix XenApp 6.5 environment we started having a couple applications encounter an issue where they would experience some serious graphical artifacts.  What was supposed to look like this:
 
 <img class="aligncenter size-full wp-image-1597" src="/wp-content/uploads/2016/07/1-1.png" alt="1" width="1915" height="1122" srcset="/wp-content/uploads/2016/07/1-1.png 1915w, /wp-content/uploads/2016/07/1-1-300x176.png 300w, /wp-content/uploads/2016/07/1-1-768x450.png 768w, /wp-content/uploads/2016/07/1-1-1024x600.png 1024w" sizes="(max-width: 1915px) 100vw, 1915px" /> 
 
@@ -45,7 +45,7 @@ Would look like this:
 Here's a short video demonstrating this issue:
 
 <div style="width: 1140px;" class="wp-video">
-  <video class="wp-video-shortcode" id="video-1596-6" width="1140" height="670" preload="metadata" controls="controls"><source type="video/mp4" src="/wp-content/uploads/2016/07/Artifacts_happening.mp4?_=6" /><a href="/wp-content/uploads/2016/07/Artifacts_happening.mp4">/wp-content/uploads/2016/07/Artifacts_happening.mp4</a></video>
+  <video class="wp-video-shortcode" id="video-1596-6" width="1140" height="670" preload="metadata" controls="controls"><source type="video/mp4" src="/wp-content/uploads/2016/07/Artifacts_happening.mp4" /><a href="/wp-content/uploads/2016/07/Artifacts_happening.mp4">/wp-content/uploads/2016/07/Artifacts_happening.mp4</a></video>
 </div>
 
 Or sometimes it would show the windows \*behind\* the artifacted image.  That is, instead of the 'White' you see in my image, the application behind it shows through.
@@ -57,9 +57,11 @@ When investigating this we found there was a couple symptoms that we were going 
   2. The application would switch to 'Not Responding'  
 <img class="aligncenter size-full wp-image-1599" src="/wp-content/uploads/2016/07/3.png" alt="3" width="427" height="137" srcset="/wp-content/uploads/2016/07/3.png 427w, /wp-content/uploads/2016/07/3-300x96.png 300w" sizes="(max-width: 427px) 100vw, 427px" /> 
   3. If you completed the task 'Edit' quickly there would be no artifacting (time was important)
-  4. When 'timing' the switch from 'normal' to frosted or ghosted window it would be around 5-7 seconds. <div style="width: 612px;" class="wp-video">
-      <video class="wp-video-shortcode" id="video-1596-7" width="612" height="548" preload="metadata" controls="controls"><source type="video/mp4" src="/wp-content/uploads/2016/07/20160722-160129.mp4?_=7" /><a href="/wp-content/uploads/2016/07/20160722-160129.mp4">/wp-content/uploads/2016/07/20160722-160129.mp4</a></video>
-    </div>
+  4. When 'timing' the switch from 'normal' to frosted or ghosted window it would be around 5-7 seconds. 
+  
+<div style="width: 612px;" class="wp-video">
+<video class="wp-video-shortcode" id="video-1596-7" width="612" height="548" preload="metadata" controls="controls"><source type="video/mp4" src="/wp-content/uploads/2016/07/20160722-160129.mp4" /><a href="/wp-content/uploads/2016/07/20160722-160129.mp4">/wp-content/uploads/2016/07/20160722-160129.mp4</a></video>
+</div>
 
 So what's going on here?
 

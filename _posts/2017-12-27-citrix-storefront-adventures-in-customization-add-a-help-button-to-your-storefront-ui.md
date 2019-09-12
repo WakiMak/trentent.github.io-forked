@@ -18,11 +18,15 @@ tags:
 
 This customization is pretty easy.  Add the following to your custom.js file:
 
-<pre class="lang:default decode:true ">CTXS.ExtensionAPI.addHelpButton(
+
+```javascript
+CTXS.ExtensionAPI.addHelpButton(
 	function onClick() {
 	CTXS.ExtensionAPI.openUrl("http://www.google.ca");
 	}
-);</pre>
+)
+```
+
 
 Replace "http://www.google.ca" with the URL you want your help screen to be.
 

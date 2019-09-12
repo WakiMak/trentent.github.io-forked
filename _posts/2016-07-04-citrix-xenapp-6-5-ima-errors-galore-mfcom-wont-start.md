@@ -1,11 +1,11 @@
 ---
 id: 1577
-title: Citrix & 6.5 - IMA errors galore, mfcom won't start
+title: Citrix XenApp 6.5 - IMA errors galore, mfcom won't start
 date: 2016-07-04T14:35:44-06:00
 author: trententtye
 layout: post
 guid: http://theorypc.ca/?p=1577
-permalink: /2016/07/04/citrix-&-6-5-ima-errors-galore-mfcom-wont-start/
+permalink: /2016/07/04/citrix-xenapp-6-5-ima-errors-galore-mfcom-wont-start/
 categories:
   - Blog
 tags:
@@ -18,14 +18,17 @@ tags:
 ---
 I've seen this happen a few times now where the "Citrix Independent Management Architecture" (aka IMAService) won't start, erroring with various errors:
 
-<pre class="">3616 - Configuration error: Failed to read the farm name out of the registry on a server configured  to access the Data Store directly.
+```plaintext
+3616 - Configuration error: Failed to read the farm name out of the registry on a server configured  to access the Data Store directly.
 3609 - Failed to load plugin C:\Program Files (x86)\Citrix\System32\Citrix\IMA\SubSystems\ImaRuntimeSS.dll with error IMA_RESULT_CONFIGURATION_ERROR
 3601 - Failed to load initial plugins with error IMA_RESULT_CONFIGURATION_ERROR
 4005 - The Citrix Independent Management Architecture (IMA) service is exiting. The Neighborhood (farm name) could not be read from the Data Store or written to the registry.
 3609 - Failed to load plugin C:\Program Files (x86)\Citrix\System32\Citrix\IMA\SubSystems\ImaPsSs.dll with error IMA_RESULT_REGISTRY_ERROR
 3601 - Failed to load initial plugins with error IMA_RESULT_REGISTRY_ERROR
 3609 - Failed to load plugin C:\Program Files (x86)\Citrix\System32\Citrix\IMA\SubSystems\MfSrvSs.dll with error IMA_RESULT_FAILURE
-4003 - The Citrix Independent Management Architecture (IMA) service is exiting. The & Server Configuration tool has not been run on this server. Please run  & Server Configuration tool.</pre>
+4003 - The Citrix Independent Management Architecture (IMA) service is exiting. The XenApp Server Configuration tool has not been run on this server. Please run  XenApp Server Configuration tool
+```
+
 
 All of these errors appear to be a registry with incorrect permissions configured on the Citrix keys.  Why did these keys get their permissions reset?  I'm unsure.  I DID just install Citrix UPM 5.4 which may reset the keys?
 
@@ -33,7 +36,9 @@ Here is how you fix the permissions (at least, everything I could possibly find)
 1) [Download SetACL.exe](https://helgeklein.com/download/)  
 2) Save this file to 'CitrixRegPerms.txt':
 
-<pre class="lang:default decode:true">"machine\SOFTWARE\Wow6432Node\Citrix",4,"D:PAI(A;OICI;KA;;;BA)(A;OICI;KA;;;SY)(A;;KA;;;SY)(A;OICIIO;KA;;;CO)(A;OICI;KR;;;AU)(A;OICI;KA;;;NS)"
+
+```plaintext
+"machine\SOFTWARE\Wow6432Node\Citrix",4,"D:PAI(A;OICI;KA;;;BA)(A;OICI;KA;;;SY)(A;;KA;;;SY)(A;OICIIO;KA;;;CO)(A;OICI;KR;;;AU)(A;OICI;KA;;;NS)"
 "machine\SOFTWARE\Wow6432Node\Citrix\Audio\status",4,"D:AI"
 "machine\SOFTWARE\Wow6432Node\Citrix\CtxHook\AppInit_Dlls\Smart Card Hook\C:/Windows/system32/lsass.exe",4,"D:AI"
 "machine\SOFTWARE\Wow6432Node\Citrix\CtxHook\AppInit_Dlls\Smart Card Hook\C:/Windows/system32/winlogon.exe",4,"D:AI"
@@ -118,11 +123,17 @@ Here is how you fix the permissions (at least, everything I could possibly find)
 "machine\SOFTWARE\Wow6432Node\Citrix\IMAPrinter",4,"D:AI"
 "machine\SOFTWARE\Wow6432Node\Citrix\Install",4,"D:PAI(A;OICI;KA;;;BA)(A;OICI;KA;;;SY)(A;OICI;KR;;;AU)"
 "machine\SOFTWARE\Wow6432Node\Citrix\RebootSchedule",4,"D:AI"
-"machine\SOFTWARE\Wow6432Node\Citrix\WMIService",4,"D:PAI(A;OICI;KA;;;BA)(A;OICI;KA;;;SY)(A;;KA;;;SY)(A;OICIIO;KA;;;CO)(A;OICI;KR;;;AU)(A;OICI;KA;;;LS)"</pre>
+"machine\SOFTWARE\Wow6432Node\Citrix\WMIService",4,"D:PAI(A;OICI;KA;;;BA)(A;OICI;KA;;;SY)(A;;KA;;;SY)(A;OICIIO;KA;;;CO)(A;OICI;KR;;;AU)(A;OICI;KA;;;LS)
+```
+
 
 You may need to identify the local SID for 'NETWORKSERVICE'.  In my example the value is:
 
-<pre class="lang:default decode:true">S-1-5-80-2037085886-1864634726-376116143-1108166061-1304636759</pre>
+
+```plaintext
+S-1-5-80-2037085886-1864634726-376116143-1108166061-130463675
+```
+
 
 &nbsp;
 
@@ -130,7 +141,9 @@ You may need to replace your SID for NetworkService with the one from my file ab
 
 Lastly this script will 'fix' the incorrect permissions:
 
-<pre class="lang:batch decode:true">pushd %~dp0
+
+```plaintext
+pushd %~dp0
 :stop mfcom.exe if it's stuck in 'Starting'
 taskkill /im mfcom.exe /f
 :backup reg perms
@@ -147,7 +160,7 @@ setacl -on "HKEY_LOCAL_MACHINE" -ot reg -actn restore -bckp CitrixRegPerms.txt
 setacl -on "HKLM\SOFTWARE\Citrix\MSLicensing\ReplicateCache" -ot reg -actn ace -ace "n:NETWORKSERVICE;p:full;m:grant"
 setacl -on "HKEY_LOCAL_MACHINE\SOFTWARE\Citrix\MSLicensing\LastUpdateTimeStamp" -ot reg -actn ace -ace "n:NETWORKSERVICE;p:full;m:grant"
 popd
-</pre>
+```
 
 Done.
 

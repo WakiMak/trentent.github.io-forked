@@ -1,11 +1,11 @@
 ---
 id: 2101
-title: Citrix & Enumeration Performance - IMA vs FMA
+title: Citrix XenApp Enumeration Performance - IMA vs FMA
 date: 2017-04-11T16:48:17-06:00
 author: trententtye
 layout: post
 guid: http://theorypc.ca/?p=2101
-permalink: /2017/04/11/citrix-&-enumeration-performance-ima-vs-fma/
+permalink: /2017/04/11/citrix-xenapp-enumeration-performance-ima-vs-fma/
 image: /wp-content/uploads/2017/04/PErf.png
 categories:
   - Blog
@@ -14,9 +14,11 @@ tags:
   - Performance
 
 ---
-We're exploring upgrading our Citrix & 6.5 environment to 7.X (currently 7.13) and we have some architecture decisions that are driven by the performance of the infrastructure components of &.  In 6.5 these components are the "Citrix Independent Management Architecture" and in 7.13 this is the "Citrix Broker Service".  The performance I'll be measuring is how long it takes to enumerate applications for a user.  In & 6.5 this is the most intensive task put on the broker.  I've taken our existing & 6.5 TEST environment and "migrated" it to 7.X.  The details of the environment are 189 enabled applications with various security groups applied to each application.  The user I will be testing with has access to 55 of them.  What the broker/IMA service has to do when it receives the XML request is evaluate each application to see if the user has permissions and return the results.  The 'request' is slightly different to the broker vs the IMA.  This is what the FMA requests will look like:
+We're exploring upgrading our Citrix XenApp 6.5 environment to 7.X (currently 7.13) and we have some architecture decisions that are driven by the performance of the infrastructure components of &.  In 6.5 these components are the "Citrix Independent Management Architecture" and in 7.13 this is the "Citrix Broker Service".  The performance I'll be measuring is how long it takes to enumerate applications for a user.  In XenApp 6.5 this is the most intensive task put on the broker.  I've taken our existing XenApp 6.5 TEST environment and "migrated" it to 7.X.  The details of the environment are 189 enabled applications with various security groups applied to each application.  The user I will be testing with has access to 55 of them.  What the broker/IMA service has to do when it receives the XML request is evaluate each application to see if the user has permissions and return the results.  The 'request' is slightly different to the broker vs the IMA.  This is what the FMA requests will look like:
 
-<pre class="lang:ps decode:true ">$soap7XD = @'
+
+```powershell
+$soap7XD = @'
 <NFuseProtocol version="5.5">
     <RequestAppData>
         <Scope Traverse="subtree"></Scope>
@@ -34,13 +36,17 @@ We're exploring upgrading our Citrix & 6.5 environment to 7.X (currently 7.13) a
         <ClientAddress addresstype="dot">10.10.10.10</ClientAddress>
     </RequestAppData>
 </NFuseProtocol>
-'@</pre>
+'
+```
+
 
 &nbsp;
 
 And the IMA requests:
 
-<pre class="lang:ps decode:true ">$soap = @'
+
+```powershell
+$soap = @'
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE NFuseProtocol SYSTEM "NFuse.dtd">
 <NFuseProtocol version="5.4">
@@ -59,9 +65,11 @@ And the IMA requests:
         <ClientAddress addresstype="dot">10.10.10.10</ClientAddress>
     </RequestAppData>
 </NFuseProtocol>
-'@</pre>
+'
+```
 
-In our environment, we have measured a 'peak' load of 600 concurrent connections per second to our & 6.5 IMA service.  We split this load over 7 servers and the load is load-balanced via Netscaler VIP's.  This lessens the peak load to 85 concurrent connections per server per second.  What's a "connection"?  A connection is a request to the IMA service and a response from it.  This would be considered a single connection in my definition:
+
+In our environment, we have measured a 'peak' load of 600 concurrent connections per second to our XenApp 6.5 IMA service.  We split this load over 7 servers and the load is load-balanced via Netscaler VIP's.  This lessens the peak load to 85 concurrent connections per server per second.  What's a "connection"?  A connection is a request to the IMA service and a response from it.  This would be considered a single connection in my definition:
 
 <img class="aligncenter size-full wp-image-2102" src="/wp-content/uploads/2017/04/Connection.png" alt="" width="542" height="595" srcset="/wp-content/uploads/2017/04/Connection.png 542w, /wp-content/uploads/2017/04/Connection-273x300.png 273w" sizes="(max-width: 542px) 100vw, 542px" /> 
 
@@ -73,7 +81,9 @@ I'm going to profile a single response and request to better understand the indi
 
 This is what my network traffic will look like (on the 7.X broker service):
 
-<pre class="lang:xhtml decode:true">POST /scripts/wpnbr.dll HTTP/1.1
+
+```xml
+POST /scripts/wpnbr.dll HTTP/1.1
 Content-Type: text/xml
 Host: wsctxddc2001t
 Content-Length: 676
@@ -148,7 +158,7 @@ Date: Tue, 11 Apr 2017 15:38:37 GMT
         </AppDataSet>
     </ResponseAppData>
 </NFuseProtocol>
-</pre>
+```
 
 The total time between when the FMA broker receives a single request to beginning the response is:
 
@@ -186,8 +196,12 @@ Why the size difference (18KB vs 24KB)?
 
 Looking at the data returned from the FMA via the IMA shows there is a new field passed by the FMA broker as apart of 'AppData'
 
-<pre class="lang:default decode:true "><Permissions>
-                </Permissions></pre>
+
+```xml
+<Permissions>
+                </Permissions>
+```
+
 
 These two lines add 61 bytes per application.  A standard application response is (with title) ~331 bytes per IMA application and ~400 bytes per FMA application.
 
@@ -201,7 +215,7 @@ In order to get a better feel I ran the requests continuously in a loop, sending
 
 IMA is faster by approx 30ms per request.
 
-[Next up is load testing IMA vs FMA](https://theorypc.ca/2017/04/12/citrix-&-enumeration-performance-ima-vs-fma-load-testing/).
+[Next up is load testing IMA vs FMA](https://theorypc.ca/2017/04/12/citrix-xenapp-enumeration-performance-ima-vs-fma-load-testing/).
 
 <!-- AddThis Advanced Settings generic via filter on the_content -->
 

@@ -16,11 +16,17 @@ We recently had an issue with some users launching an AppV 5 application.  They 
 
 <img class="aligncenter size-full wp-image-1823" src="/wp-content/uploads/2016/12/event.png" alt="" width="632" height="435" srcset="/wp-content/uploads/2016/12/event.png 632w, /wp-content/uploads/2016/12/event-300x206.png 300w" sizes="(max-width: 632px) 100vw, 632px" /> 
 
-<pre class="lang:default decode:true">Process 10372 failed to start due to Virtual Filesystem subsystem failure. Package ID {f20085a5-9efb-4460-a474-a9db9e3fada5}. Version ID {6bc31f1c-7abd-4c89-aadb-b0d9eb903f3d}. Error: 0xFD01F25-0x2</pre>
+
+```plaintext
+Process 10372 failed to start due to Virtual Filesystem subsystem failure. Package ID {f20085a5-9efb-4460-a474-a9db9e3fada5}. Version ID {6bc31f1c-7abd-4c89-aadb-b0d9eb903f3d}. Error: 0xFD01F25-0x
+```
+
 
 In order to troubleshoot this issue more effectively, I turned on '[Event Tracing for Windows](https://theorypc.ca/2016/03/24/appv5-the-trouble-with-appv5-logs-and-a-solution/)' for the AppV logs and captured the output.  Searching for the error code revealed the following:
 
-<pre class="lang:default decode:true">[0]0CE0.2264::2016-12-13 10:25:56.630 [Microsoft-AppV-ServiceLog]2016-Dec-13 10:25:56.633 - VReg: [3296].[8804]: INFO: Incoming runtime settings are valid.  [vreg_runtime_configurator::initialize; 84] 
+
+```plaintext
+[0]0CE0.2264::2016-12-13 10:25:56.630 [Microsoft-AppV-ServiceLog]2016-Dec-13 10:25:56.633 - VReg: [3296].[8804]: INFO: Incoming runtime settings are valid.  [vreg_runtime_configurator::initialize; 84] 
 [0]0CE0.2264::2016-12-13 10:25:56.630 [Microsoft-AppV-ServiceLog]2016-Dec-13 10:25:56.633 - VReg: [3296].[8804]: INFO: Configuration initialization complete.  Mode: 1 Local COW creation path:Software\Classes\AppV\Client\Packages\F20085A5-9EFB-4460-A474-A9DB9E3FADA5 Roaming COW creation path:Software\Microsoft\AppV\Client\Packages\F20085A5-9EFB-4460-A474-A9DB9E3FADA5 Secure COW creation path:Software\Microsoft\AppV\Client\Packages\F20085A5-9EFB-4460-A474-A9DB9E3FADA5\S-1-5-21-38857442-2693285798-3636612711-15166942 Client package registry root:\REGISTRY\MACHINE\Software\Microsoft\AppV\Client\Packages\F20085A5-9EFB-4460-A474-A9DB9E3FADA5\Versions\6BC31F1C-7ABD-4C89-AADB-B0D9EB903F3D Client local COW root: \REGISTRY\USER\S-1-5-21-38857442-2693285798-3636612711-15166942_Classes\AppV\Client\Packages\F20085A5-9EFB-4460-A474-A9DB9E3FADA5 Client roaming COW root: \REGISTRY\USER\S-1-5-21-38857442-2693285798-3636612711-15166942\Software\Microsoft\AppV\Client\Packages\F20085A5-9EFB-4460-A474-A9DB9E3FADA5 Client secure COW root: \REGISTRY\MACHINE\Software\Microsoft\AppV\Client\Packages\F20085A5-9EFB-4460-A474-A9DB9E3FADA5\S-1-5-21-38857442-2693285798-3636612711-15166942  [vreg_runtime_configurator::initialize; 111] 
 [3]0CE0.2264::2016-12-13 10:25:56.631 [Microsoft-AppV-ServiceLog]2016-Dec-13 10:25:56.633 - VReg: [3296].[8804]: INFO: Successfully validated user COW key at \REGISTRY\USER\S-1-5-21-38857442-2693285798-3636612711-15166942_Classes\AppV\Client\Packages\F20085A5-9EFB-4460-A474-A9DB9E3FADA5.  [vreg_runtime::ensure_cows; 203] 
 [2]0CE0.2264::2016-12-13 10:25:56.633 [Microsoft-AppV-ServiceLog]2016-Dec-13 10:25:56.633 - VReg: [3296].[8804]: INFO: Successfully validated user COW key at \REGISTRY\USER\S-1-5-21-38857442-2693285798-3636612711-15166942\Software\Microsoft\AppV\Client\Packages\F20085A5-9EFB-4460-A474-A9DB9E3FADA5.  [vreg_runtime::ensure_cows; 216] 
@@ -38,13 +44,17 @@ In order to troubleshoot this issue more effectively, I turned on '[Event Tracin
 [5]0CE0.2264::2016-12-13 10:25:56.675 [Microsoft-AppV-ServiceLog]2016-Dec-13 10:25:56.680 - VirtualizationManager: [3296].[8804]: ERROR: 7 component failed to handle 12 activity. Error 1139444949498986498.  [AppV::Client::Virtualization::VirtualizationManager::HandleRequestActivityFailure; 646] 
 [5]0CE0.2264::2016-12-13 10:25:56.675 [Microsoft-AppV-Client]D:\AppVData\PackageInstallationRoot\F20085A5-9EFB-4460-A474-A9DB9E3FADA5\6BC31F1C-7ABD-4C89-AADB-B0D9EB903F3D\Root\VFS\ProgramFilesX86\Microsoft Office\Office\MSACCESS.EXE application from package ID {f20085a5-9efb-4460-a474-a9db9e3fada5} failed to launch. process ID 18552, error 0xFD01F25-0x2. 
 [5]0CE0.2264::2016-12-13 10:25:56.675 [Microsoft-AppV-Client]D:\AppVData\PackageInstallationRoot\F20085A5-9EFB-4460-A474-A9DB9E3FADA5\6BC31F1C-7ABD-4C89-AADB-B0D9EB903F3D\Root\VFS\ProgramFilesX86\Microsoft Office\Office\MSACCESS.EXE application from package ID {f20085a5-9efb-4460-a474-a9db9e3fada5} failed to launch. process ID 18552, error 0x55900D02-0x501. 
-</pre>
+```
 
 &nbsp;
 
 The first line that shows an 'error':
 
-<pre class="lang:default decode:true">ERROR: Failed to get long path from '\\?\C:\Users\adtest93\AppData\Roaming\Microsoft\Windows\Templates'</pre>
+
+```plaintext
+ERROR: Failed to get long path from '\\?\C:\Users\adtest93\AppData\Roaming\Microsoft\Windows\Templates
+```
+
 
 I navigated to that path, and sure enough, a 'Templates' folder was not present.
 
@@ -52,7 +62,9 @@ I did a procmon trace during that user logon and noticed the folder was never cr
 
 So what does the error message "0xFD01F25-0x2" mean?  Well, the first portion split by the 'dash' is the component that is explained to decipher where in AppV this issue is occuring.  The second string (0x2) is more interesting because it actually tells us something.  Microsoft has these [short codes documented here](https://msdn.microsoft.com/en-us/library/windows/desktop/ms681382(v=vs.85).aspx).
 
-<pre class="lang:default decode:true">ERROR_SUCCESS0 (0x0)
+
+```plaintext
+ERROR_SUCCESS0 (0x0)
 The operation completed successfully.
 ERROR_INVALID_FUNCTION1 (0x1)
 Incorrect function.
@@ -64,7 +76,7 @@ ERROR_TOO_MANY_OPEN_FILES4 (0x4)
 The system cannot open the file.
 ERROR_ACCESS_DENIED5 (0x5)
 Access is denied.
-</pre>
+```
 
 0x2 = the system cannot find the file specified.  It's actually looking for a folder, but the object didn't exist and that's the code it generated.  So if you see that second octect in an AppV error, the short system error code may give you a more precise clue to what is occuring and how you can fix it.
 

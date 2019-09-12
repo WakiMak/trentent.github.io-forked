@@ -30,8 +30,8 @@ This script is used to keep ProcMon.exe, ProcExp.exe and Wireshark up to date an
   Update_Tools.ps1:
 </div>
 
-<div>
-  <pre class="lang:ps decode:true ">#Update_Tools.ps1
+```powershell
+#Update_Tools.ps1
 # by Trentent Tye
 # Updates processor monitor and processor explorer and wireshark
  
@@ -67,12 +67,9 @@ $wiresharkver = $link.links.innerText | select-string "Wire*" | select -last 1
 $Source = "https://2.na.dl.wireshark.org/win32/" + $wiresharkver
 $Destination = "c:\swinst\" + $wiresharkver
 Invoke-WebRequest -uri $Source -OutFile $Destination
-Unblock-File $Destination</pre>
+Unblock-File $Destination
+```
   
-  <p>
-    &nbsp;
-  </p>
-</div>
 
 <!-- AddThis Advanced Settings generic via filter on the_content -->
 

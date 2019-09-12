@@ -21,9 +21,11 @@ tags:
   - "2003"
   - scripting
 ---
-<pre class="lang:batch decode:true ">for /f %A IN ('type systems.txt') DO (
+```shell
+for /f %A IN ('type systems.txt') DO (
 cscript.exe C:\windows\system32\EVENTQUERY.vbs /S %A /FI "ID eq 3001" /L Application >> list.txt
-)</pre>
+)
+```
 
 This will find event ID 3001 in the Application log file with a list of computers from "systems.txt"
 

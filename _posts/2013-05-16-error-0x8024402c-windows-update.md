@@ -32,11 +32,13 @@ Symptoms of the issues I found and the resolution for this issue.
 1) Getting "ERROR 8024402C" when running Windows Update.  
 2) Checking %WINDIR%\WindowsUpdate.log reveals lines like:
 
-<pre class="lang:default decode:true ">2013-05-16 10:41:01:577 1404 820 DnldMgr BITS job {97BB86BA-69EA-4091-91E6-DBD1EE012652} hit a transient error, updateId = {E6EC40C4-CD27-4D9C-A8C2-CE2B8A31E903}.201, error = 0x80072EE7
+
+```plaintext
+2013-05-16 10:41:01:577 1404 820 DnldMgr BITS job {97BB86BA-69EA-4091-91E6-DBD1EE012652} hit a transient error, updateId = {E6EC40C4-CD27-4D9C-A8C2-CE2B8A31E903}.201, error = 0x80072EE7
 2013-05-16 10:41:01:577 1404 820 DnldMgr BITS job {97BB86BA-69EA-4091-91E6-DBD1EE012652} hit a transient error, updateId = {E6EC40C4-CD27-4D9C-A8C2-CE2B8A31E903}.201, error = 0x80072EE7
 2013-05-16 10:41:01:577 1404 10a0 AU   # WARNING: Download failed, error = 0x8024402C
 2013-05-16 10:41:01:577 1404 10a0 AU   # WARNING: Download failed, error = 0x8024402C
-</pre>
+```
 
 To determine the cause of the issue, I used the nicely revamped Event Viewer and looked at the BITS-Client logs.  Which was a waste, nothing showed up there.  I checked the WindowsUpdateClient log and nothing was there either.  I then learned BITS uses WinHTTP when I was googling for this issue and saw there was a WinHTTP log file.  (You may have to enable analytics and debug logs).  I enabled the Diagnostics Log.
 

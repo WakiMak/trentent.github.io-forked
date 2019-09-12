@@ -29,7 +29,9 @@ I've been tasked with finding out why.  The Citrix XML server is a basic web ser
 XML-Test.ps1:
 
 <div style="font-family: 'Lucida Console'; font-size: 9px;">
-  <pre class="lang:ps decode:true ">$i=1
+  
+```powershell
+$i=1
 for ($i -le 5; $i++) {
 
 $csv = import-csv list_of_xml.csv
@@ -82,7 +84,9 @@ sleep 1
 
 $output | out-file -append "\\wsctxapp301t\d$\WI_Load_Testing\OutFile.txt"
 
-}</pre>
+
+```
+
   
   <p>
     <span style="background-color: white;"> </span></div> 
@@ -158,7 +162,9 @@ $output | out-file -append "\\wsctxapp301t\d$\WI_Load_Testing\OutFile.txt"
     </div>
     
     <div>
-      <pre class="lang:default decode:true ">scenario {
+      
+```plaintext
+scenario {
     warmup    = 300;
     duration    = 300;
     cooldown    = 30;
@@ -196,7 +202,7 @@ $output | out-file -append "\\wsctxapp301t\d$\WI_Load_Testing\OutFile.txt"
         }
     }
 }
-</pre>
+```
     </div>
     
     <div>

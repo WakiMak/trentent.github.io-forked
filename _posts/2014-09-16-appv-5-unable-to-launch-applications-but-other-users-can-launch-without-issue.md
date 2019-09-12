@@ -74,16 +74,24 @@ Launching the application gave me some error messages.  From Client-Virtualizati
 
 &nbsp;
 
-<pre class="lang:default decode:true ">64 notification failed with error 5746736078216233004. Package {49bda935-0a17-43e5-aada-44858d95affa}, version {d506ff21-4e9a-40e5-b60f-94481ccbe76a}, pid 5176, ve id 0.
-VirtualizationManager component failed to handle 46 activity. Error 4746865492684177448.</pre>
+
+```plaintext
+64 notification failed with error 5746736078216233004. Package {49bda935-0a17-43e5-aada-44858d95affa}, version {d506ff21-4e9a-40e5-b60f-94481ccbe76a}, pid 5176, ve id 0.
+VirtualizationManager component failed to handle 46 activity. Error 4746865492684177448
+```
+
 
 If we do the [backwards HRESULT dance](http://blogs.technet.com/b/gladiatormsft/archive/2013/11/13/app-v-on-operational-troubleshooting-of-the-v5-client.aspx) to try and get a useful error code we get this for the two errors:
 
-<pre class="lang:ps decode:true">PS C:\Users\trententtye> (5746736078216233004).ToString("x")
+
+```powershell
+PS C:\Users\trententtye> (5746736078216233004).ToString("x")
 4fc082040000002c
 
 PS C:\Users\trententtye> (4746865492684177448).ToString("x")
-41e0410400000028</pre>
+41e041040000002
+```
+
 
 According to the link, the object is 04 (
 
@@ -115,8 +123,12 @@ with error code 0x28 and 0x2c.  Googling those HRESULT codes reveals nothing.  I
 
 &nbsp;
 
-<pre class="lang:default decode:true ">Request to generate mappings for globally-published package failed. package moniker 49BDA935-0A17-43E5-AADA-44858D95AFFA_D506FF21-4E9A-40E5-B60F-94481CCBE76A. group moniker . user sid S-1-5-21-38857442-2693285798-3636612711-15138285. result {Operation Failed}
-The requested operation was unsuccessful..</pre>
+
+```plaintext
+Request to generate mappings for globally-published package failed. package moniker 49BDA935-0A17-43E5-AADA-44858D95AFFA_D506FF21-4E9A-40E5-B60F-94481CCBE76A. group moniker . user sid S-1-5-21-38857442-2693285798-3636612711-15138285. result {Operation Failed}
+The requested operation was unsuccessful.
+```
+
 
 Well, this is interesting.  So it appears that AppV can't do mappings; which I assume are the CoW (Copy on Write) for the filesystem...?  Procmon does not reveal anything with a access denied or failed to create directories, as a matter of fact it actually creates the %userprofile%\local\Microsoft\AppV\VFS directories.  But it is specifically targeting my user account, as referenced by the SID.
 

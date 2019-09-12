@@ -139,23 +139,13 @@ Each "UDP Receieve" packet is a validation that the data it received was good an
 
 So, again, jumbo frames are a big help here as all requests under 8K can be serviced in 1 packet, and there are usually MORE requests under 8K then above.  Fortunately, Procmon can give us some numbers to illustrate this.  I started and stopped the procmon trace for each run of a Network Boot with Jumbo Frames and without:
 
-<div id="attachment_1894" style="width: 953px" class="wp-caption aligncenter">
-  <img aria-describedby="caption-attachment-1894" class="size-full wp-image-1894" src="/wp-content/uploads/2016/12/Regular_Packet.png" alt="" width="943" height="472" srcset="/wp-content/uploads/2016/12/Regular_Packet.png 943w, /wp-content/uploads/2016/12/Regular_Packet-300x150.png 300w, /wp-content/uploads/2016/12/Regular_Packet-768x384.png 768w" sizes="(max-width: 943px) 100vw, 943px" /></p> 
-  
-  <p id="caption-attachment-1894" class="wp-caption-text">
-    Standard MTU (1506)
-  </p>
-</div>
+![](/wp-content/uploads/2016/12/Regular_Packet.png)  
+Standard MTU (1506)
 
 &nbsp;
 
-<div id="attachment_1895" style="width: 956px" class="wp-caption aligncenter">
-  <img aria-describedby="caption-attachment-1895" class="size-full wp-image-1895" src="/wp-content/uploads/2016/12/Jumbo_Frames_AmountOfNetworkTraffic.png" alt="" width="946" height="471" srcset="/wp-content/uploads/2016/12/Jumbo_Frames_AmountOfNetworkTraffic.png 946w, /wp-content/uploads/2016/12/Jumbo_Frames_AmountOfNetworkTraffic-300x149.png 300w, /wp-content/uploads/2016/12/Jumbo_Frames_AmountOfNetworkTraffic-768x382.png 768w" sizes="(max-width: 946px) 100vw, 946px" /></p> 
-  
-  <p id="caption-attachment-1895" class="wp-caption-text">
-    Jumbo Frame MTU (9014)
-  </p>
-</div>
+![](/wp-content/uploads/2016/12/Jumbo_Frames_AmountOfNetworkTraffic.png)  
+Jumbo Frame MTU (9014)
 
 &nbsp;
 

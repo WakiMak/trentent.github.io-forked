@@ -556,7 +556,13 @@ tags:
 </div>
 
 <div style="mso-layout-grid-align: none; mso-pagination: none; text-align: justify; text-autospace: none; text-justify: inter-ideograph;">
-  <pre class="lang:batch decode:true ">msiexec.exe /i "CRRuntime_64bit_13_0_14.msi" TRANSFORMS=SAP_DIR_Short2.mst INSTALLDIR="C:\Program Files (x86)\1" /qb</pre>
+ 
+```
+shell
+  msiexec.exe /i "CRRuntime_64bit_13_0_14.msi" TRANSFORMS=SAP_DIR_Short2.mst INSTALLDIR="C:\Program Files (x86)\1" /qb
+ 
+```
+
 </div>
 
 <div style="mso-layout-grid-align: none; mso-pagination: none; text-align: justify; text-autospace: none; text-justify: inter-ideograph;">

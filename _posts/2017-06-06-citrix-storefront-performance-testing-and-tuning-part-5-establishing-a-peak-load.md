@@ -45,7 +45,9 @@ For #4, I decided to look at the IIS logs and search for "launch.aspx".
 
 For #1 I created a powershell script to parse the IIS log file and export my data:
 
-<pre class="lang:ps decode:true"># Define the location of log files and a temporary file
+
+```powershell
+# Define the location of log files and a temporary file
 $LogFolder = "\\web01.bottheory.local\d$\inetpub\logs\LogFiles\W3SVC1"
 $LogFiles = [System.IO.Directory]::GetFiles($LogFolder, "*.log")
 
@@ -103,7 +105,9 @@ foreach ($LogFile in $LogFiles) {
  }
 }
 
-$obj| export-csv WebInterface.csv</pre>
+$obj| export-csv WebInterface.cs
+```
+
 
 I then opened it in Excel and created time ranges per-hour and then counted how many of each item was found in that range.  For the Logoff.PNG it was accessed like this:
 

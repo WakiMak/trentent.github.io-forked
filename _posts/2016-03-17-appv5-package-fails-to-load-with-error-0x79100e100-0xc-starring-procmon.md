@@ -37,7 +37,8 @@ I started investigating.  The first thing I did was open a powershell window and
 
 I then looked at our DynamicDeployment XML file and examined the script it is trying to launch:
 
-<pre class="lang:default decode:true "><machinescripts>
+```xml
+<machinescripts>
   <addpackage>
     <path>cmd.exe</Path>
     <arguments>/c "C:\PublishedApplications\AHS-STIII_ATOP_MKLINK_INSTALL.cmd"</Arguments>
@@ -48,13 +49,16 @@ I then looked at our DynamicDeployment XML file and examined the script it is tr
     <arguments>/c "C:\PublishedApplications\AHS-STIII_ATOP_MKLINK_REMOVE.cmd"</Arguments>
     <wait RollbackOnError="false" Timeout="60"/>
   </RemovePackage>
-</MachineScripts></pre>
+</MachineScripts>
+```
 
 The script it's trying to launch looks like this:
 
-<pre class="lang:batch decode:true ">@ECHO OFF
+```shell
+@ECHO OFF
  
-cmd.exe /c "C:\PublishedApplications\AHS-ATOP.cmd" INSTALL & "C:\PublishedApplications\AHS-SoftWorksGroup-ScreenTestIII.cmd" INSTALL</pre>
+cmd.exe /c "C:\PublishedApplications\AHS-ATOP.cmd" INSTALL & "C:\PublishedApplications\AHS-SoftWorksGroup-ScreenTestIII.cmd" INSTALL
+```
 
 Since this is a Machine Script, I started a **process monitor capture**, <u>executed my command</u>, **stopped the capture** then used the "Process Tree"
 
@@ -85,7 +89,8 @@ and used the "show process and thread activity".  I filtered on 'Detail' 'Begins
 
 The 'exit code' is '1' (Exit Status: 1) which means an error occurred that caused the script to fail.  So now we dive into that script and see why it's failing:
 
-<pre class="lang:batch decode:true ">@ECHO OFF
+```shell
+@ECHO OFF
 CLS
  
 SET ATOPPATH="C:\Program Files (x86)\Alberta Health Services\ATOP"
@@ -101,7 +106,8 @@ IF /I [%1] EQU [INSTALL] (
 IF /I [%1] EQU [REMOVE] (
   rmdir /s /q "C:\Program Files (x86)\Alberta Health Services"
   EXIT
-)</pre>
+)
+```
 
 From looking at the script, it's trying to create a new 'mklink' path.  If I try and run this command manually, I get the following:
 
@@ -118,11 +124,13 @@ So, there are two methods I can think of to solve this problem.
 
 I chose to modify the script to exit if the path exists.  I changed it like so:
 
-<pre class="lang:batch decode:true ">IF /I [%1] EQU [INSTALL] (
+```shell
+IF /I [%1] EQU [INSTALL] (
   IF EXIST "C:\Program Files (x86)\Alberta Health Services" EXIT
   mklink /D "C:\Program Files (x86)\Alberta Health Services" \\fileserver\atop_share\ATOP
   EXIT
-)</pre>
+)
+```
 
 I cleared procmon, set it to trace again and attempted to run the add-appvclientpackage command again.
 
@@ -138,10 +146,12 @@ I selected 'AppVClient.exe' and clicked 'Include Subtree'
 
 This time we can see that the 'AHS-ATOP.cmd' script has an 'Exit Status: 0' which means it completed successfully.  But, the next script, 'AHS-SoftWorksGroup-ScreenTestIII.cmd' with the parameter 'INSTALL' fails with 'Exit Status: 1'.  Again, we look into the script...
 
-<pre class="lang:batch decode:true ">IF /I [%1] EQU [INSTALL] (
+```shell
+IF /I [%1] EQU [INSTALL] (
   mklink /D "C:\Program Files\Softworks Group Inc" \\fileserver\share$\Screening_Services
   EXIT
-)</pre>
+)
+```
 
 We can see it has the same flaw.  I then modified the script to add the same IF EXISTS check.  I then cleared procmon and reattempted to add the package.
 

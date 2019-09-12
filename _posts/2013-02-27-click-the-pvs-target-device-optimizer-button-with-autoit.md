@@ -24,7 +24,9 @@ tags:
 ---
 Short but sweet script. Disappointing that Citrix doesn't have a silent run switch for this application.
 
-<pre class="lang:autoit decode:true ">;
+
+```plaintext
+;
 ; AutoIt Version: 3.0
 ; Language:       English
 ; Platform:       Win9x/NT
@@ -42,7 +44,9 @@ Sleep(3000)
 ;click OK
 ControlClick("Provisioning Services Device Optimization Tool", "", "[CLASS:Button; TEXT:&OK; INSTANCE:1]")
 
-; Finished!</pre>
+; Finished
+```
+
 
 &nbsp;
 

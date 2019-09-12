@@ -22,7 +22,9 @@ tags:
 ---
 Using AutoIt:
 
-<pre class="lang:autoit decode:true ">; Script written by Trentent Tye
+
+```plaintext
+; Script written by Trentent Tye
 ; May 03, 2013
 
 ; This scripts purpose is to execute the "klist.exe purge" command
@@ -111,7 +113,7 @@ EndIf
 
 
 Until $i =0
-</pre>
+```
 
 &nbsp;
 

@@ -27,7 +27,9 @@ Notice the "0", "win32" and FLAGS keys are missing in the AppV package.
 
 This is the script I used to compare the local registry vs the package:
 
-<pre class="lang:ps decode:true ">pushd
+
+```powershell
+pushd
 #mkdir "$env:userprofile\desktop\Epic_Hyperspace_2014_8.1_RA1504_CP12_x86"
 New-AppvSequencerPackage -Name "Epic_Hyperspace_2014_8.1_RA1504_CP12_x86" -OutputPath "$env:userprofile\desktop" -FullLoad -Installer "AppV-2014_Hyperspace_Install.bat" 
 
@@ -142,7 +144,9 @@ foreach ( $KeyPath in $appvKeys )
     }
 }
 
-reg unload HKLM\PE_REG</pre>
+reg unload HKLM\PE_RE
+```
+
 
 &nbsp;
 

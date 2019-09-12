@@ -25,7 +25,9 @@ tags:
 Our PVS servers are multi-homed with the Provisioning NIC on a seperate VLAN.  Because of how our network is structured, our Provision NIC could register its DNS, but client computers would not be able to connect to it as it is a segregated network.  This script sets the Provision NIC to NOT register to DNS.
 
 <div>
-  <pre class="lang:ps decode:true ">$provNic=Get-WmiObject Win32_NetworkAdapter -filter 'netconnectionid ="Provision"'
+  
+```powershell
+$provNic=Get-WmiObject Win32_NetworkAdapter -filter 'netconnectionid ="Provision"'
 $prodNic=Get-WmiObject Win32_NetworkAdapter -filter 'netconnectionid ="Production"'
 $adapters=Get-WmiObject Win32_NetworkAdapterConfiguration -filter 'IPEnabled=TRUE'
 foreach($adapter in $adapters) {
@@ -36,7 +38,9 @@ foreach($adapter in $adapters) {
   if ($provNIC.name -eq $adapter.Description) {
     $adapter.SetDynamicDNSRegistration($false,$false)
   }
-}</pre>
+
+```
+
 </div>
 
 <div>

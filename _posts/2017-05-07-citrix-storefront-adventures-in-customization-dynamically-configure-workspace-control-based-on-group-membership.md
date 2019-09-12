@@ -30,12 +30,15 @@ We can't mix and match authenticated sites and anonymous sites (right?... ?) but
 
 These are the API's in question:
 
-<pre class="lang:default decode:true">includeAuthenticationMethod(authenticationMethod)
+```javascript
+includeAuthenticationMethod(authenticationMethod)
 excludeAuthenticationMethod(authenticationMethod)
 showWebReconnectMenu(bool_showByDefault)
 showWebDisconnectMenu(bool_showByDefault)
 webReconnectAtStartup(bool_ReconnectByDefault)
-webLogoffIcaAction(string_defaultAction)</pre>
+webLogoffIcaAction(string_defaultAction
+```
+
 
 There isn't really a whole lot of documentation on them and how to use them.  Richard Hayton has created the [Citrix Customization Cookbook](https://www.citrix.com/blogs/2015/08/25/citrix-customization-cookbook/) which details some examples of some of the API's.  He has several [blog articles on the Citrix website](https://www.citrix.com/blogs/author/richardha/) that have varying degrees of applicability.  Unfortunately, he hasn't blogged in over a year on this topic as it _feels_ like the situation has changed a bit with the [Citrix Store API's available as well](https://citrix.github.io/storefront-sdk/requests/) (note: these are different!).
 
@@ -55,11 +58,13 @@ I see everything (as I should).
 
 So let's start with a simple customization.  Let's try using the API to disable these options.  I created a totally blank script.js file and added the following lines:
 
-<pre class="lang:js decode:true ">CTXS.Extensions.showWebReconnectMenu = function () {return false};
+
+```javascript
+CTXS.Extensions.showWebReconnectMenu = function () {return false};
 CTXS.Extensions.showWebDisconnectMenu = function () {return false};
 CTXS.Extensions.webReconnectAtStartup = function () {return false};
 CTXS.Extensions.webLogoffIcaAction = function () {return "disconnect"};
-</pre>
+```
 
 Now what does our menu look like?
 
@@ -73,7 +78,9 @@ Citrix provides a function to get the username and I can then pass it to my webs
 
 I wrote my first bit of code and it crashed immediately.  I simply entered it straight into my script.js.
 
-<pre class="lang:js decode:true">window.getCookieRegex = function(name) {
+
+```javascript
+window.getCookieRegex = function(name) {
     match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
     if (match) return match[2];
   }
@@ -127,7 +134,9 @@ function setWorkspaceControl (bool) {
   
  var username = getUsername();
  var WSC = workspaceControlEnabled(username);
- setWorkspaceControl(WSC);</pre>
+ setWorkspaceControl(WSC)
+```
+
 
 In order to trace the error, you simply enter "#-tr" to the end of your store URL:
 
@@ -181,7 +190,9 @@ Citrix provides the following event-based functions we can hook into:
 
 So the question becomes, when does each of these get called?  We are only interested in the ones **_after_** you login.  To determine this, I hooked into each one and just did a simple trace command and then refreshed my browser <span style="text-decoration: underline;">to the login screen</span>.
 
-<pre class="lang:js decode:true">CTXS.Extensions.preInitialize = function (callback) {
+
+```javascript
+CTXS.Extensions.preInitialize = function (callback) {
 	CTXS.trace("preInitialize stage");
 	callback()
 }
@@ -209,7 +220,9 @@ CTXS.Extensions.beforeDisplayHomeScreen = function (callback) {
 
 CTXS.Extensions.afterDisplayHomeScreen  = function () {
 	CTXS.trace("afterDisplayHomeScreen stage");
-}</pre>
+
+```
+
 
 This is where I stopped:
 
@@ -248,7 +261,9 @@ _</Digress>_
 
 Ok, so we've found the one and only functional place we can execute our code.  So I added it.
 
-<pre class="lang:js decode:true ">CTXS.Extensions.beforeDisplayHomeScreen = function (callback) {
+
+```javascript
+CTXS.Extensions.beforeDisplayHomeScreen = function (callback) {
 	CTXS.trace("beforeDisplayHomeScreen stage");
 	var username = getUsername();
 	CTXS.trace("beforeDisplayHomeScreen username:" + username);
@@ -258,7 +273,9 @@ Ok, so we've found the one and only functional place we can execute our code.  S
 	
 	CTXS.trace("calling beforeDisplayHomeScreen callback");
 	callback()
-}</pre>
+
+```
+
 
 &nbsp;
 
@@ -278,7 +295,9 @@ Anyway, that maybe for another day.  For today, the following works for my purpo
 
 This is my custom/script.js file that I finished from this blog post:
 
-<pre class="lang:js decode:true">window.getCookieRegex = function(name) {
+
+```javascript
+window.getCookieRegex = function(name) {
     match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
     if (match) return match[2];
   }
@@ -377,13 +396,17 @@ CTXS.Extensions.beforeDisplayHomeScreen = function (callback) {
 	
 	CTXS.trace("calling beforeDisplayHomeScreen callback");
 	callback()
-}</pre>
+
+```
+
 
 &nbsp;
 
 Here is the LDAP_HttpListener.psm1
 
-<pre class="lang:ps decode:true"># Copyright (c) 2014 Microsoft Corp.
+
+```powershell
+# Copyright (c) 2014 Microsoft Corp.
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -603,22 +626,20 @@ Function Start-HTTPListener {
             $listener.Stop()
         }
     }
-}</pre>
+
+```
+
 
 Lastly, the scheduled task to call the listener:
 
-<pre class="lang:ps decode:true ">ipmo ".\HTTPListener.psm1"
+
+```powershell
+ipmo ".\HTTPListener.psm1"
 #Example URL
 #http://bottheory.local/Get-Groups?DisplayName=Trentent Tye
-Start-HTTPListener -Port 80 -Url "Get-Groups" -Auth Anonymous</pre>
+Start-HTTPListener -Port 80 -Url "Get-Groups" -Auth Anonymous
+```
 
-&nbsp;
-
-&nbsp;
-
-&nbsp;
-
-&nbsp;
 
 <!-- AddThis Advanced Settings generic via filter on the_content -->
 

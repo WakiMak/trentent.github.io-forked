@@ -38,7 +38,9 @@ NewGuestName = "NewGuestAccountName"
 
 Simple to apply from a cmd line
 
-<pre class="lang:default decode:true ">secedit /configure /db %windir%\security\database\localdb.sdb /cfg %systemdrive%\install\local\policy\policyname.inf /verbose</pre>
+```batch
+secedit /configure /db %windir%\security\database\localdb.sdb /cfg %systemdrive%\install\local\policy\policyname.inf /verbose
+```
 
 &nbsp;
 

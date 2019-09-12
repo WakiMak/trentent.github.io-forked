@@ -16,13 +16,14 @@ tags:
 ---
 We packaged an application that was giving out an error message at a certain point in the program:
 
-<div id="attachment_2212" style="width: 424px" class="wp-caption aligncenter">
-  <img aria-describedby="caption-attachment-2212" class="wp-image-2212 size-full" src="/wp-content/uploads/2017/05/RuntimeError.png" alt="" width="414" height="254" srcset="/wp-content/uploads/2017/05/RuntimeError.png 414w, /wp-content/uploads/2017/05/RuntimeError-300x184.png 300w" sizes="(max-width: 414px) 100vw, 414px" /></p> 
-  
-  <p id="caption-attachment-2212" class="wp-caption-text">
-    --------- Microsoft Visual C++ Runtime Library --------- Runtime Error! Program: D:\AppVData\PackageInstallationRoot\7336984D-A43A-4EE3-A223-09E50C2E4A04\8B9E7007-D87F-4620-9B10-F06320BB1B... R6034 An application has made an attempt to load the C runtime library incorrectly. Please contact the application's support team for more information. --------- OK ---------
-  </p>
-</div>
+![](/wp-content/uploads/2017/05/RuntimeError.png)
+```plaintext
+--------- Microsoft Visual C++ Runtime Library --------- 
+	Runtime Error! 
+	Program: D:\AppVData\PackageInstallationRoot\7336984D-A43A-4EE3-A223-09E50C2E4A04\8B9E7007-D87F-4620-9B10-F06320BB1B... R6034 
+	An application has made an attempt to load the C runtime library incorrectly. Please contact the application's support team for more information. 
+--------- OK ---------
+```
 
 &nbsp;
 

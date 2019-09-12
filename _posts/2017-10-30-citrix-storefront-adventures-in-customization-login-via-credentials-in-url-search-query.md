@@ -22,7 +22,9 @@ tags:
 ---
 If you use a 3rd party service to connect to your Citrix Storefront environment, you may want to "pass-through" credentials without using domain authentication or whatever.  This post illustrates how you can login to your Storefront environment using nothing more than a URL with your credentials embedded in them.  To enable this functionality, this code must be in your custom.js file.
 
-<pre class="lang:js decode:true ">// CTXS.getParametersFromQueryString(window.location.search.substring(1))  //grab URL query parameters
+
+```javascript
+// CTXS.getParametersFromQueryString(window.location.search.substring(1))  //grab URL query parameters
 var username = CTXS.getParametersFromQueryString(window.location.search.substring(1)).username
 var password = CTXS.getParametersFromQueryString(window.location.search.substring(1)).password
 
@@ -46,7 +48,7 @@ CTXS.Extensions.beforeLogon = function(callback) {
       	}
 	callback();
 };
-</pre>
+```
 
 You MUST have HTTP Basic enabled as an authentication method on your Citrix Storefront Store.
 
@@ -54,7 +56,11 @@ You MUST have HTTP Basic enabled as an authentication method on your Citrix Stor
 
 The URL to login would look like this:
 
-<pre class="lang:default decode:true">http://storefront.bottheory.local/Citrix/StoreWeb/?username=BOTTHEORY\ttye&password=C0mplexPAsswordHorseStaple</pre>
+
+```plaintext
+http://storefront.bottheory.local/Citrix/StoreWeb/?username=BOTTHEORY\ttye&password=C0mplexPAsswordHorseStapl
+```
+
 
 Put it all together:
 

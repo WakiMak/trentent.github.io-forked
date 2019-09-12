@@ -33,7 +33,11 @@ I have a small farm of computers at home that I want to use as a render farm. So
 </div>
 
 <div>
-  <pre class="lang:default decode:true ">START "" /LOW "pathtoserver.exe"</pre>
+  
+```plaintext
+START "" /LOW "pathtoserver.exe
+```
+
 </div>
 
 <div>

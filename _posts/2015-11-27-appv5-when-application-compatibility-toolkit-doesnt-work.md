@@ -117,7 +117,8 @@ And the application now displayed this:
 
 So the application is now working without any issues, all of these 'temp' files are being redirected to a location where they will not be saved between sessions so no cleanup is ever needed.  We need to add the mklink.exe to the DeploymentConfig.xml.
 
-<pre class="lang:default decode:true "><machinescripts>
+```xml
+<machinescripts>
  <addpackage>
   <path>C:\PublishedApplications\AHS-BDMPHARMACY-PREFLIGHT.cmd</Path>
   <arguments>A</Arguments>
@@ -128,11 +129,14 @@ So the application is now working without any issues, all of these 'temp' files 
   <arguments>R</Arguments>
   <wait RollbackOnError="false" Timeout="60"/>
  </RemovePackage>
-</MachineScripts></pre>
+</MachineScripts
+```
+
 
 AHS-BDMPHARMACY-PREFLIGHT.CMD:
 
-<pre class="lang:batch decode:true ">:: ===========================================================================================================
+```shell
+:: ===========================================================================================================
 ::
 :: Created by:  Trentent Tye
 ::   Intel Server Team
@@ -161,7 +165,9 @@ if /I  [%1] EQU [A] (
 ::remove-package
 if /I [%1] EQU [R] (
   rmdir /s /q C:\TMP
-)</pre>
+
+```
+
 
 And we are now done.
 

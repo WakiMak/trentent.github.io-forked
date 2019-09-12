@@ -40,15 +40,16 @@ tags:
   The first error we got was:
 </div>
 
-<div style="font-family: Helvetica; font-size: 12px;">
-  <pre class="lang:default decode:true ">2014-10-03 10:42:19.372 [pid=0x59c,tid=0x1294] No item to delete.
+```shell
+2014-10-03 10:42:19.372 [pid=0x59c,tid=0x1294] No item to delete.
 2014-10-03 10:42:19.372 [pid=0x59c,tid=0x1294] pWorkItemV2->Create [ hr = 0x80070534 "No mapping between account names and security IDs was done." ]
 2014-10-03 10:42:19.372 [pid=0x59c,tid=0x1294] replaceTask [ hr = 0x80070534 "No mapping between account names and security IDs was done." ]
 2014-10-03 10:42:19.372 [pid=0x59c,tid=0x1294] Properties handled. [ hr = 0x80070534 "No mapping between account names and security IDs was done." ]
-2014-10-03 10:42:19.388 [pid=0x59c,tid=0x1294] EVENT : The computer 'AHS-Add-GlobalPrinters' preference item in the 'CTX & 65 Test {E6775312-AAC0-45C3-8A1C-5F5EA46701A7}' Group Policy object did not apply because it failed with error code '0x80070534 No mapping between account names and security IDs was done.'%100790275
+2014-10-03 10:42:19.388 [pid=0x59c,tid=0x1294] EVENT : The computer 'AHS-Add-GlobalPrinters' preference item in the 'CTX XenApp 65 Test {E6775312-AAC0-45C3-8A1C-5F5EA46701A7}' Group Policy object did not apply because it failed with error code '0x80070534 No mapping between account names and security IDs was done.'%100790275
 2014-10-03 10:42:19.388 [pid=0x59c,tid=0x1294] Completed class - AHS-Add-GlobalPrinters. [ hr = 0x80070534 "No mapping between account names and security IDs was done." ]
-2014-10-03 10:42:19.388 [pid=0x59c,tid=0x1294] Error suppressed. [ hr = 0x80070534 "No mapping between account names and security IDs was done." ]</pre>
-</div>
+2014-10-03 10:42:19.388 [pid=0x59c,tid=0x1294] Error suppressed. [ hr = 0x80070534 "No mapping between account names and security IDs was done." ]
+```
+
 
 <div style="font-family: Helvetica; font-size: 12px;">
 </div>
@@ -61,14 +62,14 @@ tags:
   We saw the following:
 </div>
 
-<div style="font-family: Helvetica; font-size: 12px;">
-  <pre class="lang:default decode:true "><?xml version="1.0" encoding="UTF-8" ?><ScheduledTasks clsid="{CC63F200-7309-4ba0-B154-A71CD118DBCC}">  
- <TaskV2 clsid="{D8896631-B747-47a7-84A6-C155337F3BC8}" name="AHS-Add-GlobalPrinters" image="1" changed="2014-10-03 17:15:15" uid="{EDDCD78F-46AC-414A-92B2-65D37D12E3F9}" bypassErrors="0" userContext="0" removePolicy="1" desc="Create Network Printer Queues on Cancer Control & Servers" policyApplied="1"> 
+```xml
+<?xml version="1.0" encoding="UTF-8" ?><ScheduledTasks clsid="{CC63F200-7309-4ba0-B154-A71CD118DBCC}">  
+ <TaskV2 clsid="{D8896631-B747-47a7-84A6-C155337F3BC8}" name="AHS-Add-GlobalPrinters" image="1" changed="2014-10-03 17:15:15" uid="{EDDCD78F-46AC-414A-92B2-65D37D12E3F9}" bypassErrors="0" userContext="0" removePolicy="1" desc="Create Network Printer Queues on Cancer Control XenApp Servers" policyApplied="1"> 
  <Properties action="R" name="AHS-Add-GlobalPrinters" runAs="NT AUTHORITY\SYSTEM" logonType="S4U"> 
  <Task version="1.2"> 
  <RegistrationInfo> 
  <Author>HEALTHY\ssalehianadm</Author> 
- <Description>Create Network Printer Queues on Cancer Control & Servers</Description></RegistrationInfo> 
+ <Description>Create Network Printer Queues on Cancer Control XenApp Servers</Description></RegistrationInfo> 
  <Principals> 
  <Principal id="Author"> 
  <RunLevel>HighestAvailable</RunLevel> 
@@ -94,8 +95,8 @@ tags:
  <Exec> 
  <Command>C:\Windows\System32\cmd.exe</Command> 
  <Arguments>/c C:\PublishedApplications\AHS-Add-GlobalPrinters.cmd WSLBLPRINT01</Arguments></Exec></Actions></Task></Properties> 
- <Filters></pre>
-</div>
+ <Filters>
+```
 
 <div>
   <div>
@@ -110,7 +111,9 @@ tags:
   
   <div>
     <div style="font-family: Helvetica; font-size: 12px;">
-      <pre class="lang:default decode:true ">The computer 'AHS-Add-GlobalPrinters' preference item in the 'CTX & 65 Prod {CB954F1D-7AE5-4706-9BCC-995A0D83CED5}' Group Policy object did not apply because it failed with error code '0x80041316 The task XML contains an unexpected node.' See trace file for more details.</pre>
+```shell
+The computer 'AHS-Add-GlobalPrinters' preference item in the 'CTX XenApp 65 Prod {CB954F1D-7AE5-4706-9BCC-995A0D83CED5}' Group Policy object did not apply because it failed with error code '0x80041316 The task XML contains an unexpected node.' See trace file for more details.
+```
     </div>
   </div>
   
@@ -125,13 +128,15 @@ tags:
   </div>
   
   <div>
-    <pre class="lang:default decode:true "><?xml version="1.0" encoding="UTF-8" ?><ScheduledTasks clsid="{CC63F200-7309-4ba0-B154-A71CD118DBCC}">  
-<TaskV2 clsid="{D8896631-B747-47a7-84A6-C155337F3BC8}" name="AHS-Add-GlobalPrinters" image="1" changed="2014-10-03 17:15:15" uid="{EDDCD78F-46AC-414A-92B2-65D37D12E3F9}" bypassErrors="0" userContext="0" removePolicy="1" desc="Create Network Printer Queues on Cancer Control & Servers" policyApplied="1"> 
+
+```xml
+<?xml version="1.0" encoding="UTF-8" ?><ScheduledTasks clsid="{CC63F200-7309-4ba0-B154-A71CD118DBCC}">  
+<TaskV2 clsid="{D8896631-B747-47a7-84A6-C155337F3BC8}" name="AHS-Add-GlobalPrinters" image="1" changed="2014-10-03 17:15:15" uid="{EDDCD78F-46AC-414A-92B2-65D37D12E3F9}" bypassErrors="0" userContext="0" removePolicy="1" desc="Create Network Printer Queues on Cancer Control XenApp Servers" policyApplied="1"> 
 <Properties action="R" name="AHS-Add-GlobalPrinters" runAs="NT AUTHORITY\SYSTEM" logonType="S4U"> 
 <Task version="1.2"> 
 <RegistrationInfo> 
 <Author>HEALTHY\ssalehianadm</Author> 
-<Description>Create Network Printer Queues on Cancer Control & Servers</Description></RegistrationInfo> 
+<Description>Create Network Printer Queues on Cancer Control XenApp Servers</Description></RegistrationInfo> 
 <Principals> 
 <Principal id="Author"> 
 <RunLevel>HighestAvailable</RunLevel> 
@@ -157,7 +162,8 @@ tags:
 <Exec> 
 <Command>C:\Windows\System32\cmd.exe</Command> 
 <Arguments>/c C:\PublishedApplications\AHS-Add-GlobalPrinters.cmd WSLBLPRINT01</Arguments></Exec></Actions></Task></Properties> 
-<Filters></pre>
+<Filters>
+```
   </div>
   
   <div style="font-family: Helvetica; font-size: 12px;">

@@ -1,11 +1,11 @@
 ---
 id: 643
-title: Enable advanced logging on the XTE service of a & server
+title: Enable advanced logging on the XTE service of a XenApp server
 date: 2013-05-23T11:27:00-06:00
 author: trententtye
 layout: post
-guid: http://theorypc.ca/blog/2013/05/23/enable-advanced-logging-on-the-xte-service-of-a-&-server/
-permalink: /2013/05/23/enable-advanced-logging-on-the-xte-service-of-a-&-server/
+guid: http://theorypc.ca/blog/2013/05/23/enable-advanced-logging-on-the-xte-service-of-a-xenapp-server/
+permalink: /2013/05/23/enable-advanced-logging-on-the-xte-service-of-a-xenapp-server/
 blogger_blog:
   - trentent.blogspot.com
 blogger_author:
@@ -22,7 +22,7 @@ tags:
   - Provisioning Services
 
 ---
-Back in February or March we did Windows updates on our PVS & servers and then sometime after the servers do not allow anyone to login.
+Back in February or March we did Windows updates on our PVS XenApp servers and then sometime after the servers do not allow anyone to login.
 
 <div style="clear: both; text-align: center;">
   <a style="margin-left: 1em; margin-right: 1em;" href="http://2.bp.blogspot.com/-qlV0tbFkNe4/UZ5Rfav2COI/AAAAAAAAAQo/rkIRkB5Y_Vs/s1600/1.PNG"><img src="http://2.bp.blogspot.com/-qlV0tbFkNe4/UZ5Rfav2COI/AAAAAAAAAQo/rkIRkB5Y_Vs/s320/1.PNG" width="320" height="52" border="0" /></a>
@@ -30,8 +30,10 @@ Back in February or March we did Windows updates on our PVS & servers and then s
 
 The issue can crop up as a CGP Tunnel error message, a protocol driver error message or something along those lines.  We do not know why it's happening or why it only happens after we apply Windows updates from that time period.  The odd thing is it's intermittent as well, we can launch 20 systems from 1 vDisk that has the updates applied and everything will be fine for 2 weeks then, suddenly, 5 of the systems won't allow logins via ICA with the errors.  Rebooting the servers sometimes fixes it, sometimes not.  Very intermittent and very weird.  So I attempted to troubleshoot this issue again by adding:
 
-<pre class="lang:default decode:true "># Log Level
-loglevel debug</pre>
+```console
+# Log Level
+loglevel debug
+```
 
 to the httpd.conf in the XTE folder of a server that was exhibiting these issues.  The log levels are listed here:  
 <http://support.citrix.com/article/CTX114680>

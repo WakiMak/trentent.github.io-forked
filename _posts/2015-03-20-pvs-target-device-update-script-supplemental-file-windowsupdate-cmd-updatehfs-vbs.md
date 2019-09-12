@@ -24,7 +24,8 @@ These are two scripts we use to update Windows on our PVS target devices using o
 
 WindowsUpdate.cmd
 
-<pre class="lang:batch decode:true ">:: ===========================================================================================================
+```shell
+:: ===========================================================================================================
 ::
 :: Created by:      Derek Lee
 :: Modified by:     Saman Salehian
@@ -111,11 +112,15 @@ REG DELETE HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate /V SusCl
 SC CONFIG wuauserv START= disabled >NUL
 SC STOP wuauserv >NUL
  
-ECHO ================================================================</pre>
+ECHO ===============================================================
+```
+
 
 updatehf.vbs - please note there is an error in this script. Because of formatting with HTML, you'll need to search and replace "..script" with "script"
 
-<pre class="lang:vb decode:true ">strScriptVer = "2.6a"
+
+```vb
+strScriptVer = "2.6a"
 '~~[author]~~
 'Rob Dunn
 'with some additional improvements made by the WSUS and VBSHF community
@@ -1485,7 +1490,7 @@ Function CheckPendingStatus(beforeorafter)
             
 End Function
 '*******************************************************************************
-</pre>
+```
 
 &nbsp;
 

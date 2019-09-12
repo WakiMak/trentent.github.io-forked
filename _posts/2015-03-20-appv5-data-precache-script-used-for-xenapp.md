@@ -24,11 +24,12 @@ tags:
   - scripting
   - Target Device
 ---
-This is the AppV5 Data Precache script we use to load our AppV5 packages on our Citrix & servers.  Because we use PVS and store the AppV package installation root folder on a persistent disk, we sometimes encounter issues that require us to 'clean up' the package installation root folder before the AppV5 packages will load.  What this script attempts to do is setup AppV5 as if it's a new install, grab any packages from the publishing server, then, if sharedcontentstore is disabled, fully mount/load the packages.
+This is the AppV5 Data Precache script we use to load our AppV5 packages on our Citrix XenApp servers.  Because we use PVS and store the AppV package installation root folder on a persistent disk, we sometimes encounter issues that require us to 'clean up' the package installation root folder before the AppV5 packages will load.  What this script attempts to do is setup AppV5 as if it's a new install, grab any packages from the publishing server, then, if sharedcontentstore is disabled, fully mount/load the packages.
 
 AppV5DataPrecache.cmd
 
-<pre class="lang:batch decode:true ">:: ===========================================================================================================
+```shell
+:: ===========================================================================================================
 ::
 :: Created by:      Saman Salehian
 ::          Intel Server Team
@@ -39,7 +40,7 @@ AppV5DataPrecache.cmd
 ::
 :: File Name:       AppV5_Data_PreCache.cmd
 ::
-:: Description:     Pre-Cache App-V Applications/Packages on & Server
+:: Description:     Pre-Cache App-V Applications/Packages on XenApp Server
 :: Updates:             Updated to remove the 15min timeout and added a cleanup to remove stale AppV5 packages
 :: Updates:             Feb 05, 2015 -- TTYE - delete "C:\ProgramData\Microsoft\AppV\Client" added to prevent vDisk from caching faulty junctions
 ::
@@ -314,7 +315,9 @@ ping 127.0.0.1 -n 60 >NUL
  
 gpupdate /target:computer /force
 :: Disable Logons
-reg.exe add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" /v WinStationsDisabled /t REG_SZ /d 1 /f</pre>
+reg.exe add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" /v WinStationsDisabled /t REG_SZ /d 1 /
+```
+
 
 &nbsp;
 

@@ -26,7 +26,11 @@ C:\Program Files\Microsoft Application Virtualization\Client
 
 The command needs to be executed like so:
 
-<pre class="lang:ps decode:true ">.\Disable-AppVClient.ps1 -ModulePath "C:\Program Files\Microsoft Application Virtualization\Client\AppvClient\AppvClient.psd1" -RemoveAllPackages -PackageInstallationRoot "D:\AppVData\PackageInstallationRoot"</pre>
+
+```powershell
+.\Disable-AppVClient.ps1 -ModulePath "C:\Program Files\Microsoft Application Virtualization\Client\AppvClient\AppvClient.psd1" -RemoveAllPackages -PackageInstallationRoot "D:\AppVData\PackageInstallationRoot
+```
+
 
 This powershell script will also inform you if you need to remove the packages manually because of permissions issues.  I would highly recommend putting it in the shutdown script of your servers/desktops.
 

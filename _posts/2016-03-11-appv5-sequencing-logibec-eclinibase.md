@@ -45,7 +45,9 @@ Why does it crash?  Because, somehow, it breaks out of the bubble.  The reason i
 
 On a local install if I delete the environment keys that matchup to the folder we're launching eClinibase from, I get the same error.  Since those keys don't exist outside the bubble, we get the same error...  Which means it's trying to look outside the bubble for some reason.  Powershell, however, works correctly but only if the exe is called directly:
 
-<pre class="lang:batch decode:true ">powershell.exe  -executionPolicy byPass -command "&{Start-AppvVirtualProcess -AppvClientObject(Get-AppvClientPackage Logibec_eClinibase_910.0.3.3_x86) C:\LOGIBEC\eClinibase\ilgi11\eClinibase.exe}"</pre>
+```shell
+powershell.exe  -executionPolicy byPass -command "&{Start-AppvVirtualProcess -AppvClientObject(Get-AppvClientPackage Logibec_eClinibase_910.0.3.3_x86) C:\LOGIBEC\eClinibase\ilgi11\eClinibase.exe}"
+```
 
 However, we CAN get it to stay 'in the bubble' if we launch the eClinibase.exe with the /appvve: switch.
 
@@ -63,7 +65,9 @@ I've used this technique before and it works here.  We will create a directory s
 
 I add the mklink command the DynamicDeploymentConfig.xml:
 
-<pre class="lang:default decode:true "><!-- Machine Scripts Example - customize and uncomment to use machine scripts>
+
+```xml
+<!-- Machine Scripts Example - customize and uncomment to use machine scripts>
  
 <machinescripts>
    
@@ -88,7 +92,9 @@ I add the mklink command the DynamicDeploymentConfig.xml:
   <!--
         <application Path="[{AppVPackageRoot}]\Contoso\ContosoApp.EXE" />
       -->
-</terminatechildprocesses></pre>
+</terminatechildprocesses>
+```
+
 
 And we are good to go!
 

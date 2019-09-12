@@ -55,7 +55,11 @@ Notice it only goes to "LaunchIca".  Because of this my ClientName is not modifi
 
 To validate the theory a bit further that something in Storefront maybe causing my issue, I opened up Chrome and changed it's UserAgent to be identical of IE11 on Server 2008 R2:
 
-<pre class="lang:default decode:true ">Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko</pre>
+
+```plaintext
+Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Geck
+```
+
 
 And what happened?
 
@@ -67,7 +71,9 @@ Only LaunchIca is called.  We have a reproducible failure.
 
 As I was digging into the Citrix code to launch the "GetLaunchStatus" URL I found it would "skip" going to URL under a series of conditions, one of them relates to checking for the presence of IE (CTXS.Device.isIE).  I found two candidate functions that maybe causing this failure, and I think this one is the most likely:
 
-<pre class="lang:js decode:true">function b(a, c) {
+
+```javascript
+function b(a, c) {
         function k(f, e, l) {
             if (l.getResponseHeader(CTXS.CHALLENGE_HEADER))
                 CTXS.trace("prepareLaunch: challenged"),
@@ -108,7 +114,9 @@ As I was digging into the Citrix code to launch the "GetLaunchStatus" URL I foun
             var e = CTXS.ClientManager.getLaunchMethod() == CTXS.LaunchMethod.PROTOCOL_HANDLER;
             CTXS.ResourcesClient.getLaunchStatus(a, e, k, f)
         }
-    }</pre>
+    
+```
+
 
 Specifically, this line under the switch statement:
 
@@ -118,16 +126,20 @@ I found if I modified the UserAgent at that exact point so CTXS.Device.isIE() di
 
 Now that I suspect I have my culprit I examined the code that calls GetLaunchStatus URL and added it to my custom.js file:
 
-<pre class="lang:js decode:true ">if (CTXS.Device.isIE()) {
+
+```javascript
+if (CTXS.Device.isIE()) {
               app.launchstatusurl || (app.launchstatusurl = app.launchurl.replace("/LaunchIca/", "/GetLaunchStatus/").replace("/Launch/", "/GetLaunchStatus/"));
               var e = CTXS.ClientManager.getLaunchMethod() == CTXS.LaunchMethod.PROTOCOL_HANDLER;
               CTXS.ResourcesClient.getLaunchStatus(app, e)
        }
-</pre>
+```
 
 The end result now looks like this:
 
-<pre class="lang:default decode:true ">CTXS.Extensions.doLaunch =  function(app, action) {
+
+```javascript
+CTXS.Extensions.doLaunch =  function(app, action) {
 	//check for Notepad and configure clientname
 	if (app.name == "Notepad") {
 		$.ajaxSetup({
@@ -155,7 +167,7 @@ The end result now looks like this:
     action();
 	delete $.ajaxSettings.headers["NewClientName"]; //Remove header
 };
-</pre>
+```
 
 And now my customizations are called correctly and work with IE11.  I haven't done extensive testing so "your mileage may vary" with this fix, but if you are finding your customizations aren't operating correctly you may want to try this fix.
 

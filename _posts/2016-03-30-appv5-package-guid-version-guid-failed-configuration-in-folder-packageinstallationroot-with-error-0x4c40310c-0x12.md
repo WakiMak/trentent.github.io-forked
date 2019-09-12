@@ -36,7 +36,9 @@ Looks like it.
 
 The log up to the error:
 
-<pre class="lang:default decode:true ">[2]06B0.2DE4::?2016?-?03?-?30 09:40:05.207 [Microsoft-AppV-Streaming-Transport]A stream request (handle 0) creation called.
+
+```plaintext
+[2]06B0.2DE4::?2016?-?03?-?30 09:40:05.207 [Microsoft-AppV-Streaming-Transport]A stream request (handle 0) creation called.
 [2]06B0.2DE4::?2016?-?03?-?30 09:40:05.207 [Microsoft-AppV-Streaming-TransportDataSource]ComAppxRangeRequestJob::Run() - stream content created. RequestHandle: 51.
 [2]06B0.2DE4::?2016?-?03?-?30 09:40:05.207 [Microsoft-AppV-Streaming-Transport]Run request (handle: 51) called.
 [2]06B0.2DE4::?2016?-?03?-?30 09:40:05.207 [Microsoft-AppV-Streaming-Transport]Stream request run with priority 0 started.
@@ -68,7 +70,9 @@ The log up to the error:
 [2]06B0.2DE4::?2016?-?03?-?30 09:41:30.817 [Microsoft-AppV-ServiceLog]2016-Mar-30 09:41:30.807 - Orchestrator: [1712].[11748]: ERROR: ConfigurePackageActivity::PostComponent() - ConfigurePackage activity #405 was failed by component StreamingManager (error: 0x55900d02-0x501), initiating a ConfigurePackageUndo.
 [2]06B0.2DE4::?2016?-?03?-?30 09:41:30.817 [Microsoft-AppV-Client]Package {499ed340-c809-47dc-a533-2cdeab537e93} version {3589c28b-edb7-41d6-865d-e01c4fdd4318} failed configuration in folder 'D:\AppVData\PackageInstallationRoot\' with error 0x4C40310C-0x12.
 [2]06B0.2DE4::?2016?-?03?-?30 09:41:30.817 [Microsoft-AppV-ServiceLog]2016-Mar-30 09:41:30.807 - Orchestrator: [1712].[11748]: INFO: RunningActivities::Remove() - Activity ConfigurePackage #405 for (entity 499ed340-c809-47dc-a533-2cdeab537e93, version 3589c28b-edb7-41d6-865d-e01c4fdd4318) is no longer coordinated with other running activity instances.
-[2]06B0.2DE4::?2016?-?03?-?30 09:41:30.817 [Microsoft-AppV-ServiceLog]2016-Mar-30 09:41:30.807 - Orchestrator: [1712].[11748]: ERROR: ActivityManagerImpl::RequestActivity() - ConfigurePackage activity #405 failed with error code 1435503874-1281.</pre>
+[2]06B0.2DE4::?2016?-?03?-?30 09:41:30.817 [Microsoft-AppV-ServiceLog]2016-Mar-30 09:41:30.807 - Orchestrator: [1712].[11748]: ERROR: ActivityManagerImpl::RequestActivity() - ConfigurePackage activity #405 failed with error code 1435503874-1281
+```
+
 
 With the error time code, I can compare what Procmon says is going on.  And procmon reports back the following (at exactly 09:41:30.815):
 

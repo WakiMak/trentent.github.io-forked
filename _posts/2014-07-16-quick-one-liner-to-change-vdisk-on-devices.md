@@ -22,10 +22,13 @@ tags:
   - Provisioning Services
   - scripting
 ---
-<pre class="lang:batch decode:true ">FOR /L %A IN (28,1,60) DO (
+```shell
+FOR /L %A IN (28,1,60) DO (
 MCLI run assigndisklocator -p disklocatorname=&65Pn03 sitename=AHI storename=& devicename=WSCTXAPP4%A
 MCLI run removedisklocator -p disklocatorname=&65Pn01 sitename=AHI storename=& devicename=WSCTXAPP4%A
-)</pre>
+
+```
+
 
 <div>
 </div>

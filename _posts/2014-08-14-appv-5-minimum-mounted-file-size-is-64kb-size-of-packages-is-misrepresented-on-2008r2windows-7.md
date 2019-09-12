@@ -31,8 +31,10 @@ We packaged VMWare vSphere Client and included multiple versions of vSphere that
 
 &nbsp;
 
-<pre class="lang:default decode:true ">0.98 GB (1,054,613,510 bytes)
-</pre>
+
+```plaintext
+0.98 GB (1,054,613,510 bytes)
+```
 
 When we rename the .appv to .zip and extract the package the total size is:
 
@@ -78,7 +80,9 @@ If we delete a file under 64KB we will actually free up 64KB of space and Window
 
 So, in the end, it turns out that AppV 5 utilizes 64KB cluster size even if the allocation size on the disk is 4KB.  I'm not sure if having mismatched cluster sizes impacts the performance of AppV but the Microsoft support personnel implied that it could.  For AppV 5 you'll want to reduce the number of small files in your AppV packages to as few as possible to limit this space sucking overhead.  The missing space is "sparse" files, but fully mounted I wouldn't expect to have any sparse files.  So AppV is using sparse files to ensure a 64kb allocation size.
 
-<pre class="lang:default decode:true ">Allocation Report:
+
+```plaintext
+Allocation Report:
 
 Within these files there are:
     Compressed              : 0
@@ -90,5 +94,7 @@ Within these files there are:
         Total size          : 1838549977 bytes.
         Savings             : -26.09 %
     Encrypted               : 0
-        Total allocated     : 0 bytes</pre>
+        Total allocated     : 0 byte
+```
+
 

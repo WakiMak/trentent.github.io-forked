@@ -24,7 +24,9 @@ tags:
 ---
 I am attempting to read a CSV file and decided the best way to do it was with PowerShell's native import-csv tool. What was required was to read this CSV and then generate a registry file for import into numerous computers. This was my result:
 
-<pre class="lang:ps decode:true ">########################################################################################
+
+```powershell
+########################################################################################
 #
 #  Created by Trentent Tye
 #             IBM Intel Server Team
@@ -86,14 +88,18 @@ write-output $output | out-file -FilePath "$env:temp\MetaReg.reg"
 Get-Date
 write-host "Importing registry"
 regedit /s "$env:temp\MetaReg.reg"
-Get-Date</pre>
+Get-Dat
+```
+
 
 The CSV file we have has about 1500 lines in it. To generate the registry key utilizing this method took 6 minutes and 45 seconds. This is unacceptably slow. I then started googling ways to speed up this processing and came across this article:  
 <http://stackoverflow.com/questions/6386793/how-to-use-powershell-to-reorder-csv-columns>
 
 Where Roman Kuzmin suggested to handle the file as a text file instead of a PowerShell object. The syntax used to generate convert the file into objects that can replace text as needed is a bit different but I decided to explore it. His example code is as follows:
 
-<pre class="lang:ps decode:true ">$reader = [System.IO.File]::OpenText('data1.csv')
+
+```powershell
+$reader = [System.IO.File]::OpenText('data1.csv')
 $writer = New-Object System.IO.StreamWriter 'data2.csv'
 for(;;) {
     $line = $reader.ReadLine()
@@ -105,11 +111,13 @@ for(;;) {
 }
 $reader.Close()
 $writer.Close()
-</pre>
+```
 
 Essentially, he is proposing reading the file line by line and extracting the data by manually splitting the text string. The string then turns into an array that you can use for substitution. This is my final code using his example:
 
-<pre class="lang:ps decode:true ">########################################################################################
+
+```powershell
+########################################################################################
 #
 #  Created by Trentent Tye
 #             IBM Intel Server Team
@@ -185,7 +193,7 @@ write-host first complete $totaltime
 write-host "Importing registry"
 regedit /s "$env:temp\MetaReg.reg"
 Get-Date
-</pre>
+```
 
 &nbsp;
 

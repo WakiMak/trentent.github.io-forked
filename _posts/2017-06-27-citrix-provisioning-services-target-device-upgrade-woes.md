@@ -123,7 +123,9 @@ Here is how I ripped the software out.
   1. Reverse Image the vDisk
   2. Download [MSIZap](https://msdn.microsoft.com/en-us/library/windows/desktop/aa370523(v=vs.85).aspx) (from the [Microsoft Windows SDK for Windows 7 and .Net Framework 3.5 SP1](https://www.microsoft.com/en-us/download/details.aspx?id=3138))
   3. Download [SetACL](https://helgeklein.com/setacl/) from Helge Klein
-  4. Extract both to the same folder and save this script to it (it targets PVS 7.7 specifically) and then run it: <pre class="lang:batch decode:true">pushd %~dp0
+  4. Extract both to the same folder and save this script to it (it targets PVS 7.7 specifically) and then run it: 
+```plaintext
+pushd %~dp0
 :forcibly removes Citrix PVS Target Device software version 7.7
 
 msizap TWA! {3676AF4D-C2A9-4C32-AC56-9BBC4BDA4566}
@@ -160,7 +162,9 @@ rmdir /s /q "C:\Program Files\Citrix\Provisioning Services"
 :you probably need to reboot and delete the provisioning services folder because BNDevice.exe is locked by svchost and cannot be deleted
 
 pause
-popd</pre>
+pop
+```
+
     
     &nbsp;</li> </ol> 
     

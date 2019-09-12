@@ -24,7 +24,9 @@ tags:
 ---
 Per [my previous posting](http://trentent.blogspot.ca/2014/11/appv-5-first-launch-application.html), I have an issue where the AppVClient.exe consumes significant CPU resources upon application launch.  From a [Microsoft forum where another member](https://social.technet.microsoft.com/Forums/en-US/44944302-d8f3-4df1-b104-9c63345f88e0/poor-first-launch-performance-with-appv-5?forum=mdopappv) did some further investigation, he discovered that the slowness and delayed launch times are related to registry staging.  To confirm and measure the impact of registry staging I wrote a script that measures the length of time it takes to finish registry staging for all AppV5 applications on your computer/server.
 
-<pre class="lang:ps decode:true ">#import AppVClient module
+
+```powershell
+#import AppVClient module
 ipmo *appv*
  
 #get all appv packages
@@ -96,7 +98,9 @@ $command = measure-command {
 }
  
 #exports all information to csv file
-$obj | export-csv RegistryStagingTime.csv -NoTypeInformation</pre>
+$obj | export-csv RegistryStagingTime.csv -NoTypeInformatio
+```
+
 
 What this script does is iterate through all your AppV5 applications and then loads a cmd.exe with the AppV environment.  It then checks for the RegistryStagingFinished registry key, and once it is found, it moves on to the next program.  It records all this information than exports it as a CSV file.
 

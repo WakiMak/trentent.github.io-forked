@@ -30,7 +30,9 @@ This script output looks like so:
 
 This script also requires the [FTP for powershell module](https://gallery.technet.microsoft.com/scriptcenter/PowerShell-FTP-Client-db6fe0cb).  Download the [entire script and dependency here](https://theorypc-my.sharepoint.com/personal/trententtye_theorypc_onmicrosoft_com/_layouts/15/guestaccess.aspx?guestaccesstoken=qmvKsQL%2BNHR%2FL%2Fq7JQJfEVm9q0nq7YvIpodh1d07Wjg%3D&docid=088d55459a844472dbcc1249ecee2837c).
 
-<pre class="lang:ps decode:true ">#######################################################################################################
+
+```powershell
+#######################################################################################################
 #
 #
 #  Created by Trentent Tye
@@ -182,7 +184,9 @@ RemoveOldDefs
 #Remove download if one exists
 if (test-path ($env:TEMP + "\" + $virusDefs.Name)) {
     remove-item ($env:TEMP + "\" + $virusDefs.Name) -Force
-}</pre>
+
+```
+
 
 <div>
 </div>

@@ -18,7 +18,7 @@ tags:
 
   - XenDesktop
 ---
-Our organization has been exploring upgrading our Citrix environment from 6.5 to 7.X.  The biggest road blocks we've been experiencing?  Various _nuanced_ features in Citrix & 6.5 don't work or are not supported in 7.X.
+Our organization has been exploring upgrading our Citrix environment from 6.5 to 7.X.  The biggest road blocks we've been experiencing?  Various _nuanced_ features in Citrix XenApp 6.5 don't work or are not supported in 7.X.
 
 This brings me to this post and an example of the difficulties we are facing, my exploration of solutions to this problem, and our potential solution.
 
@@ -34,19 +34,17 @@ We can't let this feature break when we move to StoreFront.  We track the number
 
 So how does this work in Web Interface and what actually happens?
 
-<div id="attachment_2152" style="width: 1150px" class="wp-caption aligncenter">
-  <img aria-describedby="caption-attachment-2152" class="wp-image-2152 size-large" src="/wp-content/uploads/2017/04/Screen-Shot-2017-04-22-at-1.30.40-PM-1600x1209.png" alt="" width="1140" height="861" srcset="/wp-content/uploads/2017/04/Screen-Shot-2017-04-22-at-1.30.40-PM-1600x1209.png 1600w, /wp-content/uploads/2017/04/Screen-Shot-2017-04-22-at-1.30.40-PM-300x227.png 300w, /wp-content/uploads/2017/04/Screen-Shot-2017-04-22-at-1.30.40-PM-768x580.png 768w" sizes="(max-width: 1140px) 100vw, 1140px" /></p> 
-  
-  <p id="caption-attachment-2152" class="wp-caption-text">
-    URI substitution and launch process
-  </p>
-</div>
+
+![](/wp-content/uploads/2017/04/Screen-Shot-2017-04-22-at-1.30.40-PM-1600x1209.png)  
+*URI substitution and launch process*
+
+
 
 The modifications that you apply add a new 'query' to the URI that is picked up.  This 'query' is "NFuse_AppCommandLine" and the value it is equal to ("C:\Windows\WindowsUpdate.log" in my example) is passed into the ICA file.
 
 The ICA file, when launched, will pass the parameter to a special string "%\*\*" the is set on the command line of the published application.  This token "%\*\*" gets replaced by the parameter specified in the ICA which then generates the launch string.  This string is executed and the result is the program launches.
 
-Can we do this with Storefront?  Well, first things first, is this even possible with &/XenDesktop 7.X?  In order to test this I created an application and specified the special token.
+Can we do this with Storefront?  Well, first things first, is this even possible with XenApp/XenDesktop 7.X?  In order to test this I created an application and specified the special token.
 
 <img class="aligncenter size-full wp-image-2153" src="/wp-content/uploads/2017/04/Screen-Shot-2017-04-22-at-1.39.21-PM.png" alt="" width="795" height="580" srcset="/wp-content/uploads/2017/04/Screen-Shot-2017-04-22-at-1.39.21-PM.png 795w, /wp-content/uploads/2017/04/Screen-Shot-2017-04-22-at-1.39.21-PM-300x219.png 300w, /wp-content/uploads/2017/04/Screen-Shot-2017-04-22-at-1.39.21-PM-768x560.png 768w" sizes="(max-width: 795px) 100vw, 795px" /> 
 
@@ -58,15 +56,11 @@ I then generated an ICA file and manually modified the LongCommandLine to add my
 
 Did it work?
 
-<div id="attachment_2155" style="width: 888px" class="wp-caption aligncenter">
-  <img aria-describedby="caption-attachment-2155" class="wp-image-2155 size-full" src="/wp-content/uploads/2017/04/Screen-Shot-2017-04-22-at-1.54.46-PM.png" alt="" width="878" height="626" srcset="/wp-content/uploads/2017/04/Screen-Shot-2017-04-22-at-1.54.46-PM.png 878w, /wp-content/uploads/2017/04/Screen-Shot-2017-04-22-at-1.54.46-PM-300x214.png 300w, /wp-content/uploads/2017/04/Screen-Shot-2017-04-22-at-1.54.46-PM-768x548.png 768w" sizes="(max-width: 878px) 100vw, 878px" /></p> 
-  
-  <p id="caption-attachment-2155" class="wp-caption-text">
-    Yes, it worked.
-  </p>
-</div>
+![](/wp-content/uploads/2017/04/Screen-Shot-2017-04-22-at-1.54.46-PM.png)  
+Yes, it worked.
 
-Success!  So &/XenDesktop 7.X will substitute the tokens with the LongCommandLine in the ICA file.  Excellent.  So now we just need Storefront to take the URI and add it to the LongCommandLine.  Storefront does not do this out of the box.
+
+Success!  So XenApp/XenDesktop 7.X will substitute the tokens with the LongCommandLine in the ICA file.  Excellent.  So now we just need Storefront to take the URI and add it to the LongCommandLine.  Storefront does not do this out of the box.
 
 However, Citrix offers a couple of possible solutions to this problem (that I explored).
 
@@ -83,7 +77,9 @@ This API is billed as:
 
 We are going to need to either modify Storefront or write our own in order to take and parameters in the URI.  I decided to write our own.  Using the ApiExample.html in the WebAPI I added the following:
 
-<pre class="lang:js decode:true">var getUrlParameter = function getUrlParameter(sParam) {
+
+```javascript
+var getUrlParameter = function getUrlParameter(sParam) {
 		var sPageURL = decodeURIComponent(window.location.search.substring(1)),
 			sURLVariables = sPageURL.split('&'),
 			sParameterName,
@@ -99,13 +95,17 @@ We are going to need to either modify Storefront or write our own in order to ta
 	};
 	
 	var NFuse_AppCommandLine = getUrlParameter('NFuse_AppCommandLine');
-	var CTX_Application = getUrlParameter('CTX_Application');</pre>
+	var CTX_Application = getUrlParameter('CTX_Application')
+```
+
 
 This looks into the URI and allows you to get the value of either query string.  In my example I am grabbing the values for "CTX\_Application" and "NFuse\_AppCommandLine".
 
 I then removed a bunch of the authentication portions from the ApiExample.html (I'll be using an unauthenticated store).  In order to automatically select the specified application I added some javascript to check the resource list and get the launch URL:
 
-<pre class="lang:default decode:true ">function listResourcesSuccess(data) {
+
+```javascript
+function listResourcesSuccess(data) {
         resourcesData = data.resources;
 
         for (var i = 0; i < resourcesData.length; i++) {
@@ -115,7 +115,9 @@ I then removed a bunch of the authentication portions from the ApiExample.html (
 	        prepareLaunch(resourcesData[i]);
 	    }
         }
-    }</pre>
+    
+```
+
 
 There is a function within the ApiExample.html file that pulls the ICA file.  Could we take this and modify it before returning it with the LongCommandLine addition?  We have the NFuse_AppCommandLine now.
 
@@ -123,7 +125,9 @@ It turns out, you can. You can capture the ICA file as a variable and then using
 
 This is how Citrix launches the ICA file in the ApiExample.html:
 
-<pre class="lang:js decode:true ">// To initiate a launch, an ICA file is loaded into a hidden iframe.
+
+```javascript
+// To initiate a launch, an ICA file is loaded into a hidden iframe.
         // The ICA file is returned with content type "application/x-ica", allowing it to be intercepted by the Citrix HDX
         // browser plug-in in Firefox/Chrome/Safari. For IE, the user may be prompted to open the ICA file.
         $('#hidden-iframes').append('<iframe id="' + frameId + '" name="' + frameId + '"></iframe>');
@@ -135,19 +139,33 @@ This is how Citrix launches the ICA file in the ApiExample.html:
         // Web Proxy request to load the ICA file into an iframe
         // The request is made by adding
         icaFileUrl = updateQueryString(icaFileUrl, 'launchId', currentTime);
-        $("#" + frameId).attr('src', icaFileUrl);</pre>
+        $("#" + frameId).attr('src', icaFileUrl)
+```
+
 
 It generates a URL then sets it as the src in the iframe.  The actual result looks like this:
 
-<pre class="lang:default decode:true "><iframe id="launchframe_1493045843944" name="launchframe_1493045843944" src="Resources/LaunchIca/QUhTQ1RYLk5vdGVwYWQtWGVuQXBwNjUgSGVucnk-.ica?CsrfToken=DB1E8E5D042DB7226C2635FCB855BF3C&amp;launchId=1493045843944"></iframe></pre>
+
+```javascript
+<iframe id="launchframe_1493045843944" name="launchframe_1493045843944" src="Resources/LaunchIca/QUhTQ1RYLk5vdGVwYWQtWGVuQXBwNjUgSGVucnk-.ica?CsrfToken=DB1E8E5D042DB7226C2635FCB855BF3C&amp;launchId=1493045843944"></iframe
+```
+
 
 The ICA file is returned in this line:
 
-<pre class="lang:default decode:true">src="Resources/LaunchIca/QUhTQ1RYLk5vdGVwYWQtWGVuQXBwNjUgSGVucnk-.ica?CsrfToken=DB1E8E5D042DB7226C2635FCB855BF3C&amp;launchId=1493045843944"</pre>
+
+```plaintext
+src="Resources/LaunchIca/QUhTQ1RYLk5vdGVwYWQtWGVuQXBwNjUgSGVucnk-.ica?CsrfToken=DB1E8E5D042DB7226C2635FCB855BF3C&amp;launchId=1493045843944
+```
+
 
 When we capture the ICA file as a variable the only way that I've found you can reference it is via a [blob](https://developer.mozilla.org/en/docs/Web/API/Blob).  What does the src path look like when do that?
 
-<pre class="lang:default decode:true">src="blob:http://bottheory.local/3f19b9e1-403e-4ab7-b741-a4c77a486b95"</pre>
+
+```plaintext
+src="blob:http://bottheory.local/3f19b9e1-403e-4ab7-b741-a4c77a486b95
+```
+
 
 Ok, this looks great!  I can create an ICA file than modify it all through WebAPI and return the ICA file to the browser for execution.  Does it work?
 
@@ -160,7 +178,7 @@ So WebAPI appears to offer part of the solution.  We can capture the nFuse_AppCo
 At this point I decided to look at the [StoreFront Store Customization SDK](https://www.citrix.com/community/citrix-developer/storefront-receiver/store-customization-api.html).  It states it has this ability:
 
 <p style="padding-left: 30px;">
-  <b>Post-Launch ICA file</b>use this to modify the generated ICA file. For example, use this to change ICA virtual channel parameters and prevent users from accessing their clipboard.
+  <b>Post-Launch ICA file</b> - use this to modify the generated ICA file. For example, use this to change ICA virtual channel parameters and prevent users from accessing their clipboard.
 </p>
 
 That sounds perfect!
@@ -169,18 +187,22 @@ That sounds perfect!
 
 The StoreFront store customization SDK bills one of its features as:
 
-## The Store Customization SDK allows you to apply custom logic to the process of displaying resources to users and to <span style="text-decoration: underline;">adjust launch parameters</span>. For example, you can use the SDK to control which apps and desktops are displayed to users, to change ICA virtual channel parameters, or to modify access conditions through & and XenDesktop policy selection.
+## The Store Customization SDK allows you to apply custom logic to the process of displaying resources to users and to <span style="text-decoration: underline;">adjust launch parameters</span>. For example, you can use the SDK to control which apps and desktops are displayed to users, to change ICA virtual channel parameters, or to modify access conditions through XenApp and XenDesktop policy selection.
 
 I underlined the part that is important to me.  That's what I want, exactly!  I want to adjust launch parameters.
 
 To start, one of the tasks that I need is to take my nFuse_AppCommandLine and get it passed to the SDK.  The only way I've found to make this [happen is to enable 'forwardedHeaders](https://www.citrix.com/blogs/2015/06/30/whats-new-in-storefront-3-0/)' in your web.config file.
 
-<pre class="lang:xhtml decode:true "><communication attempts="1" timeout="00:03:00" loopback="On" loopbackPortUsingHttp="80">
+
+```xhtml
+        <communication attempts="1" timeout="00:03:00" loopback="On" loopbackPortUsingHttp="80">
           <proxy enabled="false" processName="Fiddler" port="8888" />
           <forwardedHeaders>
             <header name="nFuseAppCMDLine" />
           </forwardedHeaders>
-        </communication></pre>
+        </communication
+```
+
 
 With this, you need to set your POST/GET Header on your request to Storefront to get this parameter passed to the SDK.  Here is how I setup my SDK:
 
@@ -196,7 +218,8 @@ Download the StoreCustomizationSDK and open the 'Customization_Launch' project f
 
 &nbsp;
 
-Right-click 'Customization_Launch' and select 'Properties'.<img class="aligncenter size-full wp-image-2159" src="/wp-content/uploads/2017/04/Customzation_Launch_Properties.png" alt="" width="341" height="638" srcset="/wp-content/uploads/2017/04/Customzation_Launch_Properties.png 341w, /wp-content/uploads/2017/04/Customzation_Launch_Properties-160x300.png 160w" sizes="(max-width: 341px) 100vw, 341px" />
+![](/wp-content/uploads/2017/04/Customzation_Launch_Properties.png)  
+Right-click 'Customization_Launch' and select 'Properties'.
 
 &nbsp;
 
@@ -224,7 +247,9 @@ Ensure the build was successful:
 
 If you get an error message:
 
-<pre class="lang:default decode:true ">---------------------------
+
+```plaintext
+---------------------------
 Microsoft Visual Studio
 ---------------------------
 A project with an Output Type of Class Library cannot be started directly.
@@ -232,7 +257,9 @@ A project with an Output Type of Class Library cannot be started directly.
 In order to debug this project, add an executable project to this solution which references the library project. Set the executable project as the startup project.
 ---------------------------
 OK 
----------------------------</pre>
+--------------------------
+```
+
 
 <img class="aligncenter size-full wp-image-2165" src="/wp-content/uploads/2017/04/Error_Message.png" alt="" width="481" height="222" srcset="/wp-content/uploads/2017/04/Error_Message.png 481w, /wp-content/uploads/2017/04/Error_Message-300x138.png 300w" sizes="(max-width: 481px) 100vw, 481px" /> 
 
@@ -262,7 +289,9 @@ And you can inspect the values.
 
 At this point I wasn't interested in trying to re-write the ApiExample.html to get this testing underway, I instead used PowerShell to submit my POST's and GET's.  Remember, I'm using an unauthenticated store so I could cut down on the requests sent to StoreFront to get my apps.  I found a script from [Ryan Butler](https://www.techdrabble.com/citrix/21-create-an-ica-file-from-storefront-using-powershell-or-javascript) and made some modifications to it.  I modified it to remove the parameters since I'm doing testing via hardcoding 
 
-<pre class="lang:ps decode:true">$unauthurl = "http://bottheory.local/Citrix/SDKTestSiteWeb/"
+
+```powershell
+$unauthurl = "http://bottheory.local/Citrix/SDKTestSiteWeb/"
 $appname = "Notepad 2016 - PLB"
 
 write-host "Requesting ICA file. Please Wait..." -ForegroundColor Yellow
@@ -302,7 +331,7 @@ $headers = @{
 }
 $ICA = Invoke-WebRequest -Uri ($unauthurl + $resourceurl.launchurl) -MaximumRedirection 0 -Method GET -Headers $headers  -SessionVariable SFSession
 $ICA.RawContent
-</pre>
+```
 
 Executing the powershell script and examining a custom variable with breakpoint shows us that our header was successfully passed into the file:
 
@@ -326,7 +355,9 @@ At this point we can use the helper methods within the IcaFile.cs.  To do so, ju
 
 I cleaned out the HDXRouting out of the file, grabbed the nFuseAppCMDLine header, and then returned the result:
 
-<pre class="lang:c# decode:true ">/*************************************************************************
+
+```csharp
+/*************************************************************************
 *
 * Copyright (c) 2013-2015 Citrix Systems, Inc. All Rights Reserved.
 * You may only reproduce, distribute, perform, display, or prepare derivative works of this file pursuant to a valid license from Citrix.
@@ -373,7 +404,7 @@ namespace StoreCustomization_Launch
         #endregion
     }
 }
-</pre>
+```
 
 The result?
 

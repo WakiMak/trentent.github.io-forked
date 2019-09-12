@@ -13,7 +13,7 @@ tags:
   - Citrix
   - Storefront
 ---
-When I was originally exploring [using the Citrix SDK to manipulate some ICA parameters](https://theorypc.ca/2017/04/24/citrix-storefront-experiences-with-storefront-customization-sdk-and-web-api), I found I couldn't do it.  Using Powershell and passing a header parameter I could manipulate the ICA file to how I wanted, but when I attempted to do so with Internet Explorer, I found it wasn't passing the header parameter.  I assumed this was because of how browsers were launching the ICA file.  However, I attempted to use Sam Jacob's [Citrix Storefront clientname manipulation extension](https://www.mycugc.org/blog/passing-parameters-to-&/xendesktop-by-rewriting-the-storefront-clientname), I discovered I had the same problem.  I originally thought I was doing something wrong, but on a whim I tried Chrome and it worked...  Perfectly!
+When I was originally exploring [using the Citrix SDK to manipulate some ICA parameters](https://theorypc.ca/2017/04/24/citrix-storefront-experiences-with-storefront-customization-sdk-and-web-api), I found I couldn't do it.  Using Powershell and passing a header parameter I could manipulate the ICA file to how I wanted, but when I attempted to do so with Internet Explorer, I found it wasn't passing the header parameter.  I assumed this was because of how browsers were launching the ICA file.  However, I attempted to use Sam Jacob's [Citrix Storefront clientname manipulation extension](https://www.mycugc.org/blog/passing-parameters-to-XenApp/XenDesktop-by-rewriting-the-storefront-clientname), I discovered I had the same problem.  I originally thought I was doing something wrong, but on a whim I tried Chrome and it worked...  Perfectly!
 
 When I investigated further [I found it appears that when Storefront detects IE it doesn't use the GetLaunchStatus API](https://theorypc.ca/2017/07/14/citrix-storefront-adventures-in-customization-customization-breaks-in-internet-explorer/), which passes the headers to Storefront for ICA manipulation.  I found a way to fix this was the add the IE detection to the script.js and add the missing call to the GetLaunchStatus API.
 
@@ -28,26 +28,31 @@ Yes.  Yes we can.  Storefront is very nice, flexible and powerful
 
 I've designed this customization to look for an additional app setting tag.  This needs to be added to the web.config at the ""C:\inetpub\wwwroot\Citrix\Store\web.config"" level:
 
-<pre class="lang:xhtml decode:true "><appSettings>
+```xml
+<appSettings>
   <add key="modifyICAProperties" value="true" />
-  </appSettings></pre>
+  </appSettings>
+```
 
 Any parameter you want passed through needs to be enabled as a forwarded header in the ""C:\inetpub\wwwroot\Citrix\StoreWeb\web.config"" file:
 
-<pre class="lang:xhtml decode:true"><communication attempts="1" timeout="00:03:00" loopback="Off"
+```xml
+<communication attempts="1" timeout="00:03:00" loopback="Off"
           loopbackPortUsingHttp="80">
           <proxy enabled="true" processName="Fiddler" port="8888" />
           <forwardedHeaders>
 			<header name="ClientName" />
 			<header name="LongCommandLine" />
           </forwardedHeaders>
-        </communication></pre>
+        </communication>
+```
 
 &nbsp;
 
 Lastly, you need to edit your \custom\script.js file to include your application and whatever parameters you want passed to it:
 
-<pre class="lang:js decode:true ">CTXS.Extensions.doLaunch =  function(app, action) {
+```javascript
+CTXS.Extensions.doLaunch =  function(app, action) {
 	//check for Notepad and configure clientname
 	if (app.name == "Notepad - 2012") {
 		$.ajaxSetup({
@@ -66,7 +71,8 @@ Lastly, you need to edit your \custom\script.js file to include your application
     action();
 	delete $.ajaxSettings.headers["ClientName"]; //Remove header
 	delete $.ajaxSettings.headers["LongCommandLine"]; //Remove header
-};</pre>
+};
+```
 
 One of the cool things about this is you can still use tags to change the behaviour of these applications.  For instance, if you want a certain subset of your applications to be 8bit you can do set check for that tag on app launch and add the [header to set the desired color](https://docs.citrix.com/content/dam/docs/en-us/receiver/windows/ica-settings/en.ica-settings.ica-settings-wrapper.pdf).  You can set certain applications to keep their ICA file by setting "RemoveICAFile" to Off.  You can individually modify any setting for a specific application or subset of applications.
 
@@ -74,7 +80,8 @@ Here is the [StoreCustomization_Launch.dll and source code](https://theorypc-my.
 
 Here is the source code for prosperity:
 
-<pre class="lang:c# decode:true ">/*************************************************************************
+```c
+/*************************************************************************
 *
 * Copyright (c) 2013-2015 Citrix Systems, Inc. All Rights Reserved.
 * You may only reproduce, distribute, perform, display, or prepare derivative works of this file pursuant to a valid license from Citrix.
@@ -1149,7 +1156,8 @@ namespace StoreCustomization_Launch
         }
         #endregion
     }
-}</pre>
+}
+```
 
 &nbsp;
 

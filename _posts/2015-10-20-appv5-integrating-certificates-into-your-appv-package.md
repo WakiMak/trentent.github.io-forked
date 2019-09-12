@@ -22,7 +22,9 @@ tags:
 ---
 These are the steps I've found to sequence root certificates into your AppV5 application.
 
-<pre class="lang:batch decode:true ">certmgr.exe -add AddTrustCert.cer -s -r localMachine root</pre>
+```batch
+certmgr.exe -add AddTrustCert.cer -s -r localMachine root
+```
 
 Where do you get [certmgr.exe](https://msdn.microsoft.com/en-us/library/e78byta0%28v=vs.110%29.aspx?f=255&MSPPError=-2147217396) from?
 

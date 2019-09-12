@@ -18,7 +18,9 @@ I've written a script that can tie into your environment for Storefront or other
 
 In order to set this up, I've created a web application in IIS with impersonation set.
 
-<pre class="lang:batch decode:true">cd "%WINDIR%\system32\inetsrv"
+
+```batch
+cd "%WINDIR%\system32\inetsrv"
 
 :: Create application pool 
 appcmd add apppool /Name:"Impersonate"
@@ -29,7 +31,7 @@ mkdir C:\inetpub\wwwroot\ADInfo
 appcmd add app /site.name:"Default Web Site" /path:/ADInfo /physicalPath:C:\inetpub\wwwroot\ADInfo
 appcmd set app "Default Web Site/ADInfo" -applicationPool:Impersonate
 appcmd set config "Default Web Site/ADInfo" /section:system.web/compilation /+"assemblies.[assembly='System.DirectoryServices, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a']"
-</pre>
+```
 
 NOTE: this was run on a Server 2016 box.  If your System.DirectoryServices assembly has a different version and public key you will need to update this script with that information.
 
@@ -50,7 +52,8 @@ And the "appcmd set config" creates our web.config file:
 
 And the GroupMembership.aspx file:
 
-<pre class="lang:asp decode:true "><%
+```jsp
+<%
 // Created by:		Trentent Tye
 // Creation Date:	May 11, 2017
 // File Name:		GroupMembership.aspx
@@ -96,7 +99,7 @@ try
 	}
 }
 %>
-</pre>
+```
 
 To call the file, it's the %hostname%\ADInfo\GroupMembership.aspx?DisplayName=%username%
 
@@ -108,7 +111,9 @@ For example:
 
 And then we just modify our script.js to point to this URL instead:
 
-<pre class="lang:js decode:true ">function workspaceControlEnabled(username) {
+
+```javascript
+function workspaceControlEnabled(username) {
 	//call custom web service which queries LDAP for group membership and returns true for the "EnableWorkspaceControl" group, or false for the "DisableWorkspaceControl" group
 	//if the user is not in either group the default is 'true'
 	CTXS.trace("workspaceControlEnabled");
@@ -125,7 +130,7 @@ And then we just modify our script.js to point to this URL instead:
 		}
 	});
 	return result;
-</pre>
+```
 
 &nbsp;
 

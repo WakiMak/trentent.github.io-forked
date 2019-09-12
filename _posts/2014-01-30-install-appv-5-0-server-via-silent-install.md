@@ -23,7 +23,8 @@ tags:
 ---
 I made a script to automate the creation of our AppV 5.0 Management and Publishing servers.  We are going to install them on the same system.  To do this, we already have a database so we are just adding new servers to the infrastructure.  This script also installs all prerequisites if required.
 
-<pre class="lang:batch decode:true ">::================================================================================
+```shell
+::================================================================================
 ::
 :: Created by:  Trentent Tye
 ::   Intel Server Team
@@ -259,7 +260,8 @@ cd /d "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup"
         >>startup.cmd ECHO DEL /F /Q startup.cmd
 
 ECHO Rebooting...
-shutdown -r -t 60 -f</pre>
+shutdown -r -t 60 -f
+```
 
 &nbsp;
 

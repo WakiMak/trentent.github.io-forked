@@ -23,7 +23,9 @@ tags:
   - scripting
 ---
 <div style="font-family: 'Courier New',Courier,monospace;">
-  <pre class="lang:ps decode:true ">#===================================CHANGE OS VALUE=========================================== 
+  
+```powershell
+#===================================CHANGE OS VALUE=========================================== 
 # 
 #   By Trentent Tye 2012-12-19 
 # 
@@ -221,7 +223,9 @@ switch ($answer){
 
 #loop forever 
 $loop = 1 
-do {action} until ($loop = 0)</pre>
+do {action} until ($loop = 0
+```
+
   
   <p>
     &nbsp;

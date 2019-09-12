@@ -33,7 +33,8 @@ I create install.cmd files for all of my applications so that, if required in th
 <span style="font-family: Helvetica Neue, Arial, Helvetica, sans-serif;">install.cmd</span>
 
 <div>
-  <pre class="lang:batch decode:true ">:: ScreenTest III Install Script
+```shell
+:: ScreenTest III Install Script
 ::
 :: By Trentent Tye
 ::
@@ -63,7 +64,9 @@ mkdir "C:\Users\Public\Desktop\MyApps\Softworks Group"
 mkdir "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\MyApps\Softworks Group"
 copy /y "C:\Users\Public\Desktop\ScreenTest.lnk" "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\MyApps\Softworks Group\ScreenTest.lnk"
 copy /y "C:\Users\Public\Desktop\ScreenTest.lnk" "C:\Users\Public\Desktop\MyApps\Softworks Group\ScreenTest.lnk"
-del /q "C:\Users\Public\Desktop\ScreenTest.lnk"</pre>
+del /q "C:\Users\Public\Desktop\ScreenTest.lnk
+```
+
 </div>
 
 <div>
@@ -78,12 +81,16 @@ del /q "C:\Users\Public\Desktop\ScreenTest.lnk"</pre>
 </div>
 
 <div>
-  <pre class="lang:reg decode:true ">Windows Registry Editor Version 5.00
+  
+```plaintext
+Windows Registry Editor Version 5.00
  
 [HKEY_LOCAL_MACHINE\SOFTWARE\ODBC\ODBC.INI\scr_test]
 "Driver"="C:\\Windows\\system32\\SQLSRV32.dll"
 "Server"="SERVER, 49282"
-"LastUser"="screen_report"</pre>
+"LastUser"="screen_report
+```
+
 </div>
 
 <div>

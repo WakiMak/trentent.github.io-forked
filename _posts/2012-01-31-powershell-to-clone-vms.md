@@ -42,7 +42,9 @@ http://communities.vmware.com/docs/DOC-18155
 
 I had issues with running it though. For some reason my PowerShell wouldn't run it with the comments in it so I had to take them out:
 
-> <pre class="lang:ps decode:true ">function Clone-List{
+> 
+```powershell
+function Clone-List{
 
 
 Param(
@@ -90,7 +92,9 @@ $vmhost = Get-Cluster -VM $vm | Get-VMHost | Get-Random | Where{$_ -ne $null}
 New-VM -Name $newname -VM $vm -Location $folder -Datastore $datastore -VMHost $vmhost -DiskStorageFormat $format -RunAsync
 }
 }
-}</pre>
+
+```
+
 
 You can run it with a command like so:
 

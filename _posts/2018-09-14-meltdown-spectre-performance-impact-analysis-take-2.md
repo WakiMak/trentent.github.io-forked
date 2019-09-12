@@ -86,59 +86,60 @@ I tested user loads of 500, 300, and 100 users across 2 hosts.&nbsp; I tested on
 
 ### 2016 - Hosts View
 
-<figure class="wp-block-image"><img src="/wp-content/uploads/2018/09/Hosts-2016-500_2.png" alt="" class="wp-image-2841" srcset="/wp-content/uploads/2018/09/Hosts-2016-500_2.png 1213w, /wp-content/uploads/2018/09/Hosts-2016-500_2-300x124.png 300w, /wp-content/uploads/2018/09/Hosts-2016-500_2-768x318.png 768w" sizes="(max-width: 1213px) 100vw, 1213px" /></figure> 
+![](/wp-content/uploads/2018/09/Hosts-2016-500_2.png)
 
 500 LoginVSI users with this workload, on Server 2016 pegged the hosts CPU to 100% on both the Meltdown/Spectre enabled and disabled hosts. We can still see the gap between the CPU utilization between the two with the Meltdown Spectre hosts
 
-<figure class="wp-block-image"><img src="/wp-content/uploads/2018/09/Hosts-2016-300_2-1.png" alt="" class="wp-image-2843" srcset="/wp-content/uploads/2018/09/Hosts-2016-300_2-1.png 1213w, /wp-content/uploads/2018/09/Hosts-2016-300_2-1-300x124.png 300w, /wp-content/uploads/2018/09/Hosts-2016-300_2-1-768x318.png 768w" sizes="(max-width: 1213px) 100vw, 1213px" /> </figure> 
+![](/wp-content/uploads/2018/09/Hosts-2016-300_2-1.png)
 
 300 LoginVSI users with this workload, on Server 2016 we see the gap is narrow but still visible.
 
-<figure class="wp-block-image"><img src="/wp-content/uploads/2018/09/Hosts-2016-100-2.png" alt="" class="wp-image-2847" srcset="/wp-content/uploads/2018/09/Hosts-2016-100-2.png 1213w, /wp-content/uploads/2018/09/Hosts-2016-100-2-300x124.png 300w, /wp-content/uploads/2018/09/Hosts-2016-100-2-768x318.png 768w" sizes="(max-width: 1213px) 100vw, 1213px" /> </figure> 
+![](/wp-content/uploads/2018/09/Hosts-2016-100-2.png)
 
 100 LoginVSI users with this workload, on Server 2016 we see the gap is barely visible, it looks even.
 
 ### 2012R2 - Hosts View
 
-<figure class="wp-block-image"><img src="/wp-content/uploads/2018/09/Hosts-2012-500-1.png" alt="" class="wp-image-2849" srcset="/wp-content/uploads/2018/09/Hosts-2012-500-1.png 1213w, /wp-content/uploads/2018/09/Hosts-2012-500-1-300x124.png 300w, /wp-content/uploads/2018/09/Hosts-2012-500-1-768x318.png 768w" sizes="(max-width: 1213px) 100vw, 1213px" /> </figure> 
+![](/wp-content/uploads/2018/09/Hosts-2012-500-1.png)
 
 500 LoginVSI users in this workload on Server 2012 R2. There definitely appears to be a much larger gap between the meltdown enabled and disabled hosts. And Server 2012R2 non-mitigated doesn't cap out like Server 2016.
 
-<figure class="wp-block-image"><img src="/wp-content/uploads/2018/09/Hosts-2012-300.png" alt="" class="wp-image-2850" srcset="/wp-content/uploads/2018/09/Hosts-2012-300.png 1213w, /wp-content/uploads/2018/09/Hosts-2012-300-300x124.png 300w, /wp-content/uploads/2018/09/Hosts-2012-300-768x318.png 768w" sizes="(max-width: 1213px) 100vw, 1213px" /> </figure> 
+![](/wp-content/uploads/2018/09/Hosts-2012-300.png)
 
 300 LoginVSI users in this workload on Server 2012R2. The separation between enabled and disabled is still very prominent.
 
-<figure class="wp-block-image"><img src="/wp-content/uploads/2018/09/Hosts-2012-100.png" alt="" class="wp-image-2851" srcset="/wp-content/uploads/2018/09/Hosts-2012-100.png 1213w, /wp-content/uploads/2018/09/Hosts-2012-100-300x124.png 300w, /wp-content/uploads/2018/09/Hosts-2012-100-768x318.png 768w" sizes="(max-width: 1213px) 100vw, 1213px" /> </figure> 
+![](/wp-content/uploads/2018/09/Hosts-2012-100.png)
 
 100 LoginVSI users in this workload on Server 2012R2. Again, the separation is noticeable but appears narrower with lighter loads.
 
 ### 2008R2 - Hosts View
 
-<figure class="wp-block-image"><img src="/wp-content/uploads/2018/09/Hosts-2008-500.png" alt="" class="wp-image-2852" srcset="/wp-content/uploads/2018/09/Hosts-2008-500.png 1213w, /wp-content/uploads/2018/09/Hosts-2008-500-300x124.png 300w, /wp-content/uploads/2018/09/Hosts-2008-500-768x318.png 768w" sizes="(max-width: 1213px) 100vw, 1213px" /> </figure> 
+![](/wp-content/uploads/2018/09/Hosts-2008-500.png)
 
 500 LoginVSI users in this workload on Server 2008R2.  Noticeable additional CPU load with the Meltdown/Spectre host. A more interesting thing is it apperas overall CPU utilization is lower than 2012R2 or 2016.
 
-<figure class="wp-block-image"><img src="/wp-content/uploads/2018/09/Hosts-2008-300.png" alt="" class="wp-image-2853" srcset="/wp-content/uploads/2018/09/Hosts-2008-300.png 1213w, /wp-content/uploads/2018/09/Hosts-2008-300-300x124.png 300w, /wp-content/uploads/2018/09/Hosts-2008-300-768x318.png 768w" sizes="(max-width: 1213px) 100vw, 1213px" /> </figure> 
+![](/wp-content/uploads/2018/09/Hosts-2008-300.png)
 
 300 LoginVSI users in this workload on Server 2008R2. The separation between enabled and disabled is still very prominent.
 
-<figure class="wp-block-image"><img src="/wp-content/uploads/2018/09/Host-2008-100.png" alt="" class="wp-image-2854" srcset="/wp-content/uploads/2018/09/Host-2008-100.png 1218w, /wp-content/uploads/2018/09/Host-2008-100-300x123.png 300w, /wp-content/uploads/2018/09/Host-2008-100-768x316.png 768w" sizes="(max-width: 1218px) 100vw, 1218px" /> </figure> 
+![](/wp-content/uploads/2018/09/Host-2008-100.png)
 
 100 LoginVSI users in this workload on Server 2008R2. I only captured one run and the low utilization makes the difference barely noticeable.
 
 Some interesting results for sure. I took the data and put it into a pivot table to highlight the CPU differences for each workload against each operating system.
 
-<figure class="wp-block-image"><img src="/wp-content/uploads/2018/09/CPUDifference.png" alt="" class="wp-image-2855" srcset="/wp-content/uploads/2018/09/CPUDifference.png 996w, /wp-content/uploads/2018/09/CPUDifference-300x168.png 300w, /wp-content/uploads/2018/09/CPUDifference-768x431.png 768w" sizes="(max-width: 996px) 100vw, 996px" /> </figure> 
+![](/wp-content/uploads/2018/09/CPUDifference.png)
 
 This chart hightlights the difference in CPU percentage between mitigation enabled and disabled systems. The raw data:
 
-<figure class="wp-block-image"><img src="/wp-content/uploads/2018/09/CPUDifferenceData.png" alt="" class="wp-image-2856" /> </figure> 
+![](/wp-content/uploads/2018/09/CPUDifferenceData.png)
 
 Again, interesting results. 2008R2 seems to have the largest average CPU seperation, hitting 14%, followed by 2012R2 at 11% and than 2016 having a difference of 4%.
 
 One of things about these results is that they highlight the "headroom" of the operating systems. 2008R2 actually consumes _less_ CPU and so it has more _room_ for separation between the 3 tiers. On the 2016, there is so much time spent where the CPU was pegged at 100% for both types of host that makes a difference of "0%". So although the smaller number on server 2016 may lead you to believe it's better, _**it's actually not**__._
 
-<figure class="wp-block-image"><img src="/wp-content/uploads/2018/09/Hosts-CPU-workload_compare.png" alt="" class="wp-image-2857" srcset="/wp-content/uploads/2018/09/Hosts-CPU-workload_compare.png 1181w, /wp-content/uploads/2018/09/Hosts-CPU-workload_compare-300x164.png 300w, /wp-content/uploads/2018/09/Hosts-CPU-workload_compare-768x419.png 768w" sizes="(max-width: 1181px) 100vw, 1181px" /> </figure> <figure class="wp-block-image"><img src="/wp-content/uploads/2018/09/Hosts-CPU-workload_compareData.png" alt="" class="wp-image-2858" srcset="/wp-content/uploads/2018/09/Hosts-CPU-workload_compareData.png 574w, /wp-content/uploads/2018/09/Hosts-CPU-workload_compareData-300x136.png 300w" sizes="(max-width: 574px) 100vw, 574px" /></figure> 
+![](/wp-content/uploads/2018/09/Hosts-CPU-workload_compare.png)
+![](/wp-content/uploads/2018/09/Hosts-CPU-workload_compareData.png)
 
 This shows it a little more clear. With mitigations ***enabled***, Server 2008R2 can do 500 users at <span style="text-decoration: underline;">less average CPU load</span> than 2016 can do 300 users with mitigations ***disabled***.
 

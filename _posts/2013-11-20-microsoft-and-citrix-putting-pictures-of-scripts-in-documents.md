@@ -29,7 +29,9 @@ The script is the following:
 It's supposed to pull the application and command-line to execute it in AppV5. I got the script from this document:  
 <http://www.microsoft.com/en-us/download/details.aspx?id=40885>
 
-<pre class="lang:ps decode:true ">"PackageName,Application Name,ApplicationPath"|out-file .\appPath.txt -Append
+
+```powershell
+"PackageName,Application Name,ApplicationPath"|out-file .\appPath.txt -Append
 foreach($pkg in (gwmi -Namespace root\AppV -Class AppVClientPackage -Filter "IsPublishedGlobally = true"))
 {
 
@@ -46,7 +48,7 @@ foreach($pkg in (gwmi -Namespace root\AppV -Class AppVClientPackage -Filter "IsP
       "$($pkg.Name),$($app.Name),$($appPath)"|out-file .\AppPath.txt -Append
    }
 }
-</pre>
+```
 
 &nbsp;
 

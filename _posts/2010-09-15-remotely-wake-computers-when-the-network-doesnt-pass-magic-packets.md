@@ -71,10 +71,12 @@ I'm in a situation where the network we have doesn't pass the UDP 9 magic packet
   </div>
   
   <blockquote>
-    <pre class="lang:batch decode:true ">:This script wakes up computers using a tertiary computer on the same LAN.
+```shell
+:This script wakes up computers using a tertiary computer on the same LAN.
 
 for /F "tokens=1-2 delims= " %%A IN ('type computer-list.txt') do psexec \\%%A -i -c mc-wol.exe %%B
-pause</pre>
+pause
+```
   </blockquote>
   
   <div>

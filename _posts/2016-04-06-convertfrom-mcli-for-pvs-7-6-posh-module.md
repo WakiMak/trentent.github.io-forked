@@ -24,47 +24,69 @@ tags:
 
 MCLI.EXE output:
 
-<pre class="lang:default decode:true ">Executing: Get DISKVERSION
+
+```plaintext
+Executing: Get DISKVERSION
 Get succeeded. 2 record(s) returned.
 Record #1
     access: 0
  
 Record #2
-    access: 1</pre>
+    access: 
+```
+
 
 POSH module output:
 
-<pre class="lang:default decode:true ">Executing: Get diskversion
+
+```plaintext
+Executing: Get diskversion
 Get succeeded. 2 record(s) returned.
 Record #1
 access: 0
  
 Record #2
-access: 1</pre>
+access: 
+```
+
 
 Notice the subtle difference? No spaces.
 
 To get Martin's original script working we need to change the script to look for another character we can key on. Fortunately(?) it \*appears\* that the PVS POSH module outputs properties to start with a lower case letter. If we modify his script here:
 
-<pre class="lang:ps decode:true ">If ($Line[0] -eq " " -or $Line.StartsWith("Record #")) {</pre>
+
+```powershell
+If ($Line[0] -eq " " -or $Line.StartsWith("Record #")) 
+```
+
 
 To this:
 
-<pre class="lang:ps decode:true ">If ($Line[0] -cmatch  "[a-z]" -or $Line.StartsWith("Record #")) {</pre>
+
+```powershell
+If ($Line[0] -cmatch  "[a-z]" -or $Line.StartsWith("Record #")) 
+```
+
 
 It now outputs properties correctly from the PVS POSH module:
 
-<pre class="lang:ps decode:true ">PS C:\swinst\VMTools_and_TargetDeviceSoftwareUpdate> mcli-get diskversion -p diskLocatorName=&65Tn02,siteName=BDC,storeName=& -f access | ConvertFrom-MCLI
+
+```powershell
+PS C:\swinst\VMTools_and_TargetDeviceSoftwareUpdate> mcli-get diskversion -p diskLocatorName=XenApp65tn02,siteName=BDC,storeName=& -f access | ConvertFrom-MCLI
 Retrieved 2 objects
  
 access                                                                                                                     
 ------                                                                                                                     
 0                                                                                                                          
-1</pre>
+
+```
+
 
 The full modified script is here:
 
-<pre class="lang:ps decode:true ">Function ConvertFrom-MCLI {
+
+```powershell
+Function ConvertFrom-MCLI {
  
  Begin {
   [array]$PvsLines = @()
@@ -94,7 +116,9 @@ The full modified script is here:
   Write-Host "Retrieved $($ResultArray.Count) objects"
   Return $ResultArray
  }
-}</pre>
+
+```
+
 
 &nbsp;
 

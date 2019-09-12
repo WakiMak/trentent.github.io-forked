@@ -23,12 +23,14 @@ tags:
 ---
 Open a command prompt and then run the following:
 
-<pre class="lang:batch decode:true ">SFTMIME QUERY OBJ:APP /SHORT
+```shell
+SFTMIME QUERY OBJ:APP /SHORT
 IT999 2.3
 TTEditor 7.1
 Paris 3.7
 
-SFTTRAY /EXE cmd.exe /LAUNCH "Paris 3.7"</pre>
+SFTTRAY /EXE cmd.exe /LAUNCH "Paris 3.7"
+```
 
 This will launch the cmd.exe in the package.
 

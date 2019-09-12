@@ -1,11 +1,11 @@
 ---
 id: 588
-title: Unable to launch /appvve switch via & 6.5
+title: Unable to launch /appvve switch via XenApp 6.5
 date: 2014-10-16T01:35:00-06:00
 author: trententtye
 layout: post
-guid: http://theorypc.ca/blog/2014/10/16/unable-to-launch-appvve-switch-via-&-6-5/
-permalink: /2014/10/16/unable-to-launch-appvve-switch-via-&-6-5/
+guid: http://theorypc.ca/blog/2014/10/16/unable-to-launch-appvve-switch-via-xenapp-6-5/
+permalink: /2014/10/16/unable-to-launch-appvve-switch-via-xenapp-6-5/
 blogger_blog:
   - trentent.blogspot.com
 blogger_author:
@@ -27,13 +27,21 @@ It appears you can't launch an AppV environment around an application with the /
 
 I have found an alternative method though:
 
-<pre class="lang:batch decode:true">powershell.exe -command "&{$AppVName = Get-AppvClientPackage *APPNAME* ; Start-AppvVirtualProcess -AppvClientObject $AppVName cmd.exe}"</pre>
+
+```plaintext
+powershell.exe -command "&{$AppVName = Get-AppvClientPackage *APPNAME* ; Start-AppvVirtualProcess -AppvClientObject $AppVName cmd.exe}
+```
+
 
 This will launch a cmd.exe window in the virtual environment in citrix with the passed .exe (cmd.exe in this example).
 
 Dan mentioned another, less character way:
 
-<pre class="lang:ps decode:true ">Start-AppvVirtualProcess -AppvClientObject (Get-AppvClientPackage *APPNAME*) cmd.exe</pre>
+
+```powershell
+Start-AppvVirtualProcess -AppvClientObject (Get-AppvClientPackage *APPNAME*) cmd.ex
+```
+
 
 &nbsp;
 

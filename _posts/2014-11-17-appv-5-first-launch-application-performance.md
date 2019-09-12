@@ -22,7 +22,7 @@ tags:
   - Performance
   - scripting
 ---
-Our AppV 5 environment is a full infrastructure implementation.  We utilize the management/streaming server to pull the applications down to our Citrix & 6.5 servers.  Our & servers are Citrix PVS servers, we enable the Cache on RAM with disk overflow and the write-cache intermediate mode.  To maximize CPU performance we have our ESXi hosts set to maximum performance and disable power management in the BIOS of the hosts.  We have some applications that are very latency sensitive and the switching of power states on the ESXi hosts have caused performance degradation so we have power management disabled.  We have setup our PVS servers with the secondary D: WriteCache disk where we fully mount the AppV 5 packages, removing the streaming latency that going over a network may add.
+Our AppV 5 environment is a full infrastructure implementation.  We utilize the management/streaming server to pull the applications down to our Citrix XenApp 6.5 servers.  our XenApp servers are Citrix PVS servers, we enable the Cache on RAM with disk overflow and the write-cache intermediate mode.  To maximize CPU performance we have our ESXi hosts set to maximum performance and disable power management in the BIOS of the hosts.  We have some applications that are very latency sensitive and the switching of power states on the ESXi hosts have caused performance degradation so we have power management disabled.  We have setup our PVS servers with the secondary D: WriteCache disk where we fully mount the AppV 5 packages, removing the streaming latency that going over a network may add.
 
 Because of some performance concerns with the Shared Content Store (SCS) I was tasked with coming up with a way of determining if there is a performance impact of switching from fully mounted applications.  In order to determine the impact my plan was to measure a baseline based on disk performance.  Our SMB share that we are storing our .appv packages actually has the same performance as the local disk.  Since AppV packages are immutable, the only performance consideration we should be concerned is READ performance from the SMB share compared to the local disk.  The writes occur in the %userprofile%appdatavfs which is stored on the C:\ drive.  The Cache to RAM with disk overflow feature would ensure that write performance into those directories are fast and should be near instant.
 
@@ -49,7 +49,8 @@ SMB share:
 
 &nbsp;
 
-<pre class="lang:default decode:true ">D:
+```plaintext
+D:
 Read IO
 thread |       bytes     |     I/Os     |     MB/s   |  I/O per s |  AvgLat  | LatStdDev |  file
 -----------------------------------------------------------------------------------------------------
@@ -63,7 +64,8 @@ thread |       bytes     |     I/Os     |     MB/s   |  I/O per s |  AvgLat  | L
 -----------------------------------------------------------------------------------------------------
      0 |     80124379136 |      1222601 |    1273.26 |   20372.15 |    0.096 |     0.105 | \\citrixnas01\citrix_test\test.dat (1024MB)
 -----------------------------------------------------------------------------------------------------
-total:       80124379136 |      1222601 |    1273.26 |   20372.15 |    0.096 |     0.105</pre>
+total:       80124379136 |      1222601 |    1273.26 |   20372.15 |    0.096 |     0.105
+```
 
 Performance of the SMB share vs local disk:  
 MB/s: 96%  
@@ -74,7 +76,8 @@ Based on these results, the local disk appears to be nearly identical to the SMB
 
 The next test I have is launching an application and getting to the splash screen to see how long it takes to load.  For this test I've written a AutoIt script that takes two parameters, the name of the program to launch and the window title to monitor for.
 
-<pre class="lang:autoit decode:true ">#Region ;**** Directives created by AutoIt3Wrapper_GUI ****
+```shell
+#Region ;**** Directives created by AutoIt3Wrapper_GUI ****
 #AutoIt3Wrapper_Change2CUI=y
 #EndRegion ;**** Directives created by AutoIt3Wrapper_GUI ****
 ;
@@ -100,28 +103,35 @@ Local $Time = _NowTime()
 
 ConsoleWrite($Time & "," & $fDiff & "," & $windowToWaitFor & "," & $progToLaunch & @CRLF)
 
-;finished</pre>
+;finished
+```
 
 I setup a cmd file with my program (Epic) because it takes some parameters prior to launch.  I then pointed my timer application at it.
 
-<pre class="lang:batch decode:true ">C:\timer.exe D:\AppVPerfTest\epic.cmd "Connection Status"</pre>
+```shell
+C:\timer.exe D:\AppVPerfTest\epic.cmd "Connection Status"
+```
 
 The results (with SCS):
 
-<pre class="lang:default decode:true ">Net Stop / Net Start AppvClient
+```shell
+Net Stop / Net Start AppvClient
 10:05:20 AM,196229.360505316,Connection Status,D:\AppVPerfTest\epic.cmd
 10:05:51 AM,13964.6012970922,Connection Status,D:\AppVPerfTest\epic.cmd
 10:05:59 AM,12841.0388750526,Connection Status,D:\AppVPerfTest\epic.cmd
-10:06:03 AM,12334.0792614704,Connection Status,D:\AppVPerfTest\epic.cmd</pre>
+10:06:03 AM,12334.0792614704,Connection Status,D:\AppVPerfTest\epic.cmd
+```
 
 The columns are Time Completed, Duration (in ms), Window to check for, Command executed.
 
 After doing a Net Stop AppvClient / Net Start Appclient and then executing our AppV application it takes **<u>196</u>** seconds to start the application.  After that initial launch it takes 12-15 seconds to start.  Something is really dragging our initial application launch time down.  I've found if I stop/start the service I need to do a **<u>add/publish</u>** via Powershell for that application to reduce the 196 seconds.  This then takes first launch down to <u style="font-weight: bold;">48</u> seconds. This is how long is takes to start the same application after a system restart:
 
-<pre class="lang:default decode:true ">3:25:41 PM,48195.8385074081,Connection Status,D:\AppVPerfTest\epic.cmd
+```shell
+3:25:41 PM,48195.8385074081,Connection Status,D:\AppVPerfTest\epic.cmd
 3:27:26 PM,12646.0290344164,Connection Status,D:\AppVPerfTest\epic.cmd
 3:27:45 PM,15450.5886222970,Connection Status,D:\AppVPerfTest\epic.cmd
-3:28:00 PM,12488.5766906129,Connection Status,D:\AppVPerfTest\epic.cmd</pre>
+3:28:00 PM,12488.5766906129,Connection Status,D:\AppVPerfTest\epic.cmd
+```
 
 <div>
 </div>

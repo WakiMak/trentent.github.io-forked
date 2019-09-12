@@ -21,13 +21,17 @@ tags:
   - PowerShell
   - scripting
 ---
-<pre class="lang:ps decode:true ">> "%TEMP%\proc_logoff.ps1" echo Start-Sleep -s 60
+
+```powershell
+> "%TEMP%\proc_logoff.ps1" echo Start-Sleep -s 60
        >> "%TEMP%\proc_logoff.ps1" echo $localSession = Get-ChildItem 'HKCU:\Volatile Environment' -name
        >> "%TEMP%\proc_logoff.ps1" echo $process = get-process ^| where {$_.sessionID -eq $localSession} ^| where {$_.processName -eq "MetaVision"}
        >> "%TEMP%\proc_logoff.ps1" echo if ($process -eq $null) {logoff.exe}
        >> "%TEMP%\proc_logoff.ps1" echo $process.waitforexit()
        >> "%TEMP%\proc_logoff.ps1" echo logoff.exe
-powershell.exe -ExecutionPolicy Unrestricted -WindowStyle Hidden -File "%TEMP%\proc_logoff.ps1"</pre>
+powershell.exe -ExecutionPolicy Unrestricted -WindowStyle Hidden -File "%TEMP%\proc_logoff.ps1
+```
+
 
 I should comment this later, for now, this is the whole script.
 

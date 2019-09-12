@@ -24,10 +24,10 @@ tags:
   - Registry
 
 ---
-We have run into an issue where we have Provisioning Service 6.1 and & 6.5 working together. After we update the vDisk (say, for Windows Update) we run through a script that does things like the "& Prep" to allow the & 6.5 ready for imaging. It appears that there is a bug in the & Prep that sometimes causes it to not fully get & 6.5 ready for rejoining the farm. The initial symptoms I found were:
+We have run into an issue where we have Provisioning Service 6.1 and XenApp 6.5 working together. After we update the vDisk (say, for Windows Update) we run through a script that does things like the "& Prep" to allow the XenApp 6.5 ready for imaging. It appears that there is a bug in the XenApp Prep that sometimes causes it to not fully get XenApp 6.5 ready for rejoining the farm. The initial symptoms I found were:
 
 Event ID 4003  
-"The Citrix Independent Management Architecture service is exiting. The & Server Configuration tool has not been run on this server."
+"The Citrix Independent Management Architecture service is exiting. The XenApp Server Configuration tool has not been run on this server."
 
 I found this [CTX article](http://support.citrix.com/article/CTX137758) about it, but nothing of it was applicable.
 
@@ -41,13 +41,17 @@ A working system with the Status key. Note Joined is "0"
 
 After adding the Status Registry key:
 
-<pre class="lang:reg decode:true ">Windows Registry Editor Version 5.00
+
+```plaintext
+Windows Registry Editor Version 5.00
 
 [HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Citrix\IMA\Status]
 "EnhancedDesktopExperienceConfigured"=dword:00000001
 "Provisioned"=dword:00000001
 "Ready"=dword:00000001
-"Joined"=dword:00000000</pre>
+"Joined"=dword:0000000
+```
+
 
 I tried restarting the service and the progress bar got further but then still quit. Procmon showed me this:
 
@@ -59,16 +63,20 @@ That is ACCESS DENIED when trying to see that registry key. It turns out that th
 
 Notice that none of the permissions are inherited and "NETWORK SERVICE" is added with full control to this key. Now when we try and start the Citrix Independent Management Architecture service we get the following errors:
 
-<pre class="lang:default decode:true ">eventid 3989:
-Citrix & failed to connect to the Data Store. ODBC error while connecting to the database: S1000 -> General error: Invalid file dsn ''
+
+```plaintext
+eventid 3989:
+Citrix XenApp failed to connect to the Data Store. ODBC error while connecting to the database: S1000 -> General error: Invalid file dsn ''
 eventid 3636:
-The server running Citrix & failed to connect to the data store. An unknown failure occurred while connecting to the database. Error: IMA_RESULT_FAILURE Indirect: 0 Server: DSN file: 
+The server running Citrix XenApp failed to connect to the data store. An unknown failure occurred while connecting to the database. Error: IMA_RESULT_FAILURE Indirect: 0 Server: DSN file: 
 eventid 3615
-The server running Citrix & failed to connect to the Data Store. Error - IMA_RESULT_FAILURE An unknown failure occurred while connecting to the database.
+The server running Citrix XenApp failed to connect to the Data Store. Error - IMA_RESULT_FAILURE An unknown failure occurred while connecting to the database.
 eventid 3609 
 Failed to load plugin C:\Program Files (x86)\Citrix\System32\Citrix\IMA\SubSystems\ImaWorkerGroupSs.dll with error IMA_RESULT_FAILURE
 eventid 3601
-Failed to load initial plugins with error IMA_RESULT_FAILURE</pre>
+Failed to load initial plugins with error IMA_RESULT_FAILUR
+```
+
 
 [To correct these errors the local host cache needs to be rebuilt.](http://support.citrix.com/article/CTX127922) To fix that we need to run:  
 Dsmaint recreatelhc  
@@ -76,12 +84,18 @@ Dsmaint recreaterade
 
 After doing that, we can start the IMA Service and MFCOM. If instead of IMA Service starting you get the following error message:
 
-<pre class="lang:default decode:true ">Eventid 4007
-The Citrix Independent Management Architecture (IMA) service is exiting. The DSN File could not be updated with the information retrieved from Group Policy. Error: 80000001h DSN file: mf20.dsn DSN Entry: DATABASE Policy Setting: CTXDS Confirm that the Network Service has write permissions to the DSN File.</pre>
+
+```plaintext
+Eventid 4007
+The Citrix Independent Management Architecture (IMA) service is exiting. The DSN File could not be updated with the information retrieved from Group Policy. Error: 80000001h DSN file: mf20.dsn DSN Entry: DATABASE Policy Setting: CTXDS Confirm that the Network Service has write permissions to the DSN File
+```
+
 
 Ensure the following registry is populated:
 
-<pre class="lang:batch decode:true ">reg add HKEY_LOCAL_MACHINE\PE_SOFTWARE\Wow6432Node\Citrix\IMA /v DataSourceName /t REG_SZ /d "C:\Program Files (x86)\Citrix\Independent Management Architecture\mf20.dsn"</pre>
+```shell
+reg add HKEY_LOCAL_MACHINE\PE_SOFTWARE\Wow6432Node\Citrix\IMA /v DataSourceName /t REG_SZ /d "C:\Program Files (x86)\Citrix\Independent Management Architecture\mf20.dsn"
+```
 
 <div>
 </div>

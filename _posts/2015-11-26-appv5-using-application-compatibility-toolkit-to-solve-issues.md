@@ -287,7 +287,8 @@ We have several applications that install folders in the root of the C: drive.  
 </div>
 
 <div>
-  <pre class="lang:default decode:true "><machinescripts>
+```xml
+<machinescripts>
     <addpackage>
       <path>sdbinst.exe</Path>
       <arguments>-q "\\healthy.bewell.ca\apps\appv\PortableApps\AppCompat_Fixes\PRIS_WEBFORMS_FIX.sdb"</Arguments>
@@ -298,7 +299,9 @@ We have several applications that install folders in the root of the C: drive.  
 <arguments>-u "\\healthy.bewell.ca\apps\appv\PortableApps\AppCompat_Fixes\PRIS_WEBFORMS_FIX.sdb"</Arguments>
       <wait RollbackOnError="false" Timeout="60"/>
     </RemovePackage>
-  </MachineScripts></pre>
+  </MachineScripts
+```
+
 </div>
 
 <div>

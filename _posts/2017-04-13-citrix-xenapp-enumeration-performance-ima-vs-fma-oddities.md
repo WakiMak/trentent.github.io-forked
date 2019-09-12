@@ -1,11 +1,11 @@
 ---
 id: 2129
-title: Citrix & Enumeration Performance - IMA vs FMA - oddities
+title: Citrix XenApp Enumeration Performance - IMA vs FMA - oddities
 date: 2017-04-13T12:20:32-06:00
 author: trententtye
 layout: post
 guid: http://theorypc.ca/?p=2129
-permalink: /2017/04/13/citrix-&-enumeration-performance-ima-vs-fma-oddities/
+permalink: /2017/04/13/citrix-xenapp-enumeration-performance-ima-vs-fma-oddities/
 image: /wp-content/uploads/2017/04/Screen-Shot-2017-04-13-at-12.19.57-PM.png
 categories:
   - Blog
@@ -14,7 +14,7 @@ tags:
   - Performance
 
 ---
-During the course of [load testing FMA to see how it compares with IMA](https://theorypc.ca/2017/04/12/citrix-&-enumeration-performance-ima-vs-fma-load-testing/) in terms of performance I encountered some oddities with FMA.  It definitely is more efficient at enumerating & applications compared to IMA.  But...  The differences in my testing may have been overstated.
+During the course of [load testing FMA to see how it compares with IMA](https://theorypc.ca/2017/04/12/citrix-xenapp-enumeration-performance-ima-vs-fma-load-testing/) in terms of performance I encountered some oddities with FMA.  It definitely is more efficient at enumerating XenApp applications compared to IMA.  But...  The differences in my testing may have been overstated.
 
 During the load testing I captured some performance counters.  One of them, "Citrix XML Service - enumerate resources - Concurrent Transactions" seemed to line up almost perfectly with the load wcat was applying to the broker.  BUT...  It capped out.  It seemed to cap at 200-220 concurrent connections.
 
@@ -32,20 +32,26 @@ What I'm considering is that FMA is taking all requests up to that limit and the
 
 No.  It was not working.  The responses I got when the connections hit 800+ looked like this:
 
-<pre class="lang:xhtml decode:true"><?xml version="1.0" encoding="UTF-8"?>
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE NFuseProtocol SYSTEM "NFuse.dtd"[]>
 <NFuseProtocol version="5.9">
   <ResponseAppData>
   <ErrorId>unspecified</ErrorId>
   <LeasingStatus>working</LeasingStatus>
   </ResponseAppData>
-</NFuseProtocol></pre>
+</NFuseProtocol>
+```
+
 
 ErrorID 'unspecified'.  Undoubtedly, it appears there is a timer somewhere that if the broker cannot respond to requests within a reasonable amount of time (20 seconds?) that it returns this error code.
 
 So is the amount of processing the broker can handle a hardcoded limit?  I scanned the startup of the service with Procmon to see what registry keys/values the BrokerService was looking for.
 
-<pre class="lang:reg decode:true">HKLM\SOFTWARE\Citrix\DesktopServer\BrokerStartupRetryPeriodLimitMs
+
+```plaintext
+HKLM\SOFTWARE\Citrix\DesktopServer\BrokerStartupRetryPeriodLimitMs
 HKLM\SOFTWARE\Citrix\DesktopServer\BrokerStartupRetryPeriodStartMaxMs
 HKLM\SOFTWARE\Citrix\DesktopServer\ConnectionLeasing\MaxItemsPerSyncCycle
 HKLM\SOFTWARE\Citrix\DesktopServer\ConnectionLeasing\PendingFailureMaxSecs
@@ -92,7 +98,7 @@ HKLM\SOFTWARE\Citrix\DesktopServer\XmlServicesEnableSsl
 HKLM\SOFTWARE\Citrix\DesktopServer\XmlServicesTargetAddress
 HKLM\SOFTWARE\Citrix\DesktopServer\XmsStartupRetryPeriodLimitMs
 HKLM\SOFTWARE\Citrix\DesktopServer\XmsStartupRetryPeriodStartMaxMs
-</pre>
+```
 
 I found a [document from Citrix that details \*some\* of these registry keys](http://support.citrix.com/article/CTX138738).
 

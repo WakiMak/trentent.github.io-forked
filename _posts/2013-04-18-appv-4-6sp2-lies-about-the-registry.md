@@ -24,11 +24,18 @@ We recently had an application update and decided we were going to move the regi
 
 The values existed in the registry here:
 
-<pre class="lang:batch decode:true ">HKLM\SOFTWARE\Application /v ServerName /d OLDSERVER</pre>
+```shell
+HKLM\SOFTWARE\Application /v ServerName /d OLDSERVE
+```
+
 
 When I did the /exe cmd.exe trick for the application and opened the package I could see the registry keys resided in that location. I then deleted that registry key in the sequencer and set the registry value for Application to "Merge with local keys". After doing so we made a GPO at this location:
 
-<pre class="lang:default decode:true ">HKLM\SOFTWARE\Application /v ServerName /d NEWSERVER</pre>
+
+```plaintext
+HKLM\SOFTWARE\Application /v ServerName /d NEWSERVE
+```
+
 
 And I happily launched the application expecting it to see the new server key and be off on its merry way.
 

@@ -50,7 +50,9 @@ To fix this you can use the awesome ADFIND and ADMOD from Joeware.
 
 The command to fix set it correctly would be:
 
-> <pre class="lang:batch decode:true ">adfind -b "OU=TEST - Trentent,DC=lab,DC=com" -adcsv -f "(&objectClass=user)" samAccountName | admod homeDirectory::\\test\test$\{{samAccountName}} homeDrive::Z:</pre>
+```console
+adfind -b "OU=TEST - Trentent,DC=lab,DC=com" -adcsv -f "(&objectClass=user)" samAccountName | admod homeDirectory::\\test\test$\{{samAccountName}} homeDrive::Z:
+```
 
 Go Joe!
 

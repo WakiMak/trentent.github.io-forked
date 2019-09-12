@@ -54,7 +54,11 @@ In order to get this working entirely I recommend the following steps:
   1. Create a Group (eg, "CTX.Servers.ProvisioningServiceServer")
   2. Add all the PVS Machine Accounts into that group
   3. Reboot your PVS server to gain that group membership token
-  4. Run the powershell script on each machine to add the group permission to the streaming service: <pre class="lang:ps decode:true">. .\Add_Permissions_ToStreamService.ps1 -SetACL -Domain Bottheory -GroupOrUser CTX.Servers.ProvisioningServiceServer</pre>
+  4. Run the powershell script on each machine to add the group permission to the streaming service: 
+```powershell
+. .\Add_Permissions_ToStreamService.ps1 -SetACL -Domain Bottheory -GroupOrUser CTX.Servers.ProvisioningServiceServe
+```
+
 
   5. Done!
 

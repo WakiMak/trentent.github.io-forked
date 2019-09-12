@@ -27,7 +27,9 @@ tags:
 ---
 We run a multihome NIC setup with our Citrix PVS servers and the "Provisioning" Network is a seperate VLAN that is only used by the PVS servers and goes no where.  Unfortunately, however, the "Provision" NIC can register itself in the DNS, causing devices outside of the Provisioning network (everyone) to resolve to the incorrect address.  To resolve this I ran this script across all my vDisks to remove the ability of the provision network to register itself as available in DNS.:
 
-<pre class="lang:ps decode:true ">$provNic=Get-WmiObject Win32_NetworkAdapter -filter 'netconnectionid ="Provision"'
+
+```powershell
+$provNic=Get-WmiObject Win32_NetworkAdapter -filter 'netconnectionid ="Provision"'
 $prodNic=Get-WmiObject Win32_NetworkAdapter -filter 'netconnectionid ="Production"'
 $adapters=Get-WmiObject Win32_NetworkAdapterConfiguration -filter 'IPEnabled=TRUE'
 foreach($adapter in $adapters) {
@@ -37,7 +39,9 @@ foreach($adapter in $adapters) {
   if ($provNIC.name -eq $adapter.Description) {
     $adapter.SetDynamicDNSRegistration($false,$false)
   }
-}</pre>
+
+```
+
 
 As you can see above, we have two NICs, "Provision" and "Production".  We do not want "Provision" registerted so it gets the $false,$false set, whereas "Production" gets $true,$false.
 

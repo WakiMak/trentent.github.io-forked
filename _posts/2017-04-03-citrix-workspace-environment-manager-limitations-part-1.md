@@ -15,7 +15,7 @@ tags:
   - Performance
   - Workspace Environment Manager
 ---
-In a brief evaluation of Citrix Workspace Environment Manager, I looked at the utility of the product to replace Group Policy Preferences (GPP) _in a **&** environment context_.  For this I focused on replacing a set of registry keys we apply via GPP for our & environment.  My results were not favorable for using WEM in this context for the Registry portion as WEM pushes processing of it's entries into the 'shell' session.  For &, the Shell session is typically applied quickly and so the application may launch **without** those keys present (which is bad - the application needs those keys present _first_).  So although logon times maybe reduced, this scenario does not work _for the Registry portion_.  We are still exploring the effects of WEM and whether some other components that operate synchronously within GPP are needed.  Can these components be moved to WEM?  One of the big 'wins' for this approach maybe Drive Mappings, which apply synchronously and requires the Drive Mappings to be processed before allowing a user to logon.  Moving this to WEM may be a win worth exploring...  **IF** the application doesn't require drive mappings before being launched. But that's for another article..
+In a brief evaluation of Citrix Workspace Environment Manager, I looked at the utility of the product to replace Group Policy Preferences (GPP) _in a **&** environment context_.  For this I focused on replacing a set of registry keys we apply via GPP for our XenApp environment.  My results were not favorable for using WEM in this context for the Registry portion as WEM pushes processing of it's entries into the 'shell' session.  For &, the Shell session is typically applied quickly and so the application may launch **without** those keys present (which is bad - the application needs those keys present _first_).  So although logon times maybe reduced, this scenario does not work _for the Registry portion_.  We are still exploring the effects of WEM and whether some other components that operate synchronously within GPP are needed.  Can these components be moved to WEM?  One of the big 'wins' for this approach maybe Drive Mappings, which apply synchronously and requires the Drive Mappings to be processed before allowing a user to logon.  Moving this to WEM may be a win worth exploring...  **IF** the application doesn't require drive mappings before being launched. But that's for another article..
 
 However, for the registry portion of WEM we did encounter a few 'gotcha's worth mentioning if you are going to use WEM.
 
@@ -28,13 +28,10 @@ Looking at a simple REG_BINARY key it contains data is displayed as 'hexadecimal
 
 If I want to use WEM to apply this key, I would create an entry within WEM:
 
-<div id="attachment_2091" style="width: 440px" class="wp-caption aligncenter">
-  <img aria-describedby="caption-attachment-2091" class="wp-image-2091 size-full" src="/wp-content/uploads/2017/04/WEM_REG_BINARY.png" alt="HINT: it's not." width="430" height="632" srcset="/wp-content/uploads/2017/04/WEM_REG_BINARY.png 430w, /wp-content/uploads/2017/04/WEM_REG_BINARY-204x300.png 204w" sizes="(max-width: 430px) 100vw, 430px" /></p> 
-  
-  <p id="caption-attachment-2091" class="wp-caption-text">
-    Does this look correct to you? I thought it looked correct to me.
-  </p>
-</div>
+
+![](/wp-content/uploads/2017/04/WEM_REG_BINARY.png)  
+Does this look correct to you? I thought it looked correct to me.
+
 
 &nbsp;
 
@@ -50,25 +47,17 @@ In order to get WEM to apply the code properly we would need to copy/convert the
 
 However, I have bad results doing so:
 
-<div id="attachment_2094" style="width: 439px" class="wp-caption aligncenter">
-  <img aria-describedby="caption-attachment-2094" class="wp-image-2094 size-full" src="/wp-content/uploads/2017/04/WEM_With_Binary_ASCII.png" width="429" height="634" srcset="/wp-content/uploads/2017/04/WEM_With_Binary_ASCII.png 429w, /wp-content/uploads/2017/04/WEM_With_Binary_ASCII-203x300.png 203w" sizes="(max-width: 429px) 100vw, 429px" /></p> 
-  
-  <p id="caption-attachment-2094" class="wp-caption-text">
-    WEM with ASCII converted binary values applied.
-  </p>
-</div>
+![](/wp-content/uploads/2017/04/WEM_With_Binary_ASCII.png)  
+WEM with ASCII converted binary values applied.
+
 
 &nbsp;
 
 Result:
 
-<div id="attachment_2095" style="width: 367px" class="wp-caption aligncenter">
-  <img aria-describedby="caption-attachment-2095" class="wp-image-2095 size-full" src="/wp-content/uploads/2017/04/REG_BINARY_WITH_ASCII_WEM.png" width="357" height="22" srcset="/wp-content/uploads/2017/04/REG_BINARY_WITH_ASCII_WEM.png 357w, /wp-content/uploads/2017/04/REG_BINARY_WITH_ASCII_WEM-300x18.png 300w" sizes="(max-width: 357px) 100vw, 357px" /></p> 
-  
-  <p id="caption-attachment-2095" class="wp-caption-text">
-    This is closer but grossly wrong.
-  </p>
-</div>
+![](/wp-content/uploads/2017/04/REG_BINARY_WITH_ASCII_WEM.png)  
+This is closer but grossly wrong.
+
 
 &nbsp;
 
@@ -84,9 +73,6 @@ Even worse, during my time fiddling with this, I BROKE WEM.
 
 If the ASCII representation of "&x1" or whatever was set it caused WEM to crash when applying the values.  So REG\_BINARY's are completely out.  In my limited testing, we only had 1 REG\_BINARY to apply, but in our environment we use GPP to apply 5 different REG\_BINARY keys.  So using WEM for these applications is right out.  I filed and asked Citrix for a 'feature enhancement' to support applying REG\_BINARY's properly, but I was told this was operating as expected so I'm not holding my breathe but this does limit the utility of WEM.
 
-&nbsp;
-
-&nbsp;
 
 <!-- AddThis Advanced Settings generic via filter on the_content -->
 

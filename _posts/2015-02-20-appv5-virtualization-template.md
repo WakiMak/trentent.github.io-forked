@@ -22,7 +22,9 @@ tags:
 ---
 Use if you want, or not.  This virtualization template is to be applied against the sequencer.  I've found it removes a lot of useless captured information that can get caught in a sequence.
 
-<pre class="lang:default decode:true "><?xml version="1.0" encoding="utf-8"?>
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
 <SequencerTemplate xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <AllowMU>false</AllowMU>
   <AppendPackageVersionToFilename>true</AppendPackageVersionToFilename>
@@ -88,7 +90,9 @@ Use if you want, or not.  This virtualization template is to be applied against 
     <string>REGISTRY\USER\.DEFAULT\Software\Microsoft\Windows\CurrentVersion\Internet Settings\ZoneMap</string>
   </RegExclusions>
   <TargetOSes />
-</SequencerTemplate></pre>
+</SequencerTemplate
+```
+
 
 &nbsp;
 

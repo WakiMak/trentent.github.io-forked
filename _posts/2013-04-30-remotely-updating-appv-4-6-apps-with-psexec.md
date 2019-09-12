@@ -23,16 +23,22 @@ tags:
 ---
 Just create a script file (flush.cmd) that looks like so:
 
-<pre class="lang:batch decode:true ">sftmime delete app:"AppName" 
+```shell
+sftmime delete app:"AppName" 
 sftmime refresh server:"AppVManagementServer" 
 sftmime load app:"AppName" 
-sftmime query obj:package</pre>
+sftmime query obj:package
+```
 
 and you can execute the command with this PSEXEC.exe command:  
 <span style="font-family: 'Courier New',Courier,monospace;"><br /> </span>
 
-<pre class="lang:default decode:true ">for /f %A IN ('type C:\Users\trententtye\Desktop\list.txt') 
- DO P:\PSTools\PsExec.exe \\%A -c C:\Users\trententtye\Desktop\flush.cmd</pre>
+
+```plaintext
+for /f %A IN ('type C:\Users\trententtye\Desktop\list.txt') 
+ DO P:\PSTools\PsExec.exe \\%A -c C:\Users\trententtye\Desktop\flush.cm
+```
+
 
 With list.txt looking like so:
 

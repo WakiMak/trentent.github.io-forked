@@ -26,13 +26,8 @@ In this part we are going to examine the option "I/O burst size (KB)"  This poli
 
 What are these ACK's and can we see them?  We can.  They are UDP packets sent back from the target device to the PVS server.  If you open Procmon on the PVS server and startup a target device an ACK looks like so:
 
-<div id="attachment_1902" style="width: 1327px" class="wp-caption aligncenter">
-  <img aria-describedby="caption-attachment-1902" class="wp-image-1902 size-full" src="/wp-content/uploads/2016/12/48ByteUDPReceieve.png" width="1317" height="920" srcset="/wp-content/uploads/2016/12/48ByteUDPReceieve.png 1317w, /wp-content/uploads/2016/12/48ByteUDPReceieve-300x210.png 300w, /wp-content/uploads/2016/12/48ByteUDPReceieve-768x536.png 768w" sizes="(max-width: 1317px) 100vw, 1317px" /></p> 
-  
-  <p id="caption-attachment-1902" class="wp-caption-text">
-    These highlighted 48byte UDP Receive packets? They are the ACKS
-  </p>
-</div>
+![](/wp-content/uploads/2016/12/48ByteUDPReceieve.png)  
+These highlighted 48byte UDP Receive packets? They are the ACKS
 
 And if we enable the disk view with the network view:
 
@@ -113,33 +108,19 @@ Citrix has a utility that gives you some information on what kind of gain you mi
 
 &nbsp;
 
-<div id="attachment_1916" style="width: 559px" class="wp-caption aligncenter">
-  <img aria-describedby="caption-attachment-1916" class="size-full wp-image-1916" src="/wp-content/uploads/2017/01/StreamConsole.png" alt="" width="549" height="531" srcset="/wp-content/uploads/2017/01/StreamConsole.png 549w, /wp-content/uploads/2017/01/StreamConsole-300x290.png 300w" sizes="(max-width: 549px) 100vw, 549px" /></p> 
-  
-  <p id="caption-attachment-1916" class="wp-caption-text">
-    With 4K I/O burst it does not display any packets sent larger because they are limited to that size
-  </p>
-</div>
+![](/wp-content/uploads/2017/01/StreamConsole.png)  
+With 4K I/O burst it does not display any packets sent larger because they are limited to that size
 
 &nbsp;
 
-<div id="attachment_1917" style="width: 556px" class="wp-caption aligncenter">
-  <img aria-describedby="caption-attachment-1917" class="wp-image-1917 size-full" src="/wp-content/uploads/2017/01/8K_IO.png" width="546" height="529" srcset="/wp-content/uploads/2017/01/8K_IO.png 546w, /wp-content/uploads/2017/01/8K_IO-300x291.png 300w" sizes="(max-width: 546px) 100vw, 546px" /></p> 
-  
-  <p id="caption-attachment-1917" class="wp-caption-text">
-    8K I/O Burst Size. Notice how many 8K sectors are read over 4K?
-  </p>
-</div>
+![](/wp-content/uploads/2017/01/8K_IO.png)  
+8K I/O Burst Size. Notice how many 8K sectors are read over 4K?
 
 &nbsp;
 
-<div id="attachment_1918" style="width: 557px" class="wp-caption aligncenter">
-  <img aria-describedby="caption-attachment-1918" class="size-full wp-image-1918" src="/wp-content/uploads/2017/01/16K.png" alt="" width="547" height="531" srcset="/wp-content/uploads/2017/01/16K.png 547w, /wp-content/uploads/2017/01/16K-300x291.png 300w, /wp-content/uploads/2017/01/16K-50x50.png 50w" sizes="(max-width: 547px) 100vw, 547px" /></p> 
-  
-  <p id="caption-attachment-1918" class="wp-caption-text">
-    16K I/O Burst Size
-  </p>
-</div>
+![](/wp-content/uploads/2017/01/16K.png)  
+16K I/O Burst Size
+
 
 &nbsp;
 

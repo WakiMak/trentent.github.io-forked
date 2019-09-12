@@ -20,7 +20,7 @@ categories:
 tags:
   - Citrix
 ---
-We have an application that is hard coded to map printers via a UNC path. &nbsp;This is the bane of a Citrix admin whom wants to minimize the number of drivers on the & server as each UNC connection can prompt for a driver install (this is how our environment is configured). &nbsp;User's click 'Install Driver' and boom, your Citrix server has another driver on your server and another point of possible instability.
+We have an application that is hard coded to map printers via a UNC path. &nbsp;This is the bane of a Citrix admin whom wants to minimize the number of drivers on The XenApp Server as each UNC connection can prompt for a driver install (this is how our environment is configured). &nbsp;User's click 'Install Driver' and boom, your Citrix server has another driver on your server and another point of possible instability.
 
 Citrix has attempted to solve this using the Universal Print Driver (UPD) but this just maps printers from your local system to the Citrix session. &nbsp;Each printer is given a unique name and each queue is given a unique port as well.
 
@@ -36,7 +36,7 @@ Citrix has attempted to solve this using the Universal Print Driver (UPD) but th
 
 Unfortunately, this makes it impossible for our hardcoded app to use a consistent printer as these queues and names do not exist unless we install them locally. &nbsp;If the program displayed a simple print dialog this wouldn't be an issue but it is not coded that way.
 
-Fortunately, Citrix has come up with a \*fairly\* elegant solution: Citrix Universal Print Server (UPS). &nbsp;How this works is it forces the mapped network printers to come across using the Citrix Universal Print Driver. &nbsp;There are two parts to this, the Citrix UPS and the Universal Print Client (UPC). &nbsp;The UPS goes on your Windows Print Server and the UPC goes on your & servers.
+Fortunately, Citrix has come up with a \*fairly\* elegant solution: Citrix Universal Print Server (UPS). &nbsp;How this works is it forces the mapped network printers to come across using the Citrix Universal Print Driver. &nbsp;There are two parts to this, the Citrix UPS and the Universal Print Client (UPC). &nbsp;The UPS goes on your Windows Print Server and the UPC goes on your XenApp servers.
 
 <table align="center" cellpadding="0" cellspacing="0" style="margin-left: auto; margin-right: auto; text-align: center;">
   <tr>
@@ -47,7 +47,7 @@ Fortunately, Citrix has come up with a \*fairly\* elegant solution: Citrix Unive
   
   <tr>
     <td style="text-align: center;">
-      & server
+      XenApp server
     </td>
   </tr>
 </table>
@@ -68,13 +68,13 @@ Fortunately, Citrix has come up with a \*fairly\* elegant solution: Citrix Unive
   </tr>
 </table>
 
-To enable the UPS functionality and have your network printers use the Citrix UPD you need to enable a Citrix group policy object on the & server (that's why you see Citrix Group Policy Management (x64) 1.7.0.0). &nbsp;If you have a version older than 1.7.0.0 then you won't have the relevant policy available to you:
+To enable the UPS functionality and have your network printers use the Citrix UPD you need to enable a Citrix group policy object on The XenApp Server (that's why you see Citrix Group Policy Management (x64) 1.7.0.0). &nbsp;If you have a version older than 1.7.0.0 then you won't have the relevant policy available to you:
 
 <div style="clear: both; text-align: center;">
   <a href="http://3.bp.blogspot.com/-5PnZeJjjWm4/VZ3c3JcuilI/AAAAAAAAA6s/-4nYQRv7X2s/s1600/Screen%2BShot%2B2015-07-08%2Bat%2B8.30.25%2BPM.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="456" src="http://3.bp.blogspot.com/-5PnZeJjjWm4/VZ3c3JcuilI/AAAAAAAAA6s/-4nYQRv7X2s/s320/Screen%2BShot%2B2015-07-08%2Bat%2B8.30.25%2BPM.png" width="640" /></a>
 </div>
 
-Setting this setting to either "Enabled" setting turns on the UPC feature. &nbsp;For any network printer that you map to the Windows Print Server with the UPS it will use the Citrix UPD. &nbsp;To verify this, go to your & server and map a printer from the UPS and look at the driver.
+Setting this setting to either "Enabled" setting turns on the UPC feature. &nbsp;For any network printer that you map to the Windows Print Server with the UPS it will use the Citrix UPD. &nbsp;To verify this, go to your XenApp server and map a printer from the UPS and look at the driver.
 
 <table align="center" cellpadding="0" cellspacing="0" style="margin-left: auto; margin-right: auto; text-align: center;">
   <tr>

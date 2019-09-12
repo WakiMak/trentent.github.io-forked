@@ -21,7 +21,9 @@ tags:
   - Citrix
   - Citrix Receiver
 ---
-<pre class="lang:default decode:true ">Tuesday, April 22, 2014/1:13:53 AM Launch raw="-launch" "-s" "pnagent-8c72c230" "-CitrixID" "pnagent-8c72c230@@compFARM01:ORANGE Desktop" "-ica" "compFARM01:ORANGE Desktop" "-cmdline", state=Dazzle.AppMonitor.MainState silent=False res=pnagent-8c72c230@@compFARM01:ORANGE Desktop
+
+```plaintext
+Tuesday, April 22, 2014/1:13:53 AM Launch raw="-launch" "-s" "pnagent-8c72c230" "-CitrixID" "pnagent-8c72c230@@compFARM01:ORANGE Desktop" "-ica" "compFARM01:ORANGE Desktop" "-cmdline", state=Dazzle.AppMonitor.MainState silent=False res=pnagent-8c72c230@@compFARM01:ORANGE Desktop
 Tuesday, April 22, 2014/1:13:53 AM Try launch type 0 of 1 = IcaLaunchInfo
 Tuesday, April 22, 2014/1:13:53 AM Get ica file for 'pnagent-8c72c230@@compFARM01:ORANGE Desktop'
 Tuesday, April 22, 2014/1:13:53 AM Creating AuthManager request context to "http://myappscomp.ca/Citrix/PNAgent/launch.aspx" under name "PNA" with flags "None"...
@@ -53,7 +55,9 @@ Tuesday, April 22, 2014/1:14:04 AM    at Dazzle.PNAgent.PNAgentClient.DoRequestO
 Tuesday, April 22, 2014/1:14:04 AM    at Dazzle.PNAgent.PNAgentClient.DoRequest(Uri iurl, Uri nurl, String request, String requestB, Boolean allowCredUI, Boolean isRequestForPreLaunch)
 Tuesday, April 22, 2014/1:14:04 AM    at Dazzle.PNAgent.PNAgentClient.Dazzle.Model.IICAProvider.GetICAFile(String InName, String retryKey, Boolean allowCredUI, String& url, Boolean isRequestForPreLaunch)
 Tuesday, April 22, 2014/1:14:04 AM    at Dazzle.Launcher.ICARunner.GetICAFileRetryLoop(IICAProvider icastore, String resourceId, LaunchProgressUI launchProgressUI, String& url, Boolean isRequestForPreLaunch)
-Tuesday, April 22, 2014/1:14:04 AM    at Dazzle.Launcher.ICARunner.Launch(IProvider store, IGlobalState state, String resourceId, String citrixId, String cmdline, ReconnectAction icaReconnectAction, Boolean isRequestForPreLaunch)</pre>
+Tuesday, April 22, 2014/1:14:04 AM    at Dazzle.Launcher.ICARunner.Launch(IProvider store, IGlobalState state, String resourceId, String citrixId, String cmdline, ReconnectAction icaReconnectAction, Boolean isRequestForPreLaunch
+```
+
 
 Make sure you go to the PNA agent web folder on the designated server and set <span style="background-color: white; color: #4d4f53; font-family: HelveticaNeueW01-55Roma, Helvetica, Arial, sans-serif; font-size: 13px;">RequireLaunchReference=Off </span>and remove the # in the WebInterface.conf file.
 

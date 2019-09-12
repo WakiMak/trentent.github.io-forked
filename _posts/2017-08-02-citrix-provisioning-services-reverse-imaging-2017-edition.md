@@ -48,9 +48,13 @@ Image local disk back
     </div>
 
   3. Setup the disks on the PVS server.  In my example, the G: drive is a mounted VHDX of the Citrix vDisk.  I'm using DISM to capture an image file of this disk to a wim that I will apply to the local disk created in step 1.  You will need to <span style="text-decoration: underline;"><strong>create a partition on the disk</strong></span> you made in step 1 and <span style="text-decoration: underline;"><strong>set it as active</strong></span> (if this is a MBR disk).  Unfortunately, DISM does not do disk to disk imaging so this intermediary step is required.  In my video here, the E: drive is the local disk that belongs to my target 'build' server.  In addition, you must fix the BCD store as it will point to the original partition, not your new target partition.  
-    The BCD commands are:</p> <pre class="lang:batch decode:true">bcdedit /store bcd /set {bootmgr} device partition=e:
+    The BCD commands are:</p> 
+```plaintext
+bcdedit /store bcd /set {bootmgr} device partition=e:
 bcdedit /store bcd /set {default} device partition=e:
-bcdedit /store bcd /set {default} osdevice partition=e:</pre>
+bcdedit /store bcd /set {default} osdevice partition=e
+```
+
     
     You will need to replace "partition=E:" with your drive letter of the LOCAL disk.
     

@@ -36,7 +36,9 @@ So what I'm envisioning is replacing the "LaunchIca" command with my custom one.
 
 This is my modification of Steve's script:
 
-<pre class="lang:ps decode:true"># Copyright (c) 2014 Microsoft Corp.
+
+```powershell
+# Copyright (c) 2014 Microsoft Corp.
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -295,14 +297,20 @@ Function Start-HTTPListener {
             $listener.Stop()
         }
     }
-}</pre>
+
+```
+
 
 And the command to start the HTTP listener:
 
-<pre class="lang:ps decode:true ">ipmo "C:\swinst\HttpListener_1.0.1\HttpListener\HTTPListener.psm1"
+
+```powershell
+ipmo "C:\swinst\HttpListener_1.0.1\HttpListener\HTTPListener.psm1"
 #Example URL
 #http://bottheory.local/Citrix/PLBWeb/ica_launcher?CTX_Application=Notepad%202016%20-%20PLB&NFuse_AppCommandLine=C:\Windows\WindowsUpdate.log
-Start-HTTPListener -Port 80 -Url "Citrix/PLBWeb/ica_launcher" -Auth Anonymous</pre>
+Start-HTTPListener -Port 80 -Url "Citrix/PLBWeb/ica_launcher" -Auth Anonymou
+```
+
 
 Eventually, this will need to be converted to a scheduled task or a service.  When running the listener manually, it looks like this:
 
@@ -332,7 +340,9 @@ So, I need to make a few modifications.
 
 The beauty of Storefront, in its current incarnation, is most of this is CSS modifications.  I made the following modifications to the CSS to get my UI minimalized:
 
-<pre class="lang:css decode:true ">/* removes "Apps | Categories    Search apps:" tool bar */
+
+```css
+/* removes "Apps | Categories    Search apps:" tool bar */
 .large .myapps-view .store-toolbar, .large .desktops-view .store-toolbar, .large .tasks-view .store-toolbar, .large .store-view .store-toolbar {
 	display : none;
 }
@@ -356,7 +366,7 @@ The beauty of Storefront, in its current incarnation, is most of this is CSS mod
 .largeTiles .storeapp-name, .large .ruler-container {
 	width : 100%;
 }
-</pre>
+```
 
 This resulted in a UI that looked like this:
 
@@ -366,7 +376,9 @@ So now I want to remove all apps except my targeted application that should come
 
 I was curious if the 'script.js' would recognize the URI parameter passed to Storefront.  I modified my 'script.js' with the following:
 
-<pre class="lang:js decode:true ">// Edit this file to add your customized JavaScript or load additional JavaScript files.
+
+```javascript
+// Edit this file to add your customized JavaScript or load additional JavaScript files.
 
 //grab the URL and parse out the parameters we want (application name, launch parameters)
 var getUrlParameter = function getUrlParameter(sParam) {
@@ -389,7 +401,7 @@ var CTX_Application = getUrlParameter('CTX_Application');
 
 console.log("NFuse_AppCommandLine " + NFuse_AppCommandLine);
 console.log("CTX_Application " + CTX_Application);
-</pre>
+```
 
 Going to my URL and checking the 'Console' in Chrome revealed:
 
@@ -401,21 +413,29 @@ Great!  So can we filter our application list to only display the app in the URI
 
 Citrix [offers a bunch of 'extensions'](https://docs.citrix.com/en-us/storefront/3-5/migrate-wi-to-storefront/receiver-extension-apis.html).  Can one of them work for our purpose?  This one sounds interesting:
 
-<pre class="lang:default decode:true ">excludeApp(app)
-Exclude an application completely from all UI, even if it would normally be included</pre>
+
+```javascript
+excludeApp(app)
+Exclude an application completely from all UI, even if it would normally be include
+```
+
 
 Can we do a simple check that if the application does not equal "CTX_Application" to exclude it?
 
 The function looks like this:
 
-<pre class="lang:js decode:true ">CTXS.Extensions.excludeApp = function(app) {
+
+```javascript
+CTXS.Extensions.excludeApp = function(app) {
     // return true or false if we don't match the target app name
 	//we only want to show the application name found in the URI
 	//if the app name does not equal the URI name then we hide it.
 	if (app.name!= CTX_Application) {
 		return true;
 	}
-};</pre>
+}
+```
+
 
 Did it work?
 
@@ -423,8 +443,12 @@ Did it work?
 
 Yes!  Perfectly!  Can we append a message to the application?  Looking at Citrix's extensions this one looks promising:
 
-<pre class="lang:default decode:true ">onAppHTMLGeneration(element)
-Called when HTML is generated for one or more app tile, passing the parent container. Intended for deep customization. (Warning this sort of change is likely to be version specific)</pre>
+
+```javascript
+onAppHTMLGeneration(element)
+Called when HTML is generated for one or more app tile, passing the parent container. Intended for deep customization. (Warning this sort of change is likely to be version specific
+```
+
 
 Ok.  That warning sucks.  My whole post is based on StoreFront 3.9 so I cannot guarantee these modifications will work in future versions or previous versions.  Your Mileage May Vary.
 
@@ -436,11 +460,15 @@ Could we add another "p class=storeapp-name" (this is just text) for our messagi
 
 I added the following to script.js:
 
-<pre class="lang:default decode:true ">CTXS.Extensions.onAppHTMLGeneration = function(element) {
+
+```javascript
+CTXS.Extensions.onAppHTMLGeneration = function(element) {
 	//this function is not guaranteed to work across Storefront versions.  Ensure proper testing is conducted when upgrading.
 	//tested on StoreFront 3.9
 	console.log(element);
-};</pre>
+}
+```
+
 
 And this was the result in the Chrome Console:
 
@@ -448,12 +476,14 @@ And this was the result in the Chrome Console:
 
 So this is returning an [DomHTMLElement](https://www.w3schools.com/jsref/dom_obj_all.asp).  DOMHTMLElements have numerous methods to add/create/append/modify data to them.  Perfect.  Doing some research (I'm not a web developer) I found that you can modify the content of an element by this style command:
 
-<pre class="lang:default decode:true">CTXS.Extensions.onAppHTMLGeneration = function(element) {
+
+```javascript
+CTXS.Extensions.onAppHTMLGeneration = function(element) {
 	//this function is not guaranteed to work across Storefront versions.  Ensure proper testing is conducted when upgrading.
 	//tested on StoreFront 3.9
 	$( "div.storeapp-details-container" ).append( "whatever text you want here" );
 };
-</pre>
+```
 
 This results in the following:
 
@@ -465,12 +495,16 @@ Great.
 
 My preference is to have the text match the application name's format.  I also wanted to test if I could add a link to the text.  So I modified my css line:
 
-<pre class="lang:default decode:true">CTXS.Extensions.onAppHTMLGeneration = function(element) {
+
+```javascript
+CTXS.Extensions.onAppHTMLGeneration = function(element) {
 	//this function is not guaranteed to work across Storefront versions.  Ensure proper testing is conducted when upgrading.
 	//tested on StoreFront 3.9
 	$( "div.storeapp-details-container" ).append( "<p class=\"storeapp-name\"><br></p>" );
 	$( "div.storeapp-details-container" ).append( "<p class=\"storeapp-name\">If your application does not appear within a few seconds, <a href=\"http://www.google.ca\">click to connect</a></p>" );
-};</pre>
+}
+```
+
 
 The result?
 
@@ -480,29 +514,49 @@ Oh man.  This is looking good.  My 'click to connect' link isn't working at this
 
 When I made my HTTPListener I purposefully made it with the following:
 
-<pre class="lang:ps decode:true">Start-HTTPListener -Port 80 -Url "Citrix/PLBWeb/ica_launcher" -Auth Anonymous</pre>
+
+```powershell
+Start-HTTPListener -Port 80 -Url "Citrix/PLBWeb/ica_launcher" -Auth Anonymou
+```
+
 
 The reason why I had it set to share the url of the Citrix Store is the launchurl generated by Storefront is:
 
-<pre class="lang:default decode:true ">Resources/LaunchIca/WEQ3Lk5vdGVwYWQgMjAxNiAtIFBMQg--.ica</pre>
+
+```javascript
+Resources/LaunchIca/WEQ3Lk5vdGVwYWQgMjAxNiAtIFBMQg--.ic
+```
+
 
 The full path for the URL is actually:
 
-<pre class="lang:default decode:true">http://bottheory.local/Citrix/PLBWeb/Resources/LaunchIca/WEQ3Lk5vdGVwYWQgMjAxNiAtIFBMQg--.ica</pre>
+
+```javascript
+http://bottheory.local/Citrix/PLBWeb/Resources/LaunchIca/WEQ3Lk5vdGVwYWQgMjAxNiAtIFBMQg--.ic
+```
+
 
 So the request actually starts at the storename.  And if I want this to work with a URL re-write service like Netscaler I suspect I need to keep to relative paths.  So to reach my custom ica_launcher I can just put this in my script.js file:
 
-<pre class="lang:default decode:true ">//generated launch URL
-var launchURL = "ica_launcher?CTX_Application=" + CTX_Application + "&NFuse_AppCommandLine=" + NFuse_AppCommandLine</pre>
+
+```javascript
+//generated launch URL
+var launchURL = "ica_launcher?CTX_Application=" + CTX_Application + "&NFuse_AppCommandLine=" + NFuse_AppCommandLin
+```
+
 
 and then I can replace my 'click to connect' link with:
 
-<pre class="lang:default decode:true ">CTXS.Extensions.onAppHTMLGeneration = function(element) {
+
+```javascript
+CTXS.Extensions.onAppHTMLGeneration = function(element) {
 	//this function is not guaranteed to work across Storefront versions.  Ensure proper testing is conducted when upgrading.
 	//tested on StoreFront 3.9
 	$( "div.storeapp-details-container" ).append( "<p class=\"storeapp-name\"><br></p>" );
 	$( "div.storeapp-details-container" ).append( "<p class=\"storeapp-name\">If your application does not appear within a few seconds, <a href=\"" + launchURL + "\">click to connect</a></p>" );
-};</pre>
+}
+```
+
 
 The result?
 
@@ -532,20 +586,26 @@ Fortunately, a [Citrix blog post came to rescue](https://www.citrix.com/blogs/20
   On each of these the customization might show a dialog, perform some checks (etc) but ultimately should call "action" if (and only if) they want the operation to proceed.
 </p>
 
-<div style="padding-left: 30px;">
-  <pre courier="" 8221="" class="" style="padding-left: 30px;">CTXS.Extensions.doLaunch =  function(app, action) {     // call 'action' function if/when action should proceed     action(); };</pre>
-</div>
+```javascript
+CTXS.Extensions.doLaunch =  function(app, action) {
+     // call 'action' function if/when action should proceed     
+	 action(); 
+}
+```
 
-<p style="padding-left: 30px;">
   <p>
     This extension is taking an object (app).  What properties does this object have?  I did a simple console.log and examined the object:
   </p>
   
-  <pre class="lang:default decode:true ">CTXS.Extensions.doLaunch =  function(app, action) {
+  
+```javascript
+CTXS.Extensions.doLaunch =  function(app, action) {
     // call 'action' function if/when action should proceed
     console.log(app);
     action();
-};</pre>
+}
+```
+
   
   <p>
     <img class="aligncenter size-full wp-image-2196" src="/wp-content/uploads/2017/05/app.launchurl.png" alt="" width="1052" height="651" srcset="/wp-content/uploads/2017/05/app.launchurl.png 1052w, /wp-content/uploads/2017/05/app.launchurl-300x186.png 300w, /wp-content/uploads/2017/05/app.launchurl-768x475.png 768w" sizes="(max-width: 1052px) 100vw, 1052px" />
@@ -559,13 +619,17 @@ Fortunately, a [Citrix blog post came to rescue](https://www.citrix.com/blogs/20
     I modified my function as such:
   </p>
   
-  <pre class="lang:default decode:true">CTXS.Extensions.doLaunch =  function(app, action) {
+  
+```javascript
+CTXS.Extensions.doLaunch =  function(app, action) {
     // call 'action' function if/when action should proceed
 	//modify launchurl to our PowerShell ICA creator
 	app.launchurl = launchURL;
         console.log(app);
     action();
-};</pre>
+}
+```
+
   
   <p>
     The result?
@@ -591,18 +655,24 @@ Fortunately, a [Citrix blog post came to rescue](https://www.citrix.com/blogs/20
     Lastly, I want to autolaunch my program.  It turns out, this is pretty simple.  Just add the following the script.js file:
   </p>
   
-  <pre class="lang:js decode:true ">//autolaunch application
+  
+```javascript
+//autolaunch application
 CTXS.Extensions.noteApp = function(app) {
     if (app.encodedName.indexOf(CTX_Application) != -1) {
         CTXS.ExtensionAPI.launch(app);
     }
-};</pre>
+}
+```
+
   
   <p>
     Beautiful.  My full script.js file looks like so:
   </p>
   
-  <pre class="lang:js decode:true">// Edit this file to add your customized JavaScript or load additional JavaScript files.
+  
+```javascript
+// Edit this file to add your customized JavaScript or load additional JavaScript files.
 
 //grab the URL and parse out the parameters we want (application name, launch parameters)
 var getUrlParameter = function getUrlParameter(sParam) {
@@ -659,7 +729,7 @@ CTXS.Extensions.noteApp = function(app) {
         CTXS.ExtensionAPI.launch(app);
     }
 };
-</pre>
+```
   
   <p>
     And that's it.  We are able to accomplish this with a Powershell script, and two customization files.  I think this has a better chance of 'working' across Storefront versions then the SDK attempt I did earlier, or creating my own custom Storefront front end.

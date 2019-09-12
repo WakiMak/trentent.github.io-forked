@@ -22,13 +22,8 @@ tags:
 ---
 The last little while we've had an issue with some applications seemingly being published to "C:\App-V Packages" instead of our defined path "D:\AppVData\PackageInstallationRoot".
 
-<div id="attachment_1728" style="width: 692px" class="wp-caption aligncenter">
-  <img aria-describedby="caption-attachment-1728" class="wp-image-1728 size-full" src="/wp-content/uploads/2016/09/Screen-Shot-2016-09-21-at-9.37.59-AM.png" alt="AppV-Packages" width="682" height="928" srcset="/wp-content/uploads/2016/09/Screen-Shot-2016-09-21-at-9.37.59-AM.png 682w, /wp-content/uploads/2016/09/Screen-Shot-2016-09-21-at-9.37.59-AM-220x300.png 220w" sizes="(max-width: 682px) 100vw, 682px" /></p> 
-  
-  <p id="caption-attachment-1728" class="wp-caption-text">
-    Notice the timestamps? Packages published during the same 'publishing refresh'
-  </p>
-</div>
+![](/wp-content/uploads/2016/09/Screen-Shot-2016-09-21-at-9.37.59-AM.png)  
+Notice the timestamps? Packages published during the same 'publishing refresh'
 
 &nbsp;
 
@@ -68,13 +63,8 @@ So what is happening here?
 
 At our organization we prefer to set Group Policies using Group Policies Preferences - Registry because of the power and flexibility of Item Level Targetting.  We prefer to only apply registry keys/policies to specific systems in certain groups rather than having a complicated OU structure.  Since I know we have a policy that configures our AppV5 values I went and looked into how this value was being configured:
 
-<div id="attachment_1735" style="width: 1034px" class="wp-caption aligncenter">
-  <img aria-describedby="caption-attachment-1735" class="wp-image-1735 size-large" src="/wp-content/uploads/2016/09/Screen-Shot-2016-09-21-at-8.38.51-AM-1024x277.png" alt="GroupPolicyManagement" width="1024" height="277" srcset="/wp-content/uploads/2016/09/Screen-Shot-2016-09-21-at-8.38.51-AM-1024x277.png 1024w, /wp-content/uploads/2016/09/Screen-Shot-2016-09-21-at-8.38.51-AM-300x81.png 300w, /wp-content/uploads/2016/09/Screen-Shot-2016-09-21-at-8.38.51-AM-768x207.png 768w" sizes="(max-width: 1024px) 100vw, 1024px" /></p> 
-  
-  <p id="caption-attachment-1735" class="wp-caption-text">
-    The 'Action' is 'Replace'
-  </p>
-</div>
+![](/wp-content/uploads/2016/09/Screen-Shot-2016-09-21-at-8.38.51-AM-1024x277.png)  
+The 'Action' is 'Replace'
 
 <img class="aligncenter size-large wp-image-1737" src="/wp-content/uploads/2016/09/Screen-Shot-2016-09-21-at-8.44.18-AM-1024x406.png" alt="screen-shot-2016-09-21-at-8-44-18-am" width="1024" height="406" srcset="/wp-content/uploads/2016/09/Screen-Shot-2016-09-21-at-8.44.18-AM-1024x406.png 1024w, /wp-content/uploads/2016/09/Screen-Shot-2016-09-21-at-8.44.18-AM-300x119.png 300w, /wp-content/uploads/2016/09/Screen-Shot-2016-09-21-at-8.44.18-AM-768x304.png 768w, /wp-content/uploads/2016/09/Screen-Shot-2016-09-21-at-8.44.18-AM.png 1204w" sizes="(max-width: 1024px) 100vw, 1024px" /> 
 
@@ -99,13 +89,8 @@ We have this value set to '[Replace](https://technet.microsoft.com/en-us/library
 
 Well, process monitor is showing EXACTLY that scenario.  Replace is deleting the key and recreating it.  In between that time 'AppVClient.exe' is trying to read that value.  If PackageInstallationRoot doesn't exist, then AppV defaults to 'C:\App-V Packages" as the PackageInstallationRoot.
 
-<div id="attachment_1736" style="width: 1034px" class="wp-caption aligncenter">
-  <img aria-describedby="caption-attachment-1736" class="wp-image-1736 size-large" src="/wp-content/uploads/2016/09/Screen-Shot-2016-09-21-at-10.01.23-AM-1024x470.png" alt="screen-shot-2016-09-21-at-10-01-23-am" width="1024" height="470" srcset="/wp-content/uploads/2016/09/Screen-Shot-2016-09-21-at-10.01.23-AM-1024x470.png 1024w, /wp-content/uploads/2016/09/Screen-Shot-2016-09-21-at-10.01.23-AM-300x138.png 300w, /wp-content/uploads/2016/09/Screen-Shot-2016-09-21-at-10.01.23-AM-768x352.png 768w" sizes="(max-width: 1024px) 100vw, 1024px" /></p> 
-  
-  <p id="caption-attachment-1736" class="wp-caption-text">
-    No "PackageInstallationRoot" key -> "C:\App-V Packages" folder is where packages go.
-  </p>
-</div>
+![](/wp-content/uploads/2016/09/Screen-Shot-2016-09-21-at-10.01.23-AM-1024x470.png)  
+No "PackageInstallationRoot" key -> "C:\App-V Packages" folder is where packages go.
 
 &nbsp;
 

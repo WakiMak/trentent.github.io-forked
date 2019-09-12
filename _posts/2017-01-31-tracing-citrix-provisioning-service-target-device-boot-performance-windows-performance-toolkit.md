@@ -41,7 +41,11 @@ The next bit of this post will detail how to offline inject the necessary softwa
 
 For the Windows Performance Toolkit it must be installed on the image or you can copy the files from an install to your image in the following path:
 
-<pre class="lang:reg decode:true">C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\</pre>
+
+```plaintext
+C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit
+```
+
 
 To offline inject, simply mount your vDisk image and copy the files there:
 
@@ -53,7 +57,9 @@ To offline inject, simply mount your vDisk image and copy the files there:
 
 Then the portion of it that we are interested in is "xbootmgr.exe" (aka boot logging).  In order to enable boot logging we need to inject the following registry key into our PVS Image:
 
-<pre class="lang:reg decode:true ">Windows Registry Editor Version 5.00
+
+```plaintext
+Windows Registry Editor Version 5.00
 
 [HKEY_LOCAL_MACHINE\PE_SYSTEM\ControlSet001\Control\WMI\XPerfBootmgr]
 "TraceMode"=dword:00000001
@@ -421,7 +427,7 @@ Then the portion of it that we are interested in is "xbootmgr.exe" (aka boot log
 [HKEY_LOCAL_MACHINE\PE_SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce]
 "xBootMgrSleep"="\"C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\xbootmgrsleep.exe\" 10000 \"C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\xbootmgr.exe\""
 
-</pre>
+```
 
 Seal/promote the image.
 

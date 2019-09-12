@@ -133,13 +133,11 @@ So there is big savings without doing any WQL processing.
 
 &nbsp;
 
-&nbsp;
-
-But it still doesn't compare to the Group Policy Preferences - Registry CSE.  The speed of the CSE is still faster.  Pretty significantly, actually.  And there are other considerations you need to consider for WEM as well.  It applies the registry values \*after\* you've logged in, whereas GPP does it before.  This allows WEM to operate asynchronously and should reduce logon times but there is a drawback.  And for us it's a big drawback.  When it applies the registry values, for most of our apps they need to be in place \*before\* you launch the application.  So setting the values after or while an application is launching may lead to some inconsistent experiences.  For us, **this caveat only applies to a _&_** environment.
+But it still doesn't compare to the Group Policy Preferences - Registry CSE.  The speed of the CSE is still faster.  Pretty significantly, actually.  And there are other considerations you need to consider for WEM as well.  It applies the registry values \*after\* you've logged in, whereas GPP does it before.  This allows WEM to operate asynchronously and should reduce logon times but there is a drawback.  And for us it's a big drawback.  When it applies the registry values, for most of our apps they need to be in place \*before\* you launch the application.  So setting the values after or while an application is launching may lead to some inconsistent experiences.  For us, **this caveat only applies to a _XenApp_** environment.
 
 When talking about a XenDesktop environment a premium is generally placed on _**getting to the desktop**_ where a user has to navigate to an application to launch it, which would probably require enough time that WEM will be able to apply its required values before the user is able to launch their application.  In this scenario, saving 3-4 seconds of the user waiting for their desktop to appear are valuable and WEM (mostly) solves this issue by pushing it asynchronously to the shell.
 
-For &, we are still considering WEM to see how it performs with roaming users and having printers change for session reconnections; depending on their client name/ip space or some other variable.  That investigation will come in the future.  For now, it looks like we're going to keep using Group Policy Preferences for our registry application for &.
+For XenApp, we are still considering WEM to see how it performs with roaming users and having printers change for session reconnections; depending on their client name/ip space or some other variable.  That investigation will come in the future.  For now, it looks like we're going to keep using Group Policy Preferences for our registry application for XenApp.
 
 Stay tuned for some WEM gotcha's I've learned doing this exercise.
 

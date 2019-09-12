@@ -58,7 +58,11 @@ Next is to scan the registry for corruption.  Thus far, I've only found corrupti
 
 Once at this stage, it's a one-liner to scan the registry:
 
-<pre class="lang:ps decode:true">ls -Recurse -ErrorAction Stop | Out-File C:\RegCheck.txt</pre>
+
+```powershell
+ls -Recurse -ErrorAction Stop | Out-File C:\RegCheck.tx
+```
+
 
 In my experience, corruption can be detected as "Permission Denied", "Access Denied","Path does not exist" or some such:
 

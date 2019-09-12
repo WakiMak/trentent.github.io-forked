@@ -23,7 +23,9 @@ When I attempted to create a virtualized Office application using the Office Dep
 
 I wanted to get rid of nearly all of this 'junk'.  Unfortunately, Microsoft only offers the [following apps to be excluded](https://technet.microsoft.com/library/jj219426(v=office.15).aspx#BKMK_ExcludeAppElement):
 
-<pre class="lang:default decode:true ">Access
+
+```plaintext
+Access
 Excel
 Groove
 InfoPath
@@ -36,7 +38,9 @@ Project
 Publisher
 SharePointDesigner
 Visio
-Word</pre>
+Wor
+```
+
 
 So if I wanted to remove these extra apps, which should I select?
 
@@ -44,7 +48,9 @@ So if I wanted to remove these extra apps, which should I select?
 
 This I have not been able to figure out.  BUT what you can do is modify the mcxml's after you've built a package once, removing all these extra programs, and run the 'flattener.exe' again.  This will remake your package without them.  So the steps in detail:
 
-  1. Create your config.xml file and exclude everything: <pre class="lang:xhtml decode:true"><Configuration>
+  1. Create your config.xml file and exclude everything: 
+```xml
+<Configuration>
   <Add SourcePath="\\wsapvseq07\d$\Office_2013\2013ProPlus" OfficeClientEdition="32" >
     <Product ID="ProPlusVolume">
       <Language ID="en-us" />
@@ -63,7 +69,9 @@ This I have not been able to figure out.  BUT what you can do is modify the mcxm
      <ExcludeApp ID= "Visio" />
     </Product>
   </Add>
-</Configuration></pre>
+</Configuration
+```
+
 
   2. run the 'Packager' switch <div style="width: 1140px;" class="wp-video">
       <video class="wp-video-shortcode" id="video-1587-13" width="1140" height="963" preload="metadata" controls="controls"><source type="video/mp4" src="/wp-content/uploads/2016/07/20160718-140558.mp4?_=13" /><a href="/wp-content/uploads/2016/07/20160718-140558.mp4">/wp-content/uploads/2016/07/20160718-140558.mp4</a></video>
@@ -73,7 +81,9 @@ This I have not been able to figure out.  BUT what you can do is modify the mcxm
 
 This is what was left in the workingDir:
 
-<pre class="lang:default decode:true">\WorkingDir\MCXMLs>dir /b /s *.mcxml
+
+```plaintext
+\WorkingDir\MCXMLs>dir /b /s *.mcxml
 \WorkingDir\MCXMLs\en-us\branding.mcxml
 \WorkingDir\MCXMLs\en-us\branding_WoW6432.mcxml
 \WorkingDir\MCXMLs\en-us\DCFMUI.msi.zip_DCFMUI.mcxml
@@ -125,20 +135,28 @@ This is what was left in the workingDir:
 \WorkingDir\MCXMLs\x-none\OSM.x-none.msi.zip_MondoWW.mcxml
 \WorkingDir\MCXMLs\x-none\OSM.x-none.msi.zip_MondoWW_WoW6432.mcxml
 \WorkingDir\MCXMLs\x-none\OSMUX.x-none.msi.zip_MondoWW.mcxml
-\WorkingDir\MCXMLs\x-none\OSMUX.x-none.msi.zip_MondoWW_WoW6432.mcxml</pre>
+\WorkingDir\MCXMLs\x-none\OSMUX.x-none.msi.zip_MondoWW_WoW6432.mcxm
+```
+
 
 Now explore to "%TEMP%\Microsoft Office 15\root\mcxml" and you'll see these same mcxml files these extra bits.  This is where they are pulled to the WorkingDir to be processed.  If we remove them here then they won't be pulled and we can continue without them being installed.  There are a few files we need to keep as they implement the publishing scripts for the package.  These files are:
 
-<pre class="lang:default decode:true ">%TEMP%\Microsoft Office 15\root\mcxml\en-us\OfficeMUI.msi.zip_PostCommon.Office.MUI.mcxml
+
+```plaintext
+%TEMP%\Microsoft Office 15\root\mcxml\en-us\OfficeMUI.msi.zip_PostCommon.Office.MUI.mcxml
 %TEMP%\Microsoft Office 15\root\mcxml\en-us\OfficeMUI.msi.zip_PostCommon.Office.MUI_WoW6432.mcxml
 %TEMP%\Microsoft Office 15\root\mcxml\x-none\Office.x-none.msi.zip_authored.mcxml
 %TEMP%\Microsoft Office 15\root\mcxml\x-none\Office.x-none.msi.zip_authored_WoW6432.mcxml
 %TEMP%\Microsoft Office 15\root\mcxml\x-none\Office64WW.msi.zip_crossbitness.mcxml
-%TEMP%\Microsoft Office 15\root\mcxml\x-none\Office64WW.msi.zip_crossbitness_WoW6432.mcxml</pre>
+%TEMP%\Microsoft Office 15\root\mcxml\x-none\Office64WW.msi.zip_crossbitness_WoW6432.mcxm
+```
+
 
 Now modify your config.xml file and <span style="text-decoration: underline;"><strong>remove</strong> </span>the exclude for the app you want to keep (Lync in my case):
 
-<pre class="lang:xhtml decode:true"><Configuration>
+
+```xml
+<Configuration>
   <Add SourcePath="\\wsapvseq07\d$\Office_2013\2013ProPlus" OfficeClientEdition="32" >
     <Product ID="ProPlusVolume">
       <Language ID="en-us" />
@@ -155,7 +173,9 @@ Now modify your config.xml file and <span style="text-decoration: underline;"><s
      <ExcludeApp ID= "Visio" />
     </Product>
   </Add>
-</Configuration></pre>
+</Configuration
+```
+
 
 Rerun the packager command.  This will ensure your application's mcxml file is generated.
 
@@ -165,7 +185,11 @@ Now we want to remove all the previously detected extra files from the %Temp%\Mi
 
 Now, we do <span style="text-decoration: underline;"><strong>NOT</strong> </span>want to run the setup.exe as that will re-add all the extra bits.  We just want to run the flattener.exe.  The command line to do so is:
 
-<pre class="lang:batch decode:true">"%TEMP%\Microsoft Office 15\root\flattener\flattener.exe" /Source:"%TEMP%\Microsoft Office 15" /Dest:"D:\Office_2013\Lync_2013" /Version:"15.0.4833.1001" /ProductReleaseIDs:"ProPlusVolume" /Cultures:"en-us,x-none" /Platform:"x86"</pre>
+
+```plaintext
+"%TEMP%\Microsoft Office 15\root\flattener\flattener.exe" /Source:"%TEMP%\Microsoft Office 15" /Dest:"D:\Office_2013\Lync_2013" /Version:"15.0.4833.1001" /ProductReleaseIDs:"ProPlusVolume" /Cultures:"en-us,x-none" /Platform:"x86
+```
+
 
 Now we have a package that is only 62MB in size
 

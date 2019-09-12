@@ -17,7 +17,8 @@ tags:
 ---
 We are getting this error when trying to install KB3172605, which was re-released in September of this year.  This patch was originally installed in August without issue but the re-release fails to install.  The WindowsUpdate.log reports:
 
-<pre class="lang:default decode:true ">2016-10-31	11:24:28:489	1384	1748	Handler	:: START ::  Handler: CBS Install
+```console
+2016-10-31	11:24:28:489	1384	1748	Handler	:: START ::  Handler: CBS Install
 2016-10-31	11:24:28:489	1384	1748	Handler	:::::::::
 2016-10-31	11:24:28:505	1384	1748	Handler	Starting install of CBS update E606841C-05C3-42C7-BDD4-3777914953B8
 2016-10-31	11:24:28:598	1384	1748	Handler	CBS package identity: Package_for_KB3172605~31bf3856ad364e35~amd64~~6.1.1.4
@@ -29,11 +30,12 @@ We are getting this error when trying to install KB3172605, which was re-release
 2016-10-31	11:25:13:645	1384	1748	Handler	FATAL: Completed install of CBS update with type=0, requiresReboot=0, installerError=1, hr=0x80070308
 2016-10-31	11:25:13:661	1384	1748	Handler	:::::::::
 2016-10-31	11:25:13:661	1384	1748	Handler	::  END  ::  Handler: CBS Install
-</pre>
+```
 
 Examining the CBS.LOG for more information has revealed the following:
 
-<pre class="lang:default decode:true ">Install (5): flags: 0 tlc: [b964dad2cfda55b03ab17b3d6225bf2a, Version = 6.1.7601.23539, pA = PROCESSOR_ARCHITECTURE_AMD64 (9), Culture neutral, VersionScope = 1 nonSxS, PublicKeyToken = {l:8 b:31bf3856ad364e35}, Type neutral, TypeName neutral, PublicKey neutral]) ref: ( flgs: 00000000 guid: {d16d444c-56d8-11d5-882d-0080c847b195} name: [l:162{81}]"Package_215_for_KB3172605~31bf3856ad364e35~amd64~~6.1.1.4.3172605-371_neutral_LDR" ncdata: [l:2{1}]"4") thumbprint: (null)
+```console
+Install (5): flags: 0 tlc: [b964dad2cfda55b03ab17b3d6225bf2a, Version = 6.1.7601.23539, pA = PROCESSOR_ARCHITECTURE_AMD64 (9), Culture neutral, VersionScope = 1 nonSxS, PublicKeyToken = {l:8 b:31bf3856ad364e35}, Type neutral, TypeName neutral, PublicKey neutral]) ref: ( flgs: 00000000 guid: {d16d444c-56d8-11d5-882d-0080c847b195} name: [l:162{81}]"Package_215_for_KB3172605~31bf3856ad364e35~amd64~~6.1.1.4.3172605-371_neutral_LDR" ncdata: [l:2{1}]"4") thumbprint: (null)
   Install (5): flags: 0 tlc: [09890cfcc80e3f28e03127e4e92b70c1, Version = 6.1.7601.23446, pA = PROCESSOR_ARCHITECTURE_AMD64 (9), Culture neutral, VersionScope = 1 nonSxS, PublicKeyToken = {l:8 b:31bf3856ad364e35}, Type neutral, TypeName neutral, PublicKey neutral]) ref: ( flgs: 00000000 guid: {d16d444c-56d8-11d5-882d-0080c847b195} name: [l:162{81}]"Package_216_for_KB3172605~31bf3856ad364e35~amd64~~6.1.1.4.3172605-372_neutral_LDR" ncdata: [l:2{1}]"4") thumbprint: (null)
   Install (5): flags: 0 tlc: [55fc5c26ee33f7af39b6e955951d9951, Version = 6.1.7601.23539, pA = PROCESSOR_ARCHITECTURE_AMD64 (9), Culture neutral, VersionScope = 1 nonSxS, PublicKeyToken = {l:8 b:31bf3856ad364e35}, Type neutral, TypeName neutral, PublicKey neutral]) ref: ( flgs: 00000000 guid: {d16d444c-56d8-11d5-882d-0080c847b195} name: 
 2016-10-31 11:25:10, Info                  CSI    [l:162{81}]"Package_217_for_KB3172605~31bf3856ad364e35~amd64~~6.1.1.4.3172605-373_neutral_LDR" ncdata: [l:2{1}]"4") thumbprint: (null)
@@ -78,11 +80,12 @@ Examining the CBS.LOG for more information has revealed the following:
 2016-10-31 11:25:11, Info                  CBS    Failed to query DisableWerReporting flag.  Assuming not set... [HRESULT = 0x80070002 - ERROR_FILE_NOT_FOUND]
 2016-10-31 11:25:11, Info                  CBS    Failed to add %windir%\winsxs\pending.xml to WER report because it is missing.  Continuing without it...
 2016-10-31 11:25:11, Info                  CBS    Failed to add %windir%\winsxs\pending.xml.bad to WER report because it is missing.  Continuing without it...
-</pre>
+```
 
 The error starts here:
 
-<pre class="lang:default decode:true ">Install (5): flags: 0 tlc: [3263a2d6cc50fdfaa752bf29654af055, Version = 6.1.7601.23539, pA = PROCESSOR_ARCHITECTURE_AMD64 (9), Culture neutral, VersionScope = 1 nonSxS, PublicKeyToken = {l:8 b:31bf3856ad364e35}, Type neutral, TypeName neutral, PublicKey neutral]) ref: ( flgs: 00000000 guid: {d16d444c-56d8-11d5-882d-0080c847b195} name: [l:162{81}]"Package_221_for_KB3172605~31bf3856ad364e35~amd64~~6.1.1.4.3172605-377_neutral_LDR" ncdata: [l:2{1}]"5") thumbprint: (null)
+```console
+Install (5): flags: 0 tlc: [3263a2d6cc50fdfaa752bf29654af055, Version = 6.1.7601.23539, pA = PROCESSOR_ARCHITECTURE_AMD64 (9), Culture neutral, VersionScope = 1 nonSxS, PublicKeyToken = {l:8 b:31bf3856ad364e35}, Type neutral, TypeName neutral, PublicKey neutral]) ref: ( flgs: 00000000 guid: {d16d444c-56d8-11d5-882d-0080c847b195} name: [l:162{81}]"Package_221_for_KB3172605~31bf3856ad364e35~amd64~~6.1.1.4.3172605-377_neutral_LDR" ncdata: [l:2{1}]"5") thumbprint: (null)
   Install (
 2016-10-31 11:25:10, Info                  CSI    5): flags: 0 tlc: [0056e69823ce1bfb38fe27ada797736f, Version = 6.1.7601.23539, pA = PROCESSOR_ARCHITECTURE_AMD64 (9), Culture neutral, VersionScope = 1 nonSxS, PublicKeyToken = {l:8 b:31bf3856ad364e35}, Type neutral, TypeName neutral, PublicKey neutral]) ref: ( flgs: 00000000 guid: {d16d444c-56d8-11d5-882d-0080c847b195} name: [l:162{81}]"Package_222_for_KB3172605~31bf3856ad364e35~amd64~~6.1.1.4.3172605-379_neutral_LDR" ncdata: [l:4{2}]"16") thumbprint: (null)
 2016-10-31 11:25:11, Info                  CSI    000000eb Over-removing a TLC, s/b internal error 0e471cf709070f76ea5797942bb36096, Version = 6.1.7601.23455, pA = PROCESSOR_ARCHITECTURE_AMD64 (9), Culture neutral, VersionScope = 1 nonSxS, PublicKeyToken = {l:8 b:31bf3856ad364e35}, Type neutral, TypeName neutral, PublicKey neutral
@@ -90,7 +93,7 @@ The error starts here:
 2016-10-31 11:25:11, Error                 CSI    000000ec@2016/10/31:17:25:11.317 (F) d:\win7sp1_gdr\base\wcp\componentstore\analysis.cpp(1186): Error STATUS_REQUEST_OUT_OF_SEQUENCE originated in function CServicingFamilyEntries::RemoveInstalledTlc expression: (null)
 [gle=0x80004005]
 2016-10-31 11:25:11, Error                 CSI    000000ed (F) STATUS_REQUEST_OUT_OF_SEQUENCE #813471# from CTransactionAnalysis::GenerateServicingFamilies(...)[gle=0xd000042a]
-</pre>
+```
 
 One of the nice things about Windows Update is it kicks up Windows Error Reporting immediately when it detects an error.  So if you run procmon.exe you can find when the error occurs and work backwards only a little bit to, usually, find why it crashed.
 
@@ -119,27 +122,18 @@ I went to another system and exported the values.  In order to find the proper k
 
 The key path was present in both systems because they were at the same patch level but the look of the key is different because of GUIDs are generated:
 
-<div id="attachment_1793" style="width: 1034px" class="wp-caption aligncenter">
-  <img aria-describedby="caption-attachment-1793" class="wp-image-1793 size-large" src="/wp-content/uploads/2016/10/windowsupdatebug10-1-1024x195.png" alt="windowsupdatebug10" width="1024" height="195" srcset="/wp-content/uploads/2016/10/windowsupdatebug10-1-1024x195.png 1024w, /wp-content/uploads/2016/10/windowsupdatebug10-1-300x57.png 300w, /wp-content/uploads/2016/10/windowsupdatebug10-1-768x146.png 768w, /wp-content/uploads/2016/10/windowsupdatebug10-1.png 1253w" sizes="(max-width: 1024px) 100vw, 1024px" /></p> 
-  
-  <p id="caption-attachment-1793" class="wp-caption-text">
-    Working system - Notice the highlight is different
-  </p>
-</div>
+![](/wp-content/uploads/2016/10/windowsupdatebug10-1-1024x195.png)  
+Working system - Notice the highlight is different
 
 By tracing back in the working system I exported the key that "c!" is referencing.
 
-<div id="attachment_1794" style="width: 1034px" class="wp-caption aligncenter">
-  <img aria-describedby="caption-attachment-1794" class="size-large wp-image-1794" src="/wp-content/uploads/2016/10/windowsupdatebug11-1-1024x194.png" alt="Working System has S256H, identity keys" width="1024" height="194" srcset="/wp-content/uploads/2016/10/windowsupdatebug11-1-1024x194.png 1024w, /wp-content/uploads/2016/10/windowsupdatebug11-1-300x57.png 300w, /wp-content/uploads/2016/10/windowsupdatebug11-1-768x145.png 768w, /wp-content/uploads/2016/10/windowsupdatebug11-1.png 1248w" sizes="(max-width: 1024px) 100vw, 1024px" /></p> 
-  
-  <p id="caption-attachment-1794" class="wp-caption-text">
-    Working System has S256H, identity keys
-  </p>
-</div>
+![](/wp-content/uploads/2016/10/windowsupdatebug11-1-1024x194.png)  
+Working System has S256H, identity keys
 
 I exported out the key from the working system and had to edit it so the GUID matched the broken key's values.  I took the 'working' registry:
 
-<pre class="lang:default decode:true ">Windows Registry Editor Version 5.00
+```powershell
+Windows Registry Editor Version 5.00
 
 [HKEY_LOCAL_MACHINE\COMPONENTS\DerivedData\Components\amd64_c4ebacc53555cd9cdedd693c10e6175a_31bf3856ad364e35_6.1.7601.23455_none_8459b72d1e2f2700]
 "S256H"=hex:0f,a1,b1,ae,e7,ec,04,9f,3f,0f,1a,3c,2d,ed,14,03,3d,0e,1f,e4,20,cd,\
@@ -154,48 +148,22 @@ I exported out the key from the working system and had to edit it so the GUID ma
 "ClosureFlags"=dword:00000003
 "c!c4ebacc5355..93c10e6175a_31bf3856ad364e35_6.1.7601.23455_8459b72d1e2f2700"=hex:
 
-</pre>
+```
 
 And the broken key:
 
-<pre class="lang:default decode:true ">Windows Registry Editor Version 5.00
-
-[HKEY_LOCAL_MACHINE\COMPONENTS\DerivedData\Components\amd64_0e471cf709070f76ea5797942bb36096_31bf3856ad364e35_6.1.7601.23455_none_9b9ebc8fa6659c8e]
-"ClosureFlags"=dword:00000003</pre>
-
-I added the S256H and identity values to the 'broken' key:
-
-<pre class="lang:default decode:true ">Windows Registry Editor Version 5.00
+```powershell
+Windows Registry Editor Version 5.00
 
 [HKEY_LOCAL_MACHINE\COMPONENTS\DerivedData\Components\amd64_0e471cf709070f76ea5797942bb36096_31bf3856ad364e35_6.1.7601.23455_none_9b9ebc8fa6659c8e]
 "ClosureFlags"=dword:00000003
-"S256H"=hex:0f,a1,b1,ae,e7,ec,04,9f,3f,0f,1a,3c,2d,ed,14,03,3d,0e,1f,e4,20,cd,\
-  6d,d3,b6,07,8c,2f,80,cf,2c,c8
-"identity"=hex:63,34,65,62,61,63,63,35,33,35,35,35,63,64,39,63,64,65,64,64,36,\
-  39,33,63,31,30,65,36,31,37,35,61,2c,20,43,75,6c,74,75,72,65,3d,6e,65,75,74,\
-  72,61,6c,2c,20,56,65,72,73,69,6f,6e,3d,36,2e,31,2e,37,36,30,31,2e,32,33,34,\
-  35,35,2c,20,50,75,62,6c,69,63,4b,65,79,54,6f,6b,65,6e,3d,33,31,62,66,33,38,\
-  35,36,61,64,33,36,34,65,33,35,2c,20,50,72,6f,63,65,73,73,6f,72,41,72,63,68,\
-  69,74,65,63,74,75,72,65,3d,61,6d,64,36,34,2c,20,76,65,72,73,69,6f,6e,53,63,\
-  6f,70,65,3d,4e,6f,6e,53,78,53</pre>
+```
 
-And then added the last "c!" line by following these next steps:
+I added the S256H and identity values to the 'broken' key:
 
-  1. copied the line out:  
-    "c!c4ebacc5355..93c10e6175a\_31bf3856ad364e35\_6.1.7601.23455_8459b72d1e2f2700&8243;=hex:
-  2. Pasted the value from the registry "key" underneath with the "broken" value: <pre class="lang:default decode:true">"c!c4ebacc5355..93c10e6175a_31bf3856ad364e35_6.1.7601.23455_8459b72d1e2f2700"=hex:
-   c4ebacc53555cd9cdedd693c10e6175a_31bf3856ad364e35_6.1.7601.23455_none_8459b72d1e2f2700
-   0e471cf709070f76ea5797942bb36096_31bf3856ad364e35_6.1.7601.23455_none_9b9ebc8fa6659c8e</pre>
 
-  3. Starting at the ellipse, counted the number of characters from the "55.." to "93&8242; underneath and created the value: <pre class="lang:default decode:true">"c!c4ebacc5355..93c10e6175a_31bf3856ad364e35_6.1.7601.23455_8459b72d1e2f2700"=hex:
-   c4ebacc5355..93c10e6175a_31bf3856ad364e35_6.1.7601.23455_none_8459b72d1e2f2700
-   0e471cf7090..7942bb36096_31bf3856ad364e35_6.1.7601.23455_none_9b9ebc8fa6659c8e</pre>
-
-  4. Lastly, removed the '_none" from the string: <pre class="lang:default decode:true">"c!c4ebacc5355..93c10e6175a_31bf3856ad364e35_6.1.7601.23455_8459b72d1e2f2700"=hex:
-   c4ebacc5355..93c10e6175a_31bf3856ad364e35_6.1.7601.23455_8459b72d1e2f2700
-   0e471cf7090..7942bb36096_31bf3856ad364e35_6.1.7601.23455_9b9ebc8fa6659c8e</pre>
-
-  5. I could then add "c!" in front and added it to my 'broken' registry file: <pre class="lang:default decode:true ">Windows Registry Editor Version 5.00
+```powershell
+Windows Registry Editor Version 5.00
 
 [HKEY_LOCAL_MACHINE\COMPONENTS\DerivedData\Components\amd64_0e471cf709070f76ea5797942bb36096_31bf3856ad364e35_6.1.7601.23455_none_9b9ebc8fa6659c8e]
 "ClosureFlags"=dword:00000003
@@ -208,14 +176,56 @@ And then added the last "c!" line by following these next steps:
   35,36,61,64,33,36,34,65,33,35,2c,20,50,72,6f,63,65,73,73,6f,72,41,72,63,68,\
   69,74,65,63,74,75,72,65,3d,61,6d,64,36,34,2c,20,76,65,72,73,69,6f,6e,53,63,\
   6f,70,65,3d,4e,6f,6e,53,78,53
-"c!0e471cf7090..7942bb36096_31bf3856ad364e35_6.1.7601.23455_9b9ebc8fa6659c8e"=hex:</pre>
+
+```
+
+
+And then added the last "c!" line by following these next steps:
+
+  1. copied the line out:  
+    "c!c4ebacc5355..93c10e6175a\_31bf3856ad364e35\_6.1.7601.23455_8459b72d1e2f2700&8243;=hex:
+  2. Pasted the value from the registry "key" underneath with the "broken" value:
+```console
+   c!c4ebacc5355..93c10e6175a_31bf3856ad364e35_6.1.7601.23455_8459b72d1e2f2700"=hex:
+   c4ebacc53555cd9cdedd693c10e6175a_31bf3856ad364e35_6.1.7601.23455_none_8459b72d1e2f2700
+   0e471cf709070f76ea5797942bb36096_31bf3856ad364e35_6.1.7601.23455_none_9b9ebc8fa6659c8e
+```
+  3. Starting at the ellipse, counted the number of characters from the "55.." to "93&8242; underneath and created the value: 
+```console
+   c!c4ebacc5355..93c10e6175a_31bf3856ad364e35_6.1.7601.23455_8459b72d1e2f2700"=hex:
+   c4ebacc5355..93c10e6175a_31bf3856ad364e35_6.1.7601.23455_none_8459b72d1e2f2700
+   0e471cf7090..7942bb36096_31bf3856ad364e35_6.1.7601.23455_none_9b9ebc8fa6659c8e
+```
+
+  4. Lastly, removed the '_none" from the string: 
+```console
+   c!c4ebacc5355..93c10e6175a_31bf3856ad364e35_6.1.7601.23455_8459b72d1e2f2700"=hex:
+   c4ebacc5355..93c10e6175a_31bf3856ad364e35_6.1.7601.23455_8459b72d1e2f2700
+   0e471cf7090..7942bb36096_31bf3856ad364e35_6.1.7601.23455_9b9ebc8fa6659c8e
+```
+
+  5. I could then add "c!" in front and added it to my 'broken' registry file:  
+
+```powershell
+Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\COMPONENTS\DerivedData\Components\amd64_0e471cf709070f76ea5797942bb36096_31bf3856ad364e35_6.1.7601.23455_none_9b9ebc8fa6659c8e]
+"ClosureFlags"=dword:00000003
+"S256H"=hex:0f,a1,b1,ae,e7,ec,04,9f,3f,0f,1a,3c,2d,ed,14,03,3d,0e,1f,e4,20,cd,\
+  6d,d3,b6,07,8c,2f,80,cf,2c,c8
+"identity"=hex:63,34,65,62,61,63,63,35,33,35,35,35,63,64,39,63,64,65,64,64,36,\
+  39,33,63,31,30,65,36,31,37,35,61,2c,20,43,75,6c,74,75,72,65,3d,6e,65,75,74,\
+  72,61,6c,2c,20,56,65,72,73,69,6f,6e,3d,36,2e,31,2e,37,36,30,31,2e,32,33,34,\
+  35,35,2c,20,50,75,62,6c,69,63,4b,65,79,54,6f,6b,65,6e,3d,33,31,62,66,33,38,\
+  35,36,61,64,33,36,34,65,33,35,2c,20,50,72,6f,63,65,73,73,6f,72,41,72,63,68,\
+  69,74,65,63,74,75,72,65,3d,61,6d,64,36,34,2c,20,76,65,72,73,69,6f,6e,53,63,\
+  6f,70,65,3d,4e,6f,6e,53,78,53
+"c!0e471cf7090..7942bb36096_31bf3856ad364e35_6.1.7601.23455_9b9ebc8fa6659c8e"=hex:
+```
     
-    I then tried to install the patch:
+I then tried to install the patch:
     
-<img class="aligncenter size-full wp-image-1795" src="/wp-content/uploads/2016/10/windowsupdatebug9-1.png" alt="windowsupdatebug9" width="548" height="383" srcset="/wp-content/uploads/2016/10/windowsupdatebug9-1.png 548w, /wp-content/uploads/2016/10/windowsupdatebug9-1-300x210.png 300w" sizes="(max-width: 548px) 100vw, 548px" /> </li> </ol> 
+![](/wp-content/uploads/2016/10/windowsupdatebug9-1.png)
+
+And it worked!
     
-    And it worked!
-    
-    <!-- AddThis Advanced Settings generic via filter on the_content -->
-    
-    <!-- AddThis Share Buttons generic via filter on the_content -->

@@ -39,9 +39,12 @@ Resolution
 **Stop the mfcom.exe service using Task Manager.  
 Execute the following commands:  
 
-<pre class="lang:batch decode:true ">Dsmaint recreatelhc
+```shell
+Dsmaint recreatelhc
 Dsmaint recreaterade
-Start the IMA Service and MFCOM Service.</pre>
+Start the IMA Service and MFCOM Service
+```
+
 
 <!-- AddThis Advanced Settings generic via filter on the_content -->
 

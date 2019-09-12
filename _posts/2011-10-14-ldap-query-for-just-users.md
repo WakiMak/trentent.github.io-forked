@@ -23,7 +23,9 @@ tags:
 ---
 We have numerous "mailbox only" user accounts in our AD. I've been asked for a query of all the user accounts on our domain. The query needs to exclude these accounts and disabled accounts as we're only interested in active user accounts. This is what I came up with:
 
-<pre class="lang:batch decode:true ">adfind -f "&(objectcategory=person)(samaccountname=*)(!(userAccountControl:1.2.840.113556.1.4.803:=2)(!(msExchRecipientTypeDetails=4)(!(msExchRecipientDisplayType=7)(!(msExchRecipientDisplayType=8)(!(extensionattribute1=Service Account))))))" -csv -csvdelim ;</pre>
+```shell
+adfind -f "&(objectcategory=person)(samaccountname=*)(!(userAccountControl:1.2.840.113556.1.4.803:=2)(!(msExchRecipientTypeDetails=4)(!(msExchRecipientDisplayType=7)(!(msExchRecipientDisplayType=8)(!(extensionattribute1=Service Account))))))" -csv -csvdelim ;
+```
 
 This query does the following:  
 Find all user accounts (objectcategory=person)(samaccountname=*)  

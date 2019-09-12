@@ -24,16 +24,24 @@ tags:
 ---
 With Windows Server 2008 and on the event log "Group Policy" will track how long it takes a user to login. I've created a script that will pull all this information into a file.
 
-<pre class="lang:default decode:true ">=================List-of-comps.txt======================
+
+```plaintext
+=================List-of-comps.txt======================
 Server1
 Server2
 Server3
-Server4</pre>
+Server
+```
+
 
 &nbsp;
 
-<pre class="lang:ps decode:true ">$comp = import-csv "C:\list-of-comps.txt"
-foreach ($entry in $comp) {(get-winevent -listprovider microsoft-windows-grouppolicy) |get-winevent -computername $entry.comp |where {$_.id -eq 8001}| format-table timecreated, message -auto | out-file -append "C:\Users\trententtye\Desktop\New Text Document (2).txt"}</pre>
+
+```powershell
+$comp = import-csv "C:\list-of-comps.txt"
+foreach ($entry in $comp) {(get-winevent -listprovider microsoft-windows-grouppolicy) |get-winevent -computername $entry.comp |where {$_.id -eq 8001}| format-table timecreated, message -auto | out-file -append "C:\Users\trententtye\Desktop\New Text Document (2).txt"
+```
+
 
 &nbsp;
 

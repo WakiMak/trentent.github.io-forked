@@ -23,7 +23,9 @@ tags:
   - VMWare
   - VMWare tools
 ---
-<pre class="lang:ps decode:true "># ===========================================================================================================
+
+```powershell
+# ===========================================================================================================
 #
 # Created by:  Trentent Tye
 #
@@ -73,7 +75,9 @@ $VMView = Get-View -ViewType VirtualMachine -Filter @{"Name" = "WSAPV"}
 
 foreach($vm in $VMView){
     $vm.ReconfigVM_Task($vmConfigSpec)
-}</pre>
+
+```
+
 
 &nbsp;
 

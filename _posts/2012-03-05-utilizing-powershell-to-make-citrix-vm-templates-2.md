@@ -24,9 +24,11 @@ tags:
   - VMWare
 
 ---
-Because my company doesn't utilize provisioining servers for deploy new Citrix & servers, I've had to come up with a couple of PowerShell scripts to make VMWare Templates that I can then deploy multiple & servers. You need VMWare PowerCLI to run this script. This is my script:
+Because my company doesn't utilize provisioining servers for deploy new Citrix XenApp servers, I've had to come up with a couple of PowerShell scripts to make VMWare Templates that I can then deploy multiple XenApp servers. You need VMWare PowerCLI to run this script. This is my script:
 
-> <pre class="lang:ps decode:true ">function create-template{
+> 
+```powershell
+function create-template{
 
 
 Param(
@@ -135,7 +137,9 @@ Write-Host "Removing Clone VM"
 remove-vm $newname -DeletePermanently -confirm:$false
 }
 }
-}</pre>
+
+```
+
 
 This script does the following:  
 1) Sets the inputs from a piped in object (get-vm VMTOTEMPLATE | create-template)  
@@ -144,7 +148,7 @@ This script does the following:
 a) Removes the computer from the domain  
 b) renames the computer to a generic name (XATEMPLATE)  
 c) Adds registry keys that will allow sysprep to run  
-d) Configures & to "Image" mode  
+d) Configures XenApp to "Image" mode  
 e) Shuts itself down once running the script is complete  
 f) deletes the script from running on startup  
 4) We then set the target to autologin with the local admin user name and password so the startup script in step 3 will be run  

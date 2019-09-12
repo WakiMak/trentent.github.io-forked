@@ -47,14 +47,17 @@ We can see the initial attempt to connection occurs at 28.9 seconds, then 31.9 s
 
 Is this what we are seeing?  It's close.  We are seeing the first two items for sure, but then in instead of a '3rd' attempt, it starts over but at the same formula.
 
-<pre class="">Packet 8451 to 8508 = 3 seconds
+```plaintext
+Packet 8451 to 8508 = 3 seconds
 Packet 8508 to 8600 = 6 seconds (2*3)
 Packet 8600 to 8910 = 12 seconds (4*3)
 Packet 8910 to 8979 = 3 seconds
 Packet 8979 to 9048 = 6 seconds (2*3)
 Packet 9048 to 9240 = 6 seconds (2*3?)
 Packet 9240 to 9295 = 3 seconds
-Packet 9295 to 9413 = 6 seconds (2*3)</pre>
+Packet 9295 to 9413 = 6 seconds (2*3
+```
+
 
 = 45 seconds.
 
@@ -73,7 +76,8 @@ This reduces the logon time to:
 What does this packet capture look like?  Like this:  
 <img class="aligncenter size-large wp-image-1711" src="/wp-content/uploads/2016/09/Lower_Syn_Values-1024x217.png" alt="lower_syn_values" width="1024" height="217" srcset="/wp-content/uploads/2016/09/Lower_Syn_Values-1024x217.png 1024w, /wp-content/uploads/2016/09/Lower_Syn_Values-300x64.png 300w, /wp-content/uploads/2016/09/Lower_Syn_Values-768x163.png 768w, /wp-content/uploads/2016/09/Lower_Syn_Values.png 1178w" sizes="(max-width: 1024px) 100vw, 1024px" /> 
 
-<pre class="">With 100ms Initial RTO we see the difference between the packets to be:
+```plaintext
+With 100ms Initial RTO we see the difference between the packets to be:
 Packet 16246 to 18743 = 300ms
 Packet 18743 to 19316 = 600ms (2*3)
 Packet 19316 to 39525 = 12 seconds (4*3?)
@@ -81,7 +85,9 @@ Packet 39525 to 39537 = 300ms
 Packet 39537 to 39579 = 600ms (2*3)
 Packet 39579 to 39651 = 1200ms seconds (4*3?)
 Packet 39651 to 39693 = 300ms
-Packet 39693 to 39754 = 600ms (2*3)</pre>
+Packet 39693 to 39754 = 600ms (2*3
+```
+
 
 Even with the 'Initial RTO' set to 100ms, Windows has a MinRTO value of 300ms:
 

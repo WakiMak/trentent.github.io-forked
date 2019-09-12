@@ -24,11 +24,13 @@ tags:
 ---
 I've written this script to utilize MCLI.exe to add a comment to the newest version of a vDisk and have marked which fields correspond to what.
 
-<pre class="lang:batch decode:true ">"C:\Program Files\Citrix\Provisioning Services\MCLI.exe" get diskversion -p disklocatorname=&65Tn03 sitename=SHW storename=& | FINDSTR /i /C:"version" > %TEMP%\diskver.txt
+```shell
+"C:\Program Files\Citrix\Provisioning Services\MCLI.exe" get diskversion -p disklocatorname=XenApp65tn03 sitename=SHW storename=& | FINDSTR /i /C:"version" > %TEMP%\diskver.txt
 
 FOR /F "tokens=1-2 delims=: " %%A IN ('type %TEMP%\diskver.txt') DO set VERSIONN=%%B
 
-"C:\Program Files\Citrix\Provisioning Services\MCLI.exe" set diskversion -p version=%VERSIONN% disklocatorname=&65Tn03 sitename=SHW storename=& -r description="Test"</pre>
+"C:\Program Files\Citrix\Provisioning Services\MCLI.exe" set diskversion -p version=%VERSIONN% disklocatorname=XenApp65tn03 sitename=SHW storename=& -r description="Test"
+```
 
 &nbsp;
 

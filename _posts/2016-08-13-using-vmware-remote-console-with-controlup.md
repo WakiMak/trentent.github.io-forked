@@ -26,7 +26,9 @@ I wanted to connect to the console session of some of our VM's but ControlUp doe
 
 We use multiple individual vCenter servers so I have a list of them I need to connect to in order to find the VM and get the required data.  This takes a bit longer but is still faster than running 6 different vCenter consoles.  You will need to modify the vCenter list in my script and add your own:
 
-<pre class="lang:ps decode:true "><#
+
+```powershell
+<#
     .SYNOPSIS
     This script will open a VMWare Remote Console on the selected server
 
@@ -116,7 +118,7 @@ $VM = get-vm $args[0]
 
 write-host "Launching VMRC"
 Start-Process -FilePath "C:\Program Files (x86)\VMware\VMware Remote Console\vmrc.exe" -ArgumentList "vmrc://clone:$($ticket)@$($vcenter)/?moid=$($vmid)"
-</pre>
+```
 
 &nbsp;
 

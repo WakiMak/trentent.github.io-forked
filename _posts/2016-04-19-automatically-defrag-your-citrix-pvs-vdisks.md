@@ -27,7 +27,9 @@ Here is a script to automate 'offline defragging' your PVS vDisks.  [Why Defrag?
 
 And the script:
 
-<pre class="lang:ps decode:true">############################################################################################
+
+```powershell
+############################################################################################
 #
 # Title:       Citrix PVS vDisk Defrag
 #
@@ -55,7 +57,7 @@ And the script:
 $PVSServer = "PVS04"
 #PVS Port number
 $PVSPort = "54321"
-$TargetvDiskName = "&65Tn05"
+$TargetvDiskName = "XenApp65tn05"
 $PVSStore = "&"
 $PVSSite = "BDC"
  
@@ -161,7 +163,9 @@ defrag $vDiskDriveLetter -w -f -v
  
 #promote version to production
 Write-Host "Promoting vDisk to production..."  -ForegroundColor Yellow
-mcli-run PromoteDiskVersion -p diskLocatorName=$TargetvDiskName,siteName=$PVSSite,storeName=$PVSStore</pre>
+mcli-run PromoteDiskVersion -p diskLocatorName=$TargetvDiskName,siteName=$PVSSite,storeName=$PVSStor
+```
+
 
 &nbsp;
 

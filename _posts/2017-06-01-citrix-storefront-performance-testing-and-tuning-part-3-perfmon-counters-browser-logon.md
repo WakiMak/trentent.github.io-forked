@@ -20,7 +20,9 @@ In looking at the performance of the Citrix Storefront Server, one of the thing 
 
 Using my powershell script to simulate a user connection I put 'pauses' between each stage.  I then setup Perfmon to capture counters from the following objects:
 
-<pre class="lang:default decode:true ">Citrix Dazzle Resources Controller\Image Response Whole Body  Calls / second
+
+```plaintext
+Citrix Dazzle Resources Controller\Image Response Whole Body  Calls / second
 Citrix Dazzle Resources Controller\Image Response Whole Body Average Time (Microseconds)
 Citrix Dazzle Resources Controller\List Sessions Whole Body  Calls / second
 Citrix Dazzle Resources Controller\List Sessions Whole Body Average Time (Microseconds)
@@ -82,8 +84,10 @@ Citrix Xml Service Communication(10.10.10.14)\Network Traffic  Calls / second
 Citrix Xml Service Communication(10.10.10.14)\Network Traffic Average Time (Microseconds)
 Citrix Xml Service Communication(&5.bottheory.local)\Network Traffic  Calls / second
 Citrix Xml Service Communication(&5.bottheory.local)\Network Traffic Average Time (Microseconds)
-Citrix Xml Service Communication(&65t.bottheory.local)\Network Traffic  Calls / second
-Citrix Xml Service Communication(&65t.bottheory.local)\Network Traffic Average Time (Microseconds)</pre>
+Citrix Xml Service Communication(XenApp65t.bottheory.local)\Network Traffic  Calls / second
+Citrix Xml Service Communication(XenApp65t.bottheory.local)\Network Traffic Average Time (Microseconds
+```
+
 
 I've added 6 farms to the storefront server to examine the load "in a real world" environment as Storefront does do some magic with concurrent enumeration.  What I love that Citrix has done, is actually time the transactions AND gives you the 'rate' the transactions are occurring at.  This will make it much easier to baseline what your load is vs how I had to do it to measure the 'rates' for Web Interface.
 
@@ -97,13 +101,15 @@ So for a web browser based connection, I 'connected' to the site and saw nothing
 * * *
 
 <span style="color: #ff0000;">$stage = "Client Configuration"</span>  
-$store + <span style="color: #3366ff;">"Home/Configuration"</p> 
+$store + <span style="color: #3366ff;">"Home/Configuration" </span>
 
 <p>
-  Result:<br /> </span>
+  Result:<br />
 </p>
 
-<pre class="lang:xhtml decode:true"><clientSettings
+
+```xml
+<clientSettings
 	xmlns='http://citrix.com/delivery-services/webAPI/2-6/clientConfig'>
 	<session timeout="600" />
 	<authManager getUsernameURL="Authentication/GetUserName" logoffURL="Authentication/Logoff" changeCredentialsURL="ExplicitAuth/GetChangeCredentialForm" loginFormTimeout="5" webviewReturnURL="ExplicitAuth/Bounce" webviewResumeURL="ExplicitAuth/ResumeForms" allowSelfServiceAccountManagementURL="ExplicitAuth/AllowSelfServiceAccountManagement" />
@@ -146,7 +152,9 @@ $store + <span style="color: #3366ff;">"Home/Configuration"</p>
 		<feature name="StoreFrontGWaaS_Product_RestrictPop" enabled="False" />
 		<feature name="StoreFrontMultiTenantBrokerService" enabled="False" />
 	</featureToggles>
-</clientSettings></pre>
+</clientSettings>
+```
+
 
 <p>
   This request is to get the client configuration.  Essentially, it pulls down an xml file from the store containing important links to various locations in Storefront. Again, no perf counter seems to occur and it doesn't seem to generate any load.
@@ -154,19 +162,24 @@ $store + <span style="color: #3366ff;">"Home/Configuration"</p>
 
 <hr />
 
-<p>
-  <span style="color: #ff0000;">$stage = "Get Authentication Methods"</span><br /> $store + <span style="color: #3366ff;">"Resources/List"</span>
-</p>
+<span style="color: #ff0000;">$stage = "Get Authentication Methods"</span>  
+$store + <span style="color: #3366ff;">"Resources/List" </span>
+
+
 
 <p>
   &nbsp;
 </p>
 
-<pre class="lang:default decode:true"><#
+
+```plaintext
+<#
 https://citrix.github.io/storefront-sdk/requests/#authentication-methods
 Note
 The client must first make a POST request to /Resources/List. Since the user is not yet authenticated, this returns a challenge in the form of a CitrixWebReceiver- Authenticate header with the GetAuthMethods URL in the location field.
-#></pre>
+#
+```
+
 
 <p>
   So this command starts to get a little exciting.  It's a bit of a misnomer to call it "Resources/List" as it doesn't actually return resources, yet.  It returns the challenge to logon.  We get our first Peformance Counter hit.
@@ -176,21 +189,34 @@ The client must first make a POST request to /Resources/List. Since the user is 
   The four counters that register are
 </p>
 
-<p>
-  "Citrix Receiver for Web\List resources Calls / second"<br /> "Citrix Receiver for Web\List resources Average Time (microseconds)"<br /> "Citrix Delivery Services Web Application(dazzleresources:list:get:_citrix_store)\Controller Action Calls / second"<br /> "Citrix Delivery Services Web Application(dazzleresources:list:get:_citrix_store)\Controller Action Average Time (Microseconds)"<br /> Results:<br /> List resources Calls / second: 1<br /> List resources Average Time (microseconds): 3,714<br /> (dazzleresources:list:get:_citrix_store)\Controller Action Average Time (Microseconds): 607<br /> (dazzleresources:list:get:_citrix_store)\Controller Action Calls / second: 1
-</p>
+```plaintext
+Citrix Receiver for Web\List resources Calls / second
+Citrix Receiver for Web\List resources Average Time (microseconds)
+Citrix Delivery Services Web Application(dazzleresources:list:get:_citrix_store)\Controller Action Calls / second
+Citrix Delivery Services Web Application(dazzleresources:list:get:_citrix_store)\Controller Action Average Time (Microseconds)
+```
+Results:
+```plaintext
+List resources Calls / second: 1
+List resources Average Time (microseconds): 3,714
+(dazzleresources:list:get:_citrix_store)\Controller Action Average Time (Microseconds): 607
+(dazzleresources:list:get:_citrix_store)\Controller Action Calls / second: 1
+```
 
 <hr />
 
-<p>
-  <span style="color: #ff0000;">$stage = "Get Auth Methods"</span><br /> $store + <span style="color: #3366ff;">"Authentication/GetAuthMethods"</span>
-</p>
+
+  <span style="color: #ff0000;">$stage = "Get Auth Methods"</span>   
+$store + <span style="color: #3366ff;">"Authentication/GetAuthMethods"</span>
+
 
 <p>
   <span style="color: #3366ff;">Response:</span>
 </p>
 
-<pre class="lang:xhtml decode:true"><authMethods xmlns="http://citrix.com/delivery-services/webAPI/2-6/authMethods">
+
+```xml
+<authMethods xmlns="http://citrix.com/delivery-services/webAPI/2-6/authMethods">
 
     <method name="ExplicitForms" url="ExplicitAuth/Login"/>
 
@@ -198,19 +224,28 @@ The client must first make a POST request to /Resources/List. Since the user is 
 
     <method name="CitrixAuth" url="CitrixAuth/Login"/>
 
-</authMethods></pre>
+</authMethods>
+```
 
 <p>
   Another exciting call.  This call hits these four performance counters:
 </p>
 
-<p>
-  "Citrix Delivery Services Web Application(authservice:tokenservices:post:_citrix_authentication)\Controller Action Calls / second"<br /> "Citrix Delivery Services Web Application(authservice:tokenservices:post:_citrix_authentication)\Controller Action Average Time (Microseconds)"<br /> "Citrix Delivery Services Web Application(protocols:choices:post:_citrix_authentication)\Controller Action Calls / second"<br /> "Citrix Delivery Services Web Application(protocols:choices:post:_citrix_authentication)\Controller Action Average Time (Microseconds)"
-</p>
+```plaintext
+Citrix Delivery Services Web Application(authservice:tokenservices:post:_citrix_authentication)\Controller Action Calls / second
+Citrix Delivery Services Web Application(authservice:tokenservices:post:_citrix_authentication)\Controller Action Average Time (Microseconds)
+Citrix Delivery Services Web Application(protocols:choices:post:_citrix_authentication)\Controller Action Calls / second
+Citrix Delivery Services Web Application(protocols:choices:post:_citrix_authentication)\Controller Action Average Time (Microseconds)
+```
 
-<p>
-  Results:<br /> (protocols:choices:post:_citrix_authentication)\Controller Action Calls / second: 1<br /> (protocols:choices:post:_citrix_authentication)\Controller Action Average Time (Microseconds) : 488<br /> (authservice:tokenservices:post:_citrix_authentication)\Controller Action Calls / second: 1<br /> (authservice:tokenservices:post:_citrix_authentication)\Controller Action Average Time (Microseconds): 138
-</p>
+Results:
+
+```plaintext
+(protocols:choices:post:_citrix_authentication)\Controller Action Calls / second: 1
+(protocols:choices:post:_citrix_authentication)\Controller Action Average Time (Microseconds) : 488
+(authservice:tokenservices:post:_citrix_authentication)\Controller Action Calls / second: 1
+(authservice:tokenservices:post:_citrix_authentication)\Controller Action Average Time (Microseconds): 138
+```
 
 <p>
   The Controller Action Calls /second was "1", obviously I'm doing just a single test.  For the action average time I got 711 microseconds.  Extremely fast.
@@ -218,44 +253,54 @@ The client must first make a POST request to /Resources/List. Since the user is 
 
 <hr />
 
-<p>
-  <span style="color: #ff0000;">$stage = "Domain Pass-Through and Smart Card Authentication"</span><br /> $store + <span style="color: #3366ff;">"DomainPassthroughAuth/Login"</span>
-</p>
+
+  <span style="color: #ff0000;">$stage = "Domain Pass-Through and Smart Card Authentication"</span>  
+$store + <span style="color: #3366ff;">"DomainPassthroughAuth/Login"</span>
+
 
 <p>
   <span style="color: #3366ff;">Response:</span>
 </p>
 
-<pre class="lang:xhtml decode:true "><?xml version="1.0" encoding="UTF-8"?>
+
+```xhtml
+<?xml version="1.0" encoding="UTF-8"?>
 <AuthenticationStatus xmlns="http://citrix.com/delivery-services/webAPI/2-6/authStatus">
   <Result>success</Result>
   <AuthType>IntegratedWindows</AuthType>
   
-</AuthenticationStatus></pre>
+</AuthenticationStatus
+```
+
 
 <p>
   Two more perf counters hit (rate + time):
 </p>
 
-<p>
-  Citrix Delivery Services Web Application(citrixfederationauthentication:authenticate:post:_citrix_authentication)\Controller Action Calls / second<br /> Citrix Delivery Services Web Application(citrixfederationauthentication:authenticate:post:_citrix_authentication)\Controller Action Average Time (Microseconds)
-</p>
+```plaintext
+Citrix Delivery Services Web Application(citrixfederationauthentication:authenticate:post:_citrix_authentication)\Controller Action Calls / second
+Citrix Delivery Services Web Application(citrixfederationauthentication:authenticate:post:_citrix_authentication)\Controller Action Average Time (Microseconds)
+```
 
-<p>
-  Results:<br /> (citrixfederationauthentication:authenticate:post:_citrix_authentication)\Controller Action Calls / second: 1<br /> (citrixfederationauthentication:authenticate:post:_citrix_authentication)\Controller Action Average Time (Microseconds): 4,850
-</p>
+Results:
+```plaintext
+(citrixfederationauthentication:authenticate:post:_citrix_authentication)\Controller Action Calls / second: 1
+(citrixfederationauthentication:authenticate:post:_citrix_authentication)\Controller Action Average Time (Microseconds): 4,850
+```
 
 <hr />
 
-<p>
-  <span style="color: #ff0000;">$stage = "Resource Enumeration"<br /> </span>$store + <span style="color: #3366ff;">"Resources/List"</span>
-</p>
+  <span style="color: #ff0000;">$stage = "Resource Enumeration"</span>  
+$store + <span style="color: #3366ff;">"Resources/List"</span>
 
 <p>
-  <span style="color: #3366ff;">Response:<br /> </span>
+  <span style="color: #3366ff;">Response:
+</span>
 </p>
 
-<pre class="lang:js decode:true">{
+
+```javascript
+{
 	"isSubscriptionEnabled": true,
 	"isUnauthenticatedStore": false,
 	"resources": [
@@ -275,11 +320,33 @@ The client must first make a POST request to /Resources/List. Since the user is 
 			"subscriptionurl": "Resources/Subscription/QUhTQ1RYNjUuT2ZmaWNlIC0gQWNjZXNzIDIwMTAgLSBTb3V0aA--"
 		},
 	]
-}</pre>
 
-<p>
-  This call returns a list of all the resources for which you have access.  The counters important to this call are:<br /> "Citrix Receiver for Web\List resources Average Time (microseconds)"<br /> "Citrix Dazzle Resources Controller\List Whole Body Calls / second"<br /> "Citrix Dazzle Resources Controller\List Whole Body Average Time (Microseconds)"<br /> "Citrix Delivery Services Web Application(authservice:tokenservices:post:_citrix_authentication)\Controller Action Calls / second"<br /> "Citrix Delivery Services Web Application(dazzleresources:list:get:_citrix_store)\Controller Action Calls / second"<br /> "Citrix Delivery Services Web Application(authservice:tokenservices:post:_citrix_authentication)\Controller Action Average Time (Microseconds)"<br /> "Citrix Delivery Services Web Application(dazzleresources:list:get:_citrix_store)\Controller Action Average Time (Microseconds)"<br /> "Citrix Receiver for Web\List resources Calls / second"<br /> "Citrix Xml Service Communication(10.10.10.11)\Network Traffic Calls / second"<br /> "Citrix Xml Service Communication(10.10.10.11)\Network Traffic Average Time (Microseconds)"<br /> "Citrix Xml Service Communication(10.10.10.12)\Network Traffic Calls / second"<br /> "Citrix Xml Service Communication(10.10.10.12)\Network Traffic Average Time (Microseconds)"<br /> "Citrix Xml Service Communication(10.10.10.13)\Network Traffic Calls / second"<br /> "Citrix Xml Service Communication(10.10.10.13)\Network Traffic Average Time (Microseconds)"<br /> "Citrix Xml Service Communication(10.10.10.14)\Network Traffic Calls / second"<br /> "Citrix Xml Service Communication(10.10.10.14)\Network Traffic Average Time (Microseconds)"<br /> "Citrix Xml Service Communication(&5.bottheory.local)\Network Traffic Calls / second"<br /> "Citrix Xml Service Communication(&5.bottheory.local)\Network Traffic Average Time (Microseconds)"<br /> "Citrix Xml Service Communication(&65t.bottheory.local)\Network Traffic Calls / second"<br /> "Citrix Xml Service Communication(&65t.bottheory.local)\Network Traffic Average Time (Microseconds)"
-</p>
+```
+
+This call returns a list of all the resources for which you have access.  The counters important to this call are:
+  
+```plaintext
+Citrix Receiver for Web\List resources Average Time (microseconds)
+Citrix Dazzle Resources Controller\List Whole Body Calls / second
+Citrix Dazzle Resources Controller\List Whole Body Average Time (Microseconds)
+Citrix Delivery Services Web Application(authservice:tokenservices:post:_citrix_authentication)\Controller Action Calls / second
+Citrix Delivery Services Web Application(dazzleresources:list:get:_citrix_store)\Controller Action Calls / second
+Citrix Delivery Services Web Application(authservice:tokenservices:post:_citrix_authentication)\Controller Action Average Time (Microseconds)
+Citrix Delivery Services Web Application(dazzleresources:list:get:_citrix_store)\Controller Action Average Time (Microseconds)
+Citrix Receiver for Web\List resources Calls / second
+Citrix Xml Service Communication(10.10.10.11)\Network Traffic Calls / second
+Citrix Xml Service Communication(10.10.10.11)\Network Traffic Average Time (Microseconds)
+Citrix Xml Service Communication(10.10.10.12)\Network Traffic Calls / second
+Citrix Xml Service Communication(10.10.10.12)\Network Traffic Average Time (Microseconds)
+Citrix Xml Service Communication(10.10.10.13)\Network Traffic Calls / second
+Citrix Xml Service Communication(10.10.10.13)\Network Traffic Average Time (Microseconds)
+Citrix Xml Service Communication(10.10.10.14)\Network Traffic Calls / second
+Citrix Xml Service Communication(10.10.10.14)\Network Traffic Average Time (Microseconds)
+Citrix Xml Service Communication(&5.bottheory.local)\Network Traffic Calls / second
+Citrix Xml Service Communication(&5.bottheory.local)\Network Traffic Average Time (Microseconds)
+Citrix Xml Service Communication(XenApp65t.bottheory.local)\Network Traffic Calls / second
+Citrix Xml Service Communication(XenApp65t.bottheory.local)\Network Traffic Average Time (Microseconds)
+```
 
 <p>
   We have lots of exciting things happening here.  We're reaching back and querying the XML brokers, some kind of authentication occurs, etc.
@@ -289,9 +356,28 @@ The client must first make a POST request to /Resources/List. Since the user is 
   The results of these counters were:
 </p>
 
-<p>
-  Citrix Receiver for Web\List resources Average Time (microseconds) : 249,172<br /> Citrix Dazzle Resources Controller\List Whole Body Calls / second : 1<br /> Citrix Dazzle Resources Controller\List Whole Body Average Time (Microseconds) : 182,206<br /> (authservice:tokenservices:post:_citrix_authentication)\Controller Action Calls / second : 1<br /> (dazzleresources:list:get:_citrix_store)\Controller Action Calls / second : 2<br /> (authservice:tokenservices:post:_citrix_authentication)\Controller Action Average Time (Microseconds) : 4,549<br /> (dazzleresources:list:get:_citrix_store)\Controller Action Average Time (Microseconds) : 8,391<br /> Citrix Receiver for Web\List resources Calls / second : 1<br /> Citrix Xml Service Communication(10.10.10.11)\Network Traffic Calls / second : 1<br /> Citrix Xml Service Communication(10.10.10.11)\Network Traffic Average Time (Microseconds) : 0<br /> Citrix Xml Service Communication(10.10.10.12)\Network Traffic Calls / second : 1<br /> Citrix Xml Service Communication(10.10.10.12)\Network Traffic Average Time (Microseconds) : 36,820<br /> Citrix Xml Service Communication(10.10.10.13)\Network Traffic Calls / second : 1<br /> Citrix Xml Service Communication(10.10.10.13)\Network Traffic Average Time (Microseconds) : 37,622<br /> Citrix Xml Service Communication(10.10.10.14)\Network Traffic Calls / second : 1<br /> Citrix Xml Service Communication(10.10.10.14)\Network Traffic Average Time (Microseconds) : 43,121<br /> Citrix Xml Service Communication(&5.bottheory.local)\Network Traffic Calls / second : 1<br /> Citrix Xml Service Communication(&5.bottheory.local)\Network Traffic Average Time (Microseconds) : 95,575<br /> Citrix Xml Service Communication(&65t.bottheory.local)\Network Traffic Calls / second : 1<br /> Citrix Xml Service Communication(&65t.bottheory.local)\Network Traffic Average Time (Microseconds) : 149,888
-</p>
+```plaintext
+Citrix Receiver for Web\List resources Average Time (microseconds) : 249,172
+Citrix Dazzle Resources Controller\List Whole Body Calls / second : 1
+Citrix Dazzle Resources Controller\List Whole Body Average Time (Microseconds) : 182,206
+(authservice:tokenservices:post:_citrix_authentication)\Controller Action Calls / second : 1
+(dazzleresources:list:get:_citrix_store)\Controller Action Calls / second : 2
+(authservice:tokenservices:post:_citrix_authentication)\Controller Action Average Time (Microseconds) : 4,549
+(dazzleresources:list:get:_citrix_store)\Controller Action Average Time (Microseconds) : 8,391
+Citrix Receiver for Web\List resources Calls / second : 1
+Citrix Xml Service Communication(10.10.10.11)\Network Traffic Calls / second : 1
+Citrix Xml Service Communication(10.10.10.11)\Network Traffic Average Time (Microseconds) : 0
+Citrix Xml Service Communication(10.10.10.12)\Network Traffic Calls / second : 1
+Citrix Xml Service Communication(10.10.10.12)\Network Traffic Average Time (Microseconds) : 36,820
+Citrix Xml Service Communication(10.10.10.13)\Network Traffic Calls / second : 1
+Citrix Xml Service Communication(10.10.10.13)\Network Traffic Average Time (Microseconds) : 37,622
+Citrix Xml Service Communication(10.10.10.14)\Network Traffic Calls / second : 1
+Citrix Xml Service Communication(10.10.10.14)\Network Traffic Average Time (Microseconds) : 43,121
+Citrix Xml Service Communication(&5.bottheory.local)\Network Traffic Calls / second : 1
+Citrix Xml Service Communication(&5.bottheory.local)\Network Traffic Average Time (Microseconds) : 95,575
+Citrix Xml Service Communication(XenApp65t.bottheory.local)\Network Traffic Calls / second : 1
+Citrix Xml Service Communication(XenApp65t.bottheory.local)\Network Traffic Average Time (Microseconds) : 149,888
+```
 
 <p>
   With these counters we can see how long it took the brokers to respond.  My broker that has a few hundred applications took the longest, followed by a broker of an older farm with dozens of apps, then three where only a single app each is published from them.  I got a 0.0 for enumeration for one service.  I'm not sure what that's about (maybe it exceeded enumeration timeout and is now excluded?).  Total time to list resources was 0.249 seconds.
@@ -299,116 +385,158 @@ The client must first make a POST request to /Resources/List. Since the user is 
 
 <hr />
 
-<p>
-  <span style="color: #ff0000;">$stage = "Get User Name"</span><br /> $store + <span style="color: #3366ff;">"Authentication/GetUserName"</span>
-</p>
+
+<span style="color: #ff0000;">$stage = "Get User Name"</span>  
+$store + <span style="color: #3366ff;">"Authentication/GetUserName"</span>
+
 
 <p>
-  <span style="color: #3366ff;">Response:<br /> </span>
+  <span style="color: #3366ff;">Response:
+</span>
 </p>
 
-<pre class="lang:default decode:true ">Trentent Tye</pre>
+
+```plaintext
+Trentent Tye
+```
+
 
 <p>
   This call simply returns your display name (or logon name if no display name is specified).
 </p>
 
-<p>
-  Two counters were hit:<br /> "Citrix Delivery Services Web Application(authservice:tokenservices:post:_citrix_authentication)\Controller Action  Calls / second"<br /> "Citrix Delivery Services Web Application(tokenvalidation:tokenvalidation:get:_citrix_authentication)\Controller Action Average Time (Microseconds)"<br /> "Citrix Delivery Services Web Application(authservice:tokenservices:post:_citrix_authentication)\Controller Action Average Time (Microseconds)"
-</p>
 
-<p>
-  The results of these counters were:<br /> (tokenvalidation:tokenvalidation:get:_citrix_authentication)\Controller Action  Calls / second : 2<br /> (authservice:tokenservices:post:_citrix_authentication)\Controller Action  Calls / second : 1<br /> (tokenvalidation:tokenvalidation:get:_citrix_authentication)\Controller Action Average Time (Microseconds) : 2,200<br /> (authservice:tokenservices:post:_citrix_authentication)\Controller Action Average Time (Microseconds) : 4,551
-</p>
+Two counters were hit:
+```plaintext
+Citrix Delivery Services Web Application(authservice:tokenservices:post:_citrix_authentication)\Controller Action  Calls / second
+Citrix Delivery Services Web Application(tokenvalidation:tokenvalidation:get:_citrix_authentication)\Controller Action Average Time (Microseconds)
+Citrix Delivery Services Web Application(authservice:tokenservices:post:_citrix_authentication)\Controller Action Average Time (Microseconds)
+```
+
+The results of these counters were:
+```plaintext
+(tokenvalidation:tokenvalidation:get:_citrix_authentication)\Controller Action  Calls / second : 2
+(authservice:tokenservices:post:_citrix_authentication)\Controller Action  Calls / second : 1
+(tokenvalidation:tokenvalidation:get:_citrix_authentication)\Controller Action Average Time (Microseconds) : 2,200
+(authservice:tokenservices:post:_citrix_authentication)\Controller Action Average Time (Microseconds) : 4,551
+```
 
 <hr />
 
-<p>
-  <span style="color: #ff0000;">$stage = "AllowSelfServiceAccountManagement"</span><br /> $store + <span style="color: #3366ff;">"ExplicitAuth/AllowSelfServiceAccountManagement"</span>
-</p>
+
+<span style="color: #ff0000;">$stage = "AllowSelfServiceAccountManagement"</span>  
+$store + <span style="color: #3366ff;">"ExplicitAuth/AllowSelfServiceAccountManagement"</span>
+
 
 <p>
   <span style="color: #3366ff;">Response:</span>
 </p>
 
-<pre class="lang:xhtml decode:true "><?xml version="1.0" encoding="UTF-8"?>
+
+```xhtml
+<?xml version="1.0" encoding="UTF-8"?>
 <SelfServiceAccountManagementStatus xmlns="http://citrix.com/delivery-services/webAPI/3-7/selfServiceAccountManagementStatus">
   <AllowSelfServiceAccountManagement>False</AllowSelfServiceAccountManagement>
-</SelfServiceAccountManagementStatus></pre>
+</SelfServiceAccountManagementStatus
+```
+
 
 <p>
   This call appears to return True or False.
 </p>
 
-<p>
-  "Citrix Delivery Services Web Application(selfserviceaccountmanagement:allowselfserviceaccountmanagement:get:_citrix_authentication)\Controller Action  Calls / second"<br /> "Citrix Delivery Services Web Application(selfserviceaccountmanagement:allowselfserviceaccountmanagement:get:_citrix_authentication)\Controller Action Average Time (Microseconds)"<br /> "Citrix Delivery Services Web Application(authservice:tokenservices:post:_citrix_authentication)\Controller Action Average Time (Microseconds)"<br /> "Citrix Delivery Services Web Application(authservice:tokenservices:post:_citrix_authentication)\Controller Action  Calls / second"
-</p>
+```plaintext
+Citrix Delivery Services Web Application(selfserviceaccountmanagement:allowselfserviceaccountmanagement:get:_citrix_authentication)\Controller Action  Calls / second
+Citrix Delivery Services Web Application(selfserviceaccountmanagement:allowselfserviceaccountmanagement:get:_citrix_authentication)\Controller Action Average Time (Microseconds)
+Citrix Delivery Services Web Application(authservice:tokenservices:post:_citrix_authentication)\Controller Action Average Time (Microseconds)
+Citrix Delivery Services Web Application(authservice:tokenservices:post:_citrix_authentication)\Controller Action  Calls / second
+```
 
-<p>
-  The results of these counters were:<br /> (selfserviceaccountmanagement:allowselfserviceaccountmanagement:get:_citrix_authentication)\Controller Action  Calls / second : 2<br /> (selfserviceaccountmanagement:allowselfserviceaccountmanagement:get:_citrix_authentication)\Controller Action Average Time (Microseconds) : 2,247<br /> (authservice:tokenservices:post:_citrix_authentication)\Controller Action  Calls / second : 1<br /> (authservice:tokenservices:post:_citrix_authentication)\Controller Action Average Time (Microseconds) : 6,014
-</p>
+The results of these counters were:
+```plaintext
+(selfserviceaccountmanagement:allowselfserviceaccountmanagement:get:_citrix_authentication)\Controller Action  Calls / second : 2
+(selfserviceaccountmanagement:allowselfserviceaccountmanagement:get:_citrix_authentication)\Controller Action Average Time (Microseconds) : 2,247
+(authservice:tokenservices:post:_citrix_authentication)\Controller Action  Calls / second : 1
+(authservice:tokenservices:post:_citrix_authentication)\Controller Action Average Time (Microseconds) : 6,014
+```
 
 <hr />
 
-<p>
-  &nbsp;
-</p>
 
-<p>
-  <span style="color: #ff0000;">$stage = "Download all the icons"</span><br /> $store + <span style="color: #3366ff;">$iconurl</span>
-</p>
 
-<p>
-  <span style="color: #3366ff;">Response:</span>
-</p>
 
-<p>
-  <downloads all icon files>
-</p>
+<span style="color: #ff0000;">$stage = "Download all the icons"</span>  
+$store + <span style="color: #3366ff;">$iconurl</span>
+
+
+
+<span style="color: #3366ff;">Response:</span>
+
+
+```plaintext
+<downloads all icon files>
+```
 
 <p>
   This call hits the following counters:
 </p>
 
-<p>
-  "Citrix Receiver for Web\Get icon Average Time (Microseconds)"<br /> "Citrix Receiver for Web\Get icon Calls / second"
-</p>
+```plaintext
+Citrix Receiver for Web\Get icon Average Time (Microseconds)
+Citrix Receiver for Web\Get icon Calls / second
+```
 
 <p>
   The results of these counters were:
 </p>
 
-<p>
-  Citrix Receiver for Web\Get icon Average Time (Microseconds) : 285.351<br /> Citrix Receiver for Web\Get icon Calls / second : 152.259
-</p>
+```plaintext
+Citrix Receiver for Web\Get icon Average Time (Microseconds) : 285.351
+Citrix Receiver for Web\Get icon Calls / second : 152.259
+```
 
 <hr />
 
-<p>
-  <span style="color: #ff0000;">$stage = "ICA Launch.GetLaunchStatus"</span><br /> $store + <span style="color: #3366ff;">$appToLaunch.launchstatusurl</span>
-</p>
+
+<span style="color: #ff0000;">$stage = "ICA Launch.GetLaunchStatus"</span>  
+$store + <span style="color: #3366ff;">$appToLaunch.launchstatusurl</span>
+
 
 <p>
   <span style="color: #3366ff;">Response:</span>
 </p>
 
-<pre class="lang:js decode:true "> {"fileFetchUrl":null,"status":"success"}</pre>
+
+```javascript
+ {"fileFetchUrl":null,"status":"success"}
+```
+
 
 <p>
   This call hits the following counters:
 </p>
 
-<p>
-  Citrix Receiver for Web\Get launch status Calls / second<br /> Citrix Receiver for Web\Get launch status Average Time (Microseconds)<br /> Citrix Delivery Services Web Application(dazzleresources:launchica:post:_citrix_store)\Controller Action Calls / second<br /> Citrix Delivery Services Web Application(dazzleresources:launchica:post:_citrix_store)\Controller Action Average Time (Microseconds)<br /> Citrix Xml Service Communication(10.10.10.11)\Network Traffic Calls / second<br /> Citrix Xml Service Communication(10.10.10.11)\Network Traffic Average Time (Microseconds)
-</p>
+```plaintext
+Citrix Receiver for Web\Get launch status Calls / second
+Citrix Receiver for Web\Get launch status Average Time (Microseconds)
+Citrix Delivery Services Web Application(dazzleresources:launchica:post:_citrix_store)\Controller Action Calls / second
+Citrix Delivery Services Web Application(dazzleresources:launchica:post:_citrix_store)\Controller Action Average Time (Microseconds)
+Citrix Xml Service Communication(10.10.10.11)\Network Traffic Calls / second
+Citrix Xml Service Communication(10.10.10.11)\Network Traffic Average Time (Microseconds)
+```
 
 <p>
   The results of these counters were:
 </p>
 
-<p>
-  Citrix Receiver for Web\Get launch status Calls / second : 1<br /> Citrix Receiver for Web\Get launch status Average Time (Microseconds) : 152,721<br /> Citrix Delivery Services Web Application(dazzleresources:launchica:post:_citrix_store)\Controller Action Calls / second : 1<br /> Citrix Delivery Services Web Application(dazzleresources:launchica:post:_citrix_store)\Controller Action Average Time (Microseconds) : 5,091<br /> Citrix Xml Service Communication(10.10.10.11)\Network Traffic Calls / second:  2<br /> Citrix Xml Service Communication(10.10.10.11)\Network Traffic Average Time (Microseconds) : 65,709
-</p>
+```plaintext
+Citrix Receiver for Web\Get launch status Calls / second : 1
+Citrix Receiver for Web\Get launch status Average Time (Microseconds) : 152,721
+Citrix Delivery Services Web Application(dazzleresources:launchica:post:_citrix_store)\Controller Action Calls / second : 1
+Citrix Delivery Services Web Application(dazzleresources:launchica:post:_citrix_store)\Controller Action Average Time (Microseconds) : 5,091
+Citrix Xml Service Communication(10.10.10.11)\Network Traffic Calls / second:  2
+Citrix Xml Service Communication(10.10.10.11)\Network Traffic Average Time (Microseconds) : 65,709
+```
 
 <p>
   Storefront will only fetch the status for the application from the broker that the application belongs.  If I run this query multiple times, hitting different brokers, the XML service communication populates more information.  The information here can be useful for you to find which broker is getting hit the most by looking at the "Network Traffic Calls / second" and you can find whether it's overloaded by the "Network Traffic Average Time" being a number that grows as your load grows.  As with everything, it's probably best to get some "base" numbers when load is low and then again when load is high to get your range.
@@ -416,15 +544,18 @@ The client must first make a POST request to /Resources/List. Since the user is 
 
 <hr />
 
-<p>
-  <span style="color: #ff0000;">$stage = "ICA Launch.LaunchIca"</span><br /> $store + <span style="color: #3366ff;">$appToLaunch.launchurl</span>
-</p>
+
+<span style="color: #ff0000;">$stage = "ICA Launch.LaunchIca"</span>  
+$store + <span style="color: #3366ff;">$appToLaunch.launchurl</span>
+
 
 <p>
   <span style="color: #3366ff;">Response:</span>
 </p>
 
-<pre class="lang:default decode:true">[Encoding]
+
+```plaintext
+[Encoding]
 InputEncoding=UTF8
 
 [WFClient]
@@ -492,15 +623,20 @@ DriverNameWin32=pdc40n.dll
 [EncRC5-56]
 DriverNameWin16=pdc56w.dll
 DriverNameWin32=pdc56n.dll
-</pre>
+```
 
 <p>
   We get an ICA file.  The performance counters that are important:
 </p>
 
-<p>
-  Citrix Delivery Services Web Application(dazzleresources:launchica:post:_citrix_store)\Controller Action Calls / second : 1<br /> Citrix Delivery Services Web Application(dazzleresources:launchica:post:_citrix_store)\Controller Action Average Time (Microseconds) : 5,453<br /> Citrix Receiver for Web\Get Ica file Calls / second : 1<br /> Citrix Receiver for Web\Get Ica file Average Time (Microseconds) : 1,255,237<br /> Citrix Xml Service Communication(10.10.10.14)\Network Traffic Calls / second : 2<br /> Citrix Xml Service Communication(10.10.10.14)\Network Traffic Average Time (Microseconds) : 530,153
-</p>
+```plaintext
+Citrix Delivery Services Web Application(dazzleresources:launchica:post:_citrix_store)\Controller Action Calls / second : 1
+Citrix Delivery Services Web Application(dazzleresources:launchica:post:_citrix_store)\Controller Action Average Time (Microseconds) : 5,453
+Citrix Receiver for Web\Get Ica file Calls / second : 1
+Citrix Receiver for Web\Get Ica file Average Time (Microseconds) : 1,255,237
+Citrix Xml Service Communication(10.10.10.14)\Network Traffic Calls / second : 2
+Citrix Xml Service Communication(10.10.10.14)\Network Traffic Average Time (Microseconds) : 530,153
+```
 
 <p>
   &nbsp;
@@ -516,21 +652,22 @@ DriverNameWin32=pdc56n.dll
   Taking all the operations and the time it took, I sorted the list according to duration.
 </p>
 
-<p>
-  <img class="aligncenter size-full wp-image-2384" src="/wp-content/uploads/2017/06/Storefront_operations.png" alt="" width="1210" height="567" srcset="/wp-content/uploads/2017/06/Storefront_operations.png 1210w, /wp-content/uploads/2017/06/Storefront_operations-300x141.png 300w, /wp-content/uploads/2017/06/Storefront_operations-768x360.png 768w" sizes="(max-width: 1210px) 100vw, 1210px" />
-</p>
+![](/wp-content/uploads/2017/06/Storefront_operations.png)
 
 <p>
   The following operations list the total duration of that specific task:
 </p>
 
-<p>
-  "Get Ica file"<br /> "List resources"<br /> "List Whole Body"<br /> "Get launch status"<br /> Excluding them shows us the sub-tasks that actually consumed the majority of the time spent:
-</p>
 
-<p>
-  <img class="aligncenter size-full wp-image-2385" src="/wp-content/uploads/2017/06/WithoutSortedCategories.png" alt="" width="1210" height="462" srcset="/wp-content/uploads/2017/06/WithoutSortedCategories.png 1210w, /wp-content/uploads/2017/06/WithoutSortedCategories-300x115.png 300w, /wp-content/uploads/2017/06/WithoutSortedCategories-768x293.png 768w" sizes="(max-width: 1210px) 100vw, 1210px" />
-</p>
+```plaintext
+Get Ica file
+List resources
+List Whole Body
+Get launch status
+```
+Excluding them shows us the sub-tasks that actually consumed the majority of the time spent:
+
+![](/wp-content/uploads/2017/06/WithoutSortedCategories.png)
 
 <p>
   The XML communications is what consumes the majority of the processing time.  The items starting in 'brackets ()' are the Citrix Storefront processing time that it spent.  Being in the single "thousands" of microseconds is super fast.  This essentially shows us that it takes next to no time at all for Storefront to execute the tasks that it needs.

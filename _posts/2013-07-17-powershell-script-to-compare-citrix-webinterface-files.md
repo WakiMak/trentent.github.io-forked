@@ -24,7 +24,9 @@ tags:
 ---
 I've created a powershell script that will compare Citrix Webinterface files then export them out to a csv file.
 
-<pre class="lang:ps decode:true ">#***************************************************************************************************************
+
+```powershell
+#***************************************************************************************************************
 #* Created by:  Trentent Tye
 #*             Intel Server Team
 #*             IBM Canada Ltd.
@@ -76,7 +78,9 @@ foreach ($item in $values) {
   }
 }
 
-$values | Export-CSV complete.csv -NoTypeInformation -force</pre>
+$values | Export-CSV complete.csv -NoTypeInformation -forc
+```
+
 
 &nbsp;
 

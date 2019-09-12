@@ -34,7 +34,11 @@ Our current world accomplishes this task by [using a script written by Simon Pri
 
 #### How does it work?  What's the output?
 
-<pre class="lang:ps decode:true">. "removeGhosts.ps1" -listDevicesOnly</pre>
+
+```powershell
+. "removeGhosts.ps1" -listDevicesOnl
+```
+
 
 <img class="aligncenter size-full wp-image-2490" src="/wp-content/uploads/2017/06/listdevicesonly.png" alt="" width="1101" height="478" srcset="/wp-content/uploads/2017/06/listdevicesonly.png 1101w, /wp-content/uploads/2017/06/listdevicesonly-300x130.png 300w, /wp-content/uploads/2017/06/listdevicesonly-768x333.png 768w" sizes="(max-width: 1101px) 100vw, 1101px" /> 
 
@@ -44,7 +48,11 @@ Our current world accomplishes this task by [using a script written by Simon Pri
 
 &nbsp;
 
-<pre class="lang:ps decode:true ">. "removeGhosts.ps1" -FilterByFriendlyName @("Citrix","Intel")</pre>
+
+```powershell
+. "removeGhosts.ps1" -FilterByFriendlyName @("Citrix","Intel"
+```
+
 
 <div id="attachment_2491" style="width: 551px" class="wp-caption aligncenter">
   <img aria-describedby="caption-attachment-2491" class="wp-image-2491 size-full" src="/wp-content/uploads/2017/06/remove_class_friendlynamematch.png" alt="" width="541" height="876" srcset="/wp-content/uploads/2017/06/remove_class_friendlynamematch.png 541w, /wp-content/uploads/2017/06/remove_class_friendlynamematch-185x300.png 185w" sizes="(max-width: 541px) 100vw, 541px" /></p> 
@@ -70,7 +78,9 @@ And a brief video of it in action:
 
 Lastly, the script:
 
-<pre class="lang:ps decode:true "><#
+
+```powershell
+<#
 .SYNOPSIS
    Removes ghost devices from your system
 
@@ -446,7 +456,9 @@ Add-Type -TypeDefinition $setupapi
         $removeArray  | sort -Property FriendlyName | ft
         write-host "Total removed devices     : $($removeArray.count)"
         return $removeArray | out-null
-    }</pre>
+    
+```
+
 
 &nbsp;
 

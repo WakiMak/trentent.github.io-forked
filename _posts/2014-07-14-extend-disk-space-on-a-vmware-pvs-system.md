@@ -25,7 +25,9 @@ tags:
   - Target Device
   - VMWare
 ---
-<pre class="lang:ps decode:true ">#############################################################################################################
+
+```powershell
+#############################################################################################################
 #
 #  By: Trentent Tye - Intel Server
 #
@@ -50,16 +52,22 @@ foreach ($server in $servers) {
    echo "select volume 0" | out-file  -FilePath \\$server\c$\swinst\diskpart.txt  -Encoding ASCII  -force
    echo "extend" | out-file  -FilePath \\$server\c$\swinst\diskpart.txt  -Encoding ASCII -Append  -force
    .\psexec.exe -accepteula \\$server diskpart.exe /s C:\swinst\diskpart.txt
-}</pre>
+
+```
+
 
 &nbsp;
 
-<pre class="lang:default decode:true ">########################
+
+```plaintext
+########################
 ServerList.txt
 Server1
 Server2
 Server3
-#######################</pre>
+######################
+```
+
 
 &nbsp;
 
