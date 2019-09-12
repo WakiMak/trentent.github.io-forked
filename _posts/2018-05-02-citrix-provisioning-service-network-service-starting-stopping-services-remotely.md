@@ -60,7 +60,8 @@ In order to get this working entirely I recommend the following steps:
 
 And now the script:
 
-<pre class="lang:ps decode:true "><#
+```ruby
+<#
     .SYNOPSIS
       Adds a user or group to the permission set on the Citrix Streaming Service to enable remote service manipulation
 
@@ -214,7 +215,8 @@ if ($SetACL) {
         Get-StreamServiceACL
     }
 
-}</pre>
+}
+```
 
 &nbsp;
 

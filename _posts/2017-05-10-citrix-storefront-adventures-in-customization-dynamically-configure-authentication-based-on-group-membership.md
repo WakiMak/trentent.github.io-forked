@@ -14,7 +14,7 @@ tags:
   - scripting
   - Storefront
 ---
-Continuing on from my previous post, in & 6.5 and Web Interface we created 2 sites, one with **explicit logon** (user name and password) set as the authentication method and one set with **domain passthrough**.  What was configured was an AD group, "ExplicitLogon", and then <span style="text-decoration: underline;">Windows Authentication</span> was configured on the <span style="text-decoration: underline;">IIS sites</span>.  When the user connected to the site, if they were a member of the domain, it would go to a custom aspx script that detected whether the user was a member of 'ExplicitLogon' or not.  If they were not a member they went directly to the domain passthrough site.  If they were a member, they would go to the explicit logon site and be prompted again for credentials.  Why is this configuration useful?  Two reasons...
+Continuing on from my previous post, in XenApp 6.5 and Web Interface we created 2 sites, one with **explicit logon** (user name and password) set as the authentication method and one set with **domain passthrough**.  What was configured was an AD group, "ExplicitLogon", and then <span style="text-decoration: underline;">Windows Authentication</span> was configured on the <span style="text-decoration: underline;">IIS sites</span>.  When the user connected to the site, if they were a member of the domain, it would go to a custom aspx script that detected whether the user was a member of 'ExplicitLogon' or not.  If they were not a member they went directly to the domain passthrough site.  If they were a member, they would go to the explicit logon site and be prompted again for credentials.  Why is this configuration useful?  Two reasons...
 
   1. Allows lower level AD accounts to get an opportunity to logon to Citrix with accounts that have elevated permissions.  If your organization enforces 'non-admin' accounts for your local computers, then being a part of ExplicitLogon will direct you to the site where you can logon with an elevated account.
   2. Shared accounts that are not allowed access to Citrix applications.  If a shared account is detected as a member of ExplicitLogon it will give the _real_ user a logon prompt where they can logon with their own credentials.
@@ -53,7 +53,7 @@ The server side script to check group membership:
 // Creation Date:	Dec 02, 2013
 // Modified Date:	Apr 18, 2014
 // File Name:		GroupMembership.aspx
-// Description:		Redirect user to appropriate Citrix & Web Site based on group membership
+// Description:		Redirect user to appropriate Citrix XenApp Web Site based on group membership
 // Modified:            May 08, 2017 - Trentent Tye - Modified to check for group membership for ExplicitLogon
 //                      and return the result.
 %>
@@ -123,7 +123,7 @@ function explicitLogonCheck(data) {
 		};
         break;
     case "Unknown":
-        console.log ("Attempting to authenticate.  If we cannot we will default to ExplicitLogon.");
+        console.log ("Attempting to authenticate.  If we cannot we will default to ExplicitLogon.");
 		CTXS.Extensions.excludeAuthenticationMethod = function(authenticationMethod) {
 			CTXS.trace("excluding auth:" + authenticationMethod + ":" + (authenticationMethod == CTXS.Authentication.Method.PASSTHROUGH));
 			return (authenticationMethod == CTXS.Authentication.Method.PASSTHROUGH);

@@ -351,7 +351,7 @@ Need to be modified to look like this:
 
 To execute our script, [install wcat](https://www.iis.net/downloads/community/2007/05/wcat-63-x86) and launch the controller via the command line like so:
 
-<pre class="lang:batch decode:true">wcctl.exe -t PNA_WithAppLaunch.wcat -f settings.ubr -s CTXWI01 -p 80 -c 10 -v 60 -w 300 -u 300 -n 300</pre>
+<pre class="lang:batch decode:true">wcctl.exe -t PNA_WithAppLaunch.wcat -f settings.ubr -s CTXWI01 -p 80 -c 10 -v 60 -w 300 -u 300 -n 300</pre>
 
 What each of these settings means:
 

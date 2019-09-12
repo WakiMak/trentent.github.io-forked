@@ -81,14 +81,14 @@ So, in the end, it turns out that AppV 5 utilizes 64KB cluster size even if the 
 <pre class="lang:default decode:true ">Allocation Report:
 
 Within these files there are:
-    Compressed              : 0
-        Total allocated     : 0 bytes
-        Total size          : 0 bytes.
-        Savings             : 0.00 %
-    Sparse                  : 9106
-        Total allocated     : 2318139392 bytes
-        Total size          : 1838549977 bytes.
-        Savings             : -26.09 %
-    Encrypted               : 0
-        Total allocated     : 0 bytes</pre>
+    Compressed              : 0
+        Total allocated     : 0 bytes
+        Total size          : 0 bytes.
+        Savings             : 0.00 %
+    Sparse                  : 9106
+        Total allocated     : 2318139392 bytes
+        Total size          : 1838549977 bytes.
+        Savings             : -26.09 %
+    Encrypted               : 0
+        Total allocated     : 0 bytes</pre>
 
