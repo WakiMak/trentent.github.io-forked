@@ -24,19 +24,22 @@ Open Regedit.exe as a SYSTEM account (use psexec -i -s regedit.exe) and "File > 
 
 Browse to the mount directory and go to \Windows\System32\Config\Drivers
 
+![](/wp-content/uploads/2019/09/LoadHive.png)  
+
 I mounted mine as PE_DRIVERS under HKEY_LOCAL_MACHINE
 
 Browse to this location:
 HKEY_LOCAL_MACHINE\PE_DRIVERS\DriverDatabase\DriverPackages\wnetvsc.inf_amd64_86f2f8310179e55e\Configurations\netvsc_Device\Driver
-
-Set the permissions on the Driver key to be Everyone Full
+![](/wp-content/uploads/2019/09/Jumbo_Before.png)  
 
 Double click on `*JumboPacket` and change the text from 1 . 5 . 1 . 4:
+![](/wp-content/uploads/2019/09/REG_NONE_1514.png)  
 
 to 9 . 0 . 1 . 4:
+![](/wp-content/uploads/2019/09/REG_NONE_9017.png)  
 
 The end result should look like this:
-
+![](/wp-content/uploads/2019/09/Jumbo_After.png)  
 
 Unload your hive and commit your WIM.  Next time you boot up and network is enabled you should have jumbo packets enabled!
 
