@@ -36,7 +36,7 @@ Double click on `*JumboPacket` and change the text from 1 . 5 . 1 . 4:
 ![](/wp-content/uploads/2019/09/REG_NONE_1514.png)  
 
 to 9 . 0 . 1 . 4:
-![](/wp-content/uploads/2019/09/REG_NONE_9017.png)  
+![](/wp-content/uploads/2019/09/REG_NONE_9014.png)  
 
 The end result should look like this:
 ![](/wp-content/uploads/2019/09/Jumbo_After.png)  
