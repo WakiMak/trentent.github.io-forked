@@ -32,10 +32,10 @@ Browse to this location:
 HKEY_LOCAL_MACHINE\PE_DRIVERS\DriverDatabase\DriverPackages\wnetvsc.inf_amd64_86f2f8310179e55e\Configurations\netvsc_Device\Driver
 ![](/wp-content/uploads/2019/09/Jumbo_Before.png)  
 
-Double click on `*JumboPacket` and change the text from 1 . 5 . 1 . 4:
+Double click on `*JumboPacket` and change the text from 1 . 5 . 1 . 4:  
 ![](/wp-content/uploads/2019/09/REG_NONE_1514.png)  
 
-to 9 . 0 . 1 . 4:
+to 9 . 0 . 1 . 4:  
 ![](/wp-content/uploads/2019/09/REG_NONE_9014.png)  
 
 The end result should look like this:
