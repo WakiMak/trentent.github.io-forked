@@ -1,11 +1,11 @@
 ---
 id: 2900
-title: Group Policy – Monolithic vs Functional Design and Performance Evaluation
+title: Group Policy - Monolithic vs Functional Design and Performance Evaluation
 date: 2018-04-09T00:15:31-06:00
 author: trententtye
 layout: post
 guid: http://theorypc.ca/?p=2726
-permalink: /2018/04/11/group-policy-preferences-registry-extension-vs-group-policy-registry-extension/
+permalink: /2018/04/09/group-policy-monolithic-vs-functional-design-and-performance-evaluation/
 image: /wp-content/uploads/2018/04/Screen-Shot-2018-04-10-at-12.26.21-AM.png
 categories:
   - Blog
