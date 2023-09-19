@@ -82,6 +82,7 @@ Event ID 4016 to 5016 (ms)
 | 100 | 29820 |
 
 Event ID 4257 to 5257 – Starting to download policies
+
 | Latency | Time (s) | 
 |-------|--------|
 | 0 | 0 |
@@ -94,6 +95,7 @@ Event ID 4257 to 5257 – Starting to download policies
 
 **Monolithic GPO – applying 100 registry values**
 Event ID 4016 to 5016 (ms)	
+
 | Latency | Time (ms) | 
 |-------|--------|
 | 0 | 117 |
@@ -105,7 +107,7 @@ Event ID 4016 to 5016 (ms)
 
 
 Event ID 4257 to 5257 – Starting to download policies	
-Latency	Time (s)
+
 | Latency | Time (s) | 
 |-------|--------|
 | 0 | 0 |
