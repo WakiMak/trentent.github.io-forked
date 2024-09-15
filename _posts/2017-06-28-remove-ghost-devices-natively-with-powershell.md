@@ -456,7 +456,7 @@ Add-Type -TypeDefinition $setupapi
         $removeArray  | sort -Property FriendlyName | ft
         write-host "Total removed devices     : $($removeArray.count)"
         return $removeArray | out-null
-    
+    }
 ```
 
 
